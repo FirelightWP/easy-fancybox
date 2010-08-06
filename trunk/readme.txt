@@ -1,22 +1,22 @@
-=== Easy Fancybox ===
+=== Easy FancyBox ===
 Contributors: RavanH
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&amp;item_name=Easy%20Fancybox&amp;item_number=1%2e3%2e1&amp;no_shipping=0&amp;tax=0&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&amp;item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e1&amp;no_shipping=0&amp;tax=0&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8
 Tags: fancybox, jquery, images, lightbox, gallery, image overlay
 Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 1.3.1
 
-Hassle-free, no-settings, auto-enable Fancybox on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript and is WP3.0 Multi-Site compatible
+Hassle-free, no-settings, auto-enable FancyBox on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript and is WP3.0 Multi-Site compatible
 
 == Description ==
 
-No options to be set. No configuration pages. It just gives you Fancybox-in-a-Box :)
+No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box :)
 
 Check out the screenshot and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
-Easy Fancybox uses the jQuery library that comes packed with WordPress.
+Easy FancyBox uses the jQuery library that comes packed with WordPress.
 
-Visit [Fancybox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION too!
+Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION too!
 
 == Installation ==
 
@@ -38,7 +38,7 @@ follow these steps:
 
 3. Activate the plugin on the Plug-ins page.
 
-Done! Check your sparkling new Fancyboxed images :)
+Done! Check your sparkling new FancyBoxed images :)
 
 = WordPress 3+ in Multi Site mode =
 
@@ -46,29 +46,29 @@ Same as above but do a **Network Activate** to make a XML sitemap available for 
 
 = Wordpress MU =
 
-The plugin works best from the **/mu-plugins/** folder where it runs quietly in the background without bothering any blog owner with new options or the need for special knowledge about Fancybox. Just upload the complete package content to /mu-plugins/ and move the file fancybox.php from the new /mu-plugins/easy-fancybox/ to /mu-plugins/.
+The plugin works best from the **/mu-plugins/** folder where it runs quietly in the background without bothering any blog owner with new options or the need for special knowledge about FancyBox. Just upload the complete package content to /mu-plugins/ and move the file fancybox.php from the new /mu-plugins/easy-fancybox/ to /mu-plugins/.
 
 == Frequently Asked Questions ==
 
-= What's Fancybox? =
+= What's FancyBox? =
 
-Basically, it is a fancy way of presenting images on your website. If you have scaled-down images in your posts which are linked to the original large version, instead of opening them in a blanc page, Fancybox opens those in a smooth overlay. Visit [Fancybox](http://fancybox.net/) for more information and examples. 
+Basically, it is a fancy way of presenting images on your website. If you have scaled-down images in your posts which are linked to the original large version, instead of opening them in a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples. 
 
-= Why EASY Fancybox? =
+= Why EASY FancyBox? =
 
-Instead of bothering you with the HUGE amount of configuration options that Fancybox can handle, this plugin requires NO configuration. Easy, isn't it? ;)
+Instead of bothering you with the HUGE amount of configuration options that FancyBox can handle, this plugin requires NO configuration. Easy, isn't it? ;)
 
-If you *do* want configuration options to tweak and fiddle for days to come, check out some of the other Fancybox plugins available.
+If you *do* want configuration options to tweak and fiddle for days to come, check out some of the other FancyBox plugins available.
 
-= Which version of Fancybox does this plugin use? =
+= Which version of FancyBox does this plugin use? =
 
-The same version as this plugin has. I aim to keep close pace to Fancybox upgrades and always move to the latest and greates version. Please, let me know if I'm lagging behind and missed an upgrade!
+The same version as this plugin has. I aim to keep close pace to FancyBox upgrades and always move to the latest and greates version. Please, let me know if I'm lagging behind and missed an upgrade!
 
 = Where is the settings page? =
 
 There is no settings page. It just *does what it does*. Check out the example under Screenshots and you see what that is...
 
-= Is Easy Fancybox multi-site compatible? =
+= Is Easy FancyBox multi-site compatible? =
 
 Yes.
 
@@ -82,12 +82,12 @@ Yes. Upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ an
 
 == Screenshots ==
 
-1. Image with Fancybox example
+1. Image with FancyBox example
 
 == Changelog ==
 
 = 1.3.1 =
-* Using Fancybox version 1.3.1
+* Using FancyBox version 1.3.1
 
 == Upgrade Notice ==
 
