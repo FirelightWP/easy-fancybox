@@ -6,7 +6,7 @@ Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 1.3.1
 
-Hassle-free, no-settings, auto-enable FancyBox on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript and is WP3.0 Multi-Site compatible
+Hassle-free, no-settings, auto-enable FancyBox on all image links. Uses packed Javascript and is WP3.0 Multi-Site compatible.
 
 == Description ==
 
