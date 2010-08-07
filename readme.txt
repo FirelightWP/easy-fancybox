@@ -22,21 +22,21 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Su
 
 = Wordpress =
 
-Simply [Install Now](http://coveredwebservices.com/wp-plugin-install/?plugin=easy-fancybox)
+Quick installation: [Install now](http://coveredwebservices.com/wp-plugin-install/?plugin=easy-fancybox) !
 
-&hellip; OR &hellip;
+    &hellip; OR &hellip;
 
-Just use that slick installation and auto update feature on your Plugins page 
+Search for "easy fancybox" and install with that slick **Plugins > Add New** back-end page.
 
-&hellip; OR &hellip;
+    &hellip; OR &hellip;
 
-follow these steps:
+Follow these steps:
 
-1. Download archive.
+    1. Download archive.
 
-2. Upload the zip file via the Plugins > Add New > Upload page &hellip; OR &hellip; unpack and upload with your favourite FTP client to the /plugins/ folder.
+    2. Upload the zip file via the Plugins > Add New > Upload page &hellip; OR &hellip; unpack and upload with your favourite FTP client to the /plugins/ folder.
 
-3. Activate the plugin on the Plug-ins page.
+    3. Activate the plugin on the Plug-ins page.
 
 Done! Check your sparkling new FancyBoxed images :)
 
