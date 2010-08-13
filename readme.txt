@@ -12,7 +12,7 @@ Hassle-free, no-settings, auto-enable FancyBox on all image links. Uses packed J
 
 No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box :)
 
-Check out the screenshot and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
+Check out the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
 Easy FancyBox uses the jQuery library that comes packed with WordPress.
 
@@ -82,7 +82,7 @@ Yes. Upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ an
 
 == Screenshots ==
 
-1. Image with FancyBox example
+1. Example image with **Overlay** caption. This is the only way Easy FancyBox currently displays images. Future releases will include **Inside** and the old **Outside** as alternatives.
 
 == Changelog ==
 
