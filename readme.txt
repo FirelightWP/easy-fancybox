@@ -42,7 +42,7 @@ Done! Check your sparkling new FancyBoxed images :)
 
 = WordPress 3+ in Multi Site mode =
 
-Same as above but do a **Network Activate** to make a XML sitemap available for each site on your network.
+Same as above but do a **Network Activate** to activate FancyBox image overlays on each site on your network.
 
 = Wordpress MU =
 
