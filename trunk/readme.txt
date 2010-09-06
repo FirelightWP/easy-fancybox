@@ -1,16 +1,20 @@
 === Easy FancyBox ===
 Contributors: RavanH
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&amp;item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e1&amp;no_shipping=0&amp;tax=0&amp;bn=PP%2dDonationsBF&amp;charset=UTF%2d8
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: fancybox, jquery, images, lightbox, gallery, image overlay
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 1.3.1
+Stable tag: 1.3.1.2
 
-Hassle-free, no-settings, auto-enable FancyBox on all image links. Uses packed Javascript and is WP3.0 Multi-Site compatible.
+Hassle-free, no options pages, auto-enable FancyBox on all image links. Uses packed Javascript and is WP3.0 Multi-Site compatible.
 
 == Description ==
 
 No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box :)
+
+Looking for some basic control? You can find a new section **FancyBox** on your **Settings > Media** admin page.
+* titlePosition ( over / inside / outside ) controls the position of the image title. Includes the new "Overlay" position.
+* transitionIn and transitionOut ( elastic / fade / none ) control the transition effects during open and close.
 
 Check out the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
@@ -40,6 +44,8 @@ Follow these steps:
 
 Done! Check your sparkling new FancyBoxed images :)
 
+Not happy with the default settings? Check out the new options under **Settings > Media**.
+
 = WordPress 3+ in Multi Site mode =
 
 Same as above but do a **Network Activate** to activate FancyBox image overlays on each site on your network.
@@ -66,7 +72,7 @@ The same version as this plugin has. I aim to keep close pace to FancyBox upgrad
 
 = Where is the settings page? =
 
-There is no settings page. It just *does what it does*. Check out the example under Screenshots and you see what that is...
+There is no settings page but there are a few options you can change. See the new **FancyBox** section on **Settings > Media**. To see the default, check out the example under Screenshots and you see what that is...
 
 = Is Easy FancyBox multi-site compatible? =
 
@@ -82,13 +88,22 @@ Yes. Upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ an
 
 == Screenshots ==
 
-1. Example image with **Overlay** caption. This is the only way Easy FancyBox currently displays images. Future releases will include **Inside** and the old **Outside** as alternatives.
+1. Example image with **Overlay** caption. This is the default way Easy FancyBox displays images. Other options are **Inside** and the old **Outside**.
 
 == Changelog ==
+
+= 1.3.1.2 =
+* added option titlePosition : over / inside / outside
+* added option transitionIn : elastic / fade / none
+* added option transitionOut : elastic / fade / none
+
+= 1.3.1.1 =
+* small jQuery speed improvement by chaining object calls
 
 = 1.3.1 =
 * Using FancyBox version 1.3.1
 
 == Upgrade Notice ==
 
-
+= 1.3.1.2 =
+Control FancyBox options transitionIn, transitionOut and titlePosition including the new Overlay position.
