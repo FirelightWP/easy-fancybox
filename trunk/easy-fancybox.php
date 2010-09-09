@@ -3,7 +3,7 @@
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Hassle-free, no-settings, auto-enable <a href="http://fancybox.net/">FancyBox 1.3.1</a> on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
-Version: 1.3.1.2
+Version: 1.3.1.3
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -65,7 +65,7 @@ function easy_fancybox() {
 
 // FancyBox Media Settings 
 function easy_fancybox_options_section() {
-	echo '<p>'.__('The settings listed below determine the image overlay behaviour controlled by FancyBox.','easy-fancybox').'</p>';
+	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="Donate with PayPal - it\'s fast, free and secure!"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;float:right" alt="Donate with PayPal - it\'s fast, free and secure!" /></a><p>'.__('The settings listed below determine the image overlay behaviour controlled by FancyBox.','easy-fancybox').'</p>';
 }
 
 function easy_fancybox_option_titlePosition(){
@@ -125,14 +125,13 @@ function easy_fancybox_admin_init(){
 if (!is_admin()) {
 	// check if fancy.php is moved one dir up like in WPMU's /mu-plugins/
 	// NOTE: don't use WP_PLUGIN_URL to avoid problems when installed in /mu-plugins/
-	if (file_exists(dirname(__FILE__).'/easy-fancybox'))
-		$efb = "easy-fancybox";
+	$efb_subdir = (file_exists(dirname(__FILE__).'/easy-fancybox')) ? 'easy-fancybox' : '';
 
 	// ENQUEUE
-	wp_enqueue_script('jquery.fancybox', plugins_url($efb, __FILE__).'/jquery.fancybox.pack.js', array('jquery'), '1.3.1');
-	wp_enqueue_script('jquery.easing', plugins_url($efb, __FILE__).'/jquery.easing.pack.js', array('jquery'), '1.3');
-	wp_enqueue_script('jquery.mousewheel', plugins_url($efb, __FILE__).'/jquery.mousewheel.pack.js', array('jquery'), '3.0.2');
-	wp_enqueue_style('jquery.fancybox', plugins_url($efb, __FILE__).'/jquery.fancybox.css.php', false, '1.3.1');
+	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.pack.js', array('jquery'), '1.3.1');
+	wp_enqueue_script('jquery.easing', plugins_url($efb_subdir, __FILE__).'/jquery.easing.pack.js', array('jquery'), '1.3');
+	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/jquery.mousewheel.pack.js', array('jquery'), '3.0.2');
+	wp_enqueue_style('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.css.php', false, '1.3.1');
 	add_action('wp_head', 'easy_fancybox');
 } 
 
