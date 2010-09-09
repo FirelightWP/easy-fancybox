@@ -12,15 +12,20 @@ Hassle-free, no options pages, auto-enable FancyBox on all image links. Uses pac
 
 No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box :)
 
-Looking for some basic control? You can find a new section **FancyBox** on your **Settings > Media** admin page.
-* titlePosition ( over / inside / outside ) controls the position of the image title. Includes the new "Overlay" position.
-* transitionIn and transitionOut ( elastic / fade / none ) control the transition effects during open and close.
+Looking for some basic control? You can find a new section **FancyBox** on your **Settings > Media** admin page:
+
+- *titlePosition* ( over / inside / outside ) controls the position of the image title. Includes the new "Overlay" position.
+- *transitionIn* and *transitionOut* ( elastic / fade / none ) control the transition effects during open and close.
 
 Check out the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
 Easy FancyBox uses the jQuery library that comes packed with WordPress.
 
 Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION too!
+
+= Translations =
+- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl)
+
 
 == Installation ==
 
@@ -91,6 +96,10 @@ Yes. Upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ an
 1. Example image with **Overlay** caption. This is the default way Easy FancyBox displays images. Other options are **Inside** and the old **Outside**.
 
 == Changelog ==
+
+= 1.3.1.3 =
+* translation .pot file available
+* Dutch translation
 
 = 1.3.1.2 =
 * added option titlePosition : over / inside / outside
