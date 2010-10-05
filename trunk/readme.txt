@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, jquery, images, lightbox, gallery, image overlay
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 1.3.1.2
+Stable tag: 1.3.1.3
 
 Easily enable FancyBox 1.3.1 on all JPG, BMP, GIF, PNG and SWF links. Uses a packed FancyBox jQuery extension, is WP3.0 Multi-Site compatible and supports iFrame and Flash movie -including YouTube and others- in an overlay.
 
