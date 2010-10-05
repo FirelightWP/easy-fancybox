@@ -6,24 +6,26 @@ Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 1.3.1.2
 
-Hassle-free, no options pages, auto-enable FancyBox on all image links. Uses packed Javascript and is WP3.0 Multi-Site compatible.
+Hassle-free, no extra options pages, auto-enable FancyBox 1.3.1 on all image links. Uses packed Javascript and is WP3.0 Multi-Site compatible.
 
 == Description ==
 
-No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box :)
+No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box for all links to image (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files. Easy FancyBox uses the jQuery library that comes packed with WordPress.
+
+See the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
+
+See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to get Youtube movies (and similar services) and HTML content display in a FancyBox overlay.
 
 Looking for some basic control? You can find a new section **FancyBox** on your **Settings > Media** admin page:
 
-- *titlePosition* ( over / inside / outside ) controls the position of the image title. Includes the new "Overlay" position.
-- *transitionIn* and *transitionOut* ( elastic / fade / none ) control the transition effects during open and close.
+- *Auto-enable*: file types FancyBox should be automatically enabled for.
+- *Title Position*: Overlay / Inside / Outside to control the position of the image title. Includes the new "Overlay" position.
+- *Transition In / Out*: Elastic / Fade / None to control the transition effects during opening and closing of the overlay.
 
-Check out the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
-
-Easy FancyBox uses the jQuery library that comes packed with WordPress.
-
-Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION too!
+Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION to the FancyBox project.
 
 = Translations =
+
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl)
 
 
@@ -77,19 +79,33 @@ The same version as this plugin has. I aim to keep close pace to FancyBox upgrad
 
 = Where is the settings page? =
 
-There is no settings page but there are a few options you can change. See the new **FancyBox** section on **Settings > Media**. To see the default, check out the example under Screenshots and you see what that is...
+There is no settings page but there are a few options you can change. See the new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/) ...
+
+= Will a WordPress generated gallery be displayed in a FancyBox overlay? =
+
+Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery!
+
+= Can I display web pages or HTML files in a FancyBox overlay? =
+
+Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` to any web page or .htm(l) file in your content. 
+
+NOTE: The difference between these two (- or space) is in size of the overlay viewport. Try it out and use the one you like best :)
+
+= Can I play SWF files in a FancyBox overlay? =
+
+Yes. Just place a link _with the URL ending in .swf_ to your Flash file in the page content.
+
+If you do not have **swf** included in the *Auto-enable* option on Settings > Media admin page,you will need to add either `class="fancybox"` or `class="fancybox-swf"` to the link to enable FancyBox for it.
+
+= Can I play Youtube movies in a FancyBox overlay? =
+
+Yes. Just place a link with `class="fancybox-swf"` to either the Youtube page or directly to the movie inside your page content.
+
+This is actually a special case of SWF file. The URL for Youtube movies does not end in .swf so the FancyBox script will not be able to auto-detect the Flash content. This can be forced with `class="fancybox-swf"` or alternatively `class="fancybox-iframe"`. The difference between the two is in size of the overlay viewport. 
 
 = Is Easy FancyBox multi-site compatible? =
 
-Yes.
-
-= Can I Network Activate this plugin? =
-
-Yes.
-
-= Can I install it in mu-plugins? =
-
-Yes. Upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ and move the file fancybox.php one dir up.
+Yes. Designed to work with **Network Activate** and does not require manual activation on each site in your network. You can even install it in mu-plugins: upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ and move the file easy-fancybox.php one dir up.
 
 == Screenshots ==
 
@@ -100,6 +116,9 @@ Yes. Upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ an
 = 1.3.1.3 =
 * translation .pot file available
 * Dutch translation
+* Youtube and Flash movie support
+* Iframe support
+* added option Auto-enable for...
 
 = 1.3.1.2 =
 * added option titlePosition : over / inside / outside
@@ -114,5 +133,5 @@ Yes. Upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ an
 
 == Upgrade Notice ==
 
-= 1.3.1.2 =
-Control FancyBox options transitionIn, transitionOut and titlePosition including the new Overlay position.
+= 1.3.1.3 =
+Now supports Flash and Youtube movies. Dutch translation, added POT file for translations.
