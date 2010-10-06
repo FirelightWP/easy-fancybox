@@ -6,11 +6,11 @@ Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 1.3.1.3
 
-Easily enable FancyBox 1.3.1 on all JPG, BMP, GIF, PNG and SWF links. Uses a packed FancyBox jQuery extension, is WP3.0 Multi-Site compatible and supports iFrame and Flash movie -including YouTube and others- in an overlay.
+Easily enable the FancyBox 1.3.1 jQuery extension on all JPG, BMP, GIF, PNG and SWF links. Multi-Site compatible and supports iFrame and Flash movies, including YouTube and others.
 
 == Description ==
 
-No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box for all links to image (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files. Easy FancyBox uses the jQuery library that comes packed with WordPress.
+No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box for all links to image (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files. Easy FancyBox uses the packed FancyBox 1.3.1 jQuery extension, is WP 3.0 Multi-Site compatible and supports iFrame and Flash movies -including YouTube and others- in an overlay.
 
 See the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
