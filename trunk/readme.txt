@@ -4,13 +4,13 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, jquery, images, lightbox, gallery, image overlay
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 1.3.1.3
+Stable tag: 1.3.2
 
-Easily enable the FancyBox 1.3.1 jQuery extension on all JPG, BMP, GIF, PNG and SWF links. Multi-Site compatible and supports iFrame and Flash movies, including YouTube and others.
+Easily enable the FancyBox 1.3.2 jQuery extension on all image and SWF links. Multi-Site compatible and supports iFrame and Flash movies, including YouTube and others.
 
 == Description ==
 
-No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box for all links to image (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files. Easy FancyBox uses the packed FancyBox 1.3.1 jQuery extension, is WP 3.0 Multi-Site compatible and supports iFrame and Flash movies -including YouTube and others- in an overlay.
+No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box for all links to image (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files. Easy FancyBox uses the packed FancyBox 1.3.2 jQuery extension, is WP 3.0 Multi-Site compatible and supports iFrame and Flash movies -including YouTube and others- in an overlay.
 
 See the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
@@ -111,7 +111,12 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 1. Example image with **Overlay** caption. This is the default way Easy FancyBox displays images. Other options are **Inside** and the old **Outside**.
 
+2. Example of a Youtube movie in overlay.
+
 == Changelog ==
+
+= 1.3.2 =
+* upgraded FancyBox script to version 1.3.2
 
 = 1.3.1.3 =
 * translation .pot file available
@@ -133,5 +138,5 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Upgrade Notice ==
 
-= 1.3.1.3 =
-Now supports Flash and Youtube movies. Dutch translation, added POT file for translations.
+= 1.3.2 =
+New FancyBox version 1.3.2 included.
