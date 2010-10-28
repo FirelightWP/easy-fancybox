@@ -2,8 +2,8 @@
 /*
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
-Description: Hassle-free, no-settings, auto-enable <a href="http://fancybox.net/">FancyBox 1.3.1</a> on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
-Version: 1.3.1.3
+Description: Hassle-free, no-settings, auto-enable <a href="http://fancybox.net/">FancyBox 1.3.2</a> on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
+Version: 1.3.2
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -19,7 +19,7 @@ function easy_fancybox_settings(){
 			'input' => 'text',
 			'options' => array(),
 			'hide' => 'true',
-			'default' => 'jpg bmp gif jpeg png swf',
+			'default' => 'jpg gif png bmp jpeg jpe swf',
 			'description' => __('File types FancyBox should be automatically enabled for. Clear to switch off auto-enabling. Use the tags class="fancybox", class="fancybox-iframe" or class="fancybox-swf" on any link to manually enable FancyBox for it.','easy-fancybox').' '.__('Default:','easy-fancybox')
 			),
 		'titlePosition' => array (
@@ -91,6 +91,7 @@ jQuery(document).ready(function($){";
 	
 	if( "over" == get_option("fancybox_titlePosition", $easy_fancybox_array['titlePosition']['default']) )
 		echo"
+		'titleFromAlt'	: true,
 		'onComplete'	: function() {
 			$('#fancybox-wrap').hover(function() {
 				$('#fancybox-title').show();
@@ -102,6 +103,7 @@ jQuery(document).ready(function($){";
 	});
 	$('a.fancybox-iframe').fancybox({
 			'type'		: 'iframe',
+			'titleShow'	: false,
 			'padding'	: 0,
 			'autoScale'	: false,
 			'transitionIn'	: 'none',
@@ -116,12 +118,12 @@ jQuery(document).ready(function($){";
 			'autoScale'	: false,
 			'transitionIn'	: 'none',
 			'transitionOut'	: 'none',
-			'title'		: this.title,
+			'titleShow'	: false,
 			'width'		: 680,
 			'height'	: 495,
 			'href'		: this.href.replace(new RegExp('watch\\\?v=', 'i'), 'v/'),
 			'swf'		: {
-			   	'wmode'			: 'transparent',
+			   	'wmode'			: 'opacity',
 				'allowfullscreen'	: 'true'
 			}
 		});
@@ -155,7 +157,6 @@ function easy_fancybox_settings_fields($args){
 				echo $args['description'].' <em>'.$args['options'][$args['default']].'</em>';
 			break;
 		case 'text':
-		default:
 			echo '
 			<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="large-text"><br />';
 			if( empty($args['label_for']) )
@@ -163,6 +164,7 @@ function easy_fancybox_settings_fields($args){
 			else
 				echo $args['description'].' <em>'.$args['default'].'</em>';
 			break;
+		default:
 			echo $args['description'];
 	}
 }
@@ -187,7 +189,7 @@ function easy_fancybox_enqueue() {
 
 	// ENQUEUE
 	// register main fancybox script
-	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.pack.js', array('jquery'), '1.3.1');
+	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox-1.3.2.pack.js', array('jquery'), '1.3.2');
 	
 	if( "none" != get_option("fancybox_transitionIn") || "none" != get_option("fancybox_transitionOut") ) {
 		// first get rid of previously registered variants of jquery.easing (by other plugins)
@@ -196,7 +198,7 @@ function easy_fancybox_enqueue() {
 		wp_deregister_script('jquery-easing');
 		wp_deregister_script('easing');
 		// then register our version
-		wp_enqueue_script('jquery.easing', plugins_url($efb_subdir, __FILE__).'/jquery.easing.pack.js', array('jquery'), '1.3');
+		wp_enqueue_script('jquery.easing', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.easing-1.3.pack.js', array('jquery'), '1.3');
 	}
 	
 	// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
@@ -205,10 +207,10 @@ function easy_fancybox_enqueue() {
 	wp_deregister_script('jquery-mousewheel');
 	wp_deregister_script('mousewheel');
 	// then register our version
-	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/jquery.mousewheel.pack.js', array('jquery'), '3.0.2');
+	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.mousewheel-3.0.4.pack.js', array('jquery'), '3.0.4');
 	
 	// register style
-	wp_enqueue_style('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.css.php', false, '1.3.1');
+	wp_enqueue_style('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.css.php', false, '1.3.2');
 }
 
 // HOOKS //
