@@ -1,0 +1,79 @@
+# Translation of the WordPress plugin   by .
+# Copyright (C) 2010 
+# This file is distributed under the same license as the  package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/easy-fancybox\n"
+"POT-Creation-Date: 2010-09-08 21:30+0000\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: fancybox.php:13
+msgid "Title Position"
+msgstr ""
+
+#: fancybox.php:15
+msgid "Overlay"
+msgstr ""
+
+#: fancybox.php:16
+msgid "Inside"
+msgstr ""
+
+#: fancybox.php:17
+msgid "Outside"
+msgstr ""
+
+#: fancybox.php:20
+msgid "Position of the overlay content title."
+msgstr ""
+
+#: fancybox.php:23
+msgid "Transition In"
+msgstr ""
+
+#: fancybox.php:25 fancybox.php:35
+msgid "Elastic"
+msgstr ""
+
+#: fancybox.php:26
+msgid "Fade in"
+msgstr ""
+
+#: fancybox.php:27 fancybox.php:37
+msgid "None"
+msgstr ""
+
+#: fancybox.php:30
+msgid "Transition effect when opening the overlay."
+msgstr ""
+
+#: fancybox.php:33
+msgid "Transition Out"
+msgstr ""
+
+#: fancybox.php:36
+msgid "Fade out"
+msgstr ""
+
+#: fancybox.php:40
+msgid "Transition effect when closing the overlay."
+msgstr ""
+
+#: fancybox.php:68
+msgid ""
+"The settings listed below determine the image overlay behaviour controlled "
+"by FancyBox."
+msgstr ""
+
+#: fancybox.php:114
+msgid "FancyBox"
+msgstr ""
