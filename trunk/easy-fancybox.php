@@ -2,8 +2,8 @@
 /*
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
-Description: Hassle-free, no-settings, auto-enable <a href="http://fancybox.net/">FancyBox 1.3.2</a> on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
-Version: 1.3.2
+Description: Hassle-free, no-settings, auto-enable <a href="http://fancybox.net/">FancyBox 1.3.3</a> on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e3&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
+Version: 1.3.3.4
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -17,49 +17,94 @@ function easy_fancybox_settings(){
 			'title' => __('Auto-enable','easy-fancybox'),
 			'label_for' => 'fancybox_autoAttribute',
 			'input' => 'text',
+			'class' => 'regular-text',
 			'options' => array(),
 			'hide' => 'true',
 			'default' => 'jpg gif png bmp jpeg jpe swf',
-			'description' => __('File types FancyBox should be automatically enabled for. Clear to switch off auto-enabling. Use the tags class="fancybox", class="fancybox-iframe" or class="fancybox-swf" on any link to manually enable FancyBox for it.','easy-fancybox').' '.__('Default:','easy-fancybox')
+			'description' => __('Enter file types FancyBox should be automatically enabled for. Clear field to switch off auto-enabling.','easy-fancybox')
+			),
+		'autoDetect' => array (
+			'id' => 'fancybox_autoDetect',
+			'title' => __('Auto-detect','easy-fancybox'),
+			'label_for' => '',
+			'input' => 'multiple',
+			'class' => '',
+			'options' => array(
+				'autoAttributeYoutube' => array (
+					'id' => 'fancybox_autoAttributeYoutube',
+					'label_for' => '',
+					'input' => 'checkbox',
+					'class' => '',
+					'options' => array(),
+					'hide' => 'true',
+					'default' => '1',
+					'description' => __('YouTube links.','easy-fancybox')
+					),
+				'autoAttributeYoutubeShortURL' => array (
+					'id' => 'fancybox_autoAttributeYoutubeShortURL',
+					'label_for' => '',
+					'input' => 'checkbox',
+					'class' => '',
+					'options' => array(),
+					'hide' => 'true',
+					'default' => '',
+					'description' => __('Short URL YouTube links.','easy-fancybox')
+					),
+				'autoAttributeVimeo' => array (
+					'id' => 'fancybox_autoAttributeVimeo',
+					'title' => __('Auto-detect Vimeo','easy-fancybox'),
+					'label_for' => '',
+					'input' => 'checkbox',
+					'class' => '',
+					'options' => array(),
+					'hide' => 'true',
+					'default' => '1',
+					'description' => __('Vimeo links.','easy-fancybox')
+					)
+				),
+			'description' => __('Select which external video content sites links should automatically be detected and FancyBox enabled.','easy-fancybox')
 			),
 		'titlePosition' => array (
 			'id' => 'fancybox_titlePosition',
 			'title' => __('Title Position','easy-fancybox'),
 			'label_for' => 'fancybox_titlePosition',
 			'input' => 'select',
+			'class' => '',
 			'options' => array(
 				'over' => __('Overlay','easy-fancybox'),
 				'inside' => __('Inside','easy-fancybox'),
 				'outside' => __('Outside','easy-fancybox')
 				),
 			'default' => 'over',
-			'description' => __('Position of the overlay content title.','easy-fancybox').' '.__('Default:','easy-fancybox')
+			'description' => __('Position of the overlay content title.','easy-fancybox')
 			),
 		'transitionIn' => array (
 			'id' => 'fancybox_transitionIn',
 			'title' => __('Transition In','easy-fancybox'),
 			'label_for' => 'fancybox_transitionIn',
 			'input' => 'select',
+			'class' => '',
 			'options' => array(
 				'elastic' => __('Elastic','easy-fancybox'),
 				'fade' => __('Fade in','easy-fancybox'),
 				'none' => __('None','easy-fancybox')
 				),
 			'default' => 'elastic',
-			'description' => __('Transition effect when opening the overlay.','easy-fancybox').' '.__('Default:','easy-fancybox')
+			'description' => __('Transition effect when opening the overlay.','easy-fancybox')
 			),
 		'transitionOut' => array (
 			'id' => 'fancybox_transitionOut',
 			'title' => __('Transition Out','easy-fancybox'),
 			'label_for' => 'fancybox_transitionOut',
 			'input' => 'select',
+			'class' => '',
 			'options' => array(
 				'elastic' => __('Elastic','easy-fancybox'),
 				'fade' => __('Fade out','easy-fancybox'),
 				'none' => __('None','easy-fancybox')
 				),
 			'default' => 'elastic',
-			'description' => __('Transition effect when closing the overlay.','easy-fancybox').' '.__('Default:','easy-fancybox')
+			'description' => __('Transition effect when closing the overlay.','easy-fancybox')
 			),
 		);
 }
@@ -82,7 +127,17 @@ jQuery(document).ready(function($){";
 		.attr('rel', 'gallery')
 		.addClass('fancybox');";
 	}
+
+	if( "1" == get_option("fancybox_autoAttributeYoutube", $easy_fancybox_array['autoDetect']['options']['autoAttributeYoutube']['default']) )
+		echo "
+	$('a[href*=\"youtube.com/watch\"]').addClass('fancybox-youtube');";
+
+	if( "1" == get_option("fancybox_autoAttributeVimeo", $easy_fancybox_array['autoDetect']['options']['autoAttributeVimeo']['default']) )
+		echo "
+	$('a[href*=\"vimeo.com/\"]').addClass('fancybox-vimeo');";
+
 	echo "
+	
 	$('a.fancybox').fancybox({";
 	foreach ($easy_fancybox_array as $key => $values)
 		if('true'!=$values['hide'])
@@ -101,32 +156,62 @@ jQuery(document).ready(function($){";
 		},";
 	echo"
 	});
-	$('a.fancybox-iframe').fancybox({
+	var fb_opts = {
+		'titleShow'	: false,
+		'padding'	: 0,
+		'autoScale'	: false,
+		'transitionIn'	: 'none',
+		'transitionOut'	: 'none',
+		'swf'		: {
+		   	'wmode'			: 'opacity',
+			'allowfullscreen'	: 'true'
+		}
+	};
+	$('a.fancybox-iframe').fancybox(
+		$.extend(fb_opts, {
 			'type'		: 'iframe',
-			'titleShow'	: false,
-			'padding'	: 0,
-			'autoScale'	: false,
-			'transitionIn'	: 'none',
-			'transitionOut'	: 'none',
-			'width'		: '80%',
-			'height'	: '90%',
-	});
-	$('a.fancybox-swf').click(function(){
-		$.fancybox({
-			'type'		: 'swf',
-			'padding'	: 0,
-			'autoScale'	: false,
-			'transitionIn'	: 'none',
-			'transitionOut'	: 'none',
-			'titleShow'	: false,
-			'width'		: 680,
-			'height'	: 495,
-			'href'		: this.href.replace(new RegExp('watch\\\?v=', 'i'), 'v/'),
-			'swf'		: {
-			   	'wmode'			: 'opacity',
-				'allowfullscreen'	: 'true'
-			}
-		});
+			'height'	: '90%'
+		})
+	);
+	$('a.fancybox-swf').fancybox(
+		$.extend(fb_opts, {
+			'margin'	: 0,
+			'type'		: 'swf'
+		})
+	);
+	$('a.fancybox-youtube').click(function(){
+		$.fancybox(
+			$.extend(fb_opts, {
+				'type'		: 'swf',
+				'width'		: 640,
+				'height'	: 385,
+				'href'		: this.href.replace(new RegExp('watch\\\?v=', 'i'), 'v/')
+			})
+		);
+		return false;
+	});";
+	if( "1" == get_option("fancybox_autoAttributeYoutubeShortURL", $easy_fancybox_array['autoDetect']['options']['autoAttributeYoutubeShortURL']['default']) )
+		echo "
+	$('a[href*=\"youtu.be/\"]').click(function(){
+		$.fancybox(
+			$.extend(fb_opts, {
+				'type'		: 'swf',
+				'width'		: 640,
+				'height'	: 385,
+				'href'		: this.href.replace(new RegExp('youtu.be', 'i'), 'www.youtube.com/v')
+			})
+		);
+		return false;
+	});";
+	echo "
+	$('a.fancybox-vimeo').click(function() {
+		$.fancybox(
+			$.extend(fb_opts, {
+				'width'		: 640,
+				'height'	: 360,
+				'href'		: this.href.replace(new RegExp('([0-9])', 'i'), 'moogaloop.swf?clip_id=$1')
+			})
+		);
 		return false;
 	});
 });
@@ -136,11 +221,16 @@ jQuery(document).ready(function($){";
 
 // FancyBox Media Settings Section on Settings > Media admin page
 function easy_fancybox_settings_section() {
-	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none; vertical-align:text-bottom;float:right" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" /></a><p>'.__('The settings listed below determine the image overlay behaviour controlled by FancyBox.','easy-fancybox').'</p>';
+	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none;float:right;margin:0 0 10px 10px" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" /></a><p>'.__('To manualy enable FancyBox for a link to an attached image or swf movie file, you can use the tags class="fancybox" or class="fancybox-swf". To make a link to any web page show in a FancyBox overlay, use class="fancybox-iframe". Use the tags class="fancybox-youtube" on a YouTube link and class="fancybox-vimeo" on a Vimeo link to manually enable FancyBox for it. Read more on <a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox/">Easy FancyBox for WordPress</a>','easy-fancybox').'</p><p>'.__('The settings listed below determine the image overlay behaviour controlled by FancyBox.','easy-fancybox').' '.__('Some setting like Title Position and Transition are ignored for swf video and iframe content overlays to improve browser compatibility and readability.','easy-fancybox').'</p>';
 }
 // FancyBox Media Settings Fields
 function easy_fancybox_settings_fields($args){
 	switch($args['input']) {
+		case 'multiple':
+			foreach ($args['options'] as $options)
+				easy_fancybox_settings_fields($options);
+			echo $args['description'];
+			break;
 		case 'select':
 			echo '
 			<select name="'.$args['id'].'" id="'.$args['id'].'">';
@@ -152,17 +242,30 @@ function easy_fancybox_settings_fields($args){
 			echo '
 			</select> ';
 			if( empty($args['label_for']) )
-				echo '<label for="'.$args['id'].'">'.$args['description'].' <em>'.$args['options'][$args['default']].'</em></label>';
+				echo '<label for="'.$args['id'].'">'.$args['description'].'</label> <em>'.__('Default:','easy-fancybox').' '.$args['options'][$args['default']].'</em>';
 			else
-				echo $args['description'].' <em>'.$args['options'][$args['default']].'</em>';
+				echo $args['description'].' <em>'.__('Default:','easy-fancybox').' '.$args['options'][$args['default']].'</em>';
+			break;
+		case 'checkbox':
+			$value = esc_attr( get_option($args['id'], $args['default']) );
+			if ($value == "1")
+				$checked = ' checked="checked"';
+			else
+				$checked = '';
+			if ($args['default'] == "1")
+				$default = __('Checked','easy-fancybox');
+			else
+				$default = __('Unchecked','easy-fancybox');
+			echo '
+			<label><input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.'/> '.$args['description'].'</label> <em>'.__('Default:','easy-fancybox').' '.$default.'</em><br />';
 			break;
 		case 'text':
 			echo '
-			<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="large-text"><br />';
+			<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"/><br />';
 			if( empty($args['label_for']) )
-				echo '<label for="'.$args['id'].'">'.$args['description'].' <em>'.$args['default'].'</em></label>';
+				echo '<label for="'.$args['id'].'">'.$args['description'].'</label> <em>'.__('Default:','easy-fancybox').' '.$args['default'].'</em>';
 			else
-				echo $args['description'].' <em>'.$args['default'].'</em>';
+				echo $args['description'].' <em>'.__('Default:','easy-fancybox').' '.$args['default'].'</em>';
 			break;
 		default:
 			echo $args['description'];
@@ -178,7 +281,11 @@ function easy_fancybox_admin_init(){
 	$easy_fancybox_array = easy_fancybox_settings();
 	foreach ($easy_fancybox_array as $key => $value) {
 		add_settings_field( 'fancybox_'.$key, $value['title'], 'easy_fancybox_settings_fields', 'media', 'fancybox_section', $value);
-		register_setting( 'media', 'fancybox_'.$key ); 
+		if ($value['input']=='multiple')
+			foreach ($value['options'] as $_key => $_value)
+				register_setting( 'media', 'fancybox_'.$_key );	
+		else
+			register_setting( 'media', 'fancybox_'.$key ); 
 	}
 }
 
@@ -189,7 +296,7 @@ function easy_fancybox_enqueue() {
 
 	// ENQUEUE
 	// register main fancybox script
-	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox-1.3.2.pack.js', array('jquery'), '1.3.2');
+	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox-1.3.3.pack.js', array('jquery'), '1.3.3');
 	
 	if( "none" != get_option("fancybox_transitionIn") || "none" != get_option("fancybox_transitionOut") ) {
 		// first get rid of previously registered variants of jquery.easing (by other plugins)
@@ -210,7 +317,7 @@ function easy_fancybox_enqueue() {
 	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.mousewheel-3.0.4.pack.js', array('jquery'), '3.0.4');
 	
 	// register style
-	wp_enqueue_style('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.css.php', false, '1.3.2');
+	wp_enqueue_style('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.css.php', false, '1.3.3');
 }
 
 // HOOKS //
