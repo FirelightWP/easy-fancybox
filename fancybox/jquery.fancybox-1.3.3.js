@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  * 
- * Version: 1.3.2 (20/10/2010)
+ * Version: 1.3.3 (04/11/2010)
  * Requires: jQuery v1.3+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -212,6 +212,9 @@
 				break;
 
 				case 'swf':
+					selectedOpts.scrolling = 'no';
+					selectedOpts.autoDimensions = false;
+
 					str = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="' + selectedOpts.width + '" height="' + selectedOpts.height + '"><param name="movie" value="' + href + '"></param>';
 					emb = '';
 
@@ -243,7 +246,8 @@
 							}
 						},
 						success : function(data, textStatus, XMLHttpRequest) {
-							if ( XMLHttpRequest.status == 200 ) {
+							var o = typeof XMLHttpRequest == 'object' ? XMLHttpRequest : ajaxLoader;
+							if (o.status == 200) {
 								if ( typeof selectedOpts.ajax.win == 'function' ) {
 									ret = selectedOpts.ajax.win(href, data, textStatus, XMLHttpRequest);
 
@@ -263,23 +267,18 @@
 
 				break;
 
-				case 'iframe' :
+				case 'iframe':
+					selectedOpts.autoDimensions = false;
 					_show();
 				break;
 			}
 		},
 
 		_process_inline = function() {
-			tmp.width( selectedOpts.width );
-			tmp.height( selectedOpts.height );
+			tmp.wrapInner('<div style="width:' + (selectedOpts.width == 'auto' ? 'auto' : selectedOpts.width + 'px') + ';height:' + (selectedOpts.height == 'auto' ? 'auto' : selectedOpts.height + 'px') + ';overflow: ' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '"></div>');
 
-			if (selectedOpts.width == 'auto') {
-				selectedOpts.width = tmp.width();
-			}
-
-			if (selectedOpts.height == 'auto') {
-				selectedOpts.height = tmp.height();
-			}
+			selectedOpts.width = tmp.width();
+			selectedOpts.height = tmp.height();
 
 			_show();
 		},
@@ -347,14 +346,12 @@
 				overlay.hide();
 			}
 
-			content.get(0).scrollTop = 0;
-			content.get(0).scrollLeft = 0;
-
 			final_pos = _get_zoom_to();
 
 			_process_title();
 
 			if (wrap.is(":visible")) {
+				
 				$( close.add( nav_left ).add( nav_right ) ).hide();
 
 				pos = wrap.position(),
@@ -381,7 +378,8 @@
 						.css({
 							'border-width' : currentOpts.padding,
 							'width'	: final_pos.width - currentOpts.padding * 2,
-							'height' : currentOpts.type == 'image' || currentOpts.type == 'swf' || currentOpts.type == 'iframe' ? final_pos.height - titleHeight - currentOpts.padding * 2 : 'auto' 
+							'height' : selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
+							//'height' : currentOpts.type == 'image' || currentOpts.type == 'swf' || currentOpts.type == 'iframe' ? final_pos.height - titleHeight - currentOpts.padding * 2 : 'auto' 
 						});
 
 					if (equal) {
@@ -436,13 +434,15 @@
 			content
 				.css({
 					'width' : final_pos.width - currentOpts.padding * 2,
-					'height' : currentOpts.type == 'image' || currentOpts.type == 'swf' || currentOpts.type == 'iframe' ? final_pos.height - titleHeight - currentOpts.padding * 2 : 'auto' 
+					'height' : selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
+					//'height' : currentOpts.type == 'image' || currentOpts.type == 'swf' || currentOpts.type == 'iframe' ? final_pos.height - titleHeight - currentOpts.padding * 2 : 'auto' 
 				})
 				.html( tmp.contents() );
 
 			wrap
+				//.hide()
 				.css(final_pos)
-				.fadeIn( currentOpts.transitionIn == 'none' ? 0 : currentOpts.fadeIn, _finish );
+				.fadeIn( currentOpts.transitionIn == 'none' ? 0 : currentOpts.speedIn, _finish );
 		},
 
 		_format_title = function(title) {
@@ -565,11 +565,14 @@
 				wrap.get(0).style.removeAttribute('filter');
 			}
 
-			wrap.css('height', 'auto');
-
-			if (currentOpts.type !== 'image' && currentOpts.type !== 'swf' && currentOpts.type !== 'iframe') {
+			if (selectedOpts.autoDimensions) {
+				wrap.css('height', 'auto');
 				content.css('height', 'auto');
 			}
+
+			//if (currentOpts.type !== 'image' && currentOpts.type !== 'swf' && currentOpts.type !== 'iframe') {
+				//content.css('height', 'auto');
+			//}
 
 			if (titleStr && titleStr.length) {
 				title.show();
@@ -1056,7 +1059,9 @@
 
 		if ($.fn.mousewheel) {
 			wrap.bind('mousewheel.fb', function(e, delta) {
-				e.preventDefault();
+				if (busy || currentOpts.type == 'image') {
+					e.preventDefault();
+				}
 
 				$.fancybox[ delta > 0 ? 'prev' : 'next']();
 			});
