@@ -2,7 +2,7 @@
 /*
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
-Description: Hassle-free, no-settings, auto-enable <a href="http://fancybox.net/">FancyBox 1.3.3</a> on all image links including BMP, GIF, JPG, JPEG, and PNG. Uses packed Javascript. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e3&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
+Description: Easily enable the <a href="http://fancybox.net/">FancyBox 1.3.3 jQuery extension</a> on all image, SWF, YouTube and Vimeo links. Multi-Site compatible and supports iFrame and Flash movies in overlay viewport. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e3&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
 Version: 1.3.3-4
 Author: RavanH
 Author URI: http://4visions.nl/
@@ -52,7 +52,6 @@ function easy_fancybox_settings(){
 					),
 				'autoAttributeVimeo' => array (
 					'id' => 'fancybox_autoAttributeVimeo',
-					'title' => __('Auto-detect Vimeo','easy-fancybox'),
 					'label_for' => '',
 					'input' => 'checkbox',
 					'class' => '',
@@ -221,7 +220,7 @@ jQuery(document).ready(function($){";
 
 // FancyBox Media Settings Section on Settings > Media admin page
 function easy_fancybox_settings_section() {
-	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none;float:right;margin:0 0 10px 10px" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" /></a><p>'.__('To manualy enable FancyBox for a link to an attached image or swf movie file, you can use the tags class="fancybox" or class="fancybox-swf". To make a link to any web page show in a FancyBox overlay, use class="fancybox-iframe". Use the tags class="fancybox-youtube" on a YouTube link and class="fancybox-vimeo" on a Vimeo link to manually enable FancyBox for it. Read more on <a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox/">Easy FancyBox for WordPress</a>','easy-fancybox').'</p><p>'.__('The settings listed below determine the image overlay behaviour controlled by FancyBox.','easy-fancybox').' '.__('Some setting like Title Position and Transition are ignored for swf video and iframe content overlays to improve browser compatibility and readability.','easy-fancybox').'</p>';
+	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none;float:right;margin:0 0 10px 10px" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" /></a><p>'.__('To manualy enable FancyBox for a link to an attached image or swf movie file, you can use the tags class="fancybox" or class="fancybox-swf". To make a link to any web page show in a FancyBox overlay, use class="fancybox-iframe". Use the tags class="fancybox-youtube" on a YouTube link and class="fancybox-vimeo" on a Vimeo link to manually enable FancyBox for it. Read more on <a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox/">Easy FancyBox for WordPress</a>.','easy-fancybox').'</p><p>'.__('The settings listed below determine the image overlay behaviour controlled by FancyBox.','easy-fancybox').' '.__('Some setting like Title Position and Transition are ignored for swf video and iframe content overlays to improve browser compatibility and readability.','easy-fancybox').'</p>';
 }
 // FancyBox Media Settings Fields
 function easy_fancybox_settings_fields($args){
