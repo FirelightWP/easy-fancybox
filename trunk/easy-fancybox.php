@@ -61,6 +61,7 @@ function easy_fancybox_settings(){
 					'description' => __('Vimeo links.','easy-fancybox')
 					)
 				),
+			'hide' => 'true',
 			'description' => __('Select which external video content sites links should automatically be detected and FancyBox enabled.','easy-fancybox')
 			),
 		'titlePosition' => array (
@@ -147,12 +148,13 @@ jQuery(document).ready(function($){";
 	foreach ($easy_fancybox_array as $key => $values)
 		if('true'!=$values['hide'])
 			echo "
-		'".$key."'	: '".get_option($values['id'], $values['default'])."',";
+		'".$key."'	: '".get_option($values['id'], $values['default'])."',
+		'autoDimensions': false,
+		'titleFromAlt'	: true,
+		";
 	
 	if( "over" == get_option("fancybox_titlePosition", $easy_fancybox_array['titlePosition']['default']) )
 		echo"
-		'autoDimensions': false,
-		'titleFromAlt'	: true,
 		'onComplete'	: function() {
 			$('#fancybox-wrap').hover(function() {
 				$('#fancybox-title').show();
