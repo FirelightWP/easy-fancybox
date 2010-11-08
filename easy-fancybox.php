@@ -151,6 +151,7 @@ jQuery(document).ready(function($){";
 	
 	if( "over" == get_option("fancybox_titlePosition", $easy_fancybox_array['titlePosition']['default']) )
 		echo"
+		'autoDimensions': false,
 		'titleFromAlt'	: true,
 		'onComplete'	: function() {
 			$('#fancybox-wrap').hover(function() {
