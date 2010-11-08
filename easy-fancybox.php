@@ -108,15 +108,18 @@ function easy_fancybox_settings(){
 		);
 }
 
-// What about other things than link with img, like: div[rel$="fancybox"] ?
 function easy_fancybox() {
 	$easy_fancybox_array = easy_fancybox_settings();
+	
+	// begin output FancyBox settings
 	echo "
 <!-- Easy FancyBox plugin for WordPress - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->
 <script type=\"text/javascript\">
 jQuery(document).ready(function($){";
 	
 	$file_types = array_filter( explode( ' ', get_option( 'fancybox_autoAttribute', $easy_fancybox_array['autoAttribute']['default']) ) );
+	
+	// add auto-detection image/swf links
 	if(!empty($file_types)) {
 		echo "
 	$('";
@@ -127,16 +130,19 @@ jQuery(document).ready(function($){";
 		.addClass('fancybox');";
 	}
 
+	// add auto-attribution for Youtube links
 	if( "1" == get_option("fancybox_autoAttributeYoutube", $easy_fancybox_array['autoDetect']['options']['autoAttributeYoutube']['default']) )
 		echo "
 	$('a[href*=\"youtube.com/watch\"]').addClass('fancybox-youtube');";
 
+	// add auto-attribution for Vimeo links
 	if( "1" == get_option("fancybox_autoAttributeVimeo", $easy_fancybox_array['autoDetect']['options']['autoAttributeVimeo']['default']) )
 		echo "
-	$('a[href*=\"vimeo.com/\"]').addClass('fancybox-vimeo');";
+	$('a[href*=\"vimeo.com/\"]').addClass('fancybox-vimeo');
+	";
 
+	// image/swf fancybox settings
 	echo "
-	
 	$('a.fancybox').fancybox({";
 	foreach ($easy_fancybox_array as $key => $values)
 		if('true'!=$values['hide'])
@@ -152,9 +158,13 @@ jQuery(document).ready(function($){";
 			}, function() {
 				$('#fancybox-title').hide();
 			});
-		},";
+		}";
 	echo"
 	});
+	";
+	
+	// iframe/swf/youtube/vimeo settings
+	echo"
 	var fb_opts = {
 		'titleShow'	: false,
 		'padding'	: 0,
@@ -169,7 +179,8 @@ jQuery(document).ready(function($){";
 	$('a.fancybox-iframe').fancybox(
 		$.extend(fb_opts, {
 			'type'		: 'iframe',
-			'height'	: '90%'
+			'height'	: '90%',
+			'width'		: '70%'
 		})
 	);
 	$('a.fancybox-swf').fancybox(
