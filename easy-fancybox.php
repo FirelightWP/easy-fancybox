@@ -148,20 +148,20 @@ jQuery(document).ready(function($){";
 	foreach ($easy_fancybox_array as $key => $values)
 		if('true'!=$values['hide'])
 			echo "
-		'".$key."'	: '".get_option($values['id'], $values['default'])."',
-		'autoDimensions': false,
-		'titleFromAlt'	: true";
+		'".$key."'	: '".get_option($values['id'], $values['default'])."',";
 	
 	if( "over" == get_option("fancybox_titlePosition", $easy_fancybox_array['titlePosition']['default']) )
-		echo",		
+		echo"
 		'onComplete'	: function() {
 			$('#fancybox-wrap').hover(function() {
 				$('#fancybox-title').show();
 			}, function() {
 				$('#fancybox-title').hide();
 			});
-		}";
+		},";
 	echo"
+		'autoDimensions': false,
+		'titleFromAlt'	: true
 	});
 	";
 	
