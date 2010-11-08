@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, jquery, images, lightbox, gallery, image overlay, youtube, vimeo
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 1.3.3.4
+Stable tag: 1.3.3.5
 
 Easily enable the FancyBox 1.3.3 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible and supports iFrame and Flash movies in overlay viewport.
 
