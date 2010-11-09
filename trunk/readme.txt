@@ -1,20 +1,18 @@
 === Easy FancyBox ===
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
-Tags: fancybox, jquery, images, lightbox, gallery, image overlay, youtube, vimeo
+Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery
 Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 1.3.3.4.1
 
-Easily enable the FancyBox 1.3.3 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible and supports iFrame and Flash movies in overlay viewport.
+Easily enable the FancyBox 1.3.3 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
 
 == Description ==
 
-No options to be set. No configuration pages. It just gives you FancyBox-in-a-Box for all links to image (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files. Easy FancyBox uses the packed FancyBox jQuery extension, is WP 3.0 Multi-Site compatible and supports iFrame and Flash movies -including YouTube and others- in an overlay.
+No options to be set. No new configuration pages. It just gives you FancyBox-in-a-Box for all links to images (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files _and_ Youtube / Vimeo movies _and_ WordPress Galleries. Easy FancyBox uses the packed FancyBox jQuery extension, is WP 3.0 Multi-Site compatible and supports iFrame and Flash movies -including YouTube and others- in an overlay.
 
-See the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) and you know how images will be presented on your site as soon as you have installed and (network) activated this simple plugin.
-
-See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to get YouTube and Vimeo movies (and similar services) and HTML content display in a FancyBox overlay.
+See the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
 Looking for some basic control? You can find a new section **FancyBox** on your **Settings > Media** admin page:
 
@@ -23,7 +21,9 @@ Looking for some basic control? You can find a new section **FancyBox** on your 
 - *Title Position*: Overlay / Inside / Outside to control the position of the image title. Includes the new "Overlay" position.
 - *Transition In / Out*: Elastic / Fade / None to control the transition effects during opening and closing of the overlay.
 
-Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION to the FancyBox project.
+See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to manage YouTube and Vimeo movies (and similar services) and make HTML content display in a FancyBox overlay.
+
+Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION for continued development of the FancyBox project.
 
 = Translations =
 
