@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 1.3.3.4.1
+Stable tag: 1.3.3.4.2
 
 Easily enable the FancyBox 1.3.3 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -121,14 +121,15 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Upgrade Notice ==
 
-= 1.3.3.4.1 =
-Quick fix for image overlay size in Google Chrome browser issue with FancyBox 1.3.3
+= 1.3.3.4.2 =
+Size issue with fancybox-swf and iframe classes. Quick fix for image overlay size in Google Chrome browser issue with FancyBox 1.3.3
 
 == Changelog ==
 
-= 1.3.3.4.1 =
+= 1.3.3.4.2 =
 * Fix: iframe width
 * Fix: image overlay size in Google Chrome browser issue (FancyBox 1.3.3)
+* Fix: fancybox-swf 
 
 = 1.3.3.4 =
 * upgraded FancyBox script to version 1.3.3 (2010/11/4 - http://fancybox.net/changelog/)
