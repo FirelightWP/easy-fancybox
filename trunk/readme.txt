@@ -12,7 +12,7 @@ Easily enable the FancyBox 1.3.3 jQuery extension on all image, SWF, YouTube and
 
 No options to be set. No new configuration pages. It just gives you FancyBox-in-a-Box for all links to images (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files _and_ Youtube / Vimeo movies _and_ WordPress Galleries. Easy FancyBox uses the packed FancyBox jQuery extension, is WP 3.0 Multi-Site compatible and supports iFrame and Flash movies -including YouTube and others- in an overlay.
 
-See the [Screenshot](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
+See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
 Looking for some basic control? You can find a new section **FancyBox** on your **Settings > Media** admin page:
 
@@ -101,17 +101,31 @@ If you do not have **swf** included in the *Auto-enable* option on Settings > Me
 
 Yes. 
 
-For YouTube, just place a link to the YouTube page in your content. If you have disabled Auto-detection, use it with `class="fancybox-youtube"` to manually enable FancyBox for it. (Note: For shortened YouTube URLs, the class does not work. Auto auto-detection needs to be enabled seperately.)
+These are actually a special case of SWF files. The URL for these movies do not end in .swf so the FancyBox script will not be able to auto-detect the Flash content. This can be forced with `class="fancybox-youtube"`, `class="fancybox-swf"` or alternatively `class="fancybox-iframe"`. The difference between the three is mainly in size of the overlay window. Just choose the one that works best for you or... Just let the plugin auto-detect and auto-enable it for you! :)
 
-For Vimeo, just place a link to the Vimeo page in your content. If you have disabled Auto-detection, use it with `class="fancybox-vimeo"` to manually enable FancyBox for it.
+For **YouTube**, place the Share URL (the plain Page URL, the Short URL or even with the HD option) to the YouTube page in your content. Add `&fs=1` to the URL so show the 'Full screen' button. If you have disabled Auto-detection, use it with `class="fancybox-youtube"` to manually enable FancyBox for it. (Note: For shortened YouTube URLs, the class does not work. Auto auto-detection needs to be enabled seperately.)
 
-These are actually a special case of SWF files. The URL for these movies do not end in .swf so the FancyBox script will not be able to auto-detect the Flash content. This can be forced with `class="fancybox-youtube"`, `class="fancybox-swf"` or alternatively `class="fancybox-iframe"`. The difference between the three are mainly in transition effect and size of the overlay viewport. Just choose the one that works best for you or...
+For **Vimeo**, just place a link to the Vimeo page in your content. If you have disabled Auto-detection, use it with `class="fancybox-vimeo"` to manually enable FancyBox for it.
 
-Just let the plugin auto-detect and auto-enable it for you :)
+Both YouTube and Vimeo movies can be made to auto-start when they are opened by adding the paramer `autoplay=1` to the URL. For example, a short-url YouTube link that should play in HD mode, have the full screen button and auto-start on open, would look like:
+`
+<a href="http://youtu.be/N_tONWXYviM?hd=1&fs=1&autoplay=1">text/thumbnail</a>
+`
+
+= I want that 'Show in full-screen' button on my YouTube movies =
+
+Append `&fs=1` to your YouTube share URL. If you use the Short URL without the `?hd=1` switch, append `?fs=1` to it.
 
 = Is Easy FancyBox multi-site compatible? =
 
 Yes. Designed to work with **Network Activate** and does not require manual activation on each site in your network. You can even install it in mu-plugins: upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ and move the file easy-fancybox.php one dir up.
+
+== Other Notes ==
+
+= Known Issues =
+
+- There is a conflict between the WP Slimstat plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
+- In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature.
 
 == Screenshots ==
 
