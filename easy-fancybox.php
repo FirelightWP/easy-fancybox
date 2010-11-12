@@ -3,7 +3,7 @@
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox 1.3.3 jQuery extension</a> on all image, SWF, YouTube and Vimeo links. Multi-Site compatible and supports iFrame and Flash movies in overlay viewport. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e3&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
-Version: 1.3.3.4.2
+Version: 1.3.4.5alpha
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -20,8 +20,8 @@ function easy_fancybox_settings(){
 			'class' => 'regular-text',
 			'options' => array(),
 			'hide' => 'true',
-			'default' => 'jpg gif png bmp jpeg jpe swf',
-			'description' => __('Enter file types FancyBox should be automatically enabled for. Clear field to switch off auto-enabling.','easy-fancybox')
+			'default' => 'jpg gif png',
+			'description' => __('Enter file types FancyBox should be automatically enabled for. Clear field to switch off auto-enabling.','easy-fancybox') . ' ' . __('Add additional image file types like <em>bmp</em>, <em>jpeg</em> or <em>jpe</em> if here.','easy-fancybox') . ' ' . __('Note: Each additional option will have a slight imact on client-side page speed. Use only those that you actually need on your site.','easy-fancybox')
 			),
 		'autoDetect' => array (
 			'id' => 'fancybox_autoDetect',
@@ -30,6 +30,16 @@ function easy_fancybox_settings(){
 			'input' => 'multiple',
 			'class' => '',
 			'options' => array(
+				'autoAttributeSWF' => array (
+					'id' => 'fancybox_autoAttributeSWF',
+					'label_for' => '',
+					'input' => 'checkbox',
+					'class' => '',
+					'options' => array(),
+					'hide' => 'true',
+					'default' => '',
+					'description' => __('Flash (.swf) links.','easy-fancybox')
+					),
 				'autoAttributeYoutube' => array (
 					'id' => 'fancybox_autoAttributeYoutube',
 					'label_for' => '',
@@ -37,7 +47,7 @@ function easy_fancybox_settings(){
 					'class' => '',
 					'options' => array(),
 					'hide' => 'true',
-					'default' => '1',
+					'default' => '',
 					'description' => __('YouTube links.','easy-fancybox')
 					),
 				'autoAttributeYoutubeShortURL' => array (
@@ -57,12 +67,22 @@ function easy_fancybox_settings(){
 					'class' => '',
 					'options' => array(),
 					'hide' => 'true',
-					'default' => '1',
+					'default' => '',
 					'description' => __('Vimeo links.','easy-fancybox')
-					)
+					),
+				/* 'autoAttributeTudou' => array (
+					'id' => 'fancybox_autoAttributeTudou',
+					'label_for' => '',
+					'input' => 'checkbox',
+					'class' => '',
+					'options' => array(),
+					'hide' => 'true',
+					'default' => '1',
+					'description' => __('Tudou links.','easy-fancybox')
+					) */
 				),
 			'hide' => 'true',
-			'description' => __('Select which external video content sites links should automatically be detected and FancyBox enabled.','easy-fancybox')
+			'description' => __('Select which external video content sites links should automatically be detected and FancyBox enabled.','easy-fancybox') . ' ' . __('Note: Each additional auto-detection will have a slight imact on client-side page speed. Use only those options that you actually need on your site.','easy-fancybox')
 			),
 		'titlePosition' => array (
 			'id' => 'fancybox_titlePosition',
@@ -71,12 +91,24 @@ function easy_fancybox_settings(){
 			'input' => 'select',
 			'class' => '',
 			'options' => array(
+				'' => __('Default','easy-fancybox'),
 				'over' => __('Overlay','easy-fancybox'),
 				'inside' => __('Inside','easy-fancybox'),
 				'outside' => __('Outside','easy-fancybox')
 				),
 			'default' => 'over',
 			'description' => __('Position of the overlay content title.','easy-fancybox')
+			),
+		'titleFromAlt' array (
+			'id' => 'fancybox_titleFromAlt',
+			'title' => __('Title from Alt tag','easy-fancybox'),
+			'label_for' => 'fancybox_titleFromAlt',
+			'input' => 'checkbox',
+			'class' => '',
+			'options' => array(),
+			'hide' => 'true',
+			'default' => '1',
+			'description' => __('Get the title from the thumbnail image alt tag.','easy-fancybox')
 			),
 		'transitionIn' => array (
 			'id' => 'fancybox_transitionIn',
@@ -86,7 +118,7 @@ function easy_fancybox_settings(){
 			'class' => '',
 			'options' => array(
 				'elastic' => __('Elastic','easy-fancybox'),
-				'fade' => __('Fade in','easy-fancybox'),
+				'fade' => __('Fade','easy-fancybox'),
 				'none' => __('None','easy-fancybox')
 				),
 			'default' => 'elastic',
@@ -100,11 +132,41 @@ function easy_fancybox_settings(){
 			'class' => '',
 			'options' => array(
 				'elastic' => __('Elastic','easy-fancybox'),
-				'fade' => __('Fade out','easy-fancybox'),
+				'fade' => __('Fade','easy-fancybox'),
 				'none' => __('None','easy-fancybox')
 				),
 			'default' => 'elastic',
 			'description' => __('Transition effect when closing the overlay.','easy-fancybox')
+			),
+		'easingIn' => array (
+			'id' => 'fancybox_easingIn',
+			'title' => __('Easing In','easy-fancybox'),
+			'label_for' => 'fancybox_easingIn',
+			'input' => 'select',
+			'class' => '',
+			'options' => array(
+				'' => __('Swing','easy-fancybox'),
+				'easeOutBack' => __('Back','easy-fancybox'),
+				'easeOutQuad' => __('Quad','easy-fancybox'),
+				'easeOutExpo' => __('Expo','easy-fancybox'),
+				),
+			'default' => 'easeOutBack',
+			'description' => __('Easing effect when opening the overlay.','easy-fancybox')
+			),
+		'easingOut' => array (
+			'id' => 'fancybox_easingOut',
+			'title' => __('Easing Out','easy-fancybox'),
+			'label_for' => 'fancybox_easingOut',
+			'input' => 'select',
+			'class' => '',
+			'options' => array(
+				'' => __('Swing','easy-fancybox'),
+				'easeInBack' => __('Back','easy-fancybox'),
+				'easeInQuad' => __('Quad','easy-fancybox'),
+				'easeInExpo' => __('Expo','easy-fancybox'),
+				),
+			'default' => 'easeInBack',
+			'description' => __('Easing effect when closing the overlay.','easy-fancybox')
 			),
 		);
 }
@@ -120,48 +182,72 @@ jQuery(document).ready(function($){";
 	
 	$file_types = array_filter( explode( ' ', get_option( 'fancybox_autoAttribute', $easy_fancybox_array['autoAttribute']['default']) ) );
 	
-	// add auto-detection image/swf links
+	// add auto-detection image links
 	if(!empty($file_types)) {
 		echo "
-	$('";
+	var fb_imglinks = '";
 		foreach ($file_types as $type)
 			echo 'a[href$=".'.$type.'"],a[href$=".'.strtoupper($type).'"],';
-		echo "')
-		.attr('rel', 'gallery')
-		.addClass('fancybox');";
+		echo "';";
+		if ( is_single() | is_page() ) {
+			echo "
+	$(fb_imglinks).addClass('fancybox').attr('rel', 'gallery');";
+		} else {
+			echo "
+	var fb_posts = jQuery('div.post');
+	fb_posts.each(function() {
+		jQuery(this).find(fb_imglinks).addClass('fancybox').attr('rel', 'gallery-'+posts.index(this));
+	});";
+		}
 	}
+	
+	// add auto-detection PDF links
+		echo "
+	$('a[href$=\".pdf\"]').addClass('fancybox-pdf');";
+
+	// add auto-attribution for SWF links
+	if( "1" == get_option("fancybox_autoAttributeSWF", $easy_fancybox_array['autoDetect']['options']['autoAttributeSWF']['default']) )
+		echo "
+	$('a[href$=\".swf\"]').addClass('fancybox-swf');";
 
 	// add auto-attribution for Youtube links
 	if( "1" == get_option("fancybox_autoAttributeYoutube", $easy_fancybox_array['autoDetect']['options']['autoAttributeYoutube']['default']) )
 		echo "
-	$('a[href*=\"youtube.com/watch\"]').addClass('fancybox-youtube');";
+	$('a[href*=\"youtube.com/watch\"]')
+		.attr('href', function(index, attr){return attr.replace(new RegExp('watch\\\?v=', 'i'), 'v/')})
+		.addClass('fancybox-youtube');";
+	if( "1" == get_option("fancybox_autoAttributeYoutubeShortURL", $easy_fancybox_array['autoDetect']['options']['autoAttributeYoutubeShortURL']['default']) )
+		echo "
+	$('a[href*=\"youtu.be/\"]')
+		.attr('href', function(index, attr){return attr.replace(new RegExp('youtu.be', 'i'), 'www.youtube.com/v')})
+		.addClass('fancybox-youtube');";
 
 	// add auto-attribution for Vimeo links
 	if( "1" == get_option("fancybox_autoAttributeVimeo", $easy_fancybox_array['autoDetect']['options']['autoAttributeVimeo']['default']) )
 		echo "
-	$('a[href*=\"vimeo.com/\"]').addClass('fancybox-vimeo');
+	$('a[href*=\"vimeo.com/\"]')
+		.attr('href', function(index, attr){return attr.replace(new RegExp('/([0-9])', 'i'), '/moogaloop.swf?clip_id=$1')})
+		.addClass('fancybox-vimeo');
 	";
 
-	// image/swf fancybox settings
+	// image fancybox settings
 	echo "
 	$('a.fancybox').fancybox({";
 	foreach ($easy_fancybox_array as $key => $values)
-		if('true'!=$values['hide'])
+		if('true'!=$values['hide'] && ''!=get_option($values['id'], $values['default']) )
 			echo "
-		'".$key."'	: '".get_option($values['id'], $values['default'])."',";
+		'".$key."'	: '".get_option($values['id'], $values['default'])."'";
 	
 	if( "over" == get_option("fancybox_titlePosition", $easy_fancybox_array['titlePosition']['default']) )
-		echo"
+		echo",
 		'onComplete'	: function() {
 			$('#fancybox-wrap').hover(function() {
 				$('#fancybox-title').show();
 			}, function() {
 				$('#fancybox-title').hide();
 			});
-		},";
+		}";
 	echo"
-		'autoDimensions': false,
-		'titleFromAlt'	: true
 	});
 	";
 	
@@ -169,12 +255,11 @@ jQuery(document).ready(function($){";
 	echo"
 	var fb_opts = {
 		'titleShow'	: false,
-		'padding'	: 0,
 		'autoScale'	: false,
-		'transitionIn'	: 'none',
-		'transitionOut'	: 'none',
+		'transitionIn'	: '".get_option("fancybox_transitionIn", $easy_fancybox_array['transitionIn']['default'])."',
+		'transitionOut'	: 'fade',
 		'swf'		: {
-		   	'wmode'			: 'opacity',
+		   	'wmode'			: 'opaque',
 			'allowfullscreen'	: 'true'
 		}
 	};
@@ -182,55 +267,85 @@ jQuery(document).ready(function($){";
 		$.extend(fb_opts, {
 			'type'		: 'iframe',
 			'height'	: '90%',
-			'width'		: '70%'
+			'width'		: '80%'
 		})
 	);
 	$('a.fancybox-swf').fancybox(
 		$.extend(fb_opts, {
+			'type'		: 'swf',
 			'width'		: 680,
 			'height'	: 495,
-			'type'		: 'swf'
+			'padding'	: 0
 		})
 	);
-	$('a.fancybox-youtube').click(function(){
-		$.fancybox(
-			$.extend(fb_opts, {
-				'type'		: 'swf',
-				'width'		: 640,
-				'height'	: 385,
-				'href'		: this.href.replace(new RegExp('watch\\\?v=', 'i'), 'v/')
-			})
-		);
-		return false;
-	});";
-	if( "1" == get_option("fancybox_autoAttributeYoutubeShortURL", $easy_fancybox_array['autoDetect']['options']['autoAttributeYoutubeShortURL']['default']) )
-		echo "
-	$('a[href*=\"youtu.be/\"]').click(function(){
-		$.fancybox(
-			$.extend(fb_opts, {
-				'type'		: 'swf',
-				'width'		: 640,
-				'height'	: 385,
-				'href'		: this.href.replace(new RegExp('youtu.be', 'i'), 'www.youtube.com/v')
-			})
-		);
-		return false;
-	});";
-	echo "
-	$('a.fancybox-vimeo').click(function() {
-		$.fancybox(
-			$.extend(fb_opts, {
-				'width'		: 640,
-				'height'	: 360,
-				'href'		: this.href.replace(new RegExp('([0-9])', 'i'), 'moogaloop.swf?clip_id=$1')
-			})
-		);
+	$('a.fancybox-youtube').fancybox(
+		$.extend(fb_opts, {
+			'type'		: 'swf',
+			'width'		: 640,
+			'height'	: 385,
+			'padding'	: 0
+		})
+	);
+	$('a.fancybox-vimeo').fancybox(
+		$.extend(fb_opts, {
+			'type'		: 'swf',
+			'width'		: 640,
+			'height'	: 360,
+			'padding'	: 0
+		})
+	);
+	$('a.fancybox-pdf').click(function(){
+		$.fancybox({
+			'autoScale': false,
+			'autoDimensions': false,
+			'width'		: $(window).width() * 0.8, 
+			'height'	: $(window).height() * 0.9,
+			'content'	: '<embed src=\"'+this.href+'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0\" type=\"application/pdf\" height=\"100%\" width=\"100%\" />', 
+			'onClosed'	: function() { 
+						$('#fancybox-inner').empty();
+						}
+		});
 		return false;
 	});
 });
 </script>
 ";
 }
+
+/*
+TUDOU - THIS WORKS ON PLAYLIST LINKS ONLY !!
+
+	// add auto-attribution for Tudou links
+	if( "1" == get_option("fancybox_autoAttributeTudou", $easy_fancybox_array['autoDetect']['options']['autoAttributeTudou']['default']) )
+		echo "
+	$('a[href*=\"tudou.com/playlist/playindex.do\"]')
+		.attr('href', function(index, attr){return attr.replace(new RegExp('playlist/playindex.do\\\?lid=', 'i'), 'player/outside/player_outside.swf?default_skin=http%3A%2F%2Fjs.tudouui.com%2Fbin%2Fplayer2%2Foutside%2FSkin_outside_59.swf&iid=')})
+		.addClass('fancybox-tudou');
+	";
+
+	$('a.fancybox-tudou').fancybox(
+		$.extend(fb_opts, {
+			'width'		: 450,
+			'height'	: 520,
+			'type'		: 'swf'
+		})
+	);
+
+PDF - BREAKS ON height/width : '..%' - USING height()/width() INSTEAD !!
+	$('a.fancybox-pdf').click(function(){
+		$.fancybox({
+			'autoDimensions': false,
+			'width'		: $(window).width() * 0.8, 
+			'height'	: $(window).height() * 0.9,
+			'content'	: '<embed src=\"'+this.href+'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0\" type=\"application/pdf\" height=\"100%\" width=\"100%\" />', 
+			'onClosed'	: function() { 
+						$('#fancybox-inner').empty();
+						}
+		});
+		return false;
+	});
+
+*/
 
 // FancyBox Media Settings Section on Settings > Media admin page
 function easy_fancybox_settings_section() {
@@ -309,16 +424,16 @@ function easy_fancybox_enqueue() {
 
 	// ENQUEUE
 	// register main fancybox script
-	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox-1.3.3.pack.js', array('jquery'), '1.3.3');
+	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox.pack.js', array('jquery'), '1.3.4');
 	
-	if( "none" != get_option("fancybox_transitionIn") || "none" != get_option("fancybox_transitionOut") ) {
+	if( 'elastic' == get_option("fancybox_transitionIn") || 'elastic' == get_option("fancybox_transitionOut") ) {
 		// first get rid of previously registered variants of jquery.easing (by other plugins)
 		wp_deregister_script('jquery.easing');
 		wp_deregister_script('jqueryeasing');
 		wp_deregister_script('jquery-easing');
 		wp_deregister_script('easing');
 		// then register our version
-		wp_enqueue_script('jquery.easing', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.easing-1.3.pack.js', array('jquery'), '1.3');
+		wp_enqueue_script('jquery.easing', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.easing.pack.js', array('jquery'), '1.3');
 	}
 	
 	// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
@@ -327,7 +442,7 @@ function easy_fancybox_enqueue() {
 	wp_deregister_script('jquery-mousewheel');
 	wp_deregister_script('mousewheel');
 	// then register our version
-	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.mousewheel-3.0.4.pack.js', array('jquery'), '3.0.4');
+	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.mousewheel.pack.js', array('jquery'), '3.0.4');
 	
 	// register style
 	wp_enqueue_style('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.css.php', false, '1.3.3');
