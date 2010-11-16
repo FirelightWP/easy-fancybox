@@ -8,6 +8,12 @@ Author: RavanH
 Author URI: http://4visions.nl/
 */
 
+// DEF
+
+define( 'FANCYBOX_VERSION', '1.3.4' );
+define( 'MOUSEWHEEL_VERSION', '3.0.4' );
+define( 'EASING_VERSION', '1.3' );
+
 // FUNCTIONS //
 
 function easy_fancybox_settings(){
@@ -91,22 +97,21 @@ function easy_fancybox_settings(){
 			'input' => 'select',
 			'class' => '',
 			'options' => array(
-				'' => __('Default','easy-fancybox'),
-				'over' => __('Overlay','easy-fancybox'),
+				'' => __('Float','easy-fancybox'), // same as 'float'
+				'outside' => __('Outside','easy-fancybox'),
 				'inside' => __('Inside','easy-fancybox'),
-				'outside' => __('Outside','easy-fancybox')
+				'over' => __('Overlay','easy-fancybox')
 				),
 			'default' => 'over',
 			'description' => __('Position of the overlay content title.','easy-fancybox')
 			),
-		'titleFromAlt' array (
+		'titleFromAlt' => array (
 			'id' => 'fancybox_titleFromAlt',
 			'title' => __('Title from Alt tag','easy-fancybox'),
 			'label_for' => 'fancybox_titleFromAlt',
 			'input' => 'checkbox',
 			'class' => '',
 			'options' => array(),
-			'hide' => 'true',
 			'default' => '1',
 			'description' => __('Get the title from the thumbnail image alt tag.','easy-fancybox')
 			),
@@ -176,7 +181,7 @@ function easy_fancybox() {
 	
 	// begin output FancyBox settings
 	echo "
-<!-- Easy FancyBox plugin for WordPress - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->
+<!-- Easy FancyBox plugin for WordPress using FancyBox ".FANCYBOX_VERSION." - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->
 <script type=\"text/javascript\">
 jQuery(document).ready(function($){";
 	
@@ -196,7 +201,7 @@ jQuery(document).ready(function($){";
 			echo "
 	var fb_posts = jQuery('div.post');
 	fb_posts.each(function() {
-		jQuery(this).find(fb_imglinks).addClass('fancybox').attr('rel', 'gallery-'+posts.index(this));
+		jQuery(this).find(fb_imglinks).addClass('fancybox').attr('rel', 'gallery-' + fb_posts.index(this));
 	});";
 		}
 	}
@@ -233,10 +238,20 @@ jQuery(document).ready(function($){";
 	// image fancybox settings
 	echo "
 	$('a.fancybox').fancybox({";
-	foreach ($easy_fancybox_array as $key => $values)
-		if('true'!=$values['hide'] && ''!=get_option($values['id'], $values['default']) )
-			echo "
+	$more=0;
+	foreach ($easy_fancybox_array as $key => $values) {
+		if('true'!=$values['hide'] && ''!=get_option($values['id'], $values['default']) ) {
+			if ($more>0)
+				echo ",";
+			if ('checkbox'==$values['input'])
+				echo "
+		'".$key."'	: ". $bool = ('1'==get_option($values['id'], $values['default'])) ? 'true' : 'false';				
+			else
+				echo "
 		'".$key."'	: '".get_option($values['id'], $values['default'])."'";
+			$more++;
+		}
+	}
 	
 	if( "over" == get_option("fancybox_titlePosition", $easy_fancybox_array['titlePosition']['default']) )
 		echo",
@@ -260,14 +275,14 @@ jQuery(document).ready(function($){";
 		'transitionOut'	: 'fade',
 		'swf'		: {
 		   	'wmode'			: 'opaque',
-			'allowfullscreen'	: 'true'
+			'allowfullscreen'	: true
 		}
 	};
 	$('a.fancybox-iframe').fancybox(
 		$.extend(fb_opts, {
 			'type'		: 'iframe',
-			'height'	: '90%',
-			'width'		: '80%'
+			'width'		: '80%',
+			'height'	: '90%'
 		})
 	);
 	$('a.fancybox-swf').fancybox(
@@ -290,20 +305,18 @@ jQuery(document).ready(function($){";
 		$.extend(fb_opts, {
 			'type'		: 'swf',
 			'width'		: 640,
-			'height'	: 360,
-			'padding'	: 0
+			'height'	: 360
 		})
 	);
 	$('a.fancybox-pdf').click(function(){
 		$.fancybox({
 			'autoScale': false,
 			'autoDimensions': false,
-			'width'		: $(window).width() * 0.8, 
-			'height'	: $(window).height() * 0.9,
+			'width'		: $(window).width() * 0.9, 
+			'height'	: $(window).height() * 0.85,
+			'padding'	: 0,
 			'content'	: '<embed src=\"'+this.href+'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0\" type=\"application/pdf\" height=\"100%\" width=\"100%\" />', 
-			'onClosed'	: function() { 
-						$('#fancybox-inner').empty();
-						}
+			'onClosed'	: function() { $('#fancybox-inner').empty(); }
 		});
 		return false;
 	});
@@ -418,13 +431,13 @@ function easy_fancybox_admin_init(){
 }
 
 function easy_fancybox_enqueue() {
-	// check if fancy.php is moved one dir up like in WPMU's /mu-plugins/
+	// check if easy-fancybox.php is moved one dir up like in WPMU's /mu-plugins/
 	// NOTE: don't use WP_PLUGIN_URL to avoid problems when installed in /mu-plugins/
 	$efb_subdir = (file_exists(dirname(__FILE__).'/easy-fancybox')) ? 'easy-fancybox' : '';
 
 	// ENQUEUE
 	// register main fancybox script
-	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox.pack.js', array('jquery'), '1.3.4');
+	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', array('jquery'), FANCYBOX_VERSION);
 	
 	if( 'elastic' == get_option("fancybox_transitionIn") || 'elastic' == get_option("fancybox_transitionOut") ) {
 		// first get rid of previously registered variants of jquery.easing (by other plugins)
@@ -433,7 +446,7 @@ function easy_fancybox_enqueue() {
 		wp_deregister_script('jquery-easing');
 		wp_deregister_script('easing');
 		// then register our version
-		wp_enqueue_script('jquery.easing', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.easing.pack.js', array('jquery'), '1.3');
+		wp_enqueue_script('jquery.easing', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', array('jquery'), EASING_VERSION);
 	}
 	
 	// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
@@ -442,10 +455,11 @@ function easy_fancybox_enqueue() {
 	wp_deregister_script('jquery-mousewheel');
 	wp_deregister_script('mousewheel');
 	// then register our version
-	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.mousewheel.pack.js', array('jquery'), '3.0.4');
+	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.mousewheel-'.MOUSEWHEEL_VERSION.'.pack.js', array('jquery'), MOUSEWHEEL_VERSION);
 	
 	// register style
-	wp_enqueue_style('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/jquery.fancybox.css.php', false, '1.3.3');
+	wp_enqueue_style('easy-fancybox.css', plugins_url($efb_subdir, __FILE__).'/easy-fancybox.css.php', false, FANCYBOX_VERSION, 'screen');
+
 }
 
 // HOOKS //
