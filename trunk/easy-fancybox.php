@@ -273,10 +273,7 @@ jQuery(document).ready(function($){";
 		'autoScale'	: false,
 		'transitionIn'	: '".get_option("fancybox_transitionIn", $easy_fancybox_array['transitionIn']['default'])."',
 		'transitionOut'	: 'fade',
-		'swf'		: {
-		   	'wmode'			: 'opaque',
-			'allowfullscreen'	: true
-		}
+		'padding'	: 0
 	};
 	$('a.fancybox-iframe').fancybox(
 		$.extend(fb_opts, {
@@ -290,7 +287,10 @@ jQuery(document).ready(function($){";
 			'type'		: 'swf',
 			'width'		: 680,
 			'height'	: 495,
-			'padding'	: 0
+			'swf'		: {
+			   	'wmode'			: 'opaque',
+				'allowfullscreen'	: true
+			}
 		})
 	);
 	$('a.fancybox-youtube').fancybox(
@@ -298,28 +298,34 @@ jQuery(document).ready(function($){";
 			'type'		: 'swf',
 			'width'		: 640,
 			'height'	: 385,
-			'padding'	: 0
+			'swf'		: {
+			   	'wmode'			: 'opaque',
+				'allowfullscreen'	: true
+			}
 		})
 	);
 	$('a.fancybox-vimeo').fancybox(
 		$.extend(fb_opts, {
 			'type'		: 'swf',
 			'width'		: 640,
-			'height'	: 360
+			'height'	: 360,
+			'swf'		: {
+			   	'wmode'			: 'opaque',
+				'allowfullscreen'	: true
+			}
 		})
 	);
-	$('a.fancybox-pdf').click(function(){
-		$.fancybox({
-			'autoScale': false,
+	$('a.fancybox-pdf').fancybox(
+		$.extend(fb_opts, {
+			'type'		: 'html',
+			'margin'	: 0,
 			'autoDimensions': false,
-			'width'		: $(window).width() * 0.9, 
-			'height'	: $(window).height() * 0.85,
-			'padding'	: 0,
-			'content'	: '<embed src=\"'+this.href+'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0\" type=\"application/pdf\" height=\"100%\" width=\"100%\" />', 
-			'onClosed'	: function() { $('#fancybox-inner').empty(); }
-		});
-		return false;
-	});
+			'width'		: '90%',
+			'height' 	: '90%',
+			'scrolling' 	: 'no',
+			'onStart'	: function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = '<embed src=\"' + selectedArray[selectedIndex].href + '#nameddest=self&page=1&view=FitH,0&zoom=80,0,0\" type=\"application/pdf\" height=\"100%\" width=\"100%\" />' }
+		})
+	);
 });
 </script>
 ";
@@ -352,8 +358,20 @@ PDF - BREAKS ON height/width : '..%' - USING height()/width() INSTEAD !!
 			'height'	: $(window).height() * 0.9,
 			'content'	: '<embed src=\"'+this.href+'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0\" type=\"application/pdf\" height=\"100%\" width=\"100%\" />', 
 			'onClosed'	: function() { 
-						$('#fancybox-inner').empty();
+						$('#fancybox-overlay').css('display','none');
 						}
+		});
+		return false;
+	});
+
+PDF - ALTERNATIVE without height/width and autoDimensions false :)
+	$('a.fancybox-pdf').click(function(){
+		$.fancybox({
+			'titleShow'	: true,
+			'titlePosition'	: 'inside',
+			'title'		: this.title,
+			'margin'	: 0,
+			'content'	: '<embed src=\"'+this.href+'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0\" type=\"application/pdf\" height=\"' + $(window).height() * 0.9 + '\" width=\"' + $(window).width() * 0.9 + '\" />', 
 		});
 		return false;
 	});
