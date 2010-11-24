@@ -89,7 +89,7 @@ Yes, but _only_ if you used the option **Link thumbnails to: Image File** when i
 
 Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content. 
 
-NOTE: The difference between these two classes (- or space) is in size of the overlay viewport. Try it out and use the one that works best :)
+NOTE: The difference between these two classes (- or space) is in size of the overlay window. Try it out and use the one that works best :)
 
 = Can I play SWF files in a FancyBox overlay? =
 
@@ -135,10 +135,16 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Upgrade Notice ==
 
-= 1.3.3.4.2 =
-Size issue with fancybox-swf and iframe classes. Quick fix for image overlay size in Google Chrome browser issue with FancyBox 1.3.3
+= 1.3.4.5 =
+FancyBox version 1.3.4 plus added PDF support and lots more options liek Easing, Title and adjustable YouTube, Vimeo and iFrame sizes!
 
 == Changelog ==
+
+= 1.3.4.5 =
+* Added Support for PDF
+* Added Easing options
+* YouTube, Vimeo and iFrame sizes now adjustable
+* Lots more options
 
 = 1.3.3.4.2 =
 * Fix: iframe width
