@@ -1,7 +1,7 @@
 === Easy FancyBox ===
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
-Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery
+Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery, pdf
 Requires at least: 2.7
 Tested up to: 3.0.1
 Stable tag: 1.3.3.4.2
@@ -10,7 +10,7 @@ Easily enable the FancyBox 1.3.3 jQuery extension on all image, SWF, YouTube and
 
 == Description ==
 
-No options to be set. No new configuration pages. It just gives you FancyBox-in-a-Box for all links to images (.jpg/.bmp/.gif/.png) _and_ Flash movie (.swf) files _and_ Youtube / Vimeo movies _and_ WordPress Galleries. Easy FancyBox uses the packed FancyBox jQuery extension, is WP 3.0 Multi-Site compatible and supports iFrame and Flash movies -including YouTube and others- in an overlay.
+No new configuration pages. It just gives you FancyBox-in-a-Box for all links to images (.jpg/.bmp/.gif/.png) _and_ WordPress Galleries _and_ (after enabling the options) for Flash movie (.swf) files _and_ Youtube / Vimeo movies _and_ iFrames _and_ PDF documents! Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3.0 Multi-Site compatible.
 
 See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
@@ -65,11 +65,11 @@ The plugin works best from the **/mu-plugins/** folder where it runs quietly in 
 
 = What's FancyBox? =
 
-Basically, it is a fancy way of presenting images on your website. If you have scaled-down images in your posts which are linked to the original large version, instead of opening them in a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples. 
+Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples. 
 
 = Why EASY FancyBox? =
 
-Instead of bothering you with the HUGE amount of configuration options that FancyBox can handle, this plugin requires NO configuration. Easy, isn't it? ;)
+Instead of bothering you with the HUGE amount of configuration options that FancyBox can handle, this plugin requires almost NO configuration. Easy, isn't it? ;)
 
 If you *do* want configuration options to tweak and fiddle for days, check out some of the other FancyBox plugins available.
 
@@ -83,7 +83,7 @@ There is no new settings page but there are a few options you can change. You wi
 
 = Will a WordPress generated gallery be displayed in a FancyBox overlay? =
 
-Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery!
+Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
 
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
@@ -91,11 +91,17 @@ Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox ifra
 
 NOTE: The difference between these two classes (- or space) is in size of the overlay window. Try it out and use the one that works best :)
 
+= Can I show PDF files in a FancyBox overlay? =
+
+Yes. Just place a link _with the URL ending in .pdf_ to your Portable Document file in the page content.
+
+If you do'nt have *Auto-detect* checked under **PDF** on Settings > Media admin page, you will need to add `class="fancybox-pdf"` (to force pdf content recognition) to the link to enable FancyBox for it.
+
 = Can I play SWF files in a FancyBox overlay? =
 
 Yes. Just place a link _with the URL ending in .swf_ to your Flash file in the page content.
 
-If you do not have **swf** included in the *Auto-enable* option on Settings > Media admin page, you will need to add either `class="fancybox"` or `class="fancybox-swf"` (to force swf content recognition) to the link to enable FancyBox for it.
+If you do'nt have *Auto-detect* checked under **SWF** on Settings > Media admin page, you will need to add either `class="fancybox"` or `class="fancybox-swf"` (to force swf content recognition) to the link to enable FancyBox for it.
 
 = Can I play YouTube and Vimeo movies in a FancyBox overlay? =
 
@@ -125,7 +131,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 = Known Issues =
 
 - There is a conflict between the WP Slimstat plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
-- In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature.
+- In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature. Since version 1.3.4, this has been resolved.
 
 == Screenshots ==
 
@@ -136,7 +142,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 == Upgrade Notice ==
 
 = 1.3.4.5 =
-FancyBox version 1.3.4 plus added PDF support and lots more options liek Easing, Title and adjustable YouTube, Vimeo and iFrame sizes!
+FancyBox version 1.3.4 plus added PDF support and LOTS more options like border, overlay color, Easing, Title and adjustable YouTube, Vimeo and iFrame sizes!
 
 == Changelog ==
 
@@ -144,7 +150,7 @@ FancyBox version 1.3.4 plus added PDF support and lots more options liek Easing,
 * Added Support for PDF
 * Added Easing options
 * YouTube, Vimeo and iFrame sizes now adjustable
-* Lots more options
+* LOTS more options!
 
 = 1.3.3.4.2 =
 * Fix: iframe width
