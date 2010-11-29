@@ -975,7 +975,7 @@ $(fb_'.$key.'_selector)'.$attributeLimit.'.addClass(\''.$value['options']['class
 				} else {
 					echo '
 var fb_'.$key.'_posts = jQuery(\'div.post\');
-fb_'.$key.'_posts'.$attributeLimit.'.each(function() { jQuery(this).find(fb_imglinks).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery-\' + fb_'.$key.'_posts.index(this)); });';
+fb_'.$key.'_posts.each(function() { jQuery(this).find(fb_'.$key.'_selector)'.$attributeLimit.'.addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery-\' + fb_'.$key.'_posts.index(this)); });';
 				}
 			}
 		}
