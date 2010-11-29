@@ -2,7 +2,7 @@
 /*
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
-Description: Easily enable the <a href="http://fancybox.net/">FancyBox 1.3.3 jQuery extension</a> on all image, SWF, YouTube and Vimeo links. Multi-Site compatible and supports iFrame and Flash movies in overlay viewport. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e3&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
+Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, YouTube and Vimeo links. Multi-Site compatible and supports iFrame and Flash movies in overlay viewport. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e4&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
 Version: 1.3.4.5
 Author: RavanH
 Author URI: http://4visions.nl/
@@ -17,19 +17,42 @@ define( 'EASING_VERSION', '1.3' );
 // FUNCTIONS //
 
 function easy_fancybox_settings(){
+
+	if (function_exists('is_plugin_active_for_network') && is_plugin_active_for_network(plugin_basename( __FILE__ )))
+		$no_network_activate = '';
+	else
+		$no_network_activate = '1';
+	
 	return array ( 
-		'Glob' => array(
+		'Global' => array(
 			'title' => __('Global settings','easy-fancybox'),
 			'input' => 'multiple',
 			'hide' => true,
 			'options' => array(
 				'intro' => array (
 						'hide' => true,
-						'description' => __('These settings determine the global overlay appearance and behaviour controlled by FancyBox. Leave blank if you want to keep the default settings.','easy-fancybox') . '<br />'
+						'description' => __('These settings determine the global overlay appearance and behaviour controlled by FancyBox.','easy-fancybox') . '<br />'
+					),
+				'p0' => array (
+						'hide' => true,
+						'description' => '<br /><strong>' . __('Links') . '</strong><br />'
+					),
+				'attributeLimit' => array (
+						'id' => 'fancybox_attributeLimit',
+						'title' => __('Exclude','easy-fancybox'),
+						'label_for' => 'fancybox_attributeLimit',
+						'hide' => true,
+						'input' => 'select',
+						'options' => array(
+								'' => __('None'),
+								'.not(\':empty\')' => __('Empty (hidden)','easy-fancybox'),
+								'.has(\'img\')' => __('Without thumbnail image','easy-fancybox'),
+							),
+						'default' => '.not(\':empty\')'
 					),
 				'p1' => array (
 						'hide' => true,
-						'description' => '<br /><strong>' . __('Overlay','easy-fancybox') . '</strong><br />'
+						'description' => '<br /><br /><strong>' . __('Overlay','easy-fancybox') . '</strong><br />'
 					),
 				'overlayShow' => array (
 						'id' => 'fancybox_overlayShow',
@@ -101,7 +124,7 @@ function easy_fancybox_settings(){
 						'input' => 'text',
 						'class' => 'small-text',
 						'default' => '',
-						'description' => '<br />' . __('Change default width, heigth and border of the overlay window. Set Border 0 to remove the border.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em><br />'
+						'description' => '<br />' . __('Change default width, heigth and border of the overlay window.','easy-fancybox') . ' ' . __('Set Border 0 to remove it.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em><br />'
 					),
 				'p3' => array (
 						'hide' => true,
@@ -159,7 +182,13 @@ function easy_fancybox_settings(){
 							'easeInExpo' => __('Expo','easy-fancybox'),
 							),
 						'default' => 'easeInBack',
-						'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox') . '<br />'
+						'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox') . '<br /><br />'
+					),
+				'opacity' => array (
+						'id' => 'fancybox_opacity',
+						'input' => 'checkbox',
+						'default' => '1',
+						'description' => __('Transparency fade during elastic transition.','easy-fancybox')
 					),
 				'speedIn' => array (
 						'id' => 'fancybox_speedIn',
@@ -188,7 +217,7 @@ function easy_fancybox_settings(){
 					)
 				)
 			),
-		'Img' => array(
+		'IMG' => array(
 			'title' => __('Images','easy-fancybox'),
 			'input' => 'multiple',
 			'options' => array(
@@ -196,7 +225,7 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_enableImg',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '1',
+						'default' => ( function_exists('is_plugin_active_for_network') && is_plugin_active_for_network(plugin_basename( __FILE__ )) ) ? '' : '1',
 						'description' => '<strong>' . __('Enable FancyBox for','easy-fancybox') . ' ' . __('Images','easy-fancybox') . '</strong>'
 					),
 				'intro' => array (
@@ -212,15 +241,11 @@ function easy_fancybox_settings(){
 						'hide' => true,
 						'default' => 'jpg gif png',
 						'selector' => 'href$=',
-						'description' => '<br />' . __('Enter file types FancyBox should be automatically enabled for. Clear field to switch off auto-enabling.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' jpg gif png</em>' 
+						'description' => '<br />' . __('Enter file types FancyBox should be automatically enabled for. Clear field to switch off auto-enabling.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' jpg gif png</em><br /><br />' 
 					),
 				'class' => array (
 						'hide' => true,
 						'default' => 'fancybox'
-					),
-				'p1' => array (
-						'hide' => true,
-						'description' => '<br /><br />'
 					),
 				'titleShow' => array (
 						'id' => 'fancybox_titleShow',
@@ -257,7 +282,8 @@ function easy_fancybox_settings(){
 
 		'PDF' => array(
 			'title' => __('PDF','easy-fancybox'),
-			'input' => 'multiple',			'options' => array(
+			'input' => 'multiple',			
+			'options' => array(
 				'enable' => array (
 						'id' => 'fancybox_enablePDF',
 						'input' => 'checkbox',
@@ -279,7 +305,7 @@ function easy_fancybox_settings(){
 					),
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make any PDF document file open in an overlay, switch on auto-detect or use the tag class="fancybox-pdf" for its link.','easy-fancybox') . ' ' . __('The overlay will use the dimensions set here. These can be relative (using %) or absolute sizes.','easy-fancybox') . '<br /><br />'
+						'description' => __('To make any PDF document file open in an overlay, switch on auto-detect or use the tag class="fancybox-pdf" for its link.','easy-fancybox') . '<br /><br />'
 					),
 				'type' => array (
 						'default' => 'html'
@@ -305,14 +331,33 @@ function easy_fancybox_settings(){
 						'default' => '0'
 					),
 				'padding' => array (
-						'default' => '0'
+						'id' => 'fancybox_PDFpadding',
+						'title' => __('Border'),
+						'label_for' => 'fancybox_PDFpadding',
+						'input' => 'text',
+						'class' => 'small-text',
+						'default' => '0',
+						'description' => '<br />' . __('Width and height can be relative (%) or absolute sizes.','easy-fancybox') . ' ' . __('Set Border 0 to remove it.','easy-fancybox') . '<br /><br />'
 					),
 				'autoScale' => array (
 						'noquotes' => true,
 						'default' => 'false'
 					),
-				'p1' => array (
-						'hide' => true,
+				'transitionOut' => array (
+						'id' => 'fancybox_PDFtransitionOut',
+						'title' => __('Transition Out','easy-fancybox'),
+						'label_for' => 'fancybox_PDFtransitionOut',
+						'input' => 'select',
+						'class' => '',
+						'options' => array(
+							'fade' => __('Fade','easy-fancybox'),
+							//'elastic' => __('Elastic','easy-fancybox'),
+							'none' => __('None','easy-fancybox')
+							),
+						'default' => 'fade',
+					),
+				'easingIn' => array (
+						'default' => 'swing',
 						'description' => '<br /><br />'
 					),
 				'titleShow' => array (
@@ -340,65 +385,6 @@ function easy_fancybox_settings(){
 						'default' => '',
 						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
 					),
-				'p2' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionIn' => array (
-						'id' => 'fancybox_PDFtransitionIn',
-						'title' => __('Transition In','easy-fancybox'),
-						'label_for' => 'fancybox_PDFtransitionIn',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Fade','easy-fancybox'),
-							'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'elastic',
-					),
-				'easingIn' => array (
-						'id' => 'fancybox_PDFeasingIn',
-						'title' => __('Easing In','easy-fancybox'),
-						'label_for' => 'fancybox_PDFeasingIn',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Swing','easy-fancybox'),
-							'easeOutBack' => __('Back','easy-fancybox'),
-							'easeOutQuad' => __('Quad','easy-fancybox'),
-							'easeOutExpo' => __('Expo','easy-fancybox'),
-							),
-						'default' => '',
-					),
-				'p3' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionOut' => array (
-						'id' => 'fancybox_PDFtransitionOut',
-						'title' => __('Transition Out','easy-fancybox'),
-						'label_for' => 'fancybox_PDFtransitionOut',
-						'input' => 'select',
-						'options' => array(
-							'fade' => __('Fade','easy-fancybox'),
-							//'elastic' => __('Elastic','easy-fancybox'), // removed for browser compatibility reasons
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'fade',
-					),
-/*				'easingOut' => array (
-						'id' => 'fancybox_PDFeasingOut',
-						'title' => __('Easing Out','easy-fancybox'),
-						'label_for' => 'fancybox_PDFeasingOut',
-						'input' => 'select',
-						'class' => '',
-						'options' => array(
-							'' => __('Swing','easy-fancybox'),
-							'easeInBack' => __('Back','easy-fancybox'),
-							'easeInQuad' => __('Quad','easy-fancybox'),
-							'easeInExpo' => __('Expo','easy-fancybox'),
-							),
-						'default' => ''
-					),*/
 				'autoDimensions' => array (
 						'noquotes' => true,
 						'default' => 'false'
@@ -408,18 +394,15 @@ function easy_fancybox_settings(){
 					),
 				'onStart' => array ( 
 						'noquotes' => true,
-						'default' => "function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = '<embed src=\"' + selectedArray[selectedIndex].href + '#nameddest=self&page=1&view=FitH,0&zoom=80,0,0\" type=\"application/pdf\" height=\"100%\" width=\"100%\" />' }"
-					),
-				'outro' => array (
-						'hide' => true,
-						'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
 					)
 				)
 			),
 
 		'SWF' => array(
 			'title' => __('SWF','easy-fancybox'),
-			'input' => 'multiple',			'options' => array(
+			'input' => 'multiple',
+			'options' => array(
 				'enable' => array (
 						'id' => 'fancybox_enableSWF',
 						'input' => 'checkbox',
@@ -441,7 +424,7 @@ function easy_fancybox_settings(){
 					),
 				'intro' => array (
 						'hide' => true,
-						'description' => __('These settings determine the SWF overlay behaviour controlled by FancyBox.','easy-fancybox') . ' ' . __('To make any Flash (.swf) file open in an overlay, switch on auto-detect or use the tag class="fancybox-swf" for its page link.','easy-fancybox') . ' ' . __('The overlay will use the dimensions set here. These can be relative (using %) or absolute sizes.','easy-fancybox') . '<br /><br />'
+						'description' => __('These settings determine the SWF overlay behaviour controlled by FancyBox.','easy-fancybox') . ' ' . __('To make any Flash (.swf) file open in an overlay, switch on auto-detect or use the tag class="fancybox-swf" for its page link.','easy-fancybox') . '<br /><br />'
 					),
 				'type' => array( 
 						'default' => 'swf' 
@@ -466,14 +449,33 @@ function easy_fancybox_settings(){
 						'default' => '495',
 					),
 				'padding' => array (
-						'default' => '0'
+						'id' => 'fancybox_SWFpadding',
+						'title' => __('Border'),
+						'label_for' => 'fancybox_SWFpadding',
+						'input' => 'text',
+						'class' => 'small-text',
+						'default' => '0',
+						'description' => '<br />' . __('Width and height can be relative (%) or absolute sizes.','easy-fancybox') . ' ' . __('Set Border 0 to remove it.','easy-fancybox') . '<br /><br />'
 					),
 				'autoScale' => array (
 						'noquotes' => true,
 						'default' => 'false'
 					),
-				'p1' => array (
-						'hide' => true,
+				'transitionOut' => array (
+						'id' => 'fancybox_SWFtransitionOut',
+						'title' => __('Transition Out','easy-fancybox'),
+						'label_for' => 'fancybox_SWFtransitionOut',
+						'input' => 'select',
+						'class' => '',
+						'options' => array(
+							'fade' => __('Fade','easy-fancybox'),
+							//'elastic' => __('Elastic','easy-fancybox'),
+							'none' => __('None','easy-fancybox')
+							),
+						'default' => 'fade',
+					),
+				'easingIn' => array (
+						'default' => 'swing',
 						'description' => '<br /><br />'
 					),
 				'titleShow' => array (
@@ -501,82 +503,17 @@ function easy_fancybox_settings(){
 						'default' => '',
 						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
 					),
-				'p2' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionIn' => array (
-						'id' => 'fancybox_SWFtransitionIn',
-						'title' => __('Transition In','easy-fancybox'),
-						'label_for' => 'fancybox_SWFtransitionIn',
-						'input' => 'select',
-						'class' => '',
-						'options' => array(
-							'' => __('Fade','easy-fancybox'),
-							'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'elastic',
-						'description' => ' '
-					),
-				'easingIn' => array (
-						'id' => 'fancybox_SWFeasingIn',
-						'title' => __('Easing In','easy-fancybox'),
-						'label_for' => 'fancybox_SWFeasingIn',
-						'input' => 'select',
-						'class' => '',
-						'options' => array(
-							'' => __('Swing','easy-fancybox'),
-							'easeOutBack' => __('Back','easy-fancybox'),
-							'easeOutQuad' => __('Quad','easy-fancybox'),
-							'easeOutExpo' => __('Expo','easy-fancybox'),
-							),
-						'default' => '',
-					),
-				'p3' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionOut' => array (
-						'id' => 'fancybox_SWFtransitionOut',
-						'title' => __('Transition Out','easy-fancybox'),
-						'label_for' => 'fancybox_SWFtransitionOut',
-						'input' => 'select',
-						'class' => '',
-						'options' => array(
-							'fade' => __('Fade','easy-fancybox'),
-							//'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'fade',
-					),
-/*				'easingOut' => array (
-						'id' => 'fancybox_SWFeasingOut',
-						'title' => __('Easing Out','easy-fancybox'),
-						'label_for' => 'fancybox_SWFeasingOut',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Swing','easy-fancybox'),
-							'easeInBack' => __('Back','easy-fancybox'),
-							'easeInQuad' => __('Quad','easy-fancybox'),
-							'easeInExpo' => __('Expo','easy-fancybox'),
-							),
-						'default' => ''
-					),*/
 				'swf' => array (
 						'noquotes' => true,
 						'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
-					),
-				'outro' => array (
-						'hide' => true,
-						'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
 					)
 				)
 			),
 
 		'YouTube' => array(
 			'title' => __('YouTube','easy-fancybox'),
-			'input' => 'multiple',			'options' => array(
+			'input' => 'multiple',			
+			'options' => array(
 				'enable' => array (
 						'id' => 'fancybox_enableYoutube',
 						'input' => 'checkbox',
@@ -589,13 +526,9 @@ function easy_fancybox_settings(){
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'selector' => 'href*="youtube.com/watch"',
-						'href-replace' => "return attr.replace(new RegExp('watch\\\?v=', 'i'), 'v/')",
+						'selector' => 'href*="youtube.com/"',
+						//'href-replace' => "return attr.replace(new RegExp('watch\\\?v=', 'i'), 'v/')",
 						'description' => __('Auto-detect','easy-fancybox')
-					),
-				'class' => array (
-						'hide' => true,
-						'default' => 'fancybox-youtube'
 					),
 				'autoAttributeAlt' => array (
 						'id' => 'fancybox_autoAttributeYoutubeShortURL',
@@ -603,12 +536,16 @@ function easy_fancybox_settings(){
 						'hide' => true,
 						'default' => '',
 						'selector' => 'href*="youtu.be/"',
-						'href-replace' => "return attr.replace(new RegExp('youtu.be', 'i'), 'www.youtube.com/v')",
-						'description' => __('Auto-detect Short links.','easy-fancybox')
+						//'href-replace' => "return attr.replace(new RegExp('youtu.be', 'i'), 'www.youtube.com/v')",
+						'description' => __('Auto-detect Short links','easy-fancybox')
+					),
+				'class' => array (
+						'hide' => true,
+						'default' => 'fancybox-youtube'
 					),
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make any YouTube movie open in an overlay, switch on auto-detect or use the tag class="fancybox-youtube" for its page link.','easy-fancybox') . ' ' . __('The overlay will use the dimensions set here. These can be relative (using %) or absolute sizes.','easy-fancybox') . '<br /><br />'
+						'description' => __('To make any YouTube movie open in an overlay, switch on auto-detect or use the tag class="fancybox-youtube" for its page link.','easy-fancybox') . '<br /><br />'
 					),
 				'type' => array( 
 						'default' => 'swf' 
@@ -631,14 +568,32 @@ function easy_fancybox_settings(){
 						'default' => '385',
 					),
 				'padding' => array (
-						'default' => '0'
+						'id' => 'fancybox_Youtubepadding',
+						'title' => __('Border'),
+						'label_for' => 'fancybox_Youtubepadding',
+						'input' => 'text',
+						'class' => 'small-text',
+						'default' => '0',
+						'description' => '<br />' . __('Width and height can be relative (%) or absolute sizes.','easy-fancybox') . ' ' . __('Set Border 0 to remove it.','easy-fancybox') . '<br /><br />'
 					),
 				'autoScale' => array (
 						'noquotes' => true,
 						'default' => 'false'
 					),
-				'p1' => array (
-						'hide' => true,
+				'transitionOut' => array (
+						'id' => 'fancybox_YoutubetransitionOut',
+						'title' => __('Transition Out','easy-fancybox'),
+						'label_for' => 'fancybox_YoutubetransitionOut',
+						'input' => 'select',
+						'options' => array(
+							'fade' => __('Fade','easy-fancybox'),
+							//'elastic' => __('Elastic','easy-fancybox'),
+							'none' => __('None','easy-fancybox')
+							),
+						'default' => 'fade'
+					),
+				'easingIn' => array (
+						'default' => 'swing',
 						'description' => '<br /><br />'
 					),
 				'titleShow' => array (
@@ -666,79 +621,21 @@ function easy_fancybox_settings(){
 						'default' => '',
 						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
 					),
-				'p2' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionIn' => array (
-						'id' => 'fancybox_YoutubetransitionIn',
-						'title' => __('Transition In','easy-fancybox'),
-						'label_for' => 'fancybox_YoutubetransitionIn',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Fade','easy-fancybox'),
-							'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'elastic'
-					),
-				'easingIn' => array (
-						'id' => 'fancybox_YoutubeeasingIn',
-						'title' => __('Easing In','easy-fancybox'),
-						'label_for' => 'fancybox_YoutubeeasingIn',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Swing','easy-fancybox'),
-							'easeOutBack' => __('Back','easy-fancybox'),
-							'easeOutQuad' => __('Quad','easy-fancybox'),
-							'easeOutExpo' => __('Expo','easy-fancybox'),
-							),
-						'default' => ''
-					),
-				'p3' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionOut' => array (
-						'id' => 'fancybox_YoutubetransitionOut',
-						'title' => __('Transition Out','easy-fancybox'),
-						'label_for' => 'fancybox_YoutubetransitionOut',
-						'input' => 'select',
-						'options' => array(
-							'fade' => __('Fade','easy-fancybox'),
-							//'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'fade'
-					),
-/*				'easingOut' => array (
-					'id' => 'fancybox_YoutubeeasingOut',
-					'title' => __('Easing Out','easy-fancybox'),
-					'label_for' => 'fancybox_YoutubeeasingOut',
-					'input' => 'select',
-					'class' => '',
-					'options' => array(
-						'' => __('Swing','easy-fancybox'),
-						'easeInBack' => __('Back','easy-fancybox'),
-						'easeInQuad' => __('Quad','easy-fancybox'),
-						'easeInExpo' => __('Expo','easy-fancybox'),
-						),
-					'default' => ''
-					),*/
 				'swf' => array (
 						'noquotes' => true,
 						'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
 					),
-				'outro' => array (
-						'hide' => true,
-						'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
+				'onStart' => array ( 
+						'noquotes' => true,
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/v\').replace(new RegExp(\'watch\\\?v=\', \'i\'), \'v/\') }'
 					)
 				)
 			),
 
 		'Vimeo' => array(
 			'title' => __('Vimeo','easy-fancybox'),
-			'input' => 'multiple',			'options' => array(
+			'input' => 'multiple',			
+			'options' => array(
 				'enable' => array (
 						'id' => 'fancybox_enableVimeo',
 						'input' => 'checkbox',
@@ -752,7 +649,7 @@ function easy_fancybox_settings(){
 						'hide' => true,
 						'default' => '',
 						'selector' => 'href*="vimeo.com/"',
-						'href-replace' => "return attr.replace(new RegExp('/([0-9])', 'i'), '/moogaloop.swf?clip_id=$1')",
+						//'href-replace' => "return attr.replace(new RegExp('/([0-9])', 'i'), '/moogaloop.swf?clip_id=$1')",
 						'description' => __('Auto-detect','easy-fancybox')
 					),
 				'class' => array (
@@ -761,7 +658,7 @@ function easy_fancybox_settings(){
 					),
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make any Vimeo movie open in an overlay, switch on auto-detect or use the tag class="fancybox-vimeo" for its page link.','easy-fancybox') . ' ' . __('The overlay will use the dimensions set here. These can be relative (using %) or absolute sizes.','easy-fancybox') . '<br /><br />'
+						'description' => __('To make any Vimeo movie open in an overlay, switch on auto-detect or use the tag class="fancybox-vimeo" for its page link.','easy-fancybox') . '<br /><br />'
 					),
 				'type' => array( 
 						'default' => 'swf' 
@@ -784,14 +681,33 @@ function easy_fancybox_settings(){
 						'default' => '360'
 					),
 				'padding' => array (
-						'default' => '0'
+						'id' => 'fancybox_Vimeopadding',
+						'title' => __('Border'),
+						'label_for' => 'fancybox_Vimeopadding',
+						'input' => 'text',
+						'class' => 'small-text',
+						'default' => '0',
+						'description' => '<br />' . __('Width and height can be relative (%) or absolute sizes.','easy-fancybox') . ' ' . __('Set Border 0 to remove it.','easy-fancybox') . '<br /><br />'
 					),
 				'autoScale' => array (
 						'noquotes' => true,
 						'default' => 'false'
 					),
-				'p1' => array (
-						'hide' => true,
+				'transitionOut' => array (
+						'id' => 'fancybox_VimeotransitionOut',
+						'title' => __('Transition Out','easy-fancybox'),
+						'label_for' => 'fancybox_VimeotransitionOut',
+						'input' => 'select',
+						'options' => array(
+							'fade' => __('Fade','easy-fancybox'),
+							//'elastic' => __('Elastic','easy-fancybox'),
+							'none' => __('None','easy-fancybox')
+							),
+						'default' => 'fade',
+						'description' => __('Transition effect when closing the overlay.','easy-fancybox')
+					),
+				'easingIn' => array (
+						'default' => 'swing',
 						'description' => '<br /><br />'
 					),
 				'titleShow' => array (
@@ -819,73 +735,13 @@ function easy_fancybox_settings(){
 						'default' => '',
 						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
 					),
-				'p2' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionIn' => array (
-						'id' => 'fancybox_VimeotransitionIn',
-						'title' => __('Transition In','easy-fancybox'),
-						'label_for' => 'fancybox_VimeotransitionIn',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Fade','easy-fancybox'),
-							'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'elastic'
-					),
-				'easingIn' => array (
-						'id' => 'fancybox_VimeoeasingIn',
-						'title' => __('Easing In','easy-fancybox'),
-						'label_for' => 'fancybox_VimeoeasingIn',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Swing','easy-fancybox'),
-							'easeOutBack' => __('Back','easy-fancybox'),
-							'easeOutQuad' => __('Quad','easy-fancybox'),
-							'easeOutExpo' => __('Expo','easy-fancybox'),
-							),
-						'default' => ''
-					),
-				'p3' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionOut' => array (
-						'id' => 'fancybox_VimeotransitionOut',
-						'title' => __('Transition Out','easy-fancybox'),
-						'label_for' => 'fancybox_VimeotransitionOut',
-						'input' => 'select',
-						'options' => array(
-							'fade' => __('Fade','easy-fancybox'),
-							//'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'fade',
-						'description' => __('Transition effect when closing the overlay.','easy-fancybox')
-					),
-/*				'easingOut' => array (
-					'id' => 'fancybox_VimeoeasingOut',
-					'title' => __('Easing Out','easy-fancybox'),
-					'label_for' => 'fancybox_VimeoeasingOut',
-					'input' => 'select',
-					'class' => '',
-					'options' => array(
-						'' => __('Swing','easy-fancybox'),
-						'easeInBack' => __('Back','easy-fancybox'),
-						'easeInQuad' => __('Quad','easy-fancybox'),
-						'easeInExpo' => __('Expo','easy-fancybox'),
-						),
-					'default' => ''
-					),*/
 				'swf' => array (
 						'noquotes' => true,
 						'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
 					),
-				'outro' => array (
-						'hide' => true,
-						'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
+				'onStart' => array ( 
+						'noquotes' => true,
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/([0-9])\', \'i\'), \'/moogaloop.swf?clip_id=$1\') }'
 					)
 				)
 			),
@@ -905,14 +761,22 @@ function easy_fancybox_settings(){
 					'options' => array(),
 					'hide' => true,
 					'default' => '1',
-					'description' => __('Tudou links.','easy-fancybox')
+					'description' => __('Tudou links','easy-fancybox')
 					) 
 				)					
 			),*/
+			
+/*		'Animoto' => array(),
+
+Example ANIMOTO page link http://animoto.com/play/Kf9POzQMSOGWyu41gtOtsw should become
+http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
+
+*/
 
 		'iFrame' => array(
 			'title' => __('iFrames','easy-fancybox'),
-			'input' => 'multiple',			'options' => array(
+			'input' => 'multiple',			
+			'options' => array(
 				'enable' => array (
 						'id' => 'fancybox_enableiFrame',
 						'input' => 'checkbox',
@@ -926,13 +790,10 @@ function easy_fancybox_settings(){
 					),
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make a website or HTML document open in an overlay, use the tag class="fancybox-iframe" or class="fancybox iframe" for its link.','easy-fancybox') . ' ' . __('The overlay will use the dimensions set here. These can be relative (using %) or absolute sizes.','easy-fancybox') . '<br /><br />'
+						'description' => __('To make a website or HTML document open in an overlay, use the tag class="fancybox-iframe" or class="fancybox iframe" for its link.','easy-fancybox') . '<br /><br />'
 					),
 				'type' => array (
-						'default' => 'html'
-					),
-				'padding' => array (
-						'default' => '0'
+						'default' => 'iframe'
 					),
 				'width' => array (
 						'id' => 'fancybox_iFramewidth',
@@ -952,14 +813,35 @@ function easy_fancybox_settings(){
 						'default' => '90%',
 					),
 				'padding' => array (
-						'default' => '0'
+						'id' => 'fancybox_iFramepadding',
+						'title' => __('Border'),
+						'label_for' => 'fancybox_iFramepadding',
+						'input' => 'text',
+						'class' => 'small-text',
+						'default' => '0',
+						'description' => '<br />' . __('Width and height can be relative (%) or absolute sizes.','easy-fancybox') . ' ' . __('Set Border 0 to remove it.','easy-fancybox') . '<br /><br />'
+					),
+				'scrolling' => array (
+						'default' => 'auto'
 					),
 				'autoScale' => array (
 						'noquotes' => true,
 						'default' => 'false'
 					),
-				'p1' => array (
-						'hide' => true,
+				'transitionOut' => array (
+						'id' => 'fancybox_iFrametransitionOut',
+						'title' => __('Transition Out','easy-fancybox'),
+						'label_for' => 'fancybox_iFrametransitionOut',
+						'input' => 'select',
+						'options' => array(
+							'fade' => __('Fade','easy-fancybox'),
+							//'elastic' => __('Elastic','easy-fancybox'),
+							'none' => __('None','easy-fancybox')
+							),
+						'default' => 'fade'
+					),
+				'easingIn' => array (
+						'default' => 'swing',
 						'description' => '<br /><br />'
 					),
 				'titleShow' => array (
@@ -986,69 +868,6 @@ function easy_fancybox_settings(){
 						'input' => 'checkbox',
 						'default' => '',
 						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
-					),
-				'p2' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionIn' => array (
-						'id' => 'fancybox_iFrametransitionIn',
-						'title' => __('Transition In','easy-fancybox'),
-						'label_for' => 'fancybox_iFrametransitionIn',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Fade','easy-fancybox'),
-							'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'elastic'
-					),
-				'easingIn' => array (
-						'id' => 'fancybox_iFrameeasingIn',
-						'title' => __('Easing In','easy-fancybox'),
-						'label_for' => 'fancybox_iFrameeasingIn',
-						'input' => 'select',
-						'options' => array(
-							'' => __('Swing','easy-fancybox'),
-							'easeOutBack' => __('Back','easy-fancybox'),
-							'easeOutQuad' => __('Quad','easy-fancybox'),
-							'easeOutExpo' => __('Expo','easy-fancybox'),
-							),
-						'default' => ''
-					),
-				'p3' => array (
-						'hide' => true,
-						'description' => '<br />'
-					),
-				'transitionOut' => array (
-						'id' => 'fancybox_iFrametransitionOut',
-						'title' => __('Transition Out','easy-fancybox'),
-						'label_for' => 'fancybox_iFrametransitionOut',
-						'input' => 'select',
-						'options' => array(
-							'fade' => __('Fade','easy-fancybox'),
-							//'elastic' => __('Elastic','easy-fancybox'),
-							'none' => __('None','easy-fancybox')
-							),
-						'default' => 'fade'
-					),
-/*				'easingOut' => array (
-					'id' => 'fancybox_iFrameeasingOut',
-					'title' => __('Easing Out','easy-fancybox'),
-					'label_for' => 'fancybox_iFrameeasingOut',
-					'input' => 'select',
-					'class' => '',
-					'options' => array(
-						'' => __('Swing','easy-fancybox'),
-						'easeInBack' => __('Back','easy-fancybox'),
-						'easeInQuad' => __('Quad','easy-fancybox'),
-						'easeInExpo' => __('Expo','easy-fancybox'),
-						),
-					'default' => ''
-					),*/
-				'outro' => array (
-						'hide' => true,
-						'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
 					)
 				)
 			)
@@ -1059,35 +878,54 @@ function easy_fancybox_settings(){
 function easy_fancybox() {
 	$easy_fancybox_array = easy_fancybox_settings();
 	
+	echo "
+<!-- Easy FancyBox plugin for WordPress using FancyBox ".FANCYBOX_VERSION." - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->";
+
+	// check for any enabled sections
+	$do_fancybox = false;
+	foreach ($easy_fancybox_array as $value) {
+		if ( '1' == get_option($value['options']['enable']['id'],$value['options']['enable']['default']) ) {
+			$do_fancybox = true;
+			break;
+		}
+	}
+	if (!$do_fancybox) {
+	echo "
+<!-- No sections enabled under Settings > Media > FancyBox -->
+
+";
+		return;
+	}
+	
 	// begin output FancyBox settings
 	echo "
-<!-- Easy FancyBox plugin for WordPress using FancyBox ".FANCYBOX_VERSION." - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->
 <script type=\"text/javascript\">
 jQuery(document).ready(function($){";
 
-		/*
-		 * Global settings routine
-		 */
-		$more=0;
-		echo '
-	var fb_opts = {';
-		foreach ($easy_fancybox_array['Glob']['options'] as $_key => $_values) {
-			$parm = ($_values['id']) ? get_option($_values['id'], $_values['default']) : $_values['default'];
-			$parm = ('checkbox'==$_values['input'] && ''==$parm) ? '0' : $parm;
-			if(!$_values['hide'] && $parm!='') {
-				$quote = (is_numeric($parm) || $_values['noquotes']) ? '' : '\'';
-				if ($more>0)
-					echo ',';
-				echo ' \''.$_key.'\' : ';
-				if ('checkbox'==$_values['input'])
-					echo ( '1' == $parm ) ? 'true' : 'false';
-				else
-					echo $quote.$parm.$quote;
-				$more++;
-			}
+	/*
+	 * Global settings routine
+	 */
+	$more=0;
+	echo '
+var fb_opts = {';
+	foreach ($easy_fancybox_array['Global']['options'] as $_key => $_values) {
+		$parm = ($_values['id']) ? get_option($_values['id'], $_values['default']) : $_values['default'];
+		$parm = ('checkbox'==$_values['input'] && ''==$parm) ? '0' : $parm;
+		if(!$_values['hide'] && $parm!='') {
+			$quote = (is_numeric($parm) || $_values['noquotes']) ? '' : '\'';
+			if ($more>0)
+				echo ',';
+			echo ' \''.$_key.'\' : ';
+			if ('checkbox'==$_values['input'])
+				echo ( '1' == $parm ) ? 'true' : 'false';
+			else
+				echo $quote.$parm.$quote;
+			$more++;
+		} else {
+			$$_key = $parm;
 		}
-		echo ' };';
-
+	}
+	echo ' };';
 	
 	foreach ($easy_fancybox_array as $key => $value) {
 		// check if not enabled or hide=true then skip
@@ -1095,15 +933,16 @@ jQuery(document).ready(function($){";
 			continue;
 
 		echo '
-	// ' . $key;
+/* ' . $key . ' */';
 		/*
 		 * Auto-detection routines (2x)
 		 */
 		$autoAttribute = get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] );
+
 		if(!empty($autoAttribute)) {
 			if(is_numeric($autoAttribute)) {
 				echo '
-	$(\'a['.$value['options']['autoAttribute']['selector'].']\')';
+$(\'a['.$value['options']['autoAttribute']['selector'].']\')';
 				if ($value['options']['autoAttribute']['href-replace'])
 					echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttribute']['href-replace'].'})';
 				echo '.addClass(\''.$value['options']['class']['default'].'\');';
@@ -1111,7 +950,7 @@ jQuery(document).ready(function($){";
 				$file_types = array_filter( explode( ' ',  $autoAttribute) );
 				$more=0;
 				echo '
-	var fb_'.$key.'_selector = \'';
+var fb_'.$key.'_selector = \'';
 				foreach ($file_types as $type) {
 					if ($more>0)
 						echo ',';
@@ -1121,11 +960,11 @@ jQuery(document).ready(function($){";
 				echo '\';';
 				if ( is_single() || is_page() ) {
 					echo '
-	$(fb_'.$key.'_selector).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery\');';
+$(fb_'.$key.'_selector)'.$attributeLimit.'.addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery\');';
 				} else {
 					echo '
-	var fb_'.$key.'_posts = jQuery(\'div.post\');
-	fb_'.$key.'_posts.each(function() { jQuery(this).find(fb_imglinks).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery-\' + fb_'.$key.'_posts.index(this)); });';
+var fb_'.$key.'_posts = jQuery(\'div.post\');
+fb_'.$key.'_posts'.$attributeLimit.'.each(function() { jQuery(this).find(fb_imglinks).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery-\' + fb_'.$key.'_posts.index(this)); });';
 				}
 			}
 		}
@@ -1144,7 +983,7 @@ jQuery(document).ready(function($){";
 		 */
 		$more=0;
 		echo '
-	$(\'a.'.$value['options']['class']['default'].'\').fancybox( $.extend(fb_opts, {';
+$(\'a.'.$value['options']['class']['default'].'\')'.$attributeLimit.'.fancybox( $.extend(fb_opts, {';
 		foreach ($value['options'] as $_key => $_values) {
 			$parm = ($_values['id']) ? get_option($_values['id'], $_values['default']) : $_values['default'];
 			$parm = ('checkbox'==$_values['input'] && ''==$parm) ? '0' : $parm;
@@ -1167,21 +1006,19 @@ jQuery(document).ready(function($){";
 	echo"
 });
 </script>
+
 ";
 }
 
 // FancyBox Media Settings Section on Settings > Media admin page
 function easy_fancybox_settings_section() {
-	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none;float:right;margin:0 0 10px 10px" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="72" height="29" /></a><p>'.__('The options in this section are provided by the plugin <strong>Easy Fancybox</strong> by <em>RavanH</em>.','easy-fancybox').'</p><p>'.__('First change the <strong>Global settings</strong> to your liking. Then enable and configure each of the sub-sections that you need.','easy-fancybox').' '.__('Read more on <a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox/">Easy FancyBox for WordPress</a>.','easy-fancybox').'</p><p>'.__('Note: Each additional sub-section and features like <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting for Title Position and Transition are unavailable for swf, video, pdf and iframe content overlays to ensure browser compatibility and readability.','easy-fancybox').'</p>';
+	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none;float:right;margin:0 0 10px 10px" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="72" height="29" /></a><p>'.__('The options in this section are provided by the plugin <strong>Easy Fancybox</strong> by <em>RavanH</em>.','easy-fancybox').'</p><p>'.__('First change the <strong>Global settings</strong> to your liking. Then enable and configure each of the sub-sections that you need.','easy-fancybox').' '.__('Read more on <a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox/">Easy FancyBox for WordPress</a>.','easy-fancybox').'</p><p>'.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting for Title Position and Transition are unavailable for swf, video, pdf and iframe content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
 }
 
 // FancyBox Media Settings Fields
 function easy_fancybox_settings_fields($args){
 	switch($args['input']) {
 		case 'multiple':
-			//if (!get_option($args['options']['enable']['id'], $args['options']['enable']['default']))
-			//	easy_fancybox_settings_fields($args['options']['enable']);
-			//else
 			foreach ($args['options'] as $options)
 				easy_fancybox_settings_fields($options);
 			echo $args['description'];
@@ -1261,6 +1098,23 @@ function easy_fancybox_admin_init(){
 }
 
 function easy_fancybox_enqueue() {
+	$easy_fancybox_array = easy_fancybox_settings();
+	
+	// check for any enabled sections plus the need for easing script
+	$do_fancybox = false;
+	$easing = false;
+	foreach ($easy_fancybox_array as $value) {
+		// anything enabled?
+		if ( '1' == get_option($value['options']['enable']['id'],$value['options']['enable']['default']) )
+			$do_fancybox = true;
+		// easing anyone?
+		if ( ( 'elastic' == get_option($value['options']['transitionIn']['id'],$value['options']['transitionIn']['default']) || 'elastic' == get_option($value['options']['transitionOut']['id'],$value['options']['transitionOut']['default']) ) && ( '' != get_option($value['options']['easingIn']['id'],$value['options']['easingIn']['default']) || '' != get_option($value['options']['easingOut']['id'],$value['options']['easingOut']['default']) ) )
+			$easing = true;
+	}
+	if (!$do_fancybox) 
+		return;
+
+
 	// check if easy-fancybox.php is moved one dir up like in WPMU's /mu-plugins/
 	// NOTE: don't use WP_PLUGIN_URL to avoid problems when installed in /mu-plugins/
 	$efb_subdir = (file_exists(dirname(__FILE__).'/easy-fancybox')) ? 'easy-fancybox' : '';
@@ -1269,9 +1123,6 @@ function easy_fancybox_enqueue() {
 	// register main fancybox script
 	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', array('jquery'), FANCYBOX_VERSION);
 	
-	$easy_fancybox_array = easy_fancybox_settings();
-	
-	$easing = false;
 	foreach ($easy_fancybox_array as $value) {
 		if( ( 'elastic' == get_option($value['options']['transitionIn']['id'],$value['options']['transitionIn']['default']) || 'elastic' == get_option($value['options']['transitionOut']['id'],$value['options']['transitionOut']['default']) ) && ( '' != get_option($value['options']['easingIn']['id'],$value['options']['easingIn']['default']) || '' != get_option($value['options']['easingOut']['id'],$value['options']['easingOut']['default']) ) ) {
 			$easing = true;
@@ -1301,7 +1152,22 @@ function easy_fancybox_enqueue() {
 
 }
 
+// Hack to fix missing wmode in (auto)embed code based on Crantea Mihaita's work-around on
+// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
+if(!function_exists('add_video_wmode_opaque')) {
+ function add_video_wmode_opaque($html, $url, $attr) {
+   if (strpos($html, "<embed src=" ) !== false) {
+    	$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque" ', $html);
+   		return $html;
+   } else {
+        return $html;
+   }
+ }
+}
+
 // HOOKS //
+
+add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
 
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue', 999);
 add_action('wp_head', 'easy_fancybox');

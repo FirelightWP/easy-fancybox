@@ -4,9 +4,9 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery, pdf
 Requires at least: 2.7
 Tested up to: 3.0.1
-Stable tag: 1.3.3.4.2
+Stable tag: 1.3.4.5
 
-Easily enable the FancyBox 1.3.3 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
+Easily enable the FancyBox 1.3.4 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
 
 == Description ==
 
@@ -122,6 +122,27 @@ Both YouTube and Vimeo movies can be made to auto-start when they are opened by 
 
 Append `&fs=1` to your YouTube share URL. If you use the Short URL without the `?hd=1` switch, append `?fs=1` to it.
 
+= The flash movie in the overlay shows BELOW some other flash content that is on the same page! =
+
+Make sure the OTHER flash content as a **wmode** set, preferably to 'opaque' or else 'transparent' but not 'window' or missing. For example, if your embedded object looks something like:
+`
+<object type="application/x-shockwave-flash" width="200" height="300" data="...url...">
+<param name="allowfullscreen" value="true" />
+<param name="allowscriptaccess" value="always" />
+<param name="movie" value="...url..." />
+</object>
+`
+just add `<param name="wmode" value="opaque" />` among the other parameters. Or if you are using an embed like:
+`
+<object width="640" height="385">
+<param name="movie" value="...url..."></param>
+<param name="allowFullScreen" value="true"></param>
+<param name="allowscriptaccess" value="always"></param>
+<embed src="...url..." type="application/x-shockwave-flash" width="640" height="385" allowscriptaccess="always" allowfullscreen="true" wmode="window"></embed>
+</object>
+`
+just change that `wmode="window"` to `wmode="opaque"` or add the tag if it is missing.
+
 = Is Easy FancyBox multi-site compatible? =
 
 Yes. Designed to work with **Network Activate** and does not require manual activation on each site in your network. You can even install it in mu-plugins: upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ and move the file easy-fancybox.php one dir up.
@@ -132,6 +153,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 - There is a conflict between the WP Slimstat plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
 - In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature. Since version 1.3.4, this has been resolved.
+- Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated Auto-embeds. Since version 1.3.4.5, the wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' or 'transparent' (when you need transparency) for your embedded content.
 
 == Screenshots ==
 
@@ -142,15 +164,16 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 == Upgrade Notice ==
 
 = 1.3.4.5 =
-FancyBox version 1.3.4 plus added PDF support and LOTS more options like border, overlay color, Easing, Title and adjustable YouTube, Vimeo and iFrame sizes!
+FancyBox version 1.3.4 plus added PDF support and LOTS more options like border, overlay color, Easing, Title and adjustable YouTube, Vimeo and iFrame sizes! Missing WordPress auto-embed wmode fix.
 
 == Changelog ==
 
 = 1.3.4.5 =
 * Added Support for PDF
 * Added Easing options
-* YouTube, Vimeo and iFrame sizes now adjustable
-* LOTS more options!
+* YouTube, Vimeo and iFrame options adjustable
+* lots and lots of more options!
+* BIGFIX: work-around for missing wmode in WordPress (auto-)embedded movies (credits: Crantea Mihaita)
 
 = 1.3.3.4.2 =
 * Fix: iframe width
