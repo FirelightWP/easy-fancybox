@@ -212,7 +212,7 @@ function easy_fancybox_settings(){
 				'opacity' => array (
 						'id' => 'fancybox_opacity',
 						'input' => 'checkbox',
-						'default' => '1',
+						'default' => '',
 						'description' => __('Transparency fade during elastic transition.','easy-fancybox')
 					),
 				'speedIn' => array (
