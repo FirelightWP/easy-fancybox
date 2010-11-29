@@ -1,0 +1,209 @@
+=== Easy FancyBox ===
+Contributors: RavanH
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
+Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery, pdf
+Requires at least: 2.7
+Tested up to: 3.0.1
+Stable tag: 1.3.4.5
+
+Easily enable the FancyBox 1.3.4 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
+
+== Description ==
+
+No new configuration pages. It just gives you FancyBox-in-a-Box for all links to images (.jpg/.bmp/.gif/.png) _and_ WordPress Galleries _and_ (after enabling the options) for Flash movie (.swf) files _and_ Youtube / Vimeo movies _and_ iFrames _and_ PDF documents! Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3.0 Multi-Site compatible.
+
+See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
+
+Looking for some basic control? You can find a new section **FancyBox** on your **Settings > Media** admin page:
+
+- *Auto-enable*: file types FancyBox should be automatically enabled for.
+- *Auto-detect*: control auto-detection and enabling for links to YouTube and Vimeo movies.
+- *Title Position*: Overlay / Inside / Outside to control the position of the image title. Includes the new "Overlay" position.
+- *Transition In / Out*: Elastic / Fade / None to control the transition effects during opening and closing of the overlay.
+
+See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to manage YouTube and Vimeo movies (and similar services) and make HTML content display in a FancyBox overlay.
+
+Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION for continued development of the FancyBox project.
+
+= Translations =
+
+- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl)
+
+== Installation ==
+
+= Wordpress =
+
+Quick installation: [Install now](http://coveredwebservices.com/wp-plugin-install/?plugin=easy-fancybox) !
+
+ &hellip; OR &hellip;
+
+Search for "easy fancybox" and install with that slick **Plugins > Add New** back-end page.
+
+ &hellip; OR &hellip;
+
+Follow these steps:
+
+ 1. Download archive.
+
+ 2. Upload the zip file via the Plugins > Add New > Upload page &hellip; OR &hellip; unpack and upload with your favourite FTP client to the /plugins/ folder.
+
+ 3. Activate the plugin on the Plug-ins page.
+
+Done! Check your sparkling new FancyBoxed images :)
+
+Not happy with the default settings? Check out the new options under **Settings > Media**.
+
+= WordPress 3+ in Multi Site mode =
+
+Same as above but do a **Network Activate** to activate FancyBox image overlays on each site on your network.
+
+= Wordpress MU =
+
+The plugin works best from the **/mu-plugins/** folder where it runs quietly in the background without bothering any blog owner with new options or the need for special knowledge about FancyBox. Just upload the complete package content to /mu-plugins/ and move the file fancybox.php from the new /mu-plugins/easy-fancybox/ to /mu-plugins/.
+
+== Frequently Asked Questions ==
+
+= What's FancyBox? =
+
+Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples. 
+
+= Why EASY FancyBox? =
+
+Instead of bothering you with the HUGE amount of configuration options that FancyBox can handle, this plugin requires almost NO configuration. Easy, isn't it? ;)
+
+If you *do* want configuration options to tweak and fiddle for days, check out some of the other FancyBox plugins available.
+
+= Which version of FancyBox does this plugin use? =
+
+The same version as this plugin has. I aim to keep close pace to FancyBox upgrades and always move to the latest and greates version. Please, let me know if I'm lagging behind and missed an upgrade!
+
+= Where is the settings page? =
+
+There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/) ...
+
+= Will a WordPress generated gallery be displayed in a FancyBox overlay? =
+
+Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
+
+= Can I display web pages or HTML files in a FancyBox overlay? =
+
+Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content. 
+
+NOTE: The difference between these two classes (- or space) is in size of the overlay window. Try it out and use the one that works best :)
+
+= Can I show PDF files in a FancyBox overlay? =
+
+Yes. Just place a link _with the URL ending in .pdf_ to your Portable Document file in the page content.
+
+If you do'nt have *Auto-detect* checked under **PDF** on Settings > Media admin page, you will need to add `class="fancybox-pdf"` (to force pdf content recognition) to the link to enable FancyBox for it.
+
+= Can I play SWF files in a FancyBox overlay? =
+
+Yes. Just place a link _with the URL ending in .swf_ to your Flash file in the page content.
+
+If you do'nt have *Auto-detect* checked under **SWF** on Settings > Media admin page, you will need to add either `class="fancybox"` or `class="fancybox-swf"` (to force swf content recognition) to the link to enable FancyBox for it.
+
+= Can I play YouTube and Vimeo movies in a FancyBox overlay? =
+
+Yes. 
+
+These are actually a special case of SWF files. The URL for these movies do not end in .swf so the FancyBox script will not be able to auto-detect the Flash content. This can be forced with `class="fancybox-youtube"`, `class="fancybox-swf"` or alternatively `class="fancybox-iframe"`. The difference between the three is mainly in size of the overlay window. Just choose the one that works best for you or... Just let the plugin auto-detect and auto-enable it for you! :)
+
+For **YouTube**, place the Share URL (the plain Page URL, the Short URL or even with the HD option) to the YouTube page in your content. Add `&fs=1` to the URL so show the 'Full screen' button. If you have disabled Auto-detection, use it with `class="fancybox-youtube"` to manually enable FancyBox for it. (Note: For shortened YouTube URLs, the class does not work. Auto auto-detection needs to be enabled seperately.)
+
+For **Vimeo**, just place a link to the Vimeo page in your content. If you have disabled Auto-detection, use it with `class="fancybox-vimeo"` to manually enable FancyBox for it.
+
+Both YouTube and Vimeo movies can be made to auto-start when they are opened by adding the paramer `autoplay=1` to the URL. For example, a short-url YouTube link that should play in HD mode, have the full screen button and auto-start on open, would look like:
+`
+<a href="http://youtu.be/N_tONWXYviM?hd=1&fs=1&autoplay=1">text/thumbnail</a>
+`
+
+= I want that 'Show in full-screen' button on my YouTube movies =
+
+Append `&fs=1` to your YouTube share URL. If you use the Short URL without the `?hd=1` switch, append `?fs=1` to it.
+
+= The flash movie in the overlay shows BELOW some other flash content that is on the same page! =
+
+Make sure the OTHER flash content as a **wmode** set, preferably to 'opaque' or else 'transparent' but not 'window' or missing. For example, if your embedded object looks something like:
+`
+<object type="application/x-shockwave-flash" width="200" height="300" data="...url...">
+<param name="allowfullscreen" value="true" />
+<param name="allowscriptaccess" value="always" />
+<param name="movie" value="...url..." />
+</object>
+`
+just add `<param name="wmode" value="opaque" />` among the other parameters. Or if you are using an embed like:
+`
+<object width="640" height="385">
+<param name="movie" value="...url..."></param>
+<param name="allowFullScreen" value="true"></param>
+<param name="allowscriptaccess" value="always"></param>
+<embed src="...url..." type="application/x-shockwave-flash" width="640" height="385" allowscriptaccess="always" allowfullscreen="true" wmode="window"></embed>
+</object>
+`
+just change that `wmode="window"` to `wmode="opaque"` or add the tag if it is missing.
+
+= Is Easy FancyBox multi-site compatible? =
+
+Yes. Designed to work with **Network Activate** and does not require manual activation on each site in your network. You can even install it in mu-plugins: upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ and move the file easy-fancybox.php one dir up.
+
+== Other Notes ==
+
+= Known Issues =
+
+- There is a conflict between the WP Slimstat plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
+- In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature. Since version 1.3.4, this has been resolved.
+- Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated Auto-embeds. Since version 1.3.4.5, the wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' or 'transparent' (when you need transparency) for your embedded content.
+
+== Screenshots ==
+
+1. Example image with **Overlay** caption. This is the default way Easy FancyBox displays images. Other options are **Inside** and the old **Outside**.
+
+2. Example of a YouTube movie in overlay.
+
+== Upgrade Notice ==
+
+= 1.3.4.5 =
+FancyBox version 1.3.4 plus added PDF support and LOTS more options like border, overlay color, Easing, Title and adjustable YouTube, Vimeo and iFrame sizes! Missing WordPress auto-embed wmode fix.
+
+== Changelog ==
+
+= 1.3.4.5 =
+* Added Support for PDF
+* Added Easing options
+* YouTube, Vimeo and iFrame options adjustable
+* lots and lots of more options!
+* BIGFIX: work-around for missing wmode in WordPress (auto-)embedded movies (credits: Crantea Mihaita)
+
+= 1.3.3.4.2 =
+* Fix: iframe width
+* Fix: image overlay size in Google Chrome browser issue (FancyBox 1.3.3)
+* Fix: fancybox-swf 
+
+= 1.3.3.4 =
+* upgraded FancyBox script to version 1.3.3 (2010/11/4 - http://fancybox.net/changelog/)
+* Vimeo support
+* YouTube Short URL support (disabled by default)
+* Auto-recognition and seperate class `fancybox-youtube` for YouTube
+* Auto-recognition and seperate class `fancybox-vimeo` for Vimeo
+
+= 1.3.2 =
+* upgraded FancyBox script to version 1.3.2 (2010/10/10 - http://fancybox.net/changelog/)
+
+= 1.3.1.3 =
+* translation .pot file available
+* Dutch translation
+* YouTube and Flash movie support
+* Iframe support
+* added option Auto-enable for...
+
+= 1.3.1.2 =
+* added option titlePosition : over / inside / outside
+* added option transitionIn : elastic / fade / none
+* added option transitionOut : elastic / fade / none
+
+= 1.3.1.1 =
+* small jQuery speed improvement by chaining object calls
+
+= 1.3.1 =
+* Using FancyBox version 1.3.1
