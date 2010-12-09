@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery, pdf
 Requires at least: 2.7
-Tested up to: 3.0.2
+Tested up to: 3.0.3
 Stable tag: 1.3.4.5
 
 Easily enable the FancyBox 1.3.4 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
@@ -154,6 +154,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 - There is a conflict between the WP Slimstat plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
 - In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature. Since version 1.3.4, this has been resolved.
 - Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated Auto-embeds. Since version 1.3.4.5, the wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' or 'transparent' (when you need transparency) for your embedded content.
+- When using WP-Minify, the javascript files like `fancybox/jquery.fnacybox-X.X.X.pack.js` and others need to be excluded from minification.
 
 == Screenshots ==
 
