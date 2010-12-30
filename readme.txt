@@ -164,10 +164,14 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Upgrade Notice ==
 
-= 1.3.4.5 =
-FancyBox version 1.3.4 plus added PDF support and LOTS more options like border, overlay color, Easing, Title and adjustable YouTube, Vimeo and iFrame sizes! Missing WordPress auto-embed wmode fix.
+= 1.3.4.6 =
+PDF compatibility improvement and new option: Show/hide title on mouse hover action
 
 == Changelog ==
+
+= 1.3.4.6 =
+* PDF embed compatibility improvement
+* added option : Show/hide title on mouse hover action
 
 = 1.3.4.5 =
 * Added Support for PDF
