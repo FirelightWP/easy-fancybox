@@ -3,7 +3,7 @@
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, YouTube and Vimeo links. Multi-Site compatible and supports iFrame and Flash movies in overlay viewport. Happy with it? Please leave me a small <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e4&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a> for development and support on this plugin and please consider a DONATION to the <a href="http://fancybox.net/">FancyBox project</a>.
-Version: 1.3.4.5
+Version: 1.3.4.6
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -13,6 +13,13 @@ Author URI: http://4visions.nl/
 define( 'FANCYBOX_VERSION', '1.3.4' );
 define( 'MOUSEWHEEL_VERSION', '3.0.4' );
 define( 'EASING_VERSION', '1.3' );
+// check if easy-fancybox.php is moved one dir up like in WPMU's /mu-plugins/
+// NOTE: don't use WP_PLUGIN_URL to avoid problems when installed in /mu-plugins/
+if(file_exists(dirname(__FILE__).'/easy-fancybox'))
+	define( 'FANCYBOX_SUBDIR', 'easy-fancybox' );
+else
+	define( 'FANCYBOX_SUBDIR', '' );
+
 
 // FUNCTIONS //
 
@@ -112,19 +119,19 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_centerOnScroll',
 						'input' => 'checkbox',
 						'default' => '1',
-						'description' => __('Center while scrolling.','easy-fancybox')
+						'description' => __('Center while scrolling','easy-fancybox')
 					),
 				'showCloseButton' => array (
 						'id' => 'fancybox_showCloseButton',
 						'input' => 'checkbox',
 						'default' => '1',
-						'description' => __('Show the (X) close button.','easy-fancybox')
+						'description' => __('Show the (X) close button','easy-fancybox')
 					),
 				'showNavArrows' => array (
 						'id' => 'fancybox_showNavArrows',
 						'input' => 'checkbox',
 						'default' => '1',
-						'description' => __('Show the gallery navigation arrows.','easy-fancybox')
+						'description' => __('Show the gallery navigation arrows','easy-fancybox')
 					),
 				'titleShow' => array (
 						'id' => 'fancybox_titleShow',
@@ -144,13 +151,42 @@ function easy_fancybox_settings(){
 								'over' => __('Overlay','easy-fancybox')
 							),
 						'default' => 'over',
+						'description' => ' '
 					),
 				'titleFromAlt' => array (
 						'id' => 'fancybox_titleFromAlt',
 						'input' => 'checkbox',
 						'default' => '1',
-						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
+						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
+/*				'titleFormat' => array (
+						'id' => 'fancybox_titleFormat',
+						'title' => __('Title format','easy-fancybox'),
+						'label_for' => 'fancybox_titleFormat',
+						'input' => 'select',
+						'options' => array(
+								'' => __('Default FancyBox style','easy-fancybox'),
+								'function(title, currentArray, currentIndex, currentOpts) { return \'<div style="font-face:Arial,sans-serif;text-align:left"><span style="float:right;font-size:large"><a href="javascript:;" onclick="$.fancybox.close();">' . __('Close','easy-fancybox') . ' <img src="' . plugins_url(FANCYBOX_SUBDIR, __FILE__) . '/fancybox/fancy_close.png" /></a></span>\' + (title && title.length ? \'<b style="display:block;margin-right:80px">\' + title + \'</b>\' : \'\' ) + \'' . __('Image','easy-fancybox') . '\' + (currentIndex + 1) + \' ' . __('of','easy-fancybox') . ' \' + currentArray.length + \'</div>\';
+}' => __('Mimic Lightbox2 style','easy-fancybox'),
+							),
+						'noquotes' => true,
+						'default' => '',
+						'description' =>  '<br />' . __('To improve Lightbox2 style disable Show close button and set titleposition to Inside or Outside','easy-fancybox') . '<br />'
+					),*/
+				'onComplete' => array (
+						'id' => 'fancybox_onComplete',
+						'title' => __('Extra\'s','easy-fancybox'),
+						'label_for' => 'fancybox_onComplete',
+						'input' => 'select',
+						'options' => array(
+								'' => __('No extra\'s','easy-fancybox'), // no extra's
+								'function() { $(\'#fancybox-title\').hide(); $(\'#fancybox-wrap\').hover(function() { $(\'#fancybox-title\').show(); }, function() { $(\'#fancybox-title\').hide(); }); }' => __('Hide/show title on mouse hover action','easy-fancybox')
+							),
+						'noquotes' => true,
+						'default' => '',
+						'description' =>  '<br />' . __('Hide/show title on mouse hover action works best with Overlay title position','easy-fancybox') . '<br />'
+					),
+
 				'p3' => array (
 						'hide' => true,
 						'description' => '<br /><strong>' . __('Transition','easy-fancybox') . '</strong><br />'
@@ -238,9 +274,8 @@ function easy_fancybox_settings(){
 						'input' => 'text',
 						'class' => 'small-text',
 						'default' => '',
-						'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em>' 
-					)
-				)
+						'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br />'
+					)				)
 			),
 		'IMG' => array(
 			'title' => __('Images','easy-fancybox'),
@@ -272,11 +307,6 @@ function easy_fancybox_settings(){
 						'hide' => true,
 						'default' => 'fancybox'
 					)
-/* TODO  : only use this parm when 'titlePosition' : 'over'
-				,'onComplete' => array (
-						'noquotes' => true,
-						'default' => 'function() { $(\'#fancybox-wrap\').hover(function() { $(\'#fancybox-title\').show(); }, function() { $(\'#fancybox-title\').hide(); }); }'
-					)*/
 				)
 			),
 
@@ -366,7 +396,7 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_PDFtitleFromAlt',
 						'input' => 'checkbox',
 						'default' => '',
-						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
+						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 				'transitionOut' => array (
 						'id' => 'fancybox_PDFtransitionOut',
@@ -393,7 +423,8 @@ function easy_fancybox_settings(){
 					),
 				'onStart' => array ( 
 						'noquotes' => true,
-						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
+//						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { if ( selectedArray[selectedIndex].title == "" ) { selectedArray[selectedIndex].title = $(selectedArray[selectedIndex]).html() }; selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=0&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" type="application/pdf" height="100%" width="100%" /><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=0&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" /><a href="\' + selectedArray[selectedIndex].href + \'">\' + selectedArray[selectedIndex].title + \'</a></object>\' }'
 					)
 				)
 			),
@@ -483,7 +514,7 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_SWFtitleFromAlt',
 						'input' => 'checkbox',
 						'default' => '',
-						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
+						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 				'transitionOut' => array (
 						'id' => 'fancybox_SWFtransitionOut',
@@ -601,7 +632,7 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_YoutubetitleFromAlt',
 						'input' => 'checkbox',
 						'default' => '',
-						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
+						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 				'transitionOut' => array (
 						'id' => 'fancybox_YoutubetransitionOut',
@@ -729,7 +760,7 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_VimeotitleFromAlt',
 						'input' => 'checkbox',
 						'default' => '',
-						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
+						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 				'transitionOut' => array (
 						'id' => 'fancybox_VimeotransitionOut',
@@ -798,7 +829,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					),
 				'class' => array (
 						'hide' => true,
-						'default' => 'fancybox-iframe'
+						'default' => 'fancybox-iframe, li.fancybox-iframe a'
 					),
 				'intro' => array (
 						'hide' => true,
@@ -863,7 +894,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 						'id' => 'fancybox_iFrametitleFromAlt',
 						'input' => 'checkbox',
 						'default' => '',
-						'description' => __('Get title from the thumbnail alt tag','easy-fancybox')
+						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 				'transitionOut' => array (
 						'id' => 'fancybox_iFrametransitionOut',
@@ -1011,7 +1042,7 @@ $(\'a.'.$value['options']['class']['default'].'\')'.$attributeLimit.'.fancybox( 
 			}
 		}
 		echo ' }) );';
-		
+
 	}
 
 	echo"
@@ -1125,14 +1156,9 @@ function easy_fancybox_enqueue() {
 	if (!$do_fancybox) 
 		return;
 
-
-	// check if easy-fancybox.php is moved one dir up like in WPMU's /mu-plugins/
-	// NOTE: don't use WP_PLUGIN_URL to avoid problems when installed in /mu-plugins/
-	$efb_subdir = (file_exists(dirname(__FILE__).'/easy-fancybox')) ? 'easy-fancybox' : '';
-
 	// ENQUEUE
 	// register main fancybox script
-	wp_enqueue_script('jquery.fancybox', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', array('jquery'), FANCYBOX_VERSION);
+	wp_enqueue_script('jquery.fancybox', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION);
 	
 	foreach ($easy_fancybox_array as $value) {
 		if( ( 'elastic' == get_option($value['options']['transitionIn']['id'],$value['options']['transitionIn']['default']) || 'elastic' == get_option($value['options']['transitionOut']['id'],$value['options']['transitionOut']['default']) ) && ( '' != get_option($value['options']['easingIn']['id'],$value['options']['easingIn']['default']) || '' != get_option($value['options']['easingOut']['id'],$value['options']['easingOut']['default']) ) ) {
@@ -1147,7 +1173,7 @@ function easy_fancybox_enqueue() {
 		wp_deregister_script('jquery-easing');
 		wp_deregister_script('easing');
 		// then register our version
-		wp_enqueue_script('jquery.easing', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', array('jquery'), EASING_VERSION);
+		wp_enqueue_script('jquery.easing', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', __FILE__), array('jquery'), EASING_VERSION);
 	}
 	
 	// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
@@ -1156,10 +1182,10 @@ function easy_fancybox_enqueue() {
 	wp_deregister_script('jquery-mousewheel');
 	wp_deregister_script('mousewheel');
 	// then register our version
-	wp_enqueue_script('jquery.mousewheel', plugins_url($efb_subdir, __FILE__).'/fancybox/jquery.mousewheel-'.MOUSEWHEEL_VERSION.'.pack.js', array('jquery'), MOUSEWHEEL_VERSION);
+	wp_enqueue_script('jquery.mousewheel', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.mousewheel-'.MOUSEWHEEL_VERSION.'.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION);
 	
 	// register style
-	wp_enqueue_style('easy-fancybox.css', plugins_url($efb_subdir, __FILE__).'/easy-fancybox.css.php', false, FANCYBOX_VERSION, 'screen');
+	wp_enqueue_style('easy-fancybox.css', plugins_url(FANCYBOX_SUBDIR.'/easy-fancybox.css.php', __FILE__), false, FANCYBOX_VERSION, 'screen');
 
 }
 
