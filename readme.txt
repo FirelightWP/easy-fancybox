@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery, pdf
 Requires at least: 2.7
-Tested up to: 3.0.3
+Tested up to: 3.1
 Stable tag: 1.3.4.5
 
 Easily enable the FancyBox 1.3.4 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
@@ -85,11 +85,22 @@ There is no new settings page but there are a few options you can change. You wi
 
 Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
 
+= Will a NextGen gallery be displayed in a FancyBox overlay ? =
+
+It *can* be. Switch off any gallery overlay scripts in NextGen and either use the FancyBox Auto-detect feature (turned ON by default for jpg, gif and png files) or set the NextGen option "Effects" to "Custom" and fill the code line field with 
+`
+class="fancybox" rel="%GALLERY_NAME%"
+`
+
+= Can I use ONE thumbnail to open a complete gallery ? =
+
+It can be done in combination with NextGen Gallery. Create a gallery, use the tag `[nggtags gallery=YourGalleryName]` in your page content and configure NextGen to include hidden gallery images.
+
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
 Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content. 
 
-NOTE: The difference between these two classes (- or space) is in size of the overlay window. Try it out and use the one that works best :)
+NOTE: The difference between these two classes ('-' or space) is in size of the overlay window. Try it out and use the one that works best for you :)
 
 = Can I show PDF files in a FancyBox overlay? =
 
@@ -143,6 +154,35 @@ just add `<param name="wmode" value="opaque" />` among the other parameters. Or 
 `
 just change that `wmode="window"` to `wmode="opaque"` or add the tag if it is missing.
 
+= Can I display INLINE content in a FancyBox overlay ? =
+
+Yes. 
+
+Wrap the inline content in
+`
+<div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1">
+...inline content here...
+</div><div>
+`
+
+Then place a FancyBox link anywhere else in the post/page content to the inline content. Something like
+`
+<a href="#fancyboxID-1" class="fancybox">Read my inline content</a>
+`
+
+NOTE: The wrapping divs ID *must* be unique and it must correspond with the links HREF with a # in front of it. When using the above example for more FancyBox inline content (hidden div + opening link) combinations on one page, give the second one the ID  fancyboxID-2 and so on...
+
+= Can I make a menu item open in a FancyBox overlay ? =
+
+Yes. But it depends on you theme what you need to do to make it work. If you are on WordPress 3+ and your theme supports the new internal Custom Menu feature or if you are using a custom menu in a sidebar widget, it's easy: 
+
+1. Go to Settings > Media and enable FancyBox iFrame support.
+2. Go to Appearance > Menus and open the little tab "Screen Options" in the top-right corner.
+3. Enable the option "CSS Classes" under Advanced menu proterties.
+4. Now give the menu item you want to open in a FancyBox iframe the class `fancybox-iframe`.
+
+If you are on an older version of WordPress or if you cannot use WP's Menus, you will need to do some heavy theme hacking to get it to work. Basically, what you need to achieve is that the menu item you want opened in a lightbox overlay, should get a class="fancybox-iframe" tag.
+
 = Is Easy FancyBox multi-site compatible? =
 
 Yes. Designed to work with **Network Activate** and does not require manual activation on each site in your network. You can even install it in mu-plugins: upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ and move the file easy-fancybox.php one dir up.
@@ -153,8 +193,8 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 - There is a conflict between the WP Slimstat plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
 - In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature. Since version 1.3.4, this has been resolved.
-- Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated Auto-embeds. Since version 1.3.4.5, the wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' or 'transparent' (when you need transparency) for your embedded content.
-- When using WP-Minify, the javascript files like `fancybox/jquery.fnacybox-X.X.X.pack.js` and others need to be excluded from minification.
+- Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated Auto-embeds. Since version 1.3.4.5, the missing wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' (best) or 'transparent' (only when you need transparency) for your embedded content.
+- When using WP-Minify, the javascript files like `fancybox/jquery.fancybox-X.X.X.pack.js` and others need to be excluded from minification.
 
 == Screenshots ==
 
