@@ -6,26 +6,25 @@ Requires at least: 2.7
 Tested up to: 3.1
 Stable tag: 1.3.4.6
 
-Easily enable the FancyBox 1.3.4 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
+Easily enable the FancyBox 1.3.4 jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
 == Description ==
 
-FancyBox-in-a-Box for all links to images (.jpg/.gif/.png) _and_ WordPress Galleries _and_ (after enabling the options) for Flash movie (.swf) files _including_ Youtube, Vimeo and Dailmotion movies, hidden inline content, iFrames _and_ PDF documents! Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3.0 Multi-Site compatible.
+Easy FancyBox-in-a-Box for just about all media links gives you a flexible and aesthetic media lightbox solution for your website. Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3.0 Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the plugins options.
 
-Easy FancyBox also provides a means to create auto-popup messages for your visitors. 
+It supports:
+- images (.jpg/.gif/.png and others) _and_ WordPress Galleries 
+- PDF and SWF (Flash) files
+- movie sites like **Youtube**, **Vimeo** _and_ **Dailmotion**
+- hidden inline content
+- iframes
+- popup (auto-activate) on page load
 
 See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
-Looking for control? You can find a new section **FancyBox** on your **Settings > Media** admin page.
+See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay. Subscribe to [4Visions](http://4visions.nl/rss/) for tips on how to get a high degree of control over what will be shown in a FancyBox overlay on your website.
 
-- *Auto-enable*: file types FancyBox should be automatically enabled for.
-- *Auto-detect*: control auto-detection and enabling for links to YouTube and Vimeo movies.
-- *Title Position*: Overlay / Inside / Outside to control the position of the image title. Includes the new "Overlay" position.
-- *Transition In / Out*: Elastic / Fade / None to control the transition effects during opening and closing of the overlay.
-
-See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and make HTML inline content display in a FancyBox overlay.
-
-Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION for continued development of the FancyBox project.
+Visit [FancyBox](http://fancybox.net/) for more information, examples and the FancyBox Support Forum. Please consider a DONATION for continued development of the FancyBox project.
 
 = Translations =
 
