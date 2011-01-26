@@ -1,27 +1,29 @@
 === Easy FancyBox ===
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
-Tags: fancybox, jquery, images, flash, lightbox, gallery, image overlay, youtube, vimeo, gallery, pdf
+Tags: fancybox, lightbox, gallery, image, photo, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
 Requires at least: 2.7
 Tested up to: 3.1
-Stable tag: 1.3.4.5
+Stable tag: 1.3.4.6
 
 Easily enable the FancyBox 1.3.4 jQuery extension on all image, SWF, YouTube and Vimeo links. Multi-Site compatible. Supports iFrame and Flash movies.
 
 == Description ==
 
-No new configuration pages. It just gives you FancyBox-in-a-Box for all links to images (.jpg/.bmp/.gif/.png) _and_ WordPress Galleries _and_ (after enabling the options) for Flash movie (.swf) files _and_ Youtube / Vimeo movies _and_ iFrames _and_ PDF documents! Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3.0 Multi-Site compatible.
+FancyBox-in-a-Box for all links to images (.jpg/.gif/.png) _and_ WordPress Galleries _and_ (after enabling the options) for Flash movie (.swf) files _including_ Youtube, Vimeo and Dailmotion movies, hidden inline content, iFrames _and_ PDF documents! Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3.0 Multi-Site compatible.
+
+Easy FancyBox also provides a means to create auto-popup messages for your visitors. 
 
 See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
-Looking for some basic control? You can find a new section **FancyBox** on your **Settings > Media** admin page:
+Looking for control? You can find a new section **FancyBox** on your **Settings > Media** admin page.
 
 - *Auto-enable*: file types FancyBox should be automatically enabled for.
 - *Auto-detect*: control auto-detection and enabling for links to YouTube and Vimeo movies.
 - *Title Position*: Overlay / Inside / Outside to control the position of the image title. Includes the new "Overlay" position.
 - *Transition In / Out*: Elastic / Fade / None to control the transition effects during opening and closing of the overlay.
 
-See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to manage YouTube and Vimeo movies (and similar services) and make HTML content display in a FancyBox overlay.
+See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and make HTML inline content display in a FancyBox overlay.
 
 Visit [FancyBox](http://fancybox.net/) for more information, examples and the Support Forum. Please consider a DONATION for continued development of the FancyBox project.
 
@@ -85,6 +87,12 @@ There is no new settings page but there are a few options you can change. You wi
 
 Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
 
+= Can I exclude images or other links from auto-attribution? =
+
+Yes. All links with class **nofancybox** that would normally get auto-enabled, will be excluded from opening in a FancyBox overlay.
+
+`<a href="url/to/fullimg.jpg" class="nofancybox"><img src="url/to/thumbnail.jpg" /></a>`
+
 = Will a NextGen gallery be displayed in a FancyBox overlay ? =
 
 It *can* be. Switch off any gallery overlay scripts in NextGen and either use the FancyBox Auto-detect feature (turned ON by default for jpg, gif and png files) or set the NextGen option "Effects" to "Custom" and fill the code line field with 
@@ -114,7 +122,7 @@ Yes. Just place a link _with the URL ending in .swf_ to your Flash file in the p
 
 If you do'nt have *Auto-detect* checked under **SWF** on Settings > Media admin page, you will need to add either `class="fancybox"` or `class="fancybox-swf"` (to force swf content recognition) to the link to enable FancyBox for it.
 
-= Can I play YouTube and Vimeo movies in a FancyBox overlay? =
+= Can I play YouTube, Dailymotion and Vimeo movies in a FancyBox overlay? =
 
 Yes. 
 
@@ -172,6 +180,16 @@ Then place a FancyBox link anywhere else in the post/page content to the inline 
 
 NOTE: The wrapping divs ID *must* be unique and it must correspond with the links HREF with a # in front of it. When using the above example for more FancyBox inline content (hidden div + opening link) combinations on one page, give the second one the ID  fancyboxID-2 and so on...
 
+= Can I make an image or hidden content to pop up in FancyBox on page load? =
+
+Yes.
+
+A link that has the ID **fancybox-auto** (Note: there can be only ONE link like that on a page!) will be triggered automatically on page load.
+
+Use the instructions above but this time give the link also `id="fancybox-auto"` and remove the anchor text to hide it. Now the hidden div content will pop up automatically when a visitor opens the page.
+
+Same can be done with an image, flash movie, PDF or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
+
 = Can I make a menu item open in a FancyBox overlay ? =
 
 Yes. But it depends on you theme what you need to do to make it work. If you are on WordPress 3+ and your theme supports the new internal Custom Menu feature or if you are using a custom menu in a sidebar widget, it's easy: 
@@ -205,13 +223,19 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 == Upgrade Notice ==
 
 = 1.3.4.6 =
-PDF compatibility improvement and new option: Show/hide title on mouse hover action
+PDF compatibility improvement, Dailymotion support and many new options and classes.
 
 == Changelog ==
 
 = 1.3.4.6 =
 * PDF embed compatibility improvement
-* added option : Show/hide title on mouse hover action
+* new option: Show/hide title on mouse hover action
+* new option: Auto-gallery modes (Disabled, page/post images only, all) 
+* Dailymotion support
+* Links with id **fancybox-auto** will be triggered on page load
+* Anything with class **fancybox-hidden"** will be hidden
+* Support for menu items in iframe
+* Added class **nofancybox** for exclusion when auto-enabling
 
 = 1.3.4.5 =
 * Added Support for PDF

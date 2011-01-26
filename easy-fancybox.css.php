@@ -13,14 +13,18 @@
     /* remove comments */
     $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
     /* remove tabs, spaces, newlines, etc. */
-    $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
+    $buffer = str_replace(array("\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
     /* and squeeze some more */
-    $buffer = str_replace(array(", ", ": ", " {", "{ ", " }", "} ", ";}", " 0;"), array(",", ":", "{", "{", "}", "}", "}", ";"), $buffer);
+    $buffer = str_replace(array(", ", ": ", " {", "{ ", " }", "} ", ";}", "; ", " 0;"), array(",", ":", "{", "{", "}", "}", "}", ";", ";"), $buffer);
     return $buffer;
   }
 
   /* the css file */
-  include( 'fancybox/jquery.fancybox-' . htmlspecialchars( $_GET['ver'] , ENT_QUOTES) . '.css' );
+  $version = preg_match( '`^\d{1,2}\.\d{1,2}(\.\d{1,2})?$`' , $_GET['ver'] ) ? $_GET['ver'] : '';
+  include( './fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css' );
+
+  /* extra styles */
+  echo '.fancybox-hidden{display:none}';
 
   ob_end_flush();
 ?>
