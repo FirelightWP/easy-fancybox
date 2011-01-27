@@ -308,7 +308,7 @@ function easy_fancybox_settings(){
 								'2' => __('Post/page images only, one gallery for all','easy-fancybox'),
 								'3' => __('All images, one gallery for all','easy-fancybox')
 							),
-						'default' => '1',
+						'default' => '3',
 						'description' => ' <em>' . __('Default:','easy-fancybox')  . ' ' . 'Post/page images only, separate galleries per post' . '</em><br />' . __('Determine which images to automaticaly link together into a FancyBox gallery.','easy-fancybox')
 					),
 				'class' => array (
