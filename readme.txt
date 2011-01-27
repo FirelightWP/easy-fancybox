@@ -221,10 +221,14 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Upgrade Notice ==
 
-= 1.3.4.6 =
-PDF compatibility improvement, Dailymotion support and many new options and classes.
+= 1.3.4.7 =
+Improved auto-enable and auto-gallery settings and a Spotlight effect!
 
 == Changelog ==
+
+= 1.3.4.7 =
+* Spotlight effect
+* Improved auto-enable and auto-gallery settings
 
 = 1.3.4.6 =
 * PDF embed compatibility improvement

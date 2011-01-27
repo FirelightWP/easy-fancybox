@@ -5,26 +5,29 @@
 
   header('Content-type: text/css; charset=utf-8', true);
   ob_start("iepathfix_compress");
+
   function iepathfix_compress($buffer) {
-    $prefix = ( isset($_SERVER['HTTPS']) ) ? "https://" : "http://";
+    global $url;
     /* Relative path fix : add 'fancybox/'
      * IE6 path fix : replace relative with full path */
-    $buffer = str_replace(array("url('", "AlphaImageLoader(src='fancybox/"), array("url('fancybox/", "AlphaImageLoader(src='" . ( ( isset($_SERVER['HTTPS']) ) ? "https://" : "http://" ) . htmlspecialchars( $_SERVER['SERVER_NAME'] . dirname($_SERVER['SCRIPT_NAME']), ENT_QUOTES) . "/fancybox/"), $buffer);
+    $buffer = str_replace(array("url('", "AlphaImageLoader(src='fancybox/"), array("url('fancybox/", "AlphaImageLoader(src='" . $url . "/fancybox/" ), $buffer);
     /* remove comments */
     $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
-    /* remove tabs, spaces, newlines, etc. */
-    $buffer = str_replace(array("\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
+    /* remove tabs and newlines */
+    $buffer = str_replace(array("\r", "\n", "\t"), '', $buffer);
     /* and squeeze some more */
-    $buffer = str_replace(array(", ", ": ", " {", "{ ", " }", "} ", ";}", "; ", " 0;"), array(",", ":", "{", "{", "}", "}", "}", ";", ";"), $buffer);
+    $buffer = str_replace(array(", ", ": ", " {", "{ ", " }", "} ", "; ", " 0;"), array(",", ":", "{", "{", "}", "}", ";", ";"), $buffer);
     return $buffer;
   }
+
+  $url = ( ( isset($_SERVER['HTTPS']) ) ? "https://" : "http://" ) . htmlspecialchars( $_SERVER['SERVER_NAME'] . dirname($_SERVER['SCRIPT_NAME']), ENT_QUOTES);
 
   /* the css file */
   $version = preg_match( '`^\d{1,2}\.\d{1,2}(\.\d{1,2})?$`' , $_GET['ver'] ) ? $_GET['ver'] : '';
   include( './fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css' );
 
   /* extra styles */
-  echo '.fancybox-hidden{display:none}';
+  echo '.fancybox-hidden{display:none}#fancybox-overlay{background-attachment:scroll;background-clip:border-box;background-color:#000000;background-image:url("'. $url . '/light-mask.png");background-origin:border-box;background-position:50% -3%;background-repeat:no-repeat;background-size:100%;position:fixed;}';
 
   ob_end_flush();
 ?>

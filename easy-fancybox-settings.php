@@ -168,11 +168,11 @@ function easy_fancybox_settings(){
 					),*/
 				'onComplete' => array (
 						'id' => 'fancybox_onComplete',
-						'title' => __('Extra\'s','easy-fancybox'),
+						'title' => __('Advanced','easy-fancybox'),
 						'label_for' => 'fancybox_onComplete',
 						'input' => 'select',
 						'options' => array(
-								'' => __('No extra\'s','easy-fancybox'), // no extra's
+								'' => __('None','easy-fancybox'), // no extra's
 								'function() { $(\'#fancybox-title\').hide(); $(\'#fancybox-wrap\').hover(function() { $(\'#fancybox-title\').show(); }, function() { $(\'#fancybox-title\').hide(); }); }' => __('Hide/show title on mouse hover action','easy-fancybox')
 							),
 						'noquotes' => true,
@@ -294,7 +294,20 @@ function easy_fancybox_settings(){
 						'hide' => true,
 						'default' => 'jpg gif png',
 						'selector' => 'href$=',
-						'description' => ' <em>' . __('Default:','easy-fancybox')  . ' jpg gif png</em><br /><br />' 
+						'description' => ' <em>' . __('Default:','easy-fancybox')  . ' jpg gif png</em><br />' . __('Change option "Advanced" below to further tweak auto-detection and gallery behaviour.','easy-fancybox') . '<br />' 
+					),
+				'autoAttributeLimit' => array (
+						'id' => 'fancybox_autoAttributeLimit',
+						'title' => __('Apply to','easy-fancybox'),
+						'label_for' => 'fancybox_autoAttributeLimit',
+						'hide' => true,
+						'input' => 'select',
+						'options' => array(
+								'' => __('All image links', 'easy-fancybox'),
+								'1' => __('Grouped images only','easy-fancybox')
+							),
+						'default' => '',
+						'description' => '<em>' . __('Default:','easy-fancybox')  . ' ' . 'All image links' . '</em><br />' . __('Note: The options "Grouped images only" might need adjusting the setting "Group selector(s)" below to make it compatible with your theme.','easy-fancybox') . '<br />'
 					),
 				'autoGallery' => array (
 						'id' => 'fancybox_autoGallery',
@@ -303,13 +316,22 @@ function easy_fancybox_settings(){
 						'hide' => true,
 						'input' => 'select',
 						'options' => array(
-								'' => __('None'),
-								'1' => __('Post/page images only, separate galleries per post','easy-fancybox'),
-								'2' => __('Post/page images only, one gallery for all','easy-fancybox'),
-								'3' => __('All images, one gallery for all','easy-fancybox')
+								'' => __('Disabled'),
+								'1' => __('One gallery per group','easy-fancybox'),
+								'2' => __('One gallery for all','easy-fancybox')
 							),
 						'default' => '1',
-						'description' => ' <em>' . __('Default:','easy-fancybox')  . ' ' . 'Post/page images only, separate galleries per post' . '</em><br />' . __('Determine which images to automaticaly link together into a FancyBox gallery.','easy-fancybox')
+						'description' => '<em>' . __('Default:','easy-fancybox')  . ' ' . 'One gallery per group' . '</em><br />' .  __('When disabled, you can use the rel attribute to manually group images together. Example: <a href="..." rel="gallery">...</a>','easy-fancybox') . '<br />' . __('Note: You might need to adjust the setting "Group selector(s)" below to make grouping compatible with your theme.','easy-fancybox') . '<br />'
+					),
+				'autoSelector' => array (
+						'id' => 'fancybox_autoGallerySelector',
+						'title' => __('Group selector(s)','easy-fancybox'),
+						'label_for' => 'fancybox_autoGallerySelector',
+						'hide' => true,
+						'input' => 'text',
+						'class' => 'regular-text',
+						'default' => 'article, div.hentry',
+						'description' => __('Seperate with a comma.', 'easy-fancybox') . ' <em>' . __('Default:','easy-fancybox') . ' ' . 'article, div.hentry' . '</em><br />' . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you want to include images in a sidebar with ID primary, add ", div#primary" or "aside#primary" for html5 themes.','easy-fancybox')
 					),
 				'class' => array (
 						'hide' => true,

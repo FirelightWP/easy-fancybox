@@ -3,7 +3,7 @@
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content. Happy with it? Please leave me a small <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e4&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a></strong> for development and support on this plugin and please consider a <strong><a href="http://fancybox.net/">DONATION to the FancyBox project</a></strong>.
-Version: 1.3.4.6
+Version: 1.3.4.7
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -111,10 +111,11 @@ $(\'a['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'.$att
 					echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttribute']['href-replace'].'})';
 				echo '.addClass(\''.$value['options']['class']['default'].'\');';
 			} else {
+				// set selectors
 				$file_types = array_filter( explode( ' ', str_replace( ',', ' ', $autoAttribute ) ) );
 				$more=0;
 				echo '
-var fb_'.$key.'_selector = \'';
+var fb_'.$key.'_select = \'';
 				foreach ($file_types as $type) {
 					if ($more>0)
 						echo ',';
@@ -123,27 +124,44 @@ var fb_'.$key.'_selector = \'';
 				}
 				echo '\';';
 
-				switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
-					case '':
-					default :
-						echo '
-$(fb_'.$key.'_selector).addClass(\''.$value['options']['class']['default'].'\');';
-						break;
-					case '1':
-						echo '
-var fb_'.$key.'_posts = jQuery(\'div.hentry, article.hentry\');
-fb_'.$key.'_posts.each(function() { jQuery(this).find(fb_'.$key.'_selector).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery-\' + fb_'.$key.'_posts.index(this)); });';
-						break;
-					case '2':
-						echo '
-var fb_'.$key.'_posts = jQuery(\'div.hentry, article.hentry\');
-fb_'.$key.'_posts.each(function() { jQuery(this).find(fb_'.$key.'_selector).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery\'); });';
-						break;
-					case '3':
-						echo '
-$(fb_'.$key.'_selector).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery\');';
-						break;
+				// class and rel depending on settings
+				if( '1' == get_option($value['options']['autoAttributeLimit']['id'],$value['options']['autoAttributeLimit']['default']) ) {
+					// add class
+					echo '
+var fb_'.$key.'_sections = jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
+fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+					// and set rel
+					switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
+						case '':
+						default :
+							echo '; });';
+							break;
+						case '1':
+							echo '.attr(\'rel\', \'gallery-\' + fb_'.$key.'_sections.index(this)); });';
+							break;
+						case '2':
+							echo '.attr(\'rel\', \'gallery\'); });';
+					}
+				} else {
+					// add class
+					echo '
+$(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+					// set rel
+					switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
+						case '':
+						default :
+							echo ';';
+							break;
+						case '1':
+							echo ';
+var fb_'.$key.'_sections = jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
+fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).attr(\'rel\', \'gallery-\' + fb_'.$key.'_sections.index(this)); });';
+							break;
+						case '2':
+							echo '.attr(\'rel\', \'gallery\');';
+					}
 				}
+				
 			}
 		}
 		
