@@ -131,12 +131,12 @@ $(fb_'.$key.'_selector).addClass(\''.$value['options']['class']['default'].'\');
 						break;
 					case '1':
 						echo '
-var fb_'.$key.'_posts = jQuery(\'div.hentry, article.hentry\');
+var fb_'.$key.'_posts = jQuery(\'div.post, article\');
 fb_'.$key.'_posts.each(function() { jQuery(this).find(fb_'.$key.'_selector).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery-\' + fb_'.$key.'_posts.index(this)); });';
 						break;
 					case '2':
 						echo '
-var fb_'.$key.'_posts = jQuery(\'div.hentry, article.hentry\');
+var fb_'.$key.'_posts = jQuery(\'div.post, article\');
 fb_'.$key.'_posts.each(function() { jQuery(this).find(fb_'.$key.'_selector).addClass(\''.$value['options']['class']['default'].'\').attr(\'rel\', \'gallery\'); });';
 						break;
 					case '3':
