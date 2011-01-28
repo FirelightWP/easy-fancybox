@@ -321,7 +321,7 @@ function easy_fancybox_settings(){
 								'2' => __('One gallery for all','easy-fancybox')
 							),
 						'default' => '1',
-						'description' => '<em>' . __('Default:','easy-fancybox')  . ' ' . 'One gallery per group' . '</em><br />' .  __('When disabled, you can use the rel attribute to manually group images together. Example: <a href="..." rel="gallery">...</a>','easy-fancybox') . '<br />' . __('Note: You might need to adjust the setting "Group selector(s)" below to make grouping compatible with your theme.','easy-fancybox') . '<br />'
+						'description' => '<em>' . __('Default:','easy-fancybox')  . ' ' . 'One gallery per group' . '</em><br />' .  __('When disabled, you can use the rel attribute to manually group images together. Example: < a href="..." rel="gallery">...</a>','easy-fancybox') . '<br />' . __('Note: You might need to adjust the setting "Group selector(s)" below to make grouping compatible with your theme.','easy-fancybox') . '<br />'
 					),
 				'autoSelector' => array (
 						'id' => 'fancybox_autoGallerySelector',
