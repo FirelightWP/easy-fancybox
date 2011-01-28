@@ -169,7 +169,7 @@ Wrap the inline content in
 `
 <div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1">
 ...inline content here...
-</div><div>
+</div></div>
 `
 
 Then place a FancyBox link anywhere else in the post/page content to the inline content. Something like
@@ -229,6 +229,7 @@ Improved auto-enable and auto-gallery settings and a Spotlight effect!
 = 1.3.4.7 =
 * Spotlight effect
 * Improved auto-enable and auto-gallery settings
+* CSS IE6 hack bugfix
 
 = 1.3.4.6 =
 * PDF embed compatibility improvement
