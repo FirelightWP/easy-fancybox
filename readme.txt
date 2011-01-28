@@ -169,7 +169,7 @@ Wrap the inline content in
 `
 <div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1">
 ...inline content here...
-</div><div>
+</div></div>
 `
 
 Then place a FancyBox link anywhere else in the post/page content to the inline content. Something like
