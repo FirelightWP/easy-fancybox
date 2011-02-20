@@ -181,7 +181,7 @@ function easy_fancybox_settings(){
 							// function(){jQuery.fancybox.next();}
 						'noquotes' => true,
 						'default' => '',
-						'description' =>  '<br />' . __('Hide/show title on mouse hover action works best with Overlay title position','easy-fancybox') . '<br />'
+						'description' =>  '<br />' . __('Note: Hide/show title on mouse hover action works best with Overlay title position. Auto-rotation uses a fixed 5 second pause per image.','easy-fancybox') . '<br />'
 					),
 
 				'p3' => array (

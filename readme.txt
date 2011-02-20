@@ -68,12 +68,6 @@ The plugin works best from the **/mu-plugins/** folder where it runs quietly in 
 
 Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples. 
 
-= Why EASY FancyBox? =
-
-Instead of bothering you with the HUGE amount of configuration options that FancyBox can handle, this plugin requires almost NO configuration. Easy, isn't it? ;)
-
-If you *do* want configuration options to tweak and fiddle for days, check out some of the other FancyBox plugins available.
-
 = Which version of FancyBox does this plugin use? =
 
 The same version as this plugin has. I aim to keep close pace to FancyBox upgrades and always move to the latest and greates version. Please, let me know if I'm lagging behind and missed an upgrade!
@@ -85,6 +79,10 @@ There is no new settings page but there are a few options you can change. You wi
 = Will a WordPress generated gallery be displayed in a FancyBox overlay? =
 
 Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
+
+= Can I make gallery images automatically rotate? =
+
+Yes. There is an Advanced option called "Gallery Auto-rotation" for that.
 
 = Can I exclude images or other links from auto-attribution? =
 
@@ -123,9 +121,7 @@ If you do'nt have *Auto-detect* checked under **SWF** on Settings > Media admin 
 
 = Can I play YouTube, Dailymotion and Vimeo movies in a FancyBox overlay? =
 
-Yes. 
-
-These are actually a special case of SWF files. The URL for these movies do not end in .swf so the FancyBox script will not be able to auto-detect the Flash content. This can be forced with `class="fancybox-youtube"`, `class="fancybox-swf"` or alternatively `class="fancybox-iframe"`. The difference between the three is mainly in size of the overlay window. Just choose the one that works best for you or... Just let the plugin auto-detect and auto-enable it for you! :)
+Yes. These are actually a special case of SWF files. The URL for these movies do not end in .swf so the FancyBox script will not be able to auto-detect the Flash content. This can be forced with `class="fancybox-youtube"`, `class="fancybox-swf"` or alternatively `class="fancybox-iframe"`. The difference between the three is mainly in size of the overlay window. Just choose the one that works best for you or... Just let the plugin auto-detect and auto-enable it for you! :)
 
 For **YouTube**, place the Share URL (the plain Page URL, the Short URL or even with the HD option) to the YouTube page in your content. Add `&fs=1` to the URL so show the 'Full screen' button. If you have disabled Auto-detection, use it with `class="fancybox-youtube"` to manually enable FancyBox for it. (Note: For shortened YouTube URLs, the class does not work. Auto auto-detection needs to be enabled seperately.)
 
@@ -138,7 +134,7 @@ Both YouTube and Vimeo movies can be made to auto-start when they are opened by 
 
 = I want that 'Show in full-screen' button on my YouTube movies =
 
-Append `&fs=1` to your YouTube share URL. If you use the Short URL without the `?hd=1` switch, append `?fs=1` to it.
+Append `&fs=1` to your YouTube share URL.
 
 = The flash movie in the overlay shows BELOW some other flash content that is on the same page! =
 
@@ -163,9 +159,7 @@ just change that `wmode="window"` to `wmode="opaque"` or add the tag if it is mi
 
 = Can I display INLINE content in a FancyBox overlay ? =
 
-Yes. 
-
-Wrap the inline content in
+Yes. Wrap the inline content in
 `
 <div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1">
 ...inline content here...
@@ -181,9 +175,7 @@ NOTE: The wrapping divs ID *must* be unique and it must correspond with the link
 
 = Can I make an image or hidden content to pop up in FancyBox on page load? =
 
-Yes.
-
-A link that has the ID **fancybox-auto** (Note: there can be only ONE link like that on a page!) will be triggered automatically on page load.
+Yes. A link that has the ID **fancybox-auto** (Note: there can be only ONE link like that on a page!) will be triggered automatically on page load.
 
 Use the instructions above but this time give the link also `id="fancybox-auto"` and remove the anchor text to hide it. Now the hidden div content will pop up automatically when a visitor opens the page.
 
@@ -227,6 +219,7 @@ PDF bugfix. Improved auto-enable and auto-gallery settings and a Spotlight effec
 == Changelog ==
 
 = 1.3.4.7 =
+* Advanced option: Gallery auto-rotation
 * Spotlight effect
 * Improved auto-enable and auto-gallery settings
 * BIGFIX: CSS IE6 hack
