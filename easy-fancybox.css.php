@@ -27,7 +27,7 @@
   include( './fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css' );
 
   /* extra styles */
-  echo '.fancybox-hidden{display:none}#fancybox-overlay{background-attachment:scroll;background-clip:border-box;background-color:#000000;background-image:url("'. $url . '/light-mask.png");background-origin:border-box;background-position:50% -3%;background-repeat:no-repeat;background-size:100%;position:fixed;}';
+  echo '.fancybox-hidden{display:none}#fancybox-overlay{background-image:url("'. $url . '/light-mask.png");background-position:50% -3%;background-repeat:no-repeat;-o-background-size:100%;-webkit-background-size:100%;-moz-background-size:100%;-khtml-background-size:100%;background-size:100%;position:fixed;}';
 
   ob_end_flush();
 ?>

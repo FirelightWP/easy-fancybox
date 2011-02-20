@@ -59,7 +59,8 @@ function easy_fancybox() {
 	echo '
 <script type="text/javascript">
 /* <![CDATA[ */
-jQuery(document).ready(function($){';
+jQuery(document).ready(function($){
+var fb_timeout = null;';
 
 	/*
 	 * Global settings routine

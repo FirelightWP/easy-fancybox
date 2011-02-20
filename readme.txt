@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
 Requires at least: 2.7
 Tested up to: 3.1
-Stable tag: 1.3.4.6
+Stable tag: 1.3.4.7
 
 Easily enable the FancyBox 1.3.4 jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -222,52 +222,54 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 == Upgrade Notice ==
 
 = 1.3.4.7 =
-Improved auto-enable and auto-gallery settings and a Spotlight effect!
+PDF bugfix. Improved auto-enable and auto-gallery settings and a Spotlight effect!
 
 == Changelog ==
 
 = 1.3.4.7 =
 * Spotlight effect
 * Improved auto-enable and auto-gallery settings
-* CSS IE6 hack bugfix
+* BIGFIX: CSS IE6 hack
+* BIGFIX: PDF object in IE7
 
 = 1.3.4.6 =
 * PDF embed compatibility improvement
-* new option: Show/hide title on mouse hover action
-* new option: Auto-gallery modes (Disabled, page/post images only, all) 
-* Dailymotion support
+* NEW: Show/hide title on mouse hover action
+* NEW: Auto-gallery modes (Disabled, page/post images only, all) 
+* NEW: Dailymotion support
 * Links with id **fancybox-auto** will be triggered on page load
 * Anything with class **fancybox-hidden"** will be hidden
 * Support for menu items in iframe
 * Added class **nofancybox** for exclusion when auto-enabling
 
 = 1.3.4.5 =
-* Added Support for PDF
-* Added Easing options
+* FancyBox script version 1.3.4 (2010/11/11 - http://fancybox.net/changelog/)
+* NEW: Support for PDF
+* NEW: Easing options
 * YouTube, Vimeo and iFrame options adjustable
 * lots and lots of more options!
 * BIGFIX: work-around for missing wmode in WordPress (auto-)embedded movies (credits: Crantea Mihaita)
 
 = 1.3.3.4.2 =
-* Fix: iframe width
-* Fix: image overlay size in Google Chrome browser issue (FancyBox 1.3.3)
-* Fix: fancybox-swf 
+* BIGFIX: iframe width
+* BIGFIX: image overlay size in Google Chrome browser issue (FancyBox 1.3.3)
+* BIGFIX: fancybox-swf 
 
 = 1.3.3.4 =
-* upgraded FancyBox script to version 1.3.3 (2010/11/4 - http://fancybox.net/changelog/)
+* FancyBox script version 1.3.3 (2010/11/4 - http://fancybox.net/changelog/)
 * Vimeo support
 * YouTube Short URL support (disabled by default)
 * Auto-recognition and seperate class `fancybox-youtube` for YouTube
 * Auto-recognition and seperate class `fancybox-vimeo` for Vimeo
 
 = 1.3.2 =
-* upgraded FancyBox script to version 1.3.2 (2010/10/10 - http://fancybox.net/changelog/)
+* FancyBox script version 1.3.2 (2010/10/10 - http://fancybox.net/changelog/)
 
 = 1.3.1.3 =
 * translation .pot file available
 * Dutch translation
-* YouTube and Flash movie support
-* Iframe support
+* NEW: YouTube and Flash movie support
+* NEW: Iframe support
 * added option Auto-enable for...
 
 = 1.3.1.2 =

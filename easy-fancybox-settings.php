@@ -173,8 +173,12 @@ function easy_fancybox_settings(){
 						'input' => 'select',
 						'options' => array(
 								'' => __('None','easy-fancybox'), // no extra's
-								'function() { $(\'#fancybox-title\').hide(); $(\'#fancybox-wrap\').hover(function() { $(\'#fancybox-title\').show(); }, function() { $(\'#fancybox-title\').hide(); }); }' => __('Hide/show title on mouse hover action','easy-fancybox')
-							),
+								'function() { $(\'#fancybox-title\').hide(); $(\'#fancybox-wrap\').hover(function() { $(\'#fancybox-title\').show(); }, function() { $(\'#fancybox-title\').hide(); }); }' => __('Hide/show title on mouse hover action','easy-fancybox'),
+								'function() { fb_timeout = setTimeout(function(){jQuery.fancybox.next();}, 5000); $(\'#fancybox-wrap\').hover(function() { if(fb_timeout) clearTimeout(fb_timeout); }, function() { if(!fb_timeout) var fb_timeout = setTimeout(function(){jQuery.fancybox.next();}, 5000); }); }' => __('Gallery Auto-rotation','easy-fancybox')
+							), // \'jQuery("#fancybox-right").trigger("click")\'
+							// \'jQuery.event.trigger("fancybox-next")\'
+							// \'jQuery.fancybox.next()\'
+							// function(){jQuery.fancybox.next();}
 						'noquotes' => true,
 						'default' => '',
 						'description' =>  '<br />' . __('Hide/show title on mouse hover action works best with Overlay title position','easy-fancybox') . '<br />'
@@ -333,6 +337,18 @@ function easy_fancybox_settings(){
 						'default' => 'article, div.hentry',
 						'description' => __('Seperate with a comma.', 'easy-fancybox') . ' <em>' . __('Default:','easy-fancybox') . ' ' . 'article, div.hentry' . '</em><br />' . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you want to include images in a sidebar with ID primary, add ", div#primary" or "aside#primary" for html5 themes.','easy-fancybox')
 					),
+/*				'onStart' => array (
+						'noquotes' => true,
+						'default' => 'function() { window.clearTimeout(fb_timeout); }'
+					),*/
+				'onCleanup' => array (
+						'noquotes' => true,
+						'default' => 'function() { if(fb_timeout) { window.clearTimeout(fb_timeout); fb_timeout = null; } }'
+					),
+				'onComplete' => array (
+						'noquotes' => true,
+						'default' => 'function() { fb_timeout = window.setTimeout(function(){jQuery.fancybox.next();}, 5000); $(\'#fancybox-wrap\').hover(function() { window.clearTimeout(fb_timeout); fb_timeout = null; }, function() { window.clearTimeout(fb_timeout); fb_timeout = window.setTimeout(function(){jQuery.fancybox.next();}, 5000); }); }'
+					),
 				'class' => array (
 						'hide' => true,
 						'default' => 'fancybox'
@@ -454,7 +470,7 @@ function easy_fancybox_settings(){
 				'onStart' => array ( 
 						'noquotes' => true,
 //						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
-						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { if ( selectedArray[selectedIndex].title == "" ) { selectedArray[selectedIndex].title = $(selectedArray[selectedIndex]).html() }; selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=0&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" type="application/pdf" height="100%" width="100%" /><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=0&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" /><a href="\' + selectedArray[selectedIndex].href + \'">\' + selectedArray[selectedIndex].title + \'</a></object>\' }'
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { if ( selectedArray[selectedIndex].title == "" ) { selectedArray[selectedIndex].title = $(selectedArray[selectedIndex]).html() }; selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" type="application/pdf" height="100%" width="100%"><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" /><a href="\' + selectedArray[selectedIndex].href + \'" style="display:block;font-size:18px;height:20px;position:absolute;top:50%;margin:-10px auto 0 auto">\' + selectedArray[selectedIndex].title + \'</a></object>\' }'
 					)
 				)
 			),
