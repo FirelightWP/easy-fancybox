@@ -345,10 +345,6 @@ function easy_fancybox_settings(){
 						'noquotes' => true,
 						'default' => 'function() { if(fb_timeout) { window.clearTimeout(fb_timeout); fb_timeout = null; } }'
 					),
-				'onComplete' => array (
-						'noquotes' => true,
-						'default' => 'function() { fb_timeout = window.setTimeout(function(){jQuery.fancybox.next();}, 5000); $(\'#fancybox-wrap\').hover(function() { window.clearTimeout(fb_timeout); fb_timeout = null; }, function() { window.clearTimeout(fb_timeout); fb_timeout = window.setTimeout(function(){jQuery.fancybox.next();}, 5000); }); }'
-					),
 				'class' => array (
 						'hide' => true,
 						'default' => 'fancybox'
