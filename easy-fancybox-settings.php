@@ -60,6 +60,13 @@ function easy_fancybox_settings(){
 						'default' => '1',
 						'description' => __('Show the overlay around content opened in FancyBox.','easy-fancybox')
 					),
+				'overlaySpotlight' => array (
+						'id' => 'fancybox_overlaySpotlight',
+						'input' => 'checkbox',
+						'hide' => true,
+						'default' => '',
+						'description' => __('Spotlight effect.','easy-fancybox')
+					),
 				'overlayOpacity' => array (
 						'id' => 'fancybox_overlayOpacity',
 						'title' => __('Overlay opacity','easy-fancybox'),
@@ -182,6 +189,10 @@ function easy_fancybox_settings(){
 						'noquotes' => true,
 						'default' => '',
 						'description' =>  '<br />' . __('Note: Hide/show title on mouse hover action works best with Overlay title position. Auto-rotation uses a fixed 5 second pause per image.','easy-fancybox') . '<br />'
+					),
+				'onCleanup' => array (
+						'noquotes' => true,
+						'default' => 'function() { if(fb_timeout) { window.clearTimeout(fb_timeout); fb_timeout = null; } }'
 					),
 
 				'p3' => array (
@@ -341,10 +352,6 @@ function easy_fancybox_settings(){
 						'noquotes' => true,
 						'default' => 'function() { window.clearTimeout(fb_timeout); }'
 					),*/
-				'onCleanup' => array (
-						'noquotes' => true,
-						'default' => 'function() { if(fb_timeout) { window.clearTimeout(fb_timeout); fb_timeout = null; } }'
-					),
 				'class' => array (
 						'hide' => true,
 						'default' => 'fancybox'
