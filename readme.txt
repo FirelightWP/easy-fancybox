@@ -213,14 +213,14 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Upgrade Notice ==
 
-= 1.3.4.7 =
+= 1.3.4.8 =
 PDF bugfix. Improved auto-enable and auto-gallery settings and a Spotlight effect!
 
 == Changelog ==
 
-= 1.3.4.7 =
-* Advanced option: Gallery auto-rotation
-* Spotlight effect
+= 1.3.4.8 =
+* NEW: Advanced option: Gallery auto-rotation
+* NEW: Spotlight effect
 * Improved auto-enable and auto-gallery settings
 * BIGFIX: CSS IE6 hack
 * BIGFIX: PDF object in IE7
