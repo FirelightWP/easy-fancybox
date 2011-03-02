@@ -68,38 +68,61 @@ The plugin works best from the **/mu-plugins/** folder where it runs quietly in 
 
 Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples. 
 
+
 = Which version of FancyBox does this plugin use? =
 
 The same version as this plugin has. I aim to keep close pace to FancyBox upgrades and always move to the latest and greates version. Please, let me know if I'm lagging behind and missed an upgrade!
+
 
 = Where is the settings page? =
 
 There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/) ...
 
+
 = Will a WordPress generated gallery be displayed in a FancyBox overlay? =
 
 Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
 
+
 = Can I make gallery images automatically rotate? =
 
 Yes. There is an Advanced option called "Gallery Auto-rotation" for that.
+
 
 = Can I exclude images or other links from auto-attribution? =
 
 Yes. All links with class **nofancybox** that would normally get auto-enabled, will be excluded from opening in a FancyBox overlay.
 
 `<a href="url/to/fullimg.jpg" class="nofancybox"><img src="url/to/thumbnail.jpg" /></a>`
+ 
 
 = Will a NextGen gallery be displayed in a FancyBox overlay ? =
 
-It *can* be. Switch off any gallery overlay scripts in NextGen and either use the FancyBox Auto-detect feature (turned ON by default for jpg, gif and png files) or set the NextGen option "Effects" to "Custom" and fill the code line field with 
+It *can* be. Switch off any gallery overlay scripts in NextGen and either use the FancyBox Auto-detect feature (turned ON by default for jpg, gif and png files) or set the NextGen option "JavaScript Thumbnail effect" to "Custom" and fill the code line field with 
 `
 class="fancybox" rel="%GALLERY_NAME%"
 `
+ 
 
 = Can I use ONE thumbnail to open a complete gallery ? =
 
-It can be done in combination with NextGen Gallery. Create a gallery, use the tag `[nggtags gallery=YourGalleryName]` in your page content and configure NextGen to include hidden gallery images.
+It can be done in combination with NextGen Gallery. There are several ways to set it up. Choose which will suit your purpose: limit images per gallery using the shortcode `[nggallery id=x]` or per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`:
+
+**A.** Place the shortcode of your choice in your page/post content.
+
+**B.** Configure NextGen on **Gallery > Options > Gallery settings** to at least have the following options set like this:
+
+1. Number of images per page: 1
+1. Integrate slideshow: unchecked (optional but advised: use auto-rotation in the FancyBox settings instead)
+1. Show first: Thumbnails
+1. Show ImageBrowser: unchecked
+1. Add hidden images: checked
+
+**C.** Optional: add a new CSS rule to your theme stylesheet to hide the page browsing links below the gallery thumbnail:
+`
+.ngg-navigation{display:none}
+`
+ 
 
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
@@ -107,17 +130,20 @@ Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox ifra
 
 NOTE: The difference between these two classes ('-' or space) is in size of the overlay window. Try it out and use the one that works best for you :)
 
+
 = Can I show PDF files in a FancyBox overlay? =
 
 Yes. Just place a link _with the URL ending in .pdf_ to your Portable Document file in the page content.
 
 If you do'nt have *Auto-detect* checked under **PDF** on Settings > Media admin page, you will need to add `class="fancybox-pdf"` (to force pdf content recognition) to the link to enable FancyBox for it.
+ 
 
 = Can I play SWF files in a FancyBox overlay? =
 
 Yes. Just place a link _with the URL ending in .swf_ to your Flash file in the page content.
 
 If you do'nt have *Auto-detect* checked under **SWF** on Settings > Media admin page, you will need to add either `class="fancybox"` or `class="fancybox-swf"` (to force swf content recognition) to the link to enable FancyBox for it.
+
 
 = Can I play YouTube, Dailymotion and Vimeo movies in a FancyBox overlay? =
 
@@ -131,10 +157,12 @@ Both YouTube and Vimeo movies can be made to auto-start when they are opened by 
 `
 <a href="http://youtu.be/N_tONWXYviM?hd=1&fs=1&autoplay=1">text/thumbnail</a>
 `
+ 
 
 = I want that 'Show in full-screen' button on my YouTube movies =
 
 Append `&fs=1` to your YouTube share URL.
+
 
 = The flash movie in the overlay shows BELOW some other flash content that is on the same page! =
 
@@ -157,6 +185,7 @@ just add `<param name="wmode" value="opaque" />` among the other parameters. Or 
 `
 just change that `wmode="window"` to `wmode="opaque"` or add the tag if it is missing.
 
+
 = Can I display INLINE content in a FancyBox overlay ? =
 
 Yes. Wrap the inline content in
@@ -173,6 +202,7 @@ Then place a FancyBox link anywhere else in the post/page content to the inline 
 
 NOTE: The wrapping divs ID *must* be unique and it must correspond with the links HREF with a # in front of it. When using the above example for more FancyBox inline content (hidden div + opening link) combinations on one page, give the second one the ID  fancyboxID-2 and so on...
 
+
 = Can I make an image or hidden content to pop up in FancyBox on page load? =
 
 Yes. A link that has the ID **fancybox-auto** (Note: there can be only ONE link like that on a page!) will be triggered automatically on page load.
@@ -180,6 +210,7 @@ Yes. A link that has the ID **fancybox-auto** (Note: there can be only ONE link 
 Use the instructions above but this time give the link also `id="fancybox-auto"` and remove the anchor text to hide it. Now the hidden div content will pop up automatically when a visitor opens the page.
 
 Same can be done with an image, flash movie, PDF or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
+
 
 = Can I make a menu item open in a FancyBox overlay ? =
 
@@ -192,9 +223,11 @@ Yes. But it depends on you theme what you need to do to make it work. If you are
 
 If you are on an older version of WordPress or if you cannot use WP's Menus, you will need to do some heavy theme hacking to get it to work. Basically, what you need to achieve is that the menu item you want opened in a lightbox overlay, should get a class="fancybox-iframe" tag.
 
+
 = Is Easy FancyBox multi-site compatible? =
 
 Yes. Designed to work with **Network Activate** and does not require manual activation on each site in your network. You can even install it in mu-plugins: upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ and move the file easy-fancybox.php one dir up.
+
 
 == Other Notes ==
 
