@@ -99,7 +99,29 @@ class="fancybox" rel="%GALLERY_NAME%"
 
 = Can I use ONE thumbnail to open a complete gallery ? =
 
-It can be done in combination with NextGen Gallery. There are several ways to set it up. Choose which will suit your purpose: limit images per gallery using the shortcode `[nggallery id=x]` or per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`:
+It can be done manually (using the internal WordPress gallery feature, or not) _or_ in combination with NextGen Gallery. 
+
+**Manual**
+
+**A.** Open your post for editing in HTML mode and insert the first image thumbnail in your post content (linking to the images file, not page) to serve as the gallery thumbnail. 
+
+**B.** Place the following code to start a hidden div containing all the other images that should only be visible in FancyBox:
+`
+<div class="fancybox-hidden">
+`
+
+**C.** Right after that starting on a new line, insert all other images you want to show in your gallery. You can even use the WordPress internal gallery feature with the shortcode `[gallery link="file"]`. NOTE: if the gallery thumbnail is attached to the post, it will be show a second time when flipping through the gallery in FancyBox. If you do not want that, use an image that is not attached to the post as gallery thumbail.
+
+**D.** Close the hidden div with the following code on a new line:
+`
+</div>
+`
+
+**With NextGEN Gallery**
+
+You can choose between two shortcodes to show a gallery that (1) limits images per gallery using the shortcode `[nggallery id=x]` or (2) per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`. 
+
+General steps:
 
 **A.** Place the shortcode of your choice in your page/post content.
 
@@ -115,6 +137,7 @@ It can be done in combination with NextGen Gallery. There are several ways to se
 `
 .ngg-navigation{display:none}
 `
+
  
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
