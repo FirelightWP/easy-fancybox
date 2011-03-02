@@ -99,8 +99,23 @@ class="fancybox" rel="%GALLERY_NAME%"
 
 = Can I use ONE thumbnail to open a complete gallery ? =
 
-It can be done in combination with NextGen Gallery. Create a gallery, use the tag `[nggtags gallery=YourGalleryName]` in your page content and configure NextGen to include hidden gallery images.
+It can be done in combination with NextGen Gallery. There are several ways to set it up. Choose which will suit your purpose: limit images per gallery using the shortcode `[nggallery id=x]` or per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`:
 
+**A.** Place the shortcode of your choice in your page/post content.
+
+**B.** Configure NextGen on **Gallery > Options > Gallery settings** to at least have the following options set like this:
+
+1. Number of images per page: 1
+1. Integrate slideshow: unchecked (optional but advised: use auto-rotation in the FancyBox settings instead)
+1. Show first: Thumbnails
+1. Show ImageBrowser: unchecked
+1. Add hidden images: checked
+
+**C.** Optional: add a new CSS rule to your theme stylesheet to hide the page browsing links below the gallery thumbnail:
+`
+.ngg-navigation{display:none}
+`
+ 
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
 Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content. 
