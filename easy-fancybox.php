@@ -3,7 +3,7 @@
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content. Happy with it? Please leave me a small <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e4&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a></strong> for development and support on this plugin and please consider a <strong><a href="http://fancybox.net/">DONATION to the FancyBox project</a></strong>.
-Version: 1.3.4.8
+Version: 1.3.4.9a
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -318,7 +318,7 @@ function easy_fancybox_admin_init(){
 	}
 }
 
-function easy_fancybox_enqueue() {
+function easy_fancybox_enqueue_scripts() {
 	$easy_fancybox_array = easy_fancybox_settings();
 	
 	// check for any enabled sections plus the need for easing script
@@ -362,10 +362,11 @@ function easy_fancybox_enqueue() {
 	wp_deregister_script('mousewheel');
 	// then register our version
 	wp_enqueue_script('jquery.mousewheel', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.mousewheel-'.MOUSEWHEEL_VERSION.'.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION);
+}
 	
+function easy_fancybox_enqueue_styles() {
 	// register style
 	wp_enqueue_style('easy-fancybox.css', plugins_url(FANCYBOX_SUBDIR.'/easy-fancybox.css.php', __FILE__), false, FANCYBOX_VERSION, 'screen');
-
 }
 
 // Hack to fix missing wmode in (auto)embed code based on Crantea Mihaita's work-around on
@@ -384,8 +385,8 @@ if(!function_exists('add_video_wmode_opaque')) {
 // HOOKS //
 
 add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
-
-add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue', 999);
+add_action('wp_enqueue_styles', 'easy_fancybox_enqueue_styles', 999);
+add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
 add_action('wp_head', 'easy_fancybox');
 
 add_action('admin_init','easy_fancybox_admin_init');
