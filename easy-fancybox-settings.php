@@ -268,7 +268,7 @@ function easy_fancybox_settings(){
 						'default' => '',
 					),
 				'speedOut' => array (
-						'id' => 'fancybox_speedIn',
+						'id' => 'fancybox_speedOut',
 						'title' => __('Closing speed','easy-fancybox'),
 						'label_for' => 'fancybox_speedOut',
 						'input' => 'text',

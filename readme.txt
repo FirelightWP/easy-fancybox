@@ -268,10 +268,13 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Upgrade Notice ==
 
-= 1.3.4.8 =
-PDF bugfix. Improved auto-enable and auto-gallery settings and a Spotlight effect!
+= 1.3.4.9 =
+Opening speed bugfix.
 
 == Changelog ==
+
+= 1.3.4.9 =
+* BUGFIX: Opening speed
 
 = 1.3.4.8 =
 * NEW: Advanced option: Gallery auto-rotation
