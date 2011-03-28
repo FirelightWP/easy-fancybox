@@ -10,6 +10,7 @@ Author URI: http://4visions.nl/
 
 // DEF
 
+define( 'EASY_FANCYBOX_VERSION', '1.3.4.9' );
 define( 'FANCYBOX_VERSION', '1.3.4' );
 define( 'MOUSEWHEEL_VERSION', '3.0.4' );
 define( 'EASING_VERSION', '1.3' );
@@ -36,7 +37,7 @@ function easy_fancybox() {
 	$easy_fancybox_array = easy_fancybox_settings();
 	
 	echo '
-<!-- Easy FancyBox plugin for WordPress using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->';
+<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . 'plugin for WordPress using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->';
 
 	// check for any enabled sections
 	$do_fancybox = false;
@@ -176,7 +177,7 @@ $(\'a['.$value['options']['autoAttributeAlt']['selector'].']\')';
 		}
 		
 		/*
-		 * Append .fancybox() routine
+		 * Append .fancybox() function
 		 */
 		$more=0;
 		$trigger='';
@@ -385,7 +386,7 @@ if(!function_exists('add_video_wmode_opaque')) {
 // HOOKS //
 
 add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
-add_action('wp_enqueue_styles', 'easy_fancybox_enqueue_styles', 999);
+add_action('wp_print_styles', 'easy_fancybox_enqueue_styles', 999);
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
 add_action('wp_head', 'easy_fancybox');
 

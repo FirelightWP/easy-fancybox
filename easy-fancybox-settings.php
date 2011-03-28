@@ -354,7 +354,7 @@ function easy_fancybox_settings(){
 					),*/
 				'class' => array (
 						'hide' => true,
-						'default' => 'fancybox'
+						'default' => 'fancybox, area.fancybox'
 					)
 				)
 			),
