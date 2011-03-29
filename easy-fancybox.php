@@ -179,13 +179,22 @@ $(\'a['.$value['options']['autoAttributeAlt']['selector'].']\')';
 		/*
 		 * Append .fancybox() function
 		 */
-		$more=0;
 		$trigger='';
 		if( $key == $autoClick )
 			$trigger = '.filter(\':first\').trigger(\'click\')';
 
 		echo '
-$(\'a.'.$value['options']['class']['default'].'\').fancybox( $.extend({}, fb_opts, {';
+$(\'';
+		$tags = array_filter( explode( ',' , $value['options']['tag']['default'] ));
+		$more=0;
+		foreach ($tags as $_tag) {
+			if ($more>0)
+				echo ',';
+			echo $_tag.'.'.$value['options']['class']['default'];
+			$more++;
+		}
+		echo '\').fancybox( $.extend({}, fb_opts, {';
+		$more=0;
 		foreach ($value['options'] as $_key => $_values) {
 			$parm = ($_values['id']) ? get_option($_values['id'], $_values['default']) : $_values['default'];
 			$parm = ('checkbox'==$_values['input'] && ''==$parm) ? '0' : $parm;
@@ -322,6 +331,14 @@ function easy_fancybox_admin_init(){
 function easy_fancybox_enqueue_scripts() {
 	$easy_fancybox_array = easy_fancybox_settings();
 	
+	// load jquery from Google API
+	//if (!is_admin()) {
+	//	wp_deregister_script('jquery');
+	//	wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', array(), '');
+	//	wp_enqueue_script('jquery');
+	//}
+	// better yet: get Use Google Libraries plugin
+
 	// check for any enabled sections plus the need for easing script
 	$do_fancybox = false;
 	$easing = false;

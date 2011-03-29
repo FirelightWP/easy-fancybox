@@ -352,9 +352,13 @@ function easy_fancybox_settings(){
 						'noquotes' => true,
 						'default' => 'function() { window.clearTimeout(fb_timeout); }'
 					),*/
+				'tag' => array (
+						'hide' => true,
+						'default' => 'a, area'
+					),
 				'class' => array (
 						'hide' => true,
-						'default' => 'fancybox, area.fancybox'
+						'default' => 'fancybox'
 					)
 				)
 			),
@@ -377,6 +381,10 @@ function easy_fancybox_settings(){
 						'default' => '',
 						'selector' => 'href$=".pdf"',
 						'description' => __('Auto-detect','easy-fancybox')
+					),
+				'tag' => array (
+						'hide' => true,
+						'default' => 'a'
 					),
 				'class' => array (
 						'hide' => true,
@@ -496,6 +504,10 @@ function easy_fancybox_settings(){
 						'default' => '',
 						'selector' => 'href$=".swf"',
 						'description' => __('Auto-detect','easy-fancybox')
+					),
+				'tag' => array (
+						'hide' => true,
+						'default' => 'a'
 					),
 				'class' => array (
 						'hide' => true,
@@ -617,6 +629,10 @@ function easy_fancybox_settings(){
 						//'href-replace' => "return attr.replace(new RegExp('youtu.be', 'i'), 'www.youtube.com/v')",
 						'description' => __('Auto-detect Short links','easy-fancybox')
 					),
+				'tag' => array (
+						'hide' => true,
+						'default' => 'a'
+					),
 				'class' => array (
 						'hide' => true,
 						'default' => 'fancybox-youtube'
@@ -728,6 +744,10 @@ function easy_fancybox_settings(){
 						'selector' => 'href*="vimeo.com/"',
 						//'href-replace' => "return attr.replace(new RegExp('/([0-9])', 'i'), '/moogaloop.swf?clip_id=$1')",
 						'description' => __('Auto-detect','easy-fancybox')
+					),
+				'tag' => array (
+						'hide' => true,
+						'default' => 'a'
 					),
 				'class' => array (
 						'hide' => true,
@@ -858,6 +878,10 @@ function easy_fancybox_settings(){
 						'selector' => 'href*="dailymotion.com/"',
 						//'href-replace' => "return attr.replace(new RegExp('/video/', 'i'), '/swf/')",
 						'description' => __('Auto-detect','easy-fancybox')
+					),
+				'tag' => array (
+						'hide' => true,
+						'default' => 'a'
 					),
 				'class' => array (
 						'hide' => true,
@@ -1005,6 +1029,10 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 						'hide' => true,
 						'default' => '',
 						'description' => '<strong>' . __('Enable FancyBox for','easy-fancybox') . ' ' . __('iFrames','easy-fancybox') . '</strong>' 
+					),
+				'tag' => array (
+						'hide' => true,
+						'default' => 'a'
 					),
 				'class' => array (
 						'hide' => true,

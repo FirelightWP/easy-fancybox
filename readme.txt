@@ -12,8 +12,9 @@ Easily enable the FancyBox 1.3.4 jQuery extension on just about all media links.
 
 Easy FancyBox-in-a-Box for just about all media links gives you a flexible and aesthetic media lightbox solution for your website. Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3.0 Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the plugins options.
 
-It supports:
-- images (.jpg/.gif/.png and others) _and_ WordPress Galleries 
+**Supports:**
+- images (.jpg/.gif/.png and others) _and_ image maps
+- WordPress Galleries 
 - PDF and SWF (Flash) files
 - movie sites like **Youtube**, **Vimeo** _and_ **Dailmotion**
 - hidden inline content
@@ -25,6 +26,9 @@ See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/
 See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay. Subscribe to [4Visions](http://4visions.nl/rss/) for tips on how to get a high degree of control over what will be shown in a FancyBox overlay on your website.
 
 Visit [FancyBox](http://fancybox.net/) for more information, examples and the FancyBox Support Forum. Please consider a DONATION for continued development of the FancyBox project.
+
+**Recommended:**
+- For increased performance, simply install and activate the plugin [Use Google Libraries](http://wordpress.org/extend/plugins/use-google-libraries/) to load jQuery from Googles CDN.
 
 = Translations =
 
@@ -274,6 +278,7 @@ Opening speed bugfix.
 == Changelog ==
 
 = 1.3.4.9 =
+* NEW: Image map AREA support
 * BUGFIX: Opening speed
 
 = 1.3.4.8 =
