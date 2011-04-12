@@ -3,7 +3,7 @@
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content. Happy with it? Please leave me a small <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e4&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a></strong> for development and support on this plugin and please consider a <strong><a href="http://fancybox.net/">DONATION to the FancyBox project</a></strong>.
-Version: 1.3.4.8.9
+Version: 1.3.4.8.93
 Author: RavanH
 Author URI: http://4visions.nl/
 */
