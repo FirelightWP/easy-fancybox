@@ -27,7 +27,7 @@
   include( './fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css' );
 
   /* extra styles */
-  echo '.fancybox-hidden{display:none}';
+  //echo '';
 
   ob_end_flush();
 ?>
