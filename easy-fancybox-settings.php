@@ -882,7 +882,7 @@ function easy_fancybox_settings(){
 					),*/
 				'onStart' => array ( 
 						'noquotes' => true,
-						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'http://(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\', \'i\'), \'http://player.vimeo.com/video/$2?$3\') }'
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'http://(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\', \'i\'), \'http://player.vimeo.com/video/$2?$4\') }'
 					)
 				)
 			),
@@ -977,7 +977,7 @@ function easy_fancybox_settings(){
 					),*/
 				'onStart' => array ( 
 						'noquotes' => true,
-						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/video/([a-z0-9]+)_.*(&|\\\?)?(.*)\', \'i\'), \'/embed/video/$1?theme=none&wmode=opaque&$3\') }'
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/video/([a-z0-9_]+)(&|\\\?)?(.*)\', \'i\'), \'/embed/video/$1?theme=none&wmode=opaque&$3\') }'
 					)
 				)
 			),
