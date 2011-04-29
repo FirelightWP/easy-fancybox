@@ -253,46 +253,6 @@ function easy_fancybox_settings(){
 							'default' => '1',
 							'description' => __('Show the gallery navigation arrows','easy-fancybox')
 							),
-						'titleShow' => array (
-							'id' => 'fancybox_titleShow',
-							'input' => 'checkbox',
-							'default' => '1',
-							'description' => __('Show title','easy-fancybox')
-							),
-						'titlePosition' => array (
-							'id' => 'fancybox_titlePosition',
-							'title' => __('Title Position','easy-fancybox'),
-							'label_for' => 'fancybox_titlePosition',
-							'input' => 'select',
-							'options' => array(
-								'' => __('Float','easy-fancybox'), // same as 'float'
-								'outside' => __('Outside','easy-fancybox'),
-								'inside' => __('Inside','easy-fancybox'),
-								'over' => __('Overlay','easy-fancybox')
-								),
-							'default' => 'over',
-							'description' => ' '
-							),
-						'titleFromAlt' => array (
-							'id' => 'fancybox_titleFromAlt',
-							'input' => 'checkbox',
-							'default' => '1',
-							'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
-							),
-/*						'titleFormat' => array (
-							'id' => 'fancybox_titleFormat',
-							'title' => __('Title format','easy-fancybox'),
-							'label_for' => 'fancybox_titleFormat',
-							'input' => 'select',
-							'options' => array(
-								'' => __('Default FancyBox style','easy-fancybox'),
-								'function(title, currentArray, currentIndex, currentOpts) { return \'<div style="font-face:Arial,sans-serif;text-align:left"><span style="float:right;font-size:large"><a href="javascript:;" onclick="$.fancybox.close();">' . __('Close','easy-fancybox') . ' <img src="' . plugins_url(FANCYBOX_SUBDIR, __FILE__) . '/fancybox/fancy_close.png" /></a></span>\' + (title && title.length ? \'<b style="display:block;margin-right:80px">\' + title + \'</b>\' : \'\' ) + \'' . __('Image','easy-fancybox') . '\' + (currentIndex + 1) + \' ' . __('of','easy-fancybox') . ' \' + currentArray.length + \'</div>\';
-}' => __('Mimic Lightbox2 style','easy-fancybox'),
-								),
-							'noquotes' => true,
-							'default' => '',
-							'description' =>  '<br />' . __('To improve Lightbox2 style disable Show close button and set titleposition to Inside or Outside','easy-fancybox') . '<br />'
-							),*/
 						'p4' => array (
 							'hide' => true,
 							'description' => '<br />'
@@ -379,7 +339,7 @@ function easy_fancybox_settings(){
 						'input' => 'select',
 						'options' => array(
 								'' => __('All image links', 'easy-fancybox'),
-								'1' => __('Limited to sections (below)','easy-fancybox')
+								'1' => __('Limited to Sections (below)','easy-fancybox')
 							),
 						'default' => '',
 						'description' => '<em>' . __('Default:','easy-fancybox')  . ' ' . 'All image links' . '</em><br />'
@@ -392,21 +352,21 @@ function easy_fancybox_settings(){
 						'input' => 'select',
 						'options' => array(
 								'' => __('Disabled'),
-								'1' => __('One gallery per section (below)','easy-fancybox'),
+								'1' => __('Galleries per Section (below)','easy-fancybox') . '*',
 								'2' => __('All in one gallery','easy-fancybox')
 							),
-						'default' => '1',
-						'description' => '<em>' . __('Default:','easy-fancybox')  . ' ' . 'One gallery per group' . '</em><br />' .  __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
+						'default' => '2',
+						'description' => '<br />' .  __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br />'
 					),
 				'autoSelector' => array (
 						'id' => 'fancybox_autoGallerySelector',
-						'title' => __('Sections','easy-fancybox'),
+						'title' => __('Section(s)','easy-fancybox'),
 						'label_for' => 'fancybox_autoGallerySelector',
 						'hide' => true,
 						'input' => 'text',
 						'class' => 'regular-text',
 						'default' => 'article, div.hentry',
-						'description' => ' <em>' . __('Default:','easy-fancybox') . ' ' . 'article, div.hentry' . '</em><br />' . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you want to include images in a sidebar with ID primary, add ", div#primary" or "aside#primary" for html5 themes.','easy-fancybox') . '<br /><br />'
+						'description' => ' <em>' . __('Default:','easy-fancybox') . ' ' . 'article, div.hentry' . '</em><br />' . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . '<br />' . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you want to include images in a sidebar with ID primary, add ", div#primary" or "aside#primary" for html5 themes.','easy-fancybox') . '<br /><br />'
 					),
 /*				'onStart' => array (
 						'noquotes' => true,
@@ -470,8 +430,48 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_opacity',
 					'input' => 'checkbox',
 					'default' => '',
-					'description' => __('Transparency fade during elastic transition.','easy-fancybox')
+					'description' => __('Transparency fade during elastic transition.','easy-fancybox') . '<br />'
 					),
+				'titleShow' => array (
+					'id' => 'fancybox_titleShow',
+					'input' => 'checkbox',
+					'default' => '1',
+					'description' => __('Show title','easy-fancybox')
+					),
+				'titlePosition' => array (
+					'id' => 'fancybox_titlePosition',
+					'title' => __('Title Position','easy-fancybox'),
+					'label_for' => 'fancybox_titlePosition',
+					'input' => 'select',
+					'options' => array(
+						'' => __('Float','easy-fancybox'), // same as 'float'
+						'outside' => __('Outside','easy-fancybox'),
+						'inside' => __('Inside','easy-fancybox'),
+						'over' => __('Overlay','easy-fancybox')
+						),
+					'default' => 'over',
+					'description' => ' '
+					),
+				'titleFromAlt' => array (
+					'id' => 'fancybox_titleFromAlt',
+					'input' => 'checkbox',
+					'default' => '1',
+					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
+					),
+/*						'titleFormat' => array (
+					'id' => 'fancybox_titleFormat',
+					'title' => __('Title format','easy-fancybox'),
+					'label_for' => 'fancybox_titleFormat',
+					'input' => 'select',
+					'options' => array(
+						'' => __('Default FancyBox style','easy-fancybox'),
+						'function(title, currentArray, currentIndex, currentOpts) { return \'<div style="font-face:Arial,sans-serif;text-align:left"><span style="float:right;font-size:large"><a href="javascript:;" onclick="$.fancybox.close();">' . __('Close','easy-fancybox') . ' <img src="' . plugins_url(FANCYBOX_SUBDIR, __FILE__) . '/fancybox/fancy_close.png" /></a></span>\' + (title && title.length ? \'<b style="display:block;margin-right:80px">\' + title + \'</b>\' : \'\' ) + \'' . __('Image','easy-fancybox') . '\' + (currentIndex + 1) + \' ' . __('of','easy-fancybox') . ' \' + currentArray.length + \'</div>\';
+}' => __('Mimic Lightbox2 style','easy-fancybox'),
+						),
+					'noquotes' => true,
+					'default' => '',
+					'description' =>  '<br />' . __('To improve Lightbox2 style disable Show close button and set titleposition to Inside or Outside','easy-fancybox') . '<br />'
+					),*/
 				'tag' => array (
 						'hide' => true,
 						'default' => 'a, area'
@@ -594,9 +594,13 @@ function easy_fancybox_settings(){
 				'onStart' => array ( 
 						'noquotes' => true,
 //						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
-						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" type="application/pdf" height="100%" width="100%"><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" /><a href="\' + selectedArray[selectedIndex].href + \'" style="display:block;font-size:18px;height:20px;position:absolute;top:50%;margin:-10px auto 0 auto">\' + $(selectedArray[selectedIndex]).html() + \'</a></object>\' }'
-					)
-				)
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" type="application/pdf" height="100%" width="100%"><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" /><embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" type="application/pdf" height="100%" width="100%" /><a href="\' + selectedArray[selectedIndex].href + \'" style="display:block;font-size:18px;height:20px;position:absolute;top:50%;margin:-10px auto 0 auto">\' + $(selectedArray[selectedIndex]).html() + \'</a></object>\' }'
+					),
+/*				'onClosed' => array ( 
+						'noquotes' => true,
+						'default' => 'function() { $("#fancybox-content").empty(); }'
+					)*/
+ 				)
 			),
 
 		'SWF' => array(

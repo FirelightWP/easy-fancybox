@@ -14,9 +14,12 @@ define( 'EASY_FANCYBOX_VERSION', '1.3.4.9' );
 define( 'FANCYBOX_VERSION', '1.3.4' );
 define( 'MOUSEWHEEL_VERSION', '3.0.4' );
 define( 'EASING_VERSION', '1.3' );
-// check if easy-fancybox.php is moved one dir up like in WPMU's /mu-plugins/
-// NOTE: don't use WP_PLUGIN_URL to avoid problems when installed in /mu-plugins/
-if(file_exists(dirname(__FILE__).'/easy-fancybox'))
+
+// Check if easy-fancybox.php is moved one dir up like in WPMU's /mu-plugins/
+// or if plugins_url() returns the main plugins dir location as it does on 
+// a Debian repository install.
+// NOTE: WP_PLUGIN_URL causes problems when installed in /mu-plugins/
+if(!stristr(plugins_url('', __FILE__),'/easy-fancybox'))
 	define( 'FANCYBOX_SUBDIR', '/easy-fancybox' );
 else
 	define( 'FANCYBOX_SUBDIR', '' );
@@ -38,7 +41,7 @@ function easy_fancybox() {
 	global $easy_fancybox_array;
 	
 	echo '
-<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . 'plugin for WordPress using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->';
+<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . ' using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->';
 
 	// check for any enabled sections
 	$do_fancybox = false;
@@ -380,6 +383,10 @@ function easy_fancybox_enqueue_scripts() {
 		return;
 
 	// ENQUEUE
+	// first get rid of previously registered variants of jquery.fancybox by other plugins or theme
+	wp_deregister_script('jquery.fancybox');
+	wp_deregister_script('fancybox');
+	wp_deregister_script('jquery-fancybox');
 	// register main fancybox script
 	wp_enqueue_script('jquery.fancybox', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION);
 	
@@ -389,7 +396,7 @@ function easy_fancybox_enqueue_scripts() {
 		&& 
 		( '' != get_option($easy_fancybox_array['IMG']['options']['easingIn']['id'],$easy_fancybox_array['IMG']['options']['easingIn']['default']) || 
 		'' != get_option($easy_fancybox_array['IMG']['options']['easingOut']['id'],$easy_fancybox_array['IMG']['options']['easingOut']['default']) ) ) {
-		// first get rid of previously registered variants of jquery.easing (by other plugins)
+		// first get rid of previously registered variants of jquery.easing by other plugins or theme
 		wp_deregister_script('jquery.easing');
 		wp_deregister_script('jqueryeasing');
 		wp_deregister_script('jquery-easing');
