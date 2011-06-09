@@ -71,6 +71,8 @@ The plugin works best from the **/mu-plugins/** folder where it runs quietly in 
 
 == Frequently Asked Questions ==
 
+= BASIC=
+
 = What's FancyBox? =
 
 Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples. 
@@ -85,6 +87,22 @@ The same version as this plugin has. I aim to keep close pace to FancyBox upgrad
 
 There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/) ...
 
+
+= TROUBLE SHOOTING =
+
+= Help! It does not work... =
+
+If, after activation, your images do not open in a FancyBox overlay, there are several possible reasons. Some are easily solved, others are more difficult. Follow these basic checks to make sure everything is in place:
+
+1. Make sure that thumbnail images are linked *directly* to their larger counterpart, not to a dynamic WordPress page that includes the larger image. This means when you insert an image in your posts or pages, you need to select `File URL` at the **Link** option instead of `Page URL`. You'll have to manually edit your old posts if you have always inserted images with `Page URL` before, FancyBox cannot do this for you.
+1. Make sure you have all the needed media and their *Auto-detect* options activated on your **Settings > Media** admin page. If you are using images in other formats that JPG, GIF or PNG, you need to add the extensions to the Auto-detect field for Images. Please note: The image file names must actaully *end* with that extension! This means that if you have an image file that (for example) has *no* extension (does not end with .jpg or any other) even if is in JPEG compressed format, the FancyBox will not be able to detect is as an image. You will need to manually give those links the class `fancybox` to trigger FancyBox.
+1. Make sure your theme is capable of placing the needed javascript and css in the page header. Open any page on your site and view the source code by right-clicking on an empty section and selecting 'View source...' (or similar) to see the page source. There you will need to check of there are any references to javascript files like `jquery.fancybox-x.x.x.pack.js?ver=x.x.x` in the `<head>` section. There should also be a `easy-fancybox.css.php?ver=x.x.x` and some javascript that starts with `<!-- Easy FancyBox 1.3.4.9 using FancyBox 1.3.4 - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->`... If it's not there, your theme is really out of date. Consider switching to a new theme fast!
+1. Check if your theme wraps post/page content in a div with class `hentry`. If it doesn't, you might need to edit the option `Section(s)` on **Settings > Media** to reflect the class (or ID) name of the div that holds post/page content.
+
+If you still do not get to see your images in FancyBox, ask on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://4visions.nl/en/wordpress-plugins/easy-fancybox/)
+
+
+= ADVANCED =
 
 = Will a WordPress generated gallery be displayed in a FancyBox overlay? =
 
@@ -266,6 +284,11 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 - In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature. Since version 1.3.4, this has been resolved.
 - Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated Auto-embeds. Since version 1.3.4.5, the missing wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' (best) or 'transparent' (only when you need transparency) for your embedded content.
 - When using WP-Minify, the javascript files like `fancybox/jquery.fancybox-X.X.X.pack.js` and others need to be excluded from minification.
+
+= Trouble Shooting =
+
+See the FAQ section on trouble shooting.
+
 
 == Screenshots ==
 
