@@ -57,7 +57,7 @@ Follow these steps:
 
  3. Activate the plugin on the Plug-ins page.
 
-Done! Check your sparkling new FancyBoxed images :)
+Done! By default, any images that are linked to directly (not to a WordPress page) from within your posts and pages, should now be opening in a FancyBox overlay :)
 
 Not happy with the default settings? Check out the new options under **Settings > Media**.
 
@@ -276,16 +276,15 @@ If you are on an older version of WordPress or if you cannot use WP's Menus, you
 Yes. Designed to work with **Network Activate** and does not require manual activation on each site in your network. You can even install it in mu-plugins: upload the complete /easy-fancybox/ directory to /wp-content/mu-plugins/ and move the file easy-fancybox.php one dir up.
 
 
-== Other Notes ==
 
-= Known Issues =
+== Known Issues ==
 
 - There is a conflict between the WP Slimstat plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
 - In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature. Since version 1.3.4, this has been resolved.
 - Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated Auto-embeds. Since version 1.3.4.5, the missing wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' (best) or 'transparent' (only when you need transparency) for your embedded content.
 - When using WP-Minify, the javascript files like `fancybox/jquery.fancybox-X.X.X.pack.js` and others need to be excluded from minification.
 
-= Trouble Shooting =
+== Trouble Shooting ==
 
 See the FAQ section on trouble shooting.
 

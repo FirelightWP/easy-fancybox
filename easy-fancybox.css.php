@@ -24,7 +24,7 @@
 
   /* the css file */
   $version = preg_match( '`^\d{1,2}\.\d{1,2}(\.\d{1,2})?$`' , $_GET['ver'] ) ? $_GET['ver'] : '';
-  include( './fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css' );
+  include( dirname(__FILE__) . '/fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css' );
 
   /* extra styles */
   //echo '.fancybox-hidden{display:none}';
