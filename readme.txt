@@ -13,6 +13,7 @@ Easily enable the FancyBox 1.3.4 jQuery extension on just about all media links.
 Easy FancyBox-in-a-Box for just about all media links gives you a flexible and aesthetic media lightbox solution for your website. Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3.0 Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the plugins options.
 
 It supports:
+
 - images (.jpg/.gif/.png and others) _and_ WordPress Galleries 
 - PDF and SWF (Flash) files
 - movie sites like **Youtube**, **Vimeo** _and_ **Dailmotion**
