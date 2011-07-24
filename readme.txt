@@ -314,7 +314,7 @@ See the FAQ section on trouble shooting.
 == Upgrade Notice ==
 
 = 1.3.4.9 =
-Opening speed bugfix. New iFrame/HTML5 embed code for Youtube, Vimeo and Dailymotion. Frame color and opacity options. Media options simplification.
+Metadata and image map support. Opening speed bugfix. New iFrame/HTML5 embed code for Youtube, Vimeo and Dailymotion. Frame color and opacity options. Media options simplification.
 
 == Changelog ==
 
