@@ -615,7 +615,7 @@ function easy_fancybox_settings(){
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '1',
-						'selector' => 'href$=".swf"',
+						'selector' => 'href*=".swf"',
 						'description' => __('Auto-detect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (

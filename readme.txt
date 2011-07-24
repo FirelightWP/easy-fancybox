@@ -297,6 +297,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 = Other =
 
+- When using multiple links on the same page to similar content, automatically or manually using the same class (for example `fancybox-youtube`), metadata on the second and following links (for example `{width:200,height:300}` in the class or data attribute) will be ignored.
 - When showing an iframe as inline content in FancyBox, the iframe will become blank after opening and closing it. The solution is to link directly to the iframe source and use `class="fancybox-iframe"` instead.
 - Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated embed code. Since version 1.3.4.5, the missing wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' (best performance) or 'transparent' (only when you need transparency) for your embedded content.
 
@@ -313,10 +314,14 @@ See the FAQ section on trouble shooting.
 
 == Upgrade Notice ==
 
-= 1.3.4.9 =
-Metadata and image map support. Opening speed bugfix. New iFrame/HTML5 embed code for Youtube, Vimeo and Dailymotion. Frame color and opacity options. Media options simplification.
+= 1.3.4.10 =
+Speed improvements: stylesheet caching, metadata.js compression
 
 == Changelog ==
+
+= 1.3.4.10 =
+* Dynamic stylesheet response headers to allow browser caching
+* Minified version of jquery.metadata.js
 
 = 1.3.4.9 =
 * NEW: jQuery Metadata support

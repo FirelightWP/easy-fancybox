@@ -421,7 +421,7 @@ function easy_fancybox_enqueue_scripts() {
 	wp_deregister_script('jquery-metadata');
 	wp_deregister_script('metadata');
 	// then register our version
-	wp_enqueue_script('jquery.metadata',plugins_url(FANCYBOX_SUBDIR.'/jquery.metadata.js', __FILE__), array('jquery'), METADATA_VERSION, true);
+	wp_enqueue_script('jquery.metadata',plugins_url(FANCYBOX_SUBDIR.'/jquery.metadata.pack.js', __FILE__), array('jquery'), METADATA_VERSION, true);
 }
 	
 function easy_fancybox_enqueue_styles() {
