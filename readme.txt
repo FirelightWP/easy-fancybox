@@ -3,8 +3,8 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
 Requires at least: 2.7
-Tested up to: 3.1
-Stable tag: 1.3.4.8
+Tested up to: 3.2
+Stable tag: 1.3.4.9
 
 Easily enable the FancyBox 1.3.4 jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -75,7 +75,7 @@ The plugin works best from the **/mu-plugins/** folder where it runs quietly in 
 
 = What's FancyBox? =
 
-Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples. 
+Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples.&nbsp;
 
 
 = Which version of FancyBox does this plugin use? =
@@ -109,7 +109,7 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
 
 
-= Can I make gallery images automatically rotate? =
+= Can I make a slideshow from my gallery? =
 
 Yes. There is an Advanced option called "Gallery Auto-rotation" for that.
 
@@ -119,7 +119,7 @@ Yes. There is an Advanced option called "Gallery Auto-rotation" for that.
 Yes. All links with class **nofancybox** that would normally get auto-enabled, will be excluded from opening in a FancyBox overlay.
 
 `<a href="url/to/fullimg.jpg" class="nofancybox"><img src="url/to/thumbnail.jpg" /></a>`
- 
+&nbsp;
 
 = Will a NextGen gallery be displayed in a FancyBox overlay ? =
 
@@ -127,15 +127,15 @@ It *can* be. Switch off any gallery overlay scripts in NextGen and either use th
 `
 class="fancybox" rel="%GALLERY_NAME%"
 `
- 
+&nbsp;
 
 = Can I use ONE thumbnail to open a complete gallery ? =
 
-It can be done manually (using the internal WordPress gallery feature, or not) _or_ in combination with NextGen Gallery. 
+It can be done manually (using the internal WordPress gallery feature, or not) _or_ in combination with NextGen Gallery.&nbsp;
 
 **Manual**
 
-**A.** Open your post for editing in HTML mode and insert the first image thumbnail in your post content (linking to the images file, not page) to serve as the gallery thumbnail. 
+**A.** Open your post for editing in HTML mode and insert the first image thumbnail in your post content (linking to the images file, not page) to serve as the gallery thumbnail.&nbsp;
 
 **B.** Place the following code to start a hidden div containing all the other images that should only be visible in FancyBox:
 `
@@ -151,7 +151,7 @@ It can be done manually (using the internal WordPress gallery feature, or not) _
 
 **With NextGEN Gallery**
 
-You can choose between two shortcodes to show a gallery that (1) limits images per gallery using the shortcode `[nggallery id=x]` or (2) per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`. 
+You can choose between two shortcodes to show a gallery that (1) limits images per gallery using the shortcode `[nggallery id=x]` or (2) per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`.&nbsp;
 
 General steps:
 
@@ -169,11 +169,11 @@ General steps:
 `
 .ngg-navigation{display:none}
 `
- 
+&nbsp;
 
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
-Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content. 
+Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content.&nbsp;
 
 NOTE: The difference between these two classes ('-' or space) is in size of the overlay window. Try it out and use the one that works best for you :)
 
@@ -183,7 +183,7 @@ NOTE: The difference between these two classes ('-' or space) is in size of the 
 Yes. Just place a link _with the URL ending in .pdf_ to your Portable Document file in the page content.
 
 If you do'nt have *Auto-detect* checked under **PDF** on Settings > Media admin page, you will need to add `class="fancybox-pdf"` (to force pdf content recognition) to the link to enable FancyBox for it.
- 
+&nbsp;
 
 = Can I play SWF files in a FancyBox overlay? =
 
@@ -191,6 +191,15 @@ Yes. Just place a link _with the URL ending in .swf_ to your Flash file in the p
 
 If you do'nt have *Auto-detect* checked under **SWF** on Settings > Media admin page, you will need to add either `class="fancybox"` or `class="fancybox-swf"` (to force swf content recognition) to the link to enable FancyBox for it.
 
+
+= How do I show content with different sizes? =
+
+FancyBox tries to detect the size of the conten automatically but if it can not find a size, it will default to the settings for that particular content type as set on the Settings > Media page. You can manually override this by defining the width and height wrapped in curly brases in the class attribute of the link itself. For example, a Flash movie with different size:
+
+`
+<a class="fancybox-swf {width:1024,height:675}" href="link-to-your-swf"></a>
+`
+&nbsp;
 
 = Can I play YouTube, Dailymotion and Vimeo movies in a FancyBox overlay? =
 
@@ -204,7 +213,7 @@ Both YouTube and Vimeo movies can be made to auto-start when they are opened by 
 `
 <a href="http://youtu.be/N_tONWXYviM?hd=1&fs=1&autoplay=1">text/thumbnail</a>
 `
- 
+&nbsp;
 
 = I want that 'Show in full-screen' button on my YouTube movies =
 
@@ -254,14 +263,14 @@ NOTE: The wrapping divs ID *must* be unique and it must correspond with the link
 
 Yes. A link that has the ID **fancybox-auto** (Note: there can be only ONE link like that on a page!) will be triggered automatically on page load.
 
-Use the instructions above but this time give the link also `id="fancybox-auto"` and remove the anchor text to hide it. Now the hidden div content will pop up automatically when a visitor opens the page.
+Use the instructions above for inline content but this time give the link also `id="fancybox-auto"` (leave the class too) and remove the anchor text to hide it. Now the hidden div content will pop up automatically when a visitor opens the page.
 
 Same can be done with an image, flash movie, PDF or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
 
 
 = Can I make a menu item open in a FancyBox overlay ? =
 
-Yes. But it depends on you theme what you need to do to make it work. If you are on WordPress 3+ and your theme supports the new internal Custom Menu feature or if you are using a custom menu in a sidebar widget, it's easy: 
+Yes. But it depends on you theme what you need to do to make it work. If you are on WordPress 3+ and your theme supports the new internal Custom Menu feature or if you are using a custom menu in a sidebar widget, it's easy:&nbsp;
 
 1. Go to Settings > Media and enable FancyBox iFrame support.
 2. Go to Appearance > Menus and open the little tab "Screen Options" in the top-right corner.
@@ -279,10 +288,17 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Known Issues ==
 
-- There is a conflict between the WP Slimstat plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
-- In FancyBox 1.3.3 there is a problem with image stretching in the Google Chrome browser. This is worked around in Easy FancyBox 1.3.3.4.2 by disabling the autoDimensions feature. Since version 1.3.4, this has been resolved.
-- Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated Auto-embeds. Since version 1.3.4.5, the missing wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' (best) or 'transparent' (only when you need transparency) for your embedded content.
-- When using WP-Minify, the javascript files like `fancybox/jquery.fancybox-X.X.X.pack.js` and others need to be excluded from minification.
+= Plugin conflicts =
+
+- By default **Google Analytics for WordPress** converts links like `href="#anyID"` to `href="http://yoursite.url/page/#anyID"`, disabling inline content shown in FancyBox.
+- A conflict with the **WordPress Amazon Associate** plugin as been reported. A script provided by Amazon and the FancyBox script are incompatible. Disabling _Product Preview_ in the **WP - Amazon > Settings** page should work around the issue.
+- There is a conflict between the **WP Slimstat** plugin and the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
+- When using **WP-Minify**, the javascript files like `fancybox/jquery.fancybox-X.X.X.pack.js` and others need to be excluded from minification.
+
+= Other =
+
+- When showing an iframe as inline content in FancyBox, the iframe will become blank after opening and closing it. The solution is to link directly to the iframe source and use `class="fancybox-iframe"` instead.
+- Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated embed code. Since version 1.3.4.5, the missing wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' (best performance) or 'transparent' (only when you need transparency) for your embedded content.
 
 == Trouble Shooting ==
 
@@ -303,9 +319,11 @@ Opening speed bugfix. New iFrame/HTML5 embed code for Youtube, Vimeo and Dailymo
 == Changelog ==
 
 = 1.3.4.9 =
-* NEW: Image map AREA support
+* NEW: jQuery Metadata support
+* NEW: Image map AREA support for all content types
 * NEW: new iFrame/HTML5 embed code for YouTube, Vimeo and Dailymotion
 * NEW: fix WordPress Dailymotion auto-embed code missing wmode
+* Some changes to default settings
 * BUGFIX: Opening speed
 
 = 1.3.4.8 =
@@ -336,7 +354,7 @@ Opening speed bugfix. New iFrame/HTML5 embed code for Youtube, Vimeo and Dailymo
 = 1.3.3.4.2 =
 * BIGFIX: iframe width
 * BIGFIX: image overlay size in Google Chrome browser issue (FancyBox 1.3.3)
-* BIGFIX: fancybox-swf 
+* BIGFIX: fancybox-swf&nbsp;
 
 = 1.3.3.4 =
 * FancyBox script version 1.3.3 (2010/11/4 - http://fancybox.net/changelog/)

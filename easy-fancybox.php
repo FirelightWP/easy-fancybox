@@ -2,8 +2,9 @@
 /*
 Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
-Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content. Happy with it? Please leave me a small <strong><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&amp;item_number=1%2e3%2e4&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us">TIP</a></strong> for development and support on this plugin and please consider a <strong><a href="http://fancybox.net/">DONATION to the FancyBox project</a></strong>.
-Version: 1.3.4.9RC1
+Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
+Text Domain: easy-fancybox
+Version: 1.3.4.9
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -14,6 +15,7 @@ define( 'EASY_FANCYBOX_VERSION', '1.3.4.9' );
 define( 'FANCYBOX_VERSION', '1.3.4' );
 define( 'MOUSEWHEEL_VERSION', '3.0.4' );
 define( 'EASING_VERSION', '1.3' );
+define( 'METADATA_VERSION', '2.1' );
 
 // Check if easy-fancybox.php is moved one dir up like in WPMU's /mu-plugins/
 // or if plugins_url() returns the main plugins dir location as it does on 
@@ -177,7 +179,7 @@ fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).att
 		$autoAttributeAlt = get_option( $value['options']['autoAttributeAlt']['id'], $value['options']['autoAttributeAlt']['default'] );
 		if(!empty($autoAttributeAlt) && is_numeric($autoAttributeAlt)) {
 			echo '
-$(\'a['.$value['options']['autoAttributeAlt']['selector'].']\')';
+$(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
 			if ($value['options']['autoAttributeAlt']['href-replace'])
 				echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttributeAlt']['href-replace']. '})';
 			echo '.addClass(\''.$value['options']['class']['default'].'\');';
@@ -402,7 +404,7 @@ function easy_fancybox_enqueue_scripts() {
 		wp_deregister_script('jquery-easing');
 		wp_deregister_script('easing');
 		// then register our version
-		wp_enqueue_script('jquery.easing', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', __FILE__), array('jquery'), EASING_VERSION);
+		wp_enqueue_script('jquery.easing', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', __FILE__), array('jquery'), EASING_VERSION, true);
 	}
 	
 	// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
@@ -411,7 +413,15 @@ function easy_fancybox_enqueue_scripts() {
 	wp_deregister_script('jquery-mousewheel');
 	wp_deregister_script('mousewheel');
 	// then register our version
-	wp_enqueue_script('jquery.mousewheel', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.mousewheel-'.MOUSEWHEEL_VERSION.'.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION);
+	wp_enqueue_script('jquery.mousewheel', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.mousewheel-'.MOUSEWHEEL_VERSION.'.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
+	
+	// first get rid of previously registered variants of jquery.metadata (by other plugins)
+	wp_deregister_script('jquery.metadata');
+	wp_deregister_script('jquerymetadata');
+	wp_deregister_script('jquery-metadata');
+	wp_deregister_script('metadata');
+	// then register our version
+	wp_enqueue_script('jquery.metadata',plugins_url(FANCYBOX_SUBDIR.'/jquery.metadata.js', __FILE__), array('jquery'), METADATA_VERSION, true);
 }
 	
 function easy_fancybox_enqueue_styles() {
@@ -427,7 +437,7 @@ if(!function_exists('add_video_wmode_opaque')) {
 	if (strpos($html, "<embed src=" ) !== false) {
 		$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque" ', $html);
 		return $html;
-	} elseif(strpos($html, "<iframe src=" ) !== false) {
+	} elseif(strpos($html, "<iframe src=\"http://player..vimeo.com/video/" ) !== false) {
 		$html = str_replace('" width', '?theme=none&wmode=opaque" width', $html);
 		return $html;
 	} else {

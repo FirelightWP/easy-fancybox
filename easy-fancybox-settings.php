@@ -87,7 +87,7 @@ function easy_fancybox_settings(){
 								':not(:empty)' => __('Empty (hidden) links','easy-fancybox'),
 								':has(img)' => __('Without thumbnail image','easy-fancybox')
 								),
-							'default' => ':not(:empty)',
+							'default' => '',
 							'description' => '<br />' 
 							),
 						'autoClick' => array (
@@ -152,8 +152,8 @@ function easy_fancybox_settings(){
 						)
 					),
 				
-				'Frame' => array (
-					'title' => __('Frame','easy-fancybox'),
+				'Window' => array (
+					'title' => __('Window','easy-fancybox'),
 					'input' => 'multiple',
 					'hide' => true,
 					'options' => array(
@@ -339,7 +339,7 @@ function easy_fancybox_settings(){
 						'input' => 'select',
 						'options' => array(
 								'' => __('All image links', 'easy-fancybox'),
-								'1' => __('Limited to Sections (below)','easy-fancybox')
+								'1' => __('Links inside Section(s) only (below)','easy-fancybox')
 							),
 						'default' => '',
 						'description' => '<em>' . __('Default:','easy-fancybox')  . ' ' . 'All image links' . '</em><br />'
@@ -352,11 +352,11 @@ function easy_fancybox_settings(){
 						'input' => 'select',
 						'options' => array(
 								'' => __('Disabled'),
-								'1' => __('Galleries per Section (below)','easy-fancybox') . '*',
+								'1' => __('Galleries per Section (below)','easy-fancybox'),
 								'2' => __('All in one gallery','easy-fancybox')
 							),
 						'default' => '2',
-						'description' => '<br />' .  __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br />'
+						'description' => '<br />&nbsp; ' .  __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br />'
 					),
 				'autoSelector' => array (
 						'id' => 'fancybox_autoGallerySelector',
@@ -391,6 +391,7 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_easingIn',
 					'input' => 'select',
 					'options' => array(
+						'linear' => __('Linear','easy-fancybox'),
 						'' => __('Swing','easy-fancybox'),
 						'easeOutBack' => __('Back','easy-fancybox'),
 						'easeOutQuad' => __('Quad','easy-fancybox'),
@@ -418,13 +419,14 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_easingOut',
 					'input' => 'select',
 					'options' => array(
+						'linear' => __('Linear','easy-fancybox'),
 						'' => __('Swing','easy-fancybox'),
 						'easeInBack' => __('Back','easy-fancybox'),
 						'easeInQuad' => __('Quad','easy-fancybox'),
 						'easeInExpo' => __('Expo','easy-fancybox'),
 						),
 					'default' => 'easeInBack',
-					'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox') . '<br /><br />'
+					'description' => '<br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox') . '<br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
@@ -495,13 +497,13 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_autoAttributePDF',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '',
+						'default' => '1',
 						'selector' => 'href$=".pdf"',
 						'description' => __('Auto-detect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 						'hide' => true,
-						'default' => 'a'
+						'default' => 'a, area'
 					),
 				'class' => array (
 						'hide' => true,
@@ -527,16 +529,13 @@ function easy_fancybox_settings(){
 						'class' => 'small-text',
 						'default' => '90%'
 					),
-				'margin' => array (
-						'default' => '0'
-					),
 				'padding' => array (
 						'id' => 'fancybox_PDFpadding',
 						'title' => __('Border'),
 						'label_for' => 'fancybox_PDFpadding',
 						'input' => 'text',
 						'class' => 'small-text',
-						'default' => '0',
+						'default' => '10',
 						'description' => '<br /><br />'
 					),
 				'autoScale' => array (
@@ -565,7 +564,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 						'id' => 'fancybox_PDFtitleFromAlt',
 						'input' => 'checkbox',
-						'default' => '',
+						'default' => '1',
 						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 /*				'transitionOut' => array (
@@ -615,13 +614,13 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_autoAttributeSWF',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '',
+						'default' => '1',
 						'selector' => 'href$=".swf"',
 						'description' => __('Auto-detect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 						'hide' => true,
-						'default' => 'a'
+						'default' => 'a, area'
 					),
 				'class' => array (
 						'hide' => true,
@@ -684,7 +683,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 						'id' => 'fancybox_SWFtitleFromAlt',
 						'input' => 'checkbox',
-						'default' => '',
+						'default' => '1',
 						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 				'swf' => array (
@@ -706,7 +705,7 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_autoAttributeYoutube',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '',
+						'default' => '1',
 						'selector' => 'href*="youtube.com/"',
 						//'href-replace' => "return attr.replace(new RegExp('watch\\\?v=', 'i'), 'v/')",
 						'description' => __('Auto-detect','easy-fancybox')
@@ -715,14 +714,14 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_autoAttributeYoutubeShortURL',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '',
+						'default' => '1',
 						'selector' => 'href*="youtu.be/"',
 						//'href-replace' => "return attr.replace(new RegExp('youtu.be', 'i'), 'www.youtube.com/v')",
 						'description' => __('Auto-detect Short links','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 						'hide' => true,
-						'default' => 'a'
+						'default' => 'a, area'
 					),
 				'class' => array (
 						'hide' => true,
@@ -746,7 +745,7 @@ function easy_fancybox_settings(){
 						'label_for' => 'fancybox_YoutubeHeight',
 						'input' => 'text',
 						'class' => 'small-text',
-						'default' => '385',
+						'default' => '390',
 					),
 				'padding' => array (
 						'id' => 'fancybox_Youtubepadding',
@@ -783,16 +782,16 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 						'id' => 'fancybox_YoutubetitleFromAlt',
 						'input' => 'checkbox',
-						'default' => '',
+						'default' => '1',
 						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
-				'swf' => array (
+/*				'swf' => array (
 						'noquotes' => true,
 						'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
-					),
+					), */
 				'onStart' => array ( 
 						'noquotes' => true,
-						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?v=([a-z0-9]+)(&|\\\?)?(.*)\', \'i\'), \'embed/$1?$3\') }'
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?v=([a-z0-9]+)(&|\\\?)?(.*)\', \'i\'), \'embed/$1?version=3&$3\') }'
 					)
 				)
 			),
@@ -809,14 +808,14 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_autoAttributeVimeo',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '',
+						'default' => '1',
 						'selector' => 'href*="vimeo.com/"',
 						//'href-replace' => "return attr.replace(new RegExp('/([0-9])', 'i'), '/moogaloop.swf?clip_id=$1')",
 						'description' => __('Auto-detect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 						'hide' => true,
-						'default' => 'a'
+						'default' => 'a, area'
 					),
 				'class' => array (
 						'hide' => true,
@@ -877,7 +876,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 						'id' => 'fancybox_VimeotitleFromAlt',
 						'input' => 'checkbox',
-						'default' => '',
+						'default' => '1',
 						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 /*				'swf' => array (
@@ -904,14 +903,14 @@ function easy_fancybox_settings(){
 						'id' => 'fancybox_autoAttributeDailymotion',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '',
+						'default' => '1',
 						'selector' => 'href*="dailymotion.com/"',
 						//'href-replace' => "return attr.replace(new RegExp('/video/', 'i'), '/swf/')",
 						'description' => __('Auto-detect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 						'hide' => true,
-						'default' => 'a'
+						'default' => 'a, area'
 					),
 				'class' => array (
 						'hide' => true,
@@ -926,7 +925,7 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_DailymotionWidth',
 					'input' => 'text',
 					'class' => 'small-text',
-					'default' => '480',
+					'default' => '560',
 					'description' => ' '
 					),
 				'height' => array (
@@ -935,7 +934,7 @@ function easy_fancybox_settings(){
 						'label_for' => 'fancybox_DailymotionHeight',
 						'input' => 'text',
 						'class' => 'small-text',
-						'default' => '485'
+						'default' => '315'
 					),
 				'padding' => array (
 						'id' => 'fancybox_DailymotionPadding',
@@ -972,7 +971,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 						'id' => 'fancybox_DailymotiontitleFromAlt',
 						'input' => 'checkbox',
-						'default' => '',
+						'default' => '1',
 						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 /*				'swf' => array (
@@ -981,7 +980,7 @@ function easy_fancybox_settings(){
 					),*/
 				'onStart' => array ( 
 						'noquotes' => true,
-						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/video/([a-z0-9_]+)(&|\\\?)?(.*)\', \'i\'), \'/embed/video/$1?theme=none&wmode=opaque&$3\') }'
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/video/(.*)\', \'i\'), \'/embed/video/$1\') }'
 					)
 				)
 			),
@@ -1023,7 +1022,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					),
 				'tag' => array (
 						'hide' => true,
-						'default' => 'a'
+						'default' => 'a, area'
 					),
 				'class' => array (
 						'hide' => true,
@@ -1087,7 +1086,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 				'titleFromAlt' => array (
 						'id' => 'fancybox_iFrametitleFromAlt',
 						'input' => 'checkbox',
-						'default' => '',
+						'default' => '1',
 						'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					)
 				)
