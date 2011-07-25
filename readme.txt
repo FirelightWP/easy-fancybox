@@ -15,7 +15,8 @@ Easy FancyBox-in-a-Box for just about all media links gives you a flexible and a
 **Supports:**
 
 - images (.jpg/.gif/.png and others) _and_ image maps
-- WordPress Galleries 
+- WordPress Galleries
+- NextGEN galleries (see FAQs for instructions)
 - PDF and SWF (Flash) files
 - movie sites like **Youtube**, **Vimeo** _and_ **Dailmotion**
 - hidden inline content
@@ -31,11 +32,13 @@ Get support on the [Easy FancyBox web page](http://4visions.nl/en/wordpress-plug
 Visit [FancyBox](http://fancybox.net/) for more information, examples and the FancyBox Support Forum. Please consider a DONATION for continued development of the FancyBox project.
 
 **Recommended:**
-- For increased performance, simply install and activate the plugin [Use Google Libraries](http://wordpress.org/extend/plugins/use-google-libraries/) to load jQuery from Googles CDN.
+- For increased site performance, simply install and activate the plugin [Use Google Libraries](http://wordpress.org/extend/plugins/use-google-libraries/) to load jQuery from Googles CDN.
 
 = Translations =
 
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl)
+- **Spanish** * Author: [David Pérez](http://www.closemarketing.es)
+
 
 == Installation ==
 
@@ -63,11 +66,14 @@ Not happy with the default settings? Check out the new options under **Settings 
 
 = WordPress 3+ in Multi Site mode =
 
-Same as above but do a **Network Activate** to activate FancyBox image overlays on each site on your network.
+Same as above but do a **Network Activate** to activate FancyBox image overlays on each site on your network. No database tables are created or manipulated and no activation hook needs to be run for it to function with default settings. 
+
+It can also do its work from /mu-plugins/. See below.
 
 = Wordpress MU =
 
 The plugin works best from the **/mu-plugins/** folder where it runs quietly in the background without bothering any blog owner with new options or the need for special knowledge about FancyBox. Just upload the complete package content to /mu-plugins/ and move the file fancybox.php from the new /mu-plugins/easy-fancybox/ to /mu-plugins/.
+
 
 == Frequently Asked Questions ==
 
@@ -315,13 +321,14 @@ See the FAQ section on trouble shooting.
 == Upgrade Notice ==
 
 = 1.3.4.10 =
-Speed improvements: stylesheet caching, metadata.js compression
+Speed improvements: stylesheet caching, metadata.js compression. Textdomain bugfix. 
 
 == Changelog ==
 
 = 1.3.4.10 =
 * Dynamic stylesheet response headers to allow browser caching
 * Minified version of jquery.metadata.js
+* BUGFIX: load_textdomain firing after the main settings array is loaded, leaving text strings in it untranslated.
 
 = 1.3.4.9 =
 * NEW: jQuery Metadata support

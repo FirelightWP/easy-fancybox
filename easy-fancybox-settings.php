@@ -356,7 +356,7 @@ function easy_fancybox_settings(){
 								'2' => __('All in one gallery','easy-fancybox')
 							),
 						'default' => '2',
-						'description' => '<br />&nbsp; ' .  __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br />'
+						'description' => '<br />' .  __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br />'
 					),
 				'autoSelector' => array (
 						'id' => 'fancybox_autoGallerySelector',
@@ -366,7 +366,7 @@ function easy_fancybox_settings(){
 						'input' => 'text',
 						'class' => 'regular-text',
 						'default' => 'article, div.hentry',
-						'description' => ' <em>' . __('Default:','easy-fancybox') . ' ' . 'article, div.hentry' . '</em><br />' . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . '<br />' . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you want to include images in a sidebar with ID primary, add ", div#primary" or "aside#primary" for html5 themes.','easy-fancybox') . '<br /><br />'
+						'description' => ' <em>' . __('Default:','easy-fancybox') . ' ' . 'article, div.hentry' . '</em><br />' . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . ' ' . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you want to include images in a sidebar with ID primary, add ", div#primary" or "aside#primary" for html5 themes.','easy-fancybox') . '<br /><br />'
 					),
 /*				'onStart' => array (
 						'noquotes' => true,
@@ -491,7 +491,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make any PDF document file open in an overlay, switch on auto-detect or use the class "fancybox-pdf" for its link.','easy-fancybox') . ' ' . __('Adjust its specific settings below.','easy-fancybox') . '<br />'
+						'description' => __('To make any PDF document file open in an overlay, switch on auto-detect or use the class "fancybox-pdf" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 						'id' => 'fancybox_autoAttributePDF',
@@ -608,7 +608,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make any Flash (.swf) file open in an overlay, switch on auto-detect or use the class "fancybox-swf" for its link.','easy-fancybox') . ' ' . __('Adjust its specific settings below.','easy-fancybox') . '<br />'
+						'description' => __('To make any Flash (.swf) file open in an overlay, switch on auto-detect or use the class "fancybox-swf" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 						'id' => 'fancybox_autoAttributeSWF',
@@ -699,7 +699,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make any YouTube movie open in an overlay, switch on auto-detect or use the class "fancybox-youtube" for its link.','easy-fancybox') . ' ' . __('Adjust its specific settings below.','easy-fancybox') . '<br />'
+						'description' => __('To make any YouTube movie open in an overlay, switch on auto-detect or use the class "fancybox-youtube" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 						'id' => 'fancybox_autoAttributeYoutube',
@@ -802,7 +802,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make any Vimeo movie open in an overlay, switch on auto-detect or use the class "fancybox-vimeo" for its link.','easy-fancybox') . ' ' . __('Adjust its specific settings below.','easy-fancybox') . '<br />'
+						'description' => __('To make any Vimeo movie open in an overlay, switch on auto-detect or use the class "fancybox-vimeo" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 						'id' => 'fancybox_autoAttributeVimeo',
@@ -897,7 +897,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make any Dailymotion movie open in an overlay, switch on auto-detect or use the class "fancybox-dailymotion" for its link.','easy-fancybox') . ' ' . __('Adjust its specific settings below.','easy-fancybox') . '<br />'
+						'description' => __('To make any Dailymotion movie open in an overlay, switch on auto-detect or use the class "fancybox-dailymotion" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 						'id' => 'fancybox_autoAttributeDailymotion',
@@ -1018,7 +1018,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 			'options' => array(
 				'intro' => array (
 						'hide' => true,
-						'description' => __('To make a website or HTML document open in an overlay, use the class "fancybox-iframe" for its link.','easy-fancybox') . ' ' . __('Adjust its specific settings below.','easy-fancybox') . '<br /><br />'
+						'description' => __('To make a website or HTML document open in an overlay, use the class "fancybox-iframe" for its link.','easy-fancybox') . '<br /><br />'
 					),
 				'tag' => array (
 						'hide' => true,

@@ -4,14 +4,14 @@ Plugin Name: Easy FancyBox
 Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
-Version: 1.3.4.9
+Version: 1.3.4.10alpha
 Author: RavanH
 Author URI: http://4visions.nl/
 */
 
 // DEF
 
-define( 'EASY_FANCYBOX_VERSION', '1.3.4.9' );
+define( 'EASY_FANCYBOX_VERSION', '1.3.4.10' );
 define( 'FANCYBOX_VERSION', '1.3.4' );
 define( 'MOUSEWHEEL_VERSION', '3.0.4' );
 define( 'EASING_VERSION', '1.3' );
@@ -26,16 +26,16 @@ if(!stristr(plugins_url('', __FILE__),'/easy-fancybox'))
 else
 	define( 'FANCYBOX_SUBDIR', '' );
 
+$easy_fancybox_array = array();
+
+require_once(dirname(__FILE__) . FANCYBOX_SUBDIR . '/easy-fancybox-settings.php');
+
 /* CHECK FOR NETWORK ACTIVATION
 if (function_exists('is_plugin_active_for_network') && is_plugin_active_for_network(plugin_basename( __FILE__ )))
 	$no_network_activate = '';
 else
 	$no_network_activate = '1';
 */
-	
-require_once(dirname(__FILE__) . FANCYBOX_SUBDIR . '/easy-fancybox-settings.php');
-
-$easy_fancybox_array = easy_fancybox_settings();
 
 // FUNCTIONS //
 
@@ -356,12 +356,18 @@ function easy_fancybox_register_settings($args){
 	}
 }
 
-function easy_fancybox_admin_init(){
+function easy_fancybox_init(){
+	global $easy_fancybox_array;
 	load_plugin_textdomain('easy-fancybox', false, dirname(plugin_basename( __FILE__ )));
 
+	$easy_fancybox_array = easy_fancybox_settings();
+}
+
+function easy_fancybox_admin_init(){
+	global $easy_fancybox_array;
+	
 	add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), 'easy_fancybox_settings_section', 'media');
 
-	global $easy_fancybox_array;
 	easy_fancybox_register_settings($easy_fancybox_array);
 }
 
@@ -448,10 +454,11 @@ if(!function_exists('add_video_wmode_opaque')) {
 
 // HOOKS //
 
+add_action('admin_init','easy_fancybox_admin_init');
+add_action('init','easy_fancybox_init');
+
 add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
 add_action('wp_print_styles', 'easy_fancybox_enqueue_styles', 999);
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
 add_action('wp_head', 'easy_fancybox', 999);
-
-add_action('admin_init','easy_fancybox_admin_init');
 
