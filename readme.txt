@@ -33,9 +33,11 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 **Recommended:**
 - For increased performance, simply install and activate the plugin [Use Google Libraries](http://wordpress.org/extend/plugins/use-google-libraries/) to load jQuery from Googles CDN.
 
-= Translations =
+= Translators =
 
-- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl)
+- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl), for version 1.3.4.9
+- **Spanish** * Author: [David Pérez](http://www.closemarketing.es), for version: 1.3.4.9
+
 
 == Installation ==
 
@@ -319,11 +321,13 @@ Metadata and image map support. Opening speed bugfix. New iFrame/HTML5 embed cod
 == Changelog ==
 
 = 1.3.4.9 =
+* NEW: Spanish translation
 * NEW: jQuery Metadata support
 * NEW: Image map AREA support for all content types
 * NEW: new iFrame/HTML5 embed code for YouTube, Vimeo and Dailymotion
 * NEW: fix WordPress Dailymotion auto-embed code missing wmode
 * Some changes to default settings
+* Updated Dutch translation
 * BUGFIX: Opening speed
 
 = 1.3.4.8 =
