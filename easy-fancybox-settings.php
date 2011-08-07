@@ -791,7 +791,7 @@ function easy_fancybox_settings(){
 					), */
 				'onStart' => array ( 
 						'noquotes' => true,
-						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?v=([a-z0-9]+)(&|\\\?)?(.*)\', \'i\'), \'embed/$1?version=3&$3\') }'
+						'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?v=([a-z0-9\_\-]+)(&|\\\?)?(.*)\', \'i\'), \'embed/$1?version=3&$3\') }'
 					)
 				)
 			),
