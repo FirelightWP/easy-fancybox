@@ -30,12 +30,9 @@ $easy_fancybox_array = array();
 
 require_once(dirname(__FILE__) . FANCYBOX_SUBDIR . '/easy-fancybox-settings.php');
 
-/* CHECK FOR NETWORK ACTIVATION
-if (function_exists('is_plugin_active_for_network') && is_plugin_active_for_network(plugin_basename( __FILE__ )))
-	$no_network_activate = '';
-else
-	$no_network_activate = '1';
-*/
+if( file_exists( dirname(dirname(__FILE__)) . '/easy-fancybox-pro.php' ) )
+	include( dirname(dirname(__FILE__)) . '/easy-fancybox-pro.php' );
+
 
 // FUNCTIONS //
 
@@ -261,12 +258,12 @@ echo '</style>
 
 }
 
-// FancyBox Media Settings Section on Settings > Media admin page
+// add our FancyBox Media Settings Section on Settings > Media admin page
 function easy_fancybox_settings_section() {
 	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none;float:right;margin:0 0 10px 10px" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="72" height="29" /></a><p>'.__('The options in this section are provided by the plugin <strong><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox/">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href="http://fancybox.net/">FancyBox</a></strong>.','easy-fancybox').' '.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').'</p><p>'.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
 }
 
-// FancyBox Media Settings Fields
+// add our FancyBox Media Settings Fields
 function easy_fancybox_settings_fields($args){
 	switch($args['input']) {
 		case 'multiple':
@@ -348,19 +345,70 @@ function easy_fancybox_register_settings($args){
 			case 'multiple':
 				add_settings_field( 'fancybox_'.$key, $value['title'], 'easy_fancybox_settings_fields', 'media', 'fancybox_section', $value);
 				foreach ($value['options'] as $_value)
-					if ($_value['id']) register_setting( 'media', $_value['id'] );	
+					if ($_value['id'])
+						register_setting( 'media', $_value['id'], $_value['sanitize_callback'] );	
 				break;
 			default:
-				if ($value['id']) register_setting( 'media', 'fancybox_'.$key );
+				if ($value['id'])
+					register_setting( 'media', 'fancybox_'.$key, $_value['sanitize_callback'] );
 		}
 	}
 }
 
+function easy_fancybox_intval($setting = '') {
+	if ($setting == '')
+		return '';
+	
+	if (substr($setting, -1) == '%') {
+		$val = intval(substr($setting, 0, -1));
+		$prc = '%';
+	} else {
+		$val = intval($setting);
+	}
+	
+	return ( $val != 0 ) ? $val.$prc : 0;
+}
+
+function easy_fancybox_array_merge_recursive_simple() {
+     // slightly adapted version of custom array_merge_recursive function
+     // on http://www.php.net/manual/en/function.array-merge-recursive.php#104145
+     if (func_num_args() < 2) {
+         trigger_error(__FUNCTION__ .' needs two or more array arguments', E_USER_WARNING);
+         return;
+     }
+     $arrays = func_get_args();
+     $merged = array();
+     while ($arrays) {
+         $array = array_shift($arrays);
+         if (!is_array($array)) {
+             trigger_error(__FUNCTION__ .' encountered a non array argument', E_USER_WARNING);
+             return;
+         }
+         if (!$array)
+             continue;
+         foreach ($array as $key => $value)
+           //if (is_string($key))
+             if (is_array($value) && array_key_exists($key, $merged) && is_array($merged[$key]))
+                 $merged[$key] = call_user_func(__FUNCTION__, $merged[$key], $value);
+             else
+                 $merged[$key] = $value;
+           //else
+           //    $merged[] = $value;
+     }
+     return $merged;
+}
+
 function easy_fancybox_init(){
 	global $easy_fancybox_array;
-	load_plugin_textdomain('easy-fancybox', false, dirname(plugin_basename( __FILE__ )));
+	load_plugin_textdomain('easy-fancybox', false, dirname(plugin_basename( __FILE__ )) . '/languages' );
 
-	$easy_fancybox_array = easy_fancybox_settings();
+	if( function_exists('easy_fancybox_pro_settings') )
+		$easy_fancybox_array = easy_fancybox_array_merge_recursive_simple( 
+			easy_fancybox_settings(), 
+			easy_fancybox_pro_settings() 
+			);
+	else
+		$easy_fancybox_array = easy_fancybox_settings();
 }
 
 function easy_fancybox_admin_init(){

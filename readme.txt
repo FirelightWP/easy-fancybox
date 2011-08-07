@@ -34,7 +34,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 **Recommended:**
 - For increased site performance, simply install and activate the plugin [Use Google Libraries](http://wordpress.org/extend/plugins/use-google-libraries/) to load jQuery from Googles CDN.
 
-= Translations =
+= Translators =
 
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl)
 - **Spanish** * Author: [David Pérez](http://www.closemarketing.es)
@@ -321,21 +321,25 @@ See the FAQ section on trouble shooting.
 == Upgrade Notice ==
 
 = 1.3.4.10 =
-Speed improvements: stylesheet caching, metadata.js compression. Textdomain bugfix. 
+Speed improvements: stylesheet caching, metadata.js compression. Security fix. Spanish and Dutch translations. 
 
 == Changelog ==
 
 = 1.3.4.10 =
 * Dynamic stylesheet response headers to allow browser caching
 * Minified version of jquery.metadata.js
+* SECURITY: Settings sanitization
 * BUGFIX: load_textdomain firing after the main settings array is loaded, leaving text strings in it untranslated.
+* BUGFIX: missing signs in Youtube url regular expression
 
 = 1.3.4.9 =
+* NEW: Spanish translation
 * NEW: jQuery Metadata support
 * NEW: Image map AREA support for all content types
 * NEW: new iFrame/HTML5 embed code for YouTube, Vimeo and Dailymotion
 * NEW: fix WordPress Dailymotion auto-embed code missing wmode
 * Some changes to default settings
+* Updated Dutch translation
 * BUGFIX: Opening speed
 
 = 1.3.4.8 =
