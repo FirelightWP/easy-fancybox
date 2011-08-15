@@ -331,6 +331,7 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. S
 * SECURITY: Settings sanitization
 * BUGFIX: load_textdomain firing after the main settings array is loaded, leaving text strings in it untranslated.
 * BUGFIX: missing signs in Youtube url regular expression
+* BUGFIX: unquoted rel attribute selectors in jquery.fancybox-1.3.4.js
 
 = 1.3.4.9 =
 * NEW: Spanish translation

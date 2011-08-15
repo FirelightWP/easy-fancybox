@@ -812,7 +812,7 @@
 					selectedArray.push(this);
 
 				} else {
-					selectedArray = $("a[rel=" + rel + "], area[rel=" + rel + "]");
+					selectedArray = $("a[rel='" + rel + "'], area[rel='" + rel + "']");
 					selectedIndex = selectedArray.index( this );
 				}
 
