@@ -77,7 +77,7 @@ The plugin works best from the **/mu-plugins/** folder where it runs quietly in 
 
 == Frequently Asked Questions ==
 
-= BASIC=
+= BASIC =
 
 = What's FancyBox? =
 

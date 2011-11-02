@@ -13,8 +13,8 @@
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
+ * Patch applied to line 815: qouted attribute selector, RavanH ravanhagen@gmail.com 
  */
-
 ;(function($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
 
@@ -812,7 +812,7 @@
 					selectedArray.push(this);
 
 				} else {
-					selectedArray = $("a[rel='" + rel + "'], area[rel='" + rel + "']");
+					selectedArray = $('a[rel="' + rel + '"], area[rel="' + rel + '"]');
 					selectedIndex = selectedArray.index( this );
 				}
 
