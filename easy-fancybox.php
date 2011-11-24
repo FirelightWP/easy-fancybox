@@ -337,7 +337,7 @@ function easy_fancybox_register_settings($args){
 	global $easy_fancybox_array;
 	foreach ($args as $key => $value) {
 		// check to see if the section is enabled, else skip to next
-		if ( array_key_exists($key, $easy_fancybox_array['Global']['options']['Enable']['options']) && !get_option($easy_fancybox_array['Global']['options']['Enable']['options'][$key]['id'], $easy_fancybox_array['Global']['options']['Enalbe']['options'][$key]['default']) )
+		if ( array_key_exists($key, $easy_fancybox_array['Global']['options']['Enable']['options']) && !get_option($easy_fancybox_array['Global']['options']['Enable']['options'][$key]['id'], $easy_fancybox_array['Global']['options']['Enable']['options'][$key]['default']) )
 			continue;
 			
 		switch($value['input']) {
