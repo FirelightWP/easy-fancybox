@@ -334,7 +334,7 @@ function easy_fancybox_register_settings($args){
 	global $easy_fancybox_array;
 	foreach ($args as $key => $value) {
 		// check to see if the section is enabled, else skip to next
-		if ( array_key_exists($key, $easy_fancybox_array['Global']['options']['Enable']['options']) && !get_option($easy_fancybox_array['Global']['options']['Enable']['options'][$key]['id'], $easy_fancybox_array['Global']['options']['Enalbe']['options'][$key]['default']) )
+		if ( array_key_exists($key, $easy_fancybox_array['Global']['options']['Enable']['options']) && !get_option($easy_fancybox_array['Global']['options']['Enable']['options'][$key]['id'], $easy_fancybox_array['Global']['options']['Enable']['options'][$key]['default']) )
 			continue;
 			
 		switch($value['input']) {
@@ -400,8 +400,13 @@ function easy_fancybox_array_merge_recursive_simple() {
 
 function easy_fancybox_init(){
 	global $easy_fancybox_array;
-	load_plugin_textdomain('easy-fancybox', false, dirname(plugin_basename( __FILE__ )) . '/languages' );
 
+	if ( is_admin() ) {
+		// text domain must be in init even if it is for admin only
+		load_plugin_textdomain('easy-fancybox', false, dirname(plugin_basename( __FILE__ )) . '/languages' );
+	}
+
+	// TODO figure what is better: load defaults each time or fill DB with defaults on activation or when options are not found (for network wide activation / WPMU compatibility) ?
 	if( function_exists('easy_fancybox_pro_settings') )
 		$easy_fancybox_array = easy_fancybox_array_merge_recursive_simple( 
 			easy_fancybox_settings(), 
