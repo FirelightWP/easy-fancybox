@@ -51,10 +51,10 @@ function easy_fancybox() {
 			break;
 		}
 	}
-	// and break off when none are active
+	// and abort when none are active
 	if (!$do_fancybox) {
 		echo '
-<!-- No sections enabled under Settings > Media > FancyBox -->
+<!-- Nothing enabled under Settings > Media > FancyBox, please disable the plugin if you are not using it -->
 
 ';
 		return;
@@ -75,14 +75,16 @@ var fb_timeout = null;';
 var fb_opts = {';
 	foreach ($easy_fancybox_array['Global']['options'] as $globals) {
 		foreach ($globals['options'] as $_key => $_value) {
-			$parm = ($_value['id']) ? get_option($_value['id'], $_value['default']) : $_value['default'];
-			$parm = ('checkbox'==$_value['input'] && ''==$parm) ? '0' : $parm;
-			if(!$_value['hide'] && $parm!='') {
-				$quote = (is_numeric($parm) || $_value['noquotes']) ? '' : '\'';
+			$parm = (isset($_value['id'])) ? get_option($_value['id'], $_value['default']) : $_value['default'];
+			if( isset($_value['input']) && 'checkbox'==$_value['input'] && ''==$parm )
+				$parm = '0';
+
+			if( !isset($_value['hide']) && $parm!='' ) {
+				$quote = (is_numeric($parm) || isset($_value['noquotes'])) ? '' : '\'';
 				if ($more>0)
 					echo ',';
 				echo ' \''.$_key.'\' : ';
-				if ('checkbox'==$_value['input'])
+				if ( isset($_value['input']) && 'checkbox'==$_value['input'])
 					echo ( '1' == $parm ) ? 'true' : 'false';
 				else
 					echo $quote.$parm.$quote;
@@ -96,7 +98,7 @@ var fb_opts = {';
 	
 	foreach ($easy_fancybox_array as $key => $value) {
 		// check if not enabled or hide=true then skip
-		if ( $value['hide'] || !get_option($easy_fancybox_array['Global']['options']['Enable']['options'][$key]['id'], $easy_fancybox_array['Global']['options']['Enable']['options'][$key]['default']) )
+		if ( isset($value['hide']) || !get_option($easy_fancybox_array['Global']['options']['Enable']['options'][$key]['id'], $easy_fancybox_array['Global']['options']['Enable']['options'][$key]['default']) )
 			continue;
 
 		echo '
@@ -104,7 +106,7 @@ var fb_opts = {';
 		/*
 		 * Auto-detection routines (2x)
 		 */
-		$autoAttribute = get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] );
+		$autoAttribute = (isset($value['options']['autoAttribute'])) ? get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] ) : "";
 		// update from previous version:
 		if($attributeLimit == '.not(\':empty\')')
 			$attributeLimit = ':not(:empty)';
@@ -173,7 +175,7 @@ fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).att
 			}
 		}
 		
-		$autoAttributeAlt = get_option( $value['options']['autoAttributeAlt']['id'], $value['options']['autoAttributeAlt']['default'] );
+		$autoAttributeAlt = ( isset($value['options']['autoAttributeAlt']) ) ? get_option( $value['options']['autoAttributeAlt']['id'], $value['options']['autoAttributeAlt']['default'] ) : "";
 		if(!empty($autoAttributeAlt) && is_numeric($autoAttributeAlt)) {
 			echo '
 $(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
@@ -183,7 +185,7 @@ $(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$
 		}
 		
 		/*
-		 * Append .fancybox() function
+		 * Generate .fancybox() bind
 		 */
 		$trigger='';
 		if( $key == $autoClick )
@@ -202,14 +204,16 @@ $(\'';
 		echo '\').fancybox( $.extend({}, fb_opts, {';
 		$more=0;
 		foreach ($value['options'] as $_key => $_values) {
-			$parm = ($_values['id']) ? get_option($_values['id'], $_values['default']) : $_values['default'];
-			$parm = ('checkbox'==$_values['input'] && ''==$parm) ? '0' : $parm;
-			if(!$_values['hide'] && $parm!='') {
-				$quote = (is_numeric($parm) || $_values['noquotes']) ? '' : '\'';
+			$parm = (isset($_values['id'])) ? get_option($_values['id'], $_values['default']) : $_values['default'];
+			if( isset($_value['input']) && 'checkbox'==$_value['input'] && ''==$parm )
+				$parm = '0';
+
+			if( !isset($_values['hide']) && $parm!='' ) {
+				$quote = (is_numeric($parm) || isset($_values['noquotes'])) ? '' : '\'';
 				if ($more>0)
 					echo ',';
 				echo ' \''.$_key.'\' : ';
-				if ('checkbox'==$_values['input'])
+				if ( isset($_values['input']) && 'checkbox'==$_values['input'] )
 					echo ( '1' == $parm ) ? 'true' : 'false';
 				else
 					echo $quote.$parm.$quote;
@@ -339,7 +343,7 @@ function easy_fancybox_register_settings($args){
 			
 		switch($value['input']) {
 			case 'deep':
-				// go deeper and loop back on itself 
+				// go deeper by looping back on itself 
 				easy_fancybox_register_settings($value['options']);
 				break;
 			case 'multiple':
