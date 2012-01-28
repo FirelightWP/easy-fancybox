@@ -5,14 +5,14 @@
 
 /* our function to parse css */
 function iepathfix_compress($buffer) {
-	$url = ( ( isset($_SERVER['HTTPS']) ) ? "https://" : "http://" ) . htmlspecialchars( $_SERVER['SERVER_NAME'] . dirname($_SERVER['SCRIPT_NAME']), ENT_QUOTES);
+	$path = htmlspecialchars( dirname($_SERVER['SCRIPT_NAME']), ENT_QUOTES );
 
 	/* 
 	* Fixes:
 	* 1. Relative path fix : add 'fancybox/'
 	* 2. IE6 path fix : replace relative with full path 
 	*/
-	$buffer = str_replace(array("url('", "AlphaImageLoader(src='fancybox/"), array("url('fancybox/", "AlphaImageLoader(src='" . $url . "/fancybox/" ), $buffer);
+	$buffer = str_replace(array("url('", "AlphaImageLoader(src='fancybox/"), array("url('fancybox/", "AlphaImageLoader(src='" . $path . "/fancybox/" ), $buffer);
 
 	/* remove comments */
 	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
@@ -20,7 +20,7 @@ function iepathfix_compress($buffer) {
 	/* remove tabs and newlines */
 	$buffer = str_replace(array("\r", "\n", "\t"), '', $buffer);
 
-	/* and squeeze some more, for luck :) */
+	/* and squeeze some more, for luck ;) */
 	$buffer = str_replace(array(", ", ": ", " {", "{ ", " }", "} ", "; ", " 0;"), array(",", ":", "{", "{", "}", "}", ";", ";"), $buffer);
 
 	return $buffer;
