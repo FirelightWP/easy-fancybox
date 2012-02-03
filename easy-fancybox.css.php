@@ -5,7 +5,7 @@
 
 /* our function to parse css */
 function iepathfix_compress($buffer) {
-	$path = htmlspecialchars( dirname($_SERVER['SCRIPT_NAME']), ENT_QUOTES );
+	$path = htmlspecialchars( ( isset($_SERVER['HTTPS']) ) ? "https://" : "http://" ) . htmlspecialchars( $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']), ENT_QUOTES );
 
 	/* 
 	* Fixes:
@@ -32,7 +32,7 @@ $file = dirname(__FILE__) . '/fancybox/jquery.fancybox-' . htmlspecialchars( $ve
 
 /* set up response headers, allowing browser caching */
 $expires = 60*60*24*30; // seconds, minutes, hours, days
-$last_modified_time = filemtime($file); 
+$last_modified_time = ( filemtime($file) < filemtime(__FILE__) ) ? filemtime(__FILE__) : filemtime($file);
 $etag = md5_file($file); 
 
 header('Content-type: text/css; charset=utf-8', true);
