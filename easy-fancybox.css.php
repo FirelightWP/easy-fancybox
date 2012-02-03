@@ -5,7 +5,7 @@
 
 /* our function to parse css */
 function iepathfix_compress($buffer) {
-	$path = htmlspecialchars( ( isset($_SERVER['HTTPS']) ) ? "https://" : "http://" ) . htmlspecialchars( $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']), ENT_QUOTES );
+	$path = ( ( isset($_SERVER['HTTPS']) ) ? "https://" : "http://" ) . htmlspecialchars( $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']), ENT_QUOTES);
 
 	/* 
 	* Fixes:
