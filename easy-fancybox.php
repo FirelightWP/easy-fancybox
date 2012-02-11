@@ -348,12 +348,12 @@ function easy_fancybox_register_settings($args){
 				break;
 			case 'multiple':
 				add_settings_field( 'fancybox_'.$key, $value['title'], 'easy_fancybox_settings_fields', 'media', 'fancybox_section', $value);
-				foreach ($value['options'] as $_value)
-					if ($_value['id'])
+				foreach ( $value['options'] as $_value )
+					if ( isset($_value['id']) )
 						register_setting( 'media', $_value['id'], $_value['sanitize_callback'] );	
 				break;
 			default:
-				if ($value['id'])
+				if ( isset($value['id']) )
 					register_setting( 'media', 'fancybox_'.$key, $_value['sanitize_callback'] );
 		}
 	}
