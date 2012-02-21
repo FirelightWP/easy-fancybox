@@ -250,7 +250,7 @@ just change that `wmode="window"` to `wmode="opaque"` or add the tag if it is mi
 
 Yes. Wrap the inline content in
 `
-<div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1">
+<div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1" style="width:460px;height:380px;">
 ...inline content here...
 </div></div>
 `
