@@ -13,7 +13,7 @@ Author URI: http://4visions.nl/
 
 define( 'EASY_FANCYBOX_VERSION', '1.3.4.10' );
 define( 'FANCYBOX_VERSION', '1.3.4' );
-define( 'MOUSEWHEEL_VERSION', '3.0.4' );
+define( 'MOUSEWHEEL_VERSION', '3.0.6' );
 define( 'EASING_VERSION', '1.3' );
 define( 'METADATA_VERSION', '2.1' );
 
@@ -476,7 +476,7 @@ function easy_fancybox_enqueue_scripts() {
 	wp_deregister_script('jquery-mousewheel');
 	wp_deregister_script('mousewheel');
 	// then register our version
-	wp_enqueue_script('jquery.mousewheel', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.mousewheel-'.MOUSEWHEEL_VERSION.'.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
+	wp_enqueue_script('jquery.mousewheel', plugins_url(FANCYBOX_SUBDIR.'/jquery.mousewheel.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
 	
 	// first get rid of previously registered variants of jquery.metadata (by other plugins)
 	wp_deregister_script('jquery.metadata');
