@@ -330,6 +330,7 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. S
 == Changelog ==
 
 = 1.3.4.10 =
+* Use jQuery's bind('ready') for better ajax content compatibility
 * Dynamic stylesheet response headers to allow browser caching
 * Minified version of jquery.metadata.js
 * Upgrade jquery.mousewheel.js for jQuery 1.7 compatibility 

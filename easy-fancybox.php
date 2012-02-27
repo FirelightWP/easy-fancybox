@@ -64,7 +64,7 @@ function easy_fancybox() {
 	echo '
 <script type="text/javascript">
 /* <![CDATA[ */
-jQuery(document).ready(function($){
+jQuery(document).bind(\'ready\',function(){
 var fb_timeout = null;';
 
 	/*
@@ -116,7 +116,7 @@ var fb_opts = {';
 		if(!empty($autoAttribute)) {
 			if(is_numeric($autoAttribute)) {
 				echo '
-$(\'a['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
+jQuery(\'a['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
 				if ($value['options']['autoAttribute']['href-replace'])
 					echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttribute']['href-replace'].'})';
 				echo '.addClass(\''.$value['options']['class']['default'].'\');';
@@ -155,7 +155,7 @@ fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).add
 				} else {
 					// add class
 					echo '
-$(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 					// set rel
 					switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 						case '':
@@ -178,7 +178,7 @@ fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).att
 		$autoAttributeAlt = ( isset($value['options']['autoAttributeAlt']) ) ? get_option( $value['options']['autoAttributeAlt']['id'], $value['options']['autoAttributeAlt']['default'] ) : "";
 		if(!empty($autoAttributeAlt) && is_numeric($autoAttributeAlt)) {
 			echo '
-$(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
+jQuery(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
 			if ($value['options']['autoAttributeAlt']['href-replace'])
 				echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttributeAlt']['href-replace']. '})';
 			echo '.addClass(\''.$value['options']['class']['default'].'\');';
@@ -192,7 +192,7 @@ $(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$
 			$trigger = '.filter(\':first\').trigger(\'click\')';
 
 		echo '
-$(\'';
+jQuery(\'';
 		$tags = array_filter( explode( ',' , $value['options']['tag']['default'] ));
 		$more=0;
 		foreach ($tags as $_tag) {
@@ -201,7 +201,7 @@ $(\'';
 			echo $_tag.'.'.$value['options']['class']['default'];
 			$more++;
 		}
-		echo '\').fancybox( $.extend({}, fb_opts, {';
+		echo '\').fancybox( jQuery.extend({}, fb_opts, {';
 		$more=0;
 		foreach ($value['options'] as $_key => $_values) {
 			$parm = (isset($_values['id'])) ? get_option($_values['id'], $_values['default']) : $_values['default'];
@@ -231,12 +231,12 @@ $(\'';
 		case '1':
 			echo '
 /* Auto-click */ 
-$(\'#fancybox-auto\').trigger(\'click\');';
+jQuery(\'#fancybox-auto\').trigger(\'click\');';
 			break;
 		case '99':
 			echo '
 /* Auto-load */ 
-$(\'a[class*="fancybox"]\').filter(\':first\').trigger(\'click\');';
+jQuery(\'a[class*="fancybox"]\').filter(\':first\').trigger(\'click\');';
 			break;
 	}
 	echo '
