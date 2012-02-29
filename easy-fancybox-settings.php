@@ -405,7 +405,7 @@ function easy_fancybox_settings(){
 					),*/
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a, area'
+					'default' => 'a, area, li a'
 					),
 				'class' => array (
 					'hide' => true,
@@ -432,7 +432,7 @@ function easy_fancybox_settings(){
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a, area'
+					'default' => 'a, area, li a'
 					),
 				'class' => array (
 					'hide' => true,
@@ -552,7 +552,7 @@ function easy_fancybox_settings(){
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a, area'
+					'default' => 'a, area, li a'
 					),
 				'class' => array (
 					'hide' => true,
@@ -652,7 +652,7 @@ function easy_fancybox_settings(){
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a, area'
+					'default' => 'a, area, li a'
 					),
 				'class' => array (
 					'hide' => true,
@@ -745,7 +745,7 @@ function easy_fancybox_settings(){
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a, area'
+					'default' => 'a, area, li a'
 					),
 				'class' => array (
 					'hide' => true,
@@ -839,7 +839,7 @@ function easy_fancybox_settings(){
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a, area'
+					'default' => 'a, area, li a'
 					),
 				'class' => array (
 					'hide' => true,
@@ -950,11 +950,11 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a, area'
+					'default' => 'a, area; li a'
 					),
 				'class' => array (
 					'hide' => true,
-					'default' => 'fancybox-iframe, li.fancybox-iframe a'
+					'default' => 'fancybox-iframe'
 					),
 				'type' => array (
 					'default' => 'iframe'

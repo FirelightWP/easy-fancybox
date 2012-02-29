@@ -64,7 +64,7 @@ function easy_fancybox() {
 	echo '
 <script type="text/javascript">
 /* <![CDATA[ */
-jQuery(document).bind(\'ready, gform_post_render\',function(){
+jQuery(document).bind(\'ready gform_post_render\',function(){
 var fb_timeout = null;';
 
 	/*
@@ -197,8 +197,11 @@ jQuery(\'';
 		$more=0;
 		foreach ($tags as $_tag) {
 			if ($more>0)
-				echo ',';
-			echo $_tag.'.'.$value['options']['class']['default'];
+				echo ', ';
+			$_tagarray = explode( ' ' , trim($_tag) );
+			echo $_tagarray[0].'.'.$value['options']['class']['default'];
+			if (isset($_tagarray[1]))
+				echo ' ' . $_tagarray[1];
 			$more++;
 		}
 		echo '\').fancybox( jQuery.extend({}, fb_opts, {';
