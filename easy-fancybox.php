@@ -64,7 +64,7 @@ function easy_fancybox() {
 	echo '
 <script type="text/javascript">
 /* <![CDATA[ */
-jQuery(document).on(\'ready, gform_post_render\',function(){
+jQuery(document).bind(\'ready, gform_post_render\',function(){
 var fb_timeout = null;';
 
 	/*
