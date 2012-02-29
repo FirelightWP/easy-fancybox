@@ -409,7 +409,7 @@ function easy_fancybox_settings(){
 					),
 				'class' => array (
 					'hide' => true,
-					'default' => 'fancybox, li.fancybox a'
+					'default' => 'fancybox'
 					)
 				)
 			),
