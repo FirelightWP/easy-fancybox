@@ -6,22 +6,25 @@ Requires at least: 2.7
 Tested up to: 3.3
 Stable tag: 1.3.4.9
 
-Easily enable the FancyBox 1.3.4 jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
+Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
 == Description ==
 
-Easy FancyBox-in-a-Box for just about all media links gives you a flexible and aesthetic media lightbox solution for your website. Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3+ Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the plugins options.
+Easy FancyBox for WordPress websites gives you a flexible and aesthetic lightbox solution for just about all media links on your website. Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3+ Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the plugins options.
 
-**Supports:**
+After activation, all links to **JPG, GIF and PNG images** are automatically opened in the [FancyBox](http://fancybox.net/) Mac-style lightbox that floats over the web page. Most options available can be managed with this plugin along with some extra features. 
 
-- images (.jpg/.gif/.png and others) _and_ image maps
+**Also supports:**
+
+- All other image types _and_ image maps
 - WordPress Galleries
 - NextGEN galleries (see FAQs for instructions)
-- PDF and SWF (Flash) files
-- movie sites like **Youtube**, **Vimeo** _and_ **Dailmotion**
-- hidden inline content
-- iframes
-- popup (auto-activate) on page load
+- SWF (Flash) movies
+- Links to **Youtube**, **Vimeo** _and_ **Dailmotion**
+- Hidden inline content
+- iFrames
+- PDF files
+- Auto-popup on page load
 
 See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
