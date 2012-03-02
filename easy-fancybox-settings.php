@@ -227,9 +227,9 @@ function easy_fancybox_settings(){
 					'input' => 'text',
 					'class' => 'regular-text',
 					'hide' => true,
-					'default' => 'jpg gif png',
-					'selector' => 'href$=',
-					'description' => ' <em>' . __('Default:','easy-fancybox') . ' jpg gif png</em><br /><br />'
+					'default' => '.jpg .jpeg .png',
+					'selector' => 'href*=',
+					'description' => ' <em>' . __('Default:','easy-fancybox') . ' .jpg .gif .png</em><br /><br />'
 					),
 				'autoAttributeLimit' => array (
 					'id' => 'fancybox_autoAttributeLimit',
@@ -427,7 +427,7 @@ function easy_fancybox_settings(){
 					'input' => 'checkbox',
 					'hide' => true,
 					'default' => '1',
-					'selector' => 'href$=".pdf"',
+					'selector' => 'href*=".pdf"',
 					'description' => __('Auto-detect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (

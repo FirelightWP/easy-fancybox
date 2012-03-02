@@ -127,9 +127,11 @@ jQuery(\'a['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'
 				echo '
 var fb_'.$key.'_select = \'';
 				foreach ($file_types as $type) {
+					if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "gif")
+						$type = '.'.$type;
 					if ($more>0)
 						echo ',';
-					echo 'a['.$value['options']['autoAttribute']['selector'].'".'.$type.'"]:not(.nofancybox)'.$attributeLimit.',a['.$value['options']['autoAttribute']['selector'].'".'.strtoupper($type).'"]:not(.nofancybox)'.$attributeLimit;
+					echo 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)'.$attributeLimit;
 					$more++;
 				}
 				echo '\';';

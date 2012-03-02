@@ -25,6 +25,7 @@ After activation, all links to **JPG, GIF and PNG images** are automatically ope
 - iFrames
 - PDF files
 - Auto-popup on page load
+- links inside Gravity Forms in ajax mode
 
 See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
@@ -333,6 +334,8 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. S
 == Changelog ==
 
 = 1.3.4.10 =
+* Improved W3TC compatibility: query string issue
+* Gravity Forms in ajax mode compatibility
 * Use jQuery's bind('ready') for better ajax content compatibility
 * Dynamic stylesheet response headers to allow browser caching
 * Minified version of jquery.metadata.js
