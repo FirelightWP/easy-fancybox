@@ -40,8 +40,9 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 
 = Translators =
 
-- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl)
-- **Spanish** * Author: [David Pérez](http://www.closemarketing.es)
+- **Dutch** * Author: [R.A. van Hagen](http://4visions.nl) (version 1.3.4.9)
+- **Polish** * Author: Kamil Szymański (version 1.3.4.9)
+- **Spanish** * Author: [David Pérez](http://www.closemarketing.es) (version 1.3.4.9)
 
 
 == Installation ==
@@ -329,7 +330,7 @@ See the FAQ section on trouble shooting.
 == Upgrade Notice ==
 
 = 1.3.4.10 =
-Speed improvements: stylesheet caching, metadata.js compression. Security fix. Spanish and Dutch translations. 
+Speed improvements: stylesheet caching, metadata.js compression. Security fix. Dutch and Polish translations. 
 
 == Changelog ==
 
@@ -347,6 +348,7 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. S
 * BUGFIX: broken url path in IE stylesheet when missing $_SERVER['SERVER_NAME']
 
 = 1.3.4.9 =
+* NEW: Polish translation
 * NEW: Spanish translation
 * NEW: jQuery Metadata support
 * NEW: Image map AREA support for all content types
