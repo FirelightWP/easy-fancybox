@@ -42,8 +42,8 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl) (version 1.3.4.9)
 - **Polish** * Author: Kamil Szymański (version 1.3.4.9)
+- **Romanian** * Author: [Web Geek Sciense](http://webhostinggeeks.com/) (version 1.3.4.9)
 - **Spanish** * Author: [David Pérez](http://www.closemarketing.es) (version 1.3.4.9)
-
 
 == Installation ==
 
@@ -348,6 +348,7 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. D
 * BUGFIX: broken url path in IE stylesheet when missing $_SERVER['SERVER_NAME']
 
 = 1.3.4.9 =
+* NEW: Romanian translation
 * NEW: Polish translation
 * NEW: Spanish translation
 * NEW: jQuery Metadata support
