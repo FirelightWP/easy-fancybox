@@ -307,7 +307,16 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 - **WP Slimstat** plugin interferes with the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
 - When using **WP-Minify**, the javascript files like `fancybox/jquery.fancybox-X.X.X.pack.js` and others need to be excluded from minification.
 - When using **W3 Total Cache**, minification needs to be switched off. You can try to run **WP-Minify** alongside W3TC to be able to exclude fancybox files (as suggested above) ans still have page speed benefit from minification. 
- 
+
+= Theme conflicts = 
+
+- The new default **Twenty Eleven** uses a very high stacking order (z-index: 9999) for the top image and menu div, resulting in FancyBox content being partially hidden under the page header. Work-around: Use the plugin [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add the rule
+`
+#branding {
+z-index:999;
+}
+`
+- The **Mystique** theme has an option called "Optimize website for faster loading" that will break Easy FancyBox. Disable it in Mystique's options > Advanced.
 
 = Other =
 
