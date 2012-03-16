@@ -459,7 +459,7 @@ function easy_fancybox_enqueue_scripts() {
 	wp_deregister_script('fancybox');
 	wp_deregister_script('jquery-fancybox');
 	// register main fancybox script
-	wp_enqueue_script('jquery.fancybox', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION);
+	wp_enqueue_script('jquery.fancybox', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION, true);
 	
 	// easing in IMG settings?
 	if ( ( 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionIn']['id'],$easy_fancybox_array['IMG']['options']['transitionIn']['default']) || 
@@ -523,5 +523,5 @@ add_action('init','easy_fancybox_init');
 add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
 add_action('wp_print_styles', 'easy_fancybox_enqueue_styles', 999);
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
-add_action('wp_head', 'easy_fancybox', 999);
+add_action('wp_footer', 'easy_fancybox', 999);
 
