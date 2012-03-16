@@ -498,11 +498,25 @@ function easy_fancybox_enqueue_styles() {
 	wp_enqueue_style('easy-fancybox.css', plugins_url(FANCYBOX_SUBDIR.'/easy-fancybox.css.php', __FILE__), false, FANCYBOX_VERSION, 'screen');
 }
 
+// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
+// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
+// + own hack for dailymotion iframe embed...
+if(!function_exists('add_video_wmode_opaque')) {
+ function add_video_wmode_opaque($html, $url, $attr) {
+ 	if (strpos($html, "wmode" ) == false && strpos($html, "youtube" ) !== false) {
+		$html = preg_replace('/feature=oembed/', '$0&wmode=opaque', $html);
+		//$html = preg_replace('/(object|embed).*?height=\"\d+\"/', '$0 wmode="opaque"', $html);
+ 	}
+ 	return $html;
+ }
+}
+
 // HOOKS //
 
 add_action('admin_init','easy_fancybox_admin_init');
 add_action('init','easy_fancybox_init');
 
+add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
 add_action('wp_print_styles', 'easy_fancybox_enqueue_styles', 999);
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
 add_action('wp_footer', 'easy_fancybox', 999);
