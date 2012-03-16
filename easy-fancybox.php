@@ -498,29 +498,11 @@ function easy_fancybox_enqueue_styles() {
 	wp_enqueue_style('easy-fancybox.css', plugins_url(FANCYBOX_SUBDIR.'/easy-fancybox.css.php', __FILE__), false, FANCYBOX_VERSION, 'screen');
 }
 
-// Hack to fix missing wmode in (auto)embed code based on Crantea Mihaita's work-around on
-// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
-// + own hack for dailymotion iframe embed...
-if(!function_exists('add_video_wmode_opaque')) {
- function add_video_wmode_opaque($html, $url, $attr) {
-	if (strpos($html, "<embed src=" ) !== false) {
-		$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque" ', $html);
-		return $html;
-	} elseif(strpos($html, "<iframe src=\"http://player..vimeo.com/video/" ) !== false) {
-		$html = str_replace('" width', '?theme=none&wmode=opaque" width', $html);
-		return $html;
-	} else {
-		return $html;
-	}
- }
-}
-
 // HOOKS //
 
 add_action('admin_init','easy_fancybox_admin_init');
 add_action('init','easy_fancybox_init');
 
-add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
 add_action('wp_print_styles', 'easy_fancybox_enqueue_styles', 999);
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
 add_action('wp_footer', 'easy_fancybox', 999);
