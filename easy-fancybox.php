@@ -459,7 +459,7 @@ function easy_fancybox_enqueue_scripts() {
 	wp_deregister_script('fancybox');
 	wp_deregister_script('jquery-fancybox');
 	// register main fancybox script
-	wp_enqueue_script('jquery.fancybox', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION, true);
+	wp_enqueue_script('jquery-fancybox', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION, true);
 	
 	// easing in IMG settings?
 	if ( ( 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionIn']['id'],$easy_fancybox_array['IMG']['options']['transitionIn']['default']) || 
@@ -473,7 +473,7 @@ function easy_fancybox_enqueue_scripts() {
 		wp_deregister_script('jquery-easing');
 		wp_deregister_script('easing');
 		// then register our version
-		wp_enqueue_script('jquery.easing', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', __FILE__), array('jquery'), EASING_VERSION, true);
+		wp_enqueue_script('jquery-easing', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', __FILE__), array('jquery'), EASING_VERSION, true);
 	}
 	
 	// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
@@ -482,7 +482,7 @@ function easy_fancybox_enqueue_scripts() {
 	wp_deregister_script('jquery-mousewheel');
 	wp_deregister_script('mousewheel');
 	// then register our version
-	wp_enqueue_script('jquery.mousewheel', plugins_url(FANCYBOX_SUBDIR.'/jquery.mousewheel.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
+	wp_enqueue_script('jquery-mousewheel', plugins_url(FANCYBOX_SUBDIR.'/jquery.mousewheel.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
 	
 	// first get rid of previously registered variants of jquery.metadata (by other plugins)
 	wp_deregister_script('jquery.metadata');
@@ -490,12 +490,12 @@ function easy_fancybox_enqueue_scripts() {
 	wp_deregister_script('jquery-metadata');
 	wp_deregister_script('metadata');
 	// then register our version
-	wp_enqueue_script('jquery.metadata',plugins_url(FANCYBOX_SUBDIR.'/jquery.metadata.pack.js', __FILE__), array('jquery'), METADATA_VERSION, true);
+	wp_enqueue_script('jquery-metadata',plugins_url(FANCYBOX_SUBDIR.'/jquery.metadata.pack.js', __FILE__), array('jquery'), METADATA_VERSION, true);
 }
 	
 function easy_fancybox_enqueue_styles() {
 	// register style
-	wp_enqueue_style('easy-fancybox.css', plugins_url(FANCYBOX_SUBDIR.'/easy-fancybox.css.php', __FILE__), false, FANCYBOX_VERSION, 'screen');
+	wp_enqueue_style('easy-fancybox-css', plugins_url(FANCYBOX_SUBDIR.'/easy-fancybox.css.php', __FILE__), false, FANCYBOX_VERSION, 'screen');
 }
 
 // Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
