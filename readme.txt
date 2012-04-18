@@ -69,15 +69,9 @@ Done! By default, any images that are linked to directly (not to a WordPress pag
 
 Not happy with the default settings? Check out the new options under **Settings > Media**.
 
-= WordPress 3+ in Multi Site mode =
+= Wordpress MU / WordPress 3+ in Multi Site mode =
 
-Same as above but do a **Network Activate** to activate FancyBox image overlays on each site on your network. No database tables are created or manipulated and no activation hook needs to be run for it to function with default settings. 
-
-It can also do its work from /mu-plugins/. See below.
-
-= Wordpress MU =
-
-The plugin works best from the **/mu-plugins/** folder where it runs quietly in the background without bothering any blog owner with new options or the need for special knowledge about FancyBox. Just upload the complete package content to /mu-plugins/ and move the file fancybox.php from the new /mu-plugins/easy-fancybox/ to /mu-plugins/.
+Same as above but do a **Network Activate** to activate FancyBox image overlays on each site on your network. No database tables are created or manipulated and no activation hook needs to be run for it to function with default settings. The plugin can also work from the **/mu-plugins/** folder where it runs quietly in the background without bothering any blog owner with new options pages or the need for special knowledge about FancyBox. Just upload the complete package content to /mu-plugins/ and move the file fancybox.php from the new /mu-plugins/easy-fancybox/ to /mu-plugins/.
 
 
 == Frequently Asked Questions ==
@@ -122,7 +116,7 @@ Yes. There is an Advanced option called "Gallery Auto-rotation" for that.
 Yes. All links with class **nofancybox** that would normally get auto-enabled, will be excluded from opening in a FancyBox overlay.
 
 `<a href="url/to/fullimg.jpg" class="nofancybox"><img src="url/to/thumbnail.jpg" /></a>`
-&nbsp;
+
 
 = Will a NextGen gallery be displayed in a FancyBox overlay ? =
 
@@ -130,15 +124,15 @@ It *can* be. Switch OFF the FancyBox Auto-gallery feature, then set the NextGen 
 `
 class="fancybox" rel="%GALLERY_NAME%"
 `
-&nbsp;
+
 
 = Can I use ONE thumbnail to open a complete gallery ? =
 
-It can be done manually (using the internal WordPress gallery feature, or not) _or_ in combination with NextGen Gallery.&nbsp;
+It can be done manually (using the internal WordPress gallery feature, or not) _or_ in combination with NextGen Gallery.
 
 **Manual**
 
-**A.** Open your post for editing in HTML mode and insert the first image thumbnail in your post content (linking to the images file, not page) to serve as the gallery thumbnail.&nbsp;
+**A.** Open your post for editing in HTML mode and insert the first image thumbnail in your post content (linking to the images file, not page) to serve as the gallery thumbnail.
 
 **B.** Place the following code to start a hidden div containing all the other images that should only be visible in FancyBox:
 `
@@ -154,7 +148,7 @@ It can be done manually (using the internal WordPress gallery feature, or not) _
 
 **With NextGEN Gallery**
 
-You can choose between two shortcodes to show a gallery that (1) limits images per gallery using the shortcode `[nggallery id=x]` or (2) per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`.&nbsp;
+You can choose between two shortcodes to show a gallery that (1) limits images per gallery using the shortcode `[nggallery id=x]` or (2) per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`.
 
 General steps:
 
@@ -174,11 +168,11 @@ General steps:
 display:none;
 }
 `
-&nbsp;
+
 
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
-Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content.&nbsp;
+Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content.
 
 NOTE: The difference between these two classes ('-' or space) is in size of the overlay window. Try it out and use the one that works best for you :)
 
@@ -188,7 +182,7 @@ NOTE: The difference between these two classes ('-' or space) is in size of the 
 Yes. Just place a link _with the URL ending in .pdf_ to your Portable Document file in the page content.
 
 If you do'nt have *Auto-detect* checked under **PDF** on Settings > Media admin page, you will need to add `class="fancybox-pdf"` (to force pdf content recognition) to the link to enable FancyBox for it.
-&nbsp;
+
 
 = Can I play SWF files in a FancyBox overlay? =
 
@@ -204,7 +198,7 @@ FancyBox tries to detect the size of the conten automatically but if it can not 
 `
 <a class="fancybox-swf {width:1024,height:675}" href="link-to-your-swf"></a>
 `
-&nbsp;
+
 
 = Can I play YouTube, Dailymotion and Vimeo movies in a FancyBox overlay? =
 
@@ -216,7 +210,7 @@ Both YouTube and Vimeo movies can be made to play immediately after opening by a
 `
 <a href="http://youtu.be/N_tONWXYviM?hd=1&fs=1&autoplay=1">text or thumbnail</a>
 `
-&nbsp;
+
 
 = I want that 'Show in full-screen' button on my YouTube movies =
 
@@ -273,7 +267,7 @@ Same can be done with an image, flash movie, PDF or iframe link! But please reme
 
 = Can I make a menu item open in a FancyBox overlay ? =
 
-Yes. But it depends on you theme what you need to do to make it work. If you are on WordPress 3+ and your theme supports the new internal Custom Menu feature or if you are using a custom menu in a sidebar widget, it's easy:&nbsp;
+Yes. But it depends on you theme what you need to do to make it work. If you are on WordPress 3+ and your theme supports the new internal Custom Menu feature or if you are using a custom menu in a sidebar widget, it's easy:
 
 1. Go to Settings > Media and enable FancyBox iFrame support.
 2. Go to Appearance > Menus and open the little tab "Screen Options" in the top-right corner.
@@ -348,7 +342,6 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 If you followed the general trouble shooting steps before, you should now be aware of which plugin is conflicting whith Easy FancyBox. See known plugin conflicts above first. If the plugin and its solution are not mentioned there, follow these steps:
 1. Check if the plugins makes the main jQuery library file load twice in the page source code. Look for references to javascript files like `jquery.js?ver=x.x.x` or `jquery.min.js`. If you find more than one, try to find out where that comes from.
 1. Check if your theme loads another or the same lightbox script or any other of the needed jQuery extensions like jquery.easing or jquery.mousewheel. Look for references to Thickbox, Prettyphoto, Lightbox2, Colorbox or FancyBox script files or code. These are very likely to cause the incompatibility and you will have to either find a setting in the other plugin to switch OFF the use of the conflicting script (possible in NextGEN for example, see under Advanced below) or choose between the two conflicting plugins.
-&nbsp;
 
 
 
@@ -418,7 +411,7 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. D
 = 1.3.3.4.2 =
 * BIGFIX: iframe width
 * BIGFIX: image overlay size in Google Chrome browser issue (FancyBox 1.3.3)
-* BIGFIX: fancybox-swf&nbsp;
+* BIGFIX: fancybox-swf
 
 = 1.3.3.4 =
 * FancyBox script version 1.3.3 (2010/11/4 - http://fancybox.net/changelog/)
