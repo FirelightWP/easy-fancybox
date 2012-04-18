@@ -96,7 +96,7 @@ The same version as this plugin has. I aim to keep close pace to FancyBox upgrad
 
 = Where is the settings page? =
 
-There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/) ...
+There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) ...
 
 
 = Help! It does not work... =
