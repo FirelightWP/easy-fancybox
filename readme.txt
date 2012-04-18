@@ -86,7 +86,7 @@ The plugin works best from the **/mu-plugins/** folder where it runs quietly in 
  
 = What's FancyBox? =
 
-Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blanc page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples.&nbsp;
+Basically, it is a fancy way of presenting images, movies, portable documents and inline content on your website. For example, if you have scaled-down images in your posts which are linked to the original large version, instead of opening them on a blank page, FancyBox opens those in a smooth overlay. Visit [FancyBox](http://fancybox.net/) for more information and examples.
 
 
 = Which version of FancyBox does this plugin use? =
@@ -99,18 +99,10 @@ The same version as this plugin has. I aim to keep close pace to FancyBox upgrad
 There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/) ...
 
 
-= TROUBLE SHOOTING =
-
 = Help! It does not work... =
 
-If, after activation, your images do not open in a FancyBox overlay, there are several possible reasons. Some are easily solved, others are more difficult. Follow these basic checks to make sure everything is in place:
-
-1. Make sure that thumbnail images are linked *directly* to their larger counterpart, not to a dynamic WordPress page that includes the larger image. This means when you insert an image in your posts or pages, you need to select `File URL` at the **Link** option instead of `Page URL`. You'll have to manually edit your old posts if you have always inserted images with `Page URL` before, FancyBox cannot do this for you.
-1. Make sure you have all the needed media and their *Auto-detect* options activated on your **Settings > Media** admin page. If you are using images in other formats that JPG, GIF or PNG, you need to add the extensions to the Auto-detect field for Images. Please note: The image file names must actaully *end* with that extension! This means that if you have an image file that (for example) has *no* extension (does not end with .jpg or any other) even if is in JPEG compressed format, the FancyBox will not be able to detect is as an image. You will need to manually give those links the class `fancybox` to trigger FancyBox.
-1. Make sure your theme is capable of placing the needed javascript and css in the page header. Open any page on your site and view the source code by right-clicking on an empty section and selecting 'View source...' (or similar) to see the page source. There you will need to check of there are any references to javascript files like `jquery.fancybox-x.x.x.pack.js?ver=x.x.x` in the `<head>` section. There should also be a `easy-fancybox.css.php?ver=x.x.x` and some javascript that starts with `<!-- Easy FancyBox 1.3.4.9 using FancyBox 1.3.4 - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->`... If it's not there, your theme is really out of date. Consider switching to a new theme fast!
-1. Check if your theme wraps post/page content in a div with class `hentry`. If it doesn't, you might need to edit the option `Section(s)` on **Settings > Media** to reflect the class (or ID) name of the div that holds post/page content.
-
-If you still do not get to see your images in FancyBox, ask on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://4visions.nl/en/wordpress-plugins/easy-fancybox/)
+Please follow the trouble shooting steps on [Other Notes](http://wordpress.org/extend/plugins/easy-fancybox/other_notes/) to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://4visions.nl/en/wordpress-plugins/easy-fancybox/)
+&nbsp;
 
 
 = ADVANCED =
@@ -134,7 +126,7 @@ Yes. All links with class **nofancybox** that would normally get auto-enabled, w
 
 = Will a NextGen gallery be displayed in a FancyBox overlay ? =
 
-It *can* be. Switch off any gallery overlay scripts in NextGen and either use the FancyBox Auto-detect feature (turned ON by default for jpg, gif and png files) or set the NextGen option "JavaScript Thumbnail effect" to "Custom" and fill the code line field with 
+It *can* be. Switch OFF the FancyBox Auto-gallery feature, then set the NextGen option "JavaScript Thumbnail effect" to "Custom" and fill the code line field with 
 `
 class="fancybox" rel="%GALLERY_NAME%"
 `
@@ -176,9 +168,11 @@ General steps:
 1. Show ImageBrowser: unchecked
 1. Add hidden images: checked
 
-**C.** Optional: add a new CSS rule to your theme stylesheet to hide the page browsing links below the gallery thumbnail:
+**C.** Optional: install [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add a new CSS rule to hide the page browsing links below the gallery thumbnail:
 `
-.ngg-navigation{display:none}
+.ngg-navigation {
+display:none;
+}
 `
 &nbsp;
 
@@ -327,7 +321,35 @@ z-index:999;
 
 == Trouble Shooting ==
 
-See the FAQ section on trouble shooting.
+If, after activation, your images do not open in a FancyBox overlay, there are several possible reasons. Some are easily solved, others are more difficult. Follow these basic checks to make sure everything is in place:
+
+= Basic checks =
+
+1. Make sure that thumbnail images are linked *directly* to their larger counterpart, not to a dynamic WordPress page that includes the larger image. This means when you insert an image in your posts or pages, you need to select `File URL` at the **Link** option instead of `Page URL`. You'll have to manually edit your old posts if you have always inserted images with `Page URL` before, FancyBox cannot do this for you.
+1. Make sure you have all the needed media and their *Auto-detect* options activated on your **Settings > Media** admin page. If you are using images in other formats that JPG, GIF or PNG, you need to add the extensions to the Auto-detect field for Images. Please note: The image file names must actaully *end* with that extension! This means that if you have an image file that (for example) has *no* extension (does not end with .jpg or any other) even if is in JPEG compressed format, the FancyBox will not be able to detect is as an image. You will need to manually give those links the class `fancybox` to trigger FancyBox.
+
+Next, proceed with these general trouble shooting steps:
+1. Switch off all other plugins and switch your sites appearance to the default Twenty Eleven theme. FancyBox should work now. If so, continue with the next step. If not, re-install the plugin and verify the basic steps above. Then open any page on your site and view the source code by right-clicking on an empty section and selecting 'View source...' (or similar). Find in the `<head>` section a referenced stylesheet `easy-fancybox.css.php?ver=x.x.x` and copy the full URL. Paste that URL in the address bar of a new browser tab to open the stylesheet directly. It should open without any errors and show a lot of stylesheet rules on a single line. If not, there is some incompatibility with your servers PHP setup. Please ask on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://4visions.nl/en/wordpress-plugins/easy-fancybox/).
+1. Switch back to your original theme and check if FancyBox is still working. If so, continue with the next step. If not, See the Theme Incompatibility checks below.
+1. One by one, switch each plugin that you had running before back ON. Keep checking to see at which point FancyBox starts failing and you will hve found the conflicting plugin.
+
+= Theme Incompatibility checks =
+
+See known theme conflicts above first. Then follow these steps:
+1. Make sure your theme is capable of placing the needed javascript and css in the page header. Open any page on your site and view the source code by right-clicking on an empty section and selecting 'View source...' (or similar). There you will need to check of there are any references to javascript files like `jquery.fancybox-x.x.x.pack.js?ver=x.x.x` in the `<head>` section. There should also be a `easy-fancybox.css.php?ver=x.x.x` and some javascript that starts with `<!-- Easy FancyBox 1.3.4.9 using FancyBox 1.3.4 - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->`... If it's not there, your theme is really out of date. Consider switching to a new theme fast!
+1. Check if your theme wraps post/page content in a div with class `hentry`. If it doesn't, you might need to edit the option `Section(s)` on **Settings > Media** to reflect the class (or ID) name of the div that holds post/page content.
+1. Check if your theme makes the main jQuery library file load twice in the page source code. Look for references to javascript files like `jquery.js?ver=x.x.x` or `jquery.min.js`. If you find more than one, try to find out in which theme template file that second reference is hard-coded and remove that line. Usually in header.php or footer.php
+1. Check if your theme loads another or the same lightbox script. Look for references to Thickbox, Prettyphoto, Lightbox2, Colorbox or FancyBox script files or code. These are very likely to cause the incompatibility and you will either have to remove these by hacking your theme or switch to another theme. 
+
+If you still do not get to see your images in FancyBox, ask on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://4visions.nl/en/wordpress-plugins/easy-fancybox/)
+
+= Plugin Incompatibility checks =
+
+If you followed the general trouble shooting steps before, you should now be aware of which plugin is conflicting whith Easy FancyBox. See known plugin conflicts above first. If the plugin and its solution are not mentioned there, follow these steps:
+1. Check if the plugins makes the main jQuery library file load twice in the page source code. Look for references to javascript files like `jquery.js?ver=x.x.x` or `jquery.min.js`. If you find more than one, try to find out where that comes from.
+1. Check if your theme loads another or the same lightbox script or any other of the needed jQuery extensions like jquery.easing or jquery.mousewheel. Look for references to Thickbox, Prettyphoto, Lightbox2, Colorbox or FancyBox script files or code. These are very likely to cause the incompatibility and you will have to either find a setting in the other plugin to switch OFF the use of the conflicting script (possible in NextGEN for example, see under Advanced below) or choose between the two conflicting plugins.
+&nbsp;
+
 
 
 == Screenshots ==
