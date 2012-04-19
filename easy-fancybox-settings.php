@@ -950,7 +950,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a, area; li a'
+					'default' => 'a, area, li a'
 					),
 				'class' => array (
 					'hide' => true,
