@@ -5,7 +5,7 @@ Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.3.4.10dev4
+Version: 1.3.4.10dev5
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -270,7 +270,7 @@ echo '</style>
 
 // add our FancyBox Media Settings Section on Settings > Media admin page
 function easy_fancybox_settings_section() {
-	echo '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypal.com/en_US/i/btn/x-click-but7.gif" style="border:none;float:right;margin:0 0 10px 10px" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="72" height="29" /></a><p>'.__('The options in this section are provided by the plugin <strong><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox/">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href="http://fancybox.net/">FancyBox</a></strong>.','easy-fancybox').' '.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').'</p><p>'.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
+	echo '<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:left;margin:5px 10px 0 0" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="92" height="26" /></a>'.__('The options in this section are provided by the plugin <strong><a href="http://4visions.nl/wordpress-plugins/easy-fancybox/">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href="http://fancybox.net/">FancyBox</a></strong>.','easy-fancybox').' '.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').'</p><p>'.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
 }
 
 // add our FancyBox Media Settings Fields
@@ -432,6 +432,18 @@ function easy_fancybox_admin_init(){
 	add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), 'easy_fancybox_settings_section', 'media');
 
 	easy_fancybox_register_settings($easy_fancybox_array);
+	
+	add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'easy_fancybox_add_action_link');
+
+}
+
+/**
+ * Adds an action link to the Plugins page
+ */
+function easy_fancybox_add_action_link( $links ) {
+	$settings_link = '<a href="' . admin_url('options-media.php') . '">' . __('Settings') . '</a>';
+	array_unshift( $links, $settings_link ); 
+	return $links;
 }
 
 function easy_fancybox_enqueue_scripts() {
@@ -519,5 +531,5 @@ add_action('init','easy_fancybox_init');
 add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
 add_action('wp_print_styles', 'easy_fancybox_enqueue_styles', 999);
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
-add_action('wp_footer', 'easy_fancybox', 999);
+add_action('wp_head', 'easy_fancybox');
 

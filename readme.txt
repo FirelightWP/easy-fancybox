@@ -285,9 +285,14 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 == Known Issues ==
 
+= General =
+
+- **Outbound links or Downloads tracking** in some of the stats plugins can interfere with FancyBox.
+- All plugins and themes that do not use `wp-enqueue-script` properly to include script libraries or extension files. Continue reading to see if you are using one of the know ones or follow the troubleshooting steps to find out what is conflicting on your site.
+
 = Plugin conflicts =
 
-- **Outbound links or Downloads tracking** in some of the stats plugins can interfere with FancyBox. 
+- **All in One SEO Pack** with outbound link tracking enabled. Disable that feature.
 - **Better WP Security** randomly changes version numbers in linked file URLs, breaking the FancyBox stylesheet. Disable the option "Display random version number to all non-administrative users" in the Better WP Security settings.
 - By default **Google Analytics for WordPress** converts links like `href="#anyID"` to `href="http://yoursite.url/page/#anyID"`, disabling inline content shown in FancyBox.
 - **Wordpress Firewall 2** blocks access to image files needed for porper display of the FancyBox overlay in older IE and other non-css3 browsers.
@@ -305,6 +310,7 @@ z-index:999;
 }
 `
 - The **Mystique** theme has an option called "Optimize website for faster loading" that will break Easy FancyBox. Disable it in Mystique's options > Advanced.
+- Themes like **Envisioned**, **Chameleon** and many others have FancyBox baked in. There is no solution other than stripping the theme of all FancyBox related code or disable the plugin and use the theme provided version...
 
 = Other =
 
