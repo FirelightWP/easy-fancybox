@@ -358,7 +358,7 @@ function easy_fancybox_register_settings($args){
 			default:
 				if ( !isset($value['sanitize_callback']) )
 					$value['sanitize_callback'] = '';
-				if ( isset($value['id']) ) {
+				if ( isset($value['id']) )
 					register_setting( 'media', 'fancybox_'.$key, $value['sanitize_callback'] );
 		}
 	}
