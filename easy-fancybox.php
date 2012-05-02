@@ -5,7 +5,7 @@ Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.3.4.10dev5
+Version: 1.3.4.10dev6
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -77,18 +77,15 @@ var fb_opts = {';
 	foreach ($easy_fancybox_array['Global']['options'] as $globals) {
 		foreach ($globals['options'] as $_key => $_value) {
 			$parm = (isset($_value['id'])) ? get_option($_value['id'], $_value['default']) : $_value['default'];
-			if( isset($_value['input']) && 'checkbox'==$_value['input'] && ''==$parm )
-				$parm = '0';
+			if( isset($_value['input']) && 'checkbox'==$_value['input'] )
+				$parm = ( '1' == $parm ) ? 'true' : 'false';
 
 			if( !isset($_value['hide']) && $parm!='' ) {
-				$quote = (is_numeric($parm) || isset($_value['noquotes'])) ? '' : '\'';
+				$quote = (is_numeric($parm) || (isset($_value['noquotes']) && $_value['noquotes'] == true) ) ? '' : '\'';
 				if ($more>0)
 					echo ',';
 				echo ' \''.$_key.'\' : ';
-				if ( isset($_value['input']) && 'checkbox'==$_value['input'])
-					echo ( '1' == $parm ) ? 'true' : 'false';
-				else
-					echo $quote.$parm.$quote;
+				echo $quote.$parm.$quote;
 				$more++;
 			} else {
 				$$_key = $parm;
@@ -209,20 +206,17 @@ jQuery(\'';
 		}
 		echo '\').fancybox( jQuery.extend({}, fb_opts, {';
 		$more=0;
-		foreach ($value['options'] as $_key => $_values) {
-			$parm = (isset($_values['id'])) ? get_option($_values['id'], $_values['default']) : $_values['default'];
-			if( isset($_value['input']) && 'checkbox'==$_value['input'] && ''==$parm )
-				$parm = '0';
+		foreach ($value['options'] as $_key => $_value) {
+			$parm = (isset($_value['id'])) ? get_option($_value['id'], $_value['default']) : $_value['default'];
+			if( isset($_value['input']) && 'checkbox'==$_value['input'] )
+				$parm = ( '1' == $parm ) ? 'true' : 'false';
 
-			if( !isset($_values['hide']) && $parm!='' ) {
-				$quote = (is_numeric($parm) || isset($_values['noquotes'])) ? '' : '\'';
+			if( !isset($_value['hide']) && $parm!='' ) {
+				$quote = (is_numeric($parm) || (isset($_value['noquotes']) && $_value['noquotes'] == true) ) ? '' : '\'';
 				if ($more>0)
 					echo ',';
 				echo ' \''.$_key.'\' : ';
-				if ( isset($_values['input']) && 'checkbox'==$_values['input'] )
-					echo ( '1' == $parm ) ? 'true' : 'false';
-				else
-					echo $quote.$parm.$quote;
+				echo $quote.$parm.$quote;
 				$more++;
 			}
 		}
@@ -354,13 +348,18 @@ function easy_fancybox_register_settings($args){
 				break;
 			case 'multiple':
 				add_settings_field( 'fancybox_'.$key, $value['title'], 'easy_fancybox_settings_fields', 'media', 'fancybox_section', $value);
-				foreach ( $value['options'] as $_value )
+				foreach ( $value['options'] as $_value ) {
+					if ( !isset($_value['sanitize_callback']) )
+						$_value['sanitize_callback'] = '';
 					if ( isset($_value['id']) )
-						register_setting( 'media', $_value['id'], $_value['sanitize_callback'] );	
+						register_setting( 'media', $_value['id'], $_value['sanitize_callback'] );
+				}
 				break;
 			default:
-				if ( isset($value['id']) )
-					register_setting( 'media', 'fancybox_'.$key, $_value['sanitize_callback'] );
+				if ( !isset($value['sanitize_callback']) )
+					$value['sanitize_callback'] = '';
+				if ( isset($value['id']) ) {
+					register_setting( 'media', 'fancybox_'.$key, $value['sanitize_callback'] );
 		}
 	}
 }

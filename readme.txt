@@ -289,6 +289,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 - **Outbound links or Downloads tracking** in some of the stats plugins can interfere with FancyBox.
 - All plugins and themes that do not use `wp-enqueue-script` properly to include script libraries or extension files. Continue reading to see if you are using one of the know ones or follow the troubleshooting steps to find out what is conflicting on your site.
+- All themes that are missing one or both of the obligatory `<?php wp_head(); ?>` in the header.php and `<?php wp_footer(); ?>` call just before the closing `</body>` tag in their footer.php template or elsewhere.
 
 = Plugin conflicts =
 
@@ -310,6 +311,7 @@ z-index:999;
 }
 `
 - The **Mystique** theme has an option called "Optimize website for faster loading" that will break Easy FancyBox. Disable it in Mystique's options > Advanced.
+- **Imbalance** and other themes that uses the Photo Galleria jQuery extension: turn of the JSGallery option.
 - Themes like **Envisioned**, **Chameleon** and many others have FancyBox baked in. There is no solution other than stripping the theme of all FancyBox related code or disable the plugin and use the theme provided version...
 
 = Other =

@@ -110,6 +110,7 @@ function easy_fancybox_settings(){
 						'overlayShow' => array (
 							'id' => 'fancybox_overlayShow',
 							'input' => 'checkbox',
+							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Show the overlay around content opened in FancyBox.','easy-fancybox')
 							),
@@ -146,12 +147,14 @@ function easy_fancybox_settings(){
 						'showCloseButton' => array (
 							'id' => 'fancybox_showCloseButton',
 							'input' => 'checkbox',
+							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Show the (X) close button','easy-fancybox')
 							),
 						'showNavArrows' => array (
 							'id' => 'fancybox_showNavArrows',
 							'input' => 'checkbox',
+							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Show the gallery navigation arrows','easy-fancybox')
 							),
@@ -166,12 +169,14 @@ function easy_fancybox_settings(){
 						'autoScale' => array (
 							'id' => 'fancybox_autoScale',
 							'input' => 'checkbox',
+							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Scale large content down to fit in the browser viewport.','easy-fancybox')
 							),
 						'centerOnScroll' => array (
 							'id' => 'fancybox_centerOnScroll',
 							'input' => 'checkbox',
+							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Center while scrolling','easy-fancybox')
 							),
@@ -325,12 +330,14 @@ function easy_fancybox_settings(){
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '',
 					'description' => __('Transparency fade during elastic transition.','easy-fancybox') . '<br />'
 					),
 				'autoDimensions' => array (
 					'id' => 'fancybox_autoDimensions',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Try to adjust size to inline/html content.<br />If unchecked, the default dimensions below will always be used. This option does not apply when images are displayed.','easy-fancybox')
 					),
@@ -366,6 +373,7 @@ function easy_fancybox_settings(){
 				'titleShow' => array (
 					'id' => 'fancybox_titleShow',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Show title','easy-fancybox')
 					),
@@ -386,6 +394,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 					'id' => 'fancybox_titleFromAlt',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
@@ -477,6 +486,7 @@ function easy_fancybox_settings(){
 				'titleShow' => array (
 					'id' => 'fancybox_PDFtitleShow',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '',
 					'description' => __('Show title','easy-fancybox')
 					),
@@ -496,6 +506,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 					'id' => 'fancybox_PDFtitleFromAlt',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
@@ -595,6 +606,7 @@ function easy_fancybox_settings(){
 				'titleShow' => array (
 					'id' => 'fancybox_SWFtitleShow',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '',
 					'description' => __('Show title','easy-fancybox')
 					),
@@ -614,6 +626,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 					'id' => 'fancybox_SWFtitleFromAlt',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
@@ -693,6 +706,7 @@ function easy_fancybox_settings(){
 				'titleShow' => array (
 					'id' => 'fancybox_YoutubetitleShow',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '',
 					'description' => __('Show title','easy-fancybox')
 					),
@@ -712,6 +726,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 					'id' => 'fancybox_YoutubetitleFromAlt',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
@@ -786,6 +801,7 @@ function easy_fancybox_settings(){
 				'titleShow' => array (
 					'id' => 'fancybox_VimeotitleShow',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '',
 					'description' => __('Show title','easy-fancybox')
 					),
@@ -805,6 +821,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 					'id' => 'fancybox_VimeotitleFromAlt',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
@@ -880,6 +897,7 @@ function easy_fancybox_settings(){
 				'titleShow' => array (
 					'id' => 'fancybox_DailymotiontitleShow',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '',
 					'description' => __('Show title','easy-fancybox')
 					),
@@ -899,6 +917,7 @@ function easy_fancybox_settings(){
 				'titleFromAlt' => array (
 					'id' => 'fancybox_DailymotiontitleFromAlt',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
@@ -994,6 +1013,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 				'titleShow' => array (
 					'id' => 'fancybox_iFrametitleShow',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '',
 					'description' => __('Show title','easy-fancybox')
 					),
@@ -1013,6 +1033,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 				'titleFromAlt' => array (
 					'id' => 'fancybox_iFrametitleFromAlt',
 					'input' => 'checkbox',
+					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					)
