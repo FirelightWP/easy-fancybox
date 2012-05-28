@@ -36,7 +36,8 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 = Translators =
 
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl), for version 1.3.4.9
-- **Polish** * Author: Kamil Szymański, for version: 1.3.4.9
+- **Hindi** * Author: [Outshine Solutions](http://outshinesolutions.com) (version 1.3.4.9)
+- **Polish** * Author: Kamil Szymański (version: 1.3.4.9)
 - **Romanian** * Author: [Web Geek Sciense](http://webhostinggeeks.com/) (version 1.3.4.9)
 - **Spanish** * Author: [David Pérez](http://www.closemarketing.es), for version: 1.3.4.9
 
@@ -356,6 +357,7 @@ Metadata and image map support. Opening speed bugfix. New iFrame/HTML5 embed cod
 == Changelog ==
 
 = 1.3.4.9 =
+* NEW: Hindi translation
 * NEW: Romanian tranlation
 * NEW: Polish translation
 * NEW: Spanish translation
