@@ -8,10 +8,14 @@ function easy_fancybox_settings(){
 			'hide' => true,
 			'options' => array(
 				'Enable' => array (
-					'title' => __('Enable FancyBox for','easy-fancybox'),
+					'title' => __('Media','easy-fancybox'),
 					'input' => 'multiple',
 					'hide' => true,
 					'options' => array(
+						'p1' => array (
+							'hide' => true,
+							'description' => '<strong>' . __('Enable FancyBox for','easy-fancybox') . '</strong><br />'
+							),
 						'IMG' => array (
 							'id' => 'fancybox_enableImg',
 							'input' => 'checkbox',
@@ -62,7 +66,7 @@ function easy_fancybox_settings(){
 							'description' => '<strong>' . __('iFrames','easy-fancybox') . '</strong>' 
 							)							
 						),
-					'description' => '<strong><em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('For advanced options, please purchase the Easy FancyBox Pro version.','easy-fancybox') . '</a></em></strong><br />'
+					'description' => '<strong><em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('For advanced options, please purchase the Easy FancyBox Pro version.','easy-fancybox') . '</a></em></strong><br />'
 					),
 				'Links' => array(
 					'title' => __('Links'),
@@ -98,7 +102,7 @@ function easy_fancybox_settings(){
 								'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
 								),
 							'default' => '1',
-							'description' => '<em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
+							'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
 							)
 						)
 					),
@@ -113,6 +117,13 @@ function easy_fancybox_settings(){
 							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Show the overlay around content opened in FancyBox.','easy-fancybox')
+							),
+						'hideOnOverlayClick' => array (
+							'id' => 'fancybox_hideOnOverlayClick',
+							'input' => 'checkbox',
+							'noquotes' => true,
+							'default' => '1',
+							'description' => __('Close FancyBox when overlay is clicked','easy-fancybox')
 							),
 						'overlayOpacity' => array (
 							'id' => 'fancybox_overlayOpacity',
@@ -131,12 +142,19 @@ function easy_fancybox_settings(){
 							'class' => 'small-text',
 							'default' => '',
 							'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em><br />' 
+							),
+						'overlaySpotlight' => array (
+							'input' => 'checkbox',
+							'hide' => true,
+							'status' => 'disabled',
+							'default' => '',
+							'description' => __('Spotlight effect','easy-fancybox')
 							)
 						)
 					),
 				
 				'Window' => array (
-					'title' => __('Window','easy-fancybox'),
+					'title' => __('Frame','easy-fancybox'),
 					'input' => 'multiple',
 					'hide' => true,
 					'options' => array(
@@ -156,22 +174,51 @@ function easy_fancybox_settings(){
 							'input' => 'checkbox',
 							'noquotes' => true,
 							'default' => '1',
-							'description' => __('Show the gallery navigation arrows','easy-fancybox')
+							'description' => __('Show the gallery navigation arrows','easy-fancybox') . '<br />'
+							),
+						'backgroundColor' => array (
+							'id' => 'fancybox_backgroundColor',
+							'hide' => true,
+							'title' => __('Background color','easy-fancybox'),
+							'input' => 'text',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'default' => '#fff',
+							'description' => ''
+							),
+						'paddingColor' => array (
+							'id' => 'fancybox_paddingColor',
+							'hide' => true,
+							'title' => __('Border color','easy-fancybox'),
+							'input' => 'text',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'default' => '#fff',
+							'description' => ''
+							),
+						'textColor' => array (
+							'id' => 'fancybox_textColor',
+							'hide' => true,
+							'title' => __('Text color','easy-fancybox'),
+							'input' => 'text',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'default' => 'inherit',
+							'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em><br />'
+							),
+						'frameOpacity' => array (
+							'id' => 'fancybox_frameOpacity',
+							'hide' => true,
+							'title' => __('Opacity','easy-fancybox'),
+							'input' => 'text',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'default' => '1.0',
+							'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em><br />'
 							),
 						'p2' => array (
 							'hide' => true,
-							'description' => '<br /><strong>' . __('Color','easy-fancybox') . '</strong><br /><em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em><br />'
-							),
-						'p3' => array (
-							'hide' => true,
 							'description' => '<br /><strong>' . __('Behavior','easy-fancybox') . '</strong><br />'
-							),
-						'autoScale' => array (
-							'id' => 'fancybox_autoScale',
-							'input' => 'checkbox',
-							'noquotes' => true,
-							'default' => '1',
-							'description' => __('Scale large content down to fit in the browser viewport.','easy-fancybox')
 							),
 						'centerOnScroll' => array (
 							'id' => 'fancybox_centerOnScroll',
@@ -179,6 +226,20 @@ function easy_fancybox_settings(){
 							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Center while scrolling','easy-fancybox')
+							),
+						'enableEscapeButton' => array (
+							'id' => 'fancybox_enableEscapeButton',
+							'input' => 'checkbox',
+							'noquotes' => true,
+							'default' => '1',
+							'description' => __('Esc key stroke closes FancyBox','easy-fancybox')
+							),
+						'autoScale' => array (
+							'id' => 'fancybox_autoScale',
+							'input' => 'checkbox',
+							'noquotes' => true,
+							'default' => '1',
+							'description' => __('Scale large content down to fit in the browser viewport.','easy-fancybox')
 							),
 						'speedIn' => array (
 							'id' => 'fancybox_speedIn',
@@ -197,21 +258,32 @@ function easy_fancybox_settings(){
 							'sanitize_callback' => 'easy_fancybox_intval',
 							'class' => 'small-text',
 							'default' => '',
-							),
-						'changeFade' => array (
-							'id' => 'fancybox_changeFade',
-							'title' => __('Fade speed','easy-fancybox'),
-							'label_for' => 'fancybox_changeFade',
-							'input' => 'text',
-							'sanitize_callback' => 'easy_fancybox_intval',
-							'class' => 'small-text',
-							'default' => '',
 							'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br />'
 							),
-						'p5' => array (
+						'bgColor' => array (
+							'id' => 'fancybox_backgroundColor',
 							'hide' => true,
-							'description' => '<br /><strong>' . __('Advanced') . '</strong><br /><em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em><br />'
-							)
+							'input' => 'hidden',
+							'default' => '#fff',
+							),
+						'pColor' => array (
+							'id' => 'fancybox_paddingColor',
+							'hide' => true,
+							'input' => 'hidden',
+							'default' => '#fff'
+							),
+						'tColor' => array (
+							'id' => 'fancybox_textColor',
+							'hide' => true,
+							'input' => 'hidden',
+							'default' => 'inherit'
+							),
+						'fOpacity' => array (
+							'id' => 'fancybox_frameOpacity',
+							'hide' => true,
+							'input' => 'hidden',
+							'default' => '1.0'
+							),
 						)
 					)
 					
@@ -234,7 +306,7 @@ function easy_fancybox_settings(){
 					'hide' => true,
 					'default' => '.jpg .jpeg .png',
 					'selector' => 'href*=',
-					'description' => ' <em>' . __('Default:','easy-fancybox') . ' .jpg .gif .png</em><br /><br />'
+					'description' => ' <em>' . __('Default:','easy-fancybox') . ' .jpg .jpeg .png</em><br />'
 					),
 				'autoAttributeLimit' => array (
 					'id' => 'fancybox_autoAttributeLimit',
@@ -246,35 +318,12 @@ function easy_fancybox_settings(){
 						'' => __('All image links', 'easy-fancybox')
 						),
 					'default' => '',
-					'description' => '<em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
-				'autoGallery' => array (
-					'id' => 'fancybox_autoGallery',
-					'title' => __('Auto-gallery','easy-fancybox'),
-					'label_for' => 'fancybox_autoGallery',
+				'p2' => array (
 					'hide' => true,
-					'input' => 'select',
-					'options' => array(
-						'' => __('Disabled'),
-						'2' => __('All in one gallery','easy-fancybox')
-						),
-					'default' => '2',
-					'description' => '<em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' .  __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . ' ' . '<br />'
+					'description' => '<br /><strong>' . __('Behavior','easy-fancybox') . '</strong><br />'
 					),
-				'autoSelector' => array (
-					'id' => 'fancybox_autoGallerySelector',
-					'title' => __('Section(s)','easy-fancybox'),
-					'label_for' => 'fancybox_autoGallerySelector',
-					'hide' => true,
-					'input' => 'text',
-					'class' => 'regular-text',
-					'default' => 'article, div.hentry',
-					'description' => '<em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a> ' . __('Default:','easy-fancybox') . ' ' . 'article, div.hentry' . '</em><br />' . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . '<br /><br />'
-					),
-/*				'onStart' => array (
-						'noquotes' => true,
-						'default' => 'function() { window.clearTimeout(fb_timeout); }'
-					),*/
 				'transitionIn' => array (
 					'id' => 'fancybox_transitionIn',
 					'title' => __('Transition In','easy-fancybox'),
@@ -299,7 +348,7 @@ function easy_fancybox_settings(){
 						'easeOutBack' => __('Back','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOut',
@@ -325,14 +374,21 @@ function easy_fancybox_settings(){
 						'easeInBack' => __('Back','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="http://4visions.nl/en/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox') . '<br />'
+					'description' => ' <em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox') . '<br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
 					'input' => 'checkbox',
 					'noquotes' => true,
 					'default' => '',
-					'description' => __('Transparency fade during elastic transition.','easy-fancybox') . '<br />'
+					'description' => __('Transparency fade during elastic transition.','easy-fancybox')
+					),
+				'hideOnContentClick' => array (
+					'id' => 'fancybox_hideOnContentClick',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '',
+					'description' => __('Close FancyBox when content is clicked','easy-fancybox')
 					),
 				'autoDimensions' => array (
 					'id' => 'fancybox_autoDimensions',
@@ -340,6 +396,10 @@ function easy_fancybox_settings(){
 					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Try to adjust size to inline/html content.<br />If unchecked, the default dimensions below will always be used. This option does not apply when images are displayed.','easy-fancybox')
+					),
+				'p1' => array (
+					'hide' => true,
+					'description' => '<br /><strong>' . __('Appearance','easy-fancybox') . '</strong><br />'
 					),
 				'width' => array (
 					'id' => 'fancybox_width',
@@ -397,6 +457,77 @@ function easy_fancybox_settings(){
 					'noquotes' => true,
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
+					),
+				'onStart' => array (
+					'title' => __('Advanced','easy-fancybox'),
+					'input' => 'select',
+					'status' => 'disabled',
+					'options' => array(
+						'' => __('Hide/show title on mouse hover action','easy-fancybox')
+						),
+					'default' => '',
+					'description' =>  '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em><br />'
+					),
+				'p3' => array (
+					'hide' => true,
+					'description' => '<br /><strong>' . __('Gallery','easy-fancybox') . '</strong><br />'
+					),
+				'autoGallery' => array (
+					'id' => 'fancybox_autoGallery',
+					'title' => __('Auto-gallery','easy-fancybox'),
+					'label_for' => 'fancybox_autoGallery',
+					'hide' => true,
+					'input' => 'select',
+					'options' => array(
+						'' => __('Disabled'),
+						'1' => __('WordPress galleries only','easy-fancybox'),
+						'2' => __('All in one gallery','easy-fancybox')
+						),
+					'default' => '1',
+					'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
+					),
+				'cyclic' => array (
+					'id' => 'fancybox_cyclic',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '',
+					'description' => __('Make galleries cyclic, allowing you to keep pressing next/back.','easy-fancybox')
+					),
+				'changeSpeed' => array (
+					'id' => 'fancybox_changeSpeed',
+					'title' => __('Change speed','easy-fancybox'),
+					'label_for' => 'fancybox_changeSpeed',
+					'input' => 'text',
+					'sanitize_callback' => 'easy_fancybox_intval',
+					'class' => 'small-text',
+					'default' => '',
+					),
+				'changeFade' => array (
+					'id' => 'fancybox_changeFade',
+					'title' => __('Fade speed','easy-fancybox'),
+					'label_for' => 'fancybox_changeFade',
+					'input' => 'text',
+					'sanitize_callback' => 'easy_fancybox_intval',
+					'class' => 'small-text',
+					'default' => '',
+					'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br /><br />'
+					),
+				'autoSelector' => array (
+					'id' => 'fancybox_autoSelector',
+					'hide' => true,
+					'input' => 'hidden',
+					'default' => 'div.gallery',
+					'translations' => __('Galleries per Section (below)','easy-fancybox') . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you want to include images in a sidebar with ID primary, add ", div#primary" or "aside#primary" for html5 themes.If you only want to group images in a WordPress gallery together, use "div.gallery". If you want to include images in a sidebar with ID primary, add ", #primary".','easy-fancybox') . __('Hide/show title on mouse hover action works best with Overlay title position.','easy-fancybox') . __('Auto-rotation uses a fixed 6, 8 or 12 second pause per image.','easy-fancybox') . __('(6 seconds)','easy-fancybox') . __('(8 seconds)','easy-fancybox') . __('(12 seconds)','easy-fancybox')
+					),
+				'onComplete' => array (
+					'title' => __('Advanced','easy-fancybox'),
+					'input' => 'select',
+					'status' => 'disabled',
+					'options' => array(
+						'' => __('Gallery Auto-rotation','easy-fancybox')
+						),
+					'default' => '',
+					'description' =>  '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em>'
 					),
 /*						'titleFormat' => array (
 					'id' => 'fancybox_titleFormat',
@@ -536,7 +667,7 @@ function easy_fancybox_settings(){
 				'onStart' => array ( 
 					'noquotes' => true,
 //					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
-					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" type="application/pdf" height="100%" width="100%"><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" /><embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&amp;navpanes=0&amp;nameddest=self&amp;page=1&amp;view=FitH,0&amp;zoom=80,0,0" type="application/pdf" height="100%" width="100%" /><a href="\' + selectedArray[selectedIndex].href + \'" style="display:block;font-size:18px;position:absolute;top:50%;width:100%;text-align:center">\' + jQuery(selectedArray[selectedIndex]).html() + \'</a></object>\' }'
+					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%"><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" /><embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" /><a href="\' + selectedArray[selectedIndex].href + \'" style="display:block;font-size:18px;position:absolute;top:50%;width:100%;text-align:center">\' + jQuery(selectedArray[selectedIndex]).html() + \'</a></object>\' }'
 					),
 /*				'onClosed' => array ( 
 					'noquotes' => true,
@@ -736,7 +867,7 @@ function easy_fancybox_settings(){
 					), */
 				'onStart' => array ( 
 					'noquotes' => true,
-					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?v=([a-z0-9\_\-]+)(&|\\\?)?(.*)\', \'i\'), \'embed/$1?version=3&$3\') }'
+					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?v=([a-z0-9\_\-]+)(&|\\\?)?(.*)\', \'i\'), \'embed/$1?$3\') }'
 					)
 				)
 			),

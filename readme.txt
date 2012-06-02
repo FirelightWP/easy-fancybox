@@ -41,6 +41,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 = Translators =
 
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl) (version 1.3.4.9)
+- **Hindi** * Author: [Outshine Solutions](http://outshinesolutions.com) (version 1.3.4.9)
 - **Lithuanian** * Author: [Vincent G](http://www.host1free.com) (version 1.3.4.9)
 - **Polish** * Author: Kamil Szymański (version 1.3.4.9)
 - **Romanian** * Author: [Web Geek Sciense](http://webhostinggeeks.com/) (version 1.3.4.9)
@@ -163,7 +164,7 @@ General steps:
 1. Show ImageBrowser: unchecked
 1. Add hidden images: checked
 
-**C.** Optional: install [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add a new CSS rule to hide the page browsing links below the gallery thumbnail:
+**C.** Optional: install [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add a new CSS rule on the new Appearance > Edit CSS admin page to hide the page browsing links below the gallery thumbnail:
 `
 .ngg-navigation {
 display:none;
@@ -305,7 +306,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 = Theme conflicts = 
 
-- The new default **Twenty Eleven** uses a very high stacking order (z-index: 9999) for the top image and menu div, resulting in FancyBox content being partially hidden under the page header. Work-around: Use the plugin [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add the rule
+- The new default **Twenty Eleven** uses a very high stacking order (z-index: 9999) for the top image and menu div, resulting in FancyBox content being partially hidden under the page header. Work-around: Use the plugin [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add on the new Appearance > Edit CSS admin page the rule:
 `
 #branding {
 z-index:999;
@@ -370,6 +371,7 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. D
 == Changelog ==
 
 = 1.3.4.10 =
+* BUGFIX: https in stylesheet on Windows IIS
 * Improved W3TC compatibility: query string issue
 * Gravity Forms in ajax mode compatibility
 * Use jQuery's bind('ready') for better ajax content compatibility
@@ -381,8 +383,11 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. D
 * BUGFIX: missing signs in Youtube url regular expression
 * BUGFIX: unquoted rel attribute selectors in jquery.fancybox-1.3.4.js
 * BUGFIX: broken url path in IE stylesheet when missing $_SERVER['SERVER_NAME']
+* BUGFIX: easing extension not needed on linear easing
 
 = 1.3.4.9 =
+* NEW: Lithuanian translation
+* NEW: Hindi translation
 * NEW: Romanian translation
 * NEW: Polish translation
 * NEW: Spanish translation

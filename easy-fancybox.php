@@ -243,7 +243,7 @@ jQuery(\'a[class*="fancybox"]\').filter(\':first\').trigger(\'click\');';
 });
 /* ]]> */
 </script>
-<style type="text/css">.fancybox-hidden{display:none}';
+<style type="text/css">#page #branding{z-index:999}.fancybox-hidden{display:none}';
 
 	if ('1' == $overlaySpotlight)
 		echo '#fancybox-overlay{background-image:url("'. plugins_url(FANCYBOX_SUBDIR.'/light-mask.png', __FILE__) . '");background-position:50% -3%;background-repeat:no-repeat;-o-background-size:100%;-webkit-background-size:100%;-moz-background-size:100%;-khtml-background-size:100%;background-size:100%;position:fixed}';
@@ -269,6 +269,7 @@ function easy_fancybox_settings_section() {
 
 // add our FancyBox Media Settings Fields
 function easy_fancybox_settings_fields($args){
+	$disabled = ('disabled' == $args['status']) ? ' disabled="disabled"' : '';
 	switch($args['input']) {
 		case 'multiple':
 		case 'deep':
@@ -286,7 +287,7 @@ function easy_fancybox_settings_fields($args){
 			foreach ($args['options'] as $optionkey => $optionvalue) {
 				$selected = (get_option($args['id'], $args['default']) == $optionkey) ? ' selected="selected"' : '';
 				echo '
-				<option value="'.esc_attr($optionkey).'"'.$selected.'>'.$optionvalue.'</option>';
+				<option value="'.esc_attr($optionkey).'"'.$selected.' '.$disabled.' >'.$optionvalue.'</option>';
 			}
 			echo '
 			</select> ';
@@ -311,10 +312,10 @@ function easy_fancybox_settings_fields($args){
 				$default = __('Unchecked','easy-fancybox');
 			if( empty($args['label_for']) )
 				echo '
-			<label><input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.'/> '.$args['description'].'</label><br />';
+			<label><input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.' '.$disabled.' /> '.$args['description'].'</label><br />';
 			else
 				echo '
-			<input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.'/> '.$args['description'].'<br />';
+			<input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.' '.$disabled.' /> '.$args['description'].'<br />';
 			break;
 		case 'text':
 			if( !empty($args['label_for']) )
@@ -322,11 +323,15 @@ function easy_fancybox_settings_fields($args){
 			else
 				echo $args['title'];
 			echo '
-			<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"/> ';
+			<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'.$disabled.' /> ';
 			if( empty($args['label_for']) )
 				echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
 			else
 				echo $args['description'];
+			break;
+		case 'hidden':
+			echo '
+			<input type="hidden" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" /> ';
 			break;
 		default:
 			echo $args['description'];
@@ -473,18 +478,18 @@ function easy_fancybox_enqueue_scripts() {
 	wp_enqueue_script('jquery-fancybox', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION, true);
 	
 	// easing in IMG settings?
-	if ( ( 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionIn']['id'],$easy_fancybox_array['IMG']['options']['transitionIn']['default']) || 
-		'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionOut']['id'],$easy_fancybox_array['IMG']['options']['transitionOut']['default']) ) 
-		&& 
-		( '' != get_option($easy_fancybox_array['IMG']['options']['easingIn']['id'],$easy_fancybox_array['IMG']['options']['easingIn']['default']) || 
-		'' != get_option($easy_fancybox_array['IMG']['options']['easingOut']['id'],$easy_fancybox_array['IMG']['options']['easingOut']['default']) ) ) {
-		// first get rid of previously registered variants of jquery.easing by other plugins or theme
-		wp_deregister_script('jquery.easing');
-		wp_deregister_script('jqueryeasing');
-		wp_deregister_script('jquery-easing');
-		wp_deregister_script('easing');
-		// then register our version
-		wp_enqueue_script('jquery-easing', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', __FILE__), array('jquery'), EASING_VERSION, true);
+	if ( ( '' == get_option($easy_fancybox_array['IMG']['options']['easingIn']['id'],$easy_fancybox_array['IMG']['options']['easingIn']['default']) || 'linear' == get_option($easy_fancybox_array['IMG']['options']['easingIn']['id'],$easy_fancybox_array['IMG']['options']['easingIn']['default']) ) && ( '' == get_option($easy_fancybox_array['IMG']['options']['easingOut']['id'],$easy_fancybox_array['IMG']['options']['easingOut']['default']) || 'linear' == get_option($easy_fancybox_array['IMG']['options']['easingOut']['id'],$easy_fancybox_array['IMG']['options']['easingOut']['default']) ) ) {
+		// do nothing
+	} else {
+		if ( 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionIn']['id'],$easy_fancybox_array['IMG']['options']['transitionIn']['default'])	|| 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionOut']['id'],$easy_fancybox_array['IMG']['options']['transitionOut']['default']) ) {
+			// first get rid of previously registered variants of jquery.easing by other plugins or theme
+			wp_deregister_script('jquery.easing');
+			wp_deregister_script('jqueryeasing');
+			wp_deregister_script('jquery-easing');
+			wp_deregister_script('easing');
+			// then register our version
+			wp_enqueue_script('jquery-easing', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', __FILE__), array('jquery'), EASING_VERSION, true);
+		}
 	}
 	
 	// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
