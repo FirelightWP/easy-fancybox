@@ -234,6 +234,13 @@ function easy_fancybox_settings(){
 							'default' => '1',
 							'description' => __('Esc key stroke closes FancyBox','easy-fancybox')
 							),
+						'enableKeyboardNav' => array (
+							'id' => 'fancybox_enableKeyboardNav',
+							'input' => 'checkbox',
+							'noquotes' => true,
+							'default' => '1',
+							'description' => __('Arrow key strokes browse FancyBox gallery','easy-fancybox')
+							),
 						'autoScale' => array (
 							'id' => 'fancybox_autoScale',
 							'input' => 'checkbox',

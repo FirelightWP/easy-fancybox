@@ -243,7 +243,7 @@ jQuery(\'a[class*="fancybox"]\').filter(\':first\').trigger(\'click\');';
 });
 /* ]]> */
 </script>
-<style type="text/css">#page #branding{z-index:999}.fancybox-hidden{display:none}';
+<style type="text/css">#page #branding{z-index:999}.fancybox-hidden{display:none}.rtl #fancybox-left{left:auto;right:0px}.rtl #fancybox-right{left:0px;right:auto}.rtl #fancybox-right-ico{background-position:-40px -30px}.rtl #fancybox-left-ico{background-position:-40px -60px}.rtl .fancybox-title-over{text-align:right}.rtl #fancybox-left-ico,.rtl #fancybox-right-ico{right:-9999px}.rtl #fancybox-right:hover span{right:auto;left:20px}.rtl #fancybox-left:hover span{right:20px}';
 
 	if ('1' == $overlaySpotlight)
 		echo '#fancybox-overlay{background-image:url("'. plugins_url(FANCYBOX_SUBDIR.'/light-mask.png', __FILE__) . '");background-position:50% -3%;background-repeat:no-repeat;-o-background-size:100%;-webkit-background-size:100%;-moz-background-size:100%;-khtml-background-size:100%;background-size:100%;position:fixed}';

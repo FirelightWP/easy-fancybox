@@ -371,6 +371,8 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. D
 == Changelog ==
 
 = 1.3.4.10 =
+* Basic RTL languages/text direction support (gallery navigation inversion, title position)
+* Keyboard navigation optional
 * BUGFIX: https in stylesheet on Windows IIS
 * Improved W3TC compatibility: query string issue
 * Gravity Forms in ajax mode compatibility
