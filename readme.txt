@@ -204,9 +204,9 @@ FancyBox tries to detect the size of the conten automatically but if it can not 
 
 = Can I play YouTube, Dailymotion and Vimeo movies in a FancyBox overlay? =
 
-Yes. Just let the plugin auto-detect and auto-enable it for you! :)
+Yes. Simply create a link using the Share URL (the full Page URL, the Short URL with or without options like HD etc.) to the YouTube/Vimeo/Dailymotion page in your post content. If you have Auto-detect enabled, the plugin will take care of the rest for you! :)
 
-Place the Share URL (the full Page URL, the Short URL or even with the HD option) to the YouTube/Vimeo/Dailymotion page in your content. If you have disabled Auto-detection, give the link a class attribute like `class="fancybox-youtube"` for Youtube, `class="fancybox-vimeo"` for Vimeo and `class="fancybox-dailymotion"` for Dailymotion, to manually enable FancyBox for it.
+If you have disabled Auto-detection, give the link a class attribute like `class="fancybox-youtube"` for Youtube, `class="fancybox-vimeo"` for Vimeo and `class="fancybox-dailymotion"` for Dailymotion, to manually enable FancyBox for it.
 
 Both YouTube and Vimeo movies can be made to play immediately after opening by adding the paramer `autoplay=1` to the URL. For example, a short-url YouTube link that should play in HD mode, have the full screen button and auto-start on open, would look like:
 `
@@ -217,6 +217,11 @@ Both YouTube and Vimeo movies can be made to play immediately after opening by a
 = I want that 'Show in full-screen' button on my YouTube movies =
 
 Append `&fs=1` to your YouTube share URL.
+
+
+= Can I show a Youtube playlist in FancyBox? =
+
+Yes, just go to Youtube page of any movie that's in the playlist and use the Share button to get the share URL just like with single movies, but this time place a checkmark at the 'Share with playlist' option.  
 
 
 = The flash movie in the overlay shows BELOW some other flash content that is on the same page! =

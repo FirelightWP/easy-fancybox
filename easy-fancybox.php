@@ -5,7 +5,7 @@ Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.3.4.10dev6
+Version: 1.3.4.10dev7
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -47,7 +47,7 @@ function easy_fancybox() {
 	$do_fancybox = false;
 	foreach ($easy_fancybox_array['Global']['options']['Enable']['options'] as $value) {
 		// anything enabled?
-		if ( '1' == get_option($value['id'],$value['default']) ) {
+		if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
 			$do_fancybox = true;
 			break;
 		}
@@ -76,7 +76,11 @@ var fb_timeout = null;';
 var fb_opts = {';
 	foreach ($easy_fancybox_array['Global']['options'] as $globals) {
 		foreach ($globals['options'] as $_key => $_value) {
-			$parm = (isset($_value['id'])) ? get_option($_value['id'], $_value['default']) : $_value['default'];
+			if (isset($_value['id']) || isset($_value['default'])) 
+				$parm = (isset($_value['id']))? get_option($_value['id'], $_value['default']) : $_value['default'];
+			else
+				$parm = '';
+
 			if( isset($_value['input']) && 'checkbox'==$_value['input'] )
 				$parm = ( '1' == $parm ) ? 'true' : 'false';
 
@@ -207,7 +211,11 @@ jQuery(\'';
 		echo '\').fancybox( jQuery.extend({}, fb_opts, {';
 		$more=0;
 		foreach ($value['options'] as $_key => $_value) {
-			$parm = (isset($_value['id'])) ? get_option($_value['id'], $_value['default']) : $_value['default'];
+			if (isset($_value['id']) || isset($_value['default'])) 
+				$parm = (isset($_value['id']))? get_option($_value['id'], $_value['default']) : $_value['default'];
+			else
+				$parm = '';
+			
 			if( isset($_value['input']) && 'checkbox'==$_value['input'] )
 				$parm = ( '1' == $parm ) ? 'true' : 'false';
 
@@ -459,11 +467,11 @@ function easy_fancybox_enqueue_scripts() {
 
 	foreach ($easy_fancybox_array['Global']['options']['Enable']['options'] as $value) {
 		// anything enabled?
-		if ( '1' == get_option($value['id'],$value['default']) ) {
+		if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
 			$do_fancybox = true;
 			break;
 		}
-	}
+	} // TODO: combine this function with the one in easy_fancybox() ... (as class global value later) 
 	
 	// break off if there is no need for any script files
 	if (!$do_fancybox) 
