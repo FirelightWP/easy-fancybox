@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
 Requires at least: 2.7
-Tested up to: 3.3
+Tested up to: 3.4
 Stable tag: 1.3.4.9
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
@@ -110,7 +110,7 @@ Yes, but _only_ if you used the option **Link thumbnails to: Image File** when i
 
 = Can I make a slideshow from my gallery? =
 
-Yes. There is an Advanced option called "Gallery Auto-rotation" for that.
+In the Pro version, there is an Advanced option called "Gallery Auto-rotation" for that.
 
 
 = Can I exclude images or other links from auto-attribution? =
@@ -164,7 +164,7 @@ General steps:
 1. Show ImageBrowser: unchecked
 1. Add hidden images: checked
 
-**C.** Optional: install [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add a new CSS rule on the new Appearance > Edit CSS admin page to hide the page browsing links below the gallery thumbnail:
+**C.** Optional: add the following new CSS rule to your theme stylesheet (or install [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add it on the new Appearance > Edit CSS admin page) to hide the page browsing links below the gallery thumbnail.
 `
 .ngg-navigation {
 display:none;
