@@ -2,7 +2,7 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
-Requires at least: 2.7
+Requires at least: 3.3
 Tested up to: 3.4
 Stable tag: 1.3.4.9
 
@@ -42,6 +42,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 
 - **Dutch** * Author: [R.A. van Hagen](http://4visions.nl) (version 1.3.4.9)
 - **Hindi** * Author: [Outshine Solutions](http://outshinesolutions.com) (version 1.3.4.9)
+- **Indonesian** * Author: [Nasrulhaq Muiz](http://al-badar.net) (version 1.3.4.9)
 - **Lithuanian** * Author: [Vincent G](http://www.host1free.com) (version 1.3.4.9)
 - **Polish** * Author: Kamil Szymański (version 1.3.4.9)
 - **Romanian** * Author: [Web Geek Sciense](http://webhostinggeeks.com/) (version 1.3.4.9)
@@ -371,13 +372,14 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 == Upgrade Notice ==
 
 = 1.3.4.10 =
-Speed improvements: stylesheet caching, metadata.js compression. Security fix. Dutch and Polish translations. 
+New options. Speed improvements: stylesheet caching, metadata.js compression. Security fix. Dutch, Indonesian and Polish translations. 
 
 == Changelog ==
 
 = 1.3.4.10 =
+* NEW Options: iFrame scrolling, autoScale, key navigation/close, cyclic galleries
+* Metadata custom parameters and Mousewheel gallery scrolling scripts optional
 * Basic RTL languages/text direction support (gallery navigation inversion, title position)
-* Keyboard navigation optional
 * BUGFIX: https in stylesheet on Windows IIS
 * Improved W3TC compatibility: query string issue
 * Gravity Forms in ajax mode compatibility
@@ -395,6 +397,7 @@ Speed improvements: stylesheet caching, metadata.js compression. Security fix. D
 = 1.3.4.9 =
 * NEW: Lithuanian translation
 * NEW: Hindi translation
+* NEW: Indonasian translation
 * NEW: Romanian translation
 * NEW: Polish translation
 * NEW: Spanish translation

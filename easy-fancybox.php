@@ -272,7 +272,7 @@ echo '</style>
 
 // add our FancyBox Media Settings Section on Settings > Media admin page
 function easy_fancybox_settings_section() {
-	echo '<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:left;margin:5px 10px 0 0" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="92" height="26" /></a>'.__('The options in this section are provided by the plugin <strong><a href="http://4visions.nl/wordpress-plugins/easy-fancybox/">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href="http://fancybox.net/">FancyBox</a></strong>.','easy-fancybox').' '.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').'</p><p>'.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
+	echo '<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:left;margin:5px 10px 0 0" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="92" height="26" /></a>'.__('The options in this section are provided by the plugin <strong><a href="http://4visions.nl/wordpress-plugins/easy-fancybox/">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href="http://fancybox.net/">FancyBox</a></strong>.','easy-fancybox').' '.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').' <strong><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('For advanced options and support, please purchase the Easy FancyBox Pro version.','easy-fancybox') . '</a></strong></p><p>'.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
 }
 
 // add our FancyBox Media Settings Fields
@@ -332,6 +332,18 @@ function easy_fancybox_settings_fields($args){
 				echo $args['title'];
 			echo '
 			<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'.$disabled.' /> ';
+			if( empty($args['label_for']) )
+				echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
+			else
+				echo $args['description'];
+			break;
+		case 'number':
+			if( !empty($args['label_for']) )
+				echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
+			else
+				echo $args['title'];
+			echo '
+			<input type="number" step="'.$args['step'].'" min="'.$args['min'].'" max="'.$args['max'].'" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'.$disabled.' /> ';
 			if( empty($args['label_for']) )
 				echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
 			else
@@ -473,8 +485,8 @@ function easy_fancybox_enqueue_scripts() {
 		}
 	} // TODO: combine this function with the one in easy_fancybox() ... (as class global value later) 
 	
-	// break off if there is no need for any script files
-	if (!$do_fancybox) 
+	
+	if (!$do_fancybox) // abort mission, there is no need for any script files
 		return;
 
 	// ENQUEUE
@@ -500,21 +512,27 @@ function easy_fancybox_enqueue_scripts() {
 		}
 	}
 	
-	// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
-	wp_deregister_script('jquery.mousewheel');
-	wp_deregister_script('jquerymousewheel');
-	wp_deregister_script('jquery-mousewheel');
-	wp_deregister_script('mousewheel');
-	// then register our version
-	wp_enqueue_script('jquery-mousewheel', plugins_url(FANCYBOX_SUBDIR.'/jquery.mousewheel.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
-	
-	// first get rid of previously registered variants of jquery.metadata (by other plugins)
-	wp_deregister_script('jquery.metadata');
-	wp_deregister_script('jquerymetadata');
-	wp_deregister_script('jquery-metadata');
-	wp_deregister_script('metadata');
-	// then register our version
-	wp_enqueue_script('jquery-metadata',plugins_url(FANCYBOX_SUBDIR.'/jquery.metadata.pack.js', __FILE__), array('jquery'), METADATA_VERSION, true);
+	// mousewheel in IMG settings?
+	if ( '1' == get_option($easy_fancybox_array['IMG']['options']['mouseWheel']['id'],$easy_fancybox_array['IMG']['options']['mouseWheel']['default']) ) {
+		// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
+		wp_deregister_script('jquery.mousewheel');
+		wp_deregister_script('jquerymousewheel');
+		wp_deregister_script('jquery-mousewheel');
+		wp_deregister_script('mousewheel');
+		// then register our version
+		wp_enqueue_script('jquery-mousewheel', plugins_url(FANCYBOX_SUBDIR.'/jquery.mousewheel.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
+	}
+		
+	// metadata in Link settings?
+	if ( '1' == get_option($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Links']['options']['metaData']['default']) ) {
+		// first get rid of previously registered variants of jquery.metadata (by other plugins)
+		wp_deregister_script('jquery.metadata');
+		wp_deregister_script('jquerymetadata');
+		wp_deregister_script('jquery-metadata');
+		wp_deregister_script('metadata');
+		// then register our version
+		wp_enqueue_script('jquery-metadata',plugins_url(FANCYBOX_SUBDIR.'/jquery.metadata.pack.js', __FILE__), array('jquery'), METADATA_VERSION, true);
+	}
 }
 	
 function easy_fancybox_enqueue_styles() {

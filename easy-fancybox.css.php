@@ -26,10 +26,11 @@ function iepathfix_compress($buffer) {
 	return $buffer;
 }
 
-/* our original stylesheet */
-$version = preg_match( '`^\d{1,2}\.\d{1,2}(\.\d{1,2})?$`' , $_GET['ver'] ) ? $_GET['ver'] : '';
-$file = dirname(__FILE__) . '/fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css';
-
+/* our original stylesheet
+$version = preg_match( '`^\d{1,2}\.\d{1,2}(\.\d{1,2})?$`' , $_GET['ver'] ) ? $_GET['ver'] : '1.3.4';
+$file = dirname(__FILE__) . '/fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css'; */
+$file = dirname(__FILE__) . '/fancybox/jquery.fancybox-1.3.4.css';
+		
 /* set up response headers, allowing browser caching */
 $expires = 60*60*24*30; // seconds, minutes, hours, days
 $last_modified_time = ( filemtime($file) < filemtime(__FILE__) ) ? filemtime(__FILE__) : filemtime($file);
@@ -52,9 +53,13 @@ header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
 /* generate content */
 ob_start("iepathfix_compress");
 
-  /* the css file */
-  include( $file );
-
+  if (!file_exists($file)) {
+	echo '/* stylesheet not found */';
+  } else {
+	/* the css file */
+	include( $file );
+  }
+  
   /* extras */
   //echo '.fancybox-hidden{display:none}';
 

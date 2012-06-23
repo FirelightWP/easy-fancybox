@@ -66,7 +66,6 @@ function easy_fancybox_settings(){
 							'description' => '<strong>' . __('iFrames','easy-fancybox') . '</strong>' 
 							)							
 						),
-					'description' => '<strong><em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('For advanced options, please purchase the Easy FancyBox Pro version.','easy-fancybox') . '</a></em></strong><br />'
 					),
 				'Links' => array(
 					'title' => __('Links'),
@@ -102,7 +101,15 @@ function easy_fancybox_settings(){
 								'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
 								),
 							'default' => '1',
-							'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
+							'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
+							),
+						'metaData' => array (
+							'id' => 'fancybox_metaData',
+							'hide' => true,
+							'input' => 'checkbox',
+							'status' => 'disabled',
+							'default' => '',
+							'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),
@@ -129,7 +136,10 @@ function easy_fancybox_settings(){
 							'id' => 'fancybox_overlayOpacity',
 							'title' => __('Opacity','easy-fancybox'),
 							'label_for' => 'fancybox_overlayOpacity',
-							'input' => 'text',
+							'input' => 'number',
+							'step' => '0.1',
+							'min' => '0',
+							'max' => '1',
 							'class' => 'small-text',
 							'default' => '',
 							'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em><br />' 
@@ -148,13 +158,13 @@ function easy_fancybox_settings(){
 							'hide' => true,
 							'status' => 'disabled',
 							'default' => '',
-							'description' => __('Spotlight effect','easy-fancybox')
+							'description' => __('Spotlight effect','easy-fancybox') . '. <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),
 				
 				'Window' => array (
-					'title' => __('Frame','easy-fancybox'),
+					'title' => __('Window','easy-fancybox'),
 					'input' => 'multiple',
 					'hide' => true,
 					'options' => array(
@@ -175,6 +185,38 @@ function easy_fancybox_settings(){
 							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Show the gallery navigation arrows','easy-fancybox') . '<br />'
+							),
+						'width' => array (
+							'id' => 'fancybox_width',
+							'title' => __('Width'),
+							'label_for' => 'fancybox_width',
+							'input' => 'text',
+							'sanitize_callback' => 'easy_fancybox_intval',
+							'class' => 'small-text',
+							'default' => '',
+							'description' => ' '
+							),
+						'height' => array (
+							'id' => 'fancybox_height',
+							'title' => __('Height'),
+							'label_for' => 'fancybox_height',
+							'input' => 'text',
+							'sanitize_callback' => 'easy_fancybox_intval',
+							'class' => 'small-text',
+							'default' => ''
+							),
+						'padding' => array (
+							'id' => 'fancybox_padding',
+							'title' => __('Border'),
+							'label_for' => 'fancybox_padding',
+							'input' => 'number',
+							'step' => '1',
+							'min' => '0',
+							'max' => '100',
+							'sanitize_callback' => 'easy_fancybox_intval',
+							'class' => 'small-text',
+							'default' => '',
+							'description' => '<em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em><br /><br />'
 							),
 						'backgroundColor' => array (
 							'id' => 'fancybox_backgroundColor',
@@ -204,17 +246,20 @@ function easy_fancybox_settings(){
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => 'inherit',
-							'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em><br />'
+							'description' => '<br />'
 							),
 						'frameOpacity' => array (
 							'id' => 'fancybox_frameOpacity',
 							'hide' => true,
 							'title' => __('Opacity','easy-fancybox'),
-							'input' => 'text',
+							'input' => 'number',
+							'step' => '0.1',
+							'min' => '0',
+							'max' => '1',
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '1.0',
-							'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em><br />'
+							'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 						'p2' => array (
 							'hide' => true,
@@ -252,7 +297,10 @@ function easy_fancybox_settings(){
 							'id' => 'fancybox_speedIn',
 							'title' => __('Opening speed','easy-fancybox'),
 							'label_for' => 'fancybox_speedIn',
-							'input' => 'text',
+							'input' => 'number',
+							'step' => '1',
+							'min' => '0',
+							'max' => '6000',
 							'sanitize_callback' => 'easy_fancybox_intval',
 							'class' => 'small-text',
 							'default' => '',
@@ -261,7 +309,10 @@ function easy_fancybox_settings(){
 							'id' => 'fancybox_speedOut',
 							'title' => __('Closing speed','easy-fancybox'),
 							'label_for' => 'fancybox_speedOut',
-							'input' => 'text',
+							'input' => 'number',
+							'step' => '1',
+							'min' => '0',
+							'max' => '6000',
 							'sanitize_callback' => 'easy_fancybox_intval',
 							'class' => 'small-text',
 							'default' => '',
@@ -325,7 +376,7 @@ function easy_fancybox_settings(){
 						'' => __('All image links', 'easy-fancybox')
 						),
 					'default' => '',
-					'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p2' => array (
 					'hide' => true,
@@ -355,7 +406,7 @@ function easy_fancybox_settings(){
 						'easeOutBack' => __('Back','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOut',
@@ -381,7 +432,7 @@ function easy_fancybox_settings(){
 						'easeInBack' => __('Back','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox') . '<br />'
+					'description' => ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . ' ' . __('Use the option Transparency fade (below) only when at least Transition In is set to Elastic!','easy-fancybox') . '<br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
@@ -402,40 +453,11 @@ function easy_fancybox_settings(){
 					'input' => 'checkbox',
 					'noquotes' => true,
 					'default' => '1',
-					'description' => __('Try to adjust size to inline/html content.<br />If unchecked, the default dimensions below will always be used. This option does not apply when images are displayed.','easy-fancybox')
+					'description' => __('Try to adjust size to inline/html content.<br />If unchecked or size cannot be determined, the default dimensions will be used. FancyBox will always adjust its size when images are displayed.','easy-fancybox')
 					),
 				'p1' => array (
 					'hide' => true,
 					'description' => '<br /><strong>' . __('Appearance','easy-fancybox') . '</strong><br />'
-					),
-				'width' => array (
-					'id' => 'fancybox_width',
-					'title' => __('Width'),
-					'label_for' => 'fancybox_width',
-					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
-					'class' => 'small-text',
-					'default' => '',
-					'description' => ' '
-					),
-				'height' => array (
-					'id' => 'fancybox_height',
-					'title' => __('Height'),
-					'label_for' => 'fancybox_height',
-					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
-					'class' => 'small-text',
-					'default' => ''
-					),
-				'padding' => array (
-					'id' => 'fancybox_padding',
-					'title' => __('Border'),
-					'label_for' => 'fancybox_padding',
-					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
-					'class' => 'small-text',
-					'default' => '',
-					'description' => '<em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em><br /><br />'
 					),
 				'titleShow' => array (
 					'id' => 'fancybox_titleShow',
@@ -473,7 +495,7 @@ function easy_fancybox_settings(){
 						'' => __('Hide/show title on mouse hover action','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em><br />'
+					'description' =>  '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p3' => array (
 					'hide' => true,
@@ -491,7 +513,14 @@ function easy_fancybox_settings(){
 						'2' => __('All in one gallery','easy-fancybox')
 						),
 					'default' => '1',
-					'description' => '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
+					'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . ' ' .  __('Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site.','easy-fancybox') . '<br /><br />'
+					),
+				'mouseWheel' => array (
+					'id' => 'fancybox_mouseWheel',
+					'hide' => true,
+					'input' => 'checkbox',
+					'default' => '',
+					'description' => __('Include the Mousewheel jQuery extension script to allow gallery scrolling by mousewheel action.','easy-fancybox')
 					),
 				'cyclic' => array (
 					'id' => 'fancybox_cyclic',
@@ -504,7 +533,10 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_changeSpeed',
 					'title' => __('Change speed','easy-fancybox'),
 					'label_for' => 'fancybox_changeSpeed',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '6000',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '',
@@ -513,7 +545,10 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_changeFade',
 					'title' => __('Fade speed','easy-fancybox'),
 					'label_for' => 'fancybox_changeFade',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '6000',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '',
@@ -534,7 +569,7 @@ function easy_fancybox_settings(){
 						'' => __('Gallery Auto-rotation','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('Only available in the Pro version.','easy-fancybox') . '</a></em>'
+					'description' =>  '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 /*						'titleFormat' => array (
 					'id' => 'fancybox_titleFormat',
@@ -611,7 +646,10 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_PDFpadding',
 					'title' => __('Border'),
 					'label_for' => 'fancybox_PDFpadding',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '100',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '10',
@@ -735,7 +773,10 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_SWFpadding',
 					'title' => __('Border'),
 					'label_for' => 'fancybox_SWFpadding',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '100',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '0',
@@ -816,7 +857,10 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_YoutubeWidth',
 					'title' => __('Width'),
 					'label_for' => 'fancybox_YoutubeWidth',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '420',
+					'max' => '1500',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '640',
@@ -826,16 +870,22 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_YoutubeHeight',
 					'title' => __('Height'),
 					'label_for' => 'fancybox_YoutubeHeight',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '315',
+					'max' => '900',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
-					'default' => '390',
+					'default' => '360',
 					),
 				'padding' => array (
 					'id' => 'fancybox_Youtubepadding',
 					'title' => __('Border'),
 					'label_for' => 'fancybox_Youtubepadding',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '100',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '0',
@@ -911,26 +961,35 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_VimeoWidth',
 					'title' => __('Width'),
 					'label_for' => 'fancybox_VimeoWidth',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '400',
+					'max' => '1500',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
-					'default' => '640',
+					'default' => '500',
 					'description' => ' '
 					),
 				'height' => array (
 					'id' => 'fancybox_VimeoHeight',
 					'title' => __('Height'),
 					'label_for' => 'fancybox_VimeoHeight',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '225',
+					'max' => '900',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
-					'default' => '360'
+					'default' => '281'
 					),
 				'padding' => array (
 					'id' => 'fancybox_Vimeopadding',
 					'title' => __('Border'),
 					'label_for' => 'fancybox_Vimeopadding',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '100',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '0',
@@ -1007,7 +1066,10 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_DailymotionWidth',
 					'title' => __('Width'),
 					'label_for' => 'fancybox_DailymotionWidth',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '320',
+					'max' => '1500',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '560',
@@ -1017,7 +1079,10 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_DailymotionHeight',
 					'title' => __('Height'),
 					'label_for' => 'fancybox_DailymotionHeight',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '180',
+					'max' => '900',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '315'
@@ -1026,7 +1091,10 @@ function easy_fancybox_settings(){
 					'id' => 'fancybox_DailymotionPadding',
 					'title' => __('Border'),
 					'label_for' => 'fancybox_DailymotionPadding',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '100',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '0',
@@ -1116,6 +1184,19 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 				'type' => array (
 					'default' => 'iframe'
 					),
+				'scrolling' => array (
+					'id' => 'fancybox_iFrameScrolling',
+					'title' => __('Scrolling','easy-fancybox'),
+					'label_for' => 'fancybox_iFrameScrolling',
+					'input' => 'select',
+					'options' => array(
+						'auto' => __('Auto','easy-fancybox'), // same as 'float'
+						'yes' => __('Always','easy-fancybox'),
+						'no' => __('Never','easy-fancybox')
+						),
+					'default' => 'auto',
+					'description' => __('Define scrolling and scrollbar visibility.','easy-fancybox') . '<br />'
+					),
 				'width' => array (
 					'id' => 'fancybox_iFramewidth',
 					'title' => __('Width'),
@@ -1139,14 +1220,14 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					'id' => 'fancybox_iFramepadding',
 					'title' => __('Border'),
 					'label_for' => 'fancybox_iFramepadding',
-					'input' => 'text',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '100',
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '0',
 					'description' => '<br /><br />'
-					),
-				'scrolling' => array (
-					'default' => 'auto'
 					),
 				'titleShow' => array (
 					'id' => 'fancybox_iFrametitleShow',
