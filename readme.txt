@@ -90,11 +90,15 @@ Basically, it is a fancy way of presenting images, movies, portable documents an
 
 The same version as this plugin has. I aim to keep close pace to FancyBox upgrades and always move to the latest and greates version. Please, let me know if I'm lagging behind and missed an upgrade!
 
+= I installed the plugin. What now? =
 
-= Where is the settings page? =
+First, make sure that image  thumbnails in your posts and pages are linked to their full size counterpart directly. Open any post with thumbnail images in it for editing and select the first thumbnail. Click the **Edit Image** button that appears and choose **Link to Image**. From now on, clicking that thumbnail should open the full size version in FancyBox.
+
+The same thing goes for WordPress Galleries. Choose **Link to: File** when inserting a gallery tag.
+
+= I want to change something. Where is the settings page? =
 
 There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) ...
-
 
 = Help! It does not work... =
 
