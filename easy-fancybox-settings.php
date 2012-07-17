@@ -123,7 +123,7 @@ function easy_fancybox_settings(){
 							'input' => 'checkbox',
 							'noquotes' => true,
 							'default' => '1',
-							'description' => __('Show the overlay around content opened in FancyBox.','easy-fancybox')
+							'description' => __('Show the overlay around content opened in FancyBox','easy-fancybox')
 							),
 						'hideOnOverlayClick' => array (
 							'id' => 'fancybox_hideOnOverlayClick',
@@ -142,7 +142,7 @@ function easy_fancybox_settings(){
 							'max' => '1',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em><br />' 
+							'description' => '<span class="description">'.__('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em></span><br />' 
 							),
 						'overlayColor' => array (
 							'id' => 'fancybox_overlayColor',
@@ -151,7 +151,7 @@ function easy_fancybox_settings(){
 							'input' => 'text',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em><br />' 
+							'description' => '<span class="description">'.__('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em></span><br />' 
 							),
 						'overlaySpotlight' => array (
 							'input' => 'checkbox',
@@ -216,7 +216,7 @@ function easy_fancybox_settings(){
 							'sanitize_callback' => 'easy_fancybox_intval',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em><br /><br />'
+							'description' => '<span class="description"><em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em></span><br /><br />'
 							),
 						'backgroundColor' => array (
 							'id' => 'fancybox_backgroundColor',
@@ -270,7 +270,7 @@ function easy_fancybox_settings(){
 							'input' => 'checkbox',
 							'noquotes' => true,
 							'default' => '1',
-							'description' => __('Center while scrolling','easy-fancybox')
+							'description' => __('Center while scrolling.','easy-fancybox') . ' <span class="description">'.sprintf(__('Ignored when "%s" is off.','easy-fancybox'),__('Scale large content down to fit in the browser viewport','easy-fancybox')).'</span>'
 							),
 						'enableEscapeButton' => array (
 							'id' => 'fancybox_enableEscapeButton',
@@ -291,7 +291,7 @@ function easy_fancybox_settings(){
 							'input' => 'checkbox',
 							'noquotes' => true,
 							'default' => '1',
-							'description' => __('Scale large content down to fit in the browser viewport.','easy-fancybox')
+							'description' => __('Scale large content down to fit in the browser viewport','easy-fancybox')
 							),
 						'speedIn' => array (
 							'id' => 'fancybox_speedIn',
@@ -316,7 +316,7 @@ function easy_fancybox_settings(){
 							'sanitize_callback' => 'easy_fancybox_intval',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br />'
+							'description' => '<br /><span class="description">' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em></span><br />'
 							),
 						'bgColor' => array (
 							'id' => 'fancybox_backgroundColor',
@@ -353,7 +353,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make images open in an overlay, add their extension to the auto-detect field or use the class "fancybox" for its link. Clear field to switch off auto-enabling.','easy-fancybox') . '<br />'
+					'description' => sprintf(__('To make images open in an overlay, add their extension to the "%1$s" field or use a %2$s attribute for its link. Clear the "%1$s" field to switch off auto-detection completely.','easy-fancybox'),__('Auto-detect','easy-fancybox'),'<strong>class="fancybox"</strong>') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttribute',
@@ -364,7 +364,7 @@ function easy_fancybox_settings(){
 					'hide' => true,
 					'default' => '.jpg .jpeg .png',
 					'selector' => 'href*=',
-					'description' => ' <em>' . __('Default:','easy-fancybox') . ' .jpg .jpeg .png</em><br />'
+					'description' => ' <span class="description"><em>' . __('Default:','easy-fancybox') . ' .jpg .jpeg .png</em></span><br />'
 					),
 				'autoAttributeLimit' => array (
 					'id' => 'fancybox_autoAttributeLimit',
@@ -380,7 +380,7 @@ function easy_fancybox_settings(){
 					),
 				'p2' => array (
 					'hide' => true,
-					'description' => '<br /><strong>' . __('Behavior','easy-fancybox') . '</strong><br />'
+					'description' => '<br /><strong>' . __('Behavior','easy-fancybox') . '</strong><br /><span class="description">' . __('Note:','easy-fancybox') . ' ' . sprintf(__('Easing effects only apply to transitions set to "%s".','easy-fancybox'),__('Elastic','easy-fancybox')) . ' ' . sprintf(__('Use "%1$s" only when at least "%2$s" is set to "%3$s"!','easy-fancybox'),__('Transparency fade','easy-fancybox'),__('Transition In','easy-fancybox'),__('Elastic','easy-fancybox')) . '</span><br />'
 					),
 				'transitionIn' => array (
 					'id' => 'fancybox_transitionIn',
@@ -432,14 +432,14 @@ function easy_fancybox_settings(){
 						'easeInBack' => __('Back','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . ' ' . __('Use the option Transparency fade (below) only when at least Transition In is set to Elastic!','easy-fancybox') . '<br />'
+					'description' => ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
 					'input' => 'checkbox',
 					'noquotes' => true,
-					'default' => '',
-					'description' => __('Transparency fade during elastic transition.','easy-fancybox')
+					'default' => '', 
+					'description' => __('Transparency fade','easy-fancybox')
 					),
 				'hideOnContentClick' => array (
 					'id' => 'fancybox_hideOnContentClick',
@@ -453,11 +453,24 @@ function easy_fancybox_settings(){
 					'input' => 'checkbox',
 					'noquotes' => true,
 					'default' => '1',
-					'description' => __('Try to adjust size to inline/html content.<br />If unchecked or size cannot be determined, the default dimensions will be used. FancyBox will always adjust its size when images are displayed.','easy-fancybox')
+					'description' => __('Try to adjust size to content','easy-fancybox') . ' <span class="description">' . __('Only applies to inline/html content.','easy-fancybox') . '</span>'
+					),
+				'scrolling' => array (
+					'id' => 'fancybox_Scrolling',
+					'title' =>  __('Scrolling','easy-fancybox'),
+					'label_for' => 'fancybox_Scrolling',
+					'input' => 'select',
+					'options' => array(
+						'auto' => __('Auto','easy-fancybox'), // same as 'float'
+						'yes' => __('Always','easy-fancybox'),
+						'no' => __('Never','easy-fancybox')
+						),
+					'default' => 'auto',
+					'description' => '<span class="description">'.__('Defines scrolling and scrollbar visibility.','easy-fancybox') . ' ' . __('Only applies to inline/html content.','easy-fancybox') . '</span><br />'
 					),
 				'p1' => array (
 					'hide' => true,
-					'description' => '<br /><strong>' . __('Appearance','easy-fancybox') . '</strong><br />'
+					'description' => '<span class="description">'.sprintf(__('If "%s" is unchecked or size cannot be determined, the default dimensions will be used. FancyBox will always adjust its size when images are displayed.','easy-fancybox'),__('Try to adjust size to content','easy-fancybox')).'</span><br /><br /><strong>' . __('Appearance','easy-fancybox') . '</strong><br />'
 					),
 				'titleShow' => array (
 					'id' => 'fancybox_titleShow',
@@ -499,7 +512,7 @@ function easy_fancybox_settings(){
 					),
 				'p3' => array (
 					'hide' => true,
-					'description' => '<br /><strong>' . __('Gallery','easy-fancybox') . '</strong><br />'
+					'description' => '<br /><strong>' . __('Gallery','easy-fancybox') . '</strong><br /><span class="description">' . __('Note:','easy-fancybox') . ' ' . sprintf(__('Enable "%1$s" or give image links a similar rel attribute to manually group images together.','easy-fancybox'),__('Auto-gallery','easy-fancybox')) . ' ' .  __('Leave the mousewheel option unchecked when you do not use FancyBox for galleries on your site.','easy-fancybox') . ' '.__('The cyclic setting allows the viewer to continue from the last image back to the first and vice versa when scrolling through the gallery.','easy-fancybox').'</span><br />'
 					),
 				'autoGallery' => array (
 					'id' => 'fancybox_autoGallery',
@@ -513,7 +526,7 @@ function easy_fancybox_settings(){
 						'2' => __('All in one gallery','easy-fancybox')
 						),
 					'default' => '1',
-					'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . ' ' .  __('Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site.','easy-fancybox') . '<br /><br />'
+					'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'mouseWheel' => array (
 					'id' => 'fancybox_mouseWheel',
@@ -527,7 +540,7 @@ function easy_fancybox_settings(){
 					'input' => 'checkbox',
 					'noquotes' => true,
 					'default' => '',
-					'description' => __('Make galleries cyclic, allowing you to keep pressing next/back.','easy-fancybox')
+					'description' => __('Make galleries cyclic','easy-fancybox')
 					),
 				'changeSpeed' => array (
 					'id' => 'fancybox_changeSpeed',
@@ -552,7 +565,7 @@ function easy_fancybox_settings(){
 					'sanitize_callback' => 'easy_fancybox_intval',
 					'class' => 'small-text',
 					'default' => '',
-					'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br /><br />'
+					'description' => '<br /><span class="description">' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em></span><br /><br />'
 					),
 				'autoSelector' => array (
 					'id' => 'fancybox_autoSelector',
@@ -602,7 +615,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any PDF document file open in an overlay, switch on auto-detect or use the class "fancybox-pdf" for its link.','easy-fancybox') . '<br />'
+					'description' => sprintf(__('To make any PDF document file open in an overlay, switch on "%1$s" or use a %2$s attribute for its link.','easy-fancybox'),__('Auto-detect','easy-fancybox'),'<strong>class="fancybox-pdf"</strong>') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributePDF',
@@ -727,7 +740,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any Flash (.swf) file open in an overlay, switch on auto-detect or use the class "fancybox-swf" for its link.','easy-fancybox') . '<br />'
+					'description' => sprintf(__('To make any Flash (.swf) file open in an overlay, switch on "%1$s" or use a %2$s attribute for its link.','easy-fancybox'),__('Auto-detect','easy-fancybox'),'<strong>class="fancybox-swf"</strong>') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeSWF',
@@ -822,7 +835,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any YouTube movie open in an overlay, switch on auto-detect or use the class "fancybox-youtube" for its link.','easy-fancybox') . '<br />'
+					'description' => sprintf(__('To make any YouTube movie open in an overlay, switch on "%1$s" or use a %2$s attribute for its link.','easy-fancybox'),__('Auto-detect','easy-fancybox'),'<strong>class="fancybox-youtube"</strong>') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeYoutube',
@@ -935,7 +948,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any Vimeo movie open in an overlay, switch on auto-detect or use the class "fancybox-vimeo" for its link.','easy-fancybox') . '<br />'
+					'description' => sprintf(__('To make any Vimeo movie open in an overlay, switch on "%1$s" or use a %2$s attribute for its link.','easy-fancybox'),__('Auto-detect','easy-fancybox'),'<strong>class="fancybox-vimeo"</strong>') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeVimeo',
@@ -1040,7 +1053,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any Dailymotion movie open in an overlay, switch on auto-detect or use the class "fancybox-dailymotion" for its link.','easy-fancybox') . '<br />'
+					'description' => sprintf(__('To make any Dailymotion movie open in an overlay, switch on "%1$s" or use a %2$s attribute for its link.','easy-fancybox'),__('Auto-detect','easy-fancybox'),'<strong>class="fancybox-dailymotion"</strong>') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeDailymotion',
@@ -1171,7 +1184,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make a website or HTML document open in an overlay, use the class "fancybox-iframe" for its link.','easy-fancybox') . '<br /><br />'
+					'description' => sprintf(__('To make a website or HTML document open in an overlay, use a %s attribute for its link.','easy-fancybox'),'<strong>class="fancybox-iframe"</strong>') . '<br /><br />'
 					),
 				'tag' => array (
 					'hide' => true,
@@ -1195,7 +1208,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 						'no' => __('Never','easy-fancybox')
 						),
 					'default' => 'auto',
-					'description' => __('Define scrolling and scrollbar visibility.','easy-fancybox') . '<br />'
+					'description' => '<span class="description">'.__('Defines scrolling and scrollbar visibility.','easy-fancybox') . '</span><br />'
 					),
 				'width' => array (
 					'id' => 'fancybox_iFramewidth',

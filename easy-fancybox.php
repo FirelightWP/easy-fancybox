@@ -360,7 +360,7 @@ function easy_fancybox_settings_fields($args){
 
 
 function easy_fancybox_register_settings($args){
-	global $easy_fancybox_array;
+	global $easy_fancybox_array; // need that to compare args against global options
 	foreach ($args as $key => $value) {
 		// check to see if the section is enabled, else skip to next
 		if ( array_key_exists($key, $easy_fancybox_array['Global']['options']['Enable']['options']) && !get_option($easy_fancybox_array['Global']['options']['Enable']['options'][$key]['id'], $easy_fancybox_array['Global']['options']['Enable']['options'][$key]['default']) )

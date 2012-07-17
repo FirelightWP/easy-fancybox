@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
 Requires at least: 3.3
-Tested up to: 3.4
+Tested up to: 3.4.1
 Stable tag: 1.3.4.9
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
@@ -127,7 +127,11 @@ Yes. All links with class **nofancybox** that would normally get auto-enabled, w
 
 = Will a NextGen gallery be displayed in a FancyBox overlay ? =
 
-It *can* be. Switch OFF the FancyBox Auto-gallery feature, then set the NextGen option "JavaScript Thumbnail effect" to "Custom" and fill the code line field with 
+It *can* be. 
+
+1. Switch OFF the FancyBox Auto-gallery option; and 
+1. set the NextGen option "JavaScript Thumbnail effect" to "Custom"; and 
+1. fill the code line field with 
 `
 class="fancybox" rel="%GALLERY_NAME%"
 `
@@ -325,6 +329,7 @@ z-index:999;
 - The **Mystique** theme has two option called "Lightbox" and "Optimize website for faster loading" that will break Easy FancyBox. Disable both in Mystique's options > Advanced.
 - **Imbalance** and other themes that uses the Photo Galleria jQuery extension: turn of the JSGallery option.
 - Themes like **Envisioned**, **Chameleon** and many others have FancyBox baked in. There is no solution other than stripping the theme of all FancyBox related code or disable the plugin and use the theme provided version...
+- Themes based on the **Thesis** framework might see issues in IE 8, for which [a hack has been proposed](http://voidzonemedia.com/solutions/thesis-ie8-remove-ie7-emulation/)
 
 = Other =
 
