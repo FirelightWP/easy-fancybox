@@ -5,7 +5,7 @@ Plugin URI: http://4visions.nl/en/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.3.4.10dev7
+Version: 1.3.4.10dev8
 Author: RavanH
 Author URI: http://4visions.nl/
 */
@@ -118,7 +118,7 @@ var fb_opts = {';
 		if(!empty($autoAttribute)) {
 			if(is_numeric($autoAttribute)) {
 				echo '
-jQuery(\'a['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
+jQuery(\'a['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'.$attributeLimit.', area['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
 				if ($value['options']['autoAttribute']['href-replace'])
 					echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttribute']['href-replace'].'})';
 				echo '.addClass(\''.$value['options']['class']['default'].'\');';
@@ -132,8 +132,8 @@ var fb_'.$key.'_select = \'';
 					if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "gif")
 						$type = '.'.$type;
 					if ($more>0)
-						echo ',';
-					echo 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)'.$attributeLimit;
+						echo ', ';
+					echo 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)'.$attributeLimit.', area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)'.$attributeLimit;
 					$more++;
 				}
 				echo '\';';
@@ -182,7 +182,7 @@ fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).att
 		$autoAttributeAlt = ( isset($value['options']['autoAttributeAlt']) ) ? get_option( $value['options']['autoAttributeAlt']['id'], $value['options']['autoAttributeAlt']['default'] ) : "";
 		if(!empty($autoAttributeAlt) && is_numeric($autoAttributeAlt)) {
 			echo '
-jQuery(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
+jQuery(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.', area['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
 			if ($value['options']['autoAttributeAlt']['href-replace'])
 				echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttributeAlt']['href-replace']. '})';
 			echo '.addClass(\''.$value['options']['class']['default'].'\');';
@@ -197,7 +197,7 @@ jQuery(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybo
 
 		echo '
 jQuery(\'';
-		$tags = array_filter( explode( ',' , $value['options']['tag']['default'] ));
+		/*$tags = array_filter( explode( ',' , $value['options']['tag']['default'] ));
 		$more=0;
 		foreach ($tags as $_tag) {
 			if ($more>0)
@@ -207,7 +207,8 @@ jQuery(\'';
 			if (isset($_tagarray[1]))
 				echo ' ' . $_tagarray[1];
 			$more++;
-		}
+		}*/
+		echo $value['options']['tag']['default'];
 		echo '\').fancybox( jQuery.extend({}, fb_opts, {';
 		$more=0;
 		foreach ($value['options'] as $_key => $_value) {
@@ -360,7 +361,7 @@ function easy_fancybox_settings_fields($args){
 
 
 function easy_fancybox_register_settings($args){
-	global $easy_fancybox_array; // need that to compare args against global options
+	global $easy_fancybox_array;
 	foreach ($args as $key => $value) {
 		// check to see if the section is enabled, else skip to next
 		if ( array_key_exists($key, $easy_fancybox_array['Global']['options']['Enable']['options']) && !get_option($easy_fancybox_array['Global']['options']['Enable']['options'][$key]['id'], $easy_fancybox_array['Global']['options']['Enable']['options'][$key]['default']) )
