@@ -386,6 +386,7 @@ New options. Speed improvements: stylesheet caching, metadata.js compression. Se
 == Changelog ==
 
 = 1.3.4.10 =
+* NEW: Allow resizing to max size on media upload via the hidden WordPress function media_upload_max_image_resize()
 * NEW Options: iFrame scrolling, autoScale, key navigation/close, cyclic galleries
 * Metadata custom parameters and Mousewheel gallery scrolling scripts optional
 * Basic RTL languages/text direction support (gallery navigation inversion, title position)
@@ -396,6 +397,8 @@ New options. Speed improvements: stylesheet caching, metadata.js compression. Se
 * Dynamic stylesheet response headers to allow browser caching
 * Minified version of jquery.metadata.js
 * Upgrade jquery.mousewheel.js for jQuery 1.7 compatibility 
+* Auto-detect on image map areas
+* nofancybox class for menu items
 * SECURITY: Settings sanitization
 * BUGFIX: load_textdomain firing after the main settings array is loaded, leaving text strings in it untranslated.
 * BUGFIX: missing signs in Youtube url regular expression

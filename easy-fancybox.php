@@ -460,6 +460,8 @@ function easy_fancybox_admin_init(){
 	
 	add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'easy_fancybox_add_action_link');
 
+	// test with media upload resize...
+	add_action( 'post-upload-ui', 'media_upload_max_image_resize' );
 }
 
 /**
@@ -563,4 +565,5 @@ add_filter('embed_oembed_html', 'add_video_wmode_opaque', 10, 3);
 add_action('wp_print_styles', 'easy_fancybox_enqueue_styles', 999);
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
 add_action('wp_head', 'easy_fancybox');
+
 
