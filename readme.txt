@@ -2,7 +2,7 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e1&no_shipping=0&tax=0&bn=PP%2dDonationsBF&charset=UTF%2d8&lc=us
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
-Requires at least: 3.3
+Requires at least: 2.9
 Tested up to: 3.4.1
 Stable tag: 1.3.4.9
 
@@ -371,7 +371,6 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 
 
-
 == Screenshots ==
 
 1. Example image with **Overlay** caption. This is the default way Easy FancyBox displays images. Other options are **Inside** and the old **Outside**.
@@ -386,7 +385,7 @@ New options. Speed improvements: stylesheet caching, metadata.js compression. Se
 == Changelog ==
 
 = 1.3.4.10 =
-* NEW: Allow resizing to max size on media upload via the hidden WordPress function media_upload_max_image_resize()
+* NEW: Allow automatic resizing to large image size set on Settings > Media during media upload via the hidden WordPress function media_upload_max_image_resize() TODO test more!
 * NEW Options: iFrame scrolling, autoScale, key navigation/close, cyclic galleries
 * Metadata custom parameters and Mousewheel gallery scrolling scripts optional
 * Basic RTL languages/text direction support (gallery navigation inversion, title position)
