@@ -3,524 +3,639 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Easy FancyBox 1.3.4.9\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/easy-fancybox\n"
-"POT-Creation-Date: 2011-07-24 16:46:04+00:00\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-04 12:44+0100\n"
+"PO-Revision-Date: 2012-08-04 13:11+0100\n"
+"Last-Translator: RavanH <ravanhagen@gmail.com>\n"
+"Language-Team:  <ravanhagen@gmail.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2011-07-26 02:18+0100\n"
-"Last-Translator: RavanH <ravanhagen@gmail.com>\n"
-"Language-Team:  <ravanhagen@gmail.com>\n"
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: easy-fancybox.php:266
+#: ../easy-fancybox.php:276
 msgid "Donate to Easy FancyBox plugin development with PayPal - it's fast, free and secure!"
 msgstr "Doneer aan de ontwikkeling van de Easy FancyBox plugin met PayPal - makkelijk, gratis en veilig!"
 
-#: easy-fancybox.php:266
-msgid "The options in this section are provided by the plugin <strong><a href=\"http://4visions.nl/en/wordpress-plugins/easy-fancybox/\">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href=\"http://fancybox.net/\">FancyBox</a></strong>."
+#: ../easy-fancybox.php:276
+msgid "The options in this section are provided by the plugin <strong><a href=\"http://4visions.nl/wordpress-plugins/easy-fancybox/\">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href=\"http://fancybox.net/\">FancyBox</a></strong>."
 msgstr "De opties in deze secties worden verzorgd door de plugin <strong><a href=\"http://4visions.nl/en/wordpress-plugins/easy-fancybox/\">Easy FancyBox</a></strong> en bepalen het uiterlijk en gedrag van de <strong>Media lichtbak</strong>, beheerd door <strong><a href=\"http://fancybox.net/\">FancyBox</a></strong>."
 
-#: easy-fancybox.php:266
+#: ../easy-fancybox.php:276
 msgid "First enable each sub-section that you need. Then save and come back to adjust its specific settings."
 msgstr "Activeer eerst iedere sub-sectie die je nodig hebt. Sla vervolgens op en keer terug om specifieke instellingen te doen."
 
-#: easy-fancybox.php:266
+#: ../easy-fancybox.php:276
+msgid "For advanced options and support, please purchase the Easy FancyBox Pro version."
+msgstr "Schaf de Easy FancyBox Pro versie aan voor geavanceerde opties en ondersteuning."
+
+#: ../easy-fancybox.php:276
 msgid "Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site."
 msgstr "Let op: Iedere sub-sectie en functie zoals <em>Auto-detectie</em>, <em>Elastische transities</em> en alle <em>Vloeiende effecten</em> (behalve Zwaai) heeft een extra impact op client-side browser snelheid. Activeer alleen die sub-secties en opties die je ook echt gebruikt op je site."
 
-#: easy-fancybox.php:266
+#: ../easy-fancybox.php:276
 msgid "Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability."
 msgstr "Sommige instellingen als Transities zijn niet beschikbaar voor SWF video, PDF en iFrame inhoud om browser compatibiliteit en leesbaarheid te waarborgen."
 
-#: easy-fancybox.php:308
+#: ../easy-fancybox.php:319
 msgid "Checked"
 msgstr "Aangevinkt"
 
-#: easy-fancybox.php:310
+#: ../easy-fancybox.php:321
 msgid "Unchecked"
 msgstr "Uitgevinkt"
 
-#: easy-fancybox.php:362
+#: ../easy-fancybox.php:457
 msgid "FancyBox"
 msgstr "FancyBox"
 
-#: easy-fancybox-settings.php:6
+#: ../easy-fancybox.php:471
+msgid "Settings"
+msgstr "Algemene instellingen"
+
+#: ../easy-fancybox-settings.php:6
 msgid "Global settings"
 msgstr "Algemene instellingen"
 
-#: easy-fancybox-settings.php:15
+#: ../easy-fancybox-settings.php:11
+msgid "Media"
+msgstr "Media"
+
+#: ../easy-fancybox-settings.php:17
 msgid "Enable FancyBox for"
 msgstr "Activeer FancyBox voor"
 
-#: easy-fancybox-settings.php:24
-#: easy-fancybox-settings.php:316
+#: ../easy-fancybox-settings.php:24
+#: ../easy-fancybox-settings.php:351
 msgid "Images & Inline content"
 msgstr "Afbeeldingen & Inline inhoud"
 
-#: easy-fancybox-settings.php:31
-#: easy-fancybox-settings.php:489
+#: ../easy-fancybox-settings.php:31
+#: ../easy-fancybox-settings.php:600
 msgid "PDF"
 msgstr "PDF"
 
-#: easy-fancybox-settings.php:38
-#: easy-fancybox-settings.php:606
+#: ../easy-fancybox-settings.php:38
+#: ../easy-fancybox-settings.php:725
 msgid "SWF"
 msgstr "SWF"
 
-#: easy-fancybox-settings.php:45
-#: easy-fancybox-settings.php:697
+#: ../easy-fancybox-settings.php:45
+#: ../easy-fancybox-settings.php:820
 msgid "YouTube"
 msgstr "YouTube"
 
-#: easy-fancybox-settings.php:52
-#: easy-fancybox-settings.php:800
+#: ../easy-fancybox-settings.php:52
+#: ../easy-fancybox-settings.php:933
 msgid "Vimeo"
 msgstr "Vimeo"
 
-#: easy-fancybox-settings.php:59
-#: easy-fancybox-settings.php:895
+#: ../easy-fancybox-settings.php:59
+#: ../easy-fancybox-settings.php:1038
 msgid "Dailymotion"
 msgstr "Dailymotion"
 
-#: easy-fancybox-settings.php:66
-#: easy-fancybox-settings.php:1016
+#: ../easy-fancybox-settings.php:66
+#: ../easy-fancybox-settings.php:1169
 msgid "iFrames"
 msgstr "iFrames"
 
-#: easy-fancybox-settings.php:71
+#: ../easy-fancybox-settings.php:71
 msgid "Links"
 msgstr "Koppelingen"
 
-#: easy-fancybox-settings.php:81
+#: ../easy-fancybox-settings.php:81
 msgid "Exclude"
 msgstr "Uitsluiten"
 
-#: easy-fancybox-settings.php:86
-#: easy-fancybox-settings.php:100
-#: easy-fancybox-settings.php:295
-#: easy-fancybox-settings.php:383
-#: easy-fancybox-settings.php:411
+#: ../easy-fancybox-settings.php:86
+#: ../easy-fancybox-settings.php:100
+#: ../easy-fancybox-settings.php:401
+#: ../easy-fancybox-settings.php:427
 msgid "None"
 msgstr "Geen"
 
-#: easy-fancybox-settings.php:87
+#: ../easy-fancybox-settings.php:87
 msgid "Empty (hidden) links"
 msgstr "Lege (verborgen) koppelingen"
 
-#: easy-fancybox-settings.php:88
+#: ../easy-fancybox-settings.php:88
 msgid "Without thumbnail image"
 msgstr "Zonder miniatuurafbeelding"
 
-#: easy-fancybox-settings.php:95
+#: ../easy-fancybox-settings.php:95
 msgid "Auto-open"
 msgstr "Auto-openen"
 
-#: easy-fancybox-settings.php:101
+#: ../easy-fancybox-settings.php:101
 msgid "Link with ID \"fancybox-auto\""
 msgstr "Koppeling met ID \"fancybox-auto\""
 
-#: easy-fancybox-settings.php:102
-msgid "First Image link"
-msgstr "Eerste afbeeldingskoppeling"
+#: ../easy-fancybox-settings.php:104
+#: ../easy-fancybox-settings.php:387
+#: ../easy-fancybox-settings.php:417
+#: ../easy-fancybox-settings.php:443
+#: ../easy-fancybox-settings.php:524
+msgid "More options &raquo;"
+msgstr "Meer opties &raquo;"
 
-#: easy-fancybox-settings.php:103
-msgid "First PDF link"
-msgstr "Eerste PDF-koppeling"
+#: ../easy-fancybox-settings.php:112
+msgid "Include the Metadata jQuery extension script to allow passing custom parameters via link class."
+msgstr "Sluit de Metadata jQuery extensie bij om aangepaste parameters via link class te kunnen doorgeven."
 
-#: easy-fancybox-settings.php:104
-msgid "First SWF link"
-msgstr "Eerste SWF-koppeling"
+#: ../easy-fancybox-settings.php:112
+#: ../easy-fancybox-settings.php:161
+#: ../easy-fancybox-settings.php:262
+#: ../easy-fancybox-settings.php:506
+#: ../easy-fancybox-settings.php:580
+msgid "Make available &raquo;"
+msgstr "Maak beschikbaar &raquo;"
 
-#: easy-fancybox-settings.php:105
-msgid "First YouTube link "
-msgstr "Eerste YouTube-koppeling"
-
-#: easy-fancybox-settings.php:106
-msgid "First Vimeo link "
-msgstr "Eerste Vimeo-koppeling"
-
-#: easy-fancybox-settings.php:107
-msgid "First Dailymotion link "
-msgstr "Eerste Dailymotion-koppeling"
-
-#: easy-fancybox-settings.php:108
-msgid "First iFrame link"
-msgstr "Eerste iFrame-koppeling"
-
-#: easy-fancybox-settings.php:109
-msgid "First of any link"
-msgstr "Eerste koppeling"
-
-#: easy-fancybox-settings.php:117
-#: easy-fancybox-settings.php:452
+#: ../easy-fancybox-settings.php:117
+#: ../easy-fancybox-settings.php:486
 msgid "Overlay"
 msgstr "Bedekking"
 
-#: easy-fancybox-settings.php:125
+#: ../easy-fancybox-settings.php:126
 msgid "Show the overlay around content opened in FancyBox."
 msgstr "Toon de bedekking rond inhoud geopend in FancyBox."
 
-#: easy-fancybox-settings.php:132
-msgid "Spotlight effect."
-msgstr "Schijnwerper effect."
+#: ../easy-fancybox-settings.php:133
+msgid "Close FancyBox when overlay is clicked"
+msgstr "Sluit FancyBox als bedekking wordt aangeklikt"
 
-#: easy-fancybox-settings.php:136
-#: easy-fancybox-settings.php:227
+#: ../easy-fancybox-settings.php:137
+#: ../easy-fancybox-settings.php:254
 msgid "Opacity"
 msgstr "Ondoorzichtigheid"
 
-#: easy-fancybox-settings.php:141
+#: ../easy-fancybox-settings.php:145
 msgid "Value between 0 and 1. "
 msgstr "Waarde tussen 0 en 1. "
 
-#: easy-fancybox-settings.php:141
-#: easy-fancybox-settings.php:150
-#: easy-fancybox-settings.php:188
-#: easy-fancybox-settings.php:232
-#: easy-fancybox-settings.php:283
-#: easy-fancybox-settings.php:332
-#: easy-fancybox-settings.php:345
-#: easy-fancybox-settings.php:369
+#: ../easy-fancybox-settings.php:145
+#: ../easy-fancybox-settings.php:154
+#: ../easy-fancybox-settings.php:219
+#: ../easy-fancybox-settings.php:319
+#: ../easy-fancybox-settings.php:375
+#: ../easy-fancybox-settings.php:563
 msgid "Default:"
 msgstr "Standaard:"
 
-#: easy-fancybox-settings.php:145
-#: easy-fancybox-settings.php:192
+#: ../easy-fancybox-settings.php:149
 msgid "Color"
 msgstr "Kleur"
 
-#: easy-fancybox-settings.php:150
+#: ../easy-fancybox-settings.php:154
 msgid "Enter an HTML color value."
 msgstr "Voer een HTML kleurwaarde in."
 
-#: easy-fancybox-settings.php:156
+#: ../easy-fancybox-settings.php:161
+msgid "Spotlight effect"
+msgstr "Schijnwerper effect"
+
+#: ../easy-fancybox-settings.php:167
 msgid "Window"
 msgstr "Raam"
 
-#: easy-fancybox-settings.php:162
-msgid "Size"
-msgstr "Grootte"
+#: ../easy-fancybox-settings.php:173
+#: ../easy-fancybox-settings.php:468
+msgid "Appearance"
+msgstr "Uiterlijk"
 
-#: easy-fancybox-settings.php:166
-#: easy-fancybox-settings.php:517
-#: easy-fancybox-settings.php:634
-#: easy-fancybox-settings.php:735
-#: easy-fancybox-settings.php:829
-#: easy-fancybox-settings.php:924
-#: easy-fancybox-settings.php:1036
-msgid "Width"
-msgstr "Breedte"
-
-#: easy-fancybox-settings.php:175
-#: easy-fancybox-settings.php:526
-#: easy-fancybox-settings.php:644
-#: easy-fancybox-settings.php:744
-#: easy-fancybox-settings.php:838
-#: easy-fancybox-settings.php:933
-#: easy-fancybox-settings.php:1045
-msgid "Height"
-msgstr "Hoogte"
-
-#: easy-fancybox-settings.php:183
-#: easy-fancybox-settings.php:207
-#: easy-fancybox-settings.php:534
-#: easy-fancybox-settings.php:653
-#: easy-fancybox-settings.php:752
-#: easy-fancybox-settings.php:846
-#: easy-fancybox-settings.php:941
-#: easy-fancybox-settings.php:1053
-msgid "Border"
-msgstr "Rand"
-
-#: easy-fancybox-settings.php:197
-msgid "Background"
-msgstr "Achtergrond"
-
-#: easy-fancybox-settings.php:217
-msgid "Text"
-msgstr "Tekst"
-
-#: easy-fancybox-settings.php:236
-msgid "Behavior"
-msgstr "Gedrag"
-
-#: easy-fancybox-settings.php:242
-msgid "Center while scrolling"
-msgstr "Centreren bij scrollen"
-
-#: easy-fancybox-settings.php:248
+#: ../easy-fancybox-settings.php:180
 msgid "Show the (X) close button"
 msgstr "Toon de (X) afsluit-knop"
 
-#: easy-fancybox-settings.php:254
+#: ../easy-fancybox-settings.php:187
 msgid "Show the gallery navigation arrows"
 msgstr "Toon galerij navigatiepijltjes"
 
-#: easy-fancybox-settings.php:262
+#: ../easy-fancybox-settings.php:191
+#: ../easy-fancybox-settings.php:628
+#: ../easy-fancybox-settings.php:753
+#: ../easy-fancybox-settings.php:858
+#: ../easy-fancybox-settings.php:962
+#: ../easy-fancybox-settings.php:1067
+#: ../easy-fancybox-settings.php:1202
+msgid "Width"
+msgstr "Breedte"
+
+#: ../easy-fancybox-settings.php:201
+#: ../easy-fancybox-settings.php:638
+#: ../easy-fancybox-settings.php:764
+#: ../easy-fancybox-settings.php:871
+#: ../easy-fancybox-settings.php:975
+#: ../easy-fancybox-settings.php:1080
+#: ../easy-fancybox-settings.php:1212
+msgid "Height"
+msgstr "Hoogte"
+
+#: ../easy-fancybox-settings.php:210
+#: ../easy-fancybox-settings.php:647
+#: ../easy-fancybox-settings.php:774
+#: ../easy-fancybox-settings.php:883
+#: ../easy-fancybox-settings.php:987
+#: ../easy-fancybox-settings.php:1092
+#: ../easy-fancybox-settings.php:1221
+msgid "Border"
+msgstr "Rand"
+
+#: ../easy-fancybox-settings.php:224
+msgid "Background color"
+msgstr "Achtergrondkleur"
+
+#: ../easy-fancybox-settings.php:234
+msgid "Border color"
+msgstr "Randkleur"
+
+#: ../easy-fancybox-settings.php:244
+msgid "Text color"
+msgstr "Tekstkleur"
+
+#: ../easy-fancybox-settings.php:266
+#: ../easy-fancybox-settings.php:391
+msgid "Behavior"
+msgstr "Gedrag"
+
+#: ../easy-fancybox-settings.php:273
+msgid "Center while scrolling"
+msgstr "Centreren bij scrollen"
+
+#: ../easy-fancybox-settings.php:280
+msgid "Esc key stroke closes FancyBox"
+msgstr "Esc-toets sluit FancyBox"
+
+#: ../easy-fancybox-settings.php:287
+msgid "Arrow key strokes browse FancyBox gallery"
+msgstr "Pijltjestoetsen bladeren door FancyBox galerij"
+
+#: ../easy-fancybox-settings.php:294
+msgid "Scale large content down to fit in the browser viewport."
+msgstr "Inhoud terug schalen wanneer het groter is dan het browservenster."
+
+#: ../easy-fancybox-settings.php:298
 msgid "Opening speed"
 msgstr "Snelheid bij openen"
 
-#: easy-fancybox-settings.php:270
+#: ../easy-fancybox-settings.php:310
 msgid "Closing speed"
 msgstr "Snelheid bij sluiten"
 
-#: easy-fancybox-settings.php:278
-msgid "Fade speed"
-msgstr "Snelheid bij vervagen"
-
-#: easy-fancybox-settings.php:283
+#: ../easy-fancybox-settings.php:319
+#: ../easy-fancybox-settings.php:563
 msgid "Duration in milliseconds. Higher is slower."
 msgstr "Duur in miliseconden. Hoger is langzamer."
 
-#: easy-fancybox-settings.php:291
-msgid "Advanced"
-msgstr "Geavanceerd"
-
-#: easy-fancybox-settings.php:296
-msgid "Hide/show title on mouse hover action"
-msgstr "Titel verbergen/tonen bij muis-over actie"
-
-#: easy-fancybox-settings.php:297
-msgid "Gallery Auto-rotation"
-msgstr "Galerij auto-rotatie"
-
-#: easy-fancybox-settings.php:304
-msgid "Note: Hide/show title on mouse hover action works best with Overlay title position. Auto-rotation uses a fixed 5 second pause per image."
-msgstr "Let op: <em>Titel verbergen/tonen bij muis-over actie</em> werkt het beste met <em>Bedekking</em> titel-positie. <em>Auto-rotatie</em> gebruikt een vaste pause van 5 seconden per afbeelding."
-
-#: easy-fancybox-settings.php:321
+#: ../easy-fancybox-settings.php:356
 msgid "To make images open in an overlay, add their extension to the auto-detect field or use the class \"fancybox\" for its link. Clear field to switch off auto-enabling."
 msgstr "Om afbeeldingen in de lichtbak te openen, voeg hun extensie toe aan het veld auto-detectie of gebruik de class \"fancybox\" voor de koppeling. Wis dit veld om auto-detectie uit te schakelen."
 
-#: easy-fancybox-settings.php:325
-#: easy-fancybox-settings.php:502
-#: easy-fancybox-settings.php:619
-#: easy-fancybox-settings.php:711
-#: easy-fancybox-settings.php:814
-#: easy-fancybox-settings.php:909
+#: ../easy-fancybox-settings.php:368
+#: ../easy-fancybox-settings.php:613
+#: ../easy-fancybox-settings.php:738
+#: ../easy-fancybox-settings.php:834
+#: ../easy-fancybox-settings.php:947
+#: ../easy-fancybox-settings.php:1052
 msgid "Auto-detect"
 msgstr "Auto-detectie"
 
-#: easy-fancybox-settings.php:336
+#: ../easy-fancybox-settings.php:379
 msgid "Apply to"
 msgstr "Pas toe op"
 
-#: easy-fancybox-settings.php:341
+#: ../easy-fancybox-settings.php:384
 msgid "All image links"
 msgstr "Alle afbeeldingskoppelingen"
 
-#: easy-fancybox-settings.php:342
-msgid "Links inside Section(s) only (below)"
-msgstr "Alleen koppelingen binnen Sectie(s)"
-
-#: easy-fancybox-settings.php:349
-msgid "Auto-gallery"
-msgstr "Auto-galerij"
-
-#: easy-fancybox-settings.php:354
-msgid "Disabled"
-msgstr "Uitgeschakeld"
-
-#: easy-fancybox-settings.php:355
-msgid "Galleries per Section (below)"
-msgstr "Galerijen per Sectie (hieronder)"
-
-#: easy-fancybox-settings.php:356
-msgid "All in one gallery"
-msgstr "Allemaal in één galerij"
-
-#: easy-fancybox-settings.php:359
-msgid "When disabled, you can use the rel attribute to manually group image links together."
-msgstr "Wanneer uitgeschakeld kun je het \"rel\" attribuut gebruiken om afbeelding handmatig te groeperen."
-
-#: easy-fancybox-settings.php:363
-msgid "Section(s)"
-msgstr "Sectie(s)"
-
-#: easy-fancybox-settings.php:369
-msgid "This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme."
-msgstr "Dit geldt wanneer <em>Pas toe op</em> is beperkt tot <em>Alleen koppelingen binnen secties</em> en/of <em>Auto-galerij</em> op <em>Galerijen per Sectie</em> staat. Pas dit aan aan je thema."
-
-#: easy-fancybox-settings.php:369
-msgid "Examples: If your theme wraps post content in a div with class post, change this value to \"div.post\". If you want to include images in a sidebar with ID primary, add \", div#primary\" or \"aside#primary\" for html5 themes."
-msgstr "Voorbeelden: Als je thema artikelen in een div met class \"post\" plaatst, maak deze waarde dan \"div.post\". Als je afbeeldingen in de zijbalk met ID \"primary\" wil meenemen, voeg dan \", #primary\" toe."
-
-#: easy-fancybox-settings.php:377
+#: ../easy-fancybox-settings.php:395
 msgid "Transition In"
 msgstr "Transitie In"
 
-#: easy-fancybox-settings.php:381
-#: easy-fancybox-settings.php:409
+#: ../easy-fancybox-settings.php:399
+#: ../easy-fancybox-settings.php:425
 msgid "Fade"
 msgstr "Vervaging"
 
-#: easy-fancybox-settings.php:382
-#: easy-fancybox-settings.php:410
+#: ../easy-fancybox-settings.php:400
+#: ../easy-fancybox-settings.php:426
 msgid "Elastic"
 msgstr "Elastisch"
 
-#: easy-fancybox-settings.php:390
+#: ../easy-fancybox-settings.php:408
 msgid "Easing In"
 msgstr "Vloeiing In"
 
-#: easy-fancybox-settings.php:394
-#: easy-fancybox-settings.php:422
+#: ../easy-fancybox-settings.php:412
+#: ../easy-fancybox-settings.php:438
 msgid "Linear"
 msgstr "Lineair"
 
-#: easy-fancybox-settings.php:395
-#: easy-fancybox-settings.php:423
+#: ../easy-fancybox-settings.php:413
+#: ../easy-fancybox-settings.php:439
 msgid "Swing"
 msgstr "Zwaai"
 
-#: easy-fancybox-settings.php:396
-#: easy-fancybox-settings.php:424
+#: ../easy-fancybox-settings.php:414
+#: ../easy-fancybox-settings.php:440
 msgid "Back"
 msgstr "Veer"
 
-#: easy-fancybox-settings.php:397
-#: easy-fancybox-settings.php:425
-msgid "Quad"
-msgstr "Quad"
-
-#: easy-fancybox-settings.php:398
-#: easy-fancybox-settings.php:426
-msgid "Expo"
-msgstr "Expo"
-
-#: easy-fancybox-settings.php:405
+#: ../easy-fancybox-settings.php:421
 msgid "Transition Out"
 msgstr "Transitie Uit"
 
-#: easy-fancybox-settings.php:418
+#: ../easy-fancybox-settings.php:434
 msgid "Easing Out"
 msgstr "Vloeiing Uit"
 
-#: easy-fancybox-settings.php:429
+#: ../easy-fancybox-settings.php:443
+#: ../easy-fancybox-settings.php:524
+msgid "Note:"
+msgstr "Let op:"
+
+#: ../easy-fancybox-settings.php:443
 msgid "Easing effects only apply when Transition is set to Elastic. "
 msgstr "Vloeiende effecten zijn alleen van toepassing als Elastische transities zijn ingeschakeld. "
 
-#: easy-fancybox-settings.php:435
+#: ../easy-fancybox-settings.php:443
+msgid "Use the option Transparency fade (below) only when at least Transition In is set to Elastic!"
+msgstr "Vloeiende effecten zijn alleen van toepassing als Elastische transities zijn ingeschakeld!"
+
+#: ../easy-fancybox-settings.php:450
 msgid "Transparency fade during elastic transition."
 msgstr "Transparantie-vervaging gedurende elastische transitie."
 
-#: easy-fancybox-settings.php:441
-#: easy-fancybox-settings.php:549
-#: easy-fancybox-settings.php:668
-#: easy-fancybox-settings.php:767
-#: easy-fancybox-settings.php:861
-#: easy-fancybox-settings.php:956
-#: easy-fancybox-settings.php:1071
+#: ../easy-fancybox-settings.php:457
+msgid "Close FancyBox when content is clicked"
+msgstr "Sluit FancyBox als de inhoud wordt aangeklikt"
+
+#: ../easy-fancybox-settings.php:464
+msgid "Try to adjust size to inline/html content.<br />If unchecked or size cannot be determined, the default dimensions will be used. FancyBox will always adjust its size when images are displayed."
+msgstr "Probeer de afmetingen aan te passen aan inline/html inhoud.<br />Indien uitgeschakeld of als de afmetingen niet bepaald kunnen worden, worden de standaard afmetingen gebruikt. FancyBox past zich altijd aan aan de afmeting van afbeeldingen."
+
+#: ../easy-fancybox-settings.php:475
+#: ../easy-fancybox-settings.php:667
+#: ../easy-fancybox-settings.php:790
+#: ../easy-fancybox-settings.php:899
+#: ../easy-fancybox-settings.php:1003
+#: ../easy-fancybox-settings.php:1108
+#: ../easy-fancybox-settings.php:1237
 msgid "Show title"
 msgstr "Toon titel"
 
-#: easy-fancybox-settings.php:445
-#: easy-fancybox-settings.php:553
-#: easy-fancybox-settings.php:672
-#: easy-fancybox-settings.php:771
-#: easy-fancybox-settings.php:865
-#: easy-fancybox-settings.php:960
-#: easy-fancybox-settings.php:1075
+#: ../easy-fancybox-settings.php:479
+#: ../easy-fancybox-settings.php:671
+#: ../easy-fancybox-settings.php:794
+#: ../easy-fancybox-settings.php:903
+#: ../easy-fancybox-settings.php:1007
+#: ../easy-fancybox-settings.php:1112
+#: ../easy-fancybox-settings.php:1241
 msgid "Title Position"
 msgstr "Titel Positie"
 
-#: easy-fancybox-settings.php:449
-#: easy-fancybox-settings.php:557
-#: easy-fancybox-settings.php:676
-#: easy-fancybox-settings.php:775
-#: easy-fancybox-settings.php:869
-#: easy-fancybox-settings.php:964
-#: easy-fancybox-settings.php:1079
+#: ../easy-fancybox-settings.php:483
+#: ../easy-fancybox-settings.php:675
+#: ../easy-fancybox-settings.php:798
+#: ../easy-fancybox-settings.php:907
+#: ../easy-fancybox-settings.php:1011
+#: ../easy-fancybox-settings.php:1116
+#: ../easy-fancybox-settings.php:1245
 msgid "Float"
 msgstr "Drijvend"
 
-#: easy-fancybox-settings.php:450
-#: easy-fancybox-settings.php:558
-#: easy-fancybox-settings.php:677
-#: easy-fancybox-settings.php:776
-#: easy-fancybox-settings.php:870
-#: easy-fancybox-settings.php:965
-#: easy-fancybox-settings.php:1080
+#: ../easy-fancybox-settings.php:484
+#: ../easy-fancybox-settings.php:676
+#: ../easy-fancybox-settings.php:799
+#: ../easy-fancybox-settings.php:908
+#: ../easy-fancybox-settings.php:1012
+#: ../easy-fancybox-settings.php:1117
+#: ../easy-fancybox-settings.php:1246
 msgid "Outside"
 msgstr "Buiten"
 
-#: easy-fancybox-settings.php:451
-#: easy-fancybox-settings.php:559
-#: easy-fancybox-settings.php:678
-#: easy-fancybox-settings.php:777
-#: easy-fancybox-settings.php:871
-#: easy-fancybox-settings.php:966
-#: easy-fancybox-settings.php:1081
+#: ../easy-fancybox-settings.php:485
+#: ../easy-fancybox-settings.php:677
+#: ../easy-fancybox-settings.php:800
+#: ../easy-fancybox-settings.php:909
+#: ../easy-fancybox-settings.php:1013
+#: ../easy-fancybox-settings.php:1118
+#: ../easy-fancybox-settings.php:1247
 msgid "Inside"
 msgstr "Binnen"
 
-#: easy-fancybox-settings.php:461
-#: easy-fancybox-settings.php:568
-#: easy-fancybox-settings.php:687
-#: easy-fancybox-settings.php:786
-#: easy-fancybox-settings.php:880
-#: easy-fancybox-settings.php:975
-#: easy-fancybox-settings.php:1090
+#: ../easy-fancybox-settings.php:496
+#: ../easy-fancybox-settings.php:687
+#: ../easy-fancybox-settings.php:810
+#: ../easy-fancybox-settings.php:919
+#: ../easy-fancybox-settings.php:1023
+#: ../easy-fancybox-settings.php:1128
+#: ../easy-fancybox-settings.php:1257
 msgid "Allow title from thumbnail alt tag"
 msgstr "Sta titel uit miniatuur \"alt\" attribuut toe"
 
-#: easy-fancybox-settings.php:494
+#: ../easy-fancybox-settings.php:499
+#: ../easy-fancybox-settings.php:573
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+#: ../easy-fancybox-settings.php:503
+msgid "Hide/show title on mouse hover action"
+msgstr "Titel verbergen/tonen bij muis-over actie"
+
+#: ../easy-fancybox-settings.php:510
+msgid "Gallery"
+msgstr "Galerij"
+
+#: ../easy-fancybox-settings.php:514
+msgid "Auto-gallery"
+msgstr "Auto-galerij"
+
+#: ../easy-fancybox-settings.php:519
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+#: ../easy-fancybox-settings.php:520
+msgid "WordPress galleries only"
+msgstr "Alleen WordPress galerijen"
+
+#: ../easy-fancybox-settings.php:521
+msgid "All in one gallery"
+msgstr "Allemaal in één galerij"
+
+#: ../easy-fancybox-settings.php:524
+msgid "When disabled, you can use the rel attribute to manually group image links together."
+msgstr "Wanneer uitgeschakeld kun je het \"rel\" attribuut gebruiken om afbeelding handmatig te groeperen."
+
+#: ../easy-fancybox-settings.php:524
+msgid "Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site."
+msgstr "Laat de muiswiel optie (hieronder) uitgeschakeld als je geen FancyBox galerijen op je site gebruikt."
+
+#: ../easy-fancybox-settings.php:531
+msgid "Include the Mousewheel jQuery extension script to allow gallery scrolling by mousewheel action."
+msgstr "Sluit de Mousewheel jQuery extensie bij zodat met de muiswiel door galerijen gescrold kan worden."
+
+#: ../easy-fancybox-settings.php:538
+msgid "Make galleries cyclic, allowing you to keep pressing next/back."
+msgstr "Maak galerijen cyclisch, zodat je voor- en achteruit kunt blijven bladeren."
+
+#: ../easy-fancybox-settings.php:542
+msgid "Change speed"
+msgstr "Snelheid bij vervangen"
+
+#: ../easy-fancybox-settings.php:554
+msgid "Fade speed"
+msgstr "Snelheid bij vervagen"
+
+#: ../easy-fancybox-settings.php:570
+msgid "Galleries per Section (below)"
+msgstr "Galerijen per Sectie (hieronder)"
+
+#: ../easy-fancybox-settings.php:570
+msgid "This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme."
+msgstr "Dit geldt wanneer <em>Pas toe op</em> is beperkt tot <em>Alleen koppelingen binnen secties</em> en/of <em>Auto-galerij</em> op <em>Galerijen per Sectie</em> staat. Pas dit aan aan je thema."
+
+#: ../easy-fancybox-settings.php:570
+msgid "Examples: If your theme wraps post content in a div with class post, change this value to \"div.post\". If you only want to group images in a WordPress gallery together, use \"div.gallery\". If you want to include images in a sidebar with ID primary, add \", #primary\"."
+msgstr "Voorbeelden: Als je thema artikelen in een div met class post plaatst, maak deze waarde dan \"div.post\". Als je alleen afbeeldingen in een WordPress galerij wil groeperen, gebruik \"div.gallery\". Als je afbeeldingen in de zijbalk met ID primary wil meenemen, voeg dan \", #primary\" toe."
+
+#: ../easy-fancybox-settings.php:570
+msgid "Hide/show title on mouse hover action works best with Overlay title position."
+msgstr "Titel verbergen/tonen bij muis-over actie werkt het beste met titel-positie Bedekking."
+
+#: ../easy-fancybox-settings.php:570
+msgid "Auto-rotation uses a fixed 6, 8 or 12 second pause per image."
+msgstr "Auto-rotatie gebruikt vaste pauses van 6, 8 of 12 seconden per afbeelding."
+
+#: ../easy-fancybox-settings.php:570
+msgid "(6 seconds)"
+msgstr "(6 seconden)"
+
+#: ../easy-fancybox-settings.php:570
+msgid "(8 seconds)"
+msgstr "(8 seconden)"
+
+#: ../easy-fancybox-settings.php:570
+msgid "(12 seconds)"
+msgstr "(12 seconden)"
+
+#: ../easy-fancybox-settings.php:577
+msgid "Gallery Auto-rotation"
+msgstr "Galerij auto-rotatie"
+
+#: ../easy-fancybox-settings.php:605
 msgid "To make any PDF document file open in an overlay, switch on auto-detect or use the class \"fancybox-pdf\" for its link."
 msgstr "Schakel, om PDF documenten in de lichtbak te openen, auto-detectie in of gebruik class \"fancybox-pdf\" voor hun koppelingen."
 
-#: easy-fancybox-settings.php:494
-#: easy-fancybox-settings.php:611
-#: easy-fancybox-settings.php:702
-#: easy-fancybox-settings.php:805
-#: easy-fancybox-settings.php:900
-#: easy-fancybox-settings.php:1021
-msgid "Adjust its specific settings below."
-msgstr "Verander specifieke instelling hieronder."
-
-#: easy-fancybox-settings.php:611
+#: ../easy-fancybox-settings.php:730
 msgid "To make any Flash (.swf) file open in an overlay, switch on auto-detect or use the class \"fancybox-swf\" for its link."
 msgstr "Schakel, om Flash (.swf) bestanden in de lichtbak te openen, auto-detectie in of gebruik class \"fancybox-swf\" voor hun koppelingen."
 
-#: easy-fancybox-settings.php:702
+#: ../easy-fancybox-settings.php:825
 msgid "To make any YouTube movie open in an overlay, switch on auto-detect or use the class \"fancybox-youtube\" for its link."
 msgstr "Schakel, om YouTube films in de lichtbak te openen, auto-detectie in of gebruik class \"fancybox-youtube\" voor hun koppelingen."
 
-#: easy-fancybox-settings.php:720
+#: ../easy-fancybox-settings.php:843
 msgid "Auto-detect Short links"
 msgstr "Auto-detectie van Short links"
 
-#: easy-fancybox-settings.php:805
+#: ../easy-fancybox-settings.php:938
 msgid "To make any Vimeo movie open in an overlay, switch on auto-detect or use the class \"fancybox-vimeo\" for its link."
 msgstr "Schakel, om Vimeo films in de lichtbak te openen, auto-detectie in of gebruik class \"fancybox-vimeo\" voor hun koppelingen."
 
-#: easy-fancybox-settings.php:900
+#: ../easy-fancybox-settings.php:1043
 msgid "To make any Dailymotion movie open in an overlay, switch on auto-detect or use the class \"fancybox-dailymotion\" for its link."
 msgstr "Schakel, om Dailymotion films in de lichtbak te openen, auto-detectie in of gebruik class \"fancybox-dailymotion\" voor hun koppelingen."
 
-#: easy-fancybox-settings.php:1021
+#: ../easy-fancybox-settings.php:1174
 msgid "To make a website or HTML document open in an overlay, use the class \"fancybox-iframe\" for its link."
 msgstr "Gebruik, om een website of HTML document in de lichtbak te openen, de class \"fancybox-iframe\" voor zijn koppeling."
 
-#. Plugin Name of the plugin/theme
-msgid "Easy FancyBox"
-msgstr "Easy FancyBox"
+#: ../easy-fancybox-settings.php:1189
+msgid "Scrolling"
+msgstr "Scrollen"
 
-#. Plugin URI of the plugin/theme
-msgid "http://4visions.nl/en/wordpress-plugins/easy-fancybox/"
-msgstr "http://4visions.nl/wordpress-plugins/easy-fancybox/"
+#: ../easy-fancybox-settings.php:1193
+msgid "Auto"
+msgstr "Auto"
 
-#. Description of the plugin/theme
-msgid "Easily enable the <a href=\"http://fancybox.net/\">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content."
-msgstr "Activeer eenvoudig de <a href=\"http://fancybox.net/\">FancyBox jQuery extensie</a> voor alle afbeeldingen, SWF, PDF, YouTube, Dailymotion en Vimeo koppelingen. Onderteunt ook iFrame en inline inhoud."
+#: ../easy-fancybox-settings.php:1194
+msgid "Always"
+msgstr "Altijd"
 
-#. Author of the plugin/theme
-msgid "RavanH"
-msgstr "RavanH"
+#: ../easy-fancybox-settings.php:1195
+msgid "Never"
+msgstr "Nooit"
 
-#. Author URI of the plugin/theme
-msgid "http://4visions.nl/"
-msgstr "http://4visions.nl/"
+#: ../easy-fancybox-settings.php:1198
+msgid "Define scrolling and scrollbar visibility."
+msgstr "Bepaal scrollen en zichtbaarheid van de schijfbalken."
 
+#~ msgid "First Image link"
+#~ msgstr "Eerste afbeeldingskoppeling"
+
+#~ msgid "First PDF link"
+#~ msgstr "Eerste PDF-koppeling"
+
+#~ msgid "First SWF link"
+#~ msgstr "Eerste SWF-koppeling"
+
+#~ msgid "First YouTube link "
+#~ msgstr "Eerste YouTube-koppeling"
+
+#~ msgid "First Vimeo link "
+#~ msgstr "Eerste Vimeo-koppeling"
+
+#~ msgid "First Dailymotion link "
+#~ msgstr "Eerste Dailymotion-koppeling"
+
+#~ msgid "First iFrame link"
+#~ msgstr "Eerste iFrame-koppeling"
+
+#~ msgid "First of any link"
+#~ msgstr "Eerste koppeling"
+
+#~ msgid "Size"
+#~ msgstr "Grootte"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Links inside Section(s) only (below)"
+#~ msgstr "Alleen koppelingen binnen Sectie(s)"
+
+#~ msgid "Section(s)"
+#~ msgstr "Sectie(s)"
+
+#~ msgid "Quad"
+#~ msgstr "Quad"
+
+#~ msgid "Expo"
+#~ msgstr "Expo"
+
+#~ msgid "Adjust its specific settings below."
+#~ msgstr "Verander specifieke instelling hieronder."
+
+#~ msgid "Easy FancyBox"
+#~ msgstr "Easy FancyBox"
+
+#~ msgid "http://4visions.nl/en/wordpress-plugins/easy-fancybox/"
+#~ msgstr "http://4visions.nl/wordpress-plugins/easy-fancybox/"
+
+#~ msgid ""
+#~ "Easily enable the <a href=\"http://fancybox.net/\">FancyBox jQuery "
+#~ "extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo "
+#~ "links. Also supports iFrame and inline content."
+#~ msgstr ""
+#~ "Activeer eenvoudig de <a href=\"http://fancybox.net/\">FancyBox jQuery "
+#~ "extensie</a> voor alle afbeeldingen, SWF, PDF, YouTube, Dailymotion en "
+#~ "Vimeo koppelingen. Onderteunt ook iFrame en inline inhoud."
+
+#~ msgid "RavanH"
+#~ msgstr "RavanH"
+
+#~ msgid "http://4visions.nl/"
+#~ msgstr "http://4visions.nl/"

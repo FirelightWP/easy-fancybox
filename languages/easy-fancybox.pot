@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy FancyBox 1.3.4.9\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 12:27+0100\n"
-"PO-Revision-Date: 2012-08-04 12:28+0100\n"
+"POT-Creation-Date: 2012-08-04 12:44+0100\n"
+"PO-Revision-Date: 2012-08-04 12:44+0100\n"
 "Last-Translator: RavanH <ravanhagen@gmail.com>\n"
 "Language-Team: LANGUAGE <ravanhagen@gmail.com>\n"
 "Language: \n"
@@ -499,7 +499,7 @@ msgid "This applies when <em>Apply to</em> is set to <em>Limited to Sections</em
 msgstr ""
 
 #: ../easy-fancybox-settings.php:570
-msgid "Examples: If your theme wraps post content in a div with class post, change this value to \"div.post\". If you want to include images in a sidebar with ID primary, add \", div#primary\" or \"aside#primary\" for html5 themes.If you only want to group images in a WordPress gallery together, use \"div.gallery\". If you want to include images in a sidebar with ID primary, add \", #primary\"."
+msgid "Examples: If your theme wraps post content in a div with class post, change this value to \"div.post\". If you only want to group images in a WordPress gallery together, use \"div.gallery\". If you want to include images in a sidebar with ID primary, add \", #primary\"."
 msgstr ""
 
 #: ../easy-fancybox-settings.php:570
