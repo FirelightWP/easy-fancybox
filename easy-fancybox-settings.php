@@ -107,9 +107,8 @@ function easy_fancybox_settings(){
 							'id' => 'fancybox_metaData',
 							'hide' => true,
 							'input' => 'checkbox',
-							'status' => 'disabled',
 							'default' => '',
-							'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox')/* . ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'*/
 							)
 						)
 					),

@@ -41,7 +41,7 @@ function easy_fancybox() {
 	global $easy_fancybox_array;
 	
 	echo '
-<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . ' using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://4visions.nl/en/wordpress-plugins/easy-fancybox/) -->';
+<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . ' using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://status301.net/wordpress-plugins/easy-fancybox/) -->';
 
 	// check for any enabled sections
 	$do_fancybox = false;
@@ -360,7 +360,7 @@ function easy_fancybox_settings_fields($args){
 }
 
 
-function easy_fancybox_register_settings($args){
+function easy_fancybox_register_settings($args = array()) {
 	global $easy_fancybox_array;
 	foreach ($args as $key => $value) {
 		// check to see if the section is enabled, else skip to next
@@ -504,7 +504,7 @@ function easy_fancybox_enqueue_scripts() {
 	if ( ( '' == get_option($easy_fancybox_array['IMG']['options']['easingIn']['id'],$easy_fancybox_array['IMG']['options']['easingIn']['default']) || 'linear' == get_option($easy_fancybox_array['IMG']['options']['easingIn']['id'],$easy_fancybox_array['IMG']['options']['easingIn']['default']) ) && ( '' == get_option($easy_fancybox_array['IMG']['options']['easingOut']['id'],$easy_fancybox_array['IMG']['options']['easingOut']['default']) || 'linear' == get_option($easy_fancybox_array['IMG']['options']['easingOut']['id'],$easy_fancybox_array['IMG']['options']['easingOut']['default']) ) ) {
 		// do nothing
 	} else {
-		if ( 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionIn']['id'],$easy_fancybox_array['IMG']['options']['transitionIn']['default'])	|| 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionOut']['id'],$easy_fancybox_array['IMG']['options']['transitionOut']['default']) ) {
+		if ( 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionIn']['id'],$easy_fancybox_array['IMG']['options']['transitionIn']['default']) || 'elastic' == get_option($easy_fancybox_array['IMG']['options']['transitionOut']['id'],$easy_fancybox_array['IMG']['options']['transitionOut']['default']) ) {
 			// first get rid of previously registered variants of jquery.easing by other plugins or theme
 			wp_deregister_script('jquery.easing');
 			wp_deregister_script('jqueryeasing');
@@ -527,7 +527,7 @@ function easy_fancybox_enqueue_scripts() {
 	}
 		
 	// metadata in Link settings?
-	if ( '1' == get_option($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Links']['options']['metaData']['default']) ) {
+	if ( isset($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id']) && '1' == get_option($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Links']['options']['metaData']['default']) ) {
 		// first get rid of previously registered variants of jquery.metadata (by other plugins)
 		wp_deregister_script('jquery.metadata');
 		wp_deregister_script('jquerymetadata');
