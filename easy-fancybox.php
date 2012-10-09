@@ -5,7 +5,7 @@ Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.3.4.10dev9
+Version: 1.3.4.10dev12
 Author: RavanH
 Author URI: http://status301.net/
 */
@@ -55,7 +55,7 @@ function easy_fancybox() {
 	// and abort when none are active
 	if (!$do_fancybox) {
 		echo '
-<!-- Nothing enabled under Settings > Media > FancyBox, please disable the plugin if you are not using it -->
+<!-- Nothing enabled under Settings > Media > FancyBox, please disable the plugin if you are not using it. -->
 
 ';
 		return;
@@ -76,12 +76,17 @@ var fb_timeout = null;';
 var fb_opts = {';
 	foreach ($easy_fancybox_array['Global']['options'] as $globals) {
 		foreach ($globals['options'] as $_key => $_value) {
-			if (isset($_value['id']) || isset($_value['default'])) 
-				$parm = (isset($_value['id']))? get_option($_value['id'], $_value['default']) : $_value['default'];
+			if ( isset($_value['id']) )
+				if ( isset($_value['default']) ) 
+					$parm = get_option($_value['id'], $_value['default']);
+				else 
+					$parm = get_option($_value['id']);
+			elseif ( isset($_value['default']) )
+				$parm = $_value['default'];
 			else
 				$parm = '';
 
-			if( isset($_value['input']) && 'checkbox'==$_value['input'] )
+			if ( isset($_value['input']) && 'checkbox'==$_value['input'] )
 				$parm = ( '1' == $parm ) ? 'true' : 'false';
 
 			if( !isset($_value['hide']) && $parm!='' ) {
@@ -196,20 +201,13 @@ jQuery(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybo
 			$trigger = '.filter(\':first\').trigger(\'click\')';
 
 		echo '
-jQuery(\'';
-		/*$tags = array_filter( explode( ',' , $value['options']['tag']['default'] ));
-		$more=0;
-		foreach ($tags as $_tag) {
-			if ($more>0)
-				echo ', ';
-			$_tagarray = explode( ' ' , trim($_tag) );
-			echo $_tagarray[0].'.'.$value['options']['class']['default'];
-			if (isset($_tagarray[1]))
-				echo ' ' . $_tagarray[1];
-			$more++;
-		}*/
-		echo $value['options']['tag']['default'];
-		echo '\').fancybox( jQuery.extend({}, fb_opts, {';
+jQuery(\'' . $value['options']['tag']['default']. '\')';
+
+		// use each() to allow different metadata values per instance; fix by Elron. Thanks!
+		if ( '1' == get_option($easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['default']) )
+			echo '.each(function() { jQuery(this)';
+
+		echo '.fancybox( jQuery.extend({}, fb_opts, {';
 		$more=0;
 		foreach ($value['options'] as $_key => $_value) {
 			if (isset($_value['id']) || isset($_value['default'])) 
@@ -229,7 +227,13 @@ jQuery(\'';
 				$more++;
 			}
 		}
-		echo ' }) )'.$trigger.';';
+		echo ' }) ';
+		
+		// use each() to allow different metadata values per instance; fix by Elron. Thanks!
+		if ( '1' == get_option($easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['default']) )		
+			echo ');} ';
+
+		echo ')'.$trigger.';';
 
 	}
 
@@ -254,15 +258,17 @@ jQuery(\'a[class*="fancybox"]\').filter(\':first\').trigger(\'click\');';
 </script>
 <style type="text/css">#page #branding{z-index:999}.fancybox-hidden{display:none}.rtl #fancybox-left{left:auto;right:0px}.rtl #fancybox-right{left:0px;right:auto}.rtl #fancybox-right-ico{background-position:-40px -30px}.rtl #fancybox-left-ico{background-position:-40px -60px}.rtl .fancybox-title-over{text-align:right}.rtl #fancybox-left-ico,.rtl #fancybox-right-ico{right:-9999px}.rtl #fancybox-right:hover span{right:auto;left:20px}.rtl #fancybox-left:hover span{right:20px}#fancybox-img{max-width:none;max-height:none}';
 
-	if ('1' == $overlaySpotlight)
+	if ($overlaySpotlight)
 		echo '#fancybox-overlay{background-image:url("'. plugins_url(FANCYBOX_SUBDIR.'/light-mask.png', __FILE__) . '");background-position:50% -3%;background-repeat:no-repeat;-o-background-size:100%;-webkit-background-size:100%;-moz-background-size:100%;-khtml-background-size:100%;background-size:100%;position:fixed}';
+	if ( !empty($borderRadius) )
+		echo '#fancybox-bg-n,#fancybox-bg-ne,#fancybox-bg-e,#fancybox-bg-se,#fancybox-bg-s,#fancybox-bg-sw,#fancybox-bg-w,#fancybox-bg-nw{background-image:none}#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}#fancybox-outer{-moz-box-shadow:0 0 12px #1111;-webkit-box-shadow:0 0 12px #111;box-shadow:0 0 12px #111}';
 	if ('' != $backgroundColor)
 		echo '#fancybox-outer{background-color:'.$backgroundColor.'}';
 	if ('' != $paddingColor)
 		echo '#fancybox-content{border-color:'.$paddingColor.'}';
 	if ('' != $textColor)
 		echo '#fancybox-content{color:'.$textColor.'}';
-	if ('' != $frameOpacity) {
+	if ('' != $frameOpacity && '1' != $frameOpacity) {
 		$frameOpacity_percent = (int)$frameOpacity*100;
 		echo '#fancybox-outer{filter:alpha(opacity='.$frameOpacity_percent.');-moz-opacity:'.$frameOpacity.';opacity:'.$frameOpacity.'}';
 	}
@@ -273,7 +279,7 @@ echo '</style>
 
 // add our FancyBox Media Settings Section on Settings > Media admin page
 function easy_fancybox_settings_section() {
-	echo '<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:left;margin:5px 10px 0 0" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="92" height="26" /></a>'.__('The options in this section are provided by the plugin <strong><a href="http://4visions.nl/wordpress-plugins/easy-fancybox/">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href="http://fancybox.net/">FancyBox</a></strong>.','easy-fancybox').' '.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').' <strong><a href="http://4visions.nl/wordpress-plugins/easy-fancybox-pro/">' . __('For advanced options and support, please purchase the Easy FancyBox Pro version.','easy-fancybox') . '</a></strong></p><p>'.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
+	echo '<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:left;margin:5px 10px 0 0" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="92" height="26" /></a>'.__('The options in this section are provided by the plugin <strong><a href="http://status301.net/wordpress-plugins/easy-fancybox/">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href="http://fancybox.net/">FancyBox</a></strong>.','easy-fancybox').' '.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').' <strong><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('For advanced options and support, please purchase the Easy FancyBox Pro version.','easy-fancybox') . '</a></strong></p><p>'.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
 }
 
 // add our FancyBox Media Settings Fields
@@ -527,7 +533,7 @@ function easy_fancybox_enqueue_scripts() {
 	}
 		
 	// metadata in Link settings?
-	if ( isset($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id']) && '1' == get_option($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Links']['options']['metaData']['default']) ) {
+	if ( '1' == get_option($easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['default']) ) {
 		// first get rid of previously registered variants of jquery.metadata (by other plugins)
 		wp_deregister_script('jquery.metadata');
 		wp_deregister_script('jquerymetadata');

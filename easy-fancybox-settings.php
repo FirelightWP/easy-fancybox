@@ -14,14 +14,21 @@ function easy_fancybox_settings(){
 					'options' => array(
 						'p1' => array (
 							'hide' => true,
-							'description' => '<strong>' . __('Enable FancyBox for','easy-fancybox') . '</strong><br />'
+							'description' => __('Enable FancyBox for','easy-fancybox') . '<br />'
 							),
 						'IMG' => array (
 							'id' => 'fancybox_enableImg',
 							'input' => 'checkbox',
 							'hide' => true,
 							'default' => ( function_exists('is_plugin_active_for_network') && is_plugin_active_for_network(plugin_basename( __FILE__ )) ) ? '' : '1',
-							'description' => '<strong>' . __('Images & Inline content','easy-fancybox') . '</strong>'
+							'description' => '<strong>' . __('Images','easy-fancybox') . '</strong>'
+							),
+						'Inline' => array (
+							'id' => 'fancybox_enableInline',
+							'input' => 'checkbox',
+							'hide' => true,
+							'default' => '',
+							'description' => '<strong>' . __('Inline content','easy-fancybox') . '</strong>'
 							),
 						'PDF' => array (
 							'id' => 'fancybox_enablePDF',
@@ -67,6 +74,7 @@ function easy_fancybox_settings(){
 							)							
 						),
 					),
+					
 				'Links' => array(
 					'title' => __('Links'),
 					'input' => 'multiple',
@@ -92,7 +100,7 @@ function easy_fancybox_settings(){
 							),
 						'autoClick' => array (
 							'id' => 'fancybox_autoClick',
-							'title' => __('Auto-open','easy-fancybox'),
+							'title' => __('Open on page load','easy-fancybox'),
 							'label_for' => 'fancybox_autoClick',
 							'hide' => true,
 							'input' => 'select',
@@ -101,14 +109,14 @@ function easy_fancybox_settings(){
 								'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
 								),
 							'default' => '1',
-							'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
+							'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
 							),
 						'metaData' => array (
 							'id' => 'fancybox_metaData',
 							'hide' => true,
 							'input' => 'checkbox',
 							'default' => '',
-							'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox')/* . ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'*/
+							'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox')/* . ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'*/
 							)
 						)
 					),
@@ -123,13 +131,6 @@ function easy_fancybox_settings(){
 							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Show the overlay around content opened in FancyBox.','easy-fancybox')
-							),
-						'hideOnOverlayClick' => array (
-							'id' => 'fancybox_hideOnOverlayClick',
-							'input' => 'checkbox',
-							'noquotes' => true,
-							'default' => '1',
-							'description' => __('Close FancyBox when overlay is clicked','easy-fancybox')
 							),
 						'overlayOpacity' => array (
 							'id' => 'fancybox_overlayOpacity',
@@ -157,7 +158,7 @@ function easy_fancybox_settings(){
 							'hide' => true,
 							'status' => 'disabled',
 							'default' => '',
-							'description' => __('Spotlight effect','easy-fancybox') . '. <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => __('Spotlight effect','easy-fancybox') . '. <em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),
@@ -178,12 +179,61 @@ function easy_fancybox_settings(){
 							'default' => '1',
 							'description' => __('Show the (X) close button','easy-fancybox')
 							),
-						'showNavArrows' => array (
-							'id' => 'fancybox_showNavArrows',
-							'input' => 'checkbox',
-							'noquotes' => true,
-							'default' => '1',
-							'description' => __('Show the gallery navigation arrows','easy-fancybox') . '<br />'
+						'backgroundColor' => array (
+							'id' => 'fancybox_backgroundColor',
+							'hide' => true,
+							'title' => __('Background color','easy-fancybox'),
+							'input' => 'text',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'description' => ''
+							),
+						'paddingColor' => array (
+							'id' => 'fancybox_paddingColor',
+							'hide' => true,
+							'title' => __('Border color','easy-fancybox'),
+							'input' => 'text',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'description' => ''
+							),
+						'textColor' => array (
+							'id' => 'fancybox_textColor',
+							'hide' => true,
+							'title' => __('Text color','easy-fancybox'),
+							'input' => 'text',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'description' => '<br />'
+							),
+						'frameOpacity' => array (
+							'id' => 'fancybox_frameOpacity',
+							'hide' => true,
+							'title' => __('Opacity','easy-fancybox'),
+							'input' => 'number',
+							'step' => '0.1',
+							'min' => '0',
+							'max' => '1',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							),
+						'borderRadius' => array (
+							'id' => 'fancybox_borderRadius',
+							'hide' => true,
+							'title' => __('Border radius','easy-fancybox'),
+							'input' => 'number',
+							'step' => '1',
+							'min' => '0',
+							'max' => '99',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'description' => __('Set a border radius to create rounded corners. Higher is rounder.','easy-fancybox') . ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							),
+
+						'p11' => array (
+							'hide' => true,
+							'description' => '<br /><strong>' . __('Dimensions','easy-fancybox') . '</strong><br />'
 							),
 						'width' => array (
 							'id' => 'fancybox_width',
@@ -215,51 +265,9 @@ function easy_fancybox_settings(){
 							'sanitize_callback' => 'easy_fancybox_intval',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em><br /><br />'
+							'description' => '<em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em><br />' . __('If content size is not set or cannot be determined automatically, these default dimensions will be used.','easy-fancybox') . '<br />'
 							),
-						'backgroundColor' => array (
-							'id' => 'fancybox_backgroundColor',
-							'hide' => true,
-							'title' => __('Background color','easy-fancybox'),
-							'input' => 'text',
-							'status' => 'disabled',
-							'class' => 'small-text',
-							'default' => '#fff',
-							'description' => ''
-							),
-						'paddingColor' => array (
-							'id' => 'fancybox_paddingColor',
-							'hide' => true,
-							'title' => __('Border color','easy-fancybox'),
-							'input' => 'text',
-							'status' => 'disabled',
-							'class' => 'small-text',
-							'default' => '#fff',
-							'description' => ''
-							),
-						'textColor' => array (
-							'id' => 'fancybox_textColor',
-							'hide' => true,
-							'title' => __('Text color','easy-fancybox'),
-							'input' => 'text',
-							'status' => 'disabled',
-							'class' => 'small-text',
-							'default' => 'inherit',
-							'description' => '<br />'
-							),
-						'frameOpacity' => array (
-							'id' => 'fancybox_frameOpacity',
-							'hide' => true,
-							'title' => __('Opacity','easy-fancybox'),
-							'input' => 'number',
-							'step' => '0.1',
-							'min' => '0',
-							'max' => '1',
-							'status' => 'disabled',
-							'class' => 'small-text',
-							'default' => '1.0',
-							'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
-							),
+
 						'p2' => array (
 							'hide' => true,
 							'description' => '<br /><strong>' . __('Behavior','easy-fancybox') . '</strong><br />'
@@ -277,13 +285,6 @@ function easy_fancybox_settings(){
 							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Esc key stroke closes FancyBox','easy-fancybox')
-							),
-						'enableKeyboardNav' => array (
-							'id' => 'fancybox_enableKeyboardNav',
-							'input' => 'checkbox',
-							'noquotes' => true,
-							'default' => '1',
-							'description' => __('Arrow key strokes browse FancyBox gallery','easy-fancybox')
 							),
 						'autoScale' => array (
 							'id' => 'fancybox_autoScale',
@@ -340,19 +341,21 @@ function easy_fancybox_settings(){
 							'hide' => true,
 							'input' => 'hidden',
 							'default' => '1.0'
-							),
+							)
 						)
 					)
 					
 				)
 			),
+
+
 		'IMG' => array(
-			'title' => __('Images & Inline content','easy-fancybox'),
+			'title' => __('Images','easy-fancybox'),
 			'input' => 'multiple',
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make images open in an overlay, add their extension to the auto-detect field or use the class "fancybox" for its link. Clear field to switch off auto-enabling.','easy-fancybox') . '<br />'
+					'description' => __('To make images open in an overlay, add their extension to the Autodetect field or use the class "fancybox" for its link. Clear field to switch off all autodetection.','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 					'hide' => true,
@@ -362,9 +365,12 @@ function easy_fancybox_settings(){
 					'hide' => true,
 					'default' => 'fancybox'
 					),
+				'type' => array (
+					'default' => 'image'
+					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttribute',
-					'title' => __('Auto-detect','easy-fancybox'),
+					'title' => __('Autodetect','easy-fancybox'),
 					'label_for' => 'fancybox_autoAttribute',
 					'input' => 'text',
 					'class' => 'regular-text',
@@ -383,7 +389,7 @@ function easy_fancybox_settings(){
 						'' => __('All image links', 'easy-fancybox')
 						),
 					'default' => '',
-					'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p2' => array (
 					'hide' => true,
@@ -395,9 +401,9 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_transitionIn',
 					'input' => 'select',
 					'options' => array(
+						'none' => __('None','easy-fancybox'),
 						'' => __('Fade','easy-fancybox'),
 						'elastic' => __('Elastic','easy-fancybox'),
-						'none' => __('None','easy-fancybox')
 						),
 					'default' => 'elastic',
 					'description' => ' '
@@ -413,7 +419,7 @@ function easy_fancybox_settings(){
 						'easeOutBack' => __('Back','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOut',
@@ -421,9 +427,9 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_transitionOut',
 					'input' => 'select',
 					'options' => array(
+						'none' => __('None','easy-fancybox'),
 						'' => __('Fade','easy-fancybox'),
 						'elastic' => __('Elastic','easy-fancybox'),
-						'none' => __('None','easy-fancybox')
 						),
 					'default' => 'elastic',
 					'description' => ' '
@@ -439,14 +445,14 @@ function easy_fancybox_settings(){
 						'easeInBack' => __('Back','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . ' ' . __('Use the option Transparency fade (below) only when at least Transition In is set to Elastic!','easy-fancybox') . '<br />'
+					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
 					'input' => 'checkbox',
 					'noquotes' => true,
 					'default' => '',
-					'description' => __('Transparency fade during elastic transition.','easy-fancybox')
+					'description' => __('Transparency fade during elastic transition. CAUTION: Use only when at least Transition In is set to Elastic!','easy-fancybox')
 					),
 				'hideOnContentClick' => array (
 					'id' => 'fancybox_hideOnContentClick',
@@ -454,13 +460,6 @@ function easy_fancybox_settings(){
 					'noquotes' => true,
 					'default' => '',
 					'description' => __('Close FancyBox when content is clicked','easy-fancybox')
-					),
-				'autoDimensions' => array (
-					'id' => 'fancybox_autoDimensions',
-					'input' => 'checkbox',
-					'noquotes' => true,
-					'default' => '1',
-					'description' => __('Try to adjust size to inline/html content.<br />If unchecked or size cannot be determined, the default dimensions will be used. FancyBox will always adjust its size when images are displayed.','easy-fancybox')
 					),
 				'p1' => array (
 					'hide' => true,
@@ -502,7 +501,7 @@ function easy_fancybox_settings(){
 						'' => __('Hide/show title on mouse hover action','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' =>  '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p3' => array (
 					'hide' => true,
@@ -510,7 +509,7 @@ function easy_fancybox_settings(){
 					),
 				'autoGallery' => array (
 					'id' => 'fancybox_autoGallery',
-					'title' => __('Auto-gallery','easy-fancybox'),
+					'title' => __('Autogallery','easy-fancybox'),
 					'label_for' => 'fancybox_autoGallery',
 					'hide' => true,
 					'input' => 'select',
@@ -520,14 +519,28 @@ function easy_fancybox_settings(){
 						'2' => __('All in one gallery','easy-fancybox')
 						),
 					'default' => '1',
-					'description' => '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . ' ' .  __('Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site.','easy-fancybox') . '<br /><br />'
+					'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . ' ' .  __('Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site.','easy-fancybox') . '<br /><br />'
+					),
+				'showNavArrows' => array (
+					'id' => 'fancybox_showNavArrows',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '1',
+					'description' => __('Show the gallery navigation arrows','easy-fancybox')
+					),
+				'enableKeyboardNav' => array (
+					'id' => 'fancybox_enableKeyboardNav',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '1',
+					'description' => __('Arrow key strokes browse the gallery','easy-fancybox')
 					),
 				'mouseWheel' => array (
 					'id' => 'fancybox_mouseWheel',
 					'hide' => true,
 					'input' => 'checkbox',
 					'default' => '',
-					'description' => __('Include the Mousewheel jQuery extension script to allow gallery scrolling by mousewheel action.','easy-fancybox')
+					'description' => __('Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action.','easy-fancybox')
 					),
 				'cyclic' => array (
 					'id' => 'fancybox_cyclic',
@@ -566,17 +579,17 @@ function easy_fancybox_settings(){
 					'hide' => true,
 					'input' => 'hidden',
 					'default' => 'div.gallery',
-					'translations' => __('Galleries per Section (below)','easy-fancybox') . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you only want to group images in a WordPress gallery together, use "div.gallery". If you want to include images in a sidebar with ID primary, add ", #primary".','easy-fancybox') . __('Hide/show title on mouse hover action works best with Overlay title position.','easy-fancybox') . __('Auto-rotation uses a fixed 6, 8 or 12 second pause per image.','easy-fancybox') . __('(6 seconds)','easy-fancybox') . __('(8 seconds)','easy-fancybox') . __('(12 seconds)','easy-fancybox')
+					'translations' => __('Galleries per Section (below)','easy-fancybox') . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Autogallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you only want to group images in a WordPress gallery together, use "div.gallery". If you want to include images in a sidebar with ID primary, add ", #primary".','easy-fancybox') . __('Hide/show title on mouse hover action works best with Overlay title position.','easy-fancybox') . __('The slideshow uses a fixed 6, 8 or 12 second pause per image.','easy-fancybox') . __('(6 seconds)','easy-fancybox') . __('(8 seconds)','easy-fancybox') . __('(12 seconds)','easy-fancybox')
 					),
 				'onComplete' => array (
 					'title' => __('Advanced','easy-fancybox'),
 					'input' => 'select',
 					'status' => 'disabled',
 					'options' => array(
-						'' => __('Gallery Auto-rotation','easy-fancybox')
+						'' => __('Slideshow','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="http://4visions.nl/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+					'description' =>  '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 /*						'titleFormat' => array (
 					'id' => 'fancybox_titleFormat',
@@ -595,13 +608,108 @@ function easy_fancybox_settings(){
 				)
 			),
 
+		'Inline' => array(
+			'title' => __('Inline content','easy-fancybox'),
+			'input' => 'multiple',
+			'options' => array(
+				'intro' => array (
+					'hide' => true,
+					'description' => __('To make inline content open in an overlay, wrap that content in a div with a unique ID, create a link with target "#uniqueID" and give it a class "fancybox-inline" attribute.','easy-fancybox') . '<br /><br />'
+					),
+				'tag' => array (
+					'hide' => true,
+					'default' => 'a.fancybox-inline, area.fancybox-inline, li.fancybox-inline a:not(li.nofancybox-inline a)'
+					),
+				'class' => array (
+					'hide' => true,
+					'default' => 'fancybox-inline'
+					),
+				'type' => array (
+					'default' => 'inline'
+					),
+				'autoDimensions' => array (
+					'id' => 'fancybox_autoDimensions',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '1',
+					'description' => __('Try to adjust size to inline/html content. If unchecked or size cannot be determined, the default dimensions will be used.','easy-fancybox') . '<br />'
+					),
+				'transitionIn' => array (
+					'id' => 'fancybox_transitionInInline',
+					'title' => __('Transition In','easy-fancybox'),
+					'label_for' => 'fancybox_transitionInInline',
+					'input' => 'select',
+					'options' => array(
+						'none' => __('None','easy-fancybox'),
+						'' => __('Fade','easy-fancybox'),
+						'elastic' => __('Elastic','easy-fancybox'),
+						),
+					'default' => '',
+					'description' => ' '
+					),
+				'easingIn' => array (
+					'id' => 'fancybox_easingInInline',
+					'title' => __('Easing In','easy-fancybox'),
+					'label_for' => 'fancybox_easingInInline',
+					'input' => 'select',
+					'options' => array(
+						'linear' => __('Linear','easy-fancybox'),
+						'' => __('Swing','easy-fancybox'),
+						'easeOutBack' => __('Back','easy-fancybox')
+						),
+					'default' => 'easeOutBack',
+					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					),
+				'transitionOut' => array (
+					'id' => 'fancybox_transitionOutInline',
+					'title' => __('Transition Out','easy-fancybox'),
+					'label_for' => 'fancybox_transitionOutInline',
+					'input' => 'select',
+					'options' => array(
+						'none' => __('None','easy-fancybox'),
+						'' => __('Fade','easy-fancybox'),
+						'elastic' => __('Elastic','easy-fancybox'),
+						),
+					'default' => '',
+					'description' => ' '
+					),
+				'easingOut' => array (
+					'id' => 'fancybox_easingOutInline',
+					'title' => __('Easing Out','easy-fancybox'),
+					'label_for' => 'fancybox_easingOutInline',
+					'input' => 'select',
+					'options' => array(
+						'linear' => __('Linear','easy-fancybox'),
+						'' => __('Swing','easy-fancybox'),
+						'easeInBack' => __('Back','easy-fancybox')
+						),
+					'default' => 'easeInBack',
+					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+					),
+				'opacity' => array (
+					'id' => 'fancybox_opacityInline',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '',
+					'description' => __('Transparency fade during elastic transition. CAUTION: Use only when at least Transition In is set to Elastic!','easy-fancybox')
+					),
+				'hideOnContentClick' => array (
+					'id' => 'fancybox_hideOnContentClickInline',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '',
+					'description' => __('Close FancyBox when content is clicked','easy-fancybox')
+					)
+				)
+			),
+
 		'PDF' => array(
 			'title' => __('PDF','easy-fancybox'),
 			'input' => 'multiple',			
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any PDF document file open in an overlay, switch on auto-detect or use the class "fancybox-pdf" for its link.','easy-fancybox') . '<br />'
+					'description' => __('To make any PDF document file open in an overlay, switch on Autodetect or use the class "fancybox-pdf" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributePDF',
@@ -609,7 +717,7 @@ function easy_fancybox_settings(){
 					'hide' => true,
 					'default' => '1',
 					'selector' => 'href*=".pdf"',
-					'description' => __('Auto-detect','easy-fancybox') . '<br />'
+					'description' => __('Autodetect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 					'hide' => true,
@@ -726,7 +834,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any Flash (.swf) file open in an overlay, switch on auto-detect or use the class "fancybox-swf" for its link.','easy-fancybox') . '<br />'
+					'description' => __('To make any Flash (.swf) file open in an overlay, switch on Autodetect or use the class "fancybox-swf" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeSWF',
@@ -734,7 +842,7 @@ function easy_fancybox_settings(){
 					'hide' => true,
 					'default' => '1',
 					'selector' => 'href*=".swf"',
-					'description' => __('Auto-detect','easy-fancybox') . '<br />'
+					'description' => __('Autodetect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 					'hide' => true,
@@ -821,16 +929,16 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any YouTube movie open in an overlay, switch on auto-detect or use the class "fancybox-youtube" for its link.','easy-fancybox') . '<br />'
+					'description' => __('To make any YouTube movie open in an overlay, switch on Autodetect or use the class "fancybox-youtube" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeYoutube',
 					'input' => 'checkbox',
 					'hide' => true,
 					'default' => '1',
-					'selector' => 'href*="youtube.com/"',
+					'selector' => 'href*="youtube.com/watch"',
 					//'href-replace' => "return attr.replace(new RegExp('watch\\\?v=', 'i'), 'v/')",
-					'description' => __('Auto-detect','easy-fancybox')
+					'description' => __('Autodetect','easy-fancybox')
 					),
 				'autoAttributeAlt' => array (
 					'id' => 'fancybox_autoAttributeYoutubeShortURL',
@@ -839,7 +947,7 @@ function easy_fancybox_settings(){
 					'default' => '1',
 					'selector' => 'href*="youtu.be/"',
 					//'href-replace' => "return attr.replace(new RegExp('youtu.be', 'i'), 'www.youtube.com/v')",
-					'description' => __('Auto-detect Short links','easy-fancybox') . '<br />'
+					'description' => __('Autodetect Short links','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 					'hide' => true,
@@ -934,7 +1042,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any Vimeo movie open in an overlay, switch on auto-detect or use the class "fancybox-vimeo" for its link.','easy-fancybox') . '<br />'
+					'description' => __('To make any Vimeo movie open in an overlay, switch on Autodetect or use the class "fancybox-vimeo" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeVimeo',
@@ -943,7 +1051,7 @@ function easy_fancybox_settings(){
 					'default' => '1',
 					'selector' => 'href*="vimeo.com/"',
 					//'href-replace' => "return attr.replace(new RegExp('/([0-9])', 'i'), '/moogaloop.swf?clip_id=$1')",
-					'description' => __('Auto-detect','easy-fancybox') . '<br />'
+					'description' => __('Autodetect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 					'hide' => true,
@@ -1039,7 +1147,7 @@ function easy_fancybox_settings(){
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any Dailymotion movie open in an overlay, switch on auto-detect or use the class "fancybox-dailymotion" for its link.','easy-fancybox') . '<br />'
+					'description' => __('To make any Dailymotion movie open in an overlay, switch on Autodetect or use the class "fancybox-dailymotion" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeDailymotion',
@@ -1048,7 +1156,7 @@ function easy_fancybox_settings(){
 					'default' => '1',
 					'selector' => 'href*="dailymotion.com/"',
 					//'href-replace' => "return attr.replace(new RegExp('/video/', 'i'), '/swf/')",
-					'description' => __('Auto-detect','easy-fancybox') . '<br />'
+					'description' => __('Autodetect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 					'hide' => true,
