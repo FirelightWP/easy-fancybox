@@ -5,7 +5,7 @@ Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.3.4.10dev12
+Version: 1.3.4.10dev13
 Author: RavanH
 Author URI: http://status301.net/
 */
@@ -124,8 +124,8 @@ var fb_opts = {';
 			if(is_numeric($autoAttribute)) {
 				echo '
 jQuery(\'a['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'.$attributeLimit.', area['.$value['options']['autoAttribute']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
-				if ($value['options']['autoAttribute']['href-replace'])
-					echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttribute']['href-replace'].'})';
+				//if ( isset($value['options']['autoAttribute']['href-replace']) )
+				//	echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttribute']['href-replace'].'})';
 				echo '.addClass(\''.$value['options']['class']['default'].'\');';
 			} else {
 				// set selectors
@@ -204,7 +204,7 @@ jQuery(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybo
 jQuery(\'' . $value['options']['tag']['default']. '\')';
 
 		// use each() to allow different metadata values per instance; fix by Elron. Thanks!
-		if ( '1' == get_option($easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['default']) )
+		if ( '1' == get_option($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Links']['options']['metaData']['default']) )
 			echo '.each(function() { jQuery(this)';
 
 		echo '.fancybox( jQuery.extend({}, fb_opts, {';
@@ -230,7 +230,7 @@ jQuery(\'' . $value['options']['tag']['default']. '\')';
 		echo ' }) ';
 		
 		// use each() to allow different metadata values per instance; fix by Elron. Thanks!
-		if ( '1' == get_option($easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['default']) )		
+		if ( '1' == get_option($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Links']['options']['metaData']['default']) )		
 			echo ');} ';
 
 		echo ')'.$trigger.';';
@@ -533,7 +533,7 @@ function easy_fancybox_enqueue_scripts() {
 	}
 		
 	// metadata in Link settings?
-	if ( '1' == get_option($easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Settings']['options']['metaData']['default']) ) {
+	if ('1' == get_option($easy_fancybox_array['Global']['options']['Links']['options']['metaData']['id'],$easy_fancybox_array['Global']['options']['Links']['options']['metaData']['default']) ) {
 		// first get rid of previously registered variants of jquery.metadata (by other plugins)
 		wp_deregister_script('jquery.metadata');
 		wp_deregister_script('jquerymetadata');
