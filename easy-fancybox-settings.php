@@ -154,6 +154,7 @@ function easy_fancybox_settings(){
 							'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em><br />' 
 							),
 						'overlaySpotlight' => array (
+							'id' => '',
 							'input' => 'checkbox',
 							'hide' => true,
 							'status' => 'disabled',
@@ -186,6 +187,7 @@ function easy_fancybox_settings(){
 							'input' => 'text',
 							'status' => 'disabled',
 							'class' => 'small-text',
+							'default' => '',
 							'description' => ''
 							),
 						'paddingColor' => array (
@@ -195,6 +197,7 @@ function easy_fancybox_settings(){
 							'input' => 'text',
 							'status' => 'disabled',
 							'class' => 'small-text',
+							'default' => '',
 							'description' => ''
 							),
 						'textColor' => array (
@@ -204,6 +207,7 @@ function easy_fancybox_settings(){
 							'input' => 'text',
 							'status' => 'disabled',
 							'class' => 'small-text',
+							'default' => '',
 							'description' => '<br />'
 							),
 						'frameOpacity' => array (
@@ -216,6 +220,7 @@ function easy_fancybox_settings(){
 							'max' => '1',
 							'status' => 'disabled',
 							'class' => 'small-text',
+							'default' => '',
 							'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 						'borderRadius' => array (
@@ -228,6 +233,7 @@ function easy_fancybox_settings(){
 							'max' => '99',
 							'status' => 'disabled',
 							'class' => 'small-text',
+							'default' => '',
 							'description' => __('Set a border radius to create rounded corners. Higher is rounder.','easy-fancybox') . ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 
@@ -494,6 +500,7 @@ function easy_fancybox_settings(){
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 				'onStart' => array (
+					'id' => '',
 					'title' => __('Advanced','easy-fancybox'),
 					'input' => 'select',
 					'status' => 'disabled',
@@ -582,6 +589,7 @@ function easy_fancybox_settings(){
 					'translations' => __('Galleries per Section (below)','easy-fancybox') . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Autogallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you only want to group images in a WordPress gallery together, use "div.gallery". If you want to include images in a sidebar with ID primary, add ", #primary".','easy-fancybox') . __('Hide/show title on mouse hover action works best with Overlay title position.','easy-fancybox') . __('The slideshow uses a fixed 6, 8 or 12 second pause per image.','easy-fancybox') . __('(6 seconds)','easy-fancybox') . __('(8 seconds)','easy-fancybox') . __('(12 seconds)','easy-fancybox')
 					),
 				'onComplete' => array (
+					'id' => '',
 					'title' => __('Advanced','easy-fancybox'),
 					'input' => 'select',
 					'status' => 'disabled',

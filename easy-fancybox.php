@@ -5,7 +5,7 @@ Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.3.4.10dev13
+Version: 1.3.4.10dev15
 Author: RavanH
 Author URI: http://status301.net/
 */
@@ -284,85 +284,88 @@ function easy_fancybox_settings_section() {
 
 // add our FancyBox Media Settings Fields
 function easy_fancybox_settings_fields($args){
-	$disabled = ('disabled' == $args['status']) ? ' disabled="disabled"' : '';
-	switch($args['input']) {
-		case 'multiple':
-		case 'deep':
-			foreach ($args['options'] as $options)
-				easy_fancybox_settings_fields($options);
-			echo $args['description'];
-			break;
-		case 'select':
-			if( !empty($args['label_for']) )
-				echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
-			else
-				echo $args['title'];
-			echo '
-			<select name="'.$args['id'].'" id="'.$args['id'].'">';
-			foreach ($args['options'] as $optionkey => $optionvalue) {
-				$selected = (get_option($args['id'], $args['default']) == $optionkey) ? ' selected="selected"' : '';
+	$disabled = (isset($args['status']) && 'disabled' == $args['status']) ? ' disabled="disabled"' : '';
+	if (isset($args['input']))
+		switch($args['input']) {
+			case 'multiple':
+			case 'deep':
+				foreach ($args['options'] as $options)
+					easy_fancybox_settings_fields($options);
+				if (isset($args['description'])) echo $args['description'];
+				break;
+			case 'select':
+				if( !empty($args['label_for']) )
+					echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
+				else
+					echo $args['title'];
 				echo '
-				<option value="'.esc_attr($optionkey).'"'.$selected.' '.$disabled.' >'.$optionvalue.'</option>';
-			}
-			echo '
-			</select> ';
-			if( empty($args['label_for']) )
-				echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
-			else
-				echo $args['description'];
-			break;
-		case 'checkbox':
-			if( !empty($args['label_for']) )
-				echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
-			else
-				echo $args['title'];
-			$value = esc_attr( get_option($args['id'], $args['default']) );
-			if ($value == "1")
-				$checked = ' checked="checked"';
-			else
-				$checked = '';
-			if ($args['default'] == "1")
-				$default = __('Checked','easy-fancybox');
-			else
-				$default = __('Unchecked','easy-fancybox');
-			if( empty($args['label_for']) )
+				<select name="'.$args['id'].'" id="'.$args['id'].'">';
+				foreach ($args['options'] as $optionkey => $optionvalue) {
+					$selected = (get_option($args['id'], $args['default']) == $optionkey) ? ' selected="selected"' : '';
+					echo '
+					<option value="'.esc_attr($optionkey).'"'.$selected.' '.$disabled.' >'.$optionvalue.'</option>';
+				}
 				echo '
-			<label><input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.' '.$disabled.' /> '.$args['description'].'</label><br />';
-			else
+				</select> ';
+				if( empty($args['label_for']) )
+					echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
+				else
+					if (isset($args['description'])) echo $args['description'];
+				break;
+			case 'checkbox':
+				if( !empty($args['label_for']) )
+					echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
+				else
+					if (isset($args['title'])) echo $args['title'];
+				$value = esc_attr( get_option($args['id'], $args['default']) );
+				if ($value == "1")
+					$checked = ' checked="checked"';
+				else
+					$checked = '';
+				if ($args['default'] == "1")
+					$default = __('Checked','easy-fancybox');
+				else
+					$default = __('Unchecked','easy-fancybox');
+				if( empty($args['label_for']) )
+					echo '
+				<label><input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.' '.$disabled.' /> '.$args['description'].'</label><br />';
+				else
+					echo '
+				<input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.' '.$disabled.' /> '.$args['description'].'<br />';
+				break;
+			case 'text':
+				if( !empty($args['label_for']) )
+					echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
+				else
+					echo $args['title'];
 				echo '
-			<input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.' '.$disabled.' /> '.$args['description'].'<br />';
-			break;
-		case 'text':
-			if( !empty($args['label_for']) )
-				echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
-			else
-				echo $args['title'];
-			echo '
-			<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'.$disabled.' /> ';
-			if( empty($args['label_for']) )
-				echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
-			else
-				echo $args['description'];
-			break;
-		case 'number':
-			if( !empty($args['label_for']) )
-				echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
-			else
-				echo $args['title'];
-			echo '
-			<input type="number" step="'.$args['step'].'" min="'.$args['min'].'" max="'.$args['max'].'" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'.$disabled.' /> ';
-			if( empty($args['label_for']) )
-				echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
-			else
-				echo $args['description'];
-			break;
-		case 'hidden':
-			echo '
-			<input type="hidden" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" /> ';
-			break;
-		default:
-			echo $args['description'];
-	}
+				<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'.$disabled.' /> ';
+				if( empty($args['label_for']) )
+					echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
+				else
+					if (isset($args['description'])) echo $args['description'];
+				break;
+			case 'number':
+				if( !empty($args['label_for']) )
+					echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
+				else
+					echo $args['title'];
+				echo '
+				<input type="number" step="'.$args['step'].'" min="'.$args['min'].'" max="'.$args['max'].'" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'.$disabled.' /> ';
+				if( empty($args['label_for']) )
+					echo '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
+				else
+					if (isset($args['description'])) echo $args['description'];
+				break;
+			case 'hidden':
+				echo '
+				<input type="hidden" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" /> ';
+				break;
+			default:
+				if (isset($args['description'])) echo $args['description'];
+		}
+	else
+		if (isset($args['description'])) echo $args['description'];
 }
 
 
