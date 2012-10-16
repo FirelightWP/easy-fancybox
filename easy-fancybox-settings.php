@@ -383,7 +383,7 @@ function easy_fancybox_settings(){
 					'hide' => true,
 					'default' => '.jpg .jpeg .png',
 					'selector' => 'href*=',
-					'description' => ' <em>' . __('Default:','easy-fancybox') . ' .jpg .jpeg .png</em><br />'
+					'description' => ' <em>' . __('Example:','easy-fancybox') . ' .jpg .jpeg .png .gif</em><br />'
 					),
 				'autoAttributeLimit' => array (
 					'id' => 'fancybox_autoAttributeLimit',

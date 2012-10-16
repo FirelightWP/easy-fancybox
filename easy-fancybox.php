@@ -5,7 +5,7 @@ Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.3.4.10dev15
+Version: 1.3.4.10dev17
 Author: RavanH
 Author URI: http://status301.net/
 */
@@ -65,7 +65,6 @@ function easy_fancybox() {
 	echo '
 <script type="text/javascript">
 /* <![CDATA[ */
-jQuery(document).bind(\'ready gform_post_render\',function(){
 var fb_timeout = null;';
 
 	/*
@@ -101,7 +100,8 @@ var fb_opts = {';
 			}
 		}
 	}
-	echo ' };';
+	echo ' };
+var easy_fancybox_handler = function(){';
 	
 	foreach ($easy_fancybox_array as $key => $value) {
 		// check if not enabled or hide=true then skip
@@ -253,10 +253,11 @@ jQuery(\'a[class*="fancybox"]\').filter(\':first\').trigger(\'click\');';
 			break;
 	}
 	echo '
-});
+}
+jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
 /* ]]> */
 </script>
-<style type="text/css">#page #branding{z-index:999}.fancybox-hidden{display:none}.rtl #fancybox-left{left:auto;right:0px}.rtl #fancybox-right{left:0px;right:auto}.rtl #fancybox-right-ico{background-position:-40px -30px}.rtl #fancybox-left-ico{background-position:-40px -60px}.rtl .fancybox-title-over{text-align:right}.rtl #fancybox-left-ico,.rtl #fancybox-right-ico{right:-9999px}.rtl #fancybox-right:hover span{right:auto;left:20px}.rtl #fancybox-left:hover span{right:20px}#fancybox-img{max-width:none;max-height:none}';
+<style type="text/css">.fancybox-hidden{display:none}.rtl #fancybox-left{left:auto;right:0px}.rtl #fancybox-right{left:0px;right:auto}.rtl #fancybox-right-ico{background-position:-40px -30px}.rtl #fancybox-left-ico{background-position:-40px -60px}.rtl .fancybox-title-over{text-align:right}.rtl #fancybox-left-ico,.rtl #fancybox-right-ico{right:-9999px}.rtl #fancybox-right:hover span{right:auto;left:20px}.rtl #fancybox-left:hover span{right:20px}#fancybox-img{max-width:none;max-height:none}';
 
 	if ($overlaySpotlight)
 		echo '#fancybox-overlay{background-image:url("'. plugins_url(FANCYBOX_SUBDIR.'/light-mask.png', __FILE__) . '");background-position:50% -3%;background-repeat:no-repeat;-o-background-size:100%;-webkit-background-size:100%;-moz-background-size:100%;-khtml-background-size:100%;background-size:100%;position:fixed}';

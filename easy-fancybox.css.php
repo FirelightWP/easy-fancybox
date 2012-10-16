@@ -11,8 +11,9 @@ function iepathfix_compress($buffer) {
 	* Fixes:
 	* 1. Relative path fix : add 'fancybox/'
 	* 2. IE6 path fix : replace relative with full path 
+	* 2. Z-index issue with Twenty Eleven work-around
 	*/
-	$buffer = str_replace(array("url('", "AlphaImageLoader(src='fancybox/"), array("url('fancybox/", "AlphaImageLoader(src='" . $path . "/fancybox/" ), $buffer);
+	$buffer = str_replace(array("url('", "AlphaImageLoader(src='fancybox/", "z-index: "), array("url('fancybox/", "AlphaImageLoader(src='" . $path . "/fancybox/", "z-index:1"), $buffer);
 
 	/* remove comments */
 	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
