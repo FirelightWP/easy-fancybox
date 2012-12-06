@@ -40,7 +40,8 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 - **Lithuanian** * Author: [Vincent G](http://www.host1free.com) (version 1.3.4.9)
 - **Polish** * Author: Kamil Szymański (version: 1.3.4.9)
 - **Romanian** * Author: [Web Geek Sciense](http://webhostinggeeks.com/) (version 1.3.4.9)
-- **Spanish** * Author: [David Pérez](http://www.closemarketing.es), for version: 1.3.4.9
+- **Slovak** Author: [Branco Radenovich (WebHostingGeeks.com)](http://webhostinggeeks.com/blog/) (version: 1.3.4.9)
+- **Spanish** * Author: [David Pérez](http://www.closemarketing.es) (version: 1.3.4.9)
 
 
 == Installation ==
