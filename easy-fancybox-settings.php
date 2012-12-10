@@ -132,6 +132,13 @@ function easy_fancybox_settings(){
 							'default' => '1',
 							'description' => __('Show the overlay around content opened in FancyBox.','easy-fancybox')
 							),
+						'hideOnOverlayClick' => array (
+							'id' => 'fancybox_hideOnOverlayClick',
+							'input' => 'checkbox',
+							'noquotes' => true,
+							'default' => '1',
+							'description' => __('Close FancyBox when overlay is clicked.','easy-fancybox')
+							),
 						'overlayOpacity' => array (
 							'id' => 'fancybox_overlayOpacity',
 							'title' => __('Opacity','easy-fancybox'),
