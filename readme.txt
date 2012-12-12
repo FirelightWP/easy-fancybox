@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e4%2e9&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
 Requires at least: 2.9
-Tested up to: 3.4.2
+Tested up to: 3.5
 Stable tag: 1.3.4.9
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
@@ -387,6 +387,7 @@ New options. Speed improvements: stylesheet caching, metadata.js compression. Se
 == Changelog ==
 
 = 1.3.4.10 =
+* NEW: Disable hide on overlay click
 * NEW: Allow automatic resizing to large image size set on Settings > Media during media upload via the hidden WordPress function media_upload_max_image_resize() TODO test more!
 * NEW Options: iFrame scrolling, autoScale, key navigation/close, cyclic galleries
 * Metadata custom parameters and Mousewheel gallery scrolling scripts optional
