@@ -437,7 +437,7 @@ if(!function_exists('add_video_wmode_opaque')) {
 	if (strpos($html, "<embed src=" ) !== false) {
 		$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque" ', $html);
 		return $html;
-	} elseif(strpos($html, "<iframe src=\"http://player..vimeo.com/video/" ) !== false) {
+	} elseif(strpos($html, "<iframe src=\"http://player.vimeo.com/video/" ) !== false) {
 		$html = str_replace('" width', '?theme=none&wmode=opaque" width', $html);
 		return $html;
 	} else {
