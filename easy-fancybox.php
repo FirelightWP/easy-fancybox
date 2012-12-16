@@ -555,10 +555,11 @@ function easy_fancybox_enqueue_styles() {
 
 // Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
 // http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
-// + own hack for dailymotion iframe embed...
 if(!function_exists('add_video_wmode_opaque')) {
  function add_video_wmode_opaque($html, $url, $attr) {
- 	if (strpos($html, "wmode" ) == false && strpos($html, "youtube" ) !== false) {
+ 	if (strpos($html, "<embed src=" ) !== false) {
+		$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque" ', $html);
+	} elseif (strpos($html, "wmode" ) == false && strpos($html, "youtube" ) !== false) {
 		$html = preg_replace('/feature=oembed/', '$0&wmode=opaque', $html);
 		//$html = preg_replace('/(object|embed).*?height=\"\d+\"/', '$0 wmode="opaque"', $html);
  	}

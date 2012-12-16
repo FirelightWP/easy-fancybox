@@ -41,6 +41,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 = Translators =
 
 - **Dutch** * Author: [R.A. van Hagen](http://status301.net) (version 1.3.4.9)
+- **French** * Author: Emmanuel Maillard (version 1.3.4.9)
 - **Hindi** * Author: [Outshine Solutions](http://outshinesolutions.com) (version 1.3.4.9)
 - **Indonesian** * Author: [Nasrulhaq Muiz](http://al-badar.net) (version 1.3.4.9)
 - **Lithuanian** * Author: [Vincent G](http://www.host1free.com) (version 1.3.4.9)
