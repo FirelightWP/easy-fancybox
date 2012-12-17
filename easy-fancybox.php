@@ -507,6 +507,7 @@ function easy_fancybox_enqueue_scripts() {
 	wp_deregister_script('jquery.fancybox');
 	wp_deregister_script('fancybox');
 	wp_deregister_script('jquery-fancybox');
+	wp_deregister_script('jquery_fancybox');
 	// register main fancybox script
 	wp_enqueue_script('jquery-fancybox', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION, true);
 	
@@ -519,6 +520,7 @@ function easy_fancybox_enqueue_scripts() {
 			wp_deregister_script('jquery.easing');
 			wp_deregister_script('jqueryeasing');
 			wp_deregister_script('jquery-easing');
+			wp_deregister_script('jquery_easing');
 			wp_deregister_script('easing');
 			// then register our version
 			wp_enqueue_script('jquery-easing', plugins_url(FANCYBOX_SUBDIR.'/fancybox/jquery.easing-'.EASING_VERSION.'.pack.js', __FILE__), array('jquery'), EASING_VERSION, true);
@@ -531,6 +533,7 @@ function easy_fancybox_enqueue_scripts() {
 		wp_deregister_script('jquery.mousewheel');
 		wp_deregister_script('jquerymousewheel');
 		wp_deregister_script('jquery-mousewheel');
+		wp_deregister_script('jquery_mousewheel');
 		wp_deregister_script('mousewheel');
 		// then register our version
 		wp_enqueue_script('jquery-mousewheel', plugins_url(FANCYBOX_SUBDIR.'/jquery.mousewheel.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
