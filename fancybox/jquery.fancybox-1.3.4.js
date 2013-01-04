@@ -13,7 +13,12 @@
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
- * Patch applied to line 815: qouted attribute selector, RavanH ravanhagen@gmail.com 
+ *
+ * Patches applied:
+ *
+ * Line 815: qouted attribute selector, RavanH ravanhagen@gmail.com 
+ *
+ * Line 36, 617 and 1120: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
  */
 ;(function($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
@@ -27,6 +32,8 @@
 		titleHeight = 0, titleStr = '', start_pos, final_pos, busy = false, fx = $.extend($('<div/>')[0], { prop: 0 }),
 
 		isIE6 = $.browser.msie && $.browser.version < 7 && !window.XMLHttpRequest,
+		
+		isTouch = document.createTouch !== undefined,
 
 		/*
 		 * Private methods 
@@ -605,7 +612,9 @@
 				overlay.bind('click', $.fancybox.close);
 			}
 
-			$(window).bind("resize.fb", $.fancybox.resize);
+			if(currentOpts.autoResize) {
+				$(window).bind("resize.fb", $.fancybox.resize);
+			}
 
 			if (currentOpts.centerOnScroll) {
 				$(window).bind("scroll.fb", $.fancybox.center);
@@ -1107,7 +1116,8 @@
 
 		autoScale : true,
 		autoDimensions : true,
-		centerOnScroll : false,
+		centerOnScroll : !isTouch,
+		autoResize : !isTouch,
 
 		ajax : {},
 		swf : { wmode: 'transparent' },

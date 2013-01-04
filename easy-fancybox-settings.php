@@ -1,7 +1,10 @@
 <?php
-function easy_fancybox_settings(){
+class easyFancyBox_Options extends easyFancyBox {
 
-	return array ( 
+    static function go() {
+
+	parent::$options = array ( 
+
 		'Global' => array(
 			'title' => __('Global settings','easy-fancybox'),
 			'input' => 'deep',
@@ -20,7 +23,7 @@ function easy_fancybox_settings(){
 							'id' => 'fancybox_enableImg',
 							'input' => 'checkbox',
 							'hide' => true,
-							'default' => ( function_exists('is_plugin_active_for_network') && is_plugin_active_for_network(plugin_basename( __FILE__ )) ) ? '' : '1',
+							'default' => ( function_exists('is_plugin_active_for_network') && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ? '' : '1',
 							'description' => '<strong>' . __('Images','easy-fancybox') . '</strong>'
 							),
 						'Inline' => array (
@@ -73,17 +76,13 @@ function easy_fancybox_settings(){
 							'description' => '<strong>' . __('iFrames','easy-fancybox') . '</strong>' 
 							)							
 						),
+					'description' => '<a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/"><strong><em>' . __('For advanced options and support, please get the Easy FancyBox - Pro extension.','easy-fancybox') . '</strong></a>'
 					),
-					
 				'Links' => array(
 					'title' => __('Links'),
 					'input' => 'multiple',
 					'hide' => true,
 					'options' => array(
-						/*'p1' => array (
-							'hide' => true,
-							'description' => '<br />'
-							),*/
 						'attributeLimit' => array (
 							'id' => 'fancybox_attributeLimit',
 							'title' => __('Exclude','easy-fancybox'),
@@ -109,14 +108,14 @@ function easy_fancybox_settings(){
 								'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
 								),
 							'default' => '1',
-							'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
+							'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
 							),
 						'metaData' => array (
 							'id' => 'fancybox_metaData',
 							'hide' => true,
 							'input' => 'checkbox',
 							'default' => '',
-							'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox')/* . ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'*/
+							'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox')
 							)
 						)
 					),
@@ -166,11 +165,10 @@ function easy_fancybox_settings(){
 							'hide' => true,
 							'status' => 'disabled',
 							'default' => '',
-							'description' => __('Spotlight effect','easy-fancybox') . '. <em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => __('Spotlight effect','easy-fancybox') . '. <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),
-				
 				'Window' => array (
 					'title' => __('Window','easy-fancybox'),
 					'input' => 'multiple',
@@ -228,7 +226,7 @@ function easy_fancybox_settings(){
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 						'borderRadius' => array (
 							'id' => 'fancybox_borderRadius',
@@ -241,7 +239,7 @@ function easy_fancybox_settings(){
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => __('Set a border radius to create rounded corners. Higher is rounder.','easy-fancybox') . ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							'description' => __('Set a border radius to create rounded corners. Higher is rounder.','easy-fancybox') . ' <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 
 						'p11' => array (
@@ -253,7 +251,7 @@ function easy_fancybox_settings(){
 							'title' => __('Width'),
 							'label_for' => 'fancybox_width',
 							'input' => 'text',
-							'sanitize_callback' => 'easy_fancybox_intval',
+							'sanitize_callback' => 'intval',
 							'class' => 'small-text',
 							'default' => '',
 							'description' => ' '
@@ -263,7 +261,7 @@ function easy_fancybox_settings(){
 							'title' => __('Height'),
 							'label_for' => 'fancybox_height',
 							'input' => 'text',
-							'sanitize_callback' => 'easy_fancybox_intval',
+							'sanitize_callback' => 'intval',
 							'class' => 'small-text',
 							'default' => ''
 							),
@@ -275,7 +273,7 @@ function easy_fancybox_settings(){
 							'step' => '1',
 							'min' => '0',
 							'max' => '100',
-							'sanitize_callback' => 'easy_fancybox_intval',
+							'sanitize_callback' => 'intval',
 							'class' => 'small-text',
 							'default' => '',
 							'description' => '<em>' . __('Default:','easy-fancybox')  . ' 560 x 340 x 10</em><br />' . __('If content size is not set or cannot be determined automatically, these default dimensions will be used.','easy-fancybox') . '<br />'
@@ -314,7 +312,7 @@ function easy_fancybox_settings(){
 							'step' => '1',
 							'min' => '0',
 							'max' => '6000',
-							'sanitize_callback' => 'easy_fancybox_intval',
+							'sanitize_callback' => 'intval',
 							'class' => 'small-text',
 							'default' => '',
 							),
@@ -326,7 +324,7 @@ function easy_fancybox_settings(){
 							'step' => '1',
 							'min' => '0',
 							'max' => '6000',
-							'sanitize_callback' => 'easy_fancybox_intval',
+							'sanitize_callback' => 'intval',
 							'class' => 'small-text',
 							'default' => '',
 							'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br />'
@@ -361,7 +359,6 @@ function easy_fancybox_settings(){
 				)
 			),
 
-
 		'IMG' => array(
 			'title' => __('Images','easy-fancybox'),
 			'input' => 'multiple',
@@ -378,9 +375,9 @@ function easy_fancybox_settings(){
 					'hide' => true,
 					'default' => 'fancybox'
 					),
-				'type' => array (
+/*				'type' => array (
 					'default' => 'image'
-					),
+					),*/
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttribute',
 					'title' => __('Autodetect','easy-fancybox'),
@@ -402,7 +399,7 @@ function easy_fancybox_settings(){
 						'' => __('All image links', 'easy-fancybox')
 						),
 					'default' => '',
-					'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p2' => array (
 					'hide' => true,
@@ -429,10 +426,11 @@ function easy_fancybox_settings(){
 					'options' => array(
 						'linear' => __('Linear','easy-fancybox'),
 						'' => __('Swing','easy-fancybox'),
-						'easeOutBack' => __('Back','easy-fancybox')
+						'easeInBack' => __('easeInBack','easy-fancybox'),
+						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOut',
@@ -455,10 +453,11 @@ function easy_fancybox_settings(){
 					'options' => array(
 						'linear' => __('Linear','easy-fancybox'),
 						'' => __('Swing','easy-fancybox'),
-						'easeInBack' => __('Back','easy-fancybox')
+						'easeInBack' => __('easeInBack','easy-fancybox'),
+						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+					'description' => ' <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
@@ -491,7 +490,7 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_titlePosition',
 					'input' => 'select',
 					'options' => array(
-						'' => __('Float','easy-fancybox'), // same as 'float'
+						'' => __('Float','easy-fancybox'),
 						'outside' => __('Outside','easy-fancybox'),
 						'inside' => __('Inside','easy-fancybox'),
 						'over' => __('Overlay','easy-fancybox')
@@ -515,7 +514,7 @@ function easy_fancybox_settings(){
 						'' => __('Hide/show title on mouse hover action','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' =>  '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p3' => array (
 					'hide' => true,
@@ -533,7 +532,7 @@ function easy_fancybox_settings(){
 						'2' => __('All in one gallery','easy-fancybox')
 						),
 					'default' => '1',
-					'description' => '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . ' ' .  __('Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site.','easy-fancybox') . '<br /><br />'
+					'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . ' ' .  __('Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site.','easy-fancybox') . '<br /><br />'
 					),
 				'showNavArrows' => array (
 					'id' => 'fancybox_showNavArrows',
@@ -571,7 +570,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '0',
 					'max' => '6000',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '',
 					),
@@ -583,7 +582,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '0',
 					'max' => '6000',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '',
 					'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br /><br />'
@@ -604,9 +603,9 @@ function easy_fancybox_settings(){
 						'' => __('Slideshow','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="http://status301.net/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+					'description' =>  '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
-/*						'titleFormat' => array (
+/*				'titleFormat' => array (
 					'id' => 'fancybox_titleFormat',
 					'title' => __('Title format','easy-fancybox'),
 					'label_for' => 'fancybox_titleFormat',
@@ -647,7 +646,20 @@ function easy_fancybox_settings(){
 					'input' => 'checkbox',
 					'noquotes' => true,
 					'default' => '1',
-					'description' => __('Try to adjust size to inline/html content. If unchecked or size cannot be determined, the default dimensions will be used.','easy-fancybox') . '<br />'
+					'description' => __('Try to adjust size to inline/html content. If unchecked or size cannot be determined, the default dimensions will be used.','easy-fancybox') . ''
+					),
+				'scrolling' => array (
+					'id' => 'fancybox_InlineScrolling',
+					'title' => __('Scrolling','easy-fancybox'),
+					'label_for' => 'fancybox_InlineScrolling',
+					'input' => 'select',
+					'options' => array(
+						'auto' => __('Auto','easy-fancybox'),
+						'yes' => __('Always','easy-fancybox'),
+						'no' => __('Never','easy-fancybox')
+						),
+					'default' => 'no',
+					'description' => __('Define scrolling and scrollbar visibility.','easy-fancybox') . '<br /><br />'
 					),
 				'transitionIn' => array (
 					'id' => 'fancybox_transitionInInline',
@@ -670,10 +682,11 @@ function easy_fancybox_settings(){
 					'options' => array(
 						'linear' => __('Linear','easy-fancybox'),
 						'' => __('Swing','easy-fancybox'),
-						'easeOutBack' => __('Back','easy-fancybox')
+						'easeInBack' => __('easeInBack','easy-fancybox'),
+						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOutInline',
@@ -696,10 +709,11 @@ function easy_fancybox_settings(){
 					'options' => array(
 						'linear' => __('Linear','easy-fancybox'),
 						'' => __('Swing','easy-fancybox'),
-						'easeInBack' => __('Back','easy-fancybox')
+						'easeInBack' => __('easeInBack','easy-fancybox'),
+						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+					'description' => ' <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacityInline',
@@ -750,7 +764,7 @@ function easy_fancybox_settings(){
 					'title' => __('Width'),
 					'label_for' => 'fancybox_PDFwidth',
 					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '90%',
 					'description' => ' '
@@ -760,7 +774,7 @@ function easy_fancybox_settings(){
 					'title' => __('Height'),
 					'label_for' => 'fancybox_PDFheight',
 					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '90%'
 					),
@@ -772,7 +786,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '0',
 					'max' => '100',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '10',
 					'description' => '<br /><br />'
@@ -794,10 +808,9 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_PDFtitlePosition',
 					'input' => 'select',
 					'options' => array(
-						'float' => __('Float','easy-fancybox'), // same as 'float'
+						'float' => __('Float','easy-fancybox'),
 						'outside' => __('Outside','easy-fancybox'),
 						'inside' => __('Inside','easy-fancybox')
-						//,'over' => __('Overlay','easy-fancybox')
 						),
 					'default' => 'float',
 					),
@@ -834,7 +847,8 @@ function easy_fancybox_settings(){
 				'onStart' => array ( 
 					'noquotes' => true,
 //					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
-					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%"><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" /><embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" /><a href="\' + selectedArray[selectedIndex].href + \'" style="display:block;font-size:18px;position:absolute;top:50%;width:100%;text-align:center">\' + jQuery(selectedArray[selectedIndex]).html() + \'</a></object>\' }'
+//					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%"><param name="src" value="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" /><embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" /><a href="\' + selectedArray[selectedIndex].href + \'" style="display:block;font-size:18px;position:absolute;top:50%;width:100%;text-align:center">\' + jQuery(selectedArray[selectedIndex]).html() + \'</a></object>\' }'
+					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
 					),
 /*				'onClosed' => array ( 
 					'noquotes' => true,
@@ -875,7 +889,7 @@ function easy_fancybox_settings(){
 					'title' => __('Width'),
 					'label_for' => 'fancybox_SWFWidth',
 					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'options' => array(),
 					'default' => '680',
@@ -886,7 +900,7 @@ function easy_fancybox_settings(){
 					'title' => __('Height'),
 					'label_for' => 'fancybox_SWFHeight',
 					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'options' => array(),
 					'default' => '495',
@@ -899,7 +913,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '0',
 					'max' => '100',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '0',
 					'description' => '<br /><br />'
@@ -917,10 +931,9 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_SWFtitlePosition',
 					'input' => 'select',
 					'options' => array(
-						'float' => __('Float','easy-fancybox'), // same as 'float'
+						'float' => __('Float','easy-fancybox'),
 						'outside' => __('Outside','easy-fancybox'),
 						'inside' => __('Inside','easy-fancybox')
-						//,'over' => __('Overlay','easy-fancybox')
 						),
 					'default' => 'float',
 					),
@@ -983,7 +996,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '420',
 					'max' => '1500',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '640',
 					'description' => ' '
@@ -996,7 +1009,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '315',
 					'max' => '900',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '360',
 					),
@@ -1008,7 +1021,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '0',
 					'max' => '100',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '0',
 					'description' => '<br /><br />'
@@ -1026,10 +1039,9 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_YoutubetitlePosition',
 					'input' => 'select',
 					'options' => array(
-						'float' => __('Float','easy-fancybox'), // same as 'float'
+						'float' => __('Float','easy-fancybox'),
 						'outside' => __('Outside','easy-fancybox'),
 						'inside' => __('Inside','easy-fancybox')
-						//,'over' => __('Overlay','easy-fancybox')
 						),
 					'default' => 'float',
 					),
@@ -1040,10 +1052,6 @@ function easy_fancybox_settings(){
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
-/*				'swf' => array (
-					'noquotes' => true,
-					'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
-					), */
 				'onStart' => array ( 
 					'noquotes' => true,
 					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&|\\\?)?(.*)\', \'i\'), \'embed/$2?$1$4\') }'
@@ -1087,7 +1095,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '400',
 					'max' => '1500',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '500',
 					'description' => ' '
@@ -1100,7 +1108,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '225',
 					'max' => '900',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '281'
 					),
@@ -1112,7 +1120,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '0',
 					'max' => '100',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '0',
 					'description' => '<br /><br />'
@@ -1130,10 +1138,9 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_VimeotitlePosition',
 					'input' => 'select',
 					'options' => array(
-						'float' => __('Float','easy-fancybox'), // same as 'float'
+						'float' => __('Float','easy-fancybox'),
 						'outside' => __('Outside','easy-fancybox'),
 						'inside' => __('Inside','easy-fancybox')
-						//,'over' => __('Overlay','easy-fancybox')
 						),
 					'default' => 'float',
 					),
@@ -1144,10 +1151,6 @@ function easy_fancybox_settings(){
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
-/*				'swf' => array (
-					'noquotes' => true,
-					'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
-					),*/
 				'onStart' => array ( 
 					'noquotes' => true,
 					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'http://(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\', \'i\'), \'http://player.vimeo.com/video/$2?$4\') }'
@@ -1192,7 +1195,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '320',
 					'max' => '1500',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '560',
 					'description' => ' '
@@ -1205,7 +1208,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '180',
 					'max' => '900',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '315'
 					),
@@ -1217,7 +1220,7 @@ function easy_fancybox_settings(){
 					'step' => '1',
 					'min' => '0',
 					'max' => '100',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '0',
 					'description' => '<br /><br />'
@@ -1235,10 +1238,9 @@ function easy_fancybox_settings(){
 					'label_for' => 'fancybox_DailymotiontitlePosition',
 					'input' => 'select',
 					'options' => array(
-						'float' => __('Float','easy-fancybox'), // same as 'float'
+						'float' => __('Float','easy-fancybox'),
 						'outside' => __('Outside','easy-fancybox'),
 						'inside' => __('Inside','easy-fancybox')
-						//,'over' => __('Overlay','easy-fancybox')
 						),
 					'default' => 'float',
 					),
@@ -1249,10 +1251,6 @@ function easy_fancybox_settings(){
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
-/*				'swf' => array (
-					'noquotes' => true,
-					'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
-					),*/
 				'onStart' => array ( 
 					'noquotes' => true,
 					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/video/(.*)\', \'i\'), \'/embed/video/$1\') }'
@@ -1312,7 +1310,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					'label_for' => 'fancybox_iFrameScrolling',
 					'input' => 'select',
 					'options' => array(
-						'auto' => __('Auto','easy-fancybox'), // same as 'float'
+						'auto' => __('Auto','easy-fancybox'),
 						'yes' => __('Always','easy-fancybox'),
 						'no' => __('Never','easy-fancybox')
 						),
@@ -1324,7 +1322,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					'title' => __('Width'),
 					'label_for' => 'fancybox_iFramewidth',
 					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '70%',
 					'description' => ' '
@@ -1334,7 +1332,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					'title' => __('Height'),
 					'label_for' => 'fancybox_iFrameheight',
 					'input' => 'text',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '90%',
 					),
@@ -1346,7 +1344,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					'step' => '1',
 					'min' => '0',
 					'max' => '100',
-					'sanitize_callback' => 'easy_fancybox_intval',
+					'sanitize_callback' => 'intval',
 					'class' => 'small-text',
 					'default' => '0',
 					'description' => '<br /><br />'
@@ -1364,10 +1362,9 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					'label_for' => 'fancybox_iFrametitlePosition',
 					'input' => 'select',
 					'options' => array(
-						'float' => __('Float','easy-fancybox'), // same as 'float'
+						'float' => __('Float','easy-fancybox'),
 						'outside' => __('Outside','easy-fancybox'),
 						'inside' => __('Inside','easy-fancybox')
-						//,'over' => __('Overlay','easy-fancybox')
 						),
 					'default' => 'float',
 					),
@@ -1382,4 +1379,9 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 			)
 			
 		);
+
+    }
+	
 }
+
+easyFancyBox_Options::go();

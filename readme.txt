@@ -40,7 +40,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 
 = Translators =
 
-- **Dutch** * Author: [R.A. van Hagen](http://status301.net) (version 1.3.4.9)
+- **Dutch** * Author: [R.A. van Hagen](http://status301.net) (version 1.5)
 - **French** * Author: Emmanuel Maillard (version 1.3.4.9)
 - **Hindi** * Author: [Outshine Solutions](http://outshinesolutions.com) (version 1.3.4.9)
 - **Indonesian** * Author: [Nasrulhaq Muiz](http://al-badar.net) (version 1.3.4.9)
@@ -382,12 +382,13 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.3.4.10 =
+= 1.5.0 =
 New options. Speed improvements: stylesheet caching, metadata.js compression. Security fix. Dutch, Indonesian and Polish translations. 
 
 == Changelog ==
 
-= 1.3.4.10 =
+= 1.5.0 =
+* Major plugin overhaul: Class implementation
 * NEW: Disable hide on overlay click
 * NEW: Allow automatic resizing to large image size set on Settings > Media during media upload via the hidden WordPress function media_upload_max_image_resize() TODO test more!
 * NEW Options: iFrame scrolling, autoScale, key navigation/close, cyclic galleries
