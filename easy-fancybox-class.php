@@ -513,7 +513,7 @@ class easyFancyBox {
 	         SETUP
 	 **********************/
 
-	static function go() {
+	static function run() {
 
 		// HOOKS //
 		add_action('init', array(__CLASS__, 'init'));

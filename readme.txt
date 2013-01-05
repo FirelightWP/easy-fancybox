@@ -388,6 +388,7 @@ New options. Speed improvements: stylesheet caching, metadata.js compression. Se
 == Changelog ==
 
 = 1.5.0 =
+* Some small Touch device compatibility improvement hacks to the 1.3.4 script
 * Major plugin overhaul: Class implementation
 * NEW: Disable hide on overlay click
 * NEW: Allow automatic resizing to large image size set on Settings > Media during media upload via the hidden WordPress function media_upload_max_image_resize() TODO test more!
