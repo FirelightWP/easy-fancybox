@@ -233,7 +233,7 @@ class easyFancyBox {
 	</script>
 	<style type="text/css">.fancybox-hidden{display:none}.rtl #fancybox-left{left:auto;right:0px}.rtl #fancybox-right{left:0px;right:auto}.rtl #fancybox-right-ico{background-position:-40px -30px}.rtl #fancybox-left-ico{background-position:-40px -60px}.rtl .fancybox-title-over{text-align:right}.rtl #fancybox-left-ico,.rtl #fancybox-right-ico{right:-9999px}.rtl #fancybox-right:hover span{right:auto;left:20px}.rtl #fancybox-left:hover span{right:20px}#fancybox-img{max-width:none;max-height:none}';
 
-		if ($overlaySpotlight)
+		if ('true' == $overlaySpotlight)
 			echo '#fancybox-overlay{background-attachment:fixed;background-image:url("'. plugins_url('/'.FANCYBOX_SUBDIR.'light-mask.png', __FILE__) . '");background-position:center;background-repeat:no-repeat;background-size:cover;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'. plugins_url('/'.FANCYBOX_SUBDIR.'light-mask.png', __FILE__) . '",sizingMethod="scale");-ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\''. plugins_url('/'.FANCYBOX_SUBDIR.'light-mask.png', __FILE__) . '\',sizingMethod=\'scale\')";}';
 		if ( !empty($borderRadius) )
 			echo '#fancybox-bg-n,#fancybox-bg-ne,#fancybox-bg-e,#fancybox-bg-se,#fancybox-bg-s,#fancybox-bg-sw,#fancybox-bg-w,#fancybox-bg-nw{background-image:none}#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}#fancybox-outer{-moz-box-shadow:0 0 12px #1111;-webkit-box-shadow:0 0 12px #111;box-shadow:0 0 12px #111}';
