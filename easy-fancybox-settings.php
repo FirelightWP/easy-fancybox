@@ -1,9 +1,9 @@
 <?php
 class easyFancyBox_Options extends easyFancyBox {
 
-    static function go() {
+	static function go() {
 
-	parent::$options = array ( 
+	    parent::$options = array ( 
 
 		'Global' => array(
 			'title' => __('Global settings','easy-fancybox'),
@@ -1380,7 +1380,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 			
 		);
 
-    }
+	}
 	
 }
 

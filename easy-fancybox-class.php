@@ -4,6 +4,8 @@
  */
 class easyFancyBox {
 
+	public static $pagehook;
+
 	public static $add_scripts = false;
 
 	public static $options = array();
@@ -234,7 +236,7 @@ class easyFancyBox {
 	<style type="text/css">.fancybox-hidden{display:none}.rtl #fancybox-left{left:auto;right:0px}.rtl #fancybox-right{left:0px;right:auto}.rtl #fancybox-right-ico{background-position:-40px -30px}.rtl #fancybox-left-ico{background-position:-40px -60px}.rtl .fancybox-title-over{text-align:right}.rtl #fancybox-left-ico,.rtl #fancybox-right-ico{right:-9999px}.rtl #fancybox-right:hover span{right:auto;left:20px}.rtl #fancybox-left:hover span{right:20px}#fancybox-img{max-width:none;max-height:none}';
 
 		if ('true' == $overlaySpotlight)
-			echo '#fancybox-overlay{background-attachment:fixed;background-image:url("'. plugins_url('/'.FANCYBOX_SUBDIR.'light-mask.png', __FILE__) . '");background-position:center;background-repeat:no-repeat;background-size:cover;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'. plugins_url('/'.FANCYBOX_SUBDIR.'light-mask.png', __FILE__) . '",sizingMethod="scale");-ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\''. plugins_url('/'.FANCYBOX_SUBDIR.'light-mask.png', __FILE__) . '\',sizingMethod=\'scale\')";}';
+			echo '#fancybox-overlay{background-attachment:fixed;background-image:url("' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png");background-position:center;background-repeat:no-repeat;background-size:cover;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png",sizingMethod="scale");-ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png\',sizingMethod=\'scale\')";}';
 		if ( !empty($borderRadius) )
 			echo '#fancybox-bg-n,#fancybox-bg-ne,#fancybox-bg-e,#fancybox-bg-se,#fancybox-bg-s,#fancybox-bg-sw,#fancybox-bg-w,#fancybox-bg-nw{background-image:none}#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}#fancybox-outer{-moz-box-shadow:0 0 12px #1111;-webkit-box-shadow:0 0 12px #111;box-shadow:0 0 12px #111}';
 		if ('' != $backgroundColor)
@@ -418,7 +420,7 @@ class easyFancyBox {
 		wp_deregister_script('jquery-fancybox');
 		wp_deregister_script('jquery_fancybox');
 		// register main fancybox script
-		wp_register_script('jquery-fancybox', plugins_url('/'.FANCYBOX_SUBDIR.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', __FILE__), array('jquery'), FANCYBOX_VERSION, true);
+		wp_register_script('jquery-fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', array('jquery'), FANCYBOX_VERSION, true);
 
 		// easing in IMG settings?
 		if ( ( '' == get_option( self::$options['IMG']['options']['easingIn']['id'], self::$options['IMG']['options']['easingIn']['default']) || 'linear' == get_option( self::$options['IMG']['options']['easingIn']['id'], self::$options['IMG']['options']['easingIn']['default']) ) && ( '' == get_option( self::$options['IMG']['options']['easingOut']['id'], self::$options['IMG']['options']['easingOut']['default']) || 'linear' == get_option( self::$options['IMG']['options']['easingOut']['id'], self::$options['IMG']['options']['easingOut']['default']) ) ) {
@@ -432,7 +434,7 @@ class easyFancyBox {
 				wp_deregister_script('jquery_easing');
 				wp_deregister_script('easing');
 				// then register our version
-				wp_register_script('jquery-easing', plugins_url('/'.FANCYBOX_SUBDIR.'jquery.easing.pack.js', __FILE__), array('jquery'), EASING_VERSION, true);
+				wp_register_script('jquery-easing', EASY_FANCYBOX_PLUGINURL.'jquery.easing.pack.js', array('jquery'), EASING_VERSION, true);
 			}
 		}
 	
@@ -445,7 +447,7 @@ class easyFancyBox {
 			wp_deregister_script('jquery_mousewheel');
 			wp_deregister_script('mousewheel');
 			// then register our version
-			wp_register_script('jquery-mousewheel', plugins_url('/'.FANCYBOX_SUBDIR.'jquery.mousewheel.pack.js', __FILE__), array('jquery'), MOUSEWHEEL_VERSION, true);
+			wp_register_script('jquery-mousewheel', EASY_FANCYBOX_PLUGINURL.'jquery.mousewheel.pack.js', array('jquery'), MOUSEWHEEL_VERSION, true);
 		}
 		
 		// metadata in Link settings?
@@ -456,25 +458,25 @@ class easyFancyBox {
 			wp_deregister_script('jquery-metadata');
 			wp_deregister_script('metadata');
 			// then register our version
-			wp_register_script('jquery-metadata',plugins_url('/'.FANCYBOX_SUBDIR.'jquery.metadata.pack.js', __FILE__), array('jquery'), METADATA_VERSION, true);
+			wp_register_script('jquery-metadata',EASY_FANCYBOX_PLUGINURL.'jquery.metadata.pack.js', array('jquery'), METADATA_VERSION, true);
 		}
 	}
 
-	static function print_scripts() {
+	static function enqueue_scripts() {
 		if (!self::$add_scripts) {// abort mission, there is no need for any script files
-			echo '<!-- no scripts -->';
+			echo '<!-- no fancybox scripts -->';
 			return;
 		}
 
-		wp_print_scripts('jquery-fancybox');
-		wp_print_scripts('jquery-easing');
-		wp_print_scripts('jquery-mousewheel');
-		wp_print_scripts('jquery-metadata');
+		wp_enqueue_script('jquery-fancybox');
+		wp_enqueue_script('jquery-easing');
+		wp_enqueue_script('jquery-mousewheel');
+		wp_enqueue_script('jquery-metadata');
 	}
 
 	function enqueue_styles() {
 		// register style
-		wp_enqueue_style('easy-fancybox-css', plugins_url('/'.FANCYBOX_SUBDIR.'easy-fancybox.css.php', __FILE__), false, FANCYBOX_VERSION, 'screen');
+		wp_enqueue_style('easy-fancybox-css', EASY_FANCYBOX_PLUGINURL.'easy-fancybox.css.php', false, FANCYBOX_VERSION, 'screen');
 	}
 
 	static function admin_init(){
@@ -483,8 +485,6 @@ class easyFancyBox {
 
 		self::register_settings( self::$options );
 	
-		add_filter('plugin_action_links_' . plugin_basename(__FILE__), array(__CLASS__, 'add_action_link') );
-
 		// test with media upload resize...
 		add_action( 'pre-upload-ui', 'media_upload_max_image_resize' );
 	}
@@ -501,16 +501,85 @@ class easyFancyBox {
 	}
 
 	static function init() {
-		if ( is_admin() ) // text domain must be in init even if it is for admin only
-			load_plugin_textdomain('easy-fancybox', false, dirname(plugin_basename( __FILE__ )).'/languages');
+		if ( is_admin() ) {
+			// text domain must be in init even if it is for admin only
+			load_plugin_textdomain('easy-fancybox', false, EASY_FANCYBOX_PLUGINDIR.'languages/');
 			
-		require_once('easy-fancybox-settings.php');
+			// same with action link filter?!
+			add_filter('plugin_action_links_' . EASY_FANCYBOX_PLUGINBASENAME, array(__CLASS__, 'add_action_link') );
+
+			// even menu???
+			add_action('admin_menu', array(__CLASS__, 'add_menu'));
+		}
+			
+		require_once(EASY_FANCYBOX_PLUGINDIR . 'easy-fancybox-settings.php');
 		
 		add_filter('embed_oembed_html', array(__CLASS__, 'add_video_wmode_opaque'), 10, 3);
 	}
 	
 	/**********************
-	         SETUP
+	         ADMIN
+	 **********************/
+	 
+	public static function add_menu() {
+		/* Register our plugin page */
+		self::$pagehook = add_submenu_page( 'themes.php', __('Easy FancyBox Settings', 'easy-fancybox'), __('FancyBox', 'easy-fancybox'), 'manage_options', 'easy-fancybox', array(__CLASS__, 'admin') );
+		/* Using registered $page handle to hook script load */
+		add_action('load-' . self::$pagehook, array(__CLASS__, 'admin_scripts'));
+	}
+
+	public static function admin() {
+		
+		add_filter( 'get_user_option_closedpostboxes_'.self::$pagehook, array(__CLASS__, 'closed_meta_boxes') );
+		
+		//add_thickbox(); // do we need that?
+		
+		add_meta_box('submitdiv', __('Sections','easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_submit'), self::$pagehook, 'side', 'high');
+		add_meta_box('globaldiv', __('Global settings', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_global'), self::$pagehook, 'normal', 'high');
+		add_meta_box('imgdiv', __('Images', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_img'), self::$pagehook, 'normal', 'normal');
+		add_meta_box('inlinediv', __('Inline content', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_inline'), self::$pagehook, 'normal', 'normal');
+		add_meta_box('pdfdiv', __('PDF', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_pdf'), self::$pagehook, 'normal', 'normal');
+		add_meta_box('swfdiv', __('SWF', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_swf'), self::$pagehook, 'normal', 'normal');
+		add_meta_box('youtubediv', __('YouTube', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_youtube'), self::$pagehook, 'normal', 'normal');
+		add_meta_box('vimeodiv', __('Vimeo', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_vimeo'), self::$pagehook, 'normal', 'normal');
+		add_meta_box('dailymotiondiv', __('Dailymotion', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_dailymotion'), self::$pagehook, 'normal', 'normal');
+		add_meta_box('iframediv', __('iFrames', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_iframe'), self::$pagehook, 'normal', 'normal');
+
+		//load admin page
+		include(EASY_FANCYBOX_PLUGINDIR . '/easy-fancybox-admin.php');
+	}
+
+	public function closed_meta_boxes( $closed ) {
+		
+		if ( false === $closed )
+			// set default closed metaboxes
+			$closed = array( 'advanceddiv', 'supportdiv', 'creditsdiv', 'resourcesdiv' );
+		else
+			// remove closed setting of some metaboxes
+			$closed = array_diff ( $closed , array ( 'submitdiv' ) );
+
+		return $closed;
+	}
+
+	public static function admin_scripts($hook) {
+
+		// needed javascripts to allow drag/drop, expand/collapse and hide/show of boxes
+		wp_enqueue_script('common');
+		wp_enqueue_script('wp-list');
+		wp_enqueue_script('postbox');
+	
+		//add several metaboxes now, all metaboxes registered during load page can be switched off/on at "Screen Options" automatically, nothing special to do therefore
+		//add_meta_box('advanceddiv', __('Advanced Options', 'skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_advanced'), self::$pagehook, 'normal', 'core'); // make these pro options???
+		
+		add_meta_box('supportdiv', __('Support','easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_support'), self::$pagehook, 'side', 'core');
+		add_meta_box('resourcesdiv', __('Resources','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_resources'), self::$pagehook, 'side', 'low');
+		add_meta_box('discussiondiv', __('Discussion'), array(__CLASS__.'_Admin', 'meta_box_discussion'), self::$pagehook, 'normal', 'low');
+		add_meta_box('creditsdiv', __('Credits','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_credits'), self::$pagehook, 'side', 'default');
+
+	}
+	
+	/**********************
+	         RUN
 	 **********************/
 
 	static function run() {
@@ -523,7 +592,7 @@ class easyFancyBox {
 		add_action('init', array(__CLASS__, 'register_scripts'), 999);
 		add_action('wp_print_styles', array(__CLASS__, 'enqueue_styles'), 999);
 		add_action('wp_head', array(__CLASS__, 'main_script'));
-		add_action('wp_footer', array(__CLASS__, 'print_scripts'));
+		add_action('wp_footer', array(__CLASS__, 'enqueue_scripts'), 9);
 	}
 
 }
