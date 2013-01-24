@@ -177,6 +177,19 @@ display:none;
 `
 
 
+= Can I create a gallery of Youtube thumbnails which open in FancyBox? =
+
+You could do this manually by uploading individual thumbnails that you can retrieve by using the unique movie ID in these URLs for two different sizes:
+`
+http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/default.jpg
+http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/mqdefault.jpg
+`
+
+But an easier method is this one, shared by Shashank Shekhar (thanks!) :
+
+To create Youtube thumbnail galleries, install http://wordpress.org/extend/plugins/youtube-simplegallery/ and set the 'Effect' option to fancybox. Then disable Youtube autodetection on Settings > Media.
+
+
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
 Yes. Place a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content.
