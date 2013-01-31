@@ -16,7 +16,7 @@ class easyFancyBox {
 	 **********************/
 
 	function main_script() {
-	
+
 		echo '
 	<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . ' using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://status301.net/wordpress-plugins/easy-fancybox/) -->';
 
@@ -36,7 +36,9 @@ class easyFancyBox {
 	';
 			return;
 		}
-	
+
+		wp_print_scripts('jquery'); // using print_scripts here instead of enqueue because else the order will be wrong... TODO find a way to include jquery before the main script while leaving the fancybox.js for last...
+
 		// begin output FancyBox settings
 		echo '
 	<script type="text/javascript">
@@ -251,7 +253,6 @@ class easyFancyBox {
 		}
 	echo '</style>
 	';
-
 	}
 
 
@@ -420,7 +421,7 @@ class easyFancyBox {
 		wp_deregister_script('jquery-fancybox');
 		wp_deregister_script('jquery_fancybox');
 		// register main fancybox script
-		wp_register_script('jquery-fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', array('jquery'), FANCYBOX_VERSION, false); // not in footer unless everything in footer!
+		wp_register_script('jquery-fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', array('jquery'), FANCYBOX_VERSION, true);
 
 		// easing in IMG settings?
 		if ( ( '' == get_option( self::$options['IMG']['options']['easingIn']['id'], self::$options['IMG']['options']['easingIn']['default']) || 'linear' == get_option( self::$options['IMG']['options']['easingIn']['id'], self::$options['IMG']['options']['easingIn']['default']) ) && ( '' == get_option( self::$options['IMG']['options']['easingOut']['id'], self::$options['IMG']['options']['easingOut']['default']) || 'linear' == get_option( self::$options['IMG']['options']['easingOut']['id'], self::$options['IMG']['options']['easingOut']['default']) ) ) {
@@ -462,9 +463,23 @@ class easyFancyBox {
 		}
 	}
 
-	static function enqueue_scripts() {
-		if (!self::$add_scripts) {// abort mission, there is no need for any script files
-			echo '<!-- no fancybox scripts -->';
+	function enqueue_styles() {
+		// register style
+		wp_enqueue_style('easy-fancybox-css', EASY_FANCYBOX_PLUGINURL.'easy-fancybox.css.php', false, FANCYBOX_VERSION, 'screen');
+	}
+
+	static function enqueue_header_scripts() {
+		// TODO: google hosted jquery optional ++ safemode
+		//wp_deregister_script('jquery');
+		//wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
+		//wp_enqueue_script('jquery');
+		
+		wp_enqueue_script('jquery-fancybox');
+	}
+
+	static function enqueue_footer_scripts() {
+		if (!self::$add_scripts) { // abort mission, there is no need for any script files
+			echo '<!-- no fancybox scripts needed -->';
 			return;
 		}
 
@@ -472,11 +487,6 @@ class easyFancyBox {
 		wp_enqueue_script('jquery-easing');
 		wp_enqueue_script('jquery-mousewheel');
 		wp_enqueue_script('jquery-metadata');
-	}
-
-	function enqueue_styles() {
-		// register style
-		wp_enqueue_style('easy-fancybox-css', EASY_FANCYBOX_PLUGINURL.'easy-fancybox.css.php', false, FANCYBOX_VERSION, 'screen');
 	}
 
 	static function admin_init(){
@@ -501,6 +511,7 @@ class easyFancyBox {
 	}
 
 	static function init() {
+
 		if ( is_admin() ) {
 			// text domain must be in init even if it is for admin only
 			load_plugin_textdomain('easy-fancybox', false, EASY_FANCYBOX_PLUGINDIR.'languages/');
@@ -590,9 +601,9 @@ class easyFancyBox {
 		add_action('admin_init', array(__CLASS__, 'admin_init'));
 
 		add_action('init', array(__CLASS__, 'register_scripts'), 999);
-		add_action('wp_print_styles', array(__CLASS__, 'enqueue_styles'), 999);
-		add_action('wp_head', array(__CLASS__, 'main_script'));
-		add_action('wp_footer', array(__CLASS__, 'enqueue_scripts'), 9);
+		add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueue_styles'));
+		add_action('wp_head', array(__CLASS__, 'main_script'), 999);
+		add_action('wp_footer', array(__CLASS__, 'enqueue_footer_scripts'));
 	}
 
 }
