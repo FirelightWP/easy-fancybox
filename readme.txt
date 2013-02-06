@@ -250,7 +250,7 @@ Yes, just go to Youtube page of any movie that's in the playlist and use the Sha
 
 = The flash movie in the overlay shows BELOW some other flash content that is on the same page! =
 
-Make sure the OTHER flash content as a **wmode** set, preferably to 'opaque' or else 'transparent' but not 'window' or missing. For example, if your embedded object looks something like:
+Make sure the OTHER flash content as a **wmode** set, preferably to 'opaque' or else 'transparent' but never 'window' or missing. For example, if your embedded object looks something like:
 `
 <object type="application/x-shockwave-flash" width="200" height="300" data="...url...">
 <param name="allowfullscreen" value="true" />
@@ -267,14 +267,14 @@ just add `<param name="wmode" value="opaque" />` among the other parameters. Or 
 <embed src="...url..." type="application/x-shockwave-flash" width="640" height="385" allowscriptaccess="always" allowfullscreen="true" wmode="window"></embed>
 </object>
 `
-just change that `wmode="window"` to `wmode="opaque"` or add the tag if it is missing.
+just change that `wmode="window"` to `wmode="opaque"` or add the attribute if it is missing.
 
 
 = Can I display INLINE content in a FancyBox overlay ? =
 
 Yes. Wrap the inline content in
 `
-<div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1" style="width:460px;height:380px;">
+<div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1" class="hentry" style="width:460px;height:380px;">
 ...inline content here...
 </div></div>
 `
@@ -286,6 +286,21 @@ Then place a FancyBox link anywhere else in the post/page content to the inline 
 
 NOTE: The wrapping divs ID *must* be unique and it must correspond with the links HREF with a # in front of it. When using the above example for more FancyBox inline content (hidden div + opening link) combinations on one page, give the second one the ID  fancyboxID-2 and so on...
 
+
+= Can I display a contact form in FancyBox? =
+
+Yes. There are several methods imaginable but the easiest would be to use the Inline method. The inline content can be a shortcode like in this example using Contact Forms 7 and Easy FancyBox:
+
+`
+<a href="#contact_form_pop" class="fancybox">Contact Us</a>
+
+<div style="display:none" class="fancybox-hidden">
+    <div id="contact_form_pop" class="hentry" style="width:460px;height:380px;">
+        [contact-form-7 id="87" title="Contact form 1"]
+    </div>
+</div>
+`
+Where you replace the shortcode (between the [ and ] characters) with the one given by the plugin. It can also work with shortcode by other plugins like Jetpack's Contact Form module. Change the class attribute to reflect the class used for the div that wraps your post content to have any form CSS style rules that are limited to post content, be applied to the inline content inside FancyBox.  
 
 = Can I make an image or hidden content to pop up in FancyBox on page load? =
 
@@ -342,10 +357,12 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 z-index:999;
 }
 `
+- Most **Elegant Themes** have fancybox already integrated in a hardcoded way, making them incompatible with Easy FancyBox.
 - The **Mystique** theme has two option called "Lightbox" and "Optimize website for faster loading" that will break Easy FancyBox. Disable both in Mystique's options > Advanced.
 - **Imbalance** and other themes that uses the Photo Galleria jQuery extension: turn of the JSGallery option.
 - Themes like **Envisioned**, **Chameleon** and many others have FancyBox baked in. There is no solution other than stripping the theme of all FancyBox related code or disable the plugin and use the theme provided version...
 - Themes based on the **Thesis** framework might see issues in IE 8, for which [a hack has been proposed](http://voidzonemedia.com/solutions/thesis-ie8-remove-ie7-emulation/)
+
 
 = Other =
 
