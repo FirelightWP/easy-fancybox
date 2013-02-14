@@ -33,9 +33,7 @@ else
 	$no_network_activate = '1';
 */
 	
-require_once(dirname(__FILE__) . FANCYBOX_SUBDIR . '/easy-fancybox-settings.php');
-
-$easy_fancybox_array = easy_fancybox_settings();
+$easy_fancybox_array = array();
 
 // FUNCTIONS //
 
@@ -356,13 +354,24 @@ function easy_fancybox_register_settings($args){
 	}
 }
 
-function easy_fancybox_admin_init(){
-	load_plugin_textdomain('easy-fancybox', false, dirname(plugin_basename( __FILE__ )));
+function easy_fancybox_init(){
+	global $easy_fancybox_array;
+	require_once(dirname(__FILE__) . FANCYBOX_SUBDIR . '/easy-fancybox-settings.php');
 
+	$easy_fancybox_array = easy_fancybox_settings();
+}
+
+function easy_fancybox_admin_init(){
 	add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), 'easy_fancybox_settings_section', 'media');
 
 	global $easy_fancybox_array;
 	easy_fancybox_register_settings($easy_fancybox_array);
+}
+
+function easy_fancybox_textdomain(){
+	if ( is_admin() ) {			
+		load_plugin_textdomain('easy-fancybox', false, dirname(plugin_basename( __FILE__ )));
+	}			
 }
 
 function easy_fancybox_enqueue_scripts() {
@@ -434,12 +443,14 @@ function easy_fancybox_enqueue_styles() {
 // + own hack for dailymotion iframe embed...
 if(!function_exists('add_video_wmode_opaque')) {
  function add_video_wmode_opaque($html, $url, $attr) {
-	if (strpos($html, "<embed src=" ) !== false) {
-		$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque" ', $html);
-		return $html;
-	} elseif(strpos($html, "<iframe src=\"http://player.vimeo.com/video/" ) !== false) {
-		$html = str_replace('" width', '?theme=none&wmode=opaque" width', $html);
-		return $html;
+	if ( strpos($html, "<embed src=" ) !== false ) {
+		return str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque" ', $html);
+	} elseif ( strpos($html, 'youtube' ) !== false && strpos($html, 'wmode' ) == false ) {
+		return str_replace('feature=oembed', 'feature=oembed&wmode=opaque', $html);
+	} elseif ( strpos($html, "vimeo" ) !== false  && strpos($html, 'wmode' ) == false ) {
+		return str_replace('" width', '?theme=none&wmode=opaque" width', $html);
+	} elseif ( strpos($html, "dailymotion" ) !== false  && strpos($html, 'wmode' ) == false ) {
+		return str_replace('" width', '?wmode=opaque" width', $html);
 	} else {
 		return $html;
 	}
@@ -453,5 +464,7 @@ add_action('wp_print_styles', 'easy_fancybox_enqueue_styles', 999);
 add_action('wp_enqueue_scripts', 'easy_fancybox_enqueue_scripts', 999);
 add_action('wp_head', 'easy_fancybox', 999);
 
+add_action('plugins_loaded','easy_fancybox_textdomain');
+add_action('init','easy_fancybox_init');
 add_action('admin_init','easy_fancybox_admin_init');
 
