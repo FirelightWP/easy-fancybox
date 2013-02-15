@@ -317,6 +317,8 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 - **WP Slimstat** plugin interferes with the Easy FancyBox script for YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
 - When using **WP-Minify**, the javascript files like `fancybox/jquery.fancybox-X.X.X.pack.js` and others need to be excluded from minification.
 - When using **W3 Total Cache**, disable (1) minification and (2) the option "Prevent caching of objects after settings change". If you really need minification, you can try to run **WP-Minify** alongside W3TC which allows exclusion of fancybox files as suggested above..
+- **WP Supersized** uses the Animate Enhanced jQuery extension which causes a conflict with the Easing extension used by FancyBox resulting in a 0px sized lightbox frame. Plus some kind of positioning issue with auto-centering. Sridhar Katakam wrote about a work-around on http://websitesetuppro.com/getting-easy-fancybox-to-work-properly-when-wp-supersized-is-active/.
+
 
 = Theme conflicts = 
 
@@ -326,7 +328,12 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 z-index:999;
 }
 `
+- Most if not all **Elegant Themes** have FancyBox already integrated in a hard-coded way, making them incompatible with Easy FancyBox.
 - The **Mystique** theme has an option called "Optimize website for faster loading" that will break Easy FancyBox. Disable it in Mystique's options > Advanced.
+- **Imbalance** and other themes that uses the Photo Galleria jQuery extension: turn of the JSGallery option.
+- Themes like **Envisioned**, **Chameleon** and many others have FancyBox baked in. There is no solution other than stripping the theme of all FancyBox related code or disable the plugin and use the theme provided version...
+- Themes based on the **Thesis** framework might see issues in IE 8, for which [a hack has been proposed](http://voidzonemedia.com/solutions/thesis-ie8-remove-ie7-emulation/)
+
 
 = Other =
 
