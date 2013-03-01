@@ -420,6 +420,7 @@ New options. Speed improvements: stylesheet caching, metadata.js compression. Se
 == Changelog ==
 
 = 1.5.0 =
+* NEW: Elegant Themes compatibility
 * Some small Touch device compatibility improvement hacks to the 1.3.4 script
 * Major plugin overhaul: Class implementation
 * NEW: Disable hide on overlay click
