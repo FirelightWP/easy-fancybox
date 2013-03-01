@@ -349,16 +349,17 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 - When using **WP-Minify**, the javascript files like `fancybox/jquery.fancybox-X.X.X.pack.js` and others need to be excluded from minification.
 - When using **W3 Total Cache**, minification needs to be switched off. You can try to run **WP-Minify** alongside W3TC to be able to exclude fancybox files (as suggested above) ans still have page speed benefit from minification.
 - Both the **uBillBoard** and **Camera slideshow** have their own easing script hard-coded which conflicts with the one in Easy FancyBox. The only way around the conflict is to set both the Easing In and Easing Out options on your Settings > Media page to **Swing**.
+- **WP Supersized** uses the Animate Enhanced jQuery extension which causes a conflict with the Easing extension used by FancyBox resulting in a 0px sized lightbox frame. Plus some kind of positioning issue with auto-centering. Sridhar Katakam wrote about a work-around on http://websitesetuppro.com/getting-easy-fancybox-to-work-properly-when-wp-supersized-is-active/.
 
 = Theme conflicts = 
 
-- The new default **Twenty Eleven** uses a very high stacking order (z-index: 9999) for the top image and menu div, resulting in FancyBox content being partially hidden under the page header. Work-around: Use the plugin [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add on the new Appearance > Edit CSS admin page the rule:
+- **Twenty Eleven** uses a very high stacking order (z-index: 9999) for the top image and menu div, resulting in FancyBox content being partially hidden under the page header. Work-around: Use the plugin [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add on the new Appearance > Edit CSS admin page the rule:
 `
 #branding {
 z-index:999;
 }
 `
-- Most **Elegant Themes** have fancybox already integrated in a hardcoded way, making them incompatible with Easy FancyBox.
+- Most if not all **Elegant Themes** have FancyBox already integrated in a hard-coded way, making them incompatible with Easy FancyBox.
 - The **Mystique** theme has two option called "Lightbox" and "Optimize website for faster loading" that will break Easy FancyBox. Disable both in Mystique's options > Advanced.
 - **Imbalance** and other themes that uses the Photo Galleria jQuery extension: turn of the JSGallery option.
 - Themes like **Envisioned**, **Chameleon** and many others have FancyBox baked in. There is no solution other than stripping the theme of all FancyBox related code or disable the plugin and use the theme provided version...

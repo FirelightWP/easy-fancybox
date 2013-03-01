@@ -232,7 +232,6 @@ class easyFancyBox {
 		}
 		echo '
 	}
-	jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
 	/* ]]> */
 	</script>
 	<style type="text/css">.fancybox-hidden{display:none}.rtl #fancybox-left{left:auto;right:0px}.rtl #fancybox-right{left:0px;right:auto}.rtl #fancybox-right-ico{background-position:-40px -30px}.rtl #fancybox-left-ico{background-position:-40px -60px}.rtl .fancybox-title-over{text-align:right}.rtl #fancybox-left-ico,.rtl #fancybox-right-ico{right:-9999px}.rtl #fancybox-right:hover span{right:auto;left:20px}.rtl #fancybox-left:hover span{right:20px}#fancybox-img{max-width:none;max-height:none}';
@@ -295,7 +294,7 @@ class easyFancyBox {
 
 	// add our FancyBox Media Settings Section on Settings > Media admin page
 	function settings_section() {
-		echo '<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR" title="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:right;margin:5px 0 0 10px" alt="'.__('Donate to Easy FancyBox plugin development with PayPal - it\'s fast, free and secure!','easy-fancybox').'" width="92" height="26" /></a>'.__('The options in this section are provided by the plugin <strong><a href="http://status301.net/wordpress-plugins/easy-fancybox/">Easy FancyBox</a></strong> and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by <strong><a href="http://fancybox.net/">FancyBox</a></strong>.','easy-fancybox').'</p><p>'.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').' '.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
+		echo '<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR" title="'.__('Donate to keep the Easy FancyBox plugin development going!','easy-fancybox').'"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:right;margin:5px 0 0 10px" alt="'.__('Donate to keep the Easy FancyBox plugin development going!','easy-fancybox').'" width="92" height="26" /></a>'.sprintf(__('The options in this section are provided by the plugin %s and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by %s.','easy-fancybox'),'<strong><a href="http://status301.net/wordpress-plugins/easy-fancybox/">'.__('Easy FancyBox','easy-fancybox').'</a></strong>','<strong><a href="http://fancybox.net/">'.__('FancyBox','easy-fancybox').'</a></strong>').'</p><p>'.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').' '.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
 	}
 
 	// add our FancyBox Media Settings Fields
@@ -489,7 +488,20 @@ class easyFancyBox {
 		wp_enqueue_script('jquery-metadata');
 	}
 
+	function on_ready() {	
+		if (!self::$add_scripts) // abort mission, there is no need for any script files
+			return;
+		echo '
+<script type="text/javascript">
+jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
+</script>
+';
+	}
+	
 	static function admin_init(){
+
+		add_filter('plugin_action_links_' . EASY_FANCYBOX_PLUGINBASENAME, array(__CLASS__, 'add_action_link') );
+		add_action('admin_menu', array(__CLASS__, 'add_menu'));
 
 		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
 
@@ -503,24 +515,20 @@ class easyFancyBox {
 	// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
 	static function add_video_wmode_opaque($html, $url, $attr) {
 		if (strpos($html, "<embed src=" ) !== false) {
-			$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque" ', $html);
-		} elseif (strpos($html, "wmode" ) == false && strpos($html, "youtube" ) !== false) {
-			$html = preg_replace('/feature=oembed/', '$0&wmode=opaque', $html);
+			$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque"', $html);
+		} elseif (strpos($html, 'youtube' ) !== false && strpos($html, 'wmode' ) == false ) {
+			$html = str_replace('feature=oembed', 'feature=oembed&wmode=opaque', $html);
+		} elseif ( strpos($html, "vimeo" ) !== false  && strpos($html, 'wmode' ) == false ) {
+			$html = str_replace('" width', '?theme=none&wmode=opaque" width', $html);
+		} elseif ( strpos($html, "dailymotion" ) !== false  && strpos($html, 'wmode' ) == false ) {
+			$html = str_replace('" width', '?wmode=opaque" width', $html);
 		}
 		return $html;
 	}
 
 	static function init() {
 
-		if ( is_admin() ) {
-			// text domain must be in init even if it is for admin only
-			load_plugin_textdomain('easy-fancybox', false, EASY_FANCYBOX_PLUGINDIR.'languages/');
-			
-			// same with action link filter?!
-			add_filter('plugin_action_links_' . EASY_FANCYBOX_PLUGINBASENAME, array(__CLASS__, 'add_action_link') );
-
-			// even menu???
-			add_action('admin_menu', array(__CLASS__, 'add_menu'));
+		if ( is_admin() ) {			
 		}
 			
 		require_once(EASY_FANCYBOX_PLUGINDIR . 'easy-fancybox-settings.php');
@@ -528,6 +536,11 @@ class easyFancyBox {
 		add_filter('embed_oembed_html', array(__CLASS__, 'add_video_wmode_opaque'), 10, 3);
 	}
 	
+	static function textdomain() {
+		if ( is_admin() ) {			
+			load_plugin_textdomain('easy-fancybox', false, dirname( EASY_FANCYBOX_PLUGINBASENAME ) . '/languages/');
+		}
+	}
 	/**********************
 	         ADMIN
 	 **********************/
@@ -596,14 +609,16 @@ class easyFancyBox {
 	static function run() {
 
 		// HOOKS //
-		add_action('init', array(__CLASS__, 'init'));
+		add_action('plugins_loaded', array(__CLASS__, 'textdomain'));
 
 		add_action('admin_init', array(__CLASS__, 'admin_init'));
 
-		add_action('init', array(__CLASS__, 'register_scripts'), 999);
+		add_action('init', array(__CLASS__, 'init'));
+		add_action('wp_print_scripts', array(__CLASS__, 'register_scripts'), 999);
 		add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueue_styles'));
 		add_action('wp_head', array(__CLASS__, 'main_script'), 999);
 		add_action('wp_footer', array(__CLASS__, 'enqueue_footer_scripts'));
+		add_action('wp_footer', array(__CLASS__, 'on_ready'), 999);
 	}
 
 }
