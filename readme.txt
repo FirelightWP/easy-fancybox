@@ -187,10 +187,11 @@ display:none;
 
 = Can I create a gallery of Youtube thumbnails which open in FancyBox? =
 
-You could do this manually by uploading individual thumbnails that you can retrieve by using the unique movie ID in these URLs for two different sizes:
+You could do this manually by uploading individual thumbnails that you can retrieve by using the unique movie ID in these URLs for three different sizes:
 `
 http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/default.jpg
 http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/mqdefault.jpg
+http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/hqdefault.jpg
 `
 
 But an easier method is this one, shared by Shashank Shekhar (thanks!) :
