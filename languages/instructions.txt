@@ -1,0 +1,23 @@
+=== Easy FancyBox ===
+
+== Translation ==
+
+1. Install PoEdit on your computer.
+
+2. Open the template translation database easy-fancybox-xx_XX.po in this plugins /languages/ directory with PoEdit.
+
+3. Go to Edit > Preferences and on the tab Editor check the option to compile a .mo database on save automatically. Close with OK.
+
+4. Go to Catalog > Settings and set your name, e-mail address, language and country. Close with OK.
+
+5. Go to Catalog > Update from POT-file and select the main xml-sitemap-feed.pot file. Then accept any new and removed translation strings with OK.
+
+6. Now go ahead and start translating all the texts listed in PoEdit.
+
+7. When done, go to File > Save as... and replace the xx_XX in the file name with the appropriate language and country code for your translation. Leave the rest of the file name the same and Save.
+
+8. Upload the automatically created xml-sitemap-feed-xx_XX.mo database file (where xx_XX should now be your language and country code) to the plugins /languages/ directory on your WordPress site.
+
+9. After verifying the translations work on your site, send the .mo file to ravanhagen@gmail.com and don't forget to tell me how and with what link you would like to be mentioned in the credits!
+
+Thanks for sharing your translation :)
