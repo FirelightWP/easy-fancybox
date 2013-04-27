@@ -407,6 +407,20 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 1. Check if your theme loads another or the same lightbox script or any other of the needed jQuery extensions like jquery.easing or jquery.mousewheel. Look for references to Thickbox, Prettyphoto, Lightbox2, Colorbox or FancyBox script files or code. These are very likely to cause the incompatibility and you will have to either find a setting in the other plugin to switch OFF the use of the conflicting script (possible in NextGEN for example, see under Advanced below) or choose between the two conflicting plugins.
 
 
+== Translation ==
+
+1. Install PoEdit on your computer.
+1. Go to this plugins /languages/ directory.
+1. If there is no .po file that corresponds with your language yet, rename the template translation database easy-fancybox-xx_XX.po by replacing the xx with your language code and XX with your country code.
+1. Open the .po file of your language with PoEdit. 
+1. Go to Edit > Preferences and on the tab Editor check the option to compile a .mo database on save automatically. Close with OK.
+1. Go to Catalog > Settings and set your name, e-mail address, language and country. Close with OK.
+1. Go to Catalog > Update from POT-file and select the main easy-fancybox.pot file. Then accept all new and removed translation strings with OK.
+1. Now go ahead and start translating all the texts listed in PoEdit.
+1. When done, go to File > Save to Save.
+1. Upload the automatically created easy-fancybox-xx_XX.mo database file (where xx_XX should now be your language and country code) to the plugins /languages/ directory on your WordPress site.
+1. After verifying the translations work on your site, send the .mo file and, if you're willing to share it, your original .po file to ravanhagen@gmail.com and don't forget to tell me how and with what link you would like to be mentioned in the credits!
+
 
 == Screenshots ==
 

@@ -401,6 +401,7 @@ class easyFancyBox {
 			$prc = '%';
 		} else {
 			$val = intval($setting);
+			$prc = '';
 		}
 	
 		return ( $val != 0 ) ? $val.$prc : 0;
