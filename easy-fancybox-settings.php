@@ -964,7 +964,7 @@ class easyFancyBox_Options extends easyFancyBox {
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
-					'description' => __('To make any SVG (.svg) file open in an overlay, switch on auto-detect or use the class "fancybox-svg" for its link.','easy-fancybox') . ' ' . __('Adjust its specific settings below.','easy-fancybox') . '<br />'
+					'description' => __('To make any SVG (.svg) file open in an overlay, switch on Autodetect or use the class "fancybox-svg" for its link.','easy-fancybox') . '<br />'
 					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttributeSVG',
@@ -972,7 +972,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => '1',
 					'selector' => 'href$=".svg"',
-					'description' => __('Auto-detect','easy-fancybox') . '<br />'
+					'description' => __('Autodetect','easy-fancybox') . '<br />'
 					),
 				'tag' => array (
 					'hide' => true,
