@@ -47,6 +47,13 @@ class easyFancyBox_Options extends easyFancyBox {
 							'default' => '',
 							'description' => '<strong>' . __('SWF','easy-fancybox') . '</strong>'
 							),
+						'SVG' => array (
+							'id' => 'fancybox_enableSVG',
+							'input' => 'checkbox',
+							'hide' => true,
+							'default' => '',
+							'description' => '<strong>' . __('SVG','easy-fancybox') . '</strong>'
+							),
 						'YouTube' => array (
 							'id' => 'fancybox_enableYoutube',
 							'input' => 'checkbox',
@@ -114,7 +121,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'id' => 'fancybox_metaData',
 							'hide' => true,
 							'input' => 'checkbox',
-							'default' => '',
+							'default' =>  '',
 							'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox')
 							)
 						)
@@ -945,6 +952,101 @@ class easyFancyBox_Options extends easyFancyBox {
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
 				'swf' => array (
+					'noquotes' => true,
+					'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
+					)
+				)
+			),
+
+		'SVG' => array(
+			'title' => __('SVG','easy-fancybox'),
+			'input' => 'multiple',
+			'options' => array(
+				'intro' => array (
+					'hide' => true,
+					'description' => __('To make any SVG (.svg) file open in an overlay, switch on auto-detect or use the class "fancybox-svg" for its link.','easy-fancybox') . ' ' . __('Adjust its specific settings below.','easy-fancybox') . '<br />'
+					),
+				'autoAttribute' => array (
+					'id' => 'fancybox_autoAttributeSVG',
+					'input' => 'checkbox',
+					'hide' => true,
+					'default' => '1',
+					'selector' => 'href$=".svg"',
+					'description' => __('Auto-detect','easy-fancybox') . '<br />'
+					),
+				'tag' => array (
+					'hide' => true,
+					'default' => 'a.fancybox-svg, area.fancybox-svg, li.fancybox-svg a:not(li.nofancybox a)'
+					),
+				'class' => array (
+					'hide' => true,
+					'default' => 'fancybox-svg'
+					),
+				'type' => array( 
+					'default' => 'svg' 
+					),
+				'width' => array (
+					'id' => 'fancybox_SVGWidth',
+					'title' => __('Width'),
+					'label_for' => 'fancybox_SVGWidth',
+					'input' => 'text',
+					'sanitize_callback' => 'intval',
+					'class' => 'small-text',
+					'options' => array(),
+					'default' => '680',
+					'description' => ' '
+					),
+				'height' => array (
+					'id' => 'fancybox_SVGHeight',
+					'title' => __('Height'),
+					'label_for' => 'fancybox_SVGHeight',
+					'input' => 'text',
+					'sanitize_callback' => 'intval',
+					'class' => 'small-text',
+					'options' => array(),
+					'default' => '495',
+					),
+				'padding' => array (
+					'id' => 'fancybox_SVGpadding',
+					'title' => __('Border'),
+					'label_for' => 'fancybox_SVGpadding',
+					'input' => 'number',
+					'step' => '1',
+					'min' => '0',
+					'max' => '100',
+					'sanitize_callback' => 'intval',
+					'class' => 'small-text',
+					'default' => '0',
+					'description' => '<br /><br />'
+					),
+				'titleShow' => array (
+					'id' => 'fancybox_SVGtitleShow',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '',
+					'description' => __('Show title','easy-fancybox')
+					),
+				'titlePosition' => array (
+					'id' => 'fancybox_SVGtitlePosition',
+					'title' => __('Title Position','easy-fancybox'),
+					'label_for' => 'fancybox_SVGtitlePosition',
+					'input' => 'select',
+					'options' => array(
+						'float' => __('Float','easy-fancybox'), 
+						'outside' => __('Outside','easy-fancybox'),
+						'inside' => __('Inside','easy-fancybox')
+						//,'over' => __('Overlay','easy-fancybox')
+						),
+					'default' => 'float',
+					),
+				'titleFromAlt' => array (
+					'id' => 'fancybox_SVGtitleFromAlt',
+					'input' => 'checkbox',
+					'noquotes' => true,
+					'default' => '1',
+					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
+					),
+				'svg' => array (
 					'noquotes' => true,
 					'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
 					)

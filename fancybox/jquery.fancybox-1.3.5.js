@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.4 (11/11/2010)
+ * Version: 1.3.4 (11/11/2010) patched and appended
  * Requires: jQuery v1.3+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -16,22 +16,25 @@
  *
  * Patches applied:
  *
- * Line 815: qouted attribute selector, RavanH ravanhagen@gmail.com 
- *
- * Line 36, 617 and 1120: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
+ * Line 818: qouted attribute selector, RavanH ravanhagen@gmail.com 
+ * Line 39, 620 and 1123: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
+ * Line 37: patched for jQuery 1.9+ compat, JFK on http://stackoverflow.com/questions/14344289/
+ * 
+ * Added SVG support. Patch by Simon Maillard simon@ogesta.fr
  */
 ;(function($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
 
 		selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
 
-		ajaxLoader = null, imgPreloader = new Image(), imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i,
+		ajaxLoader = null, imgPreloader = new Image(), imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, svgRegExp = /[^\.]\.(svg)\s*$/i,
 
 		loadingTimer, loadingFrame = 1,
 
 		titleHeight = 0, titleStr = '', start_pos, final_pos, busy = false, fx = $.extend($('<div/>')[0], { prop: 0 }),
 
-		isIE6 = $.browser.msie && $.browser.version < 7 && !window.XMLHttpRequest,
+		/* patched for jQuery 1.9+ according to JFK's method on http://stackoverflow.com/questions/14344289/ */
+		isIE6 = navigator.userAgent.match(/msie [6]/i) && !window.XMLHttpRequest,
 		
 		isTouch = document.createTouch !== undefined,
 
@@ -122,6 +125,9 @@
 
 				} else if (href.match(swfRegExp)) {
 					type = 'swf';
+
+				} else if (href.match(svgRegExp)) {
+					type = 'svg';
 
 				} else if ($(obj).hasClass("iframe")) {
 					type = 'iframe';
@@ -234,6 +240,16 @@
 					});
 
 					str += '<embed src="' + href + '" type="application/x-shockwave-flash" width="' + selectedOpts.width + '" height="' + selectedOpts.height + '"' + emb + '></embed></object>';
+
+					tmp.html(str);
+
+					_process_inline();
+				break;
+
+				case 'svg':
+					selectedOpts.scrolling = 'no';
+
+					str = '<object width="' + selectedOpts.width + '" height="' + selectedOpts.height + '" data="' + href + '"></object>';
 
 					tmp.html(str);
 
@@ -621,7 +637,7 @@
 			}
 
 			if (currentOpts.type == 'iframe') {
-				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" ' + ($.browser.msie ? 'allowtransparency="true""' : '') + ' scrolling="' + selectedOpts.scrolling + '" src="' + currentOpts.href + '"></iframe>').appendTo(content);
+				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" ' + (navigator.userAgent.match(/msie [6]/i) ? 'allowtransparency="true""' : '') + ' scrolling="' + selectedOpts.scrolling + '" src="' + currentOpts.href + '"></iframe>').appendTo(content);
 			}
 
 			wrap.show();
@@ -708,7 +724,7 @@
 			}
 
 			if (resize && (to.width > view[0] || to.height > view[1])) {
-				if (selectedOpts.type == 'image' || selectedOpts.type == 'swf') {
+				if (selectedOpts.type == 'image'  || selectedOpts.type == 'svg'|| selectedOpts.type == 'swf') {
 					ratio = (currentOpts.width ) / (currentOpts.height );
 
 					if ((to.width ) > view[0]) {
@@ -1121,6 +1137,7 @@
 
 		ajax : {},
 		swf : { wmode: 'transparent' },
+		svg : { wmode: 'transparent' },
 
 		hideOnOverlayClick : true,
 		hideOnContentClick : false,
@@ -1164,3 +1181,4 @@
 	});
 
 })(jQuery);
+

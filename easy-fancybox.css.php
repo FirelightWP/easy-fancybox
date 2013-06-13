@@ -30,7 +30,7 @@ function iepathfix_compress($buffer) {
 /* our original stylesheet
 $version = preg_match( '`^\d{1,2}\.\d{1,2}(\.\d{1,2})?$`' , $_GET['ver'] ) ? $_GET['ver'] : '1.3.4';
 $file = dirname(__FILE__) . '/fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css'; */
-$file = dirname(__FILE__) . '/fancybox/jquery.fancybox-1.3.4.css';
+$file = dirname(__FILE__) . '/fancybox/jquery.fancybox-1.3.5.css';
 		
 /* set up response headers, allowing browser caching */
 $expires = 60*60*24*30; // seconds, minutes, hours, days

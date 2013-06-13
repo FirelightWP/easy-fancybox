@@ -1,13 +1,8 @@
-/*! Copyright (c) 2011 Brandon Aaron (http://brandonaaron.net)
+/*! Copyright (c) 2013 Brandon Aaron (http://brandonaaron.net)
  * Licensed under the MIT License (LICENSE.txt).
- *
  * Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
  * Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
  * Thanks to: Seamus Leahy for adding deltaX and deltaY
- *
- * Version: 3.0.6
- * 
- * Requires: 1.2.2+
+ * Version: 3.1.3
  */
-
-(function($){var types=['DOMMouseScroll','mousewheel'];if($.event.fixHooks){for(var i=types.length;i;){$.event.fixHooks[types[--i]]=$.event.mouseHooks}}$.event.special.mousewheel={setup:function(){if(this.addEventListener){for(var i=types.length;i;){this.addEventListener(types[--i],handler,false)}}else{this.onmousewheel=handler}},teardown:function(){if(this.removeEventListener){for(var i=types.length;i;){this.removeEventListener(types[--i],handler,false)}}else{this.onmousewheel=null}}};$.fn.extend({mousewheel:function(fn){return fn?this.bind("mousewheel",fn):this.trigger("mousewheel")},unmousewheel:function(fn){return this.unbind("mousewheel",fn)}});function handler(event){var orgEvent=event||window.event,args=[].slice.call(arguments,1),delta=0,returnValue=true,deltaX=0,deltaY=0;event=$.event.fix(orgEvent);event.type="mousewheel";if(orgEvent.wheelDelta){delta=orgEvent.wheelDelta/120}if(orgEvent.detail){delta=-orgEvent.detail/3}deltaY=delta;if(orgEvent.axis!==undefined&&orgEvent.axis===orgEvent.HORIZONTAL_AXIS){deltaY=0;deltaX=-1*delta}if(orgEvent.wheelDeltaY!==undefined){deltaY=orgEvent.wheelDeltaY/120}if(orgEvent.wheelDeltaX!==undefined){deltaX=-1*orgEvent.wheelDeltaX/120}args.unshift(event,delta,deltaX,deltaY);return($.event.dispatch||$.event.handle).apply(this,args)}})(jQuery);
+(function(a){"function"==typeof define&&define.amd?define(["jquery"],a):"object"==typeof exports?module.exports=a:a(jQuery)})(function(a){function g(b){var l,c=b||window.event,f=[].slice.call(arguments,1),g=0,h=0,i=0,j=0,k=0;return b=a.event.fix(c),b.type="mousewheel",c.wheelDelta&&(g=c.wheelDelta),c.detail&&(g=-1*c.detail),c.deltaY&&(i=-1*c.deltaY,g=i),c.deltaX&&(h=c.deltaX,g=-1*h),void 0!==c.wheelDeltaY&&(i=c.wheelDeltaY),void 0!==c.wheelDeltaX&&(h=-1*c.wheelDeltaX),j=Math.abs(g),(!d||d>j)&&(d=j),k=Math.max(Math.abs(i),Math.abs(h)),(!e||e>k)&&(e=k),l=g>0?"floor":"ceil",g=Math[l](g/d),h=Math[l](h/e),i=Math[l](i/e),f.unshift(b,g,h,i),(a.event.dispatch||a.event.handle).apply(this,f)}var d,e,b=["wheel","mousewheel","DOMMouseScroll","MozMousePixelScroll"],c="onwheel"in document||document.documentMode>=9?["wheel"]:["mousewheel","DomMouseScroll","MozMousePixelScroll"];if(a.event.fixHooks)for(var f=b.length;f;)a.event.fixHooks[b[--f]]=a.event.mouseHooks;a.event.special.mousewheel={setup:function(){if(this.addEventListener)for(var a=c.length;a;)this.addEventListener(c[--a],g,!1);else this.onmousewheel=g},teardown:function(){if(this.removeEventListener)for(var a=c.length;a;)this.removeEventListener(c[--a],g,!1);else this.onmousewheel=null}},a.fn.extend({mousewheel:function(a){return a?this.bind("mousewheel",a):this.trigger("mousewheel")},unmousewheel:function(a){return this.unbind("mousewheel",a)}})});

@@ -3,8 +3,8 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e4%2e9&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
 Requires at least: 3.3
-Tested up to: 3.5
-Stable tag: 1.3.4.9
+Tested up to: 3.6
+Stable tag: 1.5.0
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -21,6 +21,7 @@ After activation, all links to **JPG, GIF and PNG images** are automatically ope
 - NextGEN galleries (see FAQs for instructions)
 - Youtube galleries via Youtube Simple Gallery plugin (see FAQs for instructions)
 - SWF (Flash) movies
+- SVG media images (thanks to Simon Maillard) 
 - Links to **Youtube**, **Vimeo** _and_ **Dailmotion**
 - Hidden inline content
 - iFrames
@@ -41,7 +42,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 
 = Translators =
 
-- **Dutch** * Author: [R.A. van Hagen](http://status301.net) (version 1.5)
+- **Dutch** * Author: [R.A. van Hagen](http://status301.net) (version 1.3.5)
 - **French** * Author: Emmanuel Maillard (version 1.3.4.9)
 - **Hindi** * Author: [Outshine Solutions](http://outshinesolutions.com) (version 1.3.4.9)
 - **Indonesian** * Author: [Nasrulhaq Muiz](http://al-badar.net) (version 1.3.4.9)
@@ -431,11 +432,15 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 == Upgrade Notice ==
 
 = 1.5.0 =
-New options. Speed improvements: stylesheet caching, metadata.js compression. Security fix. Dutch, Indonesian and Polish translations. 
+Many new options. Speed improvements: stylesheet browser caching, metadata.js compression. Security fix. Dutch, Indonesian and Polish translations. 
 
 == Changelog ==
 
 = 1.5.0 =
+* FIX: CSS3 box-sizing issue (Twenty Thirteen) misplacing close button
+* NEW: Added SVG support. Thanks to Simon Maillard.
+* Pre WP 3.6: jQuery 1.9+ compatibility
+* JQuery Mousewheel extension update to 3.1.3
 * NEW: Elegant Themes compatibility
 * Some small Touch device compatibility improvement hacks to the 1.3.4 script
 * Major plugin overhaul: Class implementation
@@ -449,8 +454,7 @@ New options. Speed improvements: stylesheet caching, metadata.js compression. Se
 * Gravity Forms in ajax mode compatibility
 * Use jQuery's bind('ready') for better ajax content compatibility
 * Dynamic stylesheet response headers to allow browser caching
-* Minified version of jquery.metadata.js
-* Upgrade jquery.mousewheel.js for jQuery 1.7 compatibility 
+* Minified version of jquery.metadata.js 
 * Auto-detect on image map areas
 * nofancybox class for menu items
 * SECURITY: Settings sanitization

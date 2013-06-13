@@ -166,8 +166,8 @@ class easyFancyBox {
 			if(!empty($autoAttributeAlt) && is_numeric($autoAttributeAlt)) {
 				echo '
 	jQuery(\'a['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.', area['.$value['options']['autoAttributeAlt']['selector'].']:not(.nofancybox)'.$attributeLimit.'\')';
-				if ($value['options']['autoAttributeAlt']['href-replace'])
-					echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttributeAlt']['href-replace']. '})';
+				//if (!empty($value['options']['autoAttributeAlt']['href-replace']))
+				//	echo '.attr(\'href\', function(index, attr){'.$value['options']['autoAttributeAlt']['href-replace']. '})';
 				echo '.addClass(\''.$value['options']['class']['default'].'\');';
 			}
 		
@@ -503,7 +503,8 @@ jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
 	static function admin_init(){
 
 		add_filter('plugin_action_links_' . EASY_FANCYBOX_PLUGINBASENAME, array(__CLASS__, 'add_action_link') );
-		add_action('admin_menu', array(__CLASS__, 'add_menu'));
+		// in preparation of admin page move:
+		//add_action('admin_menu', array(__CLASS__, 'add_menu'));
 
 		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
 
