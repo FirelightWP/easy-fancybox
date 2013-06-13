@@ -42,7 +42,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 
 = Translators =
 
-- **Dutch** * Author: [R.A. van Hagen](http://status301.net) (version 1.3.5)
+- **Dutch** * Author: [R.A. van Hagen](http://status301.net) (version 1.5.0)
 - **French** * Author: Emmanuel Maillard (version 1.3.4.9)
 - **Hindi** * Author: [Outshine Solutions](http://outshinesolutions.com) (version 1.3.4.9)
 - **Indonesian** * Author: [Nasrulhaq Muiz](http://al-badar.net) (version 1.3.4.9)
@@ -51,7 +51,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 - **Romanian** * Author: [Web Geek Sciense](http://webhostinggeeks.com/) (version 1.3.4.9)
 - **Slovak** Author: [Branco Radenovich (WebHostingGeeks.com)](http://webhostinggeeks.com/blog/) (version: 1.3.4.9)
 - **Spanish** * Author: [David Pérez](http://www.closemarketing.es) (version 1.3.4.9)
-- **Turkish** * Author: [Hakan Er](http://hakanertr.wordpress.com/) (version: 1.3.4.9)
+- **Turkish** * Author: [Hakan Er](http://hakanertr.wordpress.com/) (version: 1.5.0)
 - **Ukrainian** * Author: [Cmd Software](http://www.cmd-soft.com) (version: 1.3.4.9)
 
 == Installation ==
