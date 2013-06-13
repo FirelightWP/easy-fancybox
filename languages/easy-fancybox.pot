@@ -4,21 +4,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Easy FancyBox/1.5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-14 11:05+0100\n"
-"PO-Revision-Date: 2013-02-14 11:05+0100\n"
+"POT-Creation-Date: 2013-06-14 00:53+0100\n"
+"PO-Revision-Date: 2013-06-14 00:53+0100\n"
 "Last-Translator: RavanH <ravanhagen@gmail.com>\n"
 "Language-Team: Easy FancyBox Languages <ravanhagen@gmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_n\n"
 "X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 "X-Poedit-SearchPath-1: ../../easy-fancybox-pro\n"
 
-#: ../easy-fancybox-settings.php:9
-#: ../easy-fancybox-class.php:551
+#: ../easy-fancybox-settings.php:9 ../easy-fancybox-class.php:566
 msgid "Global settings"
 msgstr ""
 
@@ -30,603 +29,577 @@ msgstr ""
 msgid "Enable FancyBox for"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:27
-#: ../easy-fancybox-settings.php:363
-#: ../easy-fancybox-class.php:552
+#: ../easy-fancybox-settings.php:27 ../easy-fancybox-settings.php:370
+#: ../easy-fancybox-class.php:567
 msgid "Images"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:34
-#: ../easy-fancybox-settings.php:626
-#: ../easy-fancybox-class.php:553
+#: ../easy-fancybox-settings.php:34 ../easy-fancybox-settings.php:633
+#: ../easy-fancybox-class.php:568
 msgid "Inline content"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:41
-#: ../easy-fancybox-settings.php:736
-#: ../easy-fancybox-class.php:554
+#: ../easy-fancybox-settings.php:41 ../easy-fancybox-settings.php:743
+#: ../easy-fancybox-class.php:569
 msgid "PDF"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:48
-#: ../easy-fancybox-settings.php:861
-#: ../easy-fancybox-class.php:555
+#: ../easy-fancybox-settings.php:48 ../easy-fancybox-settings.php:868
+#: ../easy-fancybox-class.php:570
 msgid "SWF"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:55
-#: ../easy-fancybox-settings.php:955
-#: ../easy-fancybox-class.php:556
+#: ../easy-fancybox-settings.php:55 ../easy-fancybox-settings.php:962
+msgid "SVG"
+msgstr ""
+
+#: ../easy-fancybox-settings.php:62 ../easy-fancybox-settings.php:1057
+#: ../easy-fancybox-class.php:571
 msgid "YouTube"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:62
-#: ../easy-fancybox-settings.php:1063
-#: ../easy-fancybox-class.php:557
+#: ../easy-fancybox-settings.php:69 ../easy-fancybox-settings.php:1165
+#: ../easy-fancybox-class.php:572
 msgid "Vimeo"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:69
-#: ../easy-fancybox-settings.php:1163
-#: ../easy-fancybox-class.php:558
+#: ../easy-fancybox-settings.php:76 ../easy-fancybox-settings.php:1265
+#: ../easy-fancybox-class.php:573
 msgid "Dailymotion"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:76
-#: ../easy-fancybox-settings.php:1289
-#: ../easy-fancybox-class.php:559
+#: ../easy-fancybox-settings.php:83 ../easy-fancybox-settings.php:1391
+#: ../easy-fancybox-class.php:574
 msgid "iFrames"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:79
-msgid "For advanced options and support, please get the Easy FancyBox - Pro extension."
+#: ../easy-fancybox-settings.php:86
+msgid ""
+"For advanced options and support, please get the Easy FancyBox - Pro "
+"extension."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:82
+#: ../easy-fancybox-settings.php:89
 msgid "Links"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:88
+#: ../easy-fancybox-settings.php:95
 msgid "Exclude"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:93
-#: ../easy-fancybox-settings.php:107
-#: ../easy-fancybox-settings.php:414
-#: ../easy-fancybox-settings.php:441
-#: ../easy-fancybox-settings.php:670
-#: ../easy-fancybox-settings.php:697
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:226
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:251
+#: ../easy-fancybox-settings.php:100 ../easy-fancybox-settings.php:114
+#: ../easy-fancybox-settings.php:421 ../easy-fancybox-settings.php:448
+#: ../easy-fancybox-settings.php:677 ../easy-fancybox-settings.php:704
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:227
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:252
 msgid "None"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:94
+#: ../easy-fancybox-settings.php:101
 msgid "Empty (hidden) links"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:95
+#: ../easy-fancybox-settings.php:102
 msgid "Without thumbnail image"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:102
+#: ../easy-fancybox-settings.php:109
 msgid "Open on page load"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:108
+#: ../easy-fancybox-settings.php:115
 msgid "Link with ID \"fancybox-auto\""
 msgstr ""
 
-#: ../easy-fancybox-settings.php:111
-#: ../easy-fancybox-settings.php:402
-#: ../easy-fancybox-settings.php:433
-#: ../easy-fancybox-settings.php:460
-#: ../easy-fancybox-settings.php:535
-#: ../easy-fancybox-settings.php:689
-#: ../easy-fancybox-settings.php:716
+#: ../easy-fancybox-settings.php:118 ../easy-fancybox-settings.php:409
+#: ../easy-fancybox-settings.php:440 ../easy-fancybox-settings.php:467
+#: ../easy-fancybox-settings.php:542 ../easy-fancybox-settings.php:696
+#: ../easy-fancybox-settings.php:723
 msgid "More options &raquo;"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:118
-msgid "Include the Metadata jQuery extension script to allow passing custom parameters via link class."
+#: ../easy-fancybox-settings.php:125
+msgid ""
+"Include the Metadata jQuery extension script to allow passing custom "
+"parameters via link class."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:123
-#: ../easy-fancybox-settings.php:496
+#: ../easy-fancybox-settings.php:130 ../easy-fancybox-settings.php:503
 msgid "Overlay"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:132
+#: ../easy-fancybox-settings.php:139
 msgid "Show the overlay around content opened in FancyBox."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:139
+#: ../easy-fancybox-settings.php:146
 msgid "Close FancyBox when overlay is clicked."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:143
-#: ../easy-fancybox-settings.php:221
+#: ../easy-fancybox-settings.php:150 ../easy-fancybox-settings.php:228
 msgid "Opacity"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:151
+#: ../easy-fancybox-settings.php:158
 msgid "Value between 0 and 1. "
 msgstr ""
 
-#: ../easy-fancybox-settings.php:151
-#: ../easy-fancybox-settings.php:160
-#: ../easy-fancybox-settings.php:279
-#: ../easy-fancybox-settings.php:330
-#: ../easy-fancybox-settings.php:588
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:102
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:107
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:146
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:243
+#: ../easy-fancybox-settings.php:158 ../easy-fancybox-settings.php:167
+#: ../easy-fancybox-settings.php:286 ../easy-fancybox-settings.php:337
+#: ../easy-fancybox-settings.php:595
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:103
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:108
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:147
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:244
 msgid "Default:"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:155
+#: ../easy-fancybox-settings.php:162
 msgid "Color"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:160
+#: ../easy-fancybox-settings.php:167
 msgid "Enter an HTML color value."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:168
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:70
+#: ../easy-fancybox-settings.php:175
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:71
 msgid "Spotlight effect"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:168
-#: ../easy-fancybox-settings.php:229
-#: ../easy-fancybox-settings.php:242
-#: ../easy-fancybox-settings.php:517
-#: ../easy-fancybox-settings.php:606
+#: ../easy-fancybox-settings.php:175 ../easy-fancybox-settings.php:236
+#: ../easy-fancybox-settings.php:249 ../easy-fancybox-settings.php:524
+#: ../easy-fancybox-settings.php:613
 msgid "Make available &raquo;"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:173
+#: ../easy-fancybox-settings.php:180
 msgid "Window"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:179
-#: ../easy-fancybox-settings.php:478
+#: ../easy-fancybox-settings.php:186 ../easy-fancybox-settings.php:485
 msgid "Appearance"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:186
+#: ../easy-fancybox-settings.php:193
 msgid "Show the (X) close button"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:191
+#: ../easy-fancybox-settings.php:198
 msgid "Background color"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:201
+#: ../easy-fancybox-settings.php:208
 msgid "Border color"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:211
+#: ../easy-fancybox-settings.php:218
 msgid "Text color"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:234
+#: ../easy-fancybox-settings.php:241
 msgid "Border radius"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:242
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:113
+#: ../easy-fancybox-settings.php:249
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:114
 msgid "Set a border radius to create rounded corners. Higher is rounder."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:247
+#: ../easy-fancybox-settings.php:254
 msgid "Dimensions"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:251
-#: ../easy-fancybox-settings.php:764
-#: ../easy-fancybox-settings.php:889
-#: ../easy-fancybox-settings.php:993
-#: ../easy-fancybox-settings.php:1092
-#: ../easy-fancybox-settings.php:1192
-#: ../easy-fancybox-settings.php:1322
+#: ../easy-fancybox-settings.php:258 ../easy-fancybox-settings.php:771
+#: ../easy-fancybox-settings.php:896 ../easy-fancybox-settings.php:990
+#: ../easy-fancybox-settings.php:1095 ../easy-fancybox-settings.php:1194
+#: ../easy-fancybox-settings.php:1294 ../easy-fancybox-settings.php:1424
 msgid "Width"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:261
-#: ../easy-fancybox-settings.php:774
-#: ../easy-fancybox-settings.php:900
-#: ../easy-fancybox-settings.php:1006
-#: ../easy-fancybox-settings.php:1105
-#: ../easy-fancybox-settings.php:1205
-#: ../easy-fancybox-settings.php:1332
+#: ../easy-fancybox-settings.php:268 ../easy-fancybox-settings.php:781
+#: ../easy-fancybox-settings.php:907 ../easy-fancybox-settings.php:1001
+#: ../easy-fancybox-settings.php:1108 ../easy-fancybox-settings.php:1207
+#: ../easy-fancybox-settings.php:1307 ../easy-fancybox-settings.php:1434
 msgid "Height"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:270
-#: ../easy-fancybox-settings.php:783
-#: ../easy-fancybox-settings.php:910
-#: ../easy-fancybox-settings.php:1018
-#: ../easy-fancybox-settings.php:1117
-#: ../easy-fancybox-settings.php:1217
-#: ../easy-fancybox-settings.php:1341
+#: ../easy-fancybox-settings.php:277 ../easy-fancybox-settings.php:790
+#: ../easy-fancybox-settings.php:917 ../easy-fancybox-settings.php:1011
+#: ../easy-fancybox-settings.php:1120 ../easy-fancybox-settings.php:1219
+#: ../easy-fancybox-settings.php:1319 ../easy-fancybox-settings.php:1443
 msgid "Border"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:279
-msgid "If content size is not set or cannot be determined automatically, these default dimensions will be used."
+#: ../easy-fancybox-settings.php:286
+msgid ""
+"If content size is not set or cannot be determined automatically, these "
+"default dimensions will be used."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:284
-#: ../easy-fancybox-settings.php:406
+#: ../easy-fancybox-settings.php:291 ../easy-fancybox-settings.php:413
 msgid "Behavior"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:291
+#: ../easy-fancybox-settings.php:298
 msgid "Center while scrolling"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:298
+#: ../easy-fancybox-settings.php:305
 msgid "Esc key stroke closes FancyBox"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:305
+#: ../easy-fancybox-settings.php:312
 msgid "Scale large content down to fit in the browser viewport."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:309
+#: ../easy-fancybox-settings.php:316
 msgid "Opening speed"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:321
+#: ../easy-fancybox-settings.php:328
 msgid "Closing speed"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:330
-#: ../easy-fancybox-settings.php:588
+#: ../easy-fancybox-settings.php:337 ../easy-fancybox-settings.php:595
 msgid "Duration in milliseconds. Higher is slower."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:368
-msgid "To make images open in an overlay, add their extension to the Autodetect field or use the class \"fancybox\" for its link. Clear field to switch off all autodetection."
+#: ../easy-fancybox-settings.php:375
+msgid ""
+"To make images open in an overlay, add their extension to the Autodetect "
+"field or use the class \"fancybox\" for its link. Clear field to switch off "
+"all autodetection."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:383
-#: ../easy-fancybox-settings.php:749
-#: ../easy-fancybox-settings.php:874
-#: ../easy-fancybox-settings.php:969
-#: ../easy-fancybox-settings.php:1077
-#: ../easy-fancybox-settings.php:1177
+#: ../easy-fancybox-settings.php:390 ../easy-fancybox-settings.php:756
+#: ../easy-fancybox-settings.php:881 ../easy-fancybox-settings.php:975
+#: ../easy-fancybox-settings.php:1071 ../easy-fancybox-settings.php:1179
+#: ../easy-fancybox-settings.php:1279
 msgid "Autodetect"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:390
+#: ../easy-fancybox-settings.php:397
 msgid "Example:"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:394
+#: ../easy-fancybox-settings.php:401
 msgid "Apply to"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:399
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:146
+#: ../easy-fancybox-settings.php:406
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:147
 msgid "All image links"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:410
-#: ../easy-fancybox-settings.php:666
+#: ../easy-fancybox-settings.php:417 ../easy-fancybox-settings.php:673
 msgid "Transition In"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:415
-#: ../easy-fancybox-settings.php:442
-#: ../easy-fancybox-settings.php:671
-#: ../easy-fancybox-settings.php:698
+#: ../easy-fancybox-settings.php:422 ../easy-fancybox-settings.php:449
+#: ../easy-fancybox-settings.php:678 ../easy-fancybox-settings.php:705
 msgid "Fade"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:416
-#: ../easy-fancybox-settings.php:443
-#: ../easy-fancybox-settings.php:672
-#: ../easy-fancybox-settings.php:699
+#: ../easy-fancybox-settings.php:423 ../easy-fancybox-settings.php:450
+#: ../easy-fancybox-settings.php:679 ../easy-fancybox-settings.php:706
 msgid "Elastic"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:423
-#: ../easy-fancybox-settings.php:679
+#: ../easy-fancybox-settings.php:430 ../easy-fancybox-settings.php:686
 msgid "Easing In"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:427
-#: ../easy-fancybox-settings.php:454
-#: ../easy-fancybox-settings.php:683
-#: ../easy-fancybox-settings.php:710
+#: ../easy-fancybox-settings.php:434 ../easy-fancybox-settings.php:461
+#: ../easy-fancybox-settings.php:690 ../easy-fancybox-settings.php:717
 msgid "Linear"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:428
-#: ../easy-fancybox-settings.php:455
-#: ../easy-fancybox-settings.php:684
-#: ../easy-fancybox-settings.php:711
+#: ../easy-fancybox-settings.php:435 ../easy-fancybox-settings.php:462
+#: ../easy-fancybox-settings.php:691 ../easy-fancybox-settings.php:718
 msgid "Swing"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:429
-#: ../easy-fancybox-settings.php:456
-#: ../easy-fancybox-settings.php:685
-#: ../easy-fancybox-settings.php:712
+#: ../easy-fancybox-settings.php:436 ../easy-fancybox-settings.php:463
+#: ../easy-fancybox-settings.php:692 ../easy-fancybox-settings.php:719
 msgid "easeInBack"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:430
-#: ../easy-fancybox-settings.php:457
-#: ../easy-fancybox-settings.php:686
-#: ../easy-fancybox-settings.php:713
+#: ../easy-fancybox-settings.php:437 ../easy-fancybox-settings.php:464
+#: ../easy-fancybox-settings.php:693 ../easy-fancybox-settings.php:720
 msgid "easeOutBack"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:437
-#: ../easy-fancybox-settings.php:693
+#: ../easy-fancybox-settings.php:444 ../easy-fancybox-settings.php:700
 msgid "Transition Out"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:450
-#: ../easy-fancybox-settings.php:706
+#: ../easy-fancybox-settings.php:457 ../easy-fancybox-settings.php:713
 msgid "Easing Out"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:460
-#: ../easy-fancybox-settings.php:535
-#: ../easy-fancybox-settings.php:716
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:212
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:218
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:229
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:256
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:330
+#: ../easy-fancybox-settings.php:467 ../easy-fancybox-settings.php:542
+#: ../easy-fancybox-settings.php:723
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:213
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:219
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:230
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:257
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:331
 msgid "Note:"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:460
-#: ../easy-fancybox-settings.php:716
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:212
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:330
+#: ../easy-fancybox-settings.php:467 ../easy-fancybox-settings.php:723
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:213
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:331
 msgid "Easing effects only apply when Transition is set to Elastic. "
 msgstr ""
 
-#: ../easy-fancybox-settings.php:467
-#: ../easy-fancybox-settings.php:723
-msgid "Transparency fade during elastic transition. CAUTION: Use only when at least Transition In is set to Elastic!"
+#: ../easy-fancybox-settings.php:474 ../easy-fancybox-settings.php:730
+msgid ""
+"Transparency fade during elastic transition. CAUTION: Use only when at least "
+"Transition In is set to Elastic!"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:474
-#: ../easy-fancybox-settings.php:730
+#: ../easy-fancybox-settings.php:481 ../easy-fancybox-settings.php:737
 msgid "Close FancyBox when content is clicked"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:485
-#: ../easy-fancybox-settings.php:803
-#: ../easy-fancybox-settings.php:926
-#: ../easy-fancybox-settings.php:1034
-#: ../easy-fancybox-settings.php:1133
-#: ../easy-fancybox-settings.php:1233
-#: ../easy-fancybox-settings.php:1357
+#: ../easy-fancybox-settings.php:492 ../easy-fancybox-settings.php:810
+#: ../easy-fancybox-settings.php:933 ../easy-fancybox-settings.php:1027
+#: ../easy-fancybox-settings.php:1136 ../easy-fancybox-settings.php:1235
+#: ../easy-fancybox-settings.php:1335 ../easy-fancybox-settings.php:1459
 msgid "Show title"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:489
-#: ../easy-fancybox-settings.php:807
-#: ../easy-fancybox-settings.php:930
-#: ../easy-fancybox-settings.php:1038
-#: ../easy-fancybox-settings.php:1137
-#: ../easy-fancybox-settings.php:1237
-#: ../easy-fancybox-settings.php:1361
+#: ../easy-fancybox-settings.php:496 ../easy-fancybox-settings.php:814
+#: ../easy-fancybox-settings.php:937 ../easy-fancybox-settings.php:1031
+#: ../easy-fancybox-settings.php:1140 ../easy-fancybox-settings.php:1239
+#: ../easy-fancybox-settings.php:1339 ../easy-fancybox-settings.php:1463
 msgid "Title Position"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:493
-#: ../easy-fancybox-settings.php:811
-#: ../easy-fancybox-settings.php:934
-#: ../easy-fancybox-settings.php:1042
-#: ../easy-fancybox-settings.php:1141
-#: ../easy-fancybox-settings.php:1241
-#: ../easy-fancybox-settings.php:1365
+#: ../easy-fancybox-settings.php:500 ../easy-fancybox-settings.php:818
+#: ../easy-fancybox-settings.php:941 ../easy-fancybox-settings.php:1035
+#: ../easy-fancybox-settings.php:1144 ../easy-fancybox-settings.php:1243
+#: ../easy-fancybox-settings.php:1343 ../easy-fancybox-settings.php:1467
 msgid "Float"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:494
-#: ../easy-fancybox-settings.php:812
-#: ../easy-fancybox-settings.php:935
-#: ../easy-fancybox-settings.php:1043
-#: ../easy-fancybox-settings.php:1142
-#: ../easy-fancybox-settings.php:1242
-#: ../easy-fancybox-settings.php:1366
+#: ../easy-fancybox-settings.php:501 ../easy-fancybox-settings.php:819
+#: ../easy-fancybox-settings.php:942 ../easy-fancybox-settings.php:1036
+#: ../easy-fancybox-settings.php:1145 ../easy-fancybox-settings.php:1244
+#: ../easy-fancybox-settings.php:1344 ../easy-fancybox-settings.php:1468
 msgid "Outside"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:495
-#: ../easy-fancybox-settings.php:813
-#: ../easy-fancybox-settings.php:936
-#: ../easy-fancybox-settings.php:1044
-#: ../easy-fancybox-settings.php:1143
-#: ../easy-fancybox-settings.php:1243
-#: ../easy-fancybox-settings.php:1367
+#: ../easy-fancybox-settings.php:502 ../easy-fancybox-settings.php:820
+#: ../easy-fancybox-settings.php:943 ../easy-fancybox-settings.php:1037
+#: ../easy-fancybox-settings.php:1146 ../easy-fancybox-settings.php:1245
+#: ../easy-fancybox-settings.php:1345 ../easy-fancybox-settings.php:1469
 msgid "Inside"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:506
-#: ../easy-fancybox-settings.php:822
-#: ../easy-fancybox-settings.php:945
-#: ../easy-fancybox-settings.php:1053
-#: ../easy-fancybox-settings.php:1152
-#: ../easy-fancybox-settings.php:1252
-#: ../easy-fancybox-settings.php:1376
+#: ../easy-fancybox-settings.php:513 ../easy-fancybox-settings.php:829
+#: ../easy-fancybox-settings.php:952 ../easy-fancybox-settings.php:1047
+#: ../easy-fancybox-settings.php:1155 ../easy-fancybox-settings.php:1254
+#: ../easy-fancybox-settings.php:1354 ../easy-fancybox-settings.php:1478
 msgid "Allow title from thumbnail alt tag"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:510
-#: ../easy-fancybox-settings.php:599
+#: ../easy-fancybox-settings.php:517 ../easy-fancybox-settings.php:606
 msgid "Advanced"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:514
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:227
+#: ../easy-fancybox-settings.php:521
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:228
 msgid "Hide/show title on mouse hover action"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:521
+#: ../easy-fancybox-settings.php:528
 msgid "Gallery"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:525
+#: ../easy-fancybox-settings.php:532
 msgid "Autogallery"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:530
+#: ../easy-fancybox-settings.php:537
 msgid "Disabled"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:531
+#: ../easy-fancybox-settings.php:538
 msgid "WordPress galleries only"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:532
+#: ../easy-fancybox-settings.php:539
 msgid "All in one gallery"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:535
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:218
-msgid "When disabled, you can use the rel attribute to manually group image links together."
-msgstr ""
-
-#: ../easy-fancybox-settings.php:535
-msgid "Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site."
+#: ../easy-fancybox-settings.php:542
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:219
+msgid ""
+"When disabled, you can use the rel attribute to manually group image links "
+"together."
 msgstr ""
 
 #: ../easy-fancybox-settings.php:542
-msgid "Show the gallery navigation arrows"
+msgid ""
+"Leave the mousewheel option (below) unchecked when you do not use FancyBox "
+"for galleries on your site."
 msgstr ""
 
 #: ../easy-fancybox-settings.php:549
-msgid "Arrow key strokes browse the gallery"
+msgid "Show the gallery navigation arrows"
 msgstr ""
 
 #: ../easy-fancybox-settings.php:556
-msgid "Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action."
+msgid "Arrow key strokes browse the gallery"
 msgstr ""
 
 #: ../easy-fancybox-settings.php:563
+msgid ""
+"Include the Mousewheel jQuery extension script to allow gallery browsing by "
+"mousewheel action."
+msgstr ""
+
+#: ../easy-fancybox-settings.php:570
 msgid "Make galleries cyclic, allowing you to keep pressing next/back."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:567
+#: ../easy-fancybox-settings.php:574
 msgid "Change speed"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:579
+#: ../easy-fancybox-settings.php:586
 msgid "Fade speed"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:595
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:216
+#: ../easy-fancybox-settings.php:602
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:217
 msgid "Galleries per Section (below)"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:595
-msgid "This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Autogallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme."
+#: ../easy-fancybox-settings.php:602
+msgid ""
+"This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> "
+"and/or <em>Autogallery</em> is set to <em>Galleries per Section</em>. Adapt "
+"it to conform with your theme."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:595
-msgid "Examples: If your theme wraps post content in a div with class post, change this value to \"div.post\". If you only want to group images in a WordPress gallery together, use \"div.gallery\". If you want to include images in a sidebar with ID primary, add \", #primary\"."
+#: ../easy-fancybox-settings.php:602
+msgid ""
+"Examples: If your theme wraps post content in a div with class post, change "
+"this value to \"div.post\". If you only want to group images in a WordPress "
+"gallery together, use \"div.gallery\". If you want to include images in a "
+"sidebar with ID primary, add \", #primary\"."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:595
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:229
-msgid "Hide/show title on mouse hover action works best with Overlay title position."
+#: ../easy-fancybox-settings.php:602
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:230
+msgid ""
+"Hide/show title on mouse hover action works best with Overlay title position."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:595
+#: ../easy-fancybox-settings.php:602
 msgid "The slideshow uses a fixed 6, 8 or 12 second pause per image."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:595
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:252
+#: ../easy-fancybox-settings.php:602
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:253
 msgid "(6 seconds)"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:595
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:253
+#: ../easy-fancybox-settings.php:602
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:254
 msgid "(8 seconds)"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:595
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:254
+#: ../easy-fancybox-settings.php:602
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:255
 msgid "(12 seconds)"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:603
+#: ../easy-fancybox-settings.php:610
 msgid "Slideshow"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:631
-msgid "To make inline content open in an overlay, wrap that content in a div with a unique ID, create a link with target \"#uniqueID\" and give it a class \"fancybox-inline\" attribute."
+#: ../easy-fancybox-settings.php:638
+msgid ""
+"To make inline content open in an overlay, wrap that content in a div with a "
+"unique ID, create a link with target \"#uniqueID\" and give it a class "
+"\"fancybox-inline\" attribute."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:649
-msgid "Try to adjust size to inline/html content. If unchecked or size cannot be determined, the default dimensions will be used."
+#: ../easy-fancybox-settings.php:656
+msgid ""
+"Try to adjust size to inline/html content. If unchecked or size cannot be "
+"determined, the default dimensions will be used."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:653
-#: ../easy-fancybox-settings.php:1309
+#: ../easy-fancybox-settings.php:660 ../easy-fancybox-settings.php:1411
 msgid "Scrolling"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:657
-#: ../easy-fancybox-settings.php:1313
+#: ../easy-fancybox-settings.php:664 ../easy-fancybox-settings.php:1415
 msgid "Auto"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:658
-#: ../easy-fancybox-settings.php:1314
+#: ../easy-fancybox-settings.php:665 ../easy-fancybox-settings.php:1416
 msgid "Always"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:659
-#: ../easy-fancybox-settings.php:1315
+#: ../easy-fancybox-settings.php:666 ../easy-fancybox-settings.php:1417
 msgid "Never"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:662
-#: ../easy-fancybox-settings.php:1318
+#: ../easy-fancybox-settings.php:669 ../easy-fancybox-settings.php:1420
 msgid "Define scrolling and scrollbar visibility."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:741
-msgid "To make any PDF document file open in an overlay, switch on Autodetect or use the class \"fancybox-pdf\" for its link."
+#: ../easy-fancybox-settings.php:748
+msgid ""
+"To make any PDF document file open in an overlay, switch on Autodetect or "
+"use the class \"fancybox-pdf\" for its link."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:866
-msgid "To make any Flash (.swf) file open in an overlay, switch on Autodetect or use the class \"fancybox-swf\" for its link."
+#: ../easy-fancybox-settings.php:873
+msgid ""
+"To make any Flash (.swf) file open in an overlay, switch on Autodetect or "
+"use the class \"fancybox-swf\" for its link."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:960
-msgid "To make any YouTube movie open in an overlay, switch on Autodetect or use the class \"fancybox-youtube\" for its link."
+#: ../easy-fancybox-settings.php:967
+msgid ""
+"To make any SVG (.svg) file open in an overlay, switch on Autodetect or use "
+"the class \"fancybox-svg\" for its link."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:978
+#: ../easy-fancybox-settings.php:1062
+msgid ""
+"To make any YouTube movie open in an overlay, switch on Autodetect or use "
+"the class \"fancybox-youtube\" for its link."
+msgstr ""
+
+#: ../easy-fancybox-settings.php:1080
 msgid "Autodetect Short links"
 msgstr ""
 
-#: ../easy-fancybox-settings.php:1068
-msgid "To make any Vimeo movie open in an overlay, switch on Autodetect or use the class \"fancybox-vimeo\" for its link."
+#: ../easy-fancybox-settings.php:1170
+msgid ""
+"To make any Vimeo movie open in an overlay, switch on Autodetect or use the "
+"class \"fancybox-vimeo\" for its link."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:1168
-msgid "To make any Dailymotion movie open in an overlay, switch on Autodetect or use the class \"fancybox-dailymotion\" for its link."
+#: ../easy-fancybox-settings.php:1270
+msgid ""
+"To make any Dailymotion movie open in an overlay, switch on Autodetect or "
+"use the class \"fancybox-dailymotion\" for its link."
 msgstr ""
 
-#: ../easy-fancybox-settings.php:1294
-msgid "To make a website or HTML document open in an overlay, use the class \"fancybox-iframe\" for its link."
+#: ../easy-fancybox-settings.php:1396
+msgid ""
+"To make a website or HTML document open in an overlay, use the class "
+"\"fancybox-iframe\" for its link."
 msgstr ""
 
 #: ../easy-fancybox-class.php:298
@@ -635,29 +608,39 @@ msgstr ""
 
 #: ../easy-fancybox-class.php:298
 #, php-format
-msgid "The options in this section are provided by the plugin %s and determine the <strong>Media Lightbox</strong> overlay appearance and behaviour controlled by %s."
+msgid ""
+"The options in this section are provided by the plugin %s and determine the "
+"<strong>Media Lightbox</strong> overlay appearance and behaviour controlled "
+"by %s."
 msgstr ""
 
 #: ../easy-fancybox-class.php:298
 msgid "Easy FancyBox"
 msgstr ""
 
-#: ../easy-fancybox-class.php:298
-#: ../easy-fancybox-class.php:494
-#: ../easy-fancybox-class.php:539
+#: ../easy-fancybox-class.php:298 ../easy-fancybox-class.php:510
+#: ../easy-fancybox-class.php:554
 msgid "FancyBox"
 msgstr ""
 
 #: ../easy-fancybox-class.php:298
-msgid "First enable each sub-section that you need. Then save and come back to adjust its specific settings."
+msgid ""
+"First enable each sub-section that you need. Then save and come back to "
+"adjust its specific settings."
 msgstr ""
 
 #: ../easy-fancybox-class.php:298
-msgid "Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site."
+msgid ""
+"Note: Each additional sub-section and features like <em>Auto-detection</em>, "
+"<em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) "
+"will have some extra impact on client-side page speed. Enable only those sub-"
+"sections and options that you actually need on your site."
 msgstr ""
 
 #: ../easy-fancybox-class.php:298
-msgid "Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability."
+msgid ""
+"Some setting like Transition options are unavailable for SWF video, PDF and "
+"iFrame content to ensure browser compatibility and readability."
 msgstr ""
 
 #: ../easy-fancybox-class.php:342
@@ -672,32 +655,34 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: ../easy-fancybox-class.php:539
+#: ../easy-fancybox-class.php:554
 msgid "Easy FancyBox Settings"
 msgstr ""
 
-#: ../easy-fancybox-class.php:550
+#: ../easy-fancybox-class.php:565
 msgid "Sections"
 msgstr ""
 
-#: ../easy-fancybox-class.php:587
+#: ../easy-fancybox-class.php:602
 msgid "Support"
 msgstr ""
 
-#: ../easy-fancybox-class.php:588
+#: ../easy-fancybox-class.php:603
 msgid "Resources"
 msgstr ""
 
-#: ../easy-fancybox-class.php:589
+#: ../easy-fancybox-class.php:604
 msgid "Discussion"
 msgstr ""
 
-#: ../easy-fancybox-class.php:590
+#: ../easy-fancybox-class.php:605
 msgid "Credits"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:46
-msgid "Thank you for purchasing the Easy FancyBox - Pro extension. New options are available."
+msgid ""
+"Thank you for purchasing the Easy FancyBox - Pro extension. New options are "
+"available."
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:46
@@ -717,244 +702,256 @@ msgid "First SWF link"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:55
-msgid "First YouTube link "
+msgid "First SVG link"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:56
-msgid "First Vimeo link "
+msgid "First YouTube link "
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:57
-msgid "First Dailymotion link "
+msgid "First Vimeo link "
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:58
-msgid "First iFrame link"
+msgid "First Dailymotion link "
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:59
+msgid "First iFrame link"
+msgstr ""
+
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:60
 msgid "First of any link"
 msgstr ""
 
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:144
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:145
 msgid "Links inside Section(s) only (below)"
-msgstr ""
-
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:150
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:183
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:268
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:301
-msgid "easeInQuad"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:151
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:184
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:269
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:302
-msgid "easeOutQuad"
+msgid "easeInQuad"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:152
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:185
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:270
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:303
-msgid "easeInOutQuad"
+msgid "easeOutQuad"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:153
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:186
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:271
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:304
-msgid "easeInCubic"
+msgid "easeInOutQuad"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:154
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:187
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:272
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:305
-msgid "easeOutCubic"
+msgid "easeInCubic"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:155
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:188
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:273
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:306
-msgid "easeInOutCubic"
+msgid "easeOutCubic"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:156
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:189
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:274
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:307
-msgid "easeInQuart"
+msgid "easeInOutCubic"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:157
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:190
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:275
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:308
-msgid "easeOutQuart"
+msgid "easeInQuart"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:158
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:191
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:276
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:309
-msgid "easeInOutQuart"
+msgid "easeOutQuart"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:159
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:192
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:277
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:310
-msgid "easeInQuint"
+msgid "easeInOutQuart"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:160
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:193
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:278
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:311
-msgid "easeOutQuint"
+msgid "easeInQuint"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:161
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:194
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:279
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:312
-msgid "easeInOutQuint"
+msgid "easeOutQuint"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:162
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:195
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:280
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:313
-msgid "easeInSine"
+msgid "easeInOutQuint"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:163
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:196
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:281
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:314
-msgid "easeOutSine"
+msgid "easeInSine"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:164
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:197
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:282
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:315
-msgid "easeInOutSine"
+msgid "easeOutSine"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:165
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:198
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:283
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:316
-msgid "easeInExpo"
+msgid "easeInOutSine"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:166
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:199
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:284
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:317
-msgid "easeOutExpo"
+msgid "easeInExpo"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:167
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:200
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:285
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:318
-msgid "easeInOutExpo"
+msgid "easeOutExpo"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:168
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:201
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:286
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:319
-msgid "easeInCirc"
+msgid "easeInOutExpo"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:169
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:202
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:287
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:320
-msgid "easeOutCirc"
+msgid "easeInCirc"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:170
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:203
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:288
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:321
-msgid "easeInOutCirc"
+msgid "easeOutCirc"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:171
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:204
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:289
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:322
-msgid "easeInElastic"
+msgid "easeInOutCirc"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:172
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:205
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:290
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:323
-msgid "easeOutElastic"
+msgid "easeInElastic"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:173
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:206
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:291
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:324
-msgid "easeInOutElastic"
+msgid "easeOutElastic"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:174
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:207
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:292
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:325
-msgid "easeInOutBack"
+msgid "easeInOutElastic"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:175
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:208
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:293
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:326
-msgid "easeInBounce"
+msgid "easeInOutBack"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:176
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:209
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:294
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:327
-msgid "easeOutBounce"
+msgid "easeInBounce"
 msgstr ""
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:177
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:210
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:295
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:328
+msgid "easeOutBounce"
+msgstr ""
+
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:178
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:211
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:296
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:329
 msgid "easeInOutBounce"
 msgstr ""
 
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:237
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:238
 msgid "Section(s)"
 msgstr ""
 
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:243
-msgid "This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme."
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:244
+msgid ""
+"This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> "
+"and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt "
+"it to conform with your theme."
 msgstr ""
 
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:243
-msgid "Examples: If your theme wraps post content in a div with class post, change this value to \"div.post\". If you want to include images in a sidebar with ID primary, add \", div#primary\" or \"aside#primary\" for html5 themes. If you only want to group images in a WordPress gallery together, use \"div.gallery\". If you want to include images in a sidebar with ID primary, add \", #primary\"."
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:244
+msgid ""
+"Examples: If your theme wraps post content in a div with class post, change "
+"this value to \"div.post\". If you want to include images in a sidebar with "
+"ID primary, add \", div#primary\" or \"aside#primary\" for html5 themes. If "
+"you only want to group images in a WordPress gallery together, use \"div."
+"gallery\". If you want to include images in a sidebar with ID primary, add "
+"\", #primary\"."
 msgstr ""
 
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:252
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:253
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:254
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:255
 msgid "Gallery Auto-rotation"
 msgstr ""
 
-#: ../../easy-fancybox-pro/easy-fancybox-pro.php:256
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:257
 msgid "Auto-rotation uses a fixed 6, 8 or 12 second pause per image."
 msgstr ""
-
