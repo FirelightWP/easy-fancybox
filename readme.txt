@@ -1,7 +1,7 @@
 === Easy FancyBox ===
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e4%2e9&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR
-Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, iframe, swf, jquery
+Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery
 Requires at least: 3.3
 Tested up to: 3.6
 Stable tag: 1.5.0
@@ -44,6 +44,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 
 - **Dutch** * Author: [R.A. van Hagen](http://status301.net) (version 1.5.0)
 - **French** * Author: Emmanuel Maillard (version 1.3.4.9)
+- **Gujarati** * Author: [Apoto Team](http://www.apoto.com) (version 1.5.0)
 - **Hindi** * Author: [Outshine Solutions](http://outshinesolutions.com) (version 1.3.4.9)
 - **Indonesian** * Author: [Nasrulhaq Muiz](http://al-badar.net) (version 1.3.4.9)
 - **Lithuanian** * Author: [Vincent G](http://www.host1free.com) (version 1.3.4.9)
@@ -118,6 +119,19 @@ Please follow the trouble shooting steps on [Other Notes](http://wordpress.org/e
 
 Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
 
+= The lightbox does not look good on mobile devices. What can I do about that? =
+
+The FancyBox 1.3.4 script that is used in thsi plugin was not developed with mobile devices in mind. The only way around this issue is currently to disable FancyBox for small screen sizes. You can do this by adding a text widget in your sidebar with the following code snippet.
+
+`
+<script type="text/javascript">
+if(window.innerWidth < 500 || window.innerHeight < 500 || window.outerWidth < 500 || window.outerHeight < 500 ) {
+  jQuery(document).off('ready gform_post_render', easy_fancybox_handler);
+};
+</script>
+`
+
+Tweak the value 500 to target other screen sizes.
 
 = Can I make a slideshow from my gallery? =
 
