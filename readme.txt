@@ -288,21 +288,25 @@ just add `<param name="wmode" value="opaque" />` among the other parameters. Or 
 just change that `wmode="window"` to `wmode="opaque"` or add the attribute if it is missing.
 
 
-= Can I display INLINE content in a FancyBox overlay ? =
+= How can I display INLINE content in a FancyBox overlay ? =
 
-Yes. Wrap the inline content in
+First go to your **Settings > Media** admin page and activate the **Inline** option under the FancyBox settings. After saving, the amin page will show a new section called Inline where you can tweak its parameters.
+
+Next, open your page/post for editing in the HTML tab and wrap the inline content in
 `
 <div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1" class="hentry" style="width:460px;height:380px;">
 ...inline content here...
 </div></div>
 `
 
-Then place a FancyBox link anywhere else in the post/page content to the inline content. Something like
+Then place a FancyBox link tag with class attribute "fancybox-inline" anywhere else in the post/page content that will point to the inline content like
 `
-<a href="#fancyboxID-1" class="fancybox">Read my inline content</a>
+<a href="#fancyboxID-1" class="fancybox-inline">Read my inline content</a>
 `
 
 NOTE: The wrapping divs ID *must* be unique and it must correspond with the links HREF with a # in front of it. When using the above example for more FancyBox inline content (hidden div + opening link) combinations on one page, give the second one the ID  fancyboxID-2 and so on...
+
+NOTE 2: If you find that the inline contect shown in FancyBox is styled very different than the rests of the page content, then you might want to change the div tag attribute `class="hentry"` to something else that matches your theme. Find out what class name is used for the main content on your site and re-use that.
 
 
 = Can I display a contact form in FancyBox? =
