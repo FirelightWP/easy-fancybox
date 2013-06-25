@@ -40,6 +40,10 @@ $if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? stripslashes($_SERVER['
 
 header('Content-type: text/css; charset=utf-8', true);
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $last_modified_time) . ' GMT'); 
+header('Accept-Ranges: bytes');
+header('Pragma: public');
+header('Cache-Control: maxage=' . $expires);
+header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
 if ( function_exists(md5_file) ) {
 	$etag = md5_file($file); 
 	header('Etag: ' . $etag);
@@ -53,15 +57,12 @@ if ( function_exists(md5_file) ) {
 		    }
 		}
 	}
-} elseif ( $if_modified_since && $last_modified_time && strtotime($if_modified_since) == $last_modified_time ) {
+} 
+if ( $if_modified_since && $last_modified_time && strtotime($if_modified_since) == $last_modified_time ) {
 	// if we've got a not modified since match, answer not modified header and hang up
 	header('HTTP/1.1 304 Not Modified'); 
 	exit;
 }
-header('Accept-Ranges: bytes');
-header('Pragma: public');
-header('Cache-Control: maxage=' . $expires);
-header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
 
 /* generate content */
 ob_start("iepathfix_compress");
