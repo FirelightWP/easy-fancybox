@@ -449,10 +449,13 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.5.0 =
-Many new options. Speed improvements: stylesheet browser caching, metadata.js compression. Security fix. Dutch, Indonesian and Polish translations. 
+= 1.5.1 =
+jQuery 1.9+ compatibility. 
 
 == Changelog ==
+
+= 1.5.1 =
+* FIX: jQuery 1.9+ compatibility
 
 = 1.5.0 =
 * FIX: CSS3 box-sizing issue (Twenty Thirteen) misplacing close button

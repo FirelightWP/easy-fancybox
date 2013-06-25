@@ -170,9 +170,9 @@ class easyFancyBox_Options extends easyFancyBox {
 							'id' => '',
 							'input' => 'checkbox',
 							'hide' => true,
-							'status' => 'disabled',
+							//'status' => 'disabled',
 							'default' => '',
-							'description' => __('Spotlight effect','easy-fancybox') . '. <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => __('Spotlight effect','easy-fancybox') //. '. <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),

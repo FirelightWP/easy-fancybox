@@ -27,22 +27,34 @@ function iepathfix_compress($buffer) {
 	return $buffer;
 }
 
-/* our original stylesheet
-$version = preg_match( '`^\d{1,2}\.\d{1,2}(\.\d{1,2})?$`' , $_GET['ver'] ) ? $_GET['ver'] : '1.3.4';
-$file = dirname(__FILE__) . '/fancybox/jquery.fancybox-' . htmlspecialchars( $version , ENT_QUOTES) . '.css'; */
+/* our original stylesheet */
 $file = dirname(__FILE__) . '/fancybox/jquery.fancybox-1.3.5.css';
 		
 /* set up response headers, allowing browser caching */
 $expires = 60*60*24*30; // seconds, minutes, hours, days
 $last_modified_time = ( filemtime($file) < filemtime(__FILE__) ) ? filemtime(__FILE__) : filemtime($file);
-$etag = md5_file($file); 
+$if_modified_since = isset($_SERVER['HTTP_IF_MODIFIED_SINCE']) ? stripslashes($_SERVER['HTTP_IF_MODIFIED_SINCE']) 
+	: false;
+$if_none_match = isset($_SERVER['HTTP_IF_NONE_MATCH']) ? stripslashes($_SERVER['HTTP_IF_NONE_MATCH']) 
+	: false;
 
 header('Content-type: text/css; charset=utf-8', true);
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $last_modified_time) . ' GMT'); 
-header('Etag: ' . $etag);
-
-if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $last_modified_time || @trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) {
-	// if we've got an etag match, answer not modified header and hang up
+if ( function_exists(md5_file) ) {
+	$etag = md5_file($file); 
+	header('Etag: ' . $etag);
+	if ( $if_none_match ) {
+		$tags = split( ", ", $if_none_match );
+		foreach( $tags as $tag ) {
+		    if( $tag == $etag ) {
+			// if we've got an etag match, answer not modified header and hang up
+			header('HTTP/1.1 304 Not Modified'); 
+			exit;
+		    }
+		}
+	}
+} elseif ( $if_modified_since && $last_modified_time && strtotime($if_modified_since) == $last_modified_time ) {
+	// if we've got a not modified since match, answer not modified header and hang up
 	header('HTTP/1.1 304 Not Modified'); 
 	exit;
 }
@@ -55,14 +67,11 @@ header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
 ob_start("iepathfix_compress");
 
   if (!file_exists($file)) {
-	echo '/* stylesheet not found */';
+	echo '/* Warning: stylesheet not found! */';
   } else {
 	/* the css file */
 	include( $file );
   }
-  
-  /* extras */
-  //echo '.fancybox-hidden{display:none}';
 
 ob_end_flush();
 

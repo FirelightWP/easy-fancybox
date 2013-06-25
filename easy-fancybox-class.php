@@ -21,6 +21,7 @@ class easyFancyBox {
 	<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . ' using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://status301.net/wordpress-plugins/easy-fancybox/) -->';
 
 		// check for any enabled sections
+		//if(!empty(self::$options['Global']['options']['Enable']['options']))
 		foreach (self::$options['Global']['options']['Enable']['options'] as $value) {
 			// anything enabled?
 			if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
@@ -31,13 +32,13 @@ class easyFancyBox {
 		// and abort when none are active
 		if (!self::$add_scripts) {
 			echo '
-	<!-- Nothing enabled under Settings > Media > FancyBox, please disable the plugin if you are not using it. -->
+	<!-- Nothing enabled under Settings > Media > FancyBox. -->
 
 	';
 			return;
 		}
 
-		wp_print_scripts('jquery'); // using print_scripts here instead of enqueue because else the order will be wrong... TODO find a way to include jquery before the main script while leaving the fancybox.js for last...
+		//wp_print_scripts('jquery'); // using print_scripts here instead of enqueue because else the order will be wrong...
 
 		// begin output FancyBox settings
 		echo '
@@ -421,7 +422,7 @@ class easyFancyBox {
 		wp_deregister_script('jquery_fancybox');
 		wp_deregister_script('jquery-fancybox');
 		// register main fancybox script
-		wp_register_script('jquery-fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', array('jquery'), FANCYBOX_VERSION, true);
+		wp_register_script('jquery-fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.js', array('jquery'), EASY_FANCYBOX_VERSION, true);
 
 		// easing in IMG settings?
 		if ( ( '' == get_option( self::$options['IMG']['options']['easingIn']['id'], self::$options['IMG']['options']['easingIn']['default']) || 'linear' == get_option( self::$options['IMG']['options']['easingIn']['id'], self::$options['IMG']['options']['easingIn']['default']) ) && ( '' == get_option( self::$options['IMG']['options']['easingOut']['id'], self::$options['IMG']['options']['easingOut']['default']) || 'linear' == get_option( self::$options['IMG']['options']['easingOut']['id'], self::$options['IMG']['options']['easingOut']['default']) ) ) {
@@ -469,20 +470,9 @@ class easyFancyBox {
 		wp_enqueue_style('easy-fancybox-css', EASY_FANCYBOX_PLUGINURL.'easy-fancybox.css.php', false, FANCYBOX_VERSION, 'screen');
 	}
 
-	static function enqueue_header_scripts() {
-		// TODO: google hosted jquery optional ++ safemode
-		//wp_deregister_script('jquery');
-		//wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", false, null);
-		//wp_enqueue_script('jquery');
-		
-		wp_enqueue_script('jquery-fancybox');
-	}
-
 	static function enqueue_footer_scripts() {
-		if (!self::$add_scripts) { // abort mission, there is no need for any script files
-			echo '<!-- no fancybox scripts needed -->';
+		if (!self::$add_scripts)
 			return;
-		}
 
 		wp_enqueue_script('jquery-fancybox');
 		wp_enqueue_script('jquery-easing');
@@ -559,8 +549,6 @@ jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
 		
 		add_filter( 'get_user_option_closedpostboxes_'.self::$pagehook, array(__CLASS__, 'closed_meta_boxes') );
 		
-		//add_thickbox(); // do we need that?
-		
 		add_meta_box('submitdiv', __('Sections','easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_submit'), self::$pagehook, 'side', 'high');
 		add_meta_box('globaldiv', __('Global settings', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_global'), self::$pagehook, 'normal', 'high');
 		add_meta_box('imgdiv', __('Images', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_img'), self::$pagehook, 'normal', 'normal');
@@ -596,7 +584,7 @@ jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
 		wp_enqueue_script('postbox');
 	
 		//add several metaboxes now, all metaboxes registered during load page can be switched off/on at "Screen Options" automatically, nothing special to do therefore
-		//add_meta_box('advanceddiv', __('Advanced Options', 'skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_advanced'), self::$pagehook, 'normal', 'core'); // make these pro options???
+		//add_meta_box('advanceddiv', __('Advanced Options', 'skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_advanced'), self::$pagehook, 'normal', 'core'); 
 		
 		add_meta_box('supportdiv', __('Support','easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_support'), self::$pagehook, 'side', 'core');
 		add_meta_box('resourcesdiv', __('Resources','skype-online-status'), array(__CLASS__.'_Admin', 'meta_box_resources'), self::$pagehook, 'side', 'low');
@@ -617,9 +605,9 @@ jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
 		add_action('admin_init', array(__CLASS__, 'admin_init'));
 
 		add_action('init', array(__CLASS__, 'init'));
-		add_action('wp_print_scripts', array(__CLASS__, 'register_scripts'), 999);
 		add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueue_styles'));
 		add_action('wp_head', array(__CLASS__, 'main_script'), 999);
+		add_action('wp_print_scripts', array(__CLASS__, 'register_scripts'), 999);
 		add_action('wp_footer', array(__CLASS__, 'enqueue_footer_scripts'));
 		add_action('wp_footer', array(__CLASS__, 'on_ready'), 999);
 	}

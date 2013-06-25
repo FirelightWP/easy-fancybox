@@ -18,9 +18,9 @@
  *
  * Line 818: qouted attribute selector, RavanH ravanhagen@gmail.com 
  * Line 39, 620 and 1123: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
- * Line 37: patched for jQuery 1.9+ compat, JFK on http://stackoverflow.com/questions/14344289/
+ * Patched for jQuery 1.9+ compat by Sabel http://sabel.bluegfx.de/wordpress/wp-content/uploads/2013/03/jquery.fancybox-1.3.4.js
  * 
- * Added SVG support. Patch by Simon Maillard simon@ogesta.fr
+ * Added SVG support by Simon Maillard simon@ogesta.fr
  */
 ;(function($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
@@ -33,7 +33,6 @@
 
 		titleHeight = 0, titleStr = '', start_pos, final_pos, busy = false, fx = $.extend($('<div/>')[0], { prop: 0 }),
 
-		/* patched for jQuery 1.9+ according to JFK's method on http://stackoverflow.com/questions/14344289/ */
 		isIE6 = navigator.userAgent.match(/msie [6]/i) && !window.XMLHttpRequest,
 		
 		isTouch = document.createTouch !== undefined,
@@ -345,7 +344,7 @@
 			loading.hide();
 
 			if (wrap.is(":visible") && false === currentOpts.onCleanup(currentArray, currentIndex, currentOpts)) {
-				$.event.trigger('fancybox-cancel');
+				$('.fancybox-inline-tmp').trigger('fancybox-cancel');
 
 				busy = false;
 				return;
@@ -412,7 +411,7 @@
 						content.html( tmp.contents() ).fadeTo(currentOpts.changeFade, 1, _finish);
 					};
 
-					$.event.trigger('fancybox-change');
+					$('.fancybox-inline-tmp').trigger('fancybox-change');
 
 					content
 						.empty()
@@ -937,7 +936,7 @@
 
 		busy = true;
 
-		$.event.trigger('fancybox-cancel');
+		$('.fancybox-inline-tmp').trigger('fancybox-cancel');
 
 		_abort();
 
@@ -982,7 +981,7 @@
 			title.empty().hide();
 			wrap.hide();
 
-			$.event.trigger('fancybox-cleanup');
+			$('.fancybox-inline-tmp').trigger('fancybox-cleanup');
 
 			content.empty();
 
