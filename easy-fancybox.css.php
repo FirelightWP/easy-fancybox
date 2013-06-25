@@ -44,7 +44,7 @@ header('Accept-Ranges: bytes');
 header('Pragma: public');
 header('Cache-Control: maxage=' . $expires);
 header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$expires) . ' GMT');
-if ( function_exists(md5_file) ) {
+if ( function_exists('md5_file') ) {
 	$etag = md5_file($file); 
 	header('Etag: ' . $etag);
 	if ( $if_none_match ) {
