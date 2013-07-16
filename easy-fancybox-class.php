@@ -500,8 +500,8 @@ jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
 
 		self::register_settings( self::$options );
 	
-		// test with media upload resize...
-		add_action( 'pre-upload-ui', 'media_upload_max_image_resize' );
+		// test with media upload resize... TODO : fix - because does not work anymore in the new uploader
+		//add_action( 'pre-upload-ui', 'media_upload_max_image_resize' );
 	}
 
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
@@ -521,8 +521,8 @@ jQuery(document).on(\'ready gform_post_render\', easy_fancybox_handler );
 
 	static function init() {
 
-		if ( is_admin() ) {			
-		}
+//		if ( is_admin() ) {			
+//		}
 			
 		require_once(EASY_FANCYBOX_PLUGINDIR . 'easy-fancybox-settings.php');
 		
