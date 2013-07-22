@@ -450,12 +450,14 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 == Upgrade Notice ==
 
 = 1.5.1 =
-jQuery 1.9+ compatibility. 
+jQuery 1.9+ compatibility plus Jetpack's Infinite Scroll support.
 
 == Changelog ==
 
 = 1.5.1 =
 * FIX: jQuery 1.9+ compatibility
+* Dropping support for gForms again -- "Cannot convert 'c' to object" error in combinaition with some older gForms version :(
+* NEW: support for Infinite Scroll by Jetpack
 
 = 1.5.0 =
 * FIX: CSS3 box-sizing issue (Twenty Thirteen) misplacing close button
