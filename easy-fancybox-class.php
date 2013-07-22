@@ -485,7 +485,7 @@ class easyFancyBox {
 			return;
 		
 		// 'gform_post_render' for gForms content triggers an error... Why?
-		// 'post-load' is for Infinite Scroll by JetPack
+		// 'post-load' is for Infinite Scroll by JetPack 
 		echo '
 <script type="text/javascript">
 jQuery(document).on(\'ready post-load\', easy_fancybox_handler() );
