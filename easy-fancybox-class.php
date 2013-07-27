@@ -488,7 +488,7 @@ class easyFancyBox {
 		// 'post-load' is for Infinite Scroll by JetPack 
 		echo '
 <script type="text/javascript">
-jQuery(document).on(\'ready post-load\', easy_fancybox_handler() );
+jQuery(document).on(\'ready post-load\', easy_fancybox_handler );
 </script>
 ';
 	}

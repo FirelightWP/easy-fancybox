@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -453,6 +453,9 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 jQuery 1.9+ compatibility plus Jetpack's Infinite Scroll support.
 
 == Changelog ==
+
+= 1.5.2 =
+* BUGFIX: easy_fancybox_handler() in combo with trigger('click') causes Uncaught Exception script error
 
 = 1.5.1 =
 * FIX: jQuery 1.9+ compatibility
