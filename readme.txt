@@ -52,7 +52,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 - **Romanian** * Author: [Web Geek Sciense](http://webhostinggeeks.com/) (version 1.3.4.9)
 - **Slovak** Author: [Branco Radenovich (WebHostingGeeks.com)](http://webhostinggeeks.com/blog/) (version: 1.3.4.9)
 - **Spanish** * Author: [David Pérez](http://www.closemarketing.es) (version 1.3.4.9)
-- **Turkish** * Author: [Hakan Er](http://hakanertr.wordpress.com/) (version: 1.5.0)
+- **Turkish** * Author: [Hakan Er](http://hakanertr.wordpress.com/) (version: 1.5.2)
 - **Ukrainian** * Author: [Cmd Software](http://www.cmd-soft.com) (version: 1.3.4.9)
 
 == Installation ==
