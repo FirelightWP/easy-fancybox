@@ -50,7 +50,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 - **Lithuanian** * Author: [Vincent G](http://www.host1free.com) (version 1.3.4.9)
 - **Polish** * Author: Kamil Szymański (version 1.3.4.9)
 - **Romanian** * Author: [Web Geek Sciense](http://webhostinggeeks.com/) (version 1.3.4.9)
-- **Serbo-Croatian** Author: [Andrijana Nikolic from WebHosting Geeks](http://webhostinggeeks.com/wordpresshosting.html) (version 1.5.0) + translation of this page on http://science.webhostinggeeks.com/easy-fancybox
+- **Serbo-Croatian** * Author: [Andrijana Nikolic from WebHosting Geeks](http://webhostinggeeks.com/wordpresshosting.html) (version 1.5.2) + translation of this page on http://science.webhostinggeeks.com/easy-fancybox
 - **Slovak** Author: [Branco Radenovich (WebHostingGeeks.com)](http://webhostinggeeks.com/blog/) (version: 1.3.4.9)
 - **Spanish** * Author: [David Pérez](http://www.closemarketing.es) (version 1.3.4.9)
 - **Turkish** * Author: [Hakan Er](http://hakanertr.wordpress.com/) (version: 1.5.2)
