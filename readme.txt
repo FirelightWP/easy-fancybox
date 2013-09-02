@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -123,17 +123,18 @@ Yes, but _only_ if you used the option **Link thumbnails to: Image File** when i
 
 = The lightbox does not look good on mobile devices. What can I do about that? =
 
-The FancyBox 1.3.4 script that is used in thsi plugin was not developed with mobile devices in mind. The only way around this issue is currently to disable FancyBox for small screen sizes. You can do this by adding a text widget in your sidebar with the following code snippet.
+The FancyBox 1.3.4 script that is used in this plugin was not developed with mobile devices in mind. The only way around this issue is currently to disable FancyBox for small screen sizes. You can do this by adding a text widget in your sidebar with the following code snippet.
 
 `
 <script type="text/javascript">
-if(window.innerWidth < 500 || window.innerHeight < 500 || window.outerWidth < 500 || window.outerHeight < 500 ) {
-  jQuery(document).off('ready gform_post_render', easy_fancybox_handler);
+var pixelRatio = window.devicePixelRatio || 1;
+if(window.innerWidth/pixelRatio < 641 ) {
+  easy_fancybox_handler = null;
 };
 </script>
 `
 
-Tweak the value 500 to target other screen sizes.
+Tweak the value 641 to target other screen sizes.
 
 = Can I make a slideshow from my gallery? =
 
@@ -451,10 +452,13 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.5.1 =
-jQuery 1.9+ compatibility plus Jetpack's Infinite Scroll support.
+= 1.5.3 =
+New approach for IE alphaimageloader path fix with less compatibility issues.
 
 == Changelog ==
+
+= 1.5.3 =
+* New stylesheet IE alphaimageloader path fix approach
 
 = 1.5.2 =
 * BUGFIX: easy_fancybox_handler() in combo with trigger('click') causes Uncaught Exception script error
