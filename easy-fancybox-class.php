@@ -509,7 +509,7 @@ echo '
 	function enqueue_styles() {
 		// register style
 		wp_dequeue_style('fancybox');
-		wp_enqueue_style('fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.css', false, FANCYBOX_VERSION, 'screen');
+		wp_enqueue_style('fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.css', false, EASY_FANCYBOX_VERSION, 'screen');
 	}
 
 	static function enqueue_footer_scripts() {
