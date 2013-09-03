@@ -355,7 +355,7 @@
 
 			$(content.add( overlay )).unbind();
 
-			$(window).unbind("resize.fb scroll.fb mousewheel.fb");
+			$(window).unbind("resize.fb scroll.fb");
 			$(document).unbind('keydown.fb');
 
 			if (wrap.is(":visible") && currentOpts.titlePosition !== 'outside') {
