@@ -18,6 +18,7 @@
  *
  * Line 818: qouted attribute selector, RavanH ravanhagen@gmail.com 
  * Line 39, 620 and 1123: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
+ * Line 1098: catch scroll wheel action on overlay, not only fancybox frame (wrap)
  * Patched for jQuery 1.9+ compat by Sabel http://sabel.bluegfx.de/wordpress/wp-content/uploads/2013/03/jquery.fancybox-1.3.4.js
  * 
  * Added SVG support by Simon Maillard simon@ogesta.fr
@@ -1095,12 +1096,9 @@
 		});
 
 		if ($.fn.mousewheel) {
-			wrap.bind('mousewheel.fb', function(e, delta) {
-				if (busy) {
-					e.preventDefault();
-
-				} else if ($(e.target).get(0).clientHeight == 0 || $(e.target).get(0).scrollHeight === $(e.target).get(0).clientHeight) {
-					e.preventDefault();
+			$(window).bind('mousewheel.fb', function(e, delta) {
+				e.preventDefault();
+				if ( false === busy && ( $(e.target).get(0).clientHeight == 0 || $(e.target).get(0).scrollHeight === $(e.target).get(0).clientHeight ) ) {
 					$.fancybox[ delta > 0 ? 'prev' : 'next']();
 				}
 			});
