@@ -454,6 +454,7 @@ echo '
 
 	function register_scripts() {	
 	
+	    if ( !is_admin() ) {
 		// ENQUEUE
 		// first get rid of previously registered variants of jquery.fancybox by other plugins or theme
 		wp_deregister_script('fancybox');
@@ -502,6 +503,7 @@ echo '
 			// then register our version
 			wp_register_script('jquery-metadata',EASY_FANCYBOX_PLUGINURL.'jquery.metadata.pack.js', array('jquery'), METADATA_VERSION, true);
 		}
+	    }
 	}
 
 	function enqueue_styles() {
