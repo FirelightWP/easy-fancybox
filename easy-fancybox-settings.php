@@ -539,7 +539,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'2' => __('All in one gallery','easy-fancybox')
 						),
 					'default' => '1',
-					'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . ' ' .  __('Leave the mousewheel option (below) unchecked when you do not use FancyBox for galleries on your site.','easy-fancybox') . '<br /><br />'
+					'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
 					),
 				'showNavArrows' => array (
 					'id' => 'fancybox_showNavArrows',
@@ -559,7 +559,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'id' => 'fancybox_mouseWheel',
 					'hide' => true,
 					'input' => 'checkbox',
-					'default' => '',
+					'default' => '1',
 					'description' => __('Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action.','easy-fancybox')
 					),
 				'cyclic' => array (
