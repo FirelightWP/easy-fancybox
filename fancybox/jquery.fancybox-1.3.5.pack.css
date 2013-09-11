@@ -40,3 +40,4 @@
 #fancybox-title-float-left{background:url(fancybox.png) -40px -90px no-repeat;padding:0 0 0 15px}
 #fancybox-title-float-main{color:#FFF;line-height:29px;font-weight:700;background:url(fancybox-x.png) 0 -40px;padding:0 0 3px}
 #fancybox-title-float-right{background:url(fancybox.png) -55px -90px no-repeat;padding:0 0 0 15px}
+.fancybox-ie .fancybox-bg{background:transparent !important}

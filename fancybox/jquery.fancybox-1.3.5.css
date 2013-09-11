@@ -329,3 +329,6 @@
 	padding: 0 0 0 15px;
 	background: url('fancybox.png') -55px -90px no-repeat;
 }
+
+/* IE */
+.fancybox-ie .fancybox-bg{background:transparent !important}

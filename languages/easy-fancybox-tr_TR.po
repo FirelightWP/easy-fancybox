@@ -2,204 +2,150 @@
 # This file is distributed under the same license as the Easy FancyBox package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy FancyBox/1.5\n"
+"Project-Id-Version: Easy FancyBox 1.5.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 21:51+0100\n"
-"PO-Revision-Date: 2013-09-04 21:51+0100\n"
-"Last-Translator: RavanH <ravanhagen@gmail.com>\n"
-"Language-Team: Easy FancyBox Languages <ravanhagen@gmail.com>\n"
+"POT-Creation-Date: 2013-06-14 00:53+0100\n"
+"PO-Revision-Date: 2013-07-22 19:35+0200\n"
+"Last-Translator: HakanEr <hakanerwptr@gmail.com>\n"
+"Language-Team: hakaner <hakanerwptr@gmail.com>\n"
+"Language: turkish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: __;_e;_n\n"
-"X-Poedit-Basepath: .\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-SearchPath-0: ..\n"
-"X-Poedit-SearchPath-1: ../../easy-fancybox-pro\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
-#: ../easy-fancybox-class.php:337
-msgid "Donate to keep the Easy FancyBox plugin development going!"
-msgstr ""
-
-#: ../easy-fancybox-class.php:337
-#, php-format
-msgid ""
-"The options in this section are provided by the plugin %s and determine the "
-"<strong>Media Lightbox</strong> overlay appearance and behaviour controlled "
-"by %s."
-msgstr ""
-
-#: ../easy-fancybox-class.php:337
-msgid "Easy FancyBox"
-msgstr ""
-
-#: ../easy-fancybox-class.php:337 ../easy-fancybox-class.php:544
-#: ../easy-fancybox-class.php:588
-msgid "FancyBox"
-msgstr ""
-
-#: ../easy-fancybox-class.php:337
-msgid ""
-"First enable each sub-section that you need. Then save and come back to "
-"adjust its specific settings."
-msgstr ""
-
-#: ../easy-fancybox-class.php:337
-msgid ""
-"Note: Each additional sub-section and features like <em>Auto-detection</em>, "
-"<em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) "
-"will have some extra impact on client-side page speed. Enable only those sub-"
-"sections and options that you actually need on your site."
-msgstr ""
-
-#: ../easy-fancybox-class.php:337
-msgid ""
-"Some setting like Transition options are unavailable for SWF video, PDF and "
-"iFrame content to ensure browser compatibility and readability."
-msgstr ""
-
-#: ../easy-fancybox-class.php:381
-msgid "Checked"
-msgstr ""
-
-#: ../easy-fancybox-class.php:383
-msgid "Unchecked"
-msgstr ""
-
-#: ../easy-fancybox-class.php:588
-msgid "Easy FancyBox Settings"
-msgstr ""
-
-#: ../easy-fancybox-class.php:597
-msgid "Sections"
-msgstr ""
-
-#: ../easy-fancybox-class.php:598 ../easy-fancybox-settings.php:9
+#: ../easy-fancybox-settings.php:9 ../easy-fancybox-class.php:566
 msgid "Global settings"
-msgstr ""
-
-#: ../easy-fancybox-class.php:599 ../easy-fancybox-settings.php:27
-#: ../easy-fancybox-settings.php:370
-msgid "Images"
-msgstr ""
-
-#: ../easy-fancybox-class.php:600 ../easy-fancybox-settings.php:34
-#: ../easy-fancybox-settings.php:633
-msgid "Inline content"
-msgstr ""
-
-#: ../easy-fancybox-class.php:601 ../easy-fancybox-settings.php:41
-#: ../easy-fancybox-settings.php:743
-msgid "PDF"
-msgstr ""
-
-#: ../easy-fancybox-class.php:602 ../easy-fancybox-settings.php:48
-#: ../easy-fancybox-settings.php:868
-msgid "SWF"
-msgstr ""
-
-#: ../easy-fancybox-class.php:603 ../easy-fancybox-settings.php:62
-#: ../easy-fancybox-settings.php:1057
-msgid "YouTube"
-msgstr ""
-
-#: ../easy-fancybox-class.php:604 ../easy-fancybox-settings.php:69
-#: ../easy-fancybox-settings.php:1165
-msgid "Vimeo"
-msgstr ""
-
-#: ../easy-fancybox-class.php:605 ../easy-fancybox-settings.php:76
-#: ../easy-fancybox-settings.php:1265
-msgid "Dailymotion"
-msgstr ""
-
-#: ../easy-fancybox-class.php:606 ../easy-fancybox-settings.php:83
-#: ../easy-fancybox-settings.php:1391
-msgid "iFrames"
-msgstr ""
-
-#: ../easy-fancybox-class.php:634
-msgid "Support"
-msgstr ""
-
-#: ../easy-fancybox-class.php:635
-msgid "Resources"
-msgstr ""
-
-#: ../easy-fancybox-class.php:637
-msgid "Credits"
-msgstr ""
+msgstr "Genel ayarlar"
 
 #: ../easy-fancybox-settings.php:14
 msgid "Media"
-msgstr ""
+msgstr "Medya"
 
 #: ../easy-fancybox-settings.php:20
 msgid "Enable FancyBox for"
-msgstr ""
+msgstr "FancyBox'ı şunun için etkinleştir"
+
+#: ../easy-fancybox-settings.php:27 ../easy-fancybox-settings.php:370
+#: ../easy-fancybox-class.php:567
+msgid "Images"
+msgstr "Resimler"
+
+#: ../easy-fancybox-settings.php:34 ../easy-fancybox-settings.php:633
+#: ../easy-fancybox-class.php:568
+msgid "Inline content"
+msgstr "Satıriçi içerik"
+
+#: ../easy-fancybox-settings.php:41 ../easy-fancybox-settings.php:743
+#: ../easy-fancybox-class.php:569
+msgid "PDF"
+msgstr "PDF"
+
+#: ../easy-fancybox-settings.php:48 ../easy-fancybox-settings.php:868
+#: ../easy-fancybox-class.php:570
+msgid "SWF"
+msgstr "SWF"
 
 #: ../easy-fancybox-settings.php:55 ../easy-fancybox-settings.php:962
 msgid "SVG"
-msgstr ""
+msgstr "SVG"
+
+#: ../easy-fancybox-settings.php:62 ../easy-fancybox-settings.php:1057
+#: ../easy-fancybox-class.php:571
+msgid "YouTube"
+msgstr "YouTube"
+
+#: ../easy-fancybox-settings.php:69 ../easy-fancybox-settings.php:1165
+#: ../easy-fancybox-class.php:572
+msgid "Vimeo"
+msgstr "Vimeo"
+
+#: ../easy-fancybox-settings.php:76 ../easy-fancybox-settings.php:1265
+#: ../easy-fancybox-class.php:573
+msgid "Dailymotion"
+msgstr "Dailymotion"
+
+#: ../easy-fancybox-settings.php:83 ../easy-fancybox-settings.php:1391
+#: ../easy-fancybox-class.php:574
+msgid "iFrames"
+msgstr "iFrame"
 
 #: ../easy-fancybox-settings.php:86
 msgid ""
 "For advanced options and support, please get the Easy FancyBox - Pro "
 "extension."
 msgstr ""
+"Gelişmiş seçenekler ve destek için, lütfen Easy FancyBox - Pro eklentisine "
+"geçiniz."
+
+#: ../easy-fancybox-settings.php:89
+msgid "Links"
+msgstr "Bağlantılar"
 
 #: ../easy-fancybox-settings.php:95
 msgid "Exclude"
-msgstr ""
+msgstr "Dışla"
+
+#: ../easy-fancybox-settings.php:100 ../easy-fancybox-settings.php:114
+#: ../easy-fancybox-settings.php:421 ../easy-fancybox-settings.php:448
+#: ../easy-fancybox-settings.php:677 ../easy-fancybox-settings.php:704
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:227
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:252
+msgid "None"
+msgstr "Hiçbiri"
 
 #: ../easy-fancybox-settings.php:101
 msgid "Empty (hidden) links"
-msgstr ""
+msgstr "Boş (gizli) bağlantılar"
 
 #: ../easy-fancybox-settings.php:102
 msgid "Without thumbnail image"
-msgstr ""
+msgstr "Küçük resim olmadan"
 
 #: ../easy-fancybox-settings.php:109
 msgid "Open on page load"
-msgstr ""
+msgstr "Sayfa yüklendiğinde aç"
 
 #: ../easy-fancybox-settings.php:115
 msgid "Link with ID \"fancybox-auto\""
-msgstr ""
+msgstr "ID ile bağlantı \"fancybox-otomatik\""
 
 #: ../easy-fancybox-settings.php:118 ../easy-fancybox-settings.php:409
 #: ../easy-fancybox-settings.php:440 ../easy-fancybox-settings.php:467
 #: ../easy-fancybox-settings.php:542 ../easy-fancybox-settings.php:696
 #: ../easy-fancybox-settings.php:723
 msgid "More options &raquo;"
-msgstr ""
+msgstr "Daha fazla seçenek &raquo;"
 
 #: ../easy-fancybox-settings.php:125
 msgid ""
 "Include the Metadata jQuery extension script to allow passing custom "
 "parameters via link class."
 msgstr ""
+"Bağlantı sınıfı ile özel parametrelerin geçişine izin vermek için Metadata "
+"jQuery uzantısı komut dosyasını ekle."
 
 #: ../easy-fancybox-settings.php:130 ../easy-fancybox-settings.php:503
 msgid "Overlay"
-msgstr ""
+msgstr "Kaplama"
 
 #: ../easy-fancybox-settings.php:139
 msgid "Show the overlay around content opened in FancyBox."
-msgstr ""
+msgstr "FancyBox ile açılan içerik etrafında kaplama göster."
 
 #: ../easy-fancybox-settings.php:146
 msgid "Close FancyBox when overlay is clicked."
-msgstr ""
+msgstr "Kaplama tıklandığında FancyBox'ı kapat."
 
 #: ../easy-fancybox-settings.php:150 ../easy-fancybox-settings.php:228
 msgid "Opacity"
-msgstr ""
+msgstr "Saydamlık"
 
 #: ../easy-fancybox-settings.php:158
 msgid "Value between 0 and 1. "
-msgstr ""
+msgstr "0 ila 1 arasında bir değer."
 
 #: ../easy-fancybox-settings.php:158 ../easy-fancybox-settings.php:167
 #: ../easy-fancybox-settings.php:286 ../easy-fancybox-settings.php:337
@@ -209,96 +155,122 @@ msgstr ""
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:147
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:244
 msgid "Default:"
-msgstr ""
+msgstr "Varsayılan:"
 
 #: ../easy-fancybox-settings.php:162
 msgid "Color"
-msgstr ""
+msgstr "Renk"
 
 #: ../easy-fancybox-settings.php:167
 msgid "Enter an HTML color value."
-msgstr ""
+msgstr "Bir HTML renk değeri girin."
 
 #: ../easy-fancybox-settings.php:175
+#: ../../easy-fancybox-pro/easy-fancybox-pro.php:71
 msgid "Spotlight effect"
-msgstr ""
+msgstr "Spot ışığı efekti"
 
-#: ../easy-fancybox-settings.php:180
-msgid "Window"
-msgstr ""
-
-#: ../easy-fancybox-settings.php:186 ../easy-fancybox-settings.php:485
-msgid "Appearance"
-msgstr ""
-
-#: ../easy-fancybox-settings.php:193
-msgid "Show the (X) close button"
-msgstr ""
-
-#: ../easy-fancybox-settings.php:198
-msgid "Background color"
-msgstr ""
-
-#: ../easy-fancybox-settings.php:208
-msgid "Border color"
-msgstr ""
-
-#: ../easy-fancybox-settings.php:218
-msgid "Text color"
-msgstr ""
-
-#: ../easy-fancybox-settings.php:223 ../easy-fancybox-settings.php:236
+#: ../easy-fancybox-settings.php:175 ../easy-fancybox-settings.php:236
 #: ../easy-fancybox-settings.php:249 ../easy-fancybox-settings.php:524
 #: ../easy-fancybox-settings.php:613
 msgid "Make available &raquo;"
-msgstr ""
+msgstr "Kullanılabilir yap &raquo;"
+
+#: ../easy-fancybox-settings.php:180
+msgid "Window"
+msgstr "Pencere"
+
+#: ../easy-fancybox-settings.php:186 ../easy-fancybox-settings.php:485
+msgid "Appearance"
+msgstr "Görünüm"
+
+#: ../easy-fancybox-settings.php:193
+msgid "Show the (X) close button"
+msgstr "(X) kapatma butonu göster"
+
+#: ../easy-fancybox-settings.php:198
+msgid "Background color"
+msgstr "Arkaplan rengi"
+
+#: ../easy-fancybox-settings.php:208
+msgid "Border color"
+msgstr "Kenarlık rengi"
+
+#: ../easy-fancybox-settings.php:218
+msgid "Text color"
+msgstr "Yazı rengi"
 
 #: ../easy-fancybox-settings.php:241
 msgid "Border radius"
-msgstr ""
+msgstr "Kenarlık yarıçapı"
 
 #: ../easy-fancybox-settings.php:249
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:114
 msgid "Set a border radius to create rounded corners. Higher is rounder."
 msgstr ""
+"Yuvarlak köşeler oluşturmak için bir kenarlık yarıçapı ayarlayın. Daha "
+"yüksek, daha yuvarlaktır."
 
 #: ../easy-fancybox-settings.php:254
 msgid "Dimensions"
-msgstr ""
+msgstr "Boyutlar"
+
+#: ../easy-fancybox-settings.php:258 ../easy-fancybox-settings.php:771
+#: ../easy-fancybox-settings.php:896 ../easy-fancybox-settings.php:990
+#: ../easy-fancybox-settings.php:1095 ../easy-fancybox-settings.php:1194
+#: ../easy-fancybox-settings.php:1294 ../easy-fancybox-settings.php:1424
+msgid "Width"
+msgstr "Genişlik"
+
+#: ../easy-fancybox-settings.php:268 ../easy-fancybox-settings.php:781
+#: ../easy-fancybox-settings.php:907 ../easy-fancybox-settings.php:1001
+#: ../easy-fancybox-settings.php:1108 ../easy-fancybox-settings.php:1207
+#: ../easy-fancybox-settings.php:1307 ../easy-fancybox-settings.php:1434
+msgid "Height"
+msgstr "Yükseklik"
+
+#: ../easy-fancybox-settings.php:277 ../easy-fancybox-settings.php:790
+#: ../easy-fancybox-settings.php:917 ../easy-fancybox-settings.php:1011
+#: ../easy-fancybox-settings.php:1120 ../easy-fancybox-settings.php:1219
+#: ../easy-fancybox-settings.php:1319 ../easy-fancybox-settings.php:1443
+msgid "Border"
+msgstr "Kenarlık"
 
 #: ../easy-fancybox-settings.php:286
 msgid ""
 "If content size is not set or cannot be determined automatically, these "
 "default dimensions will be used."
 msgstr ""
+"Eğer içerik boyutu ayarlanmamışsa veya otomatik olarak tespit edilemiyorsa, "
+"bu varsayılan boyutlar kullanılacaktır."
 
 #: ../easy-fancybox-settings.php:291 ../easy-fancybox-settings.php:413
 msgid "Behavior"
-msgstr ""
+msgstr "Hareket tarzı"
 
 #: ../easy-fancybox-settings.php:298
 msgid "Center while scrolling"
-msgstr ""
+msgstr "Kaydırma sırasında ortala"
 
 #: ../easy-fancybox-settings.php:305
 msgid "Esc key stroke closes FancyBox"
-msgstr ""
+msgstr "Esc tuşu FancyBox'ı kapatır"
 
 #: ../easy-fancybox-settings.php:312
 msgid "Scale large content down to fit in the browser viewport."
-msgstr ""
+msgstr "Tarayıcı ekranına sığdırmak için büyük içeriği ölçeklendir."
 
 #: ../easy-fancybox-settings.php:316
 msgid "Opening speed"
-msgstr ""
+msgstr "Açılış hızı"
 
 #: ../easy-fancybox-settings.php:328
 msgid "Closing speed"
-msgstr ""
+msgstr "Kapanış hızı"
 
 #: ../easy-fancybox-settings.php:337 ../easy-fancybox-settings.php:595
 msgid "Duration in milliseconds. Higher is slower."
-msgstr ""
+msgstr "Milisaniye cinsinden süre. Yükseldikçe yavaşlar."
 
 #: ../easy-fancybox-settings.php:375
 msgid ""
@@ -306,72 +278,75 @@ msgid ""
 "field or use the class \"fancybox\" for its link. Clear field to switch off "
 "all autodetection."
 msgstr ""
+"Görüntüleri bir kaplama içinde açmak için Otomatik Algıla alanına onların "
+"uzantısını ekleyin veya bağlantısı için \"fancybox\" sınıfını kullanın. Tüm "
+"Otomatik Algılamaları kapatmak için alanı temizleyin."
 
 #: ../easy-fancybox-settings.php:390 ../easy-fancybox-settings.php:756
 #: ../easy-fancybox-settings.php:881 ../easy-fancybox-settings.php:975
 #: ../easy-fancybox-settings.php:1071 ../easy-fancybox-settings.php:1179
 #: ../easy-fancybox-settings.php:1279
 msgid "Autodetect"
-msgstr ""
+msgstr "Otomatik Algıla"
 
 #: ../easy-fancybox-settings.php:397
 msgid "Example:"
-msgstr ""
+msgstr "Örnek:"
 
 #: ../easy-fancybox-settings.php:401
 msgid "Apply to"
-msgstr ""
+msgstr "Uygula"
 
 #: ../easy-fancybox-settings.php:406
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:147
 msgid "All image links"
-msgstr ""
+msgstr "Tüm Resim Bağlantıları"
 
 #: ../easy-fancybox-settings.php:417 ../easy-fancybox-settings.php:673
 msgid "Transition In"
-msgstr ""
+msgstr "İçe Geçiş"
 
 #: ../easy-fancybox-settings.php:422 ../easy-fancybox-settings.php:449
 #: ../easy-fancybox-settings.php:678 ../easy-fancybox-settings.php:705
 msgid "Fade"
-msgstr ""
+msgstr "Solma"
 
 #: ../easy-fancybox-settings.php:423 ../easy-fancybox-settings.php:450
 #: ../easy-fancybox-settings.php:679 ../easy-fancybox-settings.php:706
 msgid "Elastic"
-msgstr ""
+msgstr "Esnek"
 
 #: ../easy-fancybox-settings.php:430 ../easy-fancybox-settings.php:686
 msgid "Easing In"
-msgstr ""
+msgstr "Azaltma Giriş"
 
 #: ../easy-fancybox-settings.php:434 ../easy-fancybox-settings.php:461
 #: ../easy-fancybox-settings.php:690 ../easy-fancybox-settings.php:717
 msgid "Linear"
-msgstr ""
+msgstr "Doğrusal"
 
 #: ../easy-fancybox-settings.php:435 ../easy-fancybox-settings.php:462
 #: ../easy-fancybox-settings.php:691 ../easy-fancybox-settings.php:718
 msgid "Swing"
-msgstr ""
+msgstr "Salınım"
 
 #: ../easy-fancybox-settings.php:436 ../easy-fancybox-settings.php:463
 #: ../easy-fancybox-settings.php:692 ../easy-fancybox-settings.php:719
 msgid "easeInBack"
-msgstr ""
+msgstr "azaltGeriİçe"
 
 #: ../easy-fancybox-settings.php:437 ../easy-fancybox-settings.php:464
 #: ../easy-fancybox-settings.php:693 ../easy-fancybox-settings.php:720
 msgid "easeOutBack"
-msgstr ""
+msgstr "azaltGeriDışa"
 
 #: ../easy-fancybox-settings.php:444 ../easy-fancybox-settings.php:700
 msgid "Transition Out"
-msgstr ""
+msgstr "Dışa Geçiş"
 
 #: ../easy-fancybox-settings.php:457 ../easy-fancybox-settings.php:713
 msgid "Easing Out"
-msgstr ""
+msgstr "Azaltma Çıkış"
 
 #: ../easy-fancybox-settings.php:467 ../easy-fancybox-settings.php:542
 #: ../easy-fancybox-settings.php:723
@@ -381,90 +356,96 @@ msgstr ""
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:257
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:331
 msgid "Note:"
-msgstr ""
+msgstr "Not:"
 
 #: ../easy-fancybox-settings.php:467 ../easy-fancybox-settings.php:723
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:213
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:331
 msgid "Easing effects only apply when Transition is set to Elastic. "
-msgstr ""
+msgstr "Azaltma efektleri sadece Geçiş esnek olarak ayarlandığında geçerlidir."
 
 #: ../easy-fancybox-settings.php:474 ../easy-fancybox-settings.php:730
 msgid ""
 "Transparency fade during elastic transition. CAUTION: Use only when at least "
 "Transition In is set to Elastic!"
 msgstr ""
+"Elastik geçiş sırasında saydam soldurma. DİKKAT: Geçiş Elastik olarak "
+"ayarlandığında kullanın!"
 
 #: ../easy-fancybox-settings.php:481 ../easy-fancybox-settings.php:737
 msgid "Close FancyBox when content is clicked"
-msgstr ""
+msgstr "İçerik tıklandığında FancyBox'ı kapat"
 
 #: ../easy-fancybox-settings.php:492 ../easy-fancybox-settings.php:810
 #: ../easy-fancybox-settings.php:933 ../easy-fancybox-settings.php:1027
 #: ../easy-fancybox-settings.php:1136 ../easy-fancybox-settings.php:1235
 #: ../easy-fancybox-settings.php:1335 ../easy-fancybox-settings.php:1459
 msgid "Show title"
-msgstr ""
+msgstr "Başlığı göster"
 
 #: ../easy-fancybox-settings.php:496 ../easy-fancybox-settings.php:814
 #: ../easy-fancybox-settings.php:937 ../easy-fancybox-settings.php:1031
 #: ../easy-fancybox-settings.php:1140 ../easy-fancybox-settings.php:1239
 #: ../easy-fancybox-settings.php:1339 ../easy-fancybox-settings.php:1463
 msgid "Title Position"
-msgstr ""
+msgstr "Başlık Pozisyonu"
 
 #: ../easy-fancybox-settings.php:500 ../easy-fancybox-settings.php:818
 #: ../easy-fancybox-settings.php:941 ../easy-fancybox-settings.php:1035
 #: ../easy-fancybox-settings.php:1144 ../easy-fancybox-settings.php:1243
 #: ../easy-fancybox-settings.php:1343 ../easy-fancybox-settings.php:1467
 msgid "Float"
-msgstr ""
+msgstr "Kayan"
 
 #: ../easy-fancybox-settings.php:501 ../easy-fancybox-settings.php:819
 #: ../easy-fancybox-settings.php:942 ../easy-fancybox-settings.php:1036
 #: ../easy-fancybox-settings.php:1145 ../easy-fancybox-settings.php:1244
 #: ../easy-fancybox-settings.php:1344 ../easy-fancybox-settings.php:1468
 msgid "Outside"
-msgstr ""
+msgstr "Dış taraf"
 
 #: ../easy-fancybox-settings.php:502 ../easy-fancybox-settings.php:820
 #: ../easy-fancybox-settings.php:943 ../easy-fancybox-settings.php:1037
 #: ../easy-fancybox-settings.php:1146 ../easy-fancybox-settings.php:1245
 #: ../easy-fancybox-settings.php:1345 ../easy-fancybox-settings.php:1469
 msgid "Inside"
-msgstr ""
+msgstr "İç taraf"
 
 #: ../easy-fancybox-settings.php:513 ../easy-fancybox-settings.php:829
 #: ../easy-fancybox-settings.php:952 ../easy-fancybox-settings.php:1047
 #: ../easy-fancybox-settings.php:1155 ../easy-fancybox-settings.php:1254
 #: ../easy-fancybox-settings.php:1354 ../easy-fancybox-settings.php:1478
 msgid "Allow title from thumbnail alt tag"
-msgstr ""
+msgstr "Küçük resim alt etiketinden başlığa izin ver"
 
 #: ../easy-fancybox-settings.php:517 ../easy-fancybox-settings.php:606
 msgid "Advanced"
-msgstr ""
+msgstr "Gelişmiş"
 
 #: ../easy-fancybox-settings.php:521
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:228
 msgid "Hide/show title on mouse hover action"
-msgstr ""
+msgstr "Fare üzerindeyken başlığı gizle/göster"
 
 #: ../easy-fancybox-settings.php:528
 msgid "Gallery"
-msgstr ""
+msgstr "Galeri"
 
 #: ../easy-fancybox-settings.php:532
 msgid "Autogallery"
-msgstr ""
+msgstr "Otomatik Galeri"
+
+#: ../easy-fancybox-settings.php:537
+msgid "Disabled"
+msgstr "Devre dışı"
 
 #: ../easy-fancybox-settings.php:538
 msgid "WordPress galleries only"
-msgstr ""
+msgstr "Sadece WordPress galerileri"
 
 #: ../easy-fancybox-settings.php:539
 msgid "All in one gallery"
-msgstr ""
+msgstr "Hepsi bir arada galeri"
 
 #: ../easy-fancybox-settings.php:542
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:219
@@ -472,37 +453,50 @@ msgid ""
 "When disabled, you can use the rel attribute to manually group image links "
 "together."
 msgstr ""
+"Devre dışı bırakıldığında, resim bağlantılarını birlikte gruplamak için el "
+"ile rel özniteliği kullanabilirsiniz."
+
+#: ../easy-fancybox-settings.php:542
+msgid ""
+"Leave the mousewheel option (below) unchecked when you do not use FancyBox "
+"for galleries on your site."
+msgstr ""
+"Sitenizde galeriler için FancyBox kullanmadığınız zaman fare tekerleği "
+"seçeneğini (altta) işaretlemeyin."
 
 #: ../easy-fancybox-settings.php:549
 msgid "Show the gallery navigation arrows"
-msgstr ""
+msgstr "Galeri navigasyon oklarını göster"
 
 #: ../easy-fancybox-settings.php:556
 msgid "Arrow key strokes browse the gallery"
-msgstr ""
+msgstr "Klavye ok tuşlarına basarak galeride gez"
 
 #: ../easy-fancybox-settings.php:563
 msgid ""
 "Include the Mousewheel jQuery extension script to allow gallery browsing by "
 "mousewheel action."
 msgstr ""
+"Fare tekerleği hareketi ile galeride gezmeye izin vermek için Fare tekerleği "
+"jQuery uzantısı komut dosyasını ekle."
 
 #: ../easy-fancybox-settings.php:570
 msgid "Make galleries cyclic, allowing you to keep pressing next/back."
 msgstr ""
+"İleri/geri tuşlarına basılı tutmaya izin vermek için galerileri döngüsel yap."
 
 #: ../easy-fancybox-settings.php:574
 msgid "Change speed"
-msgstr ""
+msgstr "Değiştirme hızı"
 
 #: ../easy-fancybox-settings.php:586
 msgid "Fade speed"
-msgstr ""
+msgstr "Solma hızı"
 
 #: ../easy-fancybox-settings.php:602
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:217
 msgid "Galleries per Section (below)"
-msgstr ""
+msgstr "Bölüm başına Galeriler (altta)"
 
 #: ../easy-fancybox-settings.php:602
 msgid ""
@@ -510,6 +504,9 @@ msgid ""
 "and/or <em>Autogallery</em> is set to <em>Galleries per Section</em>. Adapt "
 "it to conform with your theme."
 msgstr ""
+"Bu, <em>Uygula</em> seçeneği <em>Bölümlerle Sınırlı</em> ve/veya "
+"<em>Otomatik Galeri</em> seçeneği <em>Bölüm başına Galeriler</em> olarak "
+"ayarlandığı zaman geçerlidir. Temanıza uyması için onu uyarlayın."
 
 #: ../easy-fancybox-settings.php:602
 msgid ""
@@ -518,35 +515,44 @@ msgid ""
 "gallery together, use \"div.gallery\". If you want to include images in a "
 "sidebar with ID primary, add \", #primary\"."
 msgstr ""
+"Örnekler: Eğer temanız yazı içeriğini bir div yazı sınıfı ile sarıyorsa, bu "
+"değeri \"div.post\" olarak değiştirin. Eğer yalnızca bir WordPress "
+"galerisinde resimleri gruplamak istiyorsanız, \"div.gallery\" kullanın. Eğer "
+"kenar çubuğunuza ana ID ile resimler eklemek istiyorsanız, \", #primary\" "
+"ekleyin."
 
 #: ../easy-fancybox-settings.php:602
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:230
 msgid ""
 "Hide/show title on mouse hover action works best with Overlay title position."
 msgstr ""
+"Fare üzerindeyken, başlığı gizle/göster eylemi Kaplama başlık konumu ile "
+"daha iyi çalışır."
 
 #: ../easy-fancybox-settings.php:602
 msgid "The slideshow uses a fixed 6, 8 or 12 second pause per image."
 msgstr ""
+"Slayt gösterisi, resim başına sabit 6, 8 ya da 12 saniyelik bir duraklama "
+"kullanır."
 
 #: ../easy-fancybox-settings.php:602
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:253
 msgid "(6 seconds)"
-msgstr ""
+msgstr "(6 saniye)"
 
 #: ../easy-fancybox-settings.php:602
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:254
 msgid "(8 seconds)"
-msgstr ""
+msgstr "(8 saniye)"
 
 #: ../easy-fancybox-settings.php:602
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:255
 msgid "(12 seconds)"
-msgstr ""
+msgstr "(12 saniye)"
 
 #: ../easy-fancybox-settings.php:610
 msgid "Slideshow"
-msgstr ""
+msgstr "Slayt gösterisi"
 
 #: ../easy-fancybox-settings.php:638
 msgid ""
@@ -554,328 +560,440 @@ msgid ""
 "unique ID, create a link with target \"#uniqueID\" and give it a class "
 "\"fancybox-inline\" attribute."
 msgstr ""
+"Satıriçi içeriği bir kaplama içinde açılır hale getirmek için, benzersiz bir "
+"ID kimliği ile bu içeriği bir div içinde paketleyin, \"#uniqueID\" hedefi "
+"ile bir bağlantı oluşturun ve ona bir \"fancybox-inline\" sınıf niteliği "
+"atayın."
 
 #: ../easy-fancybox-settings.php:656
 msgid ""
 "Try to adjust size to inline/html content. If unchecked or size cannot be "
 "determined, the default dimensions will be used."
 msgstr ""
+"Satıriçi/html içeriğe boyutu ayarlamayı deneyin. Eğer işaretlenmeişse veya "
+"boyut tespit edilememişse, varsayılan boyutlar kullanılacaktır."
 
 #: ../easy-fancybox-settings.php:660 ../easy-fancybox-settings.php:1411
 msgid "Scrolling"
-msgstr ""
+msgstr "Kaydırma"
 
 #: ../easy-fancybox-settings.php:664 ../easy-fancybox-settings.php:1415
 msgid "Auto"
-msgstr ""
+msgstr "Otomatik"
 
 #: ../easy-fancybox-settings.php:665 ../easy-fancybox-settings.php:1416
 msgid "Always"
-msgstr ""
+msgstr "Daima"
 
 #: ../easy-fancybox-settings.php:666 ../easy-fancybox-settings.php:1417
 msgid "Never"
-msgstr ""
+msgstr "Asla"
 
 #: ../easy-fancybox-settings.php:669 ../easy-fancybox-settings.php:1420
 msgid "Define scrolling and scrollbar visibility."
-msgstr ""
+msgstr "Kaydırma ve kaydırma çubuğu görünürlüğünü tanımlayın."
 
 #: ../easy-fancybox-settings.php:748
 msgid ""
 "To make any PDF document file open in an overlay, switch on Autodetect or "
 "use the class \"fancybox-pdf\" for its link."
 msgstr ""
+"Herhangi bir PDF belgesini bir kaplama içinde açmak için, Otomatik Algıla'yı "
+"açın veya bağlantısı için \"fancybox-pdf\" sınıfını kullanın."
 
 #: ../easy-fancybox-settings.php:873
 msgid ""
 "To make any Flash (.swf) file open in an overlay, switch on Autodetect or "
 "use the class \"fancybox-swf\" for its link."
 msgstr ""
+"Herhangi bir Flash (.swf) dosyasını bir kaplama içinde açmak için, Otomatik "
+"Algıla'yı açın veya bağlantısı için \"fancybox-swf\" sınıfını kullanın."
 
 #: ../easy-fancybox-settings.php:967
 msgid ""
 "To make any SVG (.svg) file open in an overlay, switch on Autodetect or use "
 "the class \"fancybox-svg\" for its link."
 msgstr ""
+"Herhangi bir SVG (.svg) dosyasını bir kaplama içinde açmak için, Otomatik "
+"Algıla'yı açın veya bağlantısı için \"fancybox-svg\" sınıfını kullanın."
 
 #: ../easy-fancybox-settings.php:1062
 msgid ""
 "To make any YouTube movie open in an overlay, switch on Autodetect or use "
 "the class \"fancybox-youtube\" for its link."
 msgstr ""
+"Herhangi bir YouTube filmini bir kaplama içinde açmak için, Otomatik "
+"Algıla'yı açın veya bağlantısı için \"fancybox-youtube\" sınıfını kullanın."
 
 #: ../easy-fancybox-settings.php:1080
 msgid "Autodetect Short links"
-msgstr ""
+msgstr "Kısa bağlantıları Otomatik Algıla"
 
 #: ../easy-fancybox-settings.php:1170
 msgid ""
 "To make any Vimeo movie open in an overlay, switch on Autodetect or use the "
 "class \"fancybox-vimeo\" for its link."
 msgstr ""
+"Herhangi bir Vimeo filmini bir kaplama içinde açmak için, Otomatik Algıla'yı "
+"açın veya bağlantısı için \"fancybox-vimeo\" sınıfını kullanın."
 
 #: ../easy-fancybox-settings.php:1270
 msgid ""
 "To make any Dailymotion movie open in an overlay, switch on Autodetect or "
 "use the class \"fancybox-dailymotion\" for its link."
 msgstr ""
+"Herhangi bir Dailymotion filmini bir kaplama içinde açmak için, Otomatik "
+"Algılayı açın veya bağlantısı için \"fancybox-dailymotion\" sınıfını "
+"kullanın."
 
 #: ../easy-fancybox-settings.php:1396
 msgid ""
 "To make a website or HTML document open in an overlay, use the class "
 "\"fancybox-iframe\" for its link."
 msgstr ""
+"Herhangi bir web site veya HTML belgesini bir kaplama içinde açmak için "
+"bağlantısında \"fancybox-iframe\" sınıfını kullanın."
+
+#: ../easy-fancybox-class.php:298
+msgid "Donate to keep the Easy FancyBox plugin development going!"
+msgstr ""
+"Easy FancyBox eklentisinin geliştirilmesini devam ettirmek için bağış yapın!"
+
+#: ../easy-fancybox-class.php:298
+#, php-format
+msgid ""
+"The options in this section are provided by the plugin %s and determine the "
+"<strong>Media Lightbox</strong> overlay appearance and behaviour controlled "
+"by %s."
+msgstr ""
+"Bu bölümde yer alan seçenekler %s eklentisi tarafından sağlanmaktadır ve "
+"kaplama görünümünü <strong>Media Lightbox</strong> belirler, %s tarafından "
+"da işleyişi kontrol edilmektedir."
+
+#: ../easy-fancybox-class.php:298
+msgid "Easy FancyBox"
+msgstr "Easy FancyBox"
+
+#: ../easy-fancybox-class.php:298 ../easy-fancybox-class.php:510
+#: ../easy-fancybox-class.php:554
+msgid "FancyBox"
+msgstr "FancyBox"
+
+#: ../easy-fancybox-class.php:298
+msgid ""
+"First enable each sub-section that you need. Then save and come back to "
+"adjust its specific settings."
+msgstr ""
+"Öncelikle, ihtiyaç duyduğunuz her alt bölümü etkinleştirin. Sonra, kaydedin "
+"ve belirli ayarlarını yapmak için geri gelin."
+
+#: ../easy-fancybox-class.php:298
+msgid ""
+"Note: Each additional sub-section and features like <em>Auto-detection</em>, "
+"<em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) "
+"will have some extra impact on client-side page speed. Enable only those sub-"
+"sections and options that you actually need on your site."
+msgstr ""
+"Not: <em>Otomatik Algıla</em>, <em>Esnek geçişler</em> ve <em>Azaltma "
+"efektleri</em> (Salınım hariç) gibi ilave her alt bölüm ve özellik, istemci "
+"taraflı sayfa hızına fazladan etki edecektir. Bu alt bölümler ve "
+"seçenekleri, sitenizde gerçekten ihtiyaç duyuyorsanız etkinleştirin."
+
+#: ../easy-fancybox-class.php:298
+msgid ""
+"Some setting like Transition options are unavailable for SWF video, PDF and "
+"iFrame content to ensure browser compatibility and readability."
+msgstr ""
+"Geçiş seçenekleri gibi bazı ayarlar, tarayıcı uyumluluğu ve okunabilirlik "
+"sağlamak için SWF video, PDF ve iFrame içeriklerinde kullanılamaz."
+
+#: ../easy-fancybox-class.php:342
+msgid "Checked"
+msgstr "İşaretli"
+
+#: ../easy-fancybox-class.php:344
+msgid "Unchecked"
+msgstr "İşaretsiz"
+
+#: ../easy-fancybox-class.php:391
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: ../easy-fancybox-class.php:554
+msgid "Easy FancyBox Settings"
+msgstr "Easy FancyBox Ayarları"
+
+#: ../easy-fancybox-class.php:565
+msgid "Sections"
+msgstr "Bölümler"
+
+#: ../easy-fancybox-class.php:602
+msgid "Support"
+msgstr "Destek"
+
+#: ../easy-fancybox-class.php:603
+msgid "Resources"
+msgstr "Kaynaklar"
+
+#: ../easy-fancybox-class.php:604
+msgid "Discussion"
+msgstr "Tartışma"
+
+#: ../easy-fancybox-class.php:605
+msgid "Credits"
+msgstr "Teşekkürler"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:46
 msgid ""
 "Thank you for purchasing the Easy FancyBox - Pro extension. New options are "
 "available."
 msgstr ""
+"Easy FancyBox - Pro eklentisini satın aldığınız için teşekkür ederiz. Yeni "
+"seçenekler kullanılabilir."
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:46
 msgid "Get support here."
-msgstr ""
+msgstr "Buradan destek alın."
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:52
 msgid "First Image link"
-msgstr ""
+msgstr "Önce Resim bağlantısı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:53
 msgid "First PDF link"
-msgstr ""
+msgstr "İlk PDF bağlantısı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:54
 msgid "First SWF link"
-msgstr ""
+msgstr "İlk SWF bağlantısı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:55
 msgid "First SVG link"
-msgstr ""
+msgstr "İlk SVG bağlantısı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:56
 msgid "First YouTube link "
-msgstr ""
+msgstr "İlk YouTube bağlantısı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:57
 msgid "First Vimeo link "
-msgstr ""
+msgstr "İlk Vimeo bağlantısı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:58
 msgid "First Dailymotion link "
-msgstr ""
+msgstr "İlk Dailymotion bağlantısı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:59
 msgid "First iFrame link"
-msgstr ""
+msgstr "İlk iFrame bağlantısı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:60
 msgid "First of any link"
-msgstr ""
+msgstr "İlk herhangi bir bağlantı"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:145
 msgid "Links inside Section(s) only (below)"
-msgstr ""
+msgstr "Sadece Bölüm içindeki bağlantı(lar) (altta)"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:151
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:184
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:269
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:302
 msgid "easeInQuad"
-msgstr ""
+msgstr "azaltDörtlüİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:152
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:185
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:270
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:303
 msgid "easeOutQuad"
-msgstr ""
+msgstr "azaltDörtlüDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:153
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:186
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:271
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:304
 msgid "easeInOutQuad"
-msgstr ""
+msgstr "azaltDörtlüİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:154
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:187
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:272
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:305
 msgid "easeInCubic"
-msgstr ""
+msgstr "azaltKüpİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:155
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:188
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:273
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:306
 msgid "easeOutCubic"
-msgstr ""
+msgstr "azaltKüpDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:156
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:189
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:274
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:307
 msgid "easeInOutCubic"
-msgstr ""
+msgstr "azaltKüpİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:157
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:190
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:275
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:308
 msgid "easeInQuart"
-msgstr ""
+msgstr "azaltÇeyrekİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:158
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:191
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:276
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:309
 msgid "easeOutQuart"
-msgstr ""
+msgstr "azaltÇeyrekDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:159
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:192
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:277
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:310
 msgid "easeInOutQuart"
-msgstr ""
+msgstr "azaltÇeyrekİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:160
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:193
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:278
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:311
 msgid "easeInQuint"
-msgstr ""
+msgstr "azaltBeşliİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:161
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:194
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:279
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:312
 msgid "easeOutQuint"
-msgstr ""
+msgstr "azaltBeşliDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:162
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:195
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:280
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:313
 msgid "easeInOutQuint"
-msgstr ""
+msgstr "azaltBeşliİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:163
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:196
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:281
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:314
 msgid "easeInSine"
-msgstr ""
+msgstr "azaltSinüsİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:164
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:197
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:282
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:315
 msgid "easeOutSine"
-msgstr ""
+msgstr "azaltSinüsDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:165
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:198
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:283
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:316
 msgid "easeInOutSine"
-msgstr ""
+msgstr "azaltSinüsİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:166
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:199
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:284
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:317
 msgid "easeInExpo"
-msgstr ""
+msgstr "azaltSergiİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:167
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:200
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:285
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:318
 msgid "easeOutExpo"
-msgstr ""
+msgstr "azaltSergiDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:168
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:201
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:286
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:319
 msgid "easeInOutExpo"
-msgstr ""
+msgstr "azaltSergiİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:169
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:202
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:287
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:320
 msgid "easeInCirc"
-msgstr ""
+msgstr "azaltDaireİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:170
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:203
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:288
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:321
 msgid "easeOutCirc"
-msgstr ""
+msgstr "azaltDaireDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:171
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:204
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:289
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:322
 msgid "easeInOutCirc"
-msgstr ""
+msgstr "azaltDaireİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:172
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:205
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:290
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:323
 msgid "easeInElastic"
-msgstr ""
+msgstr "azaltEsnekİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:173
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:206
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:291
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:324
 msgid "easeOutElastic"
-msgstr ""
+msgstr "azaltEsnekDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:174
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:207
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:292
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:325
 msgid "easeInOutElastic"
-msgstr ""
+msgstr "azaltEsnekİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:175
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:208
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:293
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:326
 msgid "easeInOutBack"
-msgstr ""
+msgstr "azaltGeriİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:176
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:209
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:294
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:327
 msgid "easeInBounce"
-msgstr ""
+msgstr "azaltZıplamaİçe"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:177
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:210
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:295
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:328
 msgid "easeOutBounce"
-msgstr ""
+msgstr "azaltZıplamaDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:178
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:211
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:296
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:329
 msgid "easeInOutBounce"
-msgstr ""
+msgstr "azaltZıplamaİçeDışa"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:238
 msgid "Section(s)"
-msgstr ""
+msgstr "Bölüm(ler)"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:244
 msgid ""
@@ -883,6 +1001,9 @@ msgid ""
 "and/or <em>Auto-gallery</em> is set to <em>Galleries per Section</em>. Adapt "
 "it to conform with your theme."
 msgstr ""
+"Bu, <em>Uygula</em> seçeneği <em>Bölümlerle Sınırlı</em> veya <em>Otomatik-"
+"galeri</em> seçeneği <em>Bölüm başına Galeriler</em> olarak ayarlandığı "
+"zaman geçerlidir. Temanıza uyması için uyarlayın."
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:244
 msgid ""
@@ -893,13 +1014,60 @@ msgid ""
 "gallery\". If you want to include images in a sidebar with ID primary, add "
 "\", #primary\"."
 msgstr ""
+"Örnekler: Eğer temanız yazı içeriğini bir div yazı sınıfı ile sarıyorsa, bu "
+"değeri \"div.post\" olarak değiştirin. Eğer kenar çubuğunuza ana ID ile bir "
+"resim eklemek istiyorsanız, \", div#primary\" veya html5 temaları için "
+"\"aside#primary\" ekleyin. Eğer yalnızca bir WordPress galerisinde resimleri "
+"gruplamak istiyorsanız, \"div.gallery\" kullanın. Eğer kenar çubuğunuza ana "
+"ID ile resimler eklemek istiyorsanız, \", #primary\" ekleyin."
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:253
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:254
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:255
 msgid "Gallery Auto-rotation"
-msgstr ""
+msgstr "Galeri otomatik-döndürme"
 
 #: ../../easy-fancybox-pro/easy-fancybox-pro.php:257
 msgid "Auto-rotation uses a fixed 6, 8 or 12 second pause per image."
 msgstr ""
+"Otomatik döndürme, resim başına sabit 6, 8 ya da 12 saniyelik bir duraklama "
+"kullanır."
+
+#~ msgid "Size"
+#~ msgstr "Boyut"
+
+#~ msgid "Text"
+#~ msgstr "Metin"
+
+#~ msgid "Back"
+#~ msgstr "Geri"
+
+#~ msgid "Quad"
+#~ msgstr "Dörtlü"
+
+#~ msgid "Expo"
+#~ msgstr "Sergi"
+
+#~ msgid "Transparency fade during elastic transition."
+#~ msgstr "Elastik geçiş sırasında Saydamlık solması."
+
+#~ msgid "Adjust its specific settings below."
+#~ msgstr "Aşağıda kendi özel ayarlarını yapın."
+
+#~ msgid "http://4visions.nl/en/wordpress-plugins/easy-fancybox/"
+#~ msgstr "http://4visions.nl/en/wordpress-plugins/easy-fancybox/"
+
+#~ msgid ""
+#~ "Easily enable the <a href=\"http://fancybox.net/\">FancyBox jQuery "
+#~ "extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo "
+#~ "links. Also supports iFrame and inline content."
+#~ msgstr ""
+#~ "Tüm resimlerde, SWF, PDF, YouTube, Dailymotion ve Vimeo bağlantılarında "
+#~ "kolayca <a href=\"http://fancybox.net/\">FancyBox jQuery eklentisini</a> "
+#~ "etkinleştirir. Ayrıca, iFrame ve satıriçi içeriği destekler."
+
+#~ msgid "RavanH"
+#~ msgstr "RavanH"
+
+#~ msgid "http://4visions.nl/"
+#~ msgstr "http://4visions.nl/"

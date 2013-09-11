@@ -86,7 +86,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'description' => '<a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/"><strong><em>' . __('For advanced options and support, please get the Easy FancyBox - Pro extension.','easy-fancybox') . '</strong></a>'
 					),
 				'Links' => array(
-					'title' => __('Links'),
+					'title' => translate('Links'),
 					'input' => 'multiple',
 					'hide' => true,
 					'options' => array(
@@ -97,7 +97,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'hide' => true,
 							'input' => 'select',
 							'options' => array(
-								'' => __('None'),
+								'' => translate('None'),
 								':not(:empty)' => __('Empty (hidden) links','easy-fancybox'),
 								':has(img)' => __('Without thumbnail image','easy-fancybox')
 								),
@@ -111,7 +111,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'hide' => true,
 							'input' => 'select',
 							'options' => array(
-								'' => __('None'),
+								'' => translate('None'),
 								'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
 								),
 							'default' => '1',
@@ -167,7 +167,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em><br />' 
 							),
 						'overlaySpotlight' => array (
-							'id' => '',
+							'id' => 'fancybox_overlaySpotlight',
 							'input' => 'checkbox',
 							'hide' => true,
 							//'status' => 'disabled',
@@ -220,7 +220,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<br />'
+							'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 						'frameOpacity' => array (
 							'id' => 'fancybox_frameOpacity',
@@ -255,7 +255,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							),
 						'width' => array (
 							'id' => 'fancybox_width',
-							'title' => __('Width'),
+							'title' => translate('Width'),
 							'label_for' => 'fancybox_width',
 							'input' => 'text',
 							'sanitize_callback' => 'intval',
@@ -265,7 +265,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							),
 						'height' => array (
 							'id' => 'fancybox_height',
-							'title' => __('Height'),
+							'title' => translate('Height'),
 							'label_for' => 'fancybox_height',
 							'input' => 'text',
 							'sanitize_callback' => 'intval',
@@ -274,7 +274,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							),
 						'padding' => array (
 							'id' => 'fancybox_padding',
-							'title' => __('Border'),
+							'title' => translate('Border'),
 							'label_for' => 'fancybox_padding',
 							'input' => 'number',
 							'step' => '1',
@@ -418,7 +418,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'label_for' => 'fancybox_transitionIn',
 					'input' => 'select',
 					'options' => array(
-						'none' => __('None','easy-fancybox'),
+						'none' => translate('None'),
 						'' => __('Fade','easy-fancybox'),
 						'elastic' => __('Elastic','easy-fancybox'),
 						),
@@ -445,7 +445,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'label_for' => 'fancybox_transitionOut',
 					'input' => 'select',
 					'options' => array(
-						'none' => __('None','easy-fancybox'),
+						'none' => translate('None'),
 						'' => __('Fade','easy-fancybox'),
 						'elastic' => __('Elastic','easy-fancybox'),
 						),
@@ -534,7 +534,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'input' => 'select',
 					'options' => array(
-						'' => __('Disabled'),
+						'' => translate('Disabled'),
 						'1' => __('WordPress galleries only','easy-fancybox'),
 						'2' => __('All in one gallery','easy-fancybox')
 						),
@@ -674,7 +674,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'label_for' => 'fancybox_transitionInInline',
 					'input' => 'select',
 					'options' => array(
-						'none' => __('None','easy-fancybox'),
+						'none' => translate('None'),
 						'' => __('Fade','easy-fancybox'),
 						'elastic' => __('Elastic','easy-fancybox'),
 						),
@@ -701,7 +701,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'label_for' => 'fancybox_transitionOutInline',
 					'input' => 'select',
 					'options' => array(
-						'none' => __('None','easy-fancybox'),
+						'none' => translate('None'),
 						'' => __('Fade','easy-fancybox'),
 						'elastic' => __('Elastic','easy-fancybox'),
 						),
@@ -768,7 +768,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'width' => array (
 					'id' => 'fancybox_PDFwidth',
-					'title' => __('Width'),
+					'title' => translate('Width'),
 					'label_for' => 'fancybox_PDFwidth',
 					'input' => 'text',
 					'sanitize_callback' => 'intval',
@@ -778,7 +778,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'height' => array (
 					'id' => 'fancybox_PDFheight',
-					'title' => __('Height'),
+					'title' => translate('Height'),
 					'label_for' => 'fancybox_PDFheight',
 					'input' => 'text',
 					'sanitize_callback' => 'intval',
@@ -787,7 +787,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'padding' => array (
 					'id' => 'fancybox_PDFpadding',
-					'title' => __('Border'),
+					'title' => translate('Border'),
 					'label_for' => 'fancybox_PDFpadding',
 					'input' => 'number',
 					'step' => '1',
@@ -837,7 +837,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'options' => array(
 						'fade' => __('Fade','easy-fancybox'),
 						//'elastic' => __('Elastic','easy-fancybox'),
-						'none' => __('None','easy-fancybox')
+						'none' => translate('None')
 						),
 					'default' => 'fade',
 					),
@@ -893,7 +893,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'width' => array (
 					'id' => 'fancybox_SWFWidth',
-					'title' => __('Width'),
+					'title' => translate('Width'),
 					'label_for' => 'fancybox_SWFWidth',
 					'input' => 'text',
 					'sanitize_callback' => 'intval',
@@ -904,7 +904,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'height' => array (
 					'id' => 'fancybox_SWFHeight',
-					'title' => __('Height'),
+					'title' => translate('Height'),
 					'label_for' => 'fancybox_SWFHeight',
 					'input' => 'text',
 					'sanitize_callback' => 'intval',
@@ -914,7 +914,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'padding' => array (
 					'id' => 'fancybox_SWFpadding',
-					'title' => __('Border'),
+					'title' => translate('Border'),
 					'label_for' => 'fancybox_SWFpadding',
 					'input' => 'number',
 					'step' => '1',
@@ -987,7 +987,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'width' => array (
 					'id' => 'fancybox_SVGWidth',
-					'title' => __('Width'),
+					'title' => translate('Width'),
 					'label_for' => 'fancybox_SVGWidth',
 					'input' => 'text',
 					'sanitize_callback' => 'intval',
@@ -998,7 +998,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'height' => array (
 					'id' => 'fancybox_SVGHeight',
-					'title' => __('Height'),
+					'title' => translate('Height'),
 					'label_for' => 'fancybox_SVGHeight',
 					'input' => 'text',
 					'sanitize_callback' => 'intval',
@@ -1008,7 +1008,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'padding' => array (
 					'id' => 'fancybox_SVGpadding',
-					'title' => __('Border'),
+					'title' => translate('Border'),
 					'label_for' => 'fancybox_SVGpadding',
 					'input' => 'number',
 					'step' => '1',
@@ -1092,7 +1092,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'width' => array (
 					'id' => 'fancybox_YoutubeWidth',
-					'title' => __('Width'),
+					'title' => translate('Width'),
 					'label_for' => 'fancybox_YoutubeWidth',
 					'input' => 'number',
 					'step' => '1',
@@ -1105,7 +1105,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'height' => array (
 					'id' => 'fancybox_YoutubeHeight',
-					'title' => __('Height'),
+					'title' => translate('Height'),
 					'label_for' => 'fancybox_YoutubeHeight',
 					'input' => 'number',
 					'step' => '1',
@@ -1117,7 +1117,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'padding' => array (
 					'id' => 'fancybox_Youtubepadding',
-					'title' => __('Border'),
+					'title' => translate('Border'),
 					'label_for' => 'fancybox_Youtubepadding',
 					'input' => 'number',
 					'step' => '1',
@@ -1191,7 +1191,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'width' => array (
 					'id' => 'fancybox_VimeoWidth',
-					'title' => __('Width'),
+					'title' => translate('Width'),
 					'label_for' => 'fancybox_VimeoWidth',
 					'input' => 'number',
 					'step' => '1',
@@ -1204,7 +1204,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'height' => array (
 					'id' => 'fancybox_VimeoHeight',
-					'title' => __('Height'),
+					'title' => translate('Height'),
 					'label_for' => 'fancybox_VimeoHeight',
 					'input' => 'number',
 					'step' => '1',
@@ -1216,7 +1216,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'padding' => array (
 					'id' => 'fancybox_Vimeopadding',
-					'title' => __('Border'),
+					'title' => translate('Border'),
 					'label_for' => 'fancybox_Vimeopadding',
 					'input' => 'number',
 					'step' => '1',
@@ -1291,7 +1291,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'width' => array (
 					'id' => 'fancybox_DailymotionWidth',
-					'title' => __('Width'),
+					'title' => translate('Width'),
 					'label_for' => 'fancybox_DailymotionWidth',
 					'input' => 'number',
 					'step' => '1',
@@ -1304,7 +1304,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'height' => array (
 					'id' => 'fancybox_DailymotionHeight',
-					'title' => __('Height'),
+					'title' => translate('Height'),
 					'label_for' => 'fancybox_DailymotionHeight',
 					'input' => 'number',
 					'step' => '1',
@@ -1316,7 +1316,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'padding' => array (
 					'id' => 'fancybox_DailymotionPadding',
-					'title' => __('Border'),
+					'title' => translate('Border'),
 					'label_for' => 'fancybox_DailymotionPadding',
 					'input' => 'number',
 					'step' => '1',
@@ -1421,7 +1421,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					),
 				'width' => array (
 					'id' => 'fancybox_iFramewidth',
-					'title' => __('Width'),
+					'title' => translate('Width'),
 					'label_for' => 'fancybox_iFramewidth',
 					'input' => 'text',
 					'sanitize_callback' => 'intval',
@@ -1431,7 +1431,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					),
 				'height' => array (
 					'id' => 'fancybox_iFrameheight',
-					'title' => __('Height'),
+					'title' => translate('Height'),
 					'label_for' => 'fancybox_iFrameheight',
 					'input' => 'text',
 					'sanitize_callback' => 'intval',
@@ -1440,7 +1440,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					),
 				'padding' => array (
 					'id' => 'fancybox_iFramepadding',
-					'title' => __('Border'),
+					'title' => translate('Border'),
 					'label_for' => 'fancybox_iFramepadding',
 					'input' => 'number',
 					'step' => '1',
