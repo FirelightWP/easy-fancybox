@@ -598,7 +598,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'id' => 'fancybox_autoSelector',
 					'hide' => true,
 					'input' => 'hidden',
-					'default' => 'div.gallery',
+					'default' => 'div.gallery ', // add div.tiled-gallery for Tiled Galleries support
 					'translations' => __('Galleries per Section (below)','easy-fancybox') . __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Autogallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox') . __('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you only want to group images in a WordPress gallery together, use "div.gallery". If you want to include images in a sidebar with ID primary, add ", #primary".','easy-fancybox') . __('Hide/show title on mouse hover action works best with Overlay title position.','easy-fancybox') . __('The slideshow uses a fixed 6, 8 or 12 second pause per image.','easy-fancybox') . __('(6 seconds)','easy-fancybox') . __('(8 seconds)','easy-fancybox') . __('(12 seconds)','easy-fancybox')
 					),
 				'onComplete' => array (

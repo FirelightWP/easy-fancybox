@@ -459,7 +459,11 @@ Mousewheel fix. New approach for IE alphaimageloader path fix with less compatib
 
 == Changelog ==
 
+= 1.5.6 =
+* iPad positioning patch
+
 = 1.5.5 =
+* iPad positioning patch
 * Prevent mousewheel scrolling page in the background
 * New stylesheet IE alphaimageloader path fix approach
 * Czech translation added
