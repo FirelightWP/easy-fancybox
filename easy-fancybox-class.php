@@ -15,7 +15,7 @@ class easyFancyBox {
 	   MAIN SCRIPT OUTPUT
 	 **********************/
 
-	function main_script() {
+	public function main_script() {
 
 		echo '
 	<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . ' using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://status301.net/wordpress-plugins/easy-fancybox/) -->';
@@ -456,7 +456,7 @@ class easyFancyBox {
 	    ACTIONS & FILTERS
 	 ***********************/
 
-	static function register_scripts() {	
+	public static function register_scripts() {	
 	
 	    if ( !is_admin() ) {
 		// ENQUEUE
@@ -492,13 +492,13 @@ class easyFancyBox {
 	    }
 	}
 
-	static function enqueue_styles() {
+	public static function enqueue_styles() {
 		// register style
 		wp_dequeue_style('fancybox');
 		wp_enqueue_style('fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.css', false, EASY_FANCYBOX_VERSION, 'screen');
 	}
 
-	static function enqueue_footer_scripts() {
+	public static function enqueue_footer_scripts() {
 		if (!self::$add_scripts)
 			return;
 
@@ -508,7 +508,7 @@ class easyFancyBox {
 		wp_enqueue_script('jquery-metadata');
 	}
 
-	static function on_ready() {	
+	public static function on_ready() {	
 		if (!self::$add_scripts) // abort mission, there is no need for any script files
 			return;
 		
@@ -521,7 +521,7 @@ jQuery(document).on(\'ready post-load\', easy_fancybox_handler );
 ';
 	}
 	
-	static function admin_init(){
+	public static function admin_init(){
 
 		add_filter('plugin_action_links_' . EASY_FANCYBOX_PLUGINBASENAME, array(__CLASS__, 'add_action_link') );
 		// in preparation of admin page move:
@@ -537,7 +537,7 @@ jQuery(document).on(\'ready post-load\', easy_fancybox_handler );
 
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
 	// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
-	static function add_video_wmode_opaque($html, $url, $attr) {
+	public static function add_video_wmode_opaque($html, $url, $attr) {
 		if (strpos($html, "<embed src=" ) !== false) {
 			$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque"', $html);
 		} elseif (strpos($html, 'youtube' ) !== false && strpos($html, 'wmode' ) == false ) {
@@ -550,13 +550,13 @@ jQuery(document).on(\'ready post-load\', easy_fancybox_handler );
 		return $html;
 	}
 
-	static function init() {			
+	public static function init() {			
 		require_once(EASY_FANCYBOX_PLUGINDIR . 'easy-fancybox-settings.php');
 		
 		add_filter('embed_oembed_html', array(__CLASS__, 'add_video_wmode_opaque'), 10, 3);
 	}
 	
-	static function textdomain() {
+	public static function textdomain() {
 		if ( is_admin() ) {			
 			load_plugin_textdomain('easy-fancybox', false, dirname( EASY_FANCYBOX_PLUGINBASENAME ) . '/languages/');
 		}
