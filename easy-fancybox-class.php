@@ -456,7 +456,7 @@ class easyFancyBox {
 	    ACTIONS & FILTERS
 	 ***********************/
 
-	function register_scripts() {	
+	static function register_scripts() {	
 	
 	    if ( !is_admin() ) {
 		// ENQUEUE
@@ -492,7 +492,7 @@ class easyFancyBox {
 	    }
 	}
 
-	function enqueue_styles() {
+	static function enqueue_styles() {
 		// register style
 		wp_dequeue_style('fancybox');
 		wp_enqueue_style('fancybox', EASY_FANCYBOX_PLUGINURL.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.pack.css', false, EASY_FANCYBOX_VERSION, 'screen');
@@ -508,7 +508,7 @@ class easyFancyBox {
 		wp_enqueue_script('jquery-metadata');
 	}
 
-	function on_ready() {	
+	static function on_ready() {	
 		if (!self::$add_scripts) // abort mission, there is no need for any script files
 			return;
 		
@@ -550,11 +550,7 @@ jQuery(document).on(\'ready post-load\', easy_fancybox_handler );
 		return $html;
 	}
 
-	static function init() {
-
-//		if ( is_admin() ) {			
-//		}
-			
+	static function init() {			
 		require_once(EASY_FANCYBOX_PLUGINDIR . 'easy-fancybox-settings.php');
 		
 		add_filter('embed_oembed_html', array(__CLASS__, 'add_video_wmode_opaque'), 10, 3);
