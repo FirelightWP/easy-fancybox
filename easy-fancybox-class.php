@@ -473,38 +473,20 @@ class easyFancyBox {
 			// do nothing
 		} else {
 			if ( 'elastic' == get_option( self::$options['IMG']['options']['transitionIn']['id'], self::$options['IMG']['options']['transitionIn']['default']) || 'elastic' == get_option( self::$options['IMG']['options']['transitionOut']['id'], self::$options['IMG']['options']['transitionOut']['default']) ) {
-				// first get rid of previously registered variants of jquery.easing by other plugins or theme
-				wp_deregister_script('easing');
-				wp_deregister_script('jquery.easing');
-				wp_deregister_script('jqueryeasing');
-				wp_deregister_script('jquery_easing');
 				wp_deregister_script('jquery-easing');
-				// then register our version
 				wp_register_script('jquery-easing', EASY_FANCYBOX_PLUGINURL.'jquery.easing.pack.js', array('jquery'), EASING_VERSION, true);
 			}
 		}
 	
 		// mousewheel in IMG settings?
 		if ( '1' == get_option( self::$options['IMG']['options']['mouseWheel']['id'], self::$options['IMG']['options']['mouseWheel']['default']) ) {
-			// first get rid of previously registered variants of jquery.mousewheel (by other plugins)
-			wp_deregister_script('mousewheel');
-			wp_deregister_script('jquery.mousewheel');
-			wp_deregister_script('jquerymousewheel');
-			wp_deregister_script('jquery_mousewheel');
 			wp_deregister_script('jquery-mousewheel');
-			// then register our version
 			wp_register_script('jquery-mousewheel', EASY_FANCYBOX_PLUGINURL.'jquery.mousewheel.pack.js', array('jquery'), MOUSEWHEEL_VERSION, true);
 		}
 		
 		// metadata in Link settings?
 		if ('1' == get_option( self::$options['Global']['options']['Links']['options']['metaData']['id'], self::$options['Global']['options']['Links']['options']['metaData']['default']) ) {
-			// first get rid of previously registered variants of jquery.metadata (by other plugins)
-			wp_deregister_script('metadata');
-			wp_deregister_script('jquery.metadata');
-			wp_deregister_script('jquerymetadata');
-			wp_deregister_script('jquery_metadata');
 			wp_deregister_script('jquery-metadata');
-			// then register our version
 			wp_register_script('jquery-metadata',EASY_FANCYBOX_PLUGINURL.'jquery.metadata.pack.js', array('jquery'), METADATA_VERSION, true);
 		}
 	    }
