@@ -462,6 +462,7 @@ Mousewheel fix. New approach for IE alphaimageloader path fix with less compatib
 = 1.5.6 =
 * iPad positioning patch
 * Don't unregister scripts that are not ours even for conflict prevention
+* box-sizing:border-box issue in Firefox fixed
 
 = 1.5.5 =
 * Prevent mousewheel scrolling page in the background

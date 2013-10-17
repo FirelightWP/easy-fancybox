@@ -28,6 +28,7 @@
 	z-index:11104;
 	display: none;
 	box-sizing: content-box;
+	-moz-box-sizing: content-box;
 }
 
 #fancybox-loading div {
@@ -38,6 +39,7 @@
 	height: 480px;
 	background-image: url('fancybox.png');
 	box-sizing: content-box;
+	-moz-box-sizing: content-box;
 }
 
 #fancybox-overlay {
@@ -48,6 +50,7 @@
 	z-index:11100;
 	display: none;
 	box-sizing: content-box;
+	-moz-box-sizing: content-box;
 }
 
 #fancybox-tmp {
@@ -67,10 +70,12 @@
 	outline: none;
 	display: none;
 	box-sizing: content-box;
+	-moz-box-sizing: content-box;
 }
 
 #fancybox-wrap div {
 	box-sizing: content-box;
+	-moz-box-sizing: content-box;
 }
 
 #fancybox-outer {
