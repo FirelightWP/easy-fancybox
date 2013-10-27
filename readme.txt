@@ -150,7 +150,7 @@ Yes. All links with class **nofancybox** that would normally get auto-enabled, w
 `<a href="url/to/fullimg.jpg" class="nofancybox"><img src="url/to/thumbnail.jpg" /></a>`
 
 
-= Will a NextGen gallery be displayed in a FancyBox overlay ? =
+= Can NextGEN Gallery work with Easy FancyBox ? =
 
 NetxGEN has its own built in FancyBox version along with a choice of other lightbox scripts but if you prefer to use Easy FancyBox (because of better customisability) then you need to take some steps to make the two plugins compatible.
 
