@@ -29,16 +29,16 @@ After activation, all links to **JPG, GIF and PNG images** are automatically ope
 - Auto-popup on page load
 - links inside Gravity Forms in ajax mode
 
-See [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
+See [Screenshots](http://wordpress.org/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
-See [FAQ's](http://wordpress.org/extend/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay. Subscribe to [Status301](http://status301.net/tag/easy-fancybox/feed/) for tips on how to get a high degree of control over what will be shown in a FancyBox overlay on your website.
+See [FAQ's](http://wordpress.org/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay. Subscribe to [Status301](http://status301.net/tag/easy-fancybox/feed/) for tips on how to get a high degree of control over what will be shown in a FancyBox overlay on your website.
 
 Get support on the [Easy FancyBox web page](http://status301.net/wordpress-plugins/easy-fancybox/) or [WordPress forum](http://wordpress.org/tags/easy-fancybox?forum_id=10).
 
 Visit [FancyBox](http://fancybox.net/) for more information, examples and the FancyBox Support Forum. Please consider a DONATION for continued development of the FancyBox project.
 
 **Recommended:**
-- For increased site performance, simply install and activate the plugin [Use Google Libraries](http://wordpress.org/extend/plugins/use-google-libraries/) to load jQuery from Googles CDN.
+- For increased site performance, simply install and activate the plugin [Use Google Libraries](http://wordpress.org/plugins/use-google-libraries/) to load jQuery from Googles CDN.
 
 = Translators =
 
@@ -109,11 +109,11 @@ The same thing goes for WordPress Galleries. Choose **Link to: File** when inser
 
 = I want to change something. Where is the settings page? =
 
-There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/extend/plugins/easy-fancybox/screenshots/) ...
+There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/plugins/easy-fancybox/screenshots/) ...
 
 = Help! It does not work... =
 
-Please follow the trouble shooting steps on [Other Notes](http://wordpress.org/extend/plugins/easy-fancybox/other_notes/) to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://status301.net/wordpress-plugins/easy-fancybox/)
+Please follow the trouble shooting steps on [Other Notes](http://wordpress.org/plugins/easy-fancybox/other_notes/) to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://status301.net/wordpress-plugins/easy-fancybox/)
 &nbsp;
 
 
@@ -152,15 +152,15 @@ Yes. All links with class **nofancybox** that would normally get auto-enabled, w
 
 = Will a NextGen gallery be displayed in a FancyBox overlay ? =
 
-It *can* be. 
+NetxGEN has its own built in FancyBox version along with a choice of other lightbox scripts but if you prefer to use Easy FancyBox (because of better customisability) then you need to take some steps to make the two plugins compatible.
 
-1. Switch OFF the FancyBox Auto-gallery option; and 
-1. set the NextGen option "JavaScript Thumbnail effect" to "Custom"; and 
-1. fill the code line field with 
+1. Go to your Settings > Media admin page and switch OFF the FancyBox Auto-gallery option; 
+1. Go to Gallery > Other Options and set the Lightbox Effects option to "No lightbox" and click on Show Advanced Settings;
+1. fill the Code field with 
 `
 class="fancybox" rel="%GALLERY_NAME%"
 `
-
+1. Leave the other fields empty and save your settings.
 
 = Can I use ONE thumbnail to open a complete gallery ? =
 
@@ -190,15 +190,13 @@ General steps:
 
 **A.** Place the shortcode of your choice in your page/post content.
 
-**B.** Configure NextGen on **Gallery > Options > Gallery settings** to at least have the following options set like this:
+**B.** Configure NextGen on **Gallery > Gallery Settings** to Display galleries as "NextGEN Basic Thumbnails" and then under the NextGEN Basic Thumbnails to at least have the following options set like this:
 
 1. Number of images per page: 1
-1. Integrate slideshow: unchecked (optional but advised: use auto-rotation in the FancyBox settings instead)
-1. Show first: Thumbnails
-1. Show ImageBrowser: unchecked
-1. Add hidden images: checked
+1. Use imagebrowser effect: No
+1. Add hidden images: Yes
 
-**C.** Optional: add the following new CSS rule to your theme stylesheet (or install [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add it on the new Appearance > Edit CSS admin page) to hide the page browsing links below the gallery thumbnail.
+**C.** Optional: add the following new CSS rule to your theme stylesheet (or install [Custom CSS](http://wordpress.org/plugins/safecss/) or [Jetpack](http://wordpress.org/plugins/jetpack/) and add it on the new Appearance > Edit CSS admin page) to hide the page browsing links below the gallery thumbnail.
 `
 .ngg-navigation {
 display:none;
@@ -216,7 +214,7 @@ http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/hqdefault.jpg
 
 But an easier method is this one, shared by Shashank Shekhar (thanks!) :
 
-To create Youtube thumbnail galleries, install http://wordpress.org/extend/plugins/youtube-simplegallery/ and set the 'Effect' option to fancybox. Then disable Youtube autodetection on Settings > Media.
+To create Youtube thumbnail galleries, install http://wordpress.org/plugins/youtube-simplegallery/ and set the 'Effect' option to fancybox. Then disable Youtube autodetection on Settings > Media.
 
 
 = Can I display web pages or HTML files in a FancyBox overlay? =
@@ -379,7 +377,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 = Theme conflicts = 
 
-- **Twenty Eleven** uses a very high stacking order (z-index: 9999) for the top image and menu div, resulting in FancyBox content being partially hidden under the page header. Work-around: Use the plugin [Custom CSS](http://wordpress.org/extend/plugins/safecss/) and add on the new Appearance > Edit CSS admin page the rule:
+- **Twenty Eleven** uses a very high stacking order (z-index: 9999) for the top image and menu div, resulting in FancyBox content being partially hidden under the page header. Work-around: Use the plugin [Custom CSS](http://wordpress.org/plugins/safecss/) or [Jetpack](http://wordpress.org/plugins/jetpack/) and add on the new Appearance > Edit CSS admin page the rule:
 `
 #branding {
 z-index:999;
