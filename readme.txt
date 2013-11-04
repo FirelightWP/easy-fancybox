@@ -203,6 +203,27 @@ display:none;
 }
 `
 
+= Can I link a NextGEN thumbnail to a Youtube movie in FancyBox? =
+
+User Mark Szoldan shared a neat trick how to do this:
+
+1. Follow the instructions to make Easy FancyBox work smoothly with NextGEN above and make sure it all works correctly for normal thumbnails linked to their full-size version.
+1. Then give the image that you want to link to a Youtube movie the URL to the Youtube page as title.
+1. Finally paste the code below into a text widget that will live in your sidebar or footer bar, or you can hard-code it into your theme but make sure it come before the `wp_footer()` call...
+
+`
+<script type="text/javascript">
+jQuery('.fancybox [title*="www.youtube.com"]').each(function() {
+  var title = jQuery(this).attr('title');
+  var desc = jQuery(this).parent().attr('title');
+  jQuery(this).attr('title', desc);
+  jQuery(this).parent().attr('href', title);
+});
+</script>
+`
+
+This script snippet will scan the image titles and if it finds a Youtube URL there, it will replace the links href attribute value accordingly.
+
 = Can I create a gallery of Youtube thumbnails which open in FancyBox? =
 
 You could do this manually by uploading individual thumbnails that you can retrieve by using the unique movie ID in these URLs for three different sizes:
