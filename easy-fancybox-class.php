@@ -303,7 +303,7 @@ class easyFancyBox {
 	     ADMIN FUNCTIONS
 	 ***********************/
 
-	function register_settings($args = array()) {
+	public static function register_settings($args = array()) {
 		foreach ($args as $key => $value) {
 			// check to see if the section is enabled, else skip to next
 			if ( array_key_exists($key, self::$options['Global']['options']['Enable']['options']) && !get_option( self::$options['Global']['options']['Enable']['options'][$key]['id'], self::$options['Global']['options']['Enable']['options'][$key]['default']) )
@@ -430,7 +430,7 @@ class easyFancyBox {
 	/**
 	 * Adds an action link to the Plugins page
 	 */
-	function add_action_link( $links ) {
+	public static function add_action_link( $links ) {
 		$settings_link = '<a href="' . admin_url('options-media.php') . '">' . translate('Settings') . '</a>';
 		array_unshift( $links, $settings_link ); 
 		return $links;
