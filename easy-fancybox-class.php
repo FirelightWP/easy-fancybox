@@ -15,7 +15,7 @@ class easyFancyBox {
 	   MAIN SCRIPT OUTPUT
 	 **********************/
 
-	public function main_script() {
+	public static function main_script() {
 
 		echo '
 	<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . ' using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://status301.net/wordpress-plugins/easy-fancybox/) -->';
@@ -524,14 +524,15 @@ jQuery(document).on(\'ready post-load\', easy_fancybox_handler );
 	public static function admin_init(){
 
 		add_filter('plugin_action_links_' . EASY_FANCYBOX_PLUGINBASENAME, array(__CLASS__, 'add_action_link') );
-		// in preparation of admin page move:
+
+		// in preparation of dedicated admin page move:
 		//add_action('admin_menu', array(__CLASS__, 'add_menu'));
 
 		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
 
 		self::register_settings( self::$options );
 	
-		// test with media upload resize... TODO : fix - because does not work anymore in the new uploader
+		// TODO : fix?? media_upload_max_image_resize() does not exist anymore...
 		//add_action( 'pre-upload-ui', 'media_upload_max_image_resize' );
 	}
 
