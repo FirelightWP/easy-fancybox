@@ -8,7 +8,7 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
  * Version: 1.3.4 (11/11/2010) patched and appended
- * Requires: jQuery v1.3+
+ * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -177,7 +177,7 @@
 
 			tmp.css('padding', (selectedOpts.padding + selectedOpts.margin));
 
-			$('.fancybox-inline-tmp').unbind('fancybox-cancel').bind('fancybox-change', function() {
+			$('.fancybox-inline-tmp').off('fancybox-cancel').on('fancybox-change', function() {
 				$(this).replaceWith(content.children());				
 			});
 
@@ -196,9 +196,9 @@
 					$('<div class="fancybox-inline-tmp" />')
 						.hide()
 						.insertBefore( $(obj) )
-						.bind('fancybox-cleanup', function() {
+						.on('fancybox-cleanup', function() {
 							$(this).replaceWith(content.children());
-						}).bind('fancybox-cancel', function() {
+						}).on('fancybox-cancel', function() {
 							$(this).replaceWith(tmp.children());
 						});
 
@@ -303,17 +303,19 @@
 		_process_inline = function() {
 			var
 				w = selectedOpts.width,
-				h = selectedOpts.height;
+				h = selectedOpts.height,
+				ww = $(window).width() == 0 ? window.innerWidth : $(window).width(),
+				wh = $(window).height() == 0 ? window.innerHeight : $(window).height();
 
 			if (w.toString().indexOf('%') > -1) {
-				w = parseInt( ($(window).width() - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
+				w = parseInt( (ww - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
 
 			} else {
 				w = w == 'auto' ? 'auto' : w + 'px';	
 			}
 
 			if (h.toString().indexOf('%') > -1) {
-				h = parseInt( ($(window).height() - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
+				h = parseInt( (wh - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
 
 			} else {
 				h = h == 'auto' ? 'auto' : h + 'px';	
@@ -354,10 +356,10 @@
 
 			busy = true;
 
-			$(content.add( overlay )).unbind();
+			$(content.add( overlay )).off();
 
-			$(window).unbind("resize.fb scroll.fb");
-			$(document).unbind('keydown.fb');
+			$(window).off("resize.fb scroll.fb");
+			$(document).off('keydown.fb');
 
 			if (wrap.is(":visible") && currentOpts.titlePosition !== 'outside') {
 				wrap.css('height', wrap.height());
@@ -572,7 +574,7 @@
 
 		_set_navigation = function() {
 			if (currentOpts.enableEscapeButton || currentOpts.enableKeyboardNav) {
-				$(document).bind('keydown.fb', function(e) {
+				$(document).on('keydown.fb', function(e) {
 					if (e.keyCode == 27 && currentOpts.enableEscapeButton) {
 						e.preventDefault();
 						$.fancybox.close();
@@ -622,23 +624,23 @@
 			_set_navigation();
 	
 			if (currentOpts.hideOnContentClick)	{
-				content.bind('click', $.fancybox.close);
+				content.on('click', $.fancybox.close);
 			}
 
 			if (currentOpts.hideOnOverlayClick)	{
-				overlay.bind('click', $.fancybox.close);
+				overlay.on('click', $.fancybox.close);
 			}
 
-			if(currentOpts.autoResize) {
-				$(window).bind("resize.fb", $.fancybox.resize);
+			if (currentOpts.autoResize) {
+				$(window).on("resize.fb", $.fancybox.resize);
 			}
 
 			if (currentOpts.centerOnScroll) {
-				$(window).bind("scroll.fb", $.fancybox.center);
+				$(window).on("scroll.fb", $.fancybox.center);
 			}
 
 			if ($.fn.mousewheel) {
-				$(window).bind('mousewheel.fb', function(e, delta) {
+				$(window).on('mousewheel.fb', function(e, delta) {
 					e.preventDefault();
 					if ( false === busy && ( $(e.target).get(0).clientHeight == 0 || $(e.target).get(0).scrollHeight === $(e.target).get(0).clientHeight ) ) {
 						$.fancybox[ delta > 0 ? 'prev' : 'next']();
@@ -707,8 +709,8 @@
 
 		_get_viewport = function() {
 			return [
-				window.innerWidth?window.innerWidth:$(window).width() - (currentOpts.margin * 2),
-				window.innerHeight?window.innerHeight:$(window).height() - (currentOpts.margin * 2),
+				$(window).width() == 0 ? window.innerWidth : $(window).width() - (currentOpts.margin * 2),
+				$(window).height() == 0 ? window.innerHeight : $(window).height() - (currentOpts.margin * 2),
 				$(document).scrollLeft() + currentOpts.margin,
 				$(document).scrollTop() + currentOpts.margin
 			];
@@ -826,8 +828,8 @@
 
 		$(this)
 			.data('fancybox', $.extend({}, options, ($.metadata ? $(this).metadata() : {})))
-			.unbind('click.fb')
-			.bind('click.fb', function(e) {
+			.off('click.fb')
+			.on('click.fb', function(e) {
 				e.preventDefault();
 
 				if (busy) {
@@ -973,10 +975,10 @@
 
 		$(close.add( nav_left ).add( nav_right )).hide();
 
-		$(content.add( overlay )).unbind();
+		$(content.add( overlay )).off();
 
-		$(window).unbind("resize.fb scroll.fb mousewheel.fb");
-		$(document).unbind('keydown.fb');
+		$(window).off("resize.fb scroll.fb mousewheel.fb");
+		$(document).off('keydown.fb');
 
 		content.find('iframe#fancybox-frame').attr('src', isIE6 && /^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank');
 
@@ -1131,7 +1133,7 @@
 		autoScale : true,
 		autoDimensions : true,
 		centerOnScroll : !isTouch,
-		autoResize : !isTouch,
+		autoResize : true, //!isTouch
 
 		ajax : {},
 		swf : { wmode: 'transparent' },
