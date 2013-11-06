@@ -16,7 +16,7 @@
  *
  * Patches applied:
  *
- * Line 709: patch for better centering on ipad etc.
+ * Line 307, 712: patches for better centering on ipad etc.
  * Line 818: qouted attribute selector, RavanH ravanhagen@gmail.com 
  * Line 39, 620 and 1123: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
  * Line 1098: catch scroll wheel action on overlay, not only fancybox frame (wrap)
@@ -641,10 +641,13 @@
 
 			if ($.fn.mousewheel) {
 				$(window).on('mousewheel.fb', function(e, delta) {
-					e.preventDefault();
-					if ( false === busy && ( $(e.target).get(0).clientHeight == 0 || $(e.target).get(0).scrollHeight === $(e.target).get(0).clientHeight ) ) {
+					if (busy) {
+						e.preventDefault();						
+					} else if ( $(e.target).get(0).clientHeight == 0 || $(e.target).get(0).scrollHeight === $(e.target).get(0).clientHeight ) {
+						e.preventDefault();
 						$.fancybox[ delta > 0 ? 'prev' : 'next']();
 					}
+
 				});
 			}
 
