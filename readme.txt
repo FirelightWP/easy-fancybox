@@ -385,7 +385,8 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 
 = Plugin conflicts =
 
-- **All in One SEO Pack** with outbound link tracking enabled. Disable that feature.
+- **jQuery Updater** moves jQuery to version 2+ wich is incompatible.
+- **All in One SEO Pack** and **Analytics for WordPress** with outbound link tracking enabled. Disable that feature.
 - **Better WP Security** randomly changes version numbers in linked file URLs, breaking the FancyBox stylesheet. Disable the option "Display random version number to all non-administrative users" in the Better WP Security settings.
 - By default **Google Analytics for WordPress** converts links like `href="#anyID"` to `href="http://yoursite.url/page/#anyID"`, disabling inline content shown in FancyBox.
 - **Wordpress Firewall 2** blocks access to image files needed for porper display of the FancyBox overlay in older IE and other non-css3 browsers.
