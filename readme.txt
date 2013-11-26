@@ -47,7 +47,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 - **French** * Emmanuel Maillard, (version 1.5.5)
 - **Gujarati** * Apoto Team, http://www.apoto.com (version 1.5.0)
 - **Hindi** * Outshine Solutions, http://outshinesolutions.com (version 1.3.4.9)
-- **Indonesian** * Nasrulhaq Muiz, http://al-badar.net (version 1.3.4.9)
+- **Indonesian** * Nasrulhaq Muiz, http://al-badar.net (version 1.5.5)
 - **Lithuanian** * Vincent G, http://www.host1free.com (version 1.3.4.9)
 - **Persian** * Ali Akbar Kaviani, http://www.wiki10.net (version 1.5.2)
 - **Polish** * Kamil Szymański, (version 1.3.4.9)
@@ -482,12 +482,13 @@ Mousewheel fix. New approach for IE alphaimageloader path fix with less compatib
 = 1.5.6 =
 * iPad positioning patch
 * Don't unregister scripts that are not ours even for conflict prevention
-* box-sizing:border-box issue in Firefox fixed
+* box-sizing: border-box issue in Firefox fixed
 
 = 1.5.5 =
 * Prevent mousewheel scrolling page in the background
 * New stylesheet IE alphaimageloader path fix approach
 * Czech translation added
+* Updated Indonesian translation
 
 = 1.5.2 =
 * BUGFIX: easy_fancybox_handler() in combo with trigger('click') causes Uncaught Exception script error
