@@ -261,7 +261,11 @@ If you do'nt have *Auto-detect* checked under **SWF** on Settings > Media admin 
 
 = How do I show content with different sizes? =
 
-FancyBox tries to detect the size of the conten automatically but if it can not find a size, it will default to the settings for that particular content type as set on the Settings > Media page. You can manually override this by defining the width and height wrapped in curly brases in the class attribute of the link itself. For example, a Flash movie with different size:
+FancyBox tries to detect the size of the conten automatically but if it can not find a size, it will default to the settings for that particular content type as set on the Settings > Media page. 
+
+You can manually override this by defining the width and height wrapped in curly brases in the class attribute of the link itself. Make sure the option "Inlcude the Metadata jQuery extension script..." under FancyBox | Links on Settings > Media is enabled.
+
+For example, a Flash movie with different size:
 
 `
 <a class="fancybox-swf {width:1024,height:675}" href="link-to-your-swf"></a>
@@ -414,8 +418,7 @@ z-index:999;
 
 = Other =
 
-- When using multiple links on the same page to similar content, automatically or manually using the same class (for example `fancybox-youtube`), metadata on the second and following links (for example `{width:200,height:300}` in the class or data attribute) will be ignored.
-- When showing an iframe as inline content in FancyBox, the iframe will become blank after opening and closing it. The solution is to link directly to the iframe source and use `class="fancybox-iframe"` instead.
+- When showing an iframe as inline content in FancyBox -- not advised, use fancybox-iframe instead! -- the iframe will become blank after opening and closing it. The solution is to link directly to the iframe source and use `class="fancybox-iframe"` instead.
 - Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated embed code. Since version 1.3.4.5, the missing wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' (best performance) or 'transparent' (only when you need transparency) for your embedded content.
 
 
