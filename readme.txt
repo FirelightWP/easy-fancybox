@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 1.5.5
+Stable tag: 1.5.6
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -477,8 +477,8 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.5.5 =
-Mousewheel fix. New approach for IE alphaimageloader path fix with less compatibility issues.
+= 1.5.6 =
+Bugfix release.
 
 == Changelog ==
 
@@ -486,6 +486,7 @@ Mousewheel fix. New approach for IE alphaimageloader path fix with less compatib
 * iPad positioning patch
 * Don't unregister scripts that are not ours even for conflict prevention
 * box-sizing: border-box issue in Firefox fixed
+* Allow mousewheel scrolling page in the background again
 
 = 1.5.5 =
 * Prevent mousewheel scrolling page in the background

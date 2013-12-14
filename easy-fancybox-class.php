@@ -436,7 +436,7 @@ class easyFancyBox {
 		return $links;
 	}
 
-	function intval($setting = '') {
+	public static function intval($setting = '') {
 		if ($setting == '')
 			return '';
 	
