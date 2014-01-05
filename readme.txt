@@ -43,7 +43,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 = Translators =
 
 - **Czech** *  Eldenroot (version 1.5.5)
-- **Dutch** *  R.A. van Hagen, http://status301.net (version 1.5.0)
+- **Dutch** *  R.A. van Hagen, http://status301.net (version 1.5.6)
 - **French** * Emmanuel Maillard, (version 1.5.5)
 - **Gujarati** * Apoto Team, http://www.apoto.com (version 1.5.0)
 - **Hindi** * Outshine Solutions, http://outshinesolutions.com (version 1.3.4.9)
