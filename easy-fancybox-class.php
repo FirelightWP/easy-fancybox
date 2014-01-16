@@ -236,26 +236,24 @@ class easyFancyBox {
 	<style type="text/css">
 .fancybox-hidden{display:none}.rtl #fancybox-left{left:auto;right:0px}.rtl #fancybox-right{left:0px;right:auto}.rtl #fancybox-right-ico{background-position:-40px -30px}.rtl #fancybox-left-ico{background-position:-40px -60px}.rtl .fancybox-title-over{text-align:right}.rtl #fancybox-left-ico,.rtl #fancybox-right-ico{right:-9999px}.rtl #fancybox-right:hover span{right:auto;left:20px}.rtl #fancybox-left:hover span{right:20px}#fancybox-img{max-width:none;max-height:none}';
 
-		if ('true' == $overlaySpotlight)
+		if (isset($overlaySpotlight) && 'true' == $overlaySpotlight)
 			echo '
 #fancybox-overlay{background-attachment:fixed;background-image:url("' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png");background-position:center;background-repeat:no-repeat;background-size:cover;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png",sizingMethod="scale");-ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png\',sizingMethod=\'scale\')";}';
-		if ( !empty($borderRadius) )
+		if (isset($borderRadius) &&  !empty($borderRadius) )
 			echo '
 #fancybox-bg-n,#fancybox-bg-ne,#fancybox-bg-e,#fancybox-bg-se,#fancybox-bg-s,#fancybox-bg-sw,#fancybox-bg-w,#fancybox-bg-nw{background-image:none}#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}#fancybox-outer{-moz-box-shadow:0 0 12px #1111;-webkit-box-shadow:0 0 12px #111;box-shadow:0 0 12px #111}';
-		if ('' != $backgroundColor)
+		if (isset($backgroundColor) && '' != $backgroundColor)
 			echo '
-#fancybox-outer{background-color:'.$backgroundColor.'}';
-		if ('' != $paddingColor)
+#fancybox-content{background-color:'.$backgroundColor.'}';
+		if (isset($paddingColor) && '' != $paddingColor)
 			echo '
-#fancybox-content{border-color:'.$paddingColor.'}';
-		if ('' != $textColor)
+#fancybox-content{border-color:'.$paddingColor.'}.fancybox-title-inside{background-color:'.$paddingColor.';margin:0 !important;width:100% !important;}';
+		if (isset($textColor) && '' != $textColor)
 			echo '
 #fancybox-content{color:'.$textColor.'}';
-		if ('' != $frameOpacity && '1' != $frameOpacity) {
-			$frameOpacity_percent = (int)$frameOpacity*100;
+		if (isset($titleColor) && '' != $titleColor)
 			echo '
-#fancybox-outer{filter:alpha(opacity='.$frameOpacity_percent.');-moz-opacity:'.$frameOpacity.';opacity:'.$frameOpacity.'}';
-		}
+#fancybox-title{color:'.$titleColor.'}';
 	echo '
 	</style>';
 

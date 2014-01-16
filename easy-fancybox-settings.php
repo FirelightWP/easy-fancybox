@@ -170,9 +170,9 @@ class easyFancyBox_Options extends easyFancyBox {
 							'id' => 'fancybox_overlaySpotlight',
 							'input' => 'checkbox',
 							'hide' => true,
-							//'status' => 'disabled',
+							'status' => get_option('fancybox_overlaySpotlight') ? '' : 'disabled',
 							'default' => '',
-							'description' => __('Spotlight effect','easy-fancybox') //. '. <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => get_option('fancybox_overlaySpotlight') ? __('Spotlight effect','easy-fancybox') : __('Spotlight effect','easy-fancybox') . '. <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),
@@ -202,16 +202,6 @@ class easyFancyBox_Options extends easyFancyBox {
 							'default' => '',
 							'description' => ''
 							),
-						'paddingColor' => array (
-							'id' => 'fancybox_paddingColor',
-							'hide' => true,
-							'title' => __('Border color','easy-fancybox'),
-							'input' => 'text',
-							'status' => 'disabled',
-							'class' => 'small-text',
-							'default' => '',
-							'description' => ''
-							),
 						'textColor' => array (
 							'id' => 'fancybox_textColor',
 							'hide' => true,
@@ -222,18 +212,25 @@ class easyFancyBox_Options extends easyFancyBox {
 							'default' => '',
 							'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
-						'frameOpacity' => array (
-							'id' => 'fancybox_frameOpacity',
+						'titleColor' => array (
+							'id' => 'fancybox_titleColor',
 							'hide' => true,
-							'title' => __('Opacity','easy-fancybox'),
-							'input' => 'number',
-							'step' => '0.1',
-							'min' => '0',
-							'max' => '1',
+							'title' => __('Title color','easy-fancybox'),
+							'input' => 'text',
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							'description' => ''
+							),
+						'paddingColor' => array (
+							'id' => 'fancybox_paddingColor',
+							'hide' => true,
+							'title' => __('Border color','easy-fancybox'),
+							'input' => 'text',
+							'status' => 'disabled',
+							'class' => 'small-text',
+							'default' => '',
+							'description' => '<br />'
 							),
 						'borderRadius' => array (
 							'id' => 'fancybox_borderRadius',
@@ -246,7 +243,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => __('Set a border radius to create rounded corners. Higher is rounder.','easy-fancybox') . ' <em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							'description' => '<em><a href="http://status301.net/wordpress-plugins/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 
 						'p11' => array (
@@ -335,30 +332,6 @@ class easyFancyBox_Options extends easyFancyBox {
 							'class' => 'small-text',
 							'default' => '',
 							'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br />'
-							),
-						'bgColor' => array (
-							'id' => 'fancybox_backgroundColor',
-							'hide' => true,
-							'input' => 'hidden',
-							'default' => '#fff',
-							),
-						'pColor' => array (
-							'id' => 'fancybox_paddingColor',
-							'hide' => true,
-							'input' => 'hidden',
-							'default' => '#fff'
-							),
-						'tColor' => array (
-							'id' => 'fancybox_textColor',
-							'hide' => true,
-							'input' => 'hidden',
-							'default' => 'inherit'
-							),
-						'fOpacity' => array (
-							'id' => 'fancybox_frameOpacity',
-							'hide' => true,
-							'input' => 'hidden',
-							'default' => '1.0'
 							)
 						)
 					)
