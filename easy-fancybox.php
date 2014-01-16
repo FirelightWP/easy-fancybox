@@ -36,9 +36,8 @@ Author URI: http://status301.net/
  * CONSTANTS
  **************/
 
-define( 'EASY_FANCYBOX_VERSION', '1.5.6' );
+define( 'EASY_FANCYBOX_VERSION', '1.5.7' );
 define( 'FANCYBOX_VERSION', '1.3.6' );
-//define( 'FANCYBOX2_VERSION', '2.0.6' );
 define( 'MOUSEWHEEL_VERSION', '3.1.3' );
 define( 'EASING_VERSION', '1.3' );
 define( 'METADATA_VERSION', '2.1' );
