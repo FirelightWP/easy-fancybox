@@ -63,4 +63,3 @@ define( 'EASY_FANCYBOX_PLUGINURL', plugins_url( '/' . EASY_FANCYBOX_SUBDIR, __FI
 require_once(EASY_FANCYBOX_PLUGINDIR . 'easy-fancybox-class.php');
 
 easyFancyBox::run();
-

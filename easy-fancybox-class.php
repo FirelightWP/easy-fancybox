@@ -115,7 +115,7 @@ class easyFancyBox {
 							$type = '.'.$type;
 						if ($more>0)
 							echo ', ';
-						echo 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)'.$attributeLimit.', area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)'.$attributeLimit;
+						echo 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox,.pin-it-button)'.$attributeLimit.', area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)'.$attributeLimit;
 						$more++;
 					}
 					echo '\';';
@@ -239,15 +239,15 @@ class easyFancyBox {
 		if (isset($overlaySpotlight) && 'true' == $overlaySpotlight)
 			echo '
 #fancybox-overlay{background-attachment:fixed;background-image:url("' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png");background-position:center;background-repeat:no-repeat;background-size:cover;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png",sizingMethod="scale");-ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'' . EASY_FANCYBOX_PLUGINURL . 'light-mask.png\',sizingMethod=\'scale\')";}';
-		if (isset($borderRadius) &&  !empty($borderRadius) )
+		if (isset($borderRadius) && !empty($borderRadius))
 			echo '
-#fancybox-bg-n,#fancybox-bg-ne,#fancybox-bg-e,#fancybox-bg-se,#fancybox-bg-s,#fancybox-bg-sw,#fancybox-bg-w,#fancybox-bg-nw{background-image:none}#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}#fancybox-outer{-moz-box-shadow:0 0 12px #1111;-webkit-box-shadow:0 0 12px #111;box-shadow:0 0 12px #111}';
+#fancybox-bg-n,#fancybox-bg-ne,#fancybox-bg-e,#fancybox-bg-se,#fancybox-bg-s,#fancybox-bg-sw,#fancybox-bg-w,#fancybox-bg-nw{background-image:none}#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}#fancybox-outer{-moz-box-shadow:0 0 12px #1111;-webkit-box-shadow:0 0 12px #111;box-shadow:0 0 12px #111}.fancybox-title-inside{padding-top:'.$borderRadius.'px;margin-top:-'.$borderRadius.'px !important;border-radius: 0 0 '.$borderRadius.'px '.$borderRadius.'px}';
 		if (isset($backgroundColor) && '' != $backgroundColor)
 			echo '
 #fancybox-content{background-color:'.$backgroundColor.'}';
 		if (isset($paddingColor) && '' != $paddingColor)
 			echo '
-#fancybox-content{border-color:'.$paddingColor.'}.fancybox-title-inside{background-color:'.$paddingColor.';margin:0 !important;width:100% !important;}';
+#fancybox-content{border-color:'.$paddingColor.'}.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}';
 		if (isset($textColor) && '' != $textColor)
 			echo '
 #fancybox-content{color:'.$textColor.'}';
@@ -639,4 +639,3 @@ jQuery(document).on(\'ready post-load\', easy_fancybox_handler );
 	}
 
 }
-
