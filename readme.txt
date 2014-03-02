@@ -29,6 +29,8 @@ After activation, all links to **JPG, GIF and PNG images** are automatically ope
 - Auto-popup on page load
 - links inside Gravity Forms in ajax mode
 
+For **advanced options** and **priority support**, there is a **[Pro extension](http://status301.net/easy-fancybox-pro-extension/)** available.
+
 See [Screenshots](http://wordpress.org/plugins/easy-fancybox/screenshots/) for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin.
 
 See [FAQ's](http://wordpress.org/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay. Subscribe to [Status301](http://status301.net/tag/easy-fancybox/feed/) for tips on how to get a high degree of control over what will be shown in a FancyBox overlay on your website.
@@ -103,9 +105,9 @@ The same version as this plugin has. I aim to keep close pace to FancyBox upgrad
 
 = I installed the plugin. What now? =
 
-First, make sure that image  thumbnails in your posts and pages are linked to their full size counterpart directly. Open any post with thumbnail images in it for editing and select the first thumbnail. Click the **Edit Image** button that appears and choose **Link to Image**. From now on, clicking that thumbnail should open the full size version in FancyBox.
+First, make sure that image  thumbnails in your posts and pages are linked to their full size counterpart directly. Open any post with thumbnail images in it for editing and select the first thumbnail. Click the **Edit Image** button that appears and choose **Link To: Media File**. From now on, clicking that thumbnail should open the full size version in FancyBox.
 
-The same thing goes for WordPress Galleries. Choose **Link to: File** when inserting a gallery tag.
+The same thing goes for WordPress Galleries. Choose **Link To: Media File** when inserting a gallery tag.
 
 = I want to change something. Where is the settings page? =
 
@@ -121,7 +123,7 @@ Please follow the trouble shooting steps on [Other Notes](http://wordpress.org/p
 
 = Will a WordPress generated gallery be displayed in a FancyBox overlay? =
 
-Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[gallery link="file"]`.
+Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[ gallery link="file" ]`.
 
 = The lightbox does not look good on mobile devices. What can I do about that? =
 
@@ -140,7 +142,7 @@ Tweak the value 641 to target other screen sizes.
 
 = Can I make a slideshow from my gallery? =
 
-In the Pro version, there is an Advanced option called "Gallery Auto-rotation" for that.
+In the [Pro extension](http://status301.net/easy-fancybox-pro-extension/), there is an Advanced option called "Gallery Auto-rotation" for that.
 
 
 = Can I exclude images or other links from auto-attribution? =
@@ -481,6 +483,14 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 Bugfix release.
 
 == Changelog ==
+
+= 1.5.7 =
+* Pro extension link update
+TODO: make IE8- css rules optional
+TODO: move all script to footer and make that optional to for theme compat
+TODO: make jQuery inclusion optional
+TODO: make jQuery 1.6- compat optional
+TODO: move to iframe embed for Youtube, Vimeo and ??
 
 = 1.5.6 =
 * iPad positioning patch
