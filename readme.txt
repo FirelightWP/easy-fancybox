@@ -123,7 +123,7 @@ Please follow the trouble shooting steps on [Other Notes](http://wordpress.org/p
 
 = Will a WordPress generated gallery be displayed in a FancyBox overlay? =
 
-Yes, but _only_ if you used the option **Link thumbnails to: Image File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[ gallery link="file" ]`.
+Yes, but _only_ if you used the option **Link To: Media File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[ gallery link="file" ]`.
 
 = The lightbox does not look good on mobile devices. What can I do about that? =
 
