@@ -100,8 +100,8 @@
 				selectedOpts.orig = $(obj).children("img:first").length ? $(obj).children("img:first") : $(obj);
 			}
 
-			if (title === '' && selectedOpts.orig && selectedOpts.titleFromAlt) {
-				title = selectedOpts.orig.attr('alt');
+			if (title === '' && selectedOpts.orig) {
+				title = selectedOpts.titleFromAlt ? selectedOpts.orig.attr('alt') : selectedOpts.orig.attr('title');
 			}
 
 			href = selectedOpts.href || (obj.nodeName ? $(obj).attr('href') : obj.href) || null;

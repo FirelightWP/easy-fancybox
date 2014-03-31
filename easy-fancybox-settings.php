@@ -1228,7 +1228,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'onStart' => array ( 
 					'noquotes' => true,
-					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'http://(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\', \'i\'), \'http://player.vimeo.com/video/$2?$4\') }'
+					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'//(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\', \'i\'), \'//player.vimeo.com/video/$2?$4\') }'
 					)
 				)
 			),
