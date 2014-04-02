@@ -247,7 +247,7 @@ class easyFancyBox {
 #fancybox-content{background-color:'.$backgroundColor.'}';
 		if (isset($paddingColor) && '' != $paddingColor)
 			echo '
-#fancybox-content{border-color:'.$paddingColor.'}.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}';
+#fancybox-content{border-color:'.$paddingColor.'}#fancybox-outer{background-color:'.$paddingColor.'}.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}';
 		if (isset($textColor) && '' != $textColor)
 			echo '
 #fancybox-content{color:'.$textColor.'}';
