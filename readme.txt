@@ -3,7 +3,7 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number=1%2e3%2e4%2e9&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, nextgen, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery
 Requires at least: 3.3
-Tested up to: 3.8
+Tested up to: 4.0
 Stable tag: 1.5.6
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
@@ -230,9 +230,19 @@ This script snippet will scan the image titles and if it finds a Youtube URL the
 
 You could do this manually by uploading individual thumbnails that you can retrieve by using the unique movie ID in these URLs for three different sizes:
 `
-http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/default.jpg
-http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/mqdefault.jpg
-http://i4.ytimg.com/vi/UNIQUE-MOVIE-ID/hqdefault.jpg
+http://img.youtube.com/vi/UNIQUE-MOVIE-ID/default.jpg
+http://img.youtube.com/vi/UNIQUE-MOVIE-ID/mqdefault.jpg
+http://img.youtube.com/vi/UNIQUE-MOVIE-ID/hqdefault.jpg
+`
+Other locations might be
+`
+http://img.youtube.com/vi/UNIQUE-MOVIE-ID/0.jpg (same as hqdefault.jpg)
+http://img.youtube.com/vi/UNIQUE-MOVIE-ID/1.jpg
+http://img.youtube.com/vi/UNIQUE-MOVIE-ID/2.jpg
+http://img.youtube.com/vi/UNIQUE-MOVIE-ID/3.jpg
+http://img.youtube.com/vi_webp/UNIQUE-MOVIE-ID/0.webp (same as hqdefault.webp)
+etc...
+
 `
 
 But an easier method is this one, shared by Shashank Shekhar (thanks!) :
