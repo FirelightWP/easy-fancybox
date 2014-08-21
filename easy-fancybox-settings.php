@@ -353,7 +353,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'class' => array (
 					'hide' => true,
-					'default' => 'fancybox'
+					'default' => 'fancybox image'
 					),
 /*				'type' => array (
 					'default' => 'image'
@@ -612,7 +612,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a.fancybox-inline, area.fancybox-inline, li.fancybox-inline a:not(li.nofancybox-inline a)'
+					'default' => 'a.fancybox-inline, area.fancybox-inline, li.fancybox-inline a:not(li.nofancybox a)'
 					),
 				'class' => array (
 					'hide' => true,

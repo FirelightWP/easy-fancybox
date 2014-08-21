@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.4 (11/11/2010) patched and appended
+ * Version: 1.3.4 (11/11/2010) patched and appended to 1.3.7
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -16,10 +16,12 @@
  *
  * Patches applied:
  *
- * Line 307, 712: patches for better centering on ipad etc.
- * Line 643: Check type = image for mousewheel
- * Line 818: qouted attribute selector, RavanH ravanhagen@gmail.com 
- * Line 39, 620 and 1123: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
+ * Line 309, 714: patches for better centering on ipad etc.
+ * Line 645: Check type = image for mousewheel
+ * Line 820: qouted attribute selector, RavanH ravanhagen@gmail.com 
+ * Line 41, 622 and 1125: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
+ * Line 34: WebP image support, RavanH ravanhagen@gmail.com 
+ * Line 126, 677, 686: 'image' class forces image type, RavanH ravanhagen@gmail.com 
  * Patched for jQuery 1.9+ compat by Sabel http://sabel.bluegfx.de/wordpress/wp-content/uploads/2013/03/jquery.fancybox-1.3.4.js
  * 
  * Added SVG support by Simon Maillard simon@ogesta.fr
@@ -29,7 +31,7 @@
 
 		selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
 
-		ajaxLoader = null, imgPreloader = new Image(), imgRegExp = /\.(jpg|gif|png|bmp|jpeg)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, svgRegExp = /[^\.]\.(svg)\s*$/i,
+		ajaxLoader = null, imgPreloader = new Image(), imgRegExp = /\.(jpg|gif|png|bmp|jpeg|webp)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, svgRegExp = /[^\.]\.(svg)\s*$/i,
 
 		loadingTimer, loadingFrame = 1,
 
@@ -121,7 +123,7 @@
 				type = 'html';
 
 			} else if (href) {
-				if (href.match(imgRegExp)) {
+				if (href.match(imgRegExp) || $(obj).hasClass("image")) {
 					type = 'image';
 
 				} else if (href.match(swfRegExp)) {
@@ -672,7 +674,7 @@
 			if ((currentArray.length -1) > currentIndex) {
 				href = currentArray[ currentIndex + 1 ].href;
 
-				if (typeof href !== 'undefined' && href.match(imgRegExp)) {
+				if (typeof href !== 'undefined' && (href.match(imgRegExp) || $(obj).hasClass("image")) ) {
 					objNext = new Image();
 					objNext.src = href;
 				}
@@ -681,7 +683,7 @@
 			if (currentIndex > 0) {
 				href = currentArray[ currentIndex - 1 ].href;
 
-				if (typeof href !== 'undefined' && href.match(imgRegExp)) {
+				if (typeof href !== 'undefined' && (href.match(imgRegExp) || $(obj).hasClass("image")) ) {
 					objNext = new Image();
 					objNext.src = href;
 				}

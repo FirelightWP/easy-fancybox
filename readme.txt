@@ -16,7 +16,7 @@ After activation, all links to **JPG, GIF and PNG images** are automatically ope
 
 **Also supports:**
 
-- All other image types _and_ image maps
+- All common image types including webp _and_ image maps
 - WordPress Galleries
 - NextGEN galleries (see FAQs for instructions)
 - Youtube galleries via Youtube Simple Gallery plugin (see FAQs for instructions)
@@ -495,7 +495,9 @@ Bugfix release.
 == Changelog ==
 
 = 1.5.7 =
-* Pro extension link update
+* FIX: Pro extension link update
+* NEW: WebP support and class='image' to force image media type
+TODO: optional disable for small sceen sizes
 TODO: make IE8- css rules optional
 TODO: move all script to footer and make that optional to for theme compat
 TODO: make jQuery inclusion optional
