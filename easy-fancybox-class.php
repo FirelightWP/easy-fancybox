@@ -482,7 +482,7 @@ class easyFancyBox {
 		// mousewheel in IMG settings?
 		if ( '1' == get_option( self::$options['IMG']['options']['mouseWheel']['id'], self::$options['IMG']['options']['mouseWheel']['default']) ) {
 			wp_deregister_script('jquery-mousewheel');
-			wp_register_script('jquery-mousewheel', EASY_FANCYBOX_PLUGINURL.'jquery.mousewheel.pack.js', array('jquery'), MOUSEWHEEL_VERSION, true);
+			wp_register_script('jquery-mousewheel', EASY_FANCYBOX_PLUGINURL.'jquery.mousewheel.min.js', array('jquery'), MOUSEWHEEL_VERSION, true);
 		}
 		
 		// metadata in Link settings?
