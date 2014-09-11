@@ -497,12 +497,12 @@ Bugfix release.
 = 1.5.7 =
 * FIX: Pro extension link update
 * NEW: WebP support and class='image' to force image media type
+* IE 6-8 css rules optional
 TODO: optional disable for small sceen sizes
-TODO: make IE8- css rules optional
 TODO: move all script to footer and make that optional to for theme compat
 TODO: make jQuery inclusion optional
 TODO: make jQuery 1.6- compat optional
-TODO: move to iframe embed for Youtube, Vimeo and ??
+* iframe embed for Youtube, Vimeo and Dailymotion
 
 = 1.5.6 =
 * iPad positioning patch

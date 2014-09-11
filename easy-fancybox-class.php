@@ -255,10 +255,12 @@ class easyFancyBox {
 			echo '
 #fancybox-title{color:'.$titleColor.'}';
 	echo '
-	</style>';
+	</style>
+';
 
-		// running our IE alphaimageloader relative path styles here
-	echo '
+	// running our IE alphaimageloader relative path styles here
+	if (isset($compatIE6) && 'true' == $compatIE6)
+		echo '
 	<!--[if lt IE 8]>            
 		<style type="text/css">
 .fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . EASY_FANCYBOX_PLUGINURL . 'fancybox/fancy_close.png",sizingMethod="scale")}
@@ -281,6 +283,11 @@ class easyFancyBox {
 .fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . EASY_FANCYBOX_PLUGINURL . 'fancybox/fancy_shadow_nw.png",sizingMethod="scale")}
 		</style>
 	<![endif]-->
+';
+
+	// running our IE alphaimageloader relative path styles here
+	if (isset($compatIE8) && 'true' == $compatIE8)
+		echo '
 	<!--[if IE 8]>            
 		<style type="text/css">
 .fancybox-ie #fancybox-bg-n{-ms-filter:\'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . EASY_FANCYBOX_PLUGINURL . 'fancybox/fancy_shadow_n.png",sizingMethod="scale")\'}

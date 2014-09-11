@@ -334,8 +334,86 @@ class easyFancyBox_Options extends easyFancyBox {
 							'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br />'
 							)
 						)
-					)
+					),
 					
+				'Miscellaneous' => array (
+					'title' => __('Miscellaneous','easy-fancybox'),
+					'input' => 'multiple',
+					'hide' => true,
+					'options' => array(
+						'p1' => array (
+							'hide' => true,
+							'description' => '<strong>' . __('Browser & device compatibility','easy-fancybox') . '</strong><br />'
+							),
+						'minViewportWidth' => array (
+							'id' => 'fancybox_minViewportWidth',
+							'title' => __('Minimum viewport width','easy-fancybox'),
+							'label_for' => 'fancybox_smallscreenDisable',
+							'input' => 'number',
+							'step' => '1',
+							'min' => '300',
+							'max' => '900',
+							'sanitize_callback' => 'intval',
+							'class' => 'small-text',
+							'hide' => true,
+							'default' => '640',
+							'description' => __('(leave empty to ignore)','easy-fancybox') . '<br/>'
+							),
+						'forceNewtab' => array (
+							'id' => 'fancybox_forceNewtab',
+							'input' => 'checkbox',
+							'hide' => true,
+							'default' => '1',
+							'description' => __('Make media links open in a new tab when viewport falls below minimum width (above)','easy-fancybox')
+							),
+						'compatIE6' => array (
+							'id' => 'fancybox_compatIE6',
+							'input' => 'checkbox',
+							'hide' => true,
+							'default' => '',
+							'description' => __('Include IE 6 and 7 compatibility style rules','easy-fancybox')
+							),
+						'compatIE8' => array (
+							'id' => 'fancybox_compatIE8',
+							'input' => 'checkbox',
+							'hide' => true,
+							'default' => '',
+							'description' => __('Include IE 8 compatibility style rules','easy-fancybox')
+							),
+
+						'p2' => array (
+							'hide' => true,
+							'description' => '<br /><strong>' . __('Theme & plugins compatibility','easy-fancybox') . '</strong><br />'
+							),
+						'noFooter' => array (
+							'id' => 'fancybox_noFooter',
+							'input' => 'checkbox',
+							'hide' => true,
+							'default' => '',
+							'description' => __('Move scripts from footer to theme head section','easy-fancybox')
+							),
+						'nojQuery' => array (
+							'id' => 'fancybox_nojQuery',
+							'input' => 'checkbox',
+							'hide' => true,
+							'default' => '',
+							'description' => __('Do not include standard WordPress jQuery library','easy-fancybox')
+							),
+						'compatjQuery' => array (
+							'id' => 'fancybox_compatJquery',
+							'input' => 'checkbox',
+							'hide' => true,
+							'default' => '',
+							'description' => __('Use jQuery pre-1.7 compatibility mode','easy-fancybox')
+							),
+
+/*						'p3' => array (
+							'hide' => true,
+							'description' => '<br /><strong>' . __('Other','easy-fancybox') . '</strong><br />'
+							),
+*/
+						)
+					)
 				)
 			),
 
@@ -355,9 +433,9 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => 'fancybox image'
 					),
-/*				'type' => array (
-					'default' => 'image'
-					),*/
+				'type' => array (
+					'default' => get_option('fancybox_enableInline') ? 'image' : '',
+					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttribute',
 					'title' => __('Autodetect','easy-fancybox'),
@@ -612,7 +690,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a.fancybox-inline, area.fancybox-inline, li.fancybox-inline a:not(li.nofancybox a)'
+					'default' => 'a.fancybox-inline, area.fancybox-inline, li.fancybox-inline a'
 					),
 				'class' => array (
 					'hide' => true,
@@ -1370,7 +1448,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					),
 				'tag' => array (
 					'hide' => true,
-					'default' => 'a.fancybox-iframe, area.fancybox-iframe, li.fancybox-iframe a:not(li.nofancybox a)'
+					'default' => 'a.fancybox-iframe, area.fancybox-iframe, li.fancybox-iframe a'
 					),
 				'class' => array (
 					'hide' => true,
