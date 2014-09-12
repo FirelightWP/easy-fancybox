@@ -217,7 +217,6 @@ class easyFancyBox_Options extends easyFancyBox {
 							'hide' => true,
 							'title' => __('Title color','easy-fancybox'),
 							'input' => 'text',
-							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
 							'description' => ''
@@ -227,10 +226,9 @@ class easyFancyBox_Options extends easyFancyBox {
 							'hide' => true,
 							'title' => __('Border color','easy-fancybox'),
 							'input' => 'text',
-							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<br />'
+							'description' => '<em>' . __('Default:','easy-fancybox')  . ' #000 x #fff</em><br />' . __('Note:','easy-fancybox') . ' ' . __('Use RGBA notation for semi-transparent borders.','easy-fancybox') . ' <em>' . __('Example:','easy-fancybox') . ' rgba(10,10,30,0.7)</em><br />'
 							),
 						'borderRadius' => array (
 							'id' => 'fancybox_borderRadius',
@@ -1457,7 +1455,9 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 				'type' => array (
 					'default' => 'iframe'
 					),
-				'scrolling' => array (
+/*	
+ * other than overflow:auto not supported on many browsers 
+			'scrolling' => array (
 					'id' => 'fancybox_iFrameScrolling',
 					'title' => __('Scrolling','easy-fancybox'),
 					'label_for' => 'fancybox_iFrameScrolling',
@@ -1470,6 +1470,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					'default' => 'auto',
 					'description' => __('Define scrolling and scrollbar visibility.','easy-fancybox') . '<br />'
 					),
+*/
 				'width' => array (
 					'id' => 'fancybox_iFramewidth',
 					'title' => translate('Width'),

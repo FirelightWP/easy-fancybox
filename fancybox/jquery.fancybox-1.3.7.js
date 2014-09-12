@@ -15,7 +15,7 @@
  *   http://www.gnu.org/licenses/gpl.html
  *
  * Patches applied:
- *
+ * Removed/replaced non-HTML5 attributes
  * Line 309, 714: patches for better centering on ipad etc.
  * Line 645: Check type = image for mousewheel
  * Line 820: qouted attribute selector, RavanH ravanhagen@gmail.com 
@@ -492,7 +492,7 @@
 		_format_title = function(title) {
 			if (title && title.length) {
 				if (currentOpts.titlePosition == 'float') {
-					return '<table id="fancybox-title-float-wrap" cellpadding="0" cellspacing="0"><tr><td id="fancybox-title-float-left"></td><td id="fancybox-title-float-main">' + title + '</td><td id="fancybox-title-float-right"></td></tr></table>';
+					return '<table id="fancybox-title-float-wrap" style="border-spacing:0;border-collapse:collapse"><tr><td id="fancybox-title-float-left"></td><td id="fancybox-title-float-main">' + title + '</td><td id="fancybox-title-float-right"></td></tr></table>';
 				}
 
 				return '<div id="fancybox-title-' + currentOpts.titlePosition + '">' + title + '</div>';
@@ -653,7 +653,7 @@
 			}
 
 			if (currentOpts.type == 'iframe') {
-				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '" frameborder="0" hspace="0" ' + (navigator.userAgent.match(/msie [6]/i) ? 'allowtransparency="true""' : '') + ' scrolling="' + selectedOpts.scrolling + '" src="' + currentOpts.href + '"></iframe>').appendTo(content);
+				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '') + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="' + currentOpts.href + '"></iframe>').appendTo(content);
 			}
 
 			wrap.show();
@@ -1119,7 +1119,7 @@
 			loading.addClass('fancybox-ie6');
 			wrap.addClass('fancybox-ie6');
 
-			$('<iframe id="fancybox-hide-sel-frame" src="' + (/^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank' ) + '" scrolling="no" border="0" frameborder="0" tabindex="-1"></iframe>').prependTo(outer);
+			$('<iframe id="fancybox-hide-sel-frame" src="' + (/^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank' ) + '" style="overflow:hidden;border:0" tabindex="-1"></iframe>').prependTo(outer);
 		}
 	};
 
