@@ -44,6 +44,7 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 
 = Translators =
 
+- **Croatian** Ivan Capan, (version 1.5.6)
 - **Czech** *  Eldenroot (version 1.5.5)
 - **Dutch** *  R.A. van Hagen, http://status301.net (version 1.5.6)
 - **French** * Emmanuel Maillard, (version 1.5.5)
@@ -503,6 +504,7 @@ TODO: move all script to footer and make that optional to for theme compat
 TODO: make jQuery inclusion optional
 TODO: make jQuery 1.6- compat optional
 * iframe embed for Youtube, Vimeo and Dailymotion
+* Croation translation
 
 = 1.5.6 =
 * iPad positioning patch
