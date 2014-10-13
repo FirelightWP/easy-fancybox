@@ -1205,7 +1205,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'onStart' => array ( 
 					'noquotes' => true,
-					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\', \'i\'), \'embed/$2?$1$4\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; if ( urlParms.indexOf(\'fs=0\') > -1 ) { selectedOpts.allowfullscreen = false } }'
+					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\', \'i\'), \'embed/$2?$1$4\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; selectedOpts.allowfullscreen = ( urlParms.indexOf(\'fs=0\') > -1 ) ? false : true }'
 					)
 				)
 			),
@@ -1304,7 +1304,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'onStart' => array ( 
 					'noquotes' => true,
-					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'//(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\', \'i\'), \'//player.vimeo.com/video/$2?$4\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; if ( urlParms.indexOf(\'fullscreen=0\') > -1 ) { selectedOpts.allowfullscreen = false } }'
+					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'//(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\', \'i\'), \'//player.vimeo.com/video/$2?$4\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; selectedOpts.allowfullscreen = ( urlParms.indexOf(\'fullscreen=0\') > -1 ) ? false : true }'
 					)
 				)
 			),
@@ -1404,7 +1404,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 				'onStart' => array ( 
 					'noquotes' => true,
-					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/video/(.*)\', \'i\'), \'/embed/video/$1\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; if ( urlParms.indexOf(\'fullscreen=0\') > -1 ) { selectedOpts.allowfullscreen = false } }'
+					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/video/(.*)\', \'i\'), \'/embed/video/$1\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; selectedOpts.allowfullscreen = ( urlParms.indexOf(\'fullscreen=0\') > -1 ) ? false : true }'
 					)
 				)
 			),

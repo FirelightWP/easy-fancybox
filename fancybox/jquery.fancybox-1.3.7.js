@@ -1130,7 +1130,7 @@
 		opacity : false,
 		modal : false,
 		cyclic : false,
-		allowfullscreen : true,
+		allowfullscreen : false,
 		scrolling : 'auto',	// 'auto', 'yes' or 'no'
 
 		width : 560,
