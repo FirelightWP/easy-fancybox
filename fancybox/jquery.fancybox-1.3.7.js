@@ -16,6 +16,7 @@
  *
  * Patches applied:
  * Removed/replaced non-HTML5 attributes
+ * Added parameter allowfullscreen for iframe, RavanH ravanhagen@gmail.com
  * Line 309, 714: patches for better centering on ipad etc.
  * Line 645: Check type = image for mousewheel
  * Line 820: qouted attribute selector, RavanH ravanhagen@gmail.com 
@@ -653,7 +654,7 @@
 			}
 
 			if (currentOpts.type == 'iframe') {
-				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '') + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="' + currentOpts.href + '"></iframe>').appendTo(content);
+				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '') + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="' + currentOpts.href + '"' + (false === selectedOpts.allowfullscreen ? '' : ' allowfullscreen') + '></iframe>').appendTo(content);
 			}
 
 			wrap.show();
@@ -1129,6 +1130,7 @@
 		opacity : false,
 		modal : false,
 		cyclic : false,
+		allowfullscreen : true,
 		scrolling : 'auto',	// 'auto', 'yes' or 'no'
 
 		width : 560,

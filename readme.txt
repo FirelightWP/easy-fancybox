@@ -505,6 +505,7 @@ TODO: make jQuery inclusion optional
 TODO: make jQuery 1.6- compat optional
 * iframe embed for Youtube, Vimeo and Dailymotion
 * Croation translation
+* HTML5 players allowfullscreen default
 
 = 1.5.6 =
 * iPad positioning patch
