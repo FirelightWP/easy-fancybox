@@ -83,7 +83,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'description' => '<strong>' . __('iFrames','easy-fancybox') . '</strong>' 
 							)							
 						),
-					'description' => '<a href="http://status301.net/easy-fancybox-pro-extension/"><strong><em>' . __('For advanced options and support, please get the Easy FancyBox - Pro extension.','easy-fancybox') . '</strong></a>'
+					'description' => '<a href="https://premium.status301.net/downloads/easy-fancybox-pro/"><strong><em>' . __('For advanced options and support, please get the Easy FancyBox - Pro extension.','easy-fancybox') . '</strong></a>'
 					),
 				'Links' => array(
 					'title' => translate('Links'),
@@ -115,7 +115,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
 								),
 							'default' => '1',
-							'description' => '<em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
+							'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
 							),
 						'metaData' => array (
 							'id' => 'fancybox_metaData',
@@ -172,7 +172,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'hide' => true,
 							'status' => get_option('fancybox_overlaySpotlight') ? '' : 'disabled',
 							'default' => '',
-							'description' => get_option('fancybox_overlaySpotlight') ? __('Spotlight effect','easy-fancybox') : __('Spotlight effect','easy-fancybox') . '. <em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => get_option('fancybox_overlaySpotlight') ? __('Spotlight effect','easy-fancybox') : __('Spotlight effect','easy-fancybox') . '. <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),
@@ -210,7 +210,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 						'titleColor' => array (
 							'id' => 'fancybox_titleColor',
@@ -241,7 +241,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 
 						'p11' => array (
@@ -343,7 +343,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'hide' => true,
 							'description' => '<strong>' . __('Browser & device compatibility','easy-fancybox') . '</strong><br />'
 							),
-						'minViewportWidth' => array (
+/*						'minViewportWidth' => array (
 							'id' => 'fancybox_minViewportWidth',
 							'title' => __('Minimum viewport width','easy-fancybox'),
 							'label_for' => 'fancybox_smallscreenDisable',
@@ -364,6 +364,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'default' => '1',
 							'description' => __('Make media links open in a new tab when viewport falls below minimum width (above)','easy-fancybox')
 							),
+*/
 						'compatIE6' => array (
 							'id' => 'fancybox_compatIE6',
 							'input' => 'checkbox',
@@ -379,7 +380,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'description' => __('Include IE 8 compatibility style rules','easy-fancybox')
 							),
 
-						'p2' => array (
+/*						'p2' => array (
 							'hide' => true,
 							'description' => '<br /><strong>' . __('Theme & plugins compatibility','easy-fancybox') . '</strong><br />'
 							),
@@ -404,7 +405,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'default' => '',
 							'description' => __('Use jQuery pre-1.7 compatibility mode','easy-fancybox')
 							),
-
+*/
 /*						'p3' => array (
 							'hide' => true,
 							'description' => '<br /><strong>' . __('Other','easy-fancybox') . '</strong><br />'
@@ -455,7 +456,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'' => __('All image links', 'easy-fancybox')
 						),
 					'default' => '',
-					'description' => '<em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p2' => array (
 					'hide' => true,
@@ -486,7 +487,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOut',
@@ -513,7 +514,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
@@ -570,7 +571,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'' => __('Hide/show title on mouse hover action','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' =>  '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p3' => array (
 					'hide' => true,
@@ -588,7 +589,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'2' => __('All in one gallery','easy-fancybox')
 						),
 					'default' => '1',
-					'description' => '<em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
+					'description' => '<em><a href="hhttps://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
 					),
 				'showNavArrows' => array (
 					'id' => 'fancybox_showNavArrows',
@@ -659,7 +660,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'' => __('Slideshow','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+					'description' =>  '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 /*				'titleFormat' => array (
 					'id' => 'fancybox_titleFormat',
@@ -742,7 +743,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOutInline',
@@ -769,7 +770,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="http://status301.net/easy-fancybox-pro-extension/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacityInline',
