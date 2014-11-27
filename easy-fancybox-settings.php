@@ -432,9 +432,6 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => 'fancybox image'
 					),
-				'type' => array (
-					'default' => get_option('fancybox_enableInline') ? 'image' : '',
-					),
 				'autoAttribute' => array (
 					'id' => 'fancybox_autoAttribute',
 					'title' => __('Autodetect','easy-fancybox'),
@@ -457,6 +454,18 @@ class easyFancyBox_Options extends easyFancyBox {
 						),
 					'default' => '',
 					'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					),
+				'type' => array (
+					'id' => 'fancybox_classType',
+					'title' => __('Force FancyBox to treat all media linked with class="fancybox" as images?','easy-fancybox'),
+					'label_for' => 'fancybox_classType',
+					'input' => 'select',
+					'options' => array(
+						'image' => translate('Yes'),
+						'' => translate('No')
+						),
+					'default' => get_option('fancybox_enableInline') ? 'image' : '',
+					'description' => '<br/>'
 					),
 				'p2' => array (
 					'hide' => true,
