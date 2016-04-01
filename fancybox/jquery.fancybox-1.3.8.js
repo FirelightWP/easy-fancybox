@@ -24,6 +24,7 @@
  * Line 41, 622 and 1125: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
  * Line 34: WebP image support, RavanH ravanhagen@gmail.com 
  * Line 126, 677, 686: 'image' class forces image type, RavanH ravanhagen@gmail.com 
+ * Put focus on iframe at _finish
  * Patched for jQuery 1.9+ compat by Sabel http://sabel.bluegfx.de/wordpress/wp-content/uploads/2013/03/jquery.fancybox-1.3.4.js
  * 
  * Added SVG support by Simon Maillard simon@ogesta.fr
@@ -657,11 +658,11 @@
 			}
 
 			if (currentOpts.type == 'iframe') {
-				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '') + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="' + currentOpts.href + '"' + (false === selectedOpts.allowfullscreen ? '' : ' allowfullscreen') + '></iframe>').appendTo(content);
+				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '') + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="' + currentOpts.href + '"' + (false === currentOpts.allowfullscreen ? '' : ' allowfullscreen') + ' tabindex="999"></iframe>').appendTo(content).focus();
 			}
 
 			wrap.show();
-
+			
 			busy = false;
 
 			$.fancybox.center();
@@ -1052,7 +1053,10 @@
 			overlay.css('height', $(document).height());
 		}
 
-		$.fancybox.center(true);
+		/* no centering after resize on touch devices */
+		if (!isTouch) {
+			$.fancybox.center(true);
+		}
 	};
 
 	$.fancybox.center = function() {
@@ -1190,4 +1194,3 @@
 	});
 
 })(jQuery);
-

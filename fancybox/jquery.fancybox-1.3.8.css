@@ -8,12 +8,26 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  * 
  * Version: 1.3.4 (11/11/2010) patched : box-sizing: content-box;
- * Requires: jQuery v1.3+
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  */
+
+#fancybox-loading, #fancybox-loading div,
+#fancybox-overlay,
+#fancybox-wrap, .fancybox-bg,
+#fancybox-outer,
+#fancybox-content,
+#fancybox-content > div,
+#fancybox-content > div > div,
+#fancybox-frame,
+#fancybox-close,
+#fancybox-title, #fancybox-title div,
+#fancybox-left, #fancybox-right, .fancy-ico {
+	box-sizing: content-box;
+	-moz-box-sizing: content-box;
+}
 
 #fancybox-loading {
 	position: fixed;
@@ -27,8 +41,6 @@
 	overflow: hidden;
 	z-index: 111104;
 	display: none;
-	box-sizing: content-box;
-	-moz-box-sizing: content-box;
 }
 
 #fancybox-loading div {
@@ -38,8 +50,6 @@
 	width: 40px;
 	height: 480px;
 	background-image: url('fancybox.png');
-	box-sizing: content-box;
-	-moz-box-sizing: content-box;
 }
 
 #fancybox-overlay {
@@ -49,8 +59,6 @@
 	width: 100%;
 	z-index: 111100;
 	display: none;
-	box-sizing: content-box;
-	-moz-box-sizing: content-box;
 }
 
 #fancybox-tmp {
@@ -69,13 +77,6 @@
 	z-index: 111101;
 	outline: none;
 	display: none;
-	box-sizing: content-box;
-	-moz-box-sizing: content-box;
-}
-
-#fancybox-wrap div {
-	box-sizing: content-box;
-	-moz-box-sizing: content-box;
 }
 
 #fancybox-outer {
@@ -83,6 +84,9 @@
 	width: 100%;
 	height: 100%;
 	background: #fff;
+	box-shadow:0 0 20px #111;
+	-moz-box-shadow:0 0 20px #1111;
+	-webkit-box-shadow:0 0 20px #111;
 }
 
 #fancybox-content {
@@ -100,7 +104,7 @@
     background-clip: padding-box; /* IE9+, Firefox 4+, Opera, Chrome */
 }
 
-#fancybox-content div {
+#fancybox-content > div {
 	max-width: 100%;
 	max-height: 100%;
 }
@@ -163,7 +167,6 @@
 	width: 35%;
 	cursor: pointer;
 	outline: none;
-	background: transparent url('blank.gif');
 	z-index: 111102;
 	display: none;
 }
@@ -240,74 +243,6 @@
 	left:20px
 }
 
-.fancybox-bg {
-	position: absolute;
-	padding: 0;
-	margin: 0;
-	border: 0;
-	width: 20px;
-	height: 20px;
-	z-index: 111001;
-}
-
-#fancybox-bg-n {
-	top: -20px;
-	left: 0;
-	width: 100%;
-	background-image: url('fancybox-x.png');
-}
-
-#fancybox-bg-ne {
-	top: -20px;
-	right: -20px;
-	background-image: url('fancybox.png');
-	background-position: -40px -162px;
-}
-
-#fancybox-bg-e {
-	top: 0;
-	right: -20px;
-	height: 100%;
-	background-image: url('fancybox-y.png');
-	background-position: -20px 0px;
-}
-
-#fancybox-bg-se {
-	bottom: -20px;
-	right: -20px;
-	background-image: url('fancybox.png');
-	background-position: -40px -182px; 
-}
-
-#fancybox-bg-s {
-	bottom: -20px;
-	left: 0;
-	width: 100%;
-	background-image: url('fancybox-x.png');
-	background-position: 0px -20px;
-}
-
-#fancybox-bg-sw {
-	bottom: -20px;
-	left: -20px;
-	background-image: url('fancybox.png');
-	background-position: -40px -142px;
-}
-
-#fancybox-bg-w {
-	top: 0;
-	left: -20px;
-	height: 100%;
-	background-image: url('fancybox-y.png');
-}
-
-#fancybox-bg-nw {
-	top: -20px;
-	left: -20px;
-	background-image: url('fancybox.png');
-	background-position: -40px -122px;
-}
-
 #fancybox-title {
 	font-family: Helvetica;
 	font-size: 12px;
@@ -340,7 +275,7 @@
 
 #fancybox-title-over {
 	padding: 10px;
-	background-image: url('fancy_title_over.png');
+	background: rgba(0,0,0,.64);
 	display: block;
 }
 
@@ -368,7 +303,7 @@
 }
 
 #fancybox-title-float-main {
-	color: #FFF;
+	color: #fff;
 	line-height: 29px;
 	font-weight: bold;
 	padding: 0 0 3px 0;
@@ -380,11 +315,6 @@
 	background: url('fancybox.png') -55px -90px no-repeat;
 }
 
-.fancybox-hidden{
+.fancybox-hidden {
 	display:none
-}
-
-/* IE */
-.fancybox-ie .fancybox-bg{
-	background: transparent !important
 }
