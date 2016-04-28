@@ -11,7 +11,7 @@ class easyFancyBox {
 	public static $add_scripts = false;
 
 	public static $options = array();
-	
+
 	/**********************
 	   MAIN SCRIPT OUTPUT
 	 **********************/
@@ -56,9 +56,9 @@ var fb_opts = {';
 		foreach (self::$options['Global']['options'] as $globals) {
 			foreach ($globals['options'] as $_key => $_value) {
 				if ( isset($_value['id']) )
-					if ( isset($_value['default']) ) 
+					if ( isset($_value['default']) )
 						$parm = get_option($_value['id'], $_value['default']);
-					else 
+					else
 						$parm = get_option($_value['id']);
 				elseif ( isset($_value['default']) )
 					$parm = $_value['default'];
@@ -82,7 +82,7 @@ var fb_opts = {';
 		}
 		echo ' };
 var easy_fancybox_handler = function(){';
-	
+
 		foreach (self::$options as $key => $value) {
 			// check if not enabled or hide=true then skip
 			if ( isset($value['hide']) || !get_option(self::$options['Global']['options']['Enable']['options'][$key]['id'], self::$options['Global']['options']['Enable']['options'][$key]['default']) )
@@ -94,7 +94,7 @@ var easy_fancybox_handler = function(){';
 			 * Auto-detection routines (2x)
 			 */
 			$autoAttribute = (isset($value['options']['autoAttribute'])) ? get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] ) : "";
-		
+
 			if(!empty($autoAttribute)) {
 				if(is_numeric($autoAttribute)) {
 					echo '
@@ -110,7 +110,7 @@ var easy_fancybox_handler = function(){';
 							$type = '.'.$type;
 						if ($more>0)
 							echo ', ';
-						echo 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox a,.pin-it-button), area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
+						echo 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox>a), area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
 						$more++;
 					}
 					echo '\';';
@@ -152,14 +152,14 @@ var easy_fancybox_handler = function(){';
 								echo '.attr(\'rel\', \'gallery\');';
 						}
 					}
-				
+
 				}
 			}
-		
+
 			/*
 			 * Generate .fancybox() bind
 			 */
-			
+
 			// prepare auto popup
 			if( $key == $autoClick )
 				$trigger = $value['options']['class']['default'];
@@ -174,11 +174,11 @@ var easy_fancybox_handler = function(){';
 			echo '.fancybox( jQuery.extend({}, fb_opts, {';
 			$more=0;
 			foreach ($value['options'] as $_key => $_value) {
-				if (isset($_value['id']) || isset($_value['default'])) 
+				if (isset($_value['id']) || isset($_value['default']))
 					$parm = (isset($_value['id']))? get_option($_value['id'], $_value['default']) : $_value['default'];
 				else
 					$parm = '';
-			
+
 				if( isset($_value['input']) && 'checkbox'==$_value['input'] )
 					$parm = ( '1' == $parm ) ? 'true' : 'false';
 
@@ -192,9 +192,9 @@ var easy_fancybox_handler = function(){';
 				}
 			}
 			echo ' }) ';
-		
+
 			// use each() to allow different metadata values per instance; fix by Elron. Thanks!
-			if ( '1' == get_option(self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'],self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) )		
+			if ( '1' == get_option(self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'],self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) )
 				echo ');} ';
 
 			echo ');';
@@ -212,17 +212,17 @@ var easy_fancybox_auto = function(){';
 				break;
 			case '1':
 				echo '
-	/* Auto-click */ 
+	/* Auto-click */
 	setTimeout(function(){jQuery(\'#fancybox-auto\').trigger(\'click\')},'.$delayClick.');';
 				break;
 			case '99':
 				echo '
-	/* Auto-click */ 
+	/* Auto-click */
 	setTimeout(function(){jQuery(\'a[class|="fancybox"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');';
 				break;
 			default :
 				if ( !empty($trigger) ) echo '
-	/* Auto-click */ 
+	/* Auto-click */
 	setTimeout(function(){jQuery(\'a[class*="'.$trigger.'"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');';
 		}
 
@@ -233,7 +233,7 @@ var easy_fancybox_auto = function(){';
 ';
 
 		// HEADER STYLES //
-		
+
 		// customized styles
 		$styles = '';
 		if (isset($overlaySpotlight) && 'true' == $overlaySpotlight)
@@ -295,10 +295,10 @@ var easy_fancybox_auto = function(){';
 	    ACTIONS & FILTERS
 	 ***********************/
 
-	public static function register_scripts() {	
-	
+	public static function register_scripts() {
+
 	    if ( is_admin() ) return;
-	    
+
 		// ENQUEUE
 		// first get rid of previously registered variants of jquery.fancybox by other plugins or theme
 		wp_deregister_script('fancybox');
@@ -320,13 +320,13 @@ var easy_fancybox_auto = function(){';
 				wp_register_script('jquery-easing', self::$plugin_url.'js/jquery.easing.min.js', array('jquery'), EASING_VERSION, true);
 			}
 		}
-	
+
 		// mousewheel in IMG settings?
 		if ( '1' == get_option( self::$options['IMG']['options']['mouseWheel']['id'], self::$options['IMG']['options']['mouseWheel']['default']) ) {
 			wp_deregister_script('jquery-mousewheel');
 			wp_register_script('jquery-mousewheel', self::$plugin_url.'js/jquery.mousewheel.min.js', array('jquery'), MOUSEWHEEL_VERSION, true);
 		}
-		
+
 		// metadata in Miscellaneous settings?
 		if ('1' == get_option( self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'], self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) ) {
 			wp_register_script('jquery-metadata',self::$plugin_url.'js/jquery.metadata.min.js', array('jquery'), METADATA_VERSION, true);
@@ -348,7 +348,7 @@ var easy_fancybox_auto = function(){';
 
 		// FancyBox
 		wp_enqueue_script('jquery-fancybox');
-		
+
 		// jQuery Easing, which is ot needed if jQueryUI Core Effects are loaded
 		if ( !wp_script_is( 'jquery-effects-core', 'enqueued' ) )
 			wp_enqueue_script('jquery-easing');
@@ -361,20 +361,25 @@ var easy_fancybox_auto = function(){';
 
 	}
 
-	public static function on_ready() {	
+	public static function on_ready() {
 
 		if (!self::$add_scripts) // abort mission, there is no need for any script files
 			return;
-		
+
 		// 'gform_post_render' for gForms content triggers an error... Why?
-		// 'post-load' is for Infinite Scroll by JetPack 
+		// 'post-load' is for Infinite Scroll by JetPack
+
+		// first exclude some links by adding nolightbox class:
+		// (1) nofancybox backwards compatibility and (2) tries to detect social sharing buttons with known issues
 		echo '<script type="text/javascript">
-jQuery(document).on(\'ready post-load\', function(){ jQuery(\'.nofancybox\').removeClass(\'nofancybox\').addClass(\'nolightbox\'); });';
+jQuery(document).on(\'ready post-load\', function(){ jQuery(\'.nofancybox,a.pin-it-button,a[href*="pinterest.com/pin/create/button"]\').addClass(\'nolightbox\'); });';
 
-		echo apply_filters( 'easy_fancybox_onready_handler', 'jQuery(document).on(\'ready post-load\',easy_fancybox_handler);' );
+		echo apply_filters( 'easy_fancybox_onready_handler', '
+jQuery(document).on(\'ready post-load\',easy_fancybox_handler);' );
 
-		echo apply_filters( 'easy_fancybox_onready_auto', 'jQuery(document).on(\'ready\',easy_fancybox_auto);' );
-		
+		echo apply_filters( 'easy_fancybox_onready_auto', '
+jQuery(document).on(\'ready\',easy_fancybox_auto);' );
+
 		echo '</script>
 ';
 	}
@@ -394,11 +399,11 @@ jQuery(document).on(\'ready post-load\', function(){ jQuery(\'.nofancybox\').rem
 		return $html;
 	}
 
-	public static function init() {			
+	public static function init() {
 		easyFancyBox_Options::load_defaults();
 		add_filter('embed_oembed_html', array(__CLASS__, 'add_video_wmode_opaque'), 10, 3);
 	}
-		
+
 	public static function plugins_loaded(){
 		if ( is_admin() ) {
 			require_once __DIR__ . '/class-easyfancybox-admin.php';
@@ -415,7 +420,7 @@ jQuery(document).on(\'ready post-load\', function(){ jQuery(\'.nofancybox\').rem
 		// VARS
 		self::$plugin_url = plugins_url( '/', $file );
 		self::$plugin_basename = plugin_basename( $file );
-		
+
 		require_once __DIR__ . '/class-easyfancybox-options.php';
 
 		// HOOKS //
