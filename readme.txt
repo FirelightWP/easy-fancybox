@@ -48,6 +48,7 @@ Please go to https://translate.wordpress.org/projects/wp-plugins/easy-fancybox/ 
 
 Current contributors:
 
+- **Belarussian** * Natasha, https://www.ustarcash.com (version 1.5.8)
 - **Croatian** * Ivan Capan (version 1.5.6)
 - **Czech** * Eldenroot (version 1.5.5)
 - **Dutch** * R.A. van Hagen, http://status301.net (version 1.5.6)
