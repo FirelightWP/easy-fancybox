@@ -76,7 +76,7 @@ var fb_opts = {';
 					echo $quote.$parm.$quote;
 					$more++;
 				} else {
-					$$_key = $parm;
+					${$_key} = $parm;
 				}
 			}
 		}
