@@ -20,13 +20,13 @@
  * Line 309, 714: patches for better centering on ipad etc.
  * Line 588: added support for tab key gallery browsing
  * Line 645: Check type = image for mousewheel
- * Line 820: qouted attribute selector, RavanH ravanhagen@gmail.com 
- * Line 41, 622 and 1125: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com 
- * Line 34: WebP image support, RavanH ravanhagen@gmail.com 
- * Line 126, 677, 686: 'image' class forces image type, RavanH ravanhagen@gmail.com 
+ * Line 820: qouted attribute selector, RavanH ravanhagen@gmail.com
+ * Line 41, 622 and 1125: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com
+ * Line 34: WebP image support, RavanH ravanhagen@gmail.com
+ * Line 126, 677, 686: 'image' class forces image type, RavanH ravanhagen@gmail.com
  * Put focus on iframe at _finish
  * Patched for jQuery 1.9+ compat by Sabel http://sabel.bluegfx.de/wordpress/wp-content/uploads/2013/03/jquery.fancybox-1.3.4.js
- * 
+ *
  * Added SVG support by Simon Maillard simon@ogesta.fr
  */
 ;(function($) {
@@ -41,11 +41,11 @@
 		titleHeight = 0, titleStr = '', start_pos, final_pos, busy = false, fx = $.extend($('<div/>')[0], { prop: 0 }),
 
 		isIE6 = navigator.userAgent.match(/msie [6]/i) && !window.XMLHttpRequest,
-		
+
 		isTouch = document.createTouch !== undefined,
 
 		/*
-		 * Private methods 
+		 * Private methods
 		 */
 
 		_abort = function() {
@@ -79,8 +79,8 @@
 
 		_start = function() {
 			var obj = selectedArray[ selectedIndex ],
-				href, 
-				type, 
+				href,
+				type,
 				title,
 				str,
 				emb,
@@ -165,7 +165,7 @@
 					selectedOpts.width = 'auto';
 					selectedOpts.height = 'auto';
 				} else {
-					selectedOpts.autoDimensions = false;	
+					selectedOpts.autoDimensions = false;
 				}
 			}
 
@@ -183,7 +183,7 @@
 			tmp.css('padding', (selectedOpts.padding + selectedOpts.margin));
 
 			$('.fancybox-inline-tmp').off('fancybox-cancel').on('fancybox-change', function() {
-				$(this).replaceWith(content.children());				
+				$(this).replaceWith(content.children());
 			});
 
 			switch (type) {
@@ -316,14 +316,14 @@
 				w = parseInt( (ww - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
 
 			} else {
-				w = w == 'auto' ? 'auto' : w + 'px';	
+				w = w == 'auto' ? 'auto' : w + 'px';
 			}
 
 			if (h.toString().indexOf('%') > -1) {
 				h = parseInt( (wh - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
 
 			} else {
-				h = h == 'auto' ? 'auto' : h + 'px';	
+				h = h == 'auto' ? 'auto' : h + 'px';
 			}
 
 			tmp.wrapInner('<div style="width:' + w + ';height:' + h + ';overflow: ' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + ';position:relative;"></div>');
@@ -476,8 +476,8 @@
 				return;
 			}
 
-			if (currentOpts.titlePosition == 'inside' && titleHeight > 0) {	
-				title.show();	
+			if (currentOpts.titlePosition == 'inside' && titleHeight > 0) {
+				title.show();
 			}
 
 			content
@@ -593,7 +593,7 @@
 				});
 			}
 
-			if (!currentOpts.showNavArrows) { 
+			if (!currentOpts.showNavArrows) {
 				nav_left.hide();
 				nav_right.hide();
 				return;
@@ -610,8 +610,8 @@
 
 		_finish = function () {
 			if (!$.support.opacity) {
-				content.get(0).style.removeAttribute('filter');
-				wrap.get(0).style.removeAttribute('filter');
+				content.css('filter', 0);
+				wrap.css('filter', 0);
 			}
 
 			if (selectedOpts.autoDimensions) {
@@ -629,7 +629,7 @@
 			}
 
 			_set_navigation();
-	
+
 			if (currentOpts.hideOnContentClick)	{
 				content.on('click', $.fancybox.close);
 			}
@@ -650,10 +650,10 @@
 				wrap.on('mousewheel.fb', function(e, delta) {
 					if (busy) {
 						e.preventDefault();
-					} else if ( currentOpts.type == 'image' && ( $(e.target).get(0).clientHeight == 0 || $(e.target).get(0).scrollHeight === $(e.target).get(0).clientHeight ) ) {
+					} else if ( currentOpts.type == 'image' && ( $(e.target).outerHeight() == 0 || $(e.target).prop('scrollHeight') === $(e.target).outerHeight() ) ) {
 						e.preventDefault();
 						$.fancybox[ delta > 0 ? 'prev' : 'next']();
-					} 
+					}
 				});
 			}
 
@@ -662,7 +662,7 @@
 			}
 
 			wrap.show();
-			
+
 			busy = false;
 
 			$.fancybox.center();
@@ -827,7 +827,7 @@
 		};
 
 	/*
-	 * Public methods 
+	 * Public methods
 	 */
 
 	$.fn.fancybox = function(options) {
@@ -1063,14 +1063,14 @@
 		var view, align;
 
 		if (busy) {
-			return;	
+			return;
 		}
 
 		align = arguments[0] === true ? 1 : 0;
 		view = _get_viewport();
 
 		if (!align && (wrap.width() > view[0] || wrap.height() > view[1])) {
-			return;	
+			return;
 		}
 
 		wrap

@@ -7,7 +7,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 	public static $pagehook;
 
 	public static $compat_pro_min = '1.5.3-dev2';
-	
+
 	public static $do_compat_warning = false;
 
 	/***********************
@@ -19,10 +19,10 @@ class easyFancyBox_Admin extends easyFancyBox {
 			// check to see if the section is enabled, else skip to next
 			if ( !isset($value['input']) || array_key_exists($key, parent::$options['Global']['options']['Enable']['options']) && !get_option( parent::$options['Global']['options']['Enable']['options'][$key]['id'], parent::$options['Global']['options']['Enable']['options'][$key]['default']) )
 				continue;
-							
+
 			switch($value['input']) {
 				case 'deep':
-					// go deeper by looping back on itself 
+					// go deeper by looping back on itself
 					self::register_settings($value['options']);
 					break;
 				case 'multiple':
@@ -59,10 +59,14 @@ class easyFancyBox_Admin extends easyFancyBox {
 			if ( current_user_can( 'install_plugins' ) )
 				printf(__('Please <a href="%1$s" target="_blank">download and install the latest Pro version</a>.','easy-fancybox'), 'https://premium.status301.net/account/');
 			else
-				_e('Please contact your web site administrator.','easy-fancybox');		
+				_e('Please contact your web site administrator.','easy-fancybox');
 			echo '</p>';
 		}
 
+		/* Black Friday deal notice */
+		if ( !class_exists('easyFancyBox_Advanced') && strtotime('now') <= strtotime('27-11-2016') ) {
+			echo '<p class="update-nag updating-message success"><strong>Black Friday deal: Easy FancyBox advanced options at 30% OFF now!</strong> Read more about <strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/" target="_blank">how to take advantage of this opportunity</a></strong> before it expires...</p>';
+		}
 	}
 
 	// add our FancyBox Media Settings Fields
@@ -157,18 +161,18 @@ class easyFancyBox_Admin extends easyFancyBox {
 	 */
 	public static function add_action_link( $links ) {
 		$settings_link = '<a href="' . admin_url('options-media.php') . '">' . translate('Settings') . '</a>';
-		array_unshift( $links, $settings_link ); 
+		array_unshift( $links, $settings_link );
 		return $links;
 	}
 
 	/***
-	 * Santize Callbacks 
+	 * Santize Callbacks
 	 */
-	 
+
 	public static function intval($setting = '') {
 		if ($setting == '')
 			return '';
-	
+
 		if (substr($setting, -1) == '%') {
 			$val = intval(substr($setting, 0, -1));
 			$prc = '%';
@@ -176,25 +180,25 @@ class easyFancyBox_Admin extends easyFancyBox {
 			$val = intval($setting);
 			$prc = '';
 		}
-	
+
 		return ( $val != 0 ) ? $val.$prc : 0;
 	}
 
 	public static function colorval($setting = '') {
 		if ($setting == '')
 			return '';
-	
+
 		if (substr($setting, 0, 1) == '#')
 			if ( ctype_xdigit(substr($setting, 1)) )
 				return $setting;
-		
+
 		if (ctype_xdigit($setting))
 				return '#'.$setting;
 
 		return $setting;
 	}
 
-/* 
+/*
 	public static function add_menu() {
 		// Register our plugin page
 		self::$pagehook = add_submenu_page( 'themes.php', __('Easy FancyBox Settings', 'easy-fancybox'), __('FancyBox', 'easy-fancybox'), 'manage_options', 'easy-fancybox', array(__CLASS__, 'admin') );
@@ -203,9 +207,9 @@ class easyFancyBox_Admin extends easyFancyBox {
 	}
 
 	public static function admin() {
-		
+
 		add_filter( 'get_user_option_closedpostboxes_'.self::$pagehook, array(__CLASS__, 'closed_meta_boxes') );
-		
+
 		add_meta_box('submitdiv', __('Sections','easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_submit'), self::$pagehook, 'side', 'high');
 		add_meta_box('globaldiv', __('Global settings', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_global'), self::$pagehook, 'normal', 'high');
 		add_meta_box('imgdiv', __('Images', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_img'), self::$pagehook, 'normal', 'normal');
@@ -222,7 +226,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 	}
 
 	public function closed_meta_boxes( $closed ) {
-		
+
 		if ( false === $closed )
 			// set default closed metaboxes
 			$closed = array( 'advanceddiv', 'supportdiv', 'creditsdiv', 'resourcesdiv' );
@@ -239,16 +243,16 @@ class easyFancyBox_Admin extends easyFancyBox {
 		wp_enqueue_script('common');
 		wp_enqueue_script('wp-list');
 		wp_enqueue_script('postbox');
-	
+
 		//add several metaboxes now, all metaboxes registered during load page can be switched off/on at "Screen Options" automatically, nothing special to do therefore
-		add_meta_box('advanceddiv', __('Advanced Options', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_advanced'), self::$pagehook, 'normal', 'core'); 
-		
+		add_meta_box('advanceddiv', __('Advanced Options', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_advanced'), self::$pagehook, 'normal', 'core');
+
 		add_meta_box('supportdiv', __('Support','easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_support'), self::$pagehook, 'side', 'core');
 		add_meta_box('discussiondiv', translate('Discussion'), array(__CLASS__.'_Admin', 'meta_box_discussion'), self::$pagehook, 'normal', 'low');
 
 	}
 */
-	
+
 
 	/***********************
 	    ACTIONS & FILTERS
@@ -269,6 +273,12 @@ class easyFancyBox_Admin extends easyFancyBox {
 			echo '</p></div>';
 		}
 
+		/* Black Friday deal notice */
+		if ( !class_exists('easyFancyBox_Advanced') && current_user_can( 'install_plugins' ) && !get_user_meta($current_user->ID, 'easy_fancybox_ignore_deal') && strtotime('now') <= strtotime('27-11-2016') ) {
+			echo '<div class="update-nag updating-message success"><h3>Easy FancyBox advanced options at 30% OFF!</h3><p><strong>Black Friday to Cyber Monday deal: THE BIG 30 SALE at Status301.</strong> <em>Read more about <strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/" target="_blank">how to take advantage of this opportunity</a></strong> before it\'s too late</em>... ';
+			printf(__('Or you can ignore and <a href="%1$s">hide this message</a>.','easy-fancybox'), '?easy_fancybox_ignore_deal=1');
+			echo '</p></div>';
+		}
 	}
 
 	/**********************
@@ -278,16 +288,16 @@ class easyFancyBox_Admin extends easyFancyBox {
 	public static function run(){
 
 		load_plugin_textdomain('easy-fancybox', false, dirname( parent::$plugin_basename ) . '/languages' );
-		
+
 		add_action('admin_init', array(__CLASS__, 'admin_init'));
 	}
 
 	public static function admin_init(){
 
 		load_plugin_textdomain('easy-fancybox', false, dirname( parent::$plugin_basename ) . '/languages' );
-		
+
 		add_action('admin_notices', array(__CLASS__, 'admin_notice'));
-		
+
 		add_filter('plugin_action_links_'.parent::$plugin_basename, array(__CLASS__, 'add_action_link') );
 
 		// in preparation of dedicated admin page move:
@@ -296,7 +306,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
 
 		self::register_settings( parent::$options );
-	
+
 		/* Dismissable notice */
 		/* If user clicks to ignore the notice, add that to their user meta */
 		global $current_user;
@@ -305,7 +315,11 @@ class easyFancyBox_Admin extends easyFancyBox {
 			add_user_meta($current_user->ID, 'easy_fancybox_ignore_notice', 'true', true);
 		}
 
-		if ( class_exists('easyFancyBox_Advanced') 
+		if ( isset($_GET['easy_fancybox_ignore_deal']) && '1' == $_GET['easy_fancybox_ignore_deal'] ) {
+			add_user_meta($current_user->ID, 'easy_fancybox_ignore_deal', 'true', true);
+		}
+
+		if ( class_exists('easyFancyBox_Advanced')
 				&& ( !defined('easyFancyBox_Advanced::VERSION') || version_compare(easyFancyBox_Advanced::VERSION, self::$compat_pro_min, '<') ) )
 			self::$do_compat_warning = true;
 	}
