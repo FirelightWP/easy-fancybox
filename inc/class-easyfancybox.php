@@ -406,7 +406,7 @@ jQuery(document).on(\'ready\',easy_fancybox_auto);' );
 
 	public static function plugins_loaded(){
 		if ( is_admin() ) {
-			require_once __DIR__ . '/class-easyfancybox-admin.php';
+			require_once dirname(__FILE__) . '/class-easyfancybox-admin.php';
 			easyFancyBox_Admin::run();
 		}
 	}
@@ -421,7 +421,7 @@ jQuery(document).on(\'ready\',easy_fancybox_auto);' );
 		self::$plugin_url = plugins_url( '/', $file );
 		self::$plugin_basename = plugin_basename( $file );
 
-		require_once __DIR__ . '/class-easyfancybox-options.php';
+		require_once dirname(__FILE__) . '/class-easyfancybox-options.php';
 
 		// HOOKS //
 		add_action('plugins_loaded', array(__CLASS__, 'plugins_loaded'));

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery
 Requires at least: 3.3
 Tested up to: 4.7
-Stable tag: 1.5.8
+Stable tag: 1.5.8.1
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -493,7 +493,7 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.5.8 =
+= 1.5.8.1 =
 New features: auto-popup delay, margin, nolightbox... Bugfixes and PHP7 compatibility
 
 == Changelog ==
@@ -504,6 +504,9 @@ TODO: move all script to footer and make that optional too for theme compat
 TODO: make jQuery inclusion optional
 TODO: make jQuery 1.6- compat optional
 TODO: fix "fancybox iframe" being forced to "fancybox image iframe" when Inline Content is activated
+
+= 1.5.8.1 =
+* BUGFIX: use dirname(__FILE__) instead of relying on __DIR__ to be available
 
 = 1.5.8 =
 * FIX: variable variable php 7 compat
