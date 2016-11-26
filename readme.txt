@@ -10,9 +10,9 @@ Easily enable the FancyBox jQuery extension on just about all media links. Multi
 
 == Description ==
 
-Easy FancyBox plugin for WordPress websites gives you a flexible and aesthetic lightbox solution for just about all media links on your website. Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3+ Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the plugins options.
+Easy FancyBox plugin for WordPress websites gives you a flexible and aesthetic light box solution for just about all media links on your website. Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3+ Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the plugins options.
 
-After activation, all links to **JPG, GIF and PNG images** are automatically opened in the [FancyBox](http://fancybox.net/) Mac-style lightbox that floats over the web page. Most options available can be managed with this plugin along with some extra features.
+After activation, all links to **JPG, GIF and PNG images** are automatically opened in the [FancyBox](http://fancybox.net/) Mac/Gnome-style lightbox that floats over the web page. Most options available can be managed with this plugin along with some extra features.
 
 **Also supports:**
 
