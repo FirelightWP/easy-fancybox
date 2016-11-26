@@ -6,7 +6,9 @@ class easyFancyBox_Options extends easyFancyBox {
 
 	public static function load_defaults() {
 
-	    parent::$options = array ( 
+		$url = strtotime('now') <= strtotime('27-11-2016') ? "https://premium.status301.net/downloads/easy-fancybox-pro/?discount=BFCM30" : "https://premium.status301.net/downloads/easy-fancybox-pro/";
+
+		parent::$options = array (
 
 		'Global' => array(
 			'title' => __('Global settings','easy-fancybox'),
@@ -83,10 +85,10 @@ class easyFancyBox_Options extends easyFancyBox {
 							'input' => 'checkbox',
 							'hide' => true,
 							'default' => '',
-							'description' => '<strong>' . __('iFrames','easy-fancybox') . '</strong>' 
-							)							
+							'description' => '<strong>' . __('iFrames','easy-fancybox') . '</strong>'
+							)
 						),
-					'description' => '<a href="https://premium.status301.net/downloads/easy-fancybox-pro/"><strong><em>' . __('For advanced options and support, please get the Easy FancyBox - Pro extension.','easy-fancybox') . '</strong></a>'
+					'description' => '<a href="'.$url.'"><strong><em>' . __('For advanced options and support, please get the Easy FancyBox - Pro extension.','easy-fancybox') . '</strong></a>'
 					),
 				'Overlay' => array (
 					'title' => __('Overlay','easy-fancybox'),
@@ -117,7 +119,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'max' => '1',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em><br />' 
+							'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em><br />'
 							),
 						'overlayColor' => array (
 							'id' => 'fancybox_overlayColor',
@@ -127,7 +129,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'sanitize_callback' => 'colorval',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em><br />' 
+							'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em><br />'
 							),
 						'overlaySpotlight' => array (
 							'id' => 'fancybox_overlaySpotlight',
@@ -135,7 +137,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'hide' => true,
 							'status' => get_option('fancybox_overlaySpotlight') ? '' : 'disabled',
 							'default' => '',
-							'description' => get_option('fancybox_overlaySpotlight') ? __('Spotlight effect','easy-fancybox') : __('Spotlight effect','easy-fancybox') . '. <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => get_option('fancybox_overlaySpotlight') ? __('Spotlight effect','easy-fancybox') : __('Spotlight effect','easy-fancybox') . '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),
@@ -175,7 +177,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							'description' => '<em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 						'titleColor' => array (
 							'id' => 'fancybox_titleColor',
@@ -209,7 +211,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'status' => 'disabled',
 							'class' => 'small-text',
 							'default' => '',
-							'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+							'description' => '<em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 
 						'p11' => array (
@@ -315,7 +317,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							)
 						)
 					),
-					
+
 				'Miscellaneous' => array (
 					'title' => __('Miscellaneous','easy-fancybox'),
 					'input' => 'multiple',
@@ -336,7 +338,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
 								),
 							'default' => '1',
-							'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' 
+							'description' => '<em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 							),
 						'delayClick' => array (
 							'id' => 'fancybox_delayClick',
@@ -364,7 +366,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'0' => translate('No')
 								),
 							'translations' => __('1 Day','easy-fancybox') . __('1 Week','easy-fancybox') . __('1 Month','easy-fancybox') . __('1 Year','easy-fancybox'),
-							'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => ' <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							),
 						'p1' => array (
 							'hide' => true,
@@ -436,7 +438,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'input' => 'checkbox',
 							'status' => get_option('fancybox_metaData') ? '' : 'disabled',
 							'default' =>  '',
-							'description' => get_option('fancybox_metaData') ? __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') : __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . '. <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+							'description' => get_option('fancybox_metaData') ? __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') : __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					)
@@ -480,7 +482,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'' => __('All image links', 'easy-fancybox')
 						),
 					'default' => '',
-					'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => '<em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'type' => array (
 					'id' => 'fancybox_classType',
@@ -523,7 +525,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOut',
@@ -550,7 +552,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+					'description' => ' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacity',
@@ -607,7 +609,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'' => __('Hide/show title on mouse hover action','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' =>  '<em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'p3' => array (
 					'hide' => true,
@@ -625,7 +627,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'2' => __('All in one gallery','easy-fancybox')
 						),
 					'default' => '1',
-					'description' => '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
+					'description' => '<em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
 					),
 				'showNavArrows' => array (
 					'id' => 'fancybox_showNavArrows',
@@ -696,7 +698,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'' => __('Slideshow','easy-fancybox')
 						),
 					'default' => '',
-					'description' =>  '<em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+					'description' =>  '<em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 /*				'titleFormat' => array (
 					'id' => 'fancybox_titleFormat',
@@ -779,7 +781,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeOutBack',
-					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+					'description' => ' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
 					),
 				'transitionOut' => array (
 					'id' => 'fancybox_transitionOutInline',
@@ -806,7 +808,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'easeOutBack' => __('easeOutBack','easy-fancybox')
 						),
 					'default' => 'easeInBack',
-					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+					'description' => ' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 					),
 				'opacity' => array (
 					'id' => 'fancybox_opacityInline',
@@ -827,7 +829,7 @@ class easyFancyBox_Options extends easyFancyBox {
 
 		'PDF' => array(
 			'title' => __('PDF','easy-fancybox'),
-			'input' => 'multiple',			
+			'input' => 'multiple',
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
@@ -859,7 +861,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'iframe' => __('iFrame tag (let browser decide)','easy-fancybox')
 						),
 					'default' => 'html',
-					'description' => ' <em><a href="https://premium.status301.net/downloads/easy-fancybox-pro/">' . __('More options &raquo;','easy-fancybox') . '</a></em><br/><br/>'
+					'description' => ' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br/><br/>'
 					),
 				'width' => array (
 					'id' => 'fancybox_PDFwidth',
@@ -926,7 +928,7 @@ class easyFancyBox_Options extends easyFancyBox {
 				'scrolling' => array (
 					'default' => 'no',
 					),
-				'onStart' => array ( 
+				'onStart' => array (
 					'noquotes' => true,
 //					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
 					'default' => get_option('fancybox_PDFclassType','html') == 'iframe' ? '' : 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<object data="\' + selectedArray[selectedIndex].href + \'" type="application/pdf" height="100%" width="100%"><a href="\' + selectedArray[selectedIndex].href + \'" style="display:block;position:absolute;top:48%;width:100%;text-align:center">\' + jQuery(selectedArray[selectedIndex]).html() + \'</a></object>\' }'
@@ -959,8 +961,8 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => 'fancybox-swf'
 					),
-				'type' => array( 
-					'default' => 'swf' 
+				'type' => array(
+					'default' => 'swf'
 					),
 				'width' => array (
 					'id' => 'fancybox_SWFWidth',
@@ -1053,8 +1055,8 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => 'fancybox-svg'
 					),
-				'type' => array( 
-					'default' => 'svg' 
+				'type' => array(
+					'default' => 'svg'
 					),
 				'width' => array (
 					'id' => 'fancybox_SVGWidth',
@@ -1103,7 +1105,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'label_for' => 'fancybox_SVGtitlePosition',
 					'input' => 'select',
 					'options' => array(
-						'float' => __('Float','easy-fancybox'), 
+						'float' => __('Float','easy-fancybox'),
 						'outside' => __('Outside','easy-fancybox'),
 						'inside' => __('Inside','easy-fancybox')
 						//,'over' => __('Overlay','easy-fancybox')
@@ -1126,7 +1128,7 @@ class easyFancyBox_Options extends easyFancyBox {
 
 		'YouTube' => array(
 			'title' => __('YouTube','easy-fancybox'),
-			'input' => 'multiple',			
+			'input' => 'multiple',
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
@@ -1148,8 +1150,8 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => 'fancybox-youtube'
 					),
-				'type' => array( 
-					'default' => 'iframe' 
+				'type' => array(
+					'default' => 'iframe'
 					),
 				'width' => array (
 					'id' => 'fancybox_YoutubeWidth',
@@ -1215,7 +1217,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
-				'onStart' => array ( 
+				'onStart' => array (
 					'noquotes' => true,
 					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\', \'i\'), \'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\', \'i\'), \'embed/$2?$1$4\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; selectedOpts.allowfullscreen = ( urlParms.indexOf(\'fs=0\') > -1 ) ? false : true }'
 					)
@@ -1224,7 +1226,7 @@ class easyFancyBox_Options extends easyFancyBox {
 
 		'Vimeo' => array(
 			'title' => __('Vimeo','easy-fancybox'),
-			'input' => 'multiple',			
+			'input' => 'multiple',
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
@@ -1246,8 +1248,8 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => 'fancybox-vimeo'
 					),
-				'type' => array( 
-					'default' => 'iframe' 
+				'type' => array(
+					'default' => 'iframe'
 					),
 				'width' => array (
 					'id' => 'fancybox_VimeoWidth',
@@ -1313,7 +1315,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
-				'onStart' => array ( 
+				'onStart' => array (
 					'noquotes' => true,
 					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'//(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\', \'i\'), \'//player.vimeo.com/video/$2?$4\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; selectedOpts.allowfullscreen = ( urlParms.indexOf(\'fullscreen=0\') > -1 ) ? false : true }'
 					)
@@ -1323,7 +1325,7 @@ class easyFancyBox_Options extends easyFancyBox {
 
 		'Dailymotion' => array(
 			'title' => __('Dailymotion','easy-fancybox'),
-			'input' => 'multiple',			
+			'input' => 'multiple',
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
@@ -1345,8 +1347,8 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => 'fancybox-dailymotion'
 					),
-				'type' => array( 
-					'default' => 'iframe' 
+				'type' => array(
+					'default' => 'iframe'
 					),
 				'width' => array (
 					'id' => 'fancybox_DailymotionWidth',
@@ -1412,13 +1414,13 @@ class easyFancyBox_Options extends easyFancyBox {
 					'default' => '1',
 					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
 					),
-				'onStart' => array ( 
+				'onStart' => array (
 					'noquotes' => true,
 					'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.href = selectedArray[selectedIndex].href.replace(new RegExp(\'/video/(.*)\', \'i\'), \'/embed/video/$1\'); var splitOn = selectedOpts.href.indexOf(\'?\'); var urlParms = ( splitOn > -1 ) ? selectedOpts.href.substring(splitOn) : ""; selectedOpts.allowfullscreen = ( urlParms.indexOf(\'fullscreen=0\') > -1 ) ? false : true }'
 					)
 				)
 			),
-			
+
 /*		'Tudou' => array(
 			'id' => 'fancybox_Tudou',
 			'title' => __('Tudou','easy-fancybox'),
@@ -1435,10 +1437,10 @@ class easyFancyBox_Options extends easyFancyBox {
 					'hide' => true,
 					'default' => '1',
 					'description' => __('Tudou links','easy-fancybox')
-					) 
-				)					
+					)
+				)
 			),*/
-			
+
 /*		'Animoto' => array(),
 
 Example ANIMOTO page link http://animoto.com/play/Kf9POzQMSOGWyu41gtOtsw should become
@@ -1448,7 +1450,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 
 		'iFrame' => array(
 			'title' => __('iFrames','easy-fancybox'),
-			'input' => 'multiple',			
+			'input' => 'multiple',
 			'options' => array(
 				'intro' => array (
 					'hide' => true,
@@ -1465,8 +1467,8 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 				'type' => array (
 					'default' => 'iframe'
 					),
-/*	
- * other than overflow:auto not supported on many browsers 
+/*
+ * other than overflow:auto not supported on many browsers
 			'scrolling' => array (
 					'id' => 'fancybox_iFrameScrolling',
 					'title' => __('Scrolling','easy-fancybox'),
@@ -1548,9 +1550,6 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 					)
 				)
 			)
-			
 		);
-
 	}
-	
 }

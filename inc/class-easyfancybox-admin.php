@@ -65,7 +65,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 		/* Black Friday deal notice */
 		if ( !class_exists('easyFancyBox_Advanced') && strtotime('now') <= strtotime('27-11-2016') ) {
-			echo '<p class="update-nag updating-message success"><strong>Black Friday deal: Easy FancyBox advanced options at 30% OFF now!</strong> Read more about <strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/" target="_blank">how to take advantage of this opportunity</a></strong> before it expires...</p>';
+			echo '<p class="update-nag updating-message success"><strong>Black Friday to Cyber Monday: Easy FancyBox advanced options at 30% OFF!</strong> But only for the first 30 customers so <strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">take advantage of this opportunity</a></strong> before it\'s too late!</p>';
 		}
 	}
 
@@ -275,7 +275,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 		/* Black Friday deal notice */
 		if ( !class_exists('easyFancyBox_Advanced') && current_user_can( 'install_plugins' ) && !get_user_meta($current_user->ID, 'easy_fancybox_ignore_deal') && strtotime('now') <= strtotime('27-11-2016') ) {
-			echo '<div class="update-nag updating-message success"><h3>Easy FancyBox advanced options at 30% OFF!</h3><p><strong>Black Friday to Cyber Monday deal: THE BIG 30 SALE at Status301.</strong> <em>Read more about <strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/" target="_blank">how to take advantage of this opportunity</a></strong> before it\'s too late</em>... ';
+			echo '<div class="update-nag updating-message success"><h3>Easy FancyBox advanced options at 30% OFF!</h3><p><strong>Black Friday to Cyber Monday: THE BIG 30 SALE at Status301.</strong> <em>A whopping 30% discount but only for the first 30 customers so <strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">to take advantage of this opportunity</a></strong> before it\'s too late</em>... ';
 			printf(__('Or you can ignore and <a href="%1$s">hide this message</a>.','easy-fancybox'), '?easy_fancybox_ignore_deal=1');
 			echo '</p></div>';
 		}

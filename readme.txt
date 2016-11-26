@@ -493,7 +493,7 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.5.8.1 =
+= 1.5.8.2 =
 New features: auto-popup delay, margin, nolightbox... Bugfixes and PHP7 compatibility
 
 == Changelog ==
@@ -505,8 +505,9 @@ TODO: make jQuery inclusion optional
 TODO: make jQuery 1.6- compat optional
 TODO: fix "fancybox iframe" being forced to "fancybox image iframe" when Inline Content is activated
 
-= 1.5.8.1 =
+= 1.5.8.2 =
 * BUGFIX: use dirname(__FILE__) instead of relying on __DIR__ to be available
+* Explicit transparency for gallery navigation links
 
 = 1.5.8 =
 * FIX: variable variable php 7 compat
