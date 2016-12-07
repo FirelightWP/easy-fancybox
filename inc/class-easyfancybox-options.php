@@ -6,7 +6,7 @@ class easyFancyBox_Options extends easyFancyBox {
 
 	public static function load_defaults() {
 
-		$url = strtotime('now') <= strtotime('27-11-2016') ? "https://premium.status301.net/downloads/easy-fancybox-pro/?discount=BFCM30" : "https://premium.status301.net/downloads/easy-fancybox-pro/";
+		$url = "https://premium.status301.net/downloads/easy-fancybox-pro/";
 
 		parent::$options = array (
 
