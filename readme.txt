@@ -1,7 +1,7 @@
 === Easy FancyBox ===
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
-Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery
+Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.7
 Stable tag: 1.5.8.2
@@ -504,6 +504,9 @@ TODO: move all script to footer and make that optional too for theme compat
 TODO: make jQuery inclusion optional
 TODO: make jQuery 1.6- compat optional
 TODO: fix "fancybox iframe" being forced to "fancybox image iframe" when Inline Content is activated
+
+= 1.5.8.3 =
+* Add webp to default Autodetect image types
 
 = 1.5.8.2 =
 * BUGFIX: use dirname(__FILE__) instead of relying on __DIR__ to be available
