@@ -468,7 +468,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'input' => 'text',
 					'class' => 'regular-text',
 					'hide' => true,
-					'default' => '.jpg .jpeg .png',
+					'default' => '.jpg .jpeg .png .webp',
 					'selector' => 'href*=',
 					'description' => ' <em>' . __('Example:','easy-fancybox') . ' .jpg .jpeg .png .gif</em><br />'
 					),
