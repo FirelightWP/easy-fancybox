@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.7
-Stable tag: 1.5.8.3
+Stable tag: 1.6
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -493,15 +493,16 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.5.8.3 =
+= 1.6 =
 Webp images autodetected by default. Some common rel tags excluded from autogallery. FIX: image preload.
 
 == Changelog ==
 
-= 1.5.8.3 =
+= 1.6 =
 * Add webp to default Autodetect image types
 * Exclude more rel attribute values from galleries
 * BUGFIX: gallery preload
+* Update jquery.easing.js and jquery.mousewheel.js
 
 = 1.5.8.2 =
 * BUGFIX: use dirname(__FILE__) instead of relying on __DIR__ to be available
