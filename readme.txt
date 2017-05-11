@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.7
-Stable tag: 1.5.8.2
+Stable tag: 1.5.8.3
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -493,17 +493,16 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.5.8.2 =
-New features: auto-popup delay, margin, nolightbox... Bugfixes and PHP7 compatibility
+= 1.5.8.3 =
+Webp images autodetected by default. Some common rel tags excluded from autogallery. FIX: image preload.
 
 == Changelog ==
 
 TODO PRO: optional remove scripts on certain pages
-TODO: optional disable for small sceen sizes
+TODO: optional disable for small screen sizes
 TODO: move all script to footer and make that optional too for theme compat
 TODO: make jQuery inclusion optional
 TODO: make jQuery 1.6- compat optional
-TODO: fix "fancybox iframe" being forced to "fancybox image iframe" when Inline Content is activated
 
 = 1.5.8.3 =
 * Add webp to default Autodetect image types
