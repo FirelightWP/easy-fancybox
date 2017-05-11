@@ -26,7 +26,7 @@
  * Line 126, 677, 686: 'image' class forces image type, RavanH ravanhagen@gmail.com
  * Put focus on iframe at _finish
  * Patched for jQuery 1.9+ compat by Sabel http://sabel.bluegfx.de/wordpress/wp-content/uploads/2013/03/jquery.fancybox-1.3.4.js
- *
+ * Line 858: exclude more rel attribute values
  * Added SVG support by Simon Maillard simon@ogesta.fr
  */
 ;(function($) {
@@ -854,9 +854,8 @@
 
 				var rel = $(this).attr('rel') || '';
 
-				if (!rel || rel == '' || rel === 'nofollow') {
+				if (rel == '' || rel.replace(/alternate|external|help|license|nofollow|noreferrer|noopener|\s+/gi,'') == '') {
 					selectedArray.push(this);
-
 				} else {
 					selectedArray = $('a[rel="' + rel + '"], area[rel="' + rel + '"]');
 					selectedIndex = selectedArray.index( this );
