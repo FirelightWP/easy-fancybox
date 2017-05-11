@@ -507,6 +507,8 @@ TODO: fix "fancybox iframe" being forced to "fancybox image iframe" when Inline 
 
 = 1.5.8.3 =
 * Add webp to default Autodetect image types
+* Exclude more rel attribute values from galleries
+* BUGFIX: gallery preload
 
 = 1.5.8.2 =
 * BUGFIX: use dirname(__FILE__) instead of relying on __DIR__ to be available
