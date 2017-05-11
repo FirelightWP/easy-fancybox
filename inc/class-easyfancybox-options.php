@@ -468,7 +468,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					'input' => 'text',
 					'class' => 'regular-text',
 					'hide' => true,
-					'default' => '.jpg .jpeg .png',
+					'default' => '.jpg .jpeg .png .webp',
 					'selector' => 'href*=',
 					'description' => ' <em>' . __('Example:','easy-fancybox') . ' .jpg .jpeg .png .gif</em><br />'
 					),
@@ -860,7 +860,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'html' => __('Object tag (plus fall-back link)','easy-fancybox'),
 						'iframe' => __('iFrame tag (let browser decide)','easy-fancybox')
 						),
-					'default' => 'html',
+					'default' => 'iframe',
 					'description' => ' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br/><br/>'
 					),
 				'width' => array (
