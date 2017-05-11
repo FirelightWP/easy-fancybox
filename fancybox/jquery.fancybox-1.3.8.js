@@ -673,24 +673,23 @@
 		},
 
 		_preload_images = function() {
-			var obj,
-				objNext;
+			var obj, objNext;
 
 			if ((currentArray.length -1) > currentIndex) {
 				obj = currentArray[ currentIndex + 1 ];
 
-				if (typeof href !== 'undefined' && (obj.href.match(imgRegExp) || $(obj).hasClass("image")) ) {
+				if (typeof obj !== 'undefined' && typeof obj.href !== 'undefined' && (obj.href.match(imgRegExp) || $(obj).hasClass("image")) ) {
 					objNext = new Image();
-					objNext.src = href;
+					objNext.src = obj.href;
 				}
 			}
 
 			if (currentIndex > 0) {
 				obj = currentArray[ currentIndex - 1 ];
 
-				if (typeof href !== 'undefined' && (obj.href.match(imgRegExp) || $(obj).hasClass("image")) ) {
+				if (typeof obj !== 'undefined' && typeof obj.href !== 'undefined'  && (obj.href.match(imgRegExp) || $(obj).hasClass("image")) ) {
 					objNext = new Image();
-					objNext.src = href;
+					objNext.src = obj.href;
 				}
 			}
 		},
@@ -854,9 +853,8 @@
 
 				var rel = $(this).attr('rel') || '';
 
-				if (!rel || rel == '' || rel === 'nofollow') {
+				if (rel == '' || rel.replace(/alternate|external|help|license|nofollow|noreferrer|noopener|\s+/gi,'') == '') {
 					selectedArray.push(this);
-
 				} else {
 					selectedArray = $('a[rel="' + rel + '"], area[rel="' + rel + '"]');
 					selectedIndex = selectedArray.index( this );
