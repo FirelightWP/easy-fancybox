@@ -498,12 +498,6 @@ Webp images autodetected by default. Some common rel tags excluded from autogall
 
 == Changelog ==
 
-TODO PRO: optional remove scripts on certain pages
-TODO: optional disable for small screen sizes
-TODO: move all script to footer and make that optional too for theme compat
-TODO: make jQuery inclusion optional
-TODO: make jQuery 1.6- compat optional
-
 = 1.5.8.3 =
 * Add webp to default Autodetect image types
 * Exclude more rel attribute values from galleries
