@@ -244,10 +244,10 @@ var easy_fancybox_auto = function(){';
 #fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}.fancybox-title-inside{padding-top:'.$borderRadius.'px;margin-top:-'.$borderRadius.'px !important;border-radius: 0 0 '.$borderRadius.'px '.$borderRadius.'px}';
 		if (!empty($backgroundColor))
 			$styles .= '
-#fancybox-content{background-color:'.$backgroundColor.'}';
+#fancybox-content{background:'.$backgroundColor.'}';
 		if (!empty($paddingColor))
 			$styles .= '
-#fancybox-content{border-color:'.$paddingColor.'}#fancybox-outer{background-color:'.$paddingColor.'}'; //.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}
+#fancybox-content{border-color:'.$paddingColor.'}#fancybox-outer{background:'.$paddingColor.'}'; //.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}
 		if (!empty($textColor))
 			$styles .= '
 #fancybox-content{color:'.$textColor.'}';
