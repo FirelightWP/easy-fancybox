@@ -138,12 +138,15 @@
 	margin: 0;
 }
 
-#fancybox-img {
+#fancybox-frame, #fancybox-img {
 	width: 100%;
 	height: 100%;
+	border: none;
+}
+
+#fancybox-img {
 	padding: 0;
 	margin: 0;
-	border: none;
 	outline: none;
 	line-height: 0;
 	vertical-align: top;
@@ -152,12 +155,12 @@
 }
 
 #fancybox-frame {
-	width: 100%;
-	height: 100%;
-	border: none;
 	display: block;
 	-webkit-overflow-scrolling: touch;
 	z-index: 0; /* z-index bug with -webkit-overflow-scrolling */
+	-webkit-transform: translateZ(0px);
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-perspective: 1000;
 }
 
 #fancybox-left, #fancybox-right {
