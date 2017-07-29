@@ -42,31 +42,11 @@ Visit [FancyBox](http://fancybox.net/) for more information, examples and the Fa
 **Recommended:**
 - For increased site performance, simply install and activate the plugin [Use Google Libraries](http://wordpress.org/plugins/use-google-libraries/) to load jQuery from Googles CDN.
 
-= Translators =
+= Contribute =
 
-Please go to https://translate.wordpress.org/projects/wp-plugins/easy-fancybox/ and share your knowledge!
+If you're happy with this plugin as it is, please consider writing a quick [rating](https://wordpress.org/support/plugin/easy-fancybox/reviews/#new-post) or helping other users out on the [support forum](https://wordpress.org/support/plugin/easy-fancybox).
 
-Current contributors:
-
-- **Belarussian** * Natasha, https://www.ustarcash.com (version 1.5.8)
-- **Croatian** * Ivan Capan (version 1.5.6)
-- **Czech** * Eldenroot (version 1.5.5)
-- **Dutch** * R.A. van Hagen, http://status301.net (version 1.5.6)
-- **French** * Emmanuel Maillard (version 1.5.5)
-- **Greek** * Dimitrios Kaisaris, http://www.foodblogstarter.com (version 1.5.7)
-- **Gujarati** * Apoto Team, http://www.apoto.com (version 1.5.0)
-- **Hindi** * Outshine Solutions, http://outshinesolutions.com (version 1.3.4.9)
-- **Indonesian** * Nasrulhaq Muiz, http://al-badar.net (version 1.5.5)
-- **Lithuanian** * Vincent G, http://www.host1free.com (version 1.3.4.9)
-- **Persian** * Ali Akbar Kaviani, http://www.wiki10.net (version 1.5.2)
-- **Polish** * Kamil Szymański (version 1.3.4.9)
-- **Romanian** * Web Geek Sciense, http://webhostinggeeks.com/ (version 1.3.4.9)
-- **Russian** * Ivanka Skakun from Everycloud, http://www.everycloudtech.com/ (version 1.5.8)
-- **Serbo-Croatian** * Andrijana Nikolic, http://webhostinggeeks.com/wordpresshosting.html (version 1.5.2) + translation of this page on http://science.webhostinggeeks.com/easy-fancybox
-- **Slovak** * Jan Fajcak, http://fajo.name/ (version: 1.5.7)
-- **Spanish** * David Pérez, http://www.closemarketing.es (version 1.3.4.9)
-- **Turkish** * Hakan Er, http://hakanertr.wordpress.com/ (version: 1.5.2)
-- **Ukrainian** * Cmd Software, http://www.cmd-soft.com (version: 1.3.4.9)
+If you wish to help build this plugin, you're very welcome to [translate Easy FancyBox into your language](https://translate.wordpress.org/projects/wp-plugins/easy-fancybox/) or contribute code on [Github](https://github.com/RavanH/easy-fancybox/).
 
 
 == Installation ==
@@ -470,21 +450,6 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 1. Check if your theme loads another or the same lightbox script or any other of the needed jQuery extensions like jquery.easing or jquery.mousewheel. Look for references to Thickbox, Prettyphoto, Lightbox2, Colorbox or FancyBox script files or code. These are very likely to cause the incompatibility and you will have to either find a setting in the other plugin to switch OFF the use of the conflicting script (possible in NextGEN for example, see under Advanced below) or choose between the two conflicting plugins.
 
 
-== Translation ==
-
-1. Install PoEdit on your computer.
-1. Go to this plugins /languages/ directory.
-1. If there is no .po file that corresponds with your language yet, rename the template translation database easy-fancybox-xx_XX.po by replacing the xx with your language code and XX with your country code.
-1. Open the .po file of your language with PoEdit.
-1. Go to Edit > Preferences and on the tab Editor check the option to compile a .mo database on save automatically. Close with OK.
-1. Go to Catalog > Settings and set your name, e-mail address, language and country. Close with OK.
-1. Go to Catalog > Update from POT-file and select the main easy-fancybox.pot file. Then accept all new and removed translation strings with OK.
-1. Now go ahead and start translating all the texts listed in PoEdit.
-1. When done, go to File > Save to Save.
-1. Upload the automatically created easy-fancybox-xx_XX.mo database file (where xx_XX should now be your language and country code) to the plugins /languages/ directory on your WordPress site.
-1. After verifying the translations work on your site, send the .mo file and, if you're willing to share it, your original .po file to ravanhagen@gmail.com and don't forget to tell me how and with what link you would like to be mentioned in the credits!
-
-
 == Screenshots ==
 
 1. Example image with **Overlay** caption. This is the default way Easy FancyBox displays images. Other options are **Inside** and the old **Outside**.
@@ -500,6 +465,7 @@ Webp images autodetected by default. Some common rel tags excluded from autogall
 
 = 1.6.1 =
 * Fix: CSS color code
+* Spelling fixes, thanks @garrett-eclipse
 
 = 1.6 =
 * Add webp to default Autodetect image types
