@@ -372,7 +372,7 @@ var easy_fancybox_auto = function(){';
 		// first exclude some links by adding nolightbox class:
 		// (1) nofancybox backwards compatibility and (2) tries to detect social sharing buttons with known issues
 		echo '<script type="text/javascript">
-jQuery(document).on(\'ready post-load\', function(){ jQuery(\'.nofancybox,a.pin-it-button,a[href*="pinterest.com/pin/create/button"]\').addClass(\'nolightbox\'); });';
+jQuery(document).on(\'ready post-load\', function(){ jQuery(\'.nofancybox,a.pin-it-button,a[href*="pinterest.com/pin/create"]\').addClass(\'nolightbox\'); });';
 
 		echo apply_filters( 'easy_fancybox_onready_handler', '
 jQuery(document).on(\'ready post-load\',easy_fancybox_handler);' );
