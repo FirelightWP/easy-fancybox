@@ -280,17 +280,16 @@ class easyFancyBox_Admin extends easyFancyBox {
 	         RUN
 	 **********************/
 
-	public static function run(){
-
-		load_plugin_textdomain('easy-fancybox', false, dirname( parent::$plugin_basename ) . '/languages' );
-
+	public static function run() {
+		add_action('plugins_loaded', array(__CLASS__, 'load_textdomain'));
 		add_action('admin_init', array(__CLASS__, 'admin_init'));
 	}
 
-	public static function admin_init(){
-
+	public static function load_textdomain(){
 		load_plugin_textdomain('easy-fancybox', false, dirname( parent::$plugin_basename ) . '/languages' );
+	}
 
+	public static function admin_init() {
 		add_action('admin_notices', array(__CLASS__, 'admin_notice'));
 
 		add_filter('plugin_action_links_'.parent::$plugin_basename, array(__CLASS__, 'add_action_link') );
