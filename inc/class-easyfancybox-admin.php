@@ -269,11 +269,14 @@ class easyFancyBox_Admin extends easyFancyBox {
 		}
 
 		/* Black Friday deal notice */
-		//if ( !class_exists('easyFancyBox_Advanced') && current_user_can( 'install_plugins' ) && !get_user_meta($current_user->ID, 'easy_fancybox_ignore_deal_2017') && strtotime('now') => strtotime('24-11-2017') && strtotime('now') <= strtotime('27-11-2017') ) {
-		//	echo '<div class="update-nag updating-message success"><h3>Easy FancyBox advanced options at 30% OFF!</h3><p><strong>Black Friday to Cyber Monday: THE BIG 30 SALE at Status301.</strong> <em>A whopping 30% discount but only for the first 30 customers so <strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">to take advantage of this opportunity</a></strong> before it\'s too late</em>... ';
-		//	printf(__('Or you can ignore and <a href="%1$s">hide this message</a>.','easy-fancybox'), '?easy_fancybox_ignore_deal_2017=1');
-		//	echo '</p></div>';
-		//}
+		if ( !class_exists('easyFancyBox_Advanced') && current_user_can( 'install_plugins' ) && !get_user_meta($current_user->ID, 'easy_fancybox_ignore_deal_2017') && strtotime('now') => strtotime('24-11-2017') && strtotime('now') <= strtotime('27-11-2017') ) {
+			echo '<div class="update-nag updating-message success"><h3>Easy FancyBox advanced options at 30% OFF!</h3>
+				<p><strong>Black Friday to Cyber Monday: THE BIG 30 SALE at Status301.</strong> <em>A whopping 30% discount but only for the first 30 customers.
+				After that, there will still be a discount of 15% for everybody until tuesday 0:00 GMT so
+				<strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">to take advantage of this opportunity</a></strong> before it\'s too late</em>... ';
+			printf(__('Or you can ignore and <a href="%1$s">hide this message</a>.','easy-fancybox'), '?easy_fancybox_ignore_deal_2017=1');
+			echo '</p></div>';
+		}
 	}
 
 	/**********************
@@ -309,8 +312,8 @@ class easyFancyBox_Admin extends easyFancyBox {
 			add_user_meta($current_user->ID, 'easy_fancybox_ignore_notice', 'true', true);
 		}
 
-		if ( isset($_GET['easy_fancybox_ignore_deal']) && '1' == $_GET['easy_fancybox_ignore_deal'] ) {
-			add_user_meta($current_user->ID, 'easy_fancybox_ignore_deal', 'true', true);
+		if ( isset($_GET['easy_fancybox_ignore_deal_2017']) && '1' == $_GET['easy_fancybox_ignore_deal_2017'] ) {
+			add_user_meta($current_user->ID, 'easy_fancybox_ignore_deal_2017', 'true', true);
 		}
 
 		if ( class_exists('easyFancyBox_Advanced')
