@@ -51,6 +51,16 @@ class easyFancyBox_Admin extends easyFancyBox {
 	public static function settings_section() {
 		echo '<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR" title="'.__('Donate to keep the Easy FancyBox plugin development going!','easy-fancybox').'"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:right;margin:5px 0 0 10px" alt="'.__('Donate to keep the Easy FancyBox plugin development going!','easy-fancybox').'" width="92" height="26" /></a>'.sprintf(__('The options in this section are provided by the plugin %s and determine the <strong>Media Lightbox</strong> overlay appearance and behavior controlled by %s.','easy-fancybox'),'<strong><a href="http://status301.net/wordpress-plugins/easy-fancybox/">'.__('Easy FancyBox','easy-fancybox').'</a></strong>','<strong><a href="http://fancybox.net/">'.__('FancyBox','easy-fancybox').'</a></strong>').'</p><p>'.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').' '.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
 
+		/* Black Friday offer */
+		if ( !class_exists('easyFancyBox_Advanced')
+			&& current_user_can( 'install_plugins' )
+			&& strtotime('now') > strtotime('23-11-2017')
+			&& strtotime('now') < strtotime('28-11-2017') ) {
+			echo '<p style="background-color:#F9D400;padding:5px 10px;border-radius:15px;box-shadow:#333 0 1px 1px;color:#000;"><strong>Easy FancyBox advanced options at 30% OFF!</strong> Black Friday to Cyber Monday: THE BIG 30 SALE at Status301. <em>A whopping 30% discount but only for the first 30 customers.
+				After that, there will still be a discount of 15% for everybody until tuesday 0:00 GMT so
+				<strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">to take advantage of this opportunity</a></strong> before it\'s too late</em>...</p>';
+		}
+
 		// Pro extension version compatibility message
 		if ( self::$do_compat_warning ) {
 			echo '<p class="update-nag">';
@@ -193,61 +203,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 		return $setting;
 	}
 
-/*
-	public static function add_menu() {
-		// Register our plugin page
-		self::$pagehook = add_submenu_page( 'themes.php', __('Easy FancyBox Settings', 'easy-fancybox'), __('FancyBox', 'easy-fancybox'), 'manage_options', 'easy-fancybox', array(__CLASS__, 'admin') );
-		// Using registered $page handle to hook script load
-		add_action('load-' . self::$pagehook, array(__CLASS__, 'admin_scripts'));
-	}
-
-	public static function admin() {
-
-		add_filter( 'get_user_option_closedpostboxes_'.self::$pagehook, array(__CLASS__, 'closed_meta_boxes') );
-
-		add_meta_box('submitdiv', __('Sections','easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_submit'), self::$pagehook, 'side', 'high');
-		add_meta_box('globaldiv', __('Global settings', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_global'), self::$pagehook, 'normal', 'high');
-		add_meta_box('imgdiv', __('Images', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_img'), self::$pagehook, 'normal', 'normal');
-		add_meta_box('inlinediv', __('Inline content', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_inline'), self::$pagehook, 'normal', 'normal');
-		add_meta_box('pdfdiv', __('PDF', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_pdf'), self::$pagehook, 'normal', 'normal');
-		add_meta_box('swfdiv', __('SWF', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_swf'), self::$pagehook, 'normal', 'normal');
-		add_meta_box('youtubediv', __('YouTube', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_youtube'), self::$pagehook, 'normal', 'normal');
-		add_meta_box('vimeodiv', __('Vimeo', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_vimeo'), self::$pagehook, 'normal', 'normal');
-		add_meta_box('dailymotiondiv', __('Dailymotion', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_dailymotion'), self::$pagehook, 'normal', 'normal');
-		add_meta_box('iframediv', __('iFrames', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_iframe'), self::$pagehook, 'normal', 'normal');
-
-		//load admin page
-		//include(EASY_FANCYBOX_PLUGINDIR . '/easy-fancybox-admin.php');
-	}
-
-	public function closed_meta_boxes( $closed ) {
-
-		if ( false === $closed )
-			// set default closed metaboxes
-			$closed = array( 'advanceddiv', 'supportdiv', 'creditsdiv', 'resourcesdiv' );
-		else
-			// remove closed setting of some metaboxes
-			$closed = array_diff ( $closed , array ( 'submitdiv' ) );
-
-		return $closed;
-	}
-
-	public static function admin_scripts($hook) {
-
-		// needed javascripts to allow drag/drop, expand/collapse and hide/show of boxes
-		wp_enqueue_script('common');
-		wp_enqueue_script('wp-list');
-		wp_enqueue_script('postbox');
-
-		//add several metaboxes now, all metaboxes registered during load page can be switched off/on at "Screen Options" automatically, nothing special to do therefore
-		add_meta_box('advanceddiv', __('Advanced Options', 'easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_advanced'), self::$pagehook, 'normal', 'core');
-
-		add_meta_box('supportdiv', __('Support','easy-fancybox'), array(__CLASS__.'_Admin', 'meta_box_support'), self::$pagehook, 'side', 'core');
-		add_meta_box('discussiondiv', translate('Discussion'), array(__CLASS__.'_Admin', 'meta_box_discussion'), self::$pagehook, 'normal', 'low');
-
-	}
-*/
-
 
 	/***********************
 	    ACTIONS & FILTERS
@@ -265,21 +220,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 			printf(__('Please <a href="%1$s" target="_blank">download and install the latest Pro version</a>.','easy-fancybox'), 'https://premium.status301.net/account/');
 			echo ' ';
 			printf(__('Or you can ignore and <a href="%1$s">hide this message</a>.','easy-fancybox'), '?easy_fancybox_ignore_notice=1');
-			echo '</p></div>';
-		}
-
-		/* Black Friday deal notice */
-		if ( !class_exists('easyFancyBox_Advanced')
-			&& current_user_can( 'install_plugins' )
-			&& !get_user_meta($current_user->ID, 'easy_fancybox_ignore_deal_2017')
-			&& strtotime('now') > strtotime('23-11-2017')
-			&& strtotime('now') < strtotime('28-11-2017') ) {
-
-			echo '<div class="update-nag updating-message success"><h3>Easy FancyBox advanced options at 30% OFF!</h3>
-				<p><strong>Black Friday to Cyber Monday: THE BIG 30 SALE at Status301.</strong> <em>A whopping 30% discount but only for the first 30 customers.
-				After that, there will still be a discount of 15% for everybody until tuesday 0:00 GMT so
-				<strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">to take advantage of this opportunity</a></strong> before it\'s too late</em>... ';
-			printf(__('Or you can ignore and <a href="%1$s">hide this message</a>.','easy-fancybox'), '?easy_fancybox_ignore_deal_2017=1');
 			echo '</p></div>';
 		}
 	}
@@ -315,10 +255,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 		if ( isset($_GET['easy_fancybox_ignore_notice']) && '1' == $_GET['easy_fancybox_ignore_notice'] ) {
 			add_user_meta($current_user->ID, 'easy_fancybox_ignore_notice', 'true', true);
-		}
-
-		if ( isset($_GET['easy_fancybox_ignore_deal_2017']) && '1' == $_GET['easy_fancybox_ignore_deal_2017'] ) {
-			add_user_meta($current_user->ID, 'easy_fancybox_ignore_deal_2017', 'true', true);
 		}
 
 		if ( class_exists('easyFancyBox_Advanced')
