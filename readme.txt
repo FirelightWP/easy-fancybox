@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.9
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -458,10 +458,13 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.6.1 =
-Bugfix release: color code, translation strings, pinterest button compat...
+= 1.6.2 =
+Fix: admin page line breaks hidden in WP 4.9
 
 == Changelog ==
+
+= 1.6.2 =
+* FIX: line breaks hidden on options media admin page since WP 4.9, thanks @garrett-eclipse
 
 = 1.6.1 =
 * Nolightbox class in menu also for other media types than images
