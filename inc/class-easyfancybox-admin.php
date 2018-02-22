@@ -14,11 +14,18 @@ class easyFancyBox_Admin extends easyFancyBox {
 	     ADMIN FUNCTIONS
 	 ***********************/
 
-	public static function register_settings($args = array()) {
+	 public static function add_settings_section() {
+ 		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
+ 	}
+
+	public static function register_settings( $args = [] ) {
+		if ( empty( $args ) ) $args = parent::$options;
 		foreach ($args as $key => $value) {
 			// check to see if the section is enabled, else skip to next
-			if ( !isset($value['input']) || array_key_exists($key, parent::$options['Global']['options']['Enable']['options']) && !get_option( parent::$options['Global']['options']['Enable']['options'][$key]['id'], parent::$options['Global']['options']['Enable']['options'][$key]['default']) )
-				continue;
+			if ( !isset($value['input'])
+				|| array_key_exists($key, parent::$options['Global']['options']['Enable']['options'])
+				&& !get_option( parent::$options['Global']['options']['Enable']['options'][$key]['id'], parent::$options['Global']['options']['Enable']['options'][$key]['default'])
+				) continue;
 
 			switch($value['input']) {
 				case 'deep':
@@ -229,31 +236,11 @@ class easyFancyBox_Admin extends easyFancyBox {
 		}
 	}
 
-	/**********************
-	         RUN
-	 **********************/
-
-	public static function run() {
-		add_action('plugins_loaded', array(__CLASS__, 'load_textdomain'));
-		add_action('admin_init', array(__CLASS__, 'admin_init'));
-	}
-
-	public static function load_textdomain(){
+	public static function load_textdomain() {
 		load_plugin_textdomain('easy-fancybox', false, dirname( parent::$plugin_basename ) . '/languages' );
 	}
 
-	public static function admin_init() {
-		add_action('admin_notices', array(__CLASS__, 'admin_notice'));
-
-		add_filter('plugin_action_links_'.parent::$plugin_basename, array(__CLASS__, 'add_action_link') );
-
-		// in preparation of dedicated admin page move:
-		//add_action('admin_menu', array(__CLASS__, 'add_menu'));
-
-		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
-
-		self::register_settings( parent::$options );
-
+	public static function admin_notice_dismiss() {
 		/* Dismissable notice */
 		/* If user clicks to ignore the notice, add that to their user meta */
 		global $current_user;
@@ -267,4 +254,20 @@ class easyFancyBox_Admin extends easyFancyBox {
 			self::$do_compat_warning = true;
 	}
 
+	/**********************
+	         RUN
+	 **********************/
+
+	public function __construct() {
+		add_action('plugins_loaded', array(__CLASS__, 'load_textdomain'));
+		add_action('admin_notices', array(__CLASS__, 'admin_notice'));
+		add_filter('plugin_action_links_'.parent::$plugin_basename, array(__CLASS__, 'add_action_link') );
+
+		// in preparation of dedicated admin page move:
+		//add_action('admin_menu', array(__CLASS__, 'add_menu'));
+
+		add_action('admin_init', array(__CLASS__, 'add_settings_section'));
+		add_action('admin_init', array(__CLASS__, 'register_settings'));
+		add_action('admin_init', array(__CLASS__, 'admin_notice_dismiss'));
+	}
 }
