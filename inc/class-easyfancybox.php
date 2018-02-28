@@ -312,14 +312,21 @@ var easy_fancybox_auto = function(){';
 		else
 			wp_register_script('jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.min.js', array('jquery'), EASY_FANCYBOX_VERSION, true);
 
-		// easing in IMG settings?
-		if ( ( '' == get_option( self::$options['IMG']['options']['easingIn']['id'], self::$options['IMG']['options']['easingIn']['default']) || 'linear' == get_option( self::$options['IMG']['options']['easingIn']['id'], self::$options['IMG']['options']['easingIn']['default']) ) && ( '' == get_option( self::$options['IMG']['options']['easingOut']['id'], self::$options['IMG']['options']['easingOut']['default']) || 'linear' == get_option( self::$options['IMG']['options']['easingOut']['id'], self::$options['IMG']['options']['easingOut']['default']) ) ) {
-			// do nothing
-		} else {
-			if ( 'elastic' == get_option( self::$options['IMG']['options']['transitionIn']['id'], self::$options['IMG']['options']['transitionIn']['default']) || 'elastic' == get_option( self::$options['IMG']['options']['transitionOut']['id'], self::$options['IMG']['options']['transitionOut']['default']) ) {
-				wp_deregister_script('jquery-easing');
-				wp_register_script('jquery-easing', self::$plugin_url.'js/jquery.easing.min.js', array('jquery'), EASING_VERSION, true);
-			}
+		$add_easing = false;
+		// test for easing in IMG settings
+		if ( get_option(self::$options['Global']['options']['Enable']['options']['IMG']['id'], self::$options['Global']['options']['Enable']['options']['IMG']['default'])
+			&& ( 'elastic' == get_option( self::$options['IMG']['options']['transitionIn']['id'], self::$options['IMG']['options']['transitionIn']['default'])
+			|| 'elastic' == get_option( self::$options['IMG']['options']['transitionOut']['id'], self::$options['IMG']['options']['transitionOut']['default']) ) )
+			$add_easing = true;
+		// test for easing in Inline settings
+		if ( get_option(self::$options['Global']['options']['Enable']['options']['Inline']['id'], self::$options['Global']['options']['Enable']['options']['Inline']['default'])
+			&& ( 'elastic' == get_option( self::$options['Inline']['options']['transitionIn']['id'], self::$options['Inline']['options']['transitionIn']['default'])
+			|| 'elastic' == get_option( self::$options['Inline']['options']['transitionOut']['id'], self::$options['Inline']['options']['transitionOut']['default']) ) )
+			$add_easing = true;
+		// register easing?
+		if ( $add_easing ) {
+			wp_deregister_script('jquery-easing');
+			wp_register_script('jquery-easing', self::$plugin_url.'js/jquery.easing.min.js', array('jquery'), EASING_VERSION, true);
 		}
 
 		// mousewheel in IMG settings?

@@ -5,12 +5,12 @@ Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
 Description: Easily enable the <a href="http://fancybox.net/">FancyBox jQuery extension</a> on all image, SWF, PDF, YouTube, Dailymotion and Vimeo links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.6.3-beta.1
+Version: 1.6.3-beta.2
 Author: RavanH
 Author URI: http://status301.net/
 */
 
-/*  Copyright 2016  RavanH  (email : ravanhagen@gmail.com)
+/*  Copyright 2018  RavanH  (email : ravanhagen@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -54,6 +54,3 @@ if ( is_admin() ) {
     require_once dirname(__FILE__) . '/inc/class-easyfancybox-admin.php';
     $efb_admin = new easyFancyBox_Admin();
 }
-
-// or maybe do something like:
-// add_action('admin_init', array('easyFancyBox_Admin', 'init'));
