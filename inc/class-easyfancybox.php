@@ -203,7 +203,7 @@ var easy_fancybox_handler = function(){
 		}
 
 			echo '
-}
+};
 var easy_fancybox_auto = function(){';
 
 		if ( empty($delayClick) ) $delayClick = '0';
@@ -228,7 +228,7 @@ var easy_fancybox_auto = function(){';
 		}
 
 		echo '
-}
+};
 /* ]]> */
 </script>
 ';
@@ -387,8 +387,7 @@ var easy_fancybox_auto = function(){';
 
 		echo apply_filters( 'easy_fancybox_onready_auto', 'jQuery(easy_fancybox_auto);' ) . PHP_EOL;
 
-		echo '</script>
-';
+		echo '</script>' . PHP_EOL;
 	}
 
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
