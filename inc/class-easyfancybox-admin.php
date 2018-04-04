@@ -18,7 +18,7 @@ class easyFancyBox_Admin extends easyFancyBox {
  		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
  	}
 
-	public static function register_settings( $args = [] ) {
+	public static function register_settings( $args = array() ) {
 		if ( empty( $args ) ) $args = parent::$options;
 		foreach ($args as $key => $value) {
 			// check to see if the section is enabled, else skip to next
