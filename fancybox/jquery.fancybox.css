@@ -13,8 +13,8 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  */
- 
-html.fancybox-active.noscroll { overflow: hidden; }
+
+html.fancybox-active.noscroll,html.fancybox-active.noscroll body { overflow: hidden; position: fixed }
 
 #fancybox-loading, #fancybox-loading div,
 #fancybox-overlay,
