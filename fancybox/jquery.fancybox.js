@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.4 (11/11/2010) patched and appended to 1.3.7
+ * Version: 1.3.4 (11/11/2010) patched and appended to 1.3.9
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -28,8 +28,9 @@
  * Patched for jQuery 1.9+ compat by Sabel http://sabel.bluegfx.de/wordpress/wp-content/uploads/2013/03/jquery.fancybox-1.3.4.js
  * Line 858: exclude more rel attribute values
  * Added SVG support by Simon Maillard simon@ogesta.fr
+ * iframe content with fixed width/height settings respect aspect ratio on small screens
  */
-;(function($) {
+(function($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
 
 		selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
@@ -744,7 +745,7 @@
 			}
 
 			if (resize && (to.width > view[0] || to.height > view[1])) {
-				if (selectedOpts.type == 'image'  || selectedOpts.type == 'svg'|| selectedOpts.type == 'swf') {
+				if (selectedOpts.type == 'iframe' || selectedOpts.type == 'image' || selectedOpts.type == 'svg'|| selectedOpts.type == 'swf') {
 					ratio = (currentOpts.width ) / (currentOpts.height );
 
 					if ((to.width ) > view[0]) {
@@ -756,7 +757,6 @@
 						to.height = view[1];
 						to.width = parseInt(((to.height - double_padding) * ratio) + double_padding, 10);
 					}
-
 				} else {
 					to.width = Math.min(to.width, view[0]);
 					to.height = Math.min(to.height, view[1]);

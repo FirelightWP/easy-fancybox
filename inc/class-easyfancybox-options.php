@@ -402,7 +402,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'input' => 'checkbox',
 							'hide' => true,
 							'default' => '',
-							'description' => __('Include IE 8 compatibility style rules','easy-fancybox')
+							'description' => __('Include IE 6/7/8 compatibility style rules','easy-fancybox')
 							),
 
 /*						'p2' => array (
