@@ -215,7 +215,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 		return $setting;
 	}
 
-
 	/***********************
 	    ACTIONS & FILTERS
 	 ***********************/

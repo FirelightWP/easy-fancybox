@@ -8,6 +8,12 @@ class easyFancyBox {
 
 	protected static $plugin_basename;
 
+	private static $inline_script;
+
+	private static $inline_style;
+
+	private static $inline_style_ie8;
+
 	public static $add_scripts = false;
 
 	public static $options = array();
@@ -16,13 +22,10 @@ class easyFancyBox {
 	   MAIN SCRIPT OUTPUT
 	 **********************/
 
-	public static function main_script() {
+	public static function main() {
 
 		if ( empty(self::$options) )
 			easyFancyBox_Options::load_defaults();
-
-		echo '
-<!-- Easy FancyBox ' . EASY_FANCYBOX_VERSION . ' using FancyBox ' . FANCYBOX_VERSION . ' - RavanH (http://status301.net/wordpress-plugins/easy-fancybox/) -->';
 
 		// check for any enabled sections
 		foreach (self::$options['Global']['options']['Enable']['options'] as $value) {
@@ -34,24 +37,18 @@ class easyFancyBox {
 		}
 		// and abort when none are active
 		if (!self::$add_scripts) {
-			echo '
-<!-- Nothing enabled under Settings > Media > FancyBox. -->
-
-	';
-			return;
+			return '';
 		}
 
-		// begin output FancyBox settings
-		echo '
-<script type="text/javascript">
-/* <![CDATA[ */
+		// begin building output FancyBox settings
+		$script = '
 var fb_timeout = null;';
 
 		/*
 		 * Global settings routine
 		 */
-		$more=0;
-		echo '
+		$more = 0;
+		$script .= '
 var fb_opts = {';
 		foreach (self::$options['Global']['options'] as $globals) {
 			foreach ($globals['options'] as $_key => $_value) {
@@ -71,86 +68,88 @@ var fb_opts = {';
 				if( !isset($_value['hide']) && $parm!='' ) {
 					$quote = (is_numeric($parm) || (isset($_value['noquotes']) && $_value['noquotes'] == true) ) ? '' : '\'';
 					if ($more>0)
-						echo ',';
-					echo ' \''.$_key.'\' : ';
-					echo $quote.$parm.$quote;
+						$script .= ',';
+					$script .= ' \''.$_key.'\' : ';
+					$script .= $quote.$parm.$quote;
 					$more++;
 				} else {
 					${$_key} = $parm;
 				}
 			}
 		}
-		echo ' };
+		$script .= ' };
+if (typeof easy_fancybox_handler === \'undefined\') {
 var easy_fancybox_handler = function(){
-	jQuery(\'.nofancybox,a.pin-it-button,a[href*="pinterest.com/pin/create"]\').addClass(\'nolightbox\');';
+jQuery(\'.nofancybox,a.pin-it-button,a[href*="pinterest.com/pin/create"]\').addClass(\'nolightbox\');';
 
 		foreach (self::$options as $key => $value) {
 			// check if not enabled or hide=true then skip
 			if ( isset($value['hide']) || !get_option(self::$options['Global']['options']['Enable']['options'][$key]['id'], self::$options['Global']['options']['Enable']['options'][$key]['default']) )
 				continue;
 
-			echo '
-	/* ' . $key . ' */';
+			$script .= '
+/* ' . $key . ' */';
+
 			/*
 			 * Auto-detection routines (2x)
 			 */
-			$autoAttribute = (isset($value['options']['autoAttribute'])) ? get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] ) : "";
+			$autoAttribute = isset($value['options']['autoAttribute']) ? get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] ) : '';
 
 			if(!empty($autoAttribute)) {
 				if(is_numeric($autoAttribute)) {
-					echo '
-	jQuery(\''.$value['options']['autoAttribute']['selector'].'\').not(\'.nolightbox,li.nolightbox>a\').addClass(\''.$value['options']['class']['default'].'\');';
+					$script .= '
+jQuery(\''.$value['options']['autoAttribute']['selector'].'\').not(\'.nolightbox,li.nolightbox>a\').addClass(\''.$value['options']['class']['default'].'\');';
 				} else {
 					// set selectors
 					$file_types = array_filter( explode( ' ', str_replace( ',', ' ', $autoAttribute ) ) );
 					$more=0;
-					echo '
-	var fb_'.$key.'_select = \'';
+					$script .= '
+var fb_'.$key.'_select = \'';
 					foreach ($file_types as $type) {
 						if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "gif")
 							$type = '.'.$type;
 						if ($more>0)
-							echo ', ';
-						echo 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox>a), area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
+							$script .= ', ';
+						$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox>a), area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
 						$more++;
 					}
-					echo '\';';
+					$script .= '\';';
 
 					// class and rel depending on settings
 					if( '1' == get_option($value['options']['autoAttributeLimit']['id'],$value['options']['autoAttributeLimit']['default']) ) {
 						// add class
-						echo '
-	var fb_'.$key.'_sections = jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
-	fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+						$script .= '
+var fb_'.$key.'_sections = jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
+fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 						// and set rel
 						switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 							case '':
 							default :
-								echo '; });';
+								$script .= '; });';
 								break;
 							case '1':
-								echo '.attr(\'rel\', \'gallery-\' + fb_'.$key.'_sections.index(this)); });';
+								$script .= '.attr(\'rel\', \'gallery-\' + fb_'.$key.'_sections.index(this)); });';
 								break;
 							case '2':
-								echo '.attr(\'rel\', \'gallery\'); });';
+								$script .= '.attr(\'rel\', \'gallery\'); });';
 						}
 					} else {
 						// add class
-						echo '
-	jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+						$script .= '
+jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 						// set rel
 						switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 							case '':
 							default :
-								echo ';';
+								$script .= ';';
 								break;
 							case '1':
-								echo ';
-	var fb_'.$key.'_sections = jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
-	fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).attr(\'rel\', \'gallery-\' + fb_'.$key.'_sections.index(this)); });';
+								$script .= ';
+var fb_'.$key.'_sections = jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
+fb_'.$key.'_sections.each(function() { jQuery(this).find(fb_'.$key.'_select).attr(\'rel\', \'gallery-\' + fb_'.$key.'_sections.index(this)); });';
 								break;
 							case '2':
-								echo '.attr(\'rel\', \'gallery\');';
+								$script .= '.attr(\'rel\', \'gallery\');';
 						}
 					}
 
@@ -165,18 +164,18 @@ var easy_fancybox_handler = function(){
 			if( $key == $autoClick )
 				$trigger = $value['options']['class']['default'];
 
-			echo '
-	jQuery(\'' . $value['options']['tag']['default']. '\')';
+			$script .= '
+jQuery(\'' . $value['options']['tag']['default']. '\')';
 
 			// use each() to allow different metadata values per instance; fix by Elron. Thanks!
 			if ( '1' == get_option(self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'],self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) )
-				echo '.each(function() { jQuery(this)';
+				$script .= '.each(function() { jQuery(this)';
 
-			echo '.fancybox( jQuery.extend({}, fb_opts, {';
-			$more=0;
+			$script .= '.fancybox( jQuery.extend({}, fb_opts, {';
+			$more = 0;
 			foreach ($value['options'] as $_key => $_value) {
 				if (isset($_value['id']) || isset($_value['default']))
-					$parm = (isset($_value['id']))? get_option($_value['id'], $_value['default']) : $_value['default'];
+					$parm = isset($_value['id']) ? get_option($_value['id'], $_value['default']) : $_value['default'];
 				else
 					$parm = '';
 
@@ -184,26 +183,24 @@ var easy_fancybox_handler = function(){
 					$parm = ( '1' == $parm ) ? 'true' : 'false';
 
 				if( !isset($_value['hide']) && $parm!='' ) {
-					$quote = (is_numeric($parm) || (isset($_value['noquotes']) && $_value['noquotes'] == true) ) ? '' : '\'';
-					if ($more>0)
-						echo ',';
-					echo ' \''.$_key.'\' : ';
-					echo $quote.$parm.$quote;
+					$quote = ( is_numeric($parm) || ( isset($_value['noquotes']) && $_value['noquotes'] == true ) ) ? '' : '\'';
+					if ( $more > 0 )
+						$script .= ',';
+					$script .= ' \''.$_key.'\' : ';
+					$script .= $quote.$parm.$quote;
 					$more++;
 				}
 			}
-			echo ' }) ';
+			$script .= '})';
 
 			// use each() to allow different metadata values per instance; fix by Elron. Thanks!
 			if ( '1' == get_option(self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'],self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) )
-				echo ');} ';
+				$script .= ');}';
 
-			echo ');';
-
+			$script .= ');';
 		}
 
-			echo '
-};
+		$script .= '};};
 var easy_fancybox_auto = function(){';
 
 		if ( empty($delayClick) ) $delayClick = '0';
@@ -212,26 +209,21 @@ var easy_fancybox_auto = function(){';
 			case '':
 				break;
 			case '1':
-				echo '
-	/* Auto-click */
-	setTimeout(function(){jQuery(\'#fancybox-auto\').trigger(\'click\')},'.$delayClick.');';
+				$script .= 'setTimeout(function(){jQuery(\'#fancybox-auto\').trigger(\'click\')},'.$delayClick.');';
 				break;
 			case '99':
-				echo '
-	/* Auto-click */
-	setTimeout(function(){jQuery(\'a[class|="fancybox"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');';
+				$script .= 'setTimeout(function(){jQuery(\'a[class|="fancybox"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');';
 				break;
 			default :
-				if ( !empty($trigger) ) echo '
-	/* Auto-click */
-	setTimeout(function(){jQuery(\'a[class*="'.$trigger.'"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');';
+				$script .= !empty($trigger) ? 'setTimeout(function(){jQuery(\'a[class*="'.$trigger.'"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');' : '';
 		}
 
-		echo '
-};
-/* ]]> */
-</script>
-';
+		$script .= '};' . PHP_EOL;
+		$script .= apply_filters( 'easy_fancybox_onready_handler', 'jQuery(easy_fancybox_handler);' ) . PHP_EOL;
+		$script .= apply_filters( 'easy_fancybox_onpostload_handler', 'jQuery(document.body).on(\'post-load\',easy_fancybox_handler);' ) . PHP_EOL;
+		$script .= apply_filters( 'easy_fancybox_onready_auto', 'jQuery(easy_fancybox_auto);' );
+
+		self::$inline_script = $script;
 
 		// HEADER STYLES //
 
@@ -257,14 +249,12 @@ var easy_fancybox_auto = function(){';
 #fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
 
 		if ( !empty($styles) ) {
-			echo '<style type="text/css">' . $styles . '
-</style>
-';
+			self::$inline_style = $styles;
 		}
 
 		// running our IE alphaimageloader relative path styles here
 		if ( isset($compatIE8) && 'true' == $compatIE8 ) {
-			echo '<!--[if IE 8]>
+			self::$inline_style_ie8 = '<!--[if IE 8]>
 <style type="text/css">
 .fancybox-ie #fancybox-title-over{background-image:url(' . self::$plugin_url . 'fancybox/fancy_title_over.png); }
 .fancybox-bg{position:absolute;padding:0;margin:0;border:0;width:20px;height:20px;z-index:111001;}
@@ -279,115 +269,71 @@ var easy_fancybox_auto = function(){';
 .fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . self::$plugin_url . 'fancybox/fancy_shadow_w.png", sizingMethod="scale");}
 .fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . self::$plugin_url . 'fancybox/fancy_shadow_nw.png", sizingMethod="scale");}';
 
-		if (isset($overlaySpotlight) && 'true' == $overlaySpotlight)
-			echo '
+			if (isset($overlaySpotlight) && 'true' == $overlaySpotlight)
+				self::$inline_style_ie8 .= '
 #fancybox-overlay{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' . self::$plugin_url . 'images/light-mask.png",sizingMethod="scale");';
 
-		echo '
-</style>
-<![endif]-->
-';
+			self::$inline_style_ie8 .= '</style>
+<![endif]-->';
 		}
+	}
 
+	public static function print_ie_inline_style() {
+		if ( !self::$add_scripts || empty(self::$inline_style_ie8) )
+			return;
 
+		print( self::$inline_style_ie8 );
 	}
 
 	/***********************
 	    ACTIONS & FILTERS
 	 ***********************/
 
-	public static function register_scripts() {
+	public static function enqueue_scripts() {
+		// make sure whe actually need to do anything
+		if ( !self::$add_scripts )
+			return;
 
-	    if ( is_admin() ) return;
+		$min = ( defined('WP_DEBUG') && true == WP_DEBUG ) ? '.min' : '';
 
-		// ENQUEUE
-		// first get rid of previously registered variants of jquery.fancybox by other plugins or theme
-		wp_deregister_script('fancybox');
-		wp_deregister_script('jquery.fancybox');
-		wp_deregister_script('jquery_fancybox');
-		wp_deregister_script('jquery-fancybox');
+		// ENQUEUE STYLE
+		wp_enqueue_style( 'fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.$min.'.css', false, EASY_FANCYBOX_VERSION, 'screen' );
+		wp_add_inline_style( 'fancybox', self::$inline_style );
+
+		// ENQUEUE SCRIPTS
 		// register main fancybox script
-		if ( defined('WP_DEBUG') && true == WP_DEBUG )
-			wp_register_script('jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.js', array('jquery'), EASY_FANCYBOX_VERSION, true);
-		else
-			wp_register_script('jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.min.js', array('jquery'), EASY_FANCYBOX_VERSION, true);
+		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.$min.'.js', array('jquery'), EASY_FANCYBOX_VERSION, true );
+		wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 
-		$add_easing = false;
-		// test for easing in IMG settings
-		if ( get_option(self::$options['Global']['options']['Enable']['options']['IMG']['id'], self::$options['Global']['options']['Enable']['options']['IMG']['default'])
-			&& ( 'elastic' == get_option( self::$options['IMG']['options']['transitionIn']['id'], self::$options['IMG']['options']['transitionIn']['default'])
-			|| 'elastic' == get_option( self::$options['IMG']['options']['transitionOut']['id'], self::$options['IMG']['options']['transitionOut']['default']) ) )
-			$add_easing = true;
-		// test for easing in Inline settings
-		if ( get_option(self::$options['Global']['options']['Enable']['options']['Inline']['id'], self::$options['Global']['options']['Enable']['options']['Inline']['default'])
-			&& ( 'elastic' == get_option( self::$options['Inline']['options']['transitionIn']['id'], self::$options['Inline']['options']['transitionIn']['default'])
-			|| 'elastic' == get_option( self::$options['Inline']['options']['transitionOut']['id'], self::$options['Inline']['options']['transitionOut']['default']) ) )
-			$add_easing = true;
-		// register easing?
-		if ( $add_easing ) {
-			wp_deregister_script('jquery-easing');
-			wp_register_script('jquery-easing', self::$plugin_url.'js/jquery.easing.min.js', array('jquery'), EASING_VERSION, true);
+		// jQuery Easing, which is ot needed if jQueryUI Core Effects are loaded
+		if ( !wp_script_is( 'jquery-effects-core', 'enqueued' ) ) {
+			$add_easing = false;
+			// test for easing in IMG settings
+			if ( get_option(self::$options['Global']['options']['Enable']['options']['IMG']['id'], self::$options['Global']['options']['Enable']['options']['IMG']['default'])
+				&& ( 'elastic' == get_option( self::$options['IMG']['options']['transitionIn']['id'], self::$options['IMG']['options']['transitionIn']['default'])
+				|| 'elastic' == get_option( self::$options['IMG']['options']['transitionOut']['id'], self::$options['IMG']['options']['transitionOut']['default']) ) )
+				$add_easing = true;
+			// test for easing in Inline settings
+			if ( get_option(self::$options['Global']['options']['Enable']['options']['Inline']['id'], self::$options['Global']['options']['Enable']['options']['Inline']['default'])
+				&& ( 'elastic' == get_option( self::$options['Inline']['options']['transitionIn']['id'], self::$options['Inline']['options']['transitionIn']['default'])
+				|| 'elastic' == get_option( self::$options['Inline']['options']['transitionOut']['id'], self::$options['Inline']['options']['transitionOut']['default']) ) )
+				$add_easing = true;
+			// enqueue easing?
+			if ( $add_easing ) {
+				wp_enqueue_script('jquery-easing', self::$plugin_url.'js/jquery.easing.min.js', array('jquery'), EASING_VERSION, true);
+			}
 		}
 
-		// mousewheel in IMG settings?
-		if ( '1' == get_option( self::$options['IMG']['options']['mouseWheel']['id'], self::$options['IMG']['options']['mouseWheel']['default']) ) {
-			wp_deregister_script('jquery-mousewheel');
-			wp_register_script('jquery-mousewheel', self::$plugin_url.'js/jquery.mousewheel.min.js', array('jquery'), MOUSEWHEEL_VERSION, true);
+		// jQuery Mousewheel, which is not needed if jQueryUI Mouse is loaded
+		if ( !wp_script_is( 'jquery-ui-mouse', 'enqueued' ) AND '1' == get_option( self::$options['IMG']['options']['mouseWheel']['id'], self::$options['IMG']['options']['mouseWheel']['default']) ) {
+			wp_enqueue_script('jquery-mousewheel', self::$plugin_url.'js/jquery.mousewheel.min.js', array('jquery'), MOUSEWHEEL_VERSION, true);
 		}
 
 		// metadata in Miscellaneous settings?
-		if ('1' == get_option( self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'], self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) ) {
-			wp_register_script('jquery-metadata',self::$plugin_url.'js/jquery.metadata.min.js', array('jquery'), METADATA_VERSION, true);
+		if ( '1' == get_option( self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'], self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) ) {
+			wp_enqueue_script('jquery-metadata',self::$plugin_url.'js/jquery.metadata.min.js', array('jquery'), METADATA_VERSION, true);
 		}
-	}
 
-	public static function enqueue_styles() {
-		// register style
-		wp_dequeue_style('fancybox');
-		if ( defined('WP_DEBUG') && true == WP_DEBUG )
-			wp_enqueue_style('fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.css', false, EASY_FANCYBOX_VERSION, 'screen');
-		else
-			wp_enqueue_style('fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.FANCYBOX_VERSION.'.min.css', false, EASY_FANCYBOX_VERSION, 'screen');
-	}
-
-	public static function enqueue_footer_scripts() {
-		if (!self::$add_scripts)
-			return;
-
-		// FancyBox
-		wp_enqueue_script('jquery-fancybox');
-
-		// jQuery Easing, which is ot needed if jQueryUI Core Effects are loaded
-		if ( !wp_script_is( 'jquery-effects-core', 'enqueued' ) )
-			wp_enqueue_script('jquery-easing');
-
-		// jQuery Mousewheel, which is ot needed if jQueryUI Mouse is loaded
-		if ( !wp_script_is( 'jquery-ui-mouse', 'enqueued' ) )
-			wp_enqueue_script('jquery-mousewheel');
-
-		wp_enqueue_script('jquery-metadata');
-
-	}
-
-	public static function on_ready() {
-
-		if (!self::$add_scripts)
-			return; // abort mission, there is no need for any script files
-
-		// 'gform_post_render' for gForms content triggers an error... Why?
-		// 'post-load' is for Infinite Scroll by JetPack
-
-		// first exclude some links by adding nolightbox class:
-		// (1) nofancybox backwards compatibility and (2) tries to detect social sharing buttons with known issues
-		echo '<script type="text/javascript">' . PHP_EOL;
-
-		echo apply_filters( 'easy_fancybox_onready_handler', 'jQuery(easy_fancybox_handler);' ) . PHP_EOL;
-
-		echo apply_filters( 'easy_fancybox_onpostload_handler', 'jQuery(document.body).on(\'post-load\',easy_fancybox_handler);' ) . PHP_EOL;
-
-		echo apply_filters( 'easy_fancybox_onready_auto', 'jQuery(easy_fancybox_auto);' ) . PHP_EOL;
-
-		echo '</script>' . PHP_EOL;
 	}
 
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
@@ -415,7 +361,6 @@ var easy_fancybox_auto = function(){';
 	 **********************/
 
 	public function __construct( $file ) {
-
 		// VARS
 		self::$plugin_url = plugins_url( '/', $file );
 		self::$plugin_basename = plugin_basename( $file );
@@ -423,12 +368,10 @@ var easy_fancybox_auto = function(){';
 		require_once dirname(__FILE__) . '/class-easyfancybox-options.php';
 
 		// HOOKS //
-		add_action('init', array(__CLASS__, 'init'));
-		add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueue_styles'), 999);
-		add_action('wp_head', array(__CLASS__, 'main_script'), 999);
-		add_action('wp_print_scripts', array(__CLASS__, 'register_scripts'), 999);
-		add_action('wp_footer', array(__CLASS__, 'enqueue_footer_scripts'));
-		add_action('wp_footer', array(__CLASS__, 'on_ready'), 999);
+		add_action( 'init', array(__CLASS__, 'init') );
+		add_action( 'wp_enqueue_scripts', array(__CLASS__, 'main'), 9 );
+		add_action( 'wp_enqueue_scripts', array(__CLASS__, 'enqueue_scripts') );
+		add_action( 'wp_head', array(__CLASS__, 'print_ie_inline_style'), 11 );
 	}
 
 }

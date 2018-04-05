@@ -458,16 +458,18 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.6.4 =
-Fix: pre PHP 5.4 compatibility
+= 1.7 =
+Fix: pre PHP 5.4 compatibility. Switch to wp_add_inline_script() script printing.
 
 == Changelog ==
 
-= 1.6.4 =
+= 1.7 =
 * FIX: pre PHP 5.4 compatibility
+* Switch to wp_add_inline_script() script printing, thanks @szepeviktor
+* TODO Aspect ratio for video frames on small screens
+* TODO Disable light box for small screens
 
 = 1.6.3 =
-* Switch to wp_add_inline_script() script printing, thanks @szepeviktor
 * FIX: inline js minification incompatibility, thanks @alexiswilke
 
 = 1.6.2 =
