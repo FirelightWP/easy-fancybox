@@ -467,6 +467,8 @@ Fix: pre PHP 5.4 compatibility. Switch to wp_add_inline_script() script printin
 * FIX: pre PHP 5.4 compatibility
 * Switch to wp_add_inline_script() script printing, thanks @szepeviktor
 * Aspect ratio for video frames on small screens
+* FIX: iPhone iframe scrolling
+* Resize light box on screen resize
 * TODO Disable light box for small screens
 
 = 1.6.3 =

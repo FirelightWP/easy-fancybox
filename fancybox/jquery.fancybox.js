@@ -29,9 +29,10 @@
  * Line 858: exclude more rel attribute values
  * Added SVG support by Simon Maillard simon@ogesta.fr
  * iframe content with fixed width/height settings respect aspect ratio on small screens
+ * true frame resizing on screen resize
  */
 (function($) {
-	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right,
+	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, resize_timeout,
 
 		selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
 
@@ -728,7 +729,6 @@
 		_get_zoom_to = function () {
 			var view = _get_viewport(),
 				to = {},
-				resize = currentOpts.autoScale,
 				double_padding = currentOpts.padding * 2,
 				ratio;
 
@@ -744,7 +744,7 @@
 				to.height = currentOpts.height + double_padding;
 			}
 
-			if (resize && (to.width > view[0] || to.height > view[1])) {
+			if (currentOpts.autoScale && (to.width > view[0] || to.height > view[1])) {
 				if (selectedOpts.type == 'iframe' || selectedOpts.type == 'image' || selectedOpts.type == 'svg'|| selectedOpts.type == 'swf') {
 					ratio = (currentOpts.width ) / (currentOpts.height );
 
@@ -924,11 +924,11 @@
 	};
 
 	$.fancybox.next = function() {
-		return $.fancybox.pos( currentIndex + 1);
+		return $.fancybox.pos( currentIndex + 1 );
 	};
 
 	$.fancybox.prev = function() {
-		return $.fancybox.pos( currentIndex - 1);
+		return $.fancybox.pos( currentIndex - 1 );
 	};
 
 	$.fancybox.pos = function(pos) {
@@ -1052,11 +1052,14 @@
 	};
 
 	$.fancybox.resize = function() {
-		if (overlay.is(':visible')) {
-			overlay.css('height', $(document).height());
-		}
-
-		$.fancybox.center(true);
+		clearTimeout(resize_timeout);
+	    resize_timeout = setTimeout(function(){
+			if (overlay.is(':visible')) {
+				overlay.css('height', $(document).height());
+			}
+			_start();
+			$.fancybox.center(true);
+		},750);
 	};
 
 	$.fancybox.center = function() {
