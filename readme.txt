@@ -466,7 +466,7 @@ Fix: pre PHP 5.4 compatibility. Switch to wp_add_inline_script() script printin
 = 1.7 =
 * FIX: pre PHP 5.4 compatibility
 * Switch to wp_add_inline_script() script printing, thanks @szepeviktor
-* TODO Aspect ratio for video frames on small screens
+* Aspect ratio for video frames on small screens
 * TODO Disable light box for small screens
 
 = 1.6.3 =

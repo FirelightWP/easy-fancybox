@@ -200,7 +200,9 @@ jQuery(\'' . $value['options']['tag']['default']. '\')';
 			$script .= ');';
 		}
 
-		$script .= '};};
+		$script .= '};
+jQuery(\'a.fancybox-close\').on(\'click\', jQuery.fancybox.close);
+};
 var easy_fancybox_auto = function(){';
 
 		if ( empty($delayClick) ) $delayClick = '0';
@@ -311,12 +313,12 @@ var easy_fancybox_auto = function(){';
 		$min = ( defined('WP_DEBUG') && true == WP_DEBUG ) ? '' : '.min';
 
 		// ENQUEUE STYLE
-		wp_enqueue_style( 'fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.$min.'.css', false, FANCYBOX_VERSION, 'screen' );
+		wp_enqueue_style( 'fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.css', false, FANCYBOX_VERSION, 'screen' );
 		wp_add_inline_style( 'fancybox', self::$inline_style );
 
 		// ENQUEUE SCRIPTS
 		// register main fancybox script
-		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox-'.$min.'.js', array('jquery'), FANCYBOX_VERSION, true );
+		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.js', array('jquery'), FANCYBOX_VERSION, true );
 		wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 
 		// jQuery Easing, which is ot needed if jQueryUI Core Effects are loaded
@@ -334,18 +336,18 @@ var easy_fancybox_auto = function(){';
 				$add_easing = true;
 			// enqueue easing?
 			if ( $add_easing ) {
-				wp_enqueue_script('jquery-easing', self::$plugin_url.'js/jquery.easing.min.js', array('jquery'), EASING_VERSION, true);
+				wp_enqueue_script('jquery-easing', self::$plugin_url.'js/jquery.easing'.$min.'.js', array('jquery'), EASING_VERSION, true);
 			}
 		}
 
 		// jQuery Mousewheel, which is not needed if jQueryUI Mouse is loaded
 		if ( !wp_script_is( 'jquery-ui-mouse', 'enqueued' ) AND '1' == get_option( self::$options['IMG']['options']['mouseWheel']['id'], self::$options['IMG']['options']['mouseWheel']['default']) ) {
-			wp_enqueue_script('jquery-mousewheel', self::$plugin_url.'js/jquery.mousewheel.min.js', array('jquery'), MOUSEWHEEL_VERSION, true);
+			wp_enqueue_script('jquery-mousewheel', self::$plugin_url.'js/jquery.mousewheel'.$min.'.js', array('jquery'), MOUSEWHEEL_VERSION, true);
 		}
 
 		// metadata in Miscellaneous settings?
 		if ( '1' == get_option( self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'], self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) ) {
-			wp_enqueue_script('jquery-metadata',self::$plugin_url.'js/jquery.metadata.min.js', array('jquery'), METADATA_VERSION, true);
+			wp_enqueue_script('jquery-metadata',self::$plugin_url.'js/jquery.metadata'.$min.'.js', array('jquery'), METADATA_VERSION, true);
 		}
 
 	}

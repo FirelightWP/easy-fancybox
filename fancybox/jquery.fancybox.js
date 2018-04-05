@@ -21,7 +21,7 @@
  * Line 588: added support for tab key gallery browsing
  * Line 645: Check type = image for mousewheel
  * Line 820: qouted attribute selector, RavanH ravanhagen@gmail.com
- * Line 41, 622 and 1125: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com
+ * Line 622 and 1125: added autoResize parameter, RavanH ravanhagen@gmail.com
  * Line 34: WebP image support, RavanH ravanhagen@gmail.com
  * Line 126, 677, 686: 'image' class forces image type, RavanH ravanhagen@gmail.com
  * Put focus on iframe at _finish
@@ -42,8 +42,6 @@
 		titleHeight = 0, titleStr = '', start_pos, final_pos, busy = false, fx = $.extend($('<div/>')[0], { prop: 0 }),
 
 		isIE6 = navigator.userAgent.match(/msie [6]/i) && !window.XMLHttpRequest,
-
-		isTouch = document.createTouch !== undefined,
 
 		/*
 		 * Private methods
@@ -362,6 +360,8 @@
 
 			busy = true;
 
+			$('html').addClass('fancybox-active noscroll');
+
 			$(content.add( overlay )).off();
 
 			$(window).off("resize.fb scroll.fb");
@@ -616,7 +616,7 @@
 			}
 
 			if (selectedOpts.autoDimensions) {
-				content.css('height', 'auto');
+				content.css('height','auto');
 			}
 
 			wrap.css('height', 'auto');
@@ -760,6 +760,9 @@
 				} else {
 					to.width = Math.min(to.width, view[0]);
 					to.height = Math.min(to.height, view[1]);
+					if (selectedOpts.autoDimensions) {
+						$('html').removeClass('noscroll');
+					}
 				}
 			}
 
@@ -1044,6 +1047,8 @@
 		} else {
 			wrap.fadeOut( currentOpts.transitionOut == 'none' ? 0 : currentOpts.speedOut, _cleanup);
 		}
+
+		$('html').removeClass('fancybox-active noscroll');
 	};
 
 	$.fancybox.resize = function() {
@@ -1051,10 +1056,7 @@
 			overlay.css('height', $(document).height());
 		}
 
-		/* no centering after resize on touch devices */
-		if (!isTouch) {
-			$.fancybox.center(true);
-		}
+		$.fancybox.center(true);
 	};
 
 	$.fancybox.center = function() {
@@ -1143,8 +1145,8 @@
 
 		autoScale : true,
 		autoDimensions : true,
-		centerOnScroll : !isTouch,
-		autoResize : true, //!isTouch
+		centerOnScroll : false,
+		autoResize : true,
 
 		ajax : {},
 		swf : { wmode: 'opaque' },

@@ -269,26 +269,12 @@ class easyFancyBox_Options extends easyFancyBox {
 							'hide' => true,
 							'description' => '<br /><strong>' . __('Behavior','easy-fancybox') . '</strong><br />'
 							),
-						'centerOnScroll' => array (
-							'id' => 'fancybox_centerOnScroll',
-							'input' => 'checkbox',
-							'noquotes' => true,
-							'default' => '1',
-							'description' => __('Center while scrolling','easy-fancybox')
-							),
 						'enableEscapeButton' => array (
 							'id' => 'fancybox_enableEscapeButton',
 							'input' => 'checkbox',
 							'noquotes' => true,
 							'default' => '1',
 							'description' => __('Esc key stroke closes FancyBox','easy-fancybox')
-							),
-						'autoScale' => array (
-							'id' => 'fancybox_autoScale',
-							'input' => 'checkbox',
-							'noquotes' => true,
-							'default' => '1',
-							'description' => __('Scale large content down to fit in the browser viewport.','easy-fancybox')
 							),
 						'speedIn' => array (
 							'id' => 'fancybox_speedIn',
