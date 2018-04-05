@@ -360,6 +360,15 @@ Use the instructions above for inline content but this time give the link also `
 
 Same can be done with an image, flash movie, PDF or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
 
+= Can I have a modal window ? =
+
+Yes, just create a hidden inline content light box (can be auto-popup) as described above and give the link an extra class "modal". This will remove all options to close the light box, like the close button, an overlay click or escape key.
+
+This means there is NO option to close the light box, unless you create a link like this:
+
+`
+<a href="#" class="fancybox-close">Enter this site</a>
+`
 
 = Can I make a menu item open in a FancyBox overlay ? =
 
@@ -469,6 +478,7 @@ Fix: pre PHP 5.4 compatibility. Switch to wp_add_inline_script() script printin
 * Aspect ratio for video frames on small screens
 * FIX: iPhone iframe scrolling
 * Resize light box on screen resize
+* Modal window class and close button class
 * TODO Disable light box for small screens
 
 = 1.6.3 =

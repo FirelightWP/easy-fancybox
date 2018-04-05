@@ -125,6 +125,9 @@
 			} else if (selectedOpts.content) {
 				type = 'html';
 
+			} else if ( $(obj).hasClass('iframe') ) {
+				type = 'iframe';
+
 			} else if (href) {
 				if (href.match(imgRegExp) || $(obj).hasClass("image")) {
 					type = 'image';
@@ -134,9 +137,6 @@
 
 				} else if (href.match(svgRegExp)) {
 					type = 'svg';
-
-				} else if ($(obj).hasClass("iframe")) {
-					type = 'iframe';
 
 				} else if (href.indexOf("#") === 0) {
 					type = 'inline';
@@ -151,6 +151,10 @@
 				return;
 			}
 
+			if ($(obj).hasClass('modal')) {
+				selectedOpts.modal = true;
+			}
+			
 			if (type == 'inline') {
 				obj	= href.substr(href.indexOf("#"));
 				type = $(obj).length > 0 ? 'inline' : 'ajax';
@@ -1059,7 +1063,7 @@
 			}
 			_start();
 			$.fancybox.center(true);
-		},750);
+		},500);
 	};
 
 	$.fancybox.center = function() {
@@ -1165,7 +1169,7 @@
 		titleShow : true,
 		titlePosition : 'float', // 'float', 'outside', 'inside' or 'over'
 		titleFormat : null,
-		titleFromAlt : false,
+		titleFromAlt : true,
 
 		transitionIn : 'fade', // 'elastic', 'fade' or 'none'
 		transitionOut : 'fade', // 'elastic', 'fade' or 'none'

@@ -582,13 +582,6 @@ class easyFancyBox_Options extends easyFancyBox {
 					'default' => 'over',
 					'description' => ' '
 					),
-				'titleFromAlt' => array (
-					'id' => 'fancybox_titleFromAlt',
-					'input' => 'checkbox',
-					'noquotes' => true,
-					'default' => '1',
-					'description' => __('Allow title from thumbnail alt tag','easy-fancybox')
-					),
 				'onStart' => array (
 					'id' => '',
 					'title' => __('Advanced','easy-fancybox'),
