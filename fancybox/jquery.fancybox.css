@@ -14,8 +14,6 @@
  *   http://www.gnu.org/licenses/gpl.html
  */
 
-html.fancybox-active.noscroll,html.fancybox-active.noscroll body { overflow: hidden; position: fixed }
-
 #fancybox-loading, #fancybox-loading div,
 #fancybox-overlay,
 #fancybox-wrap, .fancybox-bg,
@@ -97,7 +95,9 @@ html.fancybox-active.noscroll,html.fancybox-active.noscroll body { overflow: hid
 	padding: 0;
 	outline: none;
 	position: relative;
-	overflow: hidden;
+	/*overflow: hidden;*/
+	-webkit-overflow-scrolling:touch;
+	overflow-y:auto;
 	z-index: 111102;
 	border: 0px solid #fff;
 	background: #fff;
@@ -158,7 +158,8 @@ html.fancybox-active.noscroll,html.fancybox-active.noscroll body { overflow: hid
 
 #fancybox-frame {
 	display: block;
-	-webkit-overflow-scrolling: touch;
+	width: 100%;
+	height: 100%;
 	z-index: 0; /* z-index bug with -webkit-overflow-scrolling */
 	-webkit-transform: translateZ(0px);
 	-webkit-transform: translate3d(0,0,0);
