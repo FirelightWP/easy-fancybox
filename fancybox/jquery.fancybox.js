@@ -21,7 +21,7 @@
  * Line 588: added support for tab key gallery browsing
  * Line 645: Check type = image for mousewheel
  * Line 820: qouted attribute selector, RavanH ravanhagen@gmail.com
- * Line 622 and 1125: added autoResize parameter, RavanH ravanhagen@gmail.com
+ * Line 41, 622 and 1125: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com
  * Line 34: WebP image support, RavanH ravanhagen@gmail.com
  * Line 126, 677, 686: 'image' class forces image type, RavanH ravanhagen@gmail.com
  * Put focus on iframe at _finish
@@ -29,7 +29,7 @@
  * Line 858: exclude more rel attribute values
  * Added SVG support by Simon Maillard simon@ogesta.fr
  * iframe content with fixed width/height settings respect aspect ratio on small screens
- * true frame resizing on screen resize
+ * true frame resizing on screen reorientation, added recenter public method
  */
 (function($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, resize_timeout,
@@ -44,12 +44,14 @@
 
 		isIE6 = navigator.userAgent.match(/msie [6]/i) && !window.XMLHttpRequest,
 
+		isTouch = document.createTouch !== undefined;
+
 		/*
 		 * Private methods
 		 */
 
 		_abort = function() {
-			loading.hide();
+			$.fancybox.hideActivity();
 
 			imgPreloader.onerror = imgPreloader.onload = null;
 
@@ -62,7 +64,7 @@
 
 		_error = function() {
 			if (false === selectedOpts.onError(selectedArray, selectedIndex, selectedOpts)) {
-				loading.hide();
+				$.fancybox.hideActivity();
 				busy = false;
 				return;
 			}
@@ -90,6 +92,11 @@
 
 			selectedOpts = $.extend({}, $.fn.fancybox.defaults, (typeof $(obj).data('fancybox') == 'undefined' ? selectedOpts : $(obj).data('fancybox')));
 
+			if ( document.documentElement.clientWidth < selectedOpts.minViewportWidth ) {
+				busy = false;
+				return;
+			}
+
 			ret = selectedOpts.onStart(selectedArray, selectedIndex, selectedOpts);
 
 			if (ret === false) {
@@ -106,7 +113,7 @@
 			}
 
 			if (title === '' && selectedOpts.orig) {
-				title = selectedOpts.titleFromAlt ? selectedOpts.orig.attr('alt') : selectedOpts.orig.attr('title');
+				title = selectedOpts.orig.attr('title') || (selectedOpts.titleFromAlt ? selectedOpts.orig.attr('alt') : '');
 			}
 
 			href = selectedOpts.href || (obj.nodeName ? $(obj).attr('href') : obj.href) || null;
@@ -217,6 +224,8 @@
 				break;
 
 				case 'image':
+					selectedOpts.keepRatio = true;
+
 					busy = false;
 
 					$.fancybox.showActivity();
@@ -240,6 +249,7 @@
 
 				case 'swf':
 					selectedOpts.scrolling = 'no';
+					selectedOpts.keepRatio = true;
 
 					str = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="' + selectedOpts.width + '" height="' + selectedOpts.height + '"><param name="movie" value="' + href + '"></param>';
 					emb = '';
@@ -258,6 +268,7 @@
 
 				case 'svg':
 					selectedOpts.scrolling = 'no';
+					selectedOpts.keepRatio = true;
 
 					str = '<object width="' + selectedOpts.width + '" height="' + selectedOpts.height + '" data="' + href + '"></object>';
 
@@ -288,7 +299,7 @@
 									ret = selectedOpts.ajax.win(href, data, textStatus, XMLHttpRequest);
 
 									if (ret === false) {
-										loading.hide();
+										$.fancybox.hideActivity();
 										return;
 									} else if (typeof ret == 'string' || typeof ret == 'object') {
 										data = ret;
@@ -304,6 +315,9 @@
 				break;
 
 				case 'iframe':
+
+					$.fancybox.showActivity();
+
 					_show();
 				break;
 			}
@@ -354,7 +368,9 @@
 		_show = function() {
 			var pos, equal;
 
-			loading.hide();
+			if (selectedOpts.type !== 'iframe') {
+				$.fancybox.hideActivity();
+			}
 
 			if (wrap.is(":visible") && false === currentOpts.onCleanup(currentArray, currentIndex, currentOpts)) {
 				$('.fancybox-inline-tmp').trigger('fancybox-cancel');
@@ -394,7 +410,6 @@
 							this.style.visibility = 'inherit';
 						});
 					}
-
 					overlay.show();
 				}
 			} else {
@@ -437,7 +452,6 @@
 
 					if (equal) {
 						finish_resizing();
-
 					} else {
 						fx.prop = 0;
 
@@ -542,11 +556,9 @@
 							'width' : final_pos.width - (currentOpts.padding * 2),
 							'marginLeft' : currentOpts.padding,
 							'marginRight' : currentOpts.padding
-						});
+						}).appendTo( outer );
 
 					titleHeight = title.outerHeight(true);
-
-					title.appendTo( outer );
 
 					final_pos.height += titleHeight;
 				break;
@@ -563,8 +575,8 @@
 
 				case 'float':
 					title
-						.css('left', parseInt((title.width() - final_pos.width - 40)/ 2, 10) * -1)
-						.appendTo( wrap );
+						.css('left', parseInt( ( title.width() - final_pos.width ) / 2, 10 ) * -1 )
+						.appendTo( outer );
 				break;
 
 				default:
@@ -643,8 +655,7 @@
 			}
 
 			if (currentOpts.autoResize) {
-				$(window).on("orientationchange.fb", $.fancybox.resize);
-				$(window).on("resize.fb", $.fancybox.center);
+				$(window).on("resize.fb", $.fancybox.resize);
 			}
 
 			if (currentOpts.centerOnScroll) {
@@ -657,20 +668,25 @@
 						e.preventDefault();
 					} else if ( currentOpts.type == 'image' && ( $(e.target).outerHeight() == 0 || $(e.target).prop('scrollHeight') === $(e.target).outerHeight() ) ) {
 						e.preventDefault();
-						$.fancybox[ delta > 0 ? 'prev' : 'next']();
+						$.fancybox[ delta > 0 ? 'prev' : 'next' ]();
 					}
 				});
 			}
 
 			if (currentOpts.type == 'iframe') {
-				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '') + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="' + currentOpts.href + '"' + (false === currentOpts.allowfullscreen ? '' : ' allowfullscreen') + ' tabindex="999"></iframe>').appendTo(content).focus();
+				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '')
+				  + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="'
+				  + currentOpts.href + '"' + (false === currentOpts.allowfullscreen ? '' : ' allowfullscreen') + ' tabindex="999"></iframe>')
+				  .appendTo(content).load(function() {
+					$.fancybox.hideActivity();
+				}).focus();
 			}
 
 			wrap.show();
 
 			busy = false;
 
-			$.fancybox.center(false);
+			$.fancybox.center();
 
 			currentOpts.onComplete(currentArray, currentIndex, currentOpts);
 
@@ -722,8 +738,8 @@
 
 		_get_viewport = function() {
 			return [
-				$(window).width() == 0 ? window.innerWidth : $(window).width() - (currentOpts.margin * 2),
-				$(window).height() == 0 ? window.innerHeight : $(window).height() - (currentOpts.margin * 2),
+				document.documentElement.clientWidth - (currentOpts.margin * 2),
+				document.documentElement.clientHeight - (currentOpts.margin * 2),
 				$(document).scrollLeft() + currentOpts.margin,
 				$(document).scrollTop() + currentOpts.margin
 			];
@@ -748,8 +764,8 @@
 			}
 
 			if (currentOpts.autoScale && (to.width > view[0] || to.height > view[1])) {
-				if (selectedOpts.type == 'iframe' || selectedOpts.type == 'image' || selectedOpts.type == 'svg'|| selectedOpts.type == 'swf') {
-					ratio = (currentOpts.width ) / (currentOpts.height );
+				if (currentOpts.keepRatio) {
+					ratio = currentOpts.width / currentOpts.height;
 
 					if ((to.width ) > view[0]) {
 						to.width = view[0];
@@ -799,7 +815,7 @@
 				from = {
 					width : pos.width + (currentOpts.padding * 2),
 					height : pos.height + (currentOpts.padding * 2),
-					top	: pos.top - currentOpts.padding - 20,
+					top : pos.top - currentOpts.padding - 20,
 					left : pos.left - currentOpts.padding - 20
 				};
 
@@ -809,8 +825,8 @@
 				from = {
 					width : currentOpts.padding * 2,
 					height : currentOpts.padding * 2,
-					top	: parseInt(view[3] + view[1] * 0.5, 10),
-					left : parseInt(view[2] + view[0] * 0.5, 10)
+					top : parseInt((view[3] + view[1]) * 0.5, 10),
+					left : parseInt((view[2] + view[0]) * 0.5, 10)
 				};
 			}
 
@@ -823,7 +839,7 @@
 				return;
 			}
 
-			$('div', loading).css('top', (loadingFrame * -40) + 'px');
+			$('div', loading).css('top', (loadingFrame * - 40 ) + 'px');
 
 			loadingFrame = (loadingFrame + 1) % 12;
 		};
@@ -863,7 +879,7 @@
 					selectedIndex = selectedArray.index( this );
 				}
 
-				_start();
+				_start(e);
 
 				return;
 			});
@@ -884,7 +900,7 @@
 		selectedArray = [];
 		selectedIndex = parseInt(opts.index, 10) || 0;
 
-		if ($.isArray(obj)) {
+		if ( $.isArray(obj) ) {
 			for (var i = 0, j = obj.length; i < j; i++) {
 				if (typeof obj[i] == 'object') {
 					$(obj[i]).data('fancybox', $.extend({}, opts, obj[i]));
@@ -896,7 +912,7 @@
 			selectedArray = jQuery.merge(selectedArray, obj);
 
 		} else {
-			if (typeof obj == 'object') {
+			if ( typeof obj == 'object' ) {
 				$(obj).data('fancybox', $.extend({}, opts, obj));
 			} else {
 				obj = $({}).data('fancybox', $.extend({content : obj}, opts));
@@ -916,7 +932,7 @@
 		clearInterval(loadingTimer);
 
 		loading.show();
-		loadingTimer = setInterval(_animate_loading, 66);
+		loadingTimer = setInterval( _animate_loading, 66 );
 	};
 
 	$.fancybox.hideActivity = function() {
@@ -943,7 +959,6 @@
 		if (pos > -1 && pos < currentArray.length) {
 			selectedIndex = pos;
 			_start();
-
 		} else if (currentOpts.cyclic && currentArray.length > 1) {
 			selectedIndex = pos >= currentArray.length ? 0 : currentArray.length - 1;
 			_start();
@@ -1023,7 +1038,7 @@
 			var pos = wrap.position();
 
 			final_pos = {
-				top	 : pos.top ,
+				top : pos.top ,
 				left : pos.left,
 				width :	wrap.width(),
 				height : wrap.height()
@@ -1051,13 +1066,55 @@
 	};
 
 	$.fancybox.resize = function() {
-		clearTimeout(resize_timeout);
-	    resize_timeout = setTimeout(function(){
+		var pos;
+
+		clearTimeout( resize_timeout );
+
+		resize_timeout = setTimeout( function() {
+			var finish_resizing = function() {
+				if (selectedOpts.autoDimensions) {
+					content.css('height','auto');
+				}
+
+				wrap.css('height', 'auto');
+
+				if (titleStr && titleStr.length) {
+					title.show();
+				}
+
+				busy = false;
+
+				$.fancybox.center(true);
+			};
+
 			if (overlay.is(':visible')) {
 				overlay.css('height', $(document).height());
 			}
-			_start();
-		},500);
+
+			pos = wrap.position(),
+
+			start_pos = {
+				top	 : pos.top,
+				left : pos.left,
+				width : wrap.width(),
+				height : wrap.height()
+			};
+
+			final_pos = _get_zoom_to();
+
+			busy = true;
+
+			_process_title();
+
+			fx.prop = 0;
+
+			$(fx).animate({prop: 1}, {
+				duration : currentOpts.changeSpeed,
+				easing : currentOpts.easingChange,
+				step : _draw,
+				complete : finish_resizing
+			});
+		}, 500 );
 	};
 
 	$.fancybox.center = function() {
@@ -1067,7 +1124,7 @@
 			return;
 		}
 
-		align = arguments[0] === false ? 0 : 1;
+		align = arguments[0] === true ? 1 : 0;
 		view = _get_viewport();
 
 		if (!align && (wrap.width() > view[0] || wrap.height() > view[1])) {
@@ -1079,7 +1136,7 @@
 			.animate({
 				'top' : parseInt(Math.max(view[3] - 20, view[3] + ((view[1] - content.height() - 40) * 0.5) - currentOpts.padding)),
 				'left' : parseInt(Math.max(view[2] - 20, view[2] + ((view[0] - content.width() - 40) * 0.5) - currentOpts.padding))
-			}, typeof arguments[0] == 'number' ? arguments[0] : 200);
+			}, typeof arguments[0] == 'number' ? arguments[0] : 300);
 	};
 
 	$.fancybox.init = function() {
@@ -1146,8 +1203,10 @@
 
 		autoScale : true,
 		autoDimensions : true,
-		centerOnScroll : false,
+		centerOnScroll : !isTouch,
 		autoResize : true,
+		keepRatio : false,
+		minViewportWidth : 0,
 
 		ajax : {},
 		swf : { wmode: 'opaque' },

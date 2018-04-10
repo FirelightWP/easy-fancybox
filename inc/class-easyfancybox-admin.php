@@ -223,8 +223,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 	 ***********************/
 
 	public static function admin_notice() {
-		global $current_user ;
-
 		/* Version Nag */
 		if ( self::$do_compat_warning && current_user_can( 'install_plugins' ) && !get_user_meta($current_user->ID, 'easy_fancybox_ignore_notice') ) {
 			echo '<div class="update-nag"><p>';
@@ -242,7 +240,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 		load_plugin_textdomain('easy-fancybox', false, dirname( parent::$plugin_basename ) . '/languages' );
 	}
 
-	public static function admin_notice_dismiss() {
+	public static function admin_init() {
 		/* Dismissable notice */
 		/* If user clicks to ignore the notice, add that to their user meta */
 		global $current_user;
@@ -270,6 +268,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 		add_action('admin_init', array(__CLASS__, 'add_settings_section'));
 		add_action('admin_init', array(__CLASS__, 'register_settings'));
-		add_action('admin_init', array(__CLASS__, 'admin_notice_dismiss'));
+		add_action('admin_init', array(__CLASS__, 'admin_init'));
 	}
 }

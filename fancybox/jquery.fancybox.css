@@ -135,7 +135,6 @@
 
 #fancybox-error {
 	color: #444;
-	font: normal 12px/20px Arial;
 	padding: 14px;
 	margin: 0;
 }
@@ -247,8 +246,6 @@
 }
 
 #fancybox-title {
-	font-family: Helvetica;
-	font-size: 12px;
 	z-index: 111102;
 }
 
@@ -262,6 +259,7 @@
 .fancybox-title-outside {
 	padding-top: 10px;
 	color: #fff;
+	font-weight: 600;
 }
 
 .fancybox-title-over {
@@ -295,7 +293,7 @@
 	width: auto;
 }
 
-#fancybox-title-float-wrap td {
+#fancybox-title-float-wrap tr,#fancybox-title-float-wrap td {
 	border: none;
 	white-space: nowrap;
 }
@@ -308,7 +306,8 @@
 #fancybox-title-float-main {
 	color: #fff;
 	line-height: 29px;
-	font-weight: bold;
+	font-weight: 600;
+	font-size: 14px;
 	padding: 0 0 3px 0;
 	background: url('fancybox-x.png') 0px -40px;
 }
