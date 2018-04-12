@@ -658,7 +658,7 @@
 				$(window).on("resize.fb", $.fancybox.resize);
 			}
 
-			if (currentOpts.centerOnScroll) {
+			if (currentOpts.centerOnScroll && !isTouch) {
 				$(window).on("scroll.fb", $.fancybox.center);
 			}
 
@@ -1203,7 +1203,7 @@
 
 		autoScale : true,
 		autoDimensions : true,
-		centerOnScroll : !isTouch,
+		centerOnScroll : false,
 		autoResize : true,
 		keepRatio : false,
 		minViewportWidth : 0,
