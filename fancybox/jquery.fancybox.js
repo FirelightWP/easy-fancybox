@@ -737,9 +737,16 @@
 		},
 
 		_get_viewport = function() {
+			var w = window.innerWidth && document.documentElement.clientWidth ?
+						Math.min(window.innerWidth, document.documentElement.clientWidth) :
+						window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth,
+				h = window.innerHeight && document.documentElement.clientHeight ?
+						Math.min(window.innerHeight, document.documentElement.clientHeight) :
+						window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight,
+
 			return [
-				document.documentElement.clientWidth - (currentOpts.margin * 2),
-				document.documentElement.clientHeight - (currentOpts.margin * 2),
+				w - (currentOpts.margin * 2),
+				h - (currentOpts.margin * 2),
 				$(document).scrollLeft() + currentOpts.margin,
 				$(document).scrollTop() + currentOpts.margin
 			];
