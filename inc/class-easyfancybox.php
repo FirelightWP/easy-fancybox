@@ -136,7 +136,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 							case '2':
 								$script .= '.attr(\'rel\',\'gallery\');});';
 						}
-					} else { 
+					} else {
 						// add class
 						$script .= '
 jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
