@@ -691,7 +691,7 @@ class easyFancyBox_Options extends easyFancyBox {
 						'id' => 'fancybox_autoSelector',
 						'hide' => true,
 						'input' => 'hidden',
-						'default' => 'div.gallery ' // add div.tiled-gallery for Tiled Galleries support
+						'default' => 'div.gallery,div.wp-block-gallery,div.tiled-gallery' // add div.tiled-gallery for Tiled Galleries support
 					),
 					'onComplete' => array (
 						'id' => '',
