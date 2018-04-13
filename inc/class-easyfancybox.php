@@ -43,15 +43,12 @@ class easyFancyBox {
 			return;
 
 		// begin building output FancyBox settings
-		$script = '
-var fb_timeout=null;';
+		$script = 'var fb_timeout, fb_opts={';
 
 		/*
 		 * Global settings routine
 		 */
 		$more = 0;
-		$script .= '
-var fb_opts={';
 		foreach (self::$options['Global']['options'] as $globals) {
 			foreach ($globals['options'] as $_key => $_value) {
 				if ( isset($_value['id']) )
@@ -248,25 +245,29 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		// customized styles
 		$styles = '';
-		if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight )
-			$styles .= '
-#fancybox-overlay{background-attachment:fixed;background-image:url("' . self::$plugin_url . 'images/light-mask.png");background-position:center;background-repeat:no-repeat;background-size:100% 100%}';
-		if ( !empty($borderRadius) )
-			$styles .= '
-#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}.fancybox-title-inside{padding-top:'.$borderRadius.'px;margin-top:-'.$borderRadius.'px !important;border-radius: 0 0 '.$borderRadius.'px '.$borderRadius.'px}';
-		if ( !empty($backgroundColor) )
-			$styles .= '
-#fancybox-content{background:'.$backgroundColor.'}';
-		if ( !empty($paddingColor) )
-			$styles .= '
-#fancybox-content{border-color:'.$paddingColor.'}#fancybox-outer{background:'.$paddingColor.'}'; //.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}
-		if ( !empty($textColor) )
-			$styles .= '
-#fancybox-content{color:'.$textColor.'}';
-		if ( !empty($titleColor) )
-			$styles .= '
-#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
-
+		if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight ) {
+			$styles .= '#fancybox-overlay{background-attachment:fixed;background-image:url("' . self::$plugin_url . 'images/light-mask.png");background-position:center;background-repeat:no-repeat;background-size:100% 100%}';
+		}
+		if ( !empty($borderRadius) ) {
+			$styles .= '#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}.fancybox-title-inside{padding-top:'.$borderRadius.'px;margin-top:-'.$borderRadius.'px !important;border-radius: 0 0 '.$borderRadius.'px '.$borderRadius.'px}';
+		}
+		$content_style = '';
+		if ( !empty($backgroundColor) ) {
+			$content_style .= 'background:'.$backgroundColor.';';
+		}
+		if ( !empty($paddingColor) ) {
+			$content_style .= 'border-color:'.$paddingColor.';';
+		}
+		if ( !empty($textColor) ) {
+			$content_style .= 'color:'.$textColor.';';
+			$styles .= '#fancybox-outer{background:'.$paddingColor.'}'; //.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}
+		}
+		if ( !empty($content_style) ) {
+			$styles .= '#fancybox-content{'.$content_style.'}';
+		}
+		if ( !empty($titleColor) ) {
+			$styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
+		}
 		if ( !empty($styles) ) {
 			self::$inline_style = $styles;
 		}
