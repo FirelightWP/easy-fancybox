@@ -2,7 +2,7 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
-Requires at least: 3.3
+Requires at least: 4.5
 Tested up to: 4.9
 Stable tag: 1.7
 
@@ -451,7 +451,7 @@ Fix: pre PHP 5.4 compatibility. Switch to wp_add_inline_script() script printin
 
 = 1.7.1 =
 * TODO theme compatibility option: late script inclusion
-* TODO (for 1.8?) work on option to disable background scrolling (body overflow hidden + overlay overflow-y auto) 
+* TODO (for 1.8?) work on option to disable background scrolling (body overflow hidden + overlay overflow-y auto)
 
 = 1.7 =
 * NEW: Aspect ratio for video frames on smaller screens
