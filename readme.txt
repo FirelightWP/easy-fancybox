@@ -450,7 +450,7 @@ Fix: pre PHP 5.4 compatibility. Switch to wp_add_inline_script() script printin
 == Changelog ==
 
 = 1.7.1 =
-* TODO theme compatibility option: late script inclusion
+* TODO compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
 * TODO (for 1.8?) work on option to disable background scrolling (body overflow hidden + overlay overflow-y auto)
 
 = 1.7 =

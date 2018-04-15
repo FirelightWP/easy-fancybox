@@ -7,29 +7,12 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.4 (11/11/2010) patched and appended to 1.3.9
+ * Version: 1.3.9 (11/04/2018)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
- *
- * Patches applied:
- * Removed/replaced non-HTML5 attributes
- * Added parameter allowfullscreen for iframe, RavanH ravanhagen@gmail.com
- * Line 309, 714: patches for better centering on ipad etc.
- * Line 588: added support for tab key gallery browsing
- * Line 645: Check type = image for mousewheel
- * Line 820: qouted attribute selector, RavanH ravanhagen@gmail.com
- * Line 41, 622 and 1125: added isTouch variable and autoResize parameter, RavanH ravanhagen@gmail.com
- * Line 34: WebP image support, RavanH ravanhagen@gmail.com
- * Line 126, 677, 686: 'image' class forces image type, RavanH ravanhagen@gmail.com
- * Put focus on iframe at _finish
- * Patched for jQuery 1.9+ compat by Sabel http://sabel.bluegfx.de/wordpress/wp-content/uploads/2013/03/jquery.fancybox-1.3.4.js
- * Line 858: exclude more rel attribute values
- * Added SVG support by Simon Maillard simon@ogesta.fr
- * iframe content with fixed width/height settings respect aspect ratio on small screens
- * true frame resizing on screen reorientation, added recenter public method
  */
 (function($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, resize_timeout,
