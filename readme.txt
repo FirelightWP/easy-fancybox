@@ -445,7 +445,7 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 == Upgrade Notice ==
 
 = 1.7 =
-Fix: pre PHP 5.4 compatibility. Switch to wp_add_inline_script() script printing.
+New options and bugfixes. Improved behavior on mobile devices. Fix: pre PHP 5.4 compatibility.
 
 == Changelog ==
 
