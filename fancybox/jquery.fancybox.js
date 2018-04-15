@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.9 (11/04/2018)
+ * Version: 1.3.10 (15/04/2018)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -723,9 +723,7 @@
 			var w = window.innerWidth && document.documentElement.clientWidth ?
 						Math.min(window.innerWidth, document.documentElement.clientWidth) :
 						window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth,
-				h = window.innerHeight && document.documentElement.clientHeight ?
-						Math.min(window.innerHeight, document.documentElement.clientHeight) :
-						window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight,
+				h = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
 
 			return [
 				w - (currentOpts.margin * 2),
