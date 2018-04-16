@@ -29,7 +29,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'id' => 'fancybox_enableImg',
 								'input' => 'checkbox',
 								'hide' => true,
-								'default' => ( function_exists('is_plugin_active_for_network') && is_plugin_active_for_network( plugin_basename( __FILE__ ) ) ) ? '' : '1',
+								'default' => ( function_exists('is_plugin_active_for_network') && is_plugin_active_for_network( parent::$plugin_basename ) ) ? '' : '1',
 								'description' => '<strong>' . __('Images','easy-fancybox') . '</strong>'
 							),
 							'Inline' => array (

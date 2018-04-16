@@ -47,10 +47,10 @@ define( 'METADATA_VERSION', '2.22.1' );
  *   CLASSES
  **************/
 
-require_once dirname(__FILE__) . '/inc/class-easyfancybox.php';
+require_once dirname( __FILE__ ) . '/inc/class-easyfancybox.php';
 $efb = new easyFancyBox( __FILE__ );
 
 if ( is_admin() ) {
-    require_once dirname(__FILE__) . '/inc/class-easyfancybox-admin.php';
+    require_once dirname( __FILE__ ) . '/inc/class-easyfancybox-admin.php';
     $efb_admin = new easyFancyBox_Admin();
 }
