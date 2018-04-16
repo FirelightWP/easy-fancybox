@@ -2,6 +2,7 @@
 /**
  * Easy FancyBox Options Class
  */
+
 class easyFancyBox_Options extends easyFancyBox {
 
 	public static function load_defaults() {
@@ -378,7 +379,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'hide' => true,
 								'description' => '<br /><strong>' . __('Browser & device compatibility','easy-fancybox') . '</strong><br />'
 							),
-						'minViewportWidth' => array (
+							'minViewportWidth' => array (
 								'id' => 'fancybox_minViewportWidth',
 								'title' => __('Minimum browser/device viewport width','easy-fancybox'),
 								'label_for' => 'fancybox_minViewportWidth',
@@ -407,32 +408,45 @@ class easyFancyBox_Options extends easyFancyBox {
 								'description' => __('Include IE 8 compatibility style rules','easy-fancybox')
 							),
 
-	/*						'p2' => array (
+							'p2' => array (
 								'hide' => true,
 								'description' => '<br /><strong>' . __('Theme & plugins compatibility','easy-fancybox') . '</strong><br />'
+												. __('Try to deactivate all conflicting light box scripts in your theme or other plugins. If this is not possible, try a higher script priority number which means scripts are added later, wich may allow them to override conflicting scripts. A lower priority number, excluding WordPress standard jQuery, or even moving the plugin scripts to the header may work in cases where there are errors occuring in other script.','easy-fancybox') . '<br /><br />'
+							),
+							'scriptPriority' => array (
+								'id' => 'fancybox_scriptPriority',
+								'title' => __('FancyBox script priority','easy-fancybox'),
+								'label_for' => 'fancybox_scriptPriority',
+								'input' => 'number',
+								'step' => '1',
+								'min' => '1',
+								'max' => '999',
+								'sanitize_callback' => 'intval',
+								'class' => 'small-text',
+								'default' => '10',
+								'description' => __('Default priority is 10.','easy-fancybox') . ' ' . __('Higher is later.','easy-fancybox') . '<br/>'
 							),
 							'noFooter' => array (
 								'id' => 'fancybox_noFooter',
 								'input' => 'checkbox',
 								'hide' => true,
 								'default' => '',
-								'description' => __('Move scripts from footer to theme head section','easy-fancybox')
+								'description' => __('Move scripts from footer to theme head section (not recommended for site load times!)','easy-fancybox')
 							),
 							'nojQuery' => array (
 								'id' => 'fancybox_nojQuery',
 								'input' => 'checkbox',
 								'hide' => true,
 								'default' => '',
-								'description' => __('Do not include standard WordPress jQuery library','easy-fancybox')
+								'description' => __('Do not include standard WordPress jQuery library (do this only if you are sure jQuery is included from another source!)','easy-fancybox')
 							),
-							'jqCompat' => array (
+/*							'jqCompat' => array (
 								'id' => 'fancybox_jqCompat',
 								'input' => 'checkbox',
 								'hide' => true,
 								'default' => '',
 								'description' => __('Use jQuery pre-1.7 compatibility mode','easy-fancybox')
-							),
-	*/
+							),*/
 							'p3' => array (
 								'hide' => true,
 								'description' => '<br /><strong>' . __('Advanced','easy-fancybox') . '</strong><br />'

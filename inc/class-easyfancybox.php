@@ -2,6 +2,7 @@
 /**
  * Easy FancyBox Class
  */
+
 class easyFancyBox {
 
 	private static $plugin_url;
@@ -127,11 +128,14 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 							default :
 								$script .= '; });';
 								break;
+
 							case '1':
 								$script .= '.attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 								break;
+
 							case '2':
 								$script .= '.attr(\'rel\',\'gallery\');});';
+								break;
 						}
 					} else {
 						// add class
@@ -143,13 +147,16 @@ jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\
 							default :
 								$script .= ';';
 								break;
+
 							case '1':
 								$script .= ';
 var fb_'.$key.'_sections = jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 								break;
+
 							case '2':
 								$script .= '.attr(\'rel\',\'gallery\');';
+								break;
 						}
 					}
 				}
@@ -208,25 +215,25 @@ jQuery(\'a.fancybox-close\').on(\'click\',function(e){e.preventDefault();jQuery.
 
 		switch ( $autoClick ) {
 			case '':
-			break;
+				break;
 
 			case '1':
 				$script .= '
 var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'#fancybox-auto\').trigger(\'click\')},'.$delayClick.');};';
 				self::$onready_auto = true;
-			break;
+				break;
 
 			case '2':
 				$script .= '
 var easy_fancybox_auto=function(){setTimeout(function(){if(location.hash){jQuery(location.hash).trigger(\'click\');}},'.$delayClick.');};';
 				self::$onready_auto = true;
-			break;
+				break;
 
 			case '99':
 				$script .= '
 var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class|="fancybox"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');};';
 				self::$onready_auto = true;
-			break;
+				break;
 
 			default :
 				if ( !empty($trigger) ) {
@@ -234,7 +241,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class|="fancy
 var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$trigger.'"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');};';
 					self::$onready_auto = true;
 				}
-			break;
 		}
 
 		$script .= PHP_EOL;
@@ -335,8 +341,11 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		wp_add_inline_style( 'fancybox', self::$inline_style );
 
 		// ENQUEUE SCRIPTS
+		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
+		$dep = get_option( 'fancybox_nojQuery', false ) ? array() : array('jquery');
+
 		// register main fancybox script
-		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.js', array('jquery'), FANCYBOX_VERSION, true );
+		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.js', $dep, FANCYBOX_VERSION, $footer );
 		wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 
 		// jQuery Easing, which is ot needed if jQueryUI Core Effects are loaded
@@ -354,18 +363,18 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 				$add_easing = true;
 			// enqueue easing?
 			if ( $add_easing ) {
-				wp_enqueue_script('jquery-easing', self::$plugin_url.'js/jquery.easing'.$min.'.js', array('jquery'), EASING_VERSION, true);
+				wp_enqueue_script( 'jquery-easing', self::$plugin_url.'js/jquery.easing'.$min.'.js', $dep, EASING_VERSION, $footer );
 			}
 		}
 
 		// jQuery Mousewheel, which is not needed if jQueryUI Mouse is loaded
-		if ( !wp_script_is( 'jquery-ui-mouse', 'enqueued' ) AND '1' == get_option( self::$options['IMG']['options']['mouseWheel']['id'], self::$options['IMG']['options']['mouseWheel']['default']) ) {
-			wp_enqueue_script('jquery-mousewheel', self::$plugin_url.'js/jquery.mousewheel'.$min.'.js', array('jquery'), MOUSEWHEEL_VERSION, true);
+		if ( !wp_script_is( 'jquery-ui-mouse', 'enqueued' ) AND '1' == get_option( self::$options['IMG']['options']['mouseWheel']['id'], self::$options['IMG']['options']['mouseWheel']['default'] ) ) {
+			wp_enqueue_script( 'jquery-mousewheel', self::$plugin_url.'js/jquery.mousewheel'.$min.'.js', $dep, MOUSEWHEEL_VERSION, $footer );
 		}
 
 		// metadata in Miscellaneous settings?
 		if ( '1' == get_option( self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'], self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) ) {
-			wp_enqueue_script('jquery-metadata',self::$plugin_url.'js/jquery.metadata'.$min.'.js', array('jquery'), METADATA_VERSION, true);
+			wp_enqueue_script( 'jquery-metadata',self::$plugin_url.'js/jquery.metadata'.$min.'.js', $dep, METADATA_VERSION, $footer );
 		}
 	}
 
@@ -396,6 +405,17 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 	public static function init() {
 		easyFancyBox_Options::load_defaults();
+
+		$priority = intval( get_option( 'fancybox_scriptPriority', 10 ) );
+
+		// HOOKS
+		add_action( 'wp_loaded', array(__CLASS__, 'main') );
+		add_action( 'wp_enqueue_scripts', array(__CLASS__, 'enqueue_scripts'), $priority );
+		add_action( 'wp_head', array(__CLASS__, 'print_ie_inline_style'), 11 );
+
+		// FILTERS
+		add_filter( 'embed_oembed_html', array(__CLASS__,'add_video_wmode_opaque'), 10, 3 );
+		add_filter( 'easy_fancybox_inline_script', array(__CLASS__,'onready_callback') );
 	}
 
 	/**********************
@@ -409,14 +429,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		require_once dirname(__FILE__) . '/class-easyfancybox-options.php';
 
-		// HOOKS //
 		add_action( 'init', array(__CLASS__, 'init') );
-		add_action( 'wp_loaded', array(__CLASS__, 'main') );
-		add_action( 'wp_enqueue_scripts', array(__CLASS__, 'enqueue_scripts') );
-		add_action( 'wp_head', array(__CLASS__, 'print_ie_inline_style'), 11 );
-
-		// FILTERS
-		add_filter( 'embed_oembed_html', array(__CLASS__,'add_video_wmode_opaque'), 10, 3 );
-		add_filter( 'easy_fancybox_inline_script', array(__CLASS__,'onready_callback') );
 	}
 }
