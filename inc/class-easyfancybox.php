@@ -280,8 +280,10 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		// running our IE alphaimageloader relative path styles here
 		if ( isset($compatIE8) && 'true' == $compatIE8 ) {
-			self::$inline_style_ie8 = '<!--[if lt IE 9]>
-<style type="text/css">
+			// prepare action hook
+			add_action( 'wp_head', array(__CLASS__, 'print_inline_style_ie8'), 12 );
+
+			self::$inline_style_ie8 = '
 /* IE6 */
 #fancybox-left:hover,#fancybox-right:hover{visibility:visible}
 .fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_close.png",sizingMethod="scale");}
@@ -312,17 +314,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 				self::$inline_style_ie8 .= '
 #fancybox-overlay{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/light-mask.png",sizingMethod="scale");';
 
-			self::$inline_style_ie8 .= '</style>
-<![endif]-->
-';
 		}
-	}
-
-	public static function print_ie_inline_style() {
-		if ( !self::$add_scripts || empty(self::$inline_style_ie8) )
-			return;
-
-		print( self::$inline_style_ie8 );
 	}
 
 	/***********************
@@ -338,7 +330,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		// ENQUEUE STYLE
 		wp_enqueue_style( 'fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.css', false, FANCYBOX_VERSION, 'screen' );
-		wp_add_inline_style( 'fancybox', self::$inline_style );
 
 		// ENQUEUE SCRIPTS
 		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
@@ -346,7 +337,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		// register main fancybox script
 		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.js', $dep, FANCYBOX_VERSION, $footer );
-		wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 
 		// jQuery Easing, which is ot needed if jQueryUI Core Effects are loaded
 		if ( !wp_script_is( 'jquery-effects-core', 'enqueued' ) ) {
@@ -376,17 +366,49 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		if ( '1' == get_option( self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'], self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) ) {
 			wp_enqueue_script( 'jquery-metadata',self::$plugin_url.'js/jquery.metadata'.$min.'.js', $dep, METADATA_VERSION, $footer );
 		}
+
+		if ( get_option('fancybox_pre45Compat',false) || !function_exists( 'wp_add_inline_script' ) ) {
+			// do it the old way
+			$priority = intval( get_option( 'fancybox_scriptPriority', 10 ) ) + 1;
+			add_action( $footer ? 'wp_footer' : 'wp_head', array(__CLASS__, 'print_inline_script'), $priority );
+			add_action( 'wp_head', array(__CLASS__, 'print_inline_style'), 11 );
+		} else {
+			wp_add_inline_style( 'fancybox', self::$inline_style );
+			wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
+		}
+	}
+
+	public static function print_inline_script() {
+		if ( !self::$add_scripts || empty(self::$inline_script) )
+			return;
+
+		print( '<script type="text/javascript">' . self::$inline_script . '</script>' );
+	}
+
+	public static function print_inline_style() {
+		if ( !self::$add_scripts || empty(self::$inline_style) )
+			return;
+
+		print( '<style id="fancybox-inline-css" type="text/css">' . self::$inline_style . '</style>' );
+	}
+
+	public static function print_inline_style_ie8() {
+		if ( !self::$add_scripts || empty(self::$inline_style_ie8) )
+			return;
+
+		print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie8 . '</style><![endif]-->' );
 	}
 
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
 	// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
+	// without the wmode, videos will float over the light box no matter what z-index is set.
 	public static function add_video_wmode_opaque($html, $url, $attr) {
 		if ( strpos($html, "<embed src=" ) !== false ) {
 			$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque"', $html);
 		} elseif ( strpos($html, 'youtube' ) !== false && strpos($html, 'wmode' ) == false ) {
-			$html = str_replace('feature=oembed', 'feature=oembed&wmode=opaque', $html);
+			$html = str_replace('feature=oembed', 'feature=oembed&amp;wmode=opaque', $html);
 		} elseif ( strpos($html, "vimeo" ) !== false  && strpos($html, 'wmode' ) == false ) {
-			$html = str_replace('" width', '?theme=none&wmode=opaque" width', $html);
+			$html = str_replace('" width', '?theme=none&amp;wmode=opaque" width', $html);
 		} elseif ( strpos($html, "dailymotion" ) !== false  && strpos($html, 'wmode' ) == false ) {
 			$html = str_replace('" width', '?wmode=opaque" width', $html);
 		}
@@ -411,7 +433,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		// HOOKS
 		add_action( 'wp_loaded', array(__CLASS__, 'main') );
 		add_action( 'wp_enqueue_scripts', array(__CLASS__, 'enqueue_scripts'), $priority );
-		add_action( 'wp_head', array(__CLASS__, 'print_ie_inline_style'), 11 );
 
 		// FILTERS
 		add_filter( 'embed_oembed_html', array(__CLASS__,'add_video_wmode_opaque'), 10, 3 );
@@ -429,6 +450,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		require_once dirname(__FILE__) . '/class-easyfancybox-options.php';
 
-		add_action( 'init', array(__CLASS__, 'init') );
+		add_action( 'plugins_loaded', array(__CLASS__, 'init') );
 	}
 }

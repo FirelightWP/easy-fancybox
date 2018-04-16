@@ -440,13 +440,13 @@ class easyFancyBox_Options extends easyFancyBox {
 								'default' => '',
 								'description' => __('Do not include standard WordPress jQuery library (do this only if you are sure jQuery is included from another source!)','easy-fancybox')
 							),
-/*							'jqCompat' => array (
-								'id' => 'fancybox_jqCompat',
+							'pre45Compat' => array (
+								'id' => 'fancybox_pre45Compat',
 								'input' => 'checkbox',
 								'hide' => true,
-								'default' => '',
-								'description' => __('Use jQuery pre-1.7 compatibility mode','easy-fancybox')
-							),*/
+								'default' => function_exists( 'wp_add_inline_script' ) ? '' : '1',
+								'description' => __('Do not use wp_add_inline_script/style functions (may solve issues with older script minification plugins)','easy-fancybox')
+							),
 							'p3' => array (
 								'hide' => true,
 								'description' => '<br /><strong>' . __('Advanced','easy-fancybox') . '</strong><br />'

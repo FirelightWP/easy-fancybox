@@ -2,9 +2,9 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
-Requires at least: 4.5
+Requires at least: 3.3
 Tested up to: 4.9
-Stable tag: 1.7
+Stable tag: 1.7.1
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -205,7 +205,7 @@ User Mark Szoldan shared a neat trick how to do this:
 
 1. Follow the instructions to make Easy FancyBox work smoothly with NextGEN above and make sure it all works correctly for normal thumbnails linked to their full-size version.
 1. Then give the image that you want to link to a Youtube movie the URL to the Youtube page as title.
-1. Finally paste the code below into a text widget that will live in your sidebar or footer bar, or you can hard-code it into your theme but make sure it come before the `wp_footer()` call...
+1. Finally paste the code below into a Custom HTML widget that will live in your sidebar or footer bar, or you can hard-code it into your theme but make sure it come before the `wp_footer()` call...
 
 `
 <script type="text/javascript">
@@ -348,10 +348,10 @@ Same can be done with an image, flash movie, PDF or iframe link! But please reme
 
 Yes, just create a hidden inline content light box (can be auto-popup) as described above and give the link an extra class "modal". This will remove all options to close the light box, like the close button, an overlay click or escape key.
 
-This means there is NO option to close the light box, unless you create a link like this:
+This means there is NO option to close the light box, unless you create a link like this inside the hidden inline content div:
 
 `
-<a href="#" class="fancybox-close">Enter this site</a>
+<a href="" class="fancybox-close">Enter this site</a>
 `
 
 = Can I make a menu item open in a FancyBox overlay ? =
@@ -445,15 +445,15 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.7 =
-New options and bugfixes. Improved behavior on mobile devices. Fix: pre PHP 5.4 compatibility.
+= 1.7.1 =
+New theme and plugins compatibility options. Pre WP 4.5 compatiblity.
 
 
 == Changelog ==
 
 = 1.7.1 =
-* TODO compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
-* TODO (for 1.8?) work on option to disable background scrolling (body overflow hidden + overlay overflow-y auto)
+* Compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
+* Improved mobile viewport height detection
 
 = 1.7 =
 * NEW: Aspect ratio for video frames on smaller screens
