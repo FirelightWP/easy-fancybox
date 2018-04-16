@@ -411,7 +411,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'p2' => array (
 								'hide' => true,
 								'description' => '<br /><strong>' . __('Theme & plugins compatibility','easy-fancybox') . '</strong><br />'
-												. __('Try to deactivate all conflicting light box scripts in your theme or other plugins. If this is not possible, try a higher script priority number which means scripts are added later, wich may allow them to override conflicting scripts. A lower priority number, excluding WordPress standard jQuery, or even moving the plugin scripts to the header may work in cases where there are errors occuring in other script.','easy-fancybox') . '<br /><br />'
+												. __('Try to deactivate all conflicting light box scripts in your theme or other plugins. If this is not possible, try a higher script priority number which means scripts are added later, wich may allow them to override conflicting scripts. A lower priority number, excluding WordPress standard jQuery, or even moving the plugin scripts to the header may work in cases where there are blocking errors occuring in other script.','easy-fancybox') . '<br /><br />'
 							),
 							'scriptPriority' => array (
 								'id' => 'fancybox_scriptPriority',
