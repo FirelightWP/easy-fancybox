@@ -1174,6 +1174,13 @@ class easyFancyBox_Options extends easyFancyBox {
 					'type' => array(
 						'default' => 'iframe'
 					),
+					'noCookie' => array (
+						'id' => 'fancybox_YoutubenoCookie',
+						'input' => 'checkbox',
+						'hide' => true,
+						'default' => '',
+						'description' => __('Enable privacy-enhanced mode','easy-fancybox') . '<br />'
+					),
 					'width' => array (
 						'id' => 'fancybox_YoutubeWidth',
 						'title' => translate('Width'),
@@ -1245,7 +1252,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 					'onStart' => array (
 						'noquotes' => true,
-						'default' => 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}'
+						'default' => get_option( 'fancybox_YoutubenoCookie' ) ? 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube-nocookie.com/embed\').replace(new RegExp(\'youtube.com/watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'youtube-nocookie.com/embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}' : 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}'
 					)
 				)
 			),
