@@ -313,6 +313,13 @@ class easyFancyBox_Options extends easyFancyBox {
 								'class' => 'small-text',
 								'default' => '',
 								'description' => '<br />' . __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em><br />'
+							),
+							'mouseWheel' => array (
+								'id' => 'fancybox_mouseWheel',
+								'hide' => true,
+								'input' => 'checkbox',
+								'default' => '1',
+								'description' => __('Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action.','easy-fancybox')
 							)
 						)
 					),
@@ -661,13 +668,6 @@ class easyFancyBox_Options extends easyFancyBox {
 						'noquotes' => true,
 						'default' => '1',
 						'description' => __('Arrow key strokes browse the gallery','easy-fancybox')
-					),
-					'mouseWheel' => array (
-						'id' => 'fancybox_mouseWheel',
-						'hide' => true,
-						'input' => 'checkbox',
-						'default' => '1',
-						'description' => __('Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action.','easy-fancybox')
 					),
 					'cyclic' => array (
 						'id' => 'fancybox_cyclic',
