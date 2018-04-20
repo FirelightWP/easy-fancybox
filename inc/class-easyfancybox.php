@@ -317,12 +317,15 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		if ( !self::$add_scripts )
 			return;
 
+		global $wp_styles;
 		$min = ( defined('WP_DEBUG') && true == WP_DEBUG ) ? '' : '.min';
 
 		// ENQUEUE STYLE
 		wp_enqueue_style( 'fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.css', false, FANCYBOX_VERSION, 'screen' );
-		if ( !empty(self::$inline_style_ie) )
+		if ( !empty(self::$inline_style_ie) ) {
 			wp_enqueue_style( 'fancybox-ie', self::$plugin_url.'fancybox/jquery.fancybox-ie'.$min.'.css', false, FANCYBOX_VERSION, 'screen' );
+			$wp_styles->add_data( 'fancybox-ie', 'conditional', 'lt IE 9' );
+		}
 
 		// ENQUEUE SCRIPTS
 		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
