@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.12 (15/04/2018)
+ * Version: 1.3.13 (23/04/2018)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -136,7 +136,7 @@
 
 				} else if (href.match(pdfRegExp)) {
 					type = 'pdf';
-					
+
 				} else if (href.indexOf("#") === 0) {
 					type = 'inline';
 
@@ -695,28 +695,57 @@
 
 			currentOpts.onComplete(currentArray, currentIndex, currentOpts);
 
-			_preload_images();
+			if (currentArray.length > 1) {
+				_preload_next();
+				_preload_prev();
+			}
 		},
 
-		_preload_images = function() {
-			var obj, objNext;
+		_preload_next = function() {
+			var pos = typeof arguments[0] == 'number' ? arguments[0] : currentIndex + 1;
 
-			if ((currentArray.length -1) > currentIndex) {
-				obj = currentArray[ currentIndex + 1 ];
-
-				if (typeof obj !== 'undefined' && typeof obj.href !== 'undefined' && (obj.href.match(imgRegExp) || $(obj).hasClass("image")) ) {
-					objNext = new Image();
-					objNext.src = obj.href;
+			if (pos >= currentArray.length) {
+				if (currentOpts.cyclic) {
+					pos = 0;
+				} else {
+					return;
 				}
 			}
 
-			if (currentIndex > 0) {
-				obj = currentArray[ currentIndex - 1 ];
+			if ( _preload_image( pos ) ) {
+				return;
+			} else {
+				_preload_next( pos + 1 );
+			}
+		},
 
-				if (typeof obj !== 'undefined' && typeof obj.href !== 'undefined'  && (obj.href.match(imgRegExp) || $(obj).hasClass("image")) ) {
-					objNext = new Image();
-					objNext.src = obj.href;
+		_preload_prev = function() {
+			var pos = typeof arguments[0] == 'number' ? arguments[0] : currentIndex - 1;
+
+			if (pos < 0) {
+				if (currentOpts.cyclic) {
+					pos = currentArray.length - 1;
+				} else {
+					return;
 				}
+			}
+
+			if ( _preload_image( pos ) ) {
+				return;
+			} else {
+				_preload_prev( pos - 1 );
+			}
+		},
+
+		_preload_image = function(pos) {
+			var objNext, obj = currentArray[ pos ];
+
+			if ( typeof obj !== 'undefined' && typeof obj.href !== 'undefined' &&  obj.href !== currentOpts.href && (obj.href.match(imgRegExp) || $(obj).hasClass("image")) ) {
+				objNext = new Image();
+				objNext.src = obj.href;
+				return true;
+			} else {
+				return false;
 			}
 		},
 
@@ -891,7 +920,7 @@
 					selectedIndex = selectedArray.index( this );
 				}
 
-				_start(e);
+				_start();
 
 				return;
 			});
@@ -952,11 +981,47 @@
 	};
 
 	$.fancybox.next = function() {
-		return $.fancybox.pos( currentIndex + 1 );
+		var obj, pos = typeof arguments[0] == 'number' ? arguments[0] : currentIndex + 1;
+
+		if (pos >= currentArray.length) {
+			if (currentOpts.cyclic) {
+				pos = 0;
+			} else {
+				return;
+			}
+		}
+
+		obj = currentArray[pos];
+
+		if ( typeof obj !== 'undefined' && typeof obj.href !== 'undefined' && obj.href === currentOpts.href ) {
+			$.fancybox.next( pos + 1 );
+		} else {
+			$.fancybox.pos( pos );
+		}
+
+		return;
 	};
 
 	$.fancybox.prev = function() {
-		return $.fancybox.pos( currentIndex - 1 );
+		var obj, pos = typeof arguments[0] == 'number' ? arguments[0] : currentIndex - 1;
+
+		if (pos < 0) {
+			if (currentOpts.cyclic) {
+				pos = currentArray.length - 1;
+			} else {
+				return;
+			}
+		}
+
+		obj = currentArray[pos];
+
+		if ( typeof obj !== 'undefined' && typeof obj.href !== 'undefined' && obj.href === currentOpts.href ) {
+			$.fancybox.prev( pos - 1 );
+		} else {
+			$.fancybox.pos( pos );
+		}
+
+		return;
 	};
 
 	$.fancybox.pos = function(pos) {
@@ -970,9 +1035,6 @@
 
 		if (pos > -1 && pos < currentArray.length) {
 			selectedIndex = pos;
-			_start();
-		} else if (currentOpts.cyclic && currentArray.length > 1) {
-			selectedIndex = pos >= currentArray.length ? 0 : currentArray.length - 1;
 			_start();
 		}
 
