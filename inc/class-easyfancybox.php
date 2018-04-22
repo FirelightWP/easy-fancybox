@@ -420,7 +420,23 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		return $content;
 	}
 
+	public static function upgrade( $old_version ) {
+		if ( !$old_version ) { // upgrade from 1.7 or older
+			if ( 'html' === get_option('fancybox_PDFclassType') ) {
+				update_option('fancybox_PDFonStart', 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.type=\'pdf\';}');
+				delete_option('fancybox_PDFclassType');
+			}
+		}
+		update_option('easy_fancybox_version', EASY_FANCYBOX_VERSION);
+	}
+
 	public static function init() {
+		$version = get_option('easy_fancybox_version', 0);
+
+		if ( version_compare( EASY_FANCYBOX_VERSION, $version, '>' ) ) {
+			self::upgrade($version);
+		}
+
 		easyFancyBox_Options::load_defaults();
 
 		$priority = intval( get_option( 'fancybox_scriptPriority', 11 ) );

@@ -138,7 +138,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'hide' => true,
 								'status' => get_option('fancybox_overlaySpotlight') ? '' : 'disabled',
 								'default' => '',
-								'description' => get_option('fancybox_overlaySpotlight') ? __('Spotlight effect','easy-fancybox') : __('Spotlight effect','easy-fancybox') . '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+								'description' => __('Spotlight effect','easy-fancybox') . get_option('fancybox_overlaySpotlight') ? '' : '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					),
@@ -464,7 +464,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'input' => 'checkbox',
 								'status' => get_option('fancybox_metaData') ? '' : 'disabled',
 								'default' =>  '',
-								'description' => get_option('fancybox_metaData') ? __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') : __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+								'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . get_option('fancybox_metaData') ? '' : '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 							)
 						)
 					)
@@ -870,16 +870,24 @@ class easyFancyBox_Options extends easyFancyBox {
 						'default' => 'fancybox-pdf'
 					),
 					'type' => array (
-						'id' => 'fancybox_PDFclassType',
+						'default' => 'iframe'
+					),
+					'onStart' => array (
+						'id' => 'fancybox_PDFonStart',
+						'noquotes' => true,
 						'title' => __('Embed with','easy-fancybox'),
-						'label_for' => 'fancybox_PDFclassType',
+						'label_for' => 'fancybox_PDFtitlePosition',
 						'input' => 'select',
 						'options' => array(
-							'html' => __('Object tag (plus fall-back link)','easy-fancybox'),
-							'iframe' => __('iFrame tag (let browser decide)','easy-fancybox')
+							'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.type=\'pdf\';}' => __('Object tag (plus fall-back link)','easy-fancybox'),
+							'' => __('iFrame tag (let browser decide)','easy-fancybox'),
+							'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=\'https://docs.google.com/viewer?embedded=true&url=\'+selectedArray[selectedIndex].href;}' => __('Google PDF Viewer','easy-fancybox')
 						),
-						'default' => 'iframe',
-						'description' => ' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br/><br/>'
+						'default' => '',
+										// 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.content=\'<object data="\'+selectedArray[selectedIndex].href+\'" type="application/pdf" height="100%" width="100%"><a href="\'+selectedArray[selectedIndex].href+\'" style="display:block;position:absolute;top:48%;width:100%;text-align:center">\'+jQuery(selectedArray[selectedIndex]).html()+\'</a></object>\'}' :
+						// 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'" type="application/pdf" height="100%" width="100%" />\' }'
+						// 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
+						'description' => '<br /><br />' //' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br /><br />'
 					),
 					'width' => array (
 						'id' => 'fancybox_PDFwidth',
@@ -946,12 +954,6 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 					'scrolling' => array (
 						'default' => 'no',
-					),
-					'onStart' => array (
-						'noquotes' => true,
-						// 'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
-						'default' => get_option('fancybox_PDFclassType','html') == 'iframe' ? '' : 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.content=\'<object data="\'+selectedArray[selectedIndex].href+\'" type="application/pdf" height="100%" width="100%"><a href="\'+selectedArray[selectedIndex].href+\'" style="display:block;position:absolute;top:48%;width:100%;text-align:center">\'+jQuery(selectedArray[selectedIndex]).html()+\'</a></object>\'}'
-						// 'default' => 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'" type="application/pdf" height="100%" width="100%" />\' }'
 					),
 				)
 			),
@@ -1252,7 +1254,9 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 					'onStart' => array (
 						'noquotes' => true,
-						'default' => get_option( 'fancybox_YoutubenoCookie' ) ? 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube-nocookie.com/embed\').replace(new RegExp(\'youtube.com/watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'youtube-nocookie.com/embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}' : 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}'
+						'default' => get_option( 'fancybox_YoutubenoCookie' ) ?
+							'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube-nocookie.com/embed\').replace(new RegExp(\'youtube.com/watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'youtube-nocookie.com/embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}' :
+							'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}'
 					)
 				)
 			),
