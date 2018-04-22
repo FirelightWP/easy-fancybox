@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.10 (15/04/2018)
+ * Version: 1.3.12 (15/04/2018)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -19,7 +19,9 @@
 
 		selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
 
-		ajaxLoader = null, imgPreloader = new Image(), imgRegExp = /\.(jpg|gif|png|bmp|jpeg|webp)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, svgRegExp = /[^\.]\.(svg)\s*$/i,
+		ajaxLoader = null, imgPreloader = new Image(),
+
+		imgRegExp = /\.(jpg|gif|png|bmp|jpeg|webp)(.*)?$/i, swfRegExp = /[^\.]\.(swf)\s*$/i, svgRegExp = /[^\.]\.(svg)\s*$/i, pdfRegExp = /[^\.]\.(pdf)\s*$/i,
 
 		loadingTimer, loadingFrame = 1,
 
@@ -132,6 +134,9 @@
 				} else if (href.match(svgRegExp)) {
 					type = 'svg';
 
+				} else if (href.match(pdfRegExp)) {
+					type = 'pdf';
+					
 				} else if (href.indexOf("#") === 0) {
 					type = 'inline';
 
@@ -238,7 +243,7 @@
 					selectedOpts.scrolling = 'no';
 					selectedOpts.keepRatio = true;
 
-					str = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="' + selectedOpts.width + '" height="' + selectedOpts.height + '"><param name="movie" value="' + href + '"></param>';
+					str = '<object type="application/x-shockwave-flash" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="' + selectedOpts.width + '" height="' + selectedOpts.height + '"><param name="movie" value="' + href + '"></param>';
 					emb = '';
 
 					$.each(selectedOpts.swf, function(name, val) {
@@ -257,7 +262,17 @@
 					selectedOpts.scrolling = 'no';
 					selectedOpts.keepRatio = true;
 
-					str = '<object width="' + selectedOpts.width + '" height="' + selectedOpts.height + '" data="' + href + '"></object>';
+					str = '<object type="image/svg+xml" width="' + selectedOpts.width + '" height="' + selectedOpts.height + '" data="' + href + '"></object>';
+
+					tmp.html(str);
+
+					_process_inline();
+				break;
+
+				case 'pdf':
+					selectedOpts.scrolling = 'no';
+
+					str = '<object type="application/pdf" width="100%" height="100%" data="' + href + '"><a href="' + href + '" style="display:block;position:absolute;top:48%;width:100%;text-align:center">' + $(obj).html() + '</a></object>';
 
 					tmp.html(str);
 
