@@ -280,8 +280,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		// running our IE alphaimageloader relative path styles here
 		if ( isset($compatIE8) && 'true' == $compatIE8 ) {
-			self::$inline_style_ie = '
-/* IE6 */
+			self::$inline_style_ie = '/* IE6 */
 .fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_close.png",sizingMethod="scale")}
 .fancybox-ie6 #fancybox-left-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_nav_left.png",sizingMethod="scale")}
 .fancybox-ie6 #fancybox-right-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_nav_right.png",sizingMethod="scale")}

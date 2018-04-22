@@ -45,11 +45,15 @@
 			tmp.empty();
 		},
 
-		_error = function() {
+		_error = function(msg) {
 			if (false === selectedOpts.onError(selectedArray, selectedIndex, selectedOpts)) {
 				$.fancybox.hideActivity();
 				busy = false;
 				return;
+			}
+
+			if ( typeof msg === 'undefined' ) {
+				msg = 'Please try again later.';
 			}
 
 			selectedOpts.titleShow = false;
@@ -57,7 +61,7 @@
 			selectedOpts.width = 'auto';
 			selectedOpts.height = 'auto';
 
-			tmp.html( '<p id="fancybox-error">The requested content cannot be loaded.<br />Please try again later.</p>' );
+			tmp.html( '<p id="fancybox-error">The requested content cannot be loaded.<br />' + msg + '</p>' );
 
 			_process_inline();
 		},
@@ -137,7 +141,7 @@
 			}
 
 			if (!type) {
-				_error();
+				_error('No content type found.');
 				return;
 			}
 
@@ -216,7 +220,7 @@
 					imgPreloader = new Image();
 
 					imgPreloader.onerror = function() {
-						_error();
+						_error('No image found.');
 					};
 
 					imgPreloader.onload = function() {
@@ -272,7 +276,7 @@
 						data : selectedOpts.ajax.data || {},
 						error : function(XMLHttpRequest, textStatus, errorThrown) {
 							if ( XMLHttpRequest.status > 0 ) {
-								_error();
+								_error(errorThrown);
 							}
 						},
 						success : function(data, textStatus, XMLHttpRequest) {
@@ -289,12 +293,15 @@
 									}
 								}
 
-								tmp.html( data );
-								_process_inline();
+								if ( data.indexOf("<!DOCTYPE") > -1 || data.indexOf("<html") > -1 || data.indexOf("<body") > -1 ) {
+									_error('Unexpected response.');
+								} else {
+									tmp.html( data );
+									_process_inline();
+								}
 							}
 						}
 					}));
-
 				break;
 
 				case 'iframe':

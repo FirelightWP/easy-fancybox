@@ -445,15 +445,17 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.7.1 =
-New theme and plugins compatibility options. Pre WP 4.5 compatiblity.
+= 1.8 =
+New theme and plugins compatibility options. Pre WP 4.5 compatibility.
 
 
 == Changelog ==
 
-= 1.7.1 =
-* Compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
+= 1.8 =
+* NEW Youtube privacy-enhanced embed
+* NEW Compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
 * Improved mobile viewport height detection
+* Dedicated IE8 stylesheet
 
 = 1.7 =
 * NEW: Aspect ratio for video frames on smaller screens
