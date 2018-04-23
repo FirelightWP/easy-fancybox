@@ -126,7 +126,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 						switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 							case '':
 							default :
-								$script .= '; });';
+								$script .= ';});';
 								break;
 
 							case '1':
@@ -200,9 +200,6 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 			$bind .= '}))';
 
 			$script .= apply_filters( 'easy_fancybox_bind', $bind );
-
-//			if ( '1' == get_option(self::$options['Global']['options']['Miscellaneous']['options']['metaData']['id'],self::$options['Global']['options']['Miscellaneous']['options']['metaData']['default']) )
-//				$script .= '});}';
 
 			$script .= '});';
 		}

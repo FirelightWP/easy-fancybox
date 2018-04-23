@@ -879,15 +879,16 @@ class easyFancyBox_Options extends easyFancyBox {
 						'label_for' => 'fancybox_PDFtitlePosition',
 						'input' => 'select',
 						'options' => array(
-							'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.type=\'pdf\';}' => __('Object tag (plus fall-back link)','easy-fancybox'),
+							'function(a,i,o){o.type=\'pdf\';}' => __('Object tag (plus fall-back link)','easy-fancybox'),
+							'function(a,i,o){o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}' => __('Embed tag','easy-fancybox'),
 							'' => __('iFrame tag (let browser decide)','easy-fancybox'),
-							'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=\'https://docs.google.com/viewer?embedded=true&url=\'+selectedArray[selectedIndex].href;}' => __('Google PDF Viewer','easy-fancybox')
+							'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => __('Google Docs Viewer (external)','easy-fancybox'),
+							'function(a,i,o){o.href=\'https://view.officeapps.live.com/op/view.aspx?src=\'+a[i].href;}' => __('Office Web Apps Viewer (external)','easy-fancybox')
 						),
 						'default' => '',
-										// 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.content=\'<object data="\'+selectedArray[selectedIndex].href+\'" type="application/pdf" height="100%" width="100%"><a href="\'+selectedArray[selectedIndex].href+\'" style="display:block;position:absolute;top:48%;width:100%;text-align:center">\'+jQuery(selectedArray[selectedIndex]).html()+\'</a></object>\'}' :
-						// 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'" type="application/pdf" height="100%" width="100%" />\' }'
-						// 'function(selectedArray, selectedIndex, selectedOpts) { selectedOpts.content = \'<embed src="\' + selectedArray[selectedIndex].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
-						'description' => '<br /><br />' //' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br /><br />'
+										// 'function(a,i,o){o.content=\'<object data="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%"><a href="\'+a[i].href+\'" style="display:block;position:absolute;top:48%;width:100%;text-align:center">\'+jQuery(a[i]).html()+\'</a></object>\'}'
+						// 'function(a, i, o) { o.content = \'<embed src="\' + a[i].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
+						'description' => __('Note:','easy-fancybox') . ' ' . __('External viewers have bandwidth, usage rate and and file size limits.','easy-fancybox') . '<br /><br />' //' <em><a href="'.$url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br /><br />'
 					),
 					'width' => array (
 						'id' => 'fancybox_PDFwidth',
@@ -1255,8 +1256,8 @@ class easyFancyBox_Options extends easyFancyBox {
 					'onStart' => array (
 						'noquotes' => true,
 						'default' => get_option( 'fancybox_YoutubenoCookie' ) ?
-							'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube-nocookie.com/embed\').replace(new RegExp(\'youtube.com/watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'youtube-nocookie.com/embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}' :
-							'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'embed/$2?$1$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}'
+							'function(a,i,o){o.href=a[i].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube-nocookie.com/embed\').replace(new RegExp(\'youtube.com/watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'youtube-nocookie.com/embed/$2?$1$4\');var splitOn=o.href.indexOf(\'?\');var urlParms=(splitOn>-1)?o.href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}' :
+							'function(a,i,o){o.href=a[i].href.replace(new RegExp(\'youtu.be\',\'i\'),\'www.youtube.com/embed\').replace(new RegExp(\'watch\\\?(.*)v=([a-z0-9\_\-]+)(&amp;|&|\\\?)?(.*)\',\'i\'),\'embed/$2?$1$4\');var splitOn=o.href.indexOf(\'?\');var urlParms=(splitOn>-1)?o.href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf(\'fs=0\')>-1)?false:true}'
 					)
 				)
 			),
@@ -1359,7 +1360,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 					'onStart' => array (
 						'noquotes' => true,
-						'default' => 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'//(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\',\'i\'),\'//player.vimeo.com/video/$2?$4\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fullscreen=0\')>-1)?false:true}'
+						'default' => 'function(a,i,o){o.href=a[i].href.replace(new RegExp(\'//(www\\.)?vimeo\\.com/([0-9]+)(&|\\\?)?(.*)\',\'i\'),\'//player.vimeo.com/video/$2?$4\');var splitOn=o.href.indexOf(\'?\');var urlParms=(splitOn>-1)?o.href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf(\'fullscreen=0\')>-1)?false:true}'
 					)
 				)
 			),
@@ -1462,7 +1463,7 @@ class easyFancyBox_Options extends easyFancyBox {
 					),
 					'onStart' => array (
 						'noquotes' => true,
-						'default' => 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.href=selectedArray[selectedIndex].href.replace(new RegExp(\'/video/(.*)\',\'i\'),\'/embed/video/$1\');var splitOn=selectedOpts.href.indexOf(\'?\');var urlParms=(splitOn>-1)?selectedOpts.href.substring(splitOn):"";selectedOpts.allowfullscreen=(urlParms.indexOf(\'fullscreen=0\')>-1)?false:true}'
+						'default' => 'function(a,i,o){o.href=a[i].href.replace(new RegExp(\'/video/(.*)\',\'i\'),\'/embed/video/$1\');var splitOn=o.href.indexOf(\'?\');var urlParms=(splitOn>-1)?o.href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf(\'fullscreen=0\')>-1)?false:true}'
 					)
 				)
 			),

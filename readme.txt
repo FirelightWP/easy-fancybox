@@ -446,15 +446,19 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 == Upgrade Notice ==
 
 = 1.8 =
-New theme and plugins compatibility options. Pre WP 4.5 compatibility.
+Many FancyBox improvements. New options: Google Docs Viewer for PDF, Youtube privacy-enhanced embed, theme and plugins compatibility options. Pre WP 4.5 compatibility.
 
 
 == Changelog ==
 
 = 1.8 =
-* NEW Youtube privacy-enhanced embed
-* NEW Compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
-* Improved mobile viewport height detection
+* NEW: Google Docs Viewer for PDF
+* NEW: Youtube privacy-enhanced embed
+* NEW: Compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
+* FancyBox: Improved mobile viewport height detection
+* FancyBox: now skips subsequent double links in gallery
+* FancyBox: new PDF content type
+* FancyBox: improved error messages
 * Dedicated IE8 stylesheet
 
 = 1.7 =
