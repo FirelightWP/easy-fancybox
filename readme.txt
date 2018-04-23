@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.9
-Stable tag: 1.7.1
+Stable tag: 1.8
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -452,7 +452,7 @@ Many FancyBox improvements. New options: Google Docs Viewer for PDF, Youtube pri
 == Changelog ==
 
 = 1.8 =
-* NEW: Google Docs Viewer and Office Apps Viewer for PDF
+* NEW: Google Docs Viewer for PDF
 * NEW: Youtube privacy-enhanced embed
 * NEW: Compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
 * FancyBox: Improved mobile viewport height detection
