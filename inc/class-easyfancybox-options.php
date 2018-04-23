@@ -882,8 +882,7 @@ class easyFancyBox_Options extends easyFancyBox {
 							'function(a,i,o){o.type=\'pdf\';}' => __('Object tag (plus fall-back link)','easy-fancybox'),
 							'function(a,i,o){o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}' => __('Embed tag','easy-fancybox'),
 							'' => __('iFrame tag (let browser decide)','easy-fancybox'),
-							'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => __('Google Docs Viewer (external)','easy-fancybox'),
-							'function(a,i,o){o.href=\'https://view.officeapps.live.com/op/view.aspx?src=\'+a[i].href;}' => __('Office Web Apps Viewer (external)','easy-fancybox')
+							'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => __('Google Docs Viewer (external)','easy-fancybox')
 						),
 						'default' => '',
 										// 'function(a,i,o){o.content=\'<object data="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%"><a href="\'+a[i].href+\'" style="display:block;position:absolute;top:48%;width:100%;text-align:center">\'+jQuery(a[i]).html()+\'</a></object>\'}'

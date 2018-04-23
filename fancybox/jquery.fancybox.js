@@ -205,9 +205,9 @@
 						.hide()
 						.insertBefore( $(obj) )
 						.on('fancybox-cleanup', function() {
-							$(this).replaceWith(content.children());
+							$(this).replaceWith(content.children('div:first'));
 						}).on('fancybox-cancel', function() {
-							$(this).replaceWith(tmp.children());
+							$(this).replaceWith(tmp.children('div:first'));
 						});
 
 					$(obj).appendTo(tmp);

@@ -452,7 +452,7 @@ Many FancyBox improvements. New options: Google Docs Viewer for PDF, Youtube pri
 == Changelog ==
 
 = 1.8 =
-* NEW: Google Docs Viewer for PDF
+* NEW: Google Docs Viewer and Office Apps Viewer for PDF
 * NEW: Youtube privacy-enhanced embed
 * NEW: Compatibility options: late script inclusion, jquery exclusion, no wp_add_inline_script
 * FancyBox: Improved mobile viewport height detection
