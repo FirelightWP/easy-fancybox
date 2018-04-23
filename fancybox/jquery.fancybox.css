@@ -75,7 +75,6 @@
 	left: 0;
 	padding: 20px;
 	z-index: 111101;
-	outline: none;
 	display: none;
 }
 
@@ -93,7 +92,6 @@
 	width: 0;
 	height: 0;
 	padding: 0;
-	outline: none;
 	position: relative;
 	/*overflow: hidden;*/
 	-webkit-overflow-scrolling:touch;
@@ -148,7 +146,6 @@
 #fancybox-img {
 	padding: 0;
 	margin: 0;
-	outline: none;
 	line-height: 0;
 	vertical-align: top;
 	max-width:none !important;
@@ -172,7 +169,6 @@
 	width: 35%;
 	cursor: pointer;
 	background: initial;
-	outline: none;
 	z-index: 111102;
 	display: none;
 }
