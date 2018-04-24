@@ -23,28 +23,28 @@ Supported media and content types:
 - PDF files (embed with object tag, in iframe or in external Google Docs Viewer)
 - SWF (Flash) files
 - SVG media images (thanks to Simon Maillard)
-- Inline HTML content (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#how%20can%20i%20display%20inline%20content%20in%20a%20fancybox%20overlay%20%3F))
-- External web pages (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20i%20display%20web%20pages%20or%20html%20files%20in%20a%20fancybox%20overlay%3F))
+- Inline HTML content (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#how%20can%20i%20display%20inline%20content%20in%20a%20fancybox%20overlay%20%3F))
+- External web pages (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20display%20web%20pages%20or%20html%20files%20in%20a%20fancybox%20overlay%3F))
 
 Also supports:
 
 - WordPress Galleries (option "Link to" must be set to "Media File")
-- NextGEN galleries (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20nextgen%20gallery%20work%20with%20easy%20fancybox%20%3F))
+- NextGEN galleries (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20nextgen%20gallery%20work%20with%20easy%20fancybox%20%3F))
 - Image maps
-- WordPress menu items (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20i%20make%20a%20menu%20item%20open%20in%20a%20fancybox%20overlay%20%3F))
+- WordPress menu items (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20make%20a%20menu%20item%20open%20in%20a%20fancybox%20overlay%20%3F))
 
 Additional features:
 
-- Modal window option (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20i%20have%20a%20modal%20window%20%3F))
+- Modal window option (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20have%20a%20modal%20window%20%3F))
 - Automatic detection of media file links
 - Automatic detection of galleries
-- Popup on page load optional (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20i%20make%20an%20image%20or%20hidden%20content%20to%20pop%20up%20in%20fancybox%20on%20page%20load%3F)
+- Popup on page load optional (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20make%20an%20image%20or%20hidden%20content%20to%20pop%20up%20in%20fancybox%20on%20page%20load%3F))
 - Elastic popup effects
 - Styling options for light box overlay (color and opacity) and window (border size and color)
 
 For **advanced options** and **priority support**, there is a **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** available. See Pro features below.
 
-See [FAQ's](https://wordpress.org/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay.
+See [FAQ's](https://wordpress.org/plugins/easy-fancybox/#faq) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay.
 
 Get support on the [Easy FancyBox web page](https://status301.net/wordpress-plugins/easy-fancybox/) or [WordPress forum](https://wordpress.org/support/plugin/easy-fancybox).
 
