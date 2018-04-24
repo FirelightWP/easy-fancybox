@@ -16,18 +16,33 @@ After activation, all links to **JPG, GIF and PNG images** are automatically ope
 
 **FEATURES**
 
-- Supports all common image formats (including webp) _and_ image maps
-- Supports WordPress Galleries (option "Link to" must be set to "Media File")
-- NextGEN galleries (follow instructions in the FAQs)
+Supported media and content types:
+
+- All common image formats _including_ webp
 - Hosted video on **Youtube**, **Vimeo** _and_ **Dailmotion**
 - PDF files (embed with object tag, in iframe or in external Google Docs Viewer)
 - SWF (Flash) files
 - SVG media images (thanks to Simon Maillard)
-- Media file link and gallery autodetection
-- Allows also showing **Inline HTML content** (see instructions in the FAQs) and **external web pages** (in iFrame)
-- Optionally make a media link popup on page load automatically
+- Inline HTML content (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#how%20can%20i%20display%20inline%20content%20in%20a%20fancybox%20overlay%20%3F))
+- External web pages (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20i%20display%20web%20pages%20or%20html%20files%20in%20a%20fancybox%20overlay%3F))
+
+Also supports:
+
+- WordPress Galleries (option "Link to" must be set to "Media File")
+- NextGEN galleries (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20nextgen%20gallery%20work%20with%20easy%20fancybox%20%3F))
+- Image maps
+- WordPress menu items (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20i%20make%20a%20menu%20item%20open%20in%20a%20fancybox%20overlay%20%3F))
+
+Additional features:
+
+- Modal window option (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20i%20have%20a%20modal%20window%20%3F))
+- Automatic detection of media file links
+- Automatic detection of galleries
+- Popup on page load optional (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox/#can%20i%20make%20an%20image%20or%20hidden%20content%20to%20pop%20up%20in%20fancybox%20on%20page%20load%3F)
 - Elastic popup effects
 - Styling options for light box overlay (color and opacity) and window (border size and color)
+
+For **advanced options** and **priority support**, there is a **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** available. See Pro features below.
 
 See [FAQ's](https://wordpress.org/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay.
 
@@ -35,10 +50,9 @@ Get support on the [Easy FancyBox web page](https://status301.net/wordpress-plug
 
 Visit [FancyBox](http://fancybox.net/) for more information and examples.
 
-For **advanced options** and **priority support**, there is a **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** available.
-
 **PRO FEATURES**
 
+- Priority support on dedicated forum
 - Light box overlay with spotlight effect
 - More styling options: rounded corners, inline content background and text colors
 - More automatic popup options: popup triggered by URL hash, first media link by media type
@@ -48,6 +62,8 @@ For **advanced options** and **priority support**, there is a **[Pro extension](
 - Show/hide image title on mouse hover
 - Slideshow effect for galleries (autorotation)
 - Fine-tune media link and gallery autodetection to match your theme source markup to allow galleries per post for example
+
+For these additional features, you need to install the **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** alongside this free plugin.
 
 
 = Contribute =
@@ -97,7 +113,8 @@ Basically, it is a fancy way of presenting images, movies, portable documents an
 
 = Which version of FancyBox does this plugin use? =
 
-The same version as this plugin has. I aim to keep close pace to FancyBox upgrades and always move to the latest and greatest version. Please, let me know if I'm lagging behind and missed an upgrade!
+This plugin uses an **updated version** of the original [FancyBox 1.3.4](http://fancybox.net), better adapted to the mobile era.
+
 
 = I installed the plugin. What now? =
 
@@ -105,25 +122,28 @@ First, make sure that image  thumbnails in your posts and pages are linked to th
 
 The same thing goes for WordPress Galleries. Choose **Link To: Media File** when inserting a gallery tag.
 
-= I want to change something. Where is the settings page? =
 
-There is no new settings page but there are a few options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/plugins/easy-fancybox/screenshots/) ...
+= Where is the settings page? =
+
+There is no new settings page but there are many options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/plugins/easy-fancybox/screenshots/) ...
+
 
 = Help! It does not work... =
 
-Please follow the trouble shooting steps on [Other Notes](http://wordpress.org/plugins/easy-fancybox/other_notes/) to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://status301.net/wordpress-plugins/easy-fancybox/)
-&nbsp;
+Please follow the trouble shooting steps near the end of the plugin description above to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://status301.net/wordpress-plugins/easy-fancybox/)
 
 
 = ADVANCED =
 
-= Will a WordPress generated gallery be displayed in a FancyBox overlay? =
+= Will a WordPress gallery be displayed in a FancyBox overlay? =
 
 Yes, but _only_ if you used the option **Link To: Media File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[ gallery link="file" ]`.
 
+
 = The lightbox does not look good on mobile devices. What can I do about that? =
 
-The FancyBox 1.3.4 script that is used in this plugin was not developed with mobile devices in mind. The only way around this issue is currently to disable FancyBox for small screen sizes on **Settings > Media** in the section **Miscellaneous > Browser & device compatibility**.
+The original FancyBox 1.3.4 script was not developed with mobile devices in mind and although the version used in this plugin has some adaptations for mobile devices, it might still be less optimal for very small screens. The only way around this issue is currently to disable FancyBox for small screen sizes on **Settings > Media** in the section **Miscellaneous > Browser & device compatibility**.
+
 
 = Can I make a slideshow from my gallery? =
 
@@ -139,15 +159,16 @@ Yes. All links with class **nolightbox** that would normally get auto-enabled, w
 
 = Can NextGEN Gallery work with Easy FancyBox ? =
 
-NetxGEN has its own built in FancyBox version along with a choice of other lightbox scripts but if you prefer to use Easy FancyBox (because of better customizability) then you need to take some steps to make the two plugins compatible.
+NetxGEN has its own built in FancyBox version along with a choice of other light box scripts but if you prefer to use Easy FancyBox (because of better customizability and other media support) then you need to take some steps to make the two plugins compatible.
 
 1. Go to your Settings > Media admin page and switch OFF the FancyBox "Auto-gallery" option in the Images section;
-1. Go to Gallery > Other Options and set the Lightbox Effects option to "Custom" and click on Show Advanced Settings;
+1. Go to Gallery > Other Options and set the Lightbox Effects option to "Custom" and click on **Show Advanced Settings**;
 1. fill the Code field with
 `
 class="fancybox" rel="%GALLERY_NAME%"
 `
 1. Leave the other fields empty and save your settings.
+
 
 = Can I use ONE thumbnail to open a complete gallery ? =
 
