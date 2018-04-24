@@ -46,7 +46,7 @@ For **advanced options** and **priority support**, there is a **[Pro extension](
 - Pass dedicated light box setting per media link via link class (Metadata)
 - More elastic (easing) popup effects on open and close
 - Show/hide image title on mouse hover
-- Gallery autorotation (slideshow)
+- Slideshow effect for galleries (autorotation)
 - Fine-tune media link and gallery autodetection to match your theme source markup to allow galleries per post for example
 
 
