@@ -138,7 +138,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'hide' => true,
 								'status' => get_option('fancybox_overlaySpotlight') ? '' : 'disabled',
 								'default' => '',
-								'description' => __('Spotlight effect','easy-fancybox') . get_option('fancybox_overlaySpotlight') ? '' : '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+								'description' => __('Spotlight effect','easy-fancybox') . ( get_option('fancybox_overlaySpotlight') ? '' : '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') ) . '</a></em>'
 							)
 						)
 					),
@@ -464,7 +464,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'input' => 'checkbox',
 								'status' => get_option('fancybox_metaData') ? '' : 'disabled',
 								'default' =>  '',
-								'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . get_option('fancybox_metaData') ? '' : '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+								'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . ( get_option('fancybox_metaData') ? '' : '. <em><a href="'.$url.'">' . __('Make available &raquo;','easy-fancybox') ) . '</a></em>'
 							)
 						)
 					)
