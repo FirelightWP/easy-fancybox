@@ -10,25 +10,24 @@ Easily enable the FancyBox jQuery extension on just about all media links. Multi
 
 == Description ==
 
-Easy FancyBox plugin for WordPress websites gives you a flexible and aesthetic light box solution for just about all media links on your website. Easy FancyBox uses the packed FancyBox jQuery extension and is WP 3+ Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the plugins options.
+Easy FancyBox plugin for WordPress websites gives you a flexible and aesthetic light box solution for just about all media links on your website. Easy FancyBox uses an updated version of the traditional FancyBox jQuery extension and is WP 3+ Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the media light box options.
 
-After activation, all links to **JPG, GIF and PNG images** are automatically opened in the [FancyBox](http://fancybox.net/) Mac/Gnome-style lightbox that floats over the web page. Most options available can be managed with this plugin along with some extra features.
+After activation, all links to **JPG, GIF and PNG images** are automatically opened in the [FancyBox](http://fancybox.net/) Mac/Gnome-style lightbox that floats over the web page.
 
-**Also supports:**
+**FEATURES**
 
-- All common image types including webp _and_ image maps
-- WordPress Galleries
-- NextGEN galleries (see FAQs for instructions)
-- Youtube galleries via Youtube Simple Gallery plugin (see FAQs for instructions)
-- SWF (Flash) movies
+- Supports all common image formats (including webp) _and_ image maps
+- Supports WordPress Galleries (option "Link to" must be set to "Media File")
+- NextGEN galleries (follow instructions in the FAQs)
+- Hosted video on **Youtube**, **Vimeo** _and_ **Dailmotion**
+- PDF files (embed with object tag, in iframe or in external Google Docs Viewer)
+- SWF (Flash) files
 - SVG media images (thanks to Simon Maillard)
-- Links to **Youtube**, **Vimeo** _and_ **Dailmotion**
-- Hidden inline content
-- iFrames
-- PDF files
-- Auto-popup on page load
-
-For **advanced options** and **priority support**, there is a **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** available.
+- Media file link and gallery autodetection
+- Allows also showing **Inline HTML content** (see instructions in the FAQs) and **external web pages** (in iFrame)
+- Optionally make a media link popup on page load automatically
+- Elastic popup effects
+- Styling options for light box overlay (color and opacity) and window (border size and color)
 
 See [FAQ's](https://wordpress.org/plugins/easy-fancybox/faq/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay.
 
@@ -36,12 +35,26 @@ Get support on the [Easy FancyBox web page](https://status301.net/wordpress-plug
 
 Visit [FancyBox](http://fancybox.net/) for more information and examples.
 
+For **advanced options** and **priority support**, there is a **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** available.
+
+**PRO FEATURES**
+
+- Light box overlay with spotlight effect
+- More styling options: rounded corners, inline content background and text colors
+- More automatic popup options: popup triggered by URL hash, first media link by media type
+- Automatic popup only on first visit
+- Pass dedicated light box setting per media link via link class (Metadata)
+- More elastic (easing) popup effects on open and close
+- Show/hide image title on mouse hover
+- Gallery autorotation (slideshow)
+- Fine-tune media link and gallery autodetection to match your theme source markup to allow galleries per post for example
+
 
 = Contribute =
 
 If you're happy with this plugin as it is, please consider writing a quick [rating](https://wordpress.org/support/plugin/easy-fancybox/reviews/#new-post) or helping other users out on the [support forum](https://wordpress.org/support/plugin/easy-fancybox).
 
-If you wish to help build this plugin, you're very welcome to [translate Easy FancyBox into your language](https://translate.wordpress.org/projects/wp-plugins/easy-fancybox/) or contribute code on [Github](https://github.com/RavanH/easy-fancybox/).
+If you wish to help build this plugin, you're very welcome to [translate Easy FancyBox into your language](https://translate.wordpress.org/projects/wp-plugins/easy-fancybox/) or contribute bug reports, feature suggestions and/or code on [Github](https://github.com/RavanH/easy-fancybox/).
 
 
 == Installation ==
