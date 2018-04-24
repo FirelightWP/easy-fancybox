@@ -473,6 +473,7 @@ Many FancyBox improvements. New options: Google Docs Viewer for PDF, Youtube pri
 * FancyBox: new PDF content type
 * FancyBox: improved error messages
 * Dedicated IE8 stylesheet
+* jQuery Easing update to 1.4.1
 
 = 1.7 =
 * NEW: Aspect ratio for video frames on smaller screens
