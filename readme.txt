@@ -39,7 +39,7 @@ Additional features:
 - Automatic detection of media file links
 - Automatic detection of galleries
 - Popup on page load optional (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20make%20an%20image%20or%20hidden%20content%20to%20pop%20up%20in%20fancybox%20on%20page%20load%3F))
-- Elastic popup effects
+- Fade or Elastic popup effects
 - Styling options for light box overlay (color and opacity) and window (border size and color)
 
 For **advanced options** and **priority support**, there is a **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** available. See Pro features below.
@@ -53,14 +53,14 @@ Visit [FancyBox](http://fancybox.net/) for more information and examples.
 **PRO FEATURES**
 
 - Priority support on dedicated forum
+- Slideshow effect for galleries (autorotation)
 - Light box overlay with spotlight effect
 - More styling options: rounded corners, inline content background and text colors
-- More automatic popup options: popup triggered by URL hash, first media link by media type
+- More automatic popup options: triggered by URL hash, first link by media type
 - Automatic popup only on first visit
-- Pass dedicated light box setting per media link via link class (Metadata)
+- Pass dedicated light box setting per media link via link class (see [Metadata instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#how%20do%20i%20show%20content%20with%20different%20sizes%3F))
 - More elastic (easing) popup effects on open and close
 - Show/hide image title on mouse hover
-- Slideshow effect for galleries (autorotation)
 - Fine-tune media link and gallery autodetection to match your theme source markup to allow galleries per post for example
 
 For these additional features, you need to install the **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** alongside this free plugin.
