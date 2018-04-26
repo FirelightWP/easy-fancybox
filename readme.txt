@@ -32,6 +32,7 @@ Also supports:
 - NextGEN galleries (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20nextgen%20gallery%20work%20with%20easy%20fancybox%20%3F))
 - Image maps
 - WordPress menu items (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20make%20a%20menu%20item%20open%20in%20a%20fancybox%20overlay%20%3F))
+- Jetpack Infinite Scroll
 
 Additional features:
 
@@ -54,10 +55,10 @@ Visit [FancyBox](http://fancybox.net/) for more information and examples.
 
 - Priority support on dedicated forum
 - Slideshow effect for galleries (autorotation)
-- Light box overlay with spotlight effect
+- Spotlight effect for the light box overlay
+- Gforms and TablePress compatibility
 - More styling options: rounded corners, inline content background and text colors
-- More automatic popup options: triggered by URL hash, first link by media type
-- Automatic popup only on first visit
+- More automatic popup options: triggered by URL hash, first link by media type, hide popup after first visit
 - Pass dedicated light box setting per media link via link class (see [Metadata instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#how%20do%20i%20show%20content%20with%20different%20sizes%3F))
 - More elastic (easing) popup effects on open and close
 - Show/hide image title on mouse hover
@@ -370,6 +371,7 @@ Yes. There are several methods imaginable but the easiest would be to use the In
 `
 Where you replace the shortcode (between the [ and ] characters) with the one given by the plugin. It can also work with shortcode by other plugins like Jetpack's Contact Form module. Change the class attribute to reflect the class used for the div that wraps your post content to have any form CSS style rules that are limited to post content, be applied to the inline content inside FancyBox.
 
+
 = Can I make an image or hidden content to pop up in FancyBox on page load? =
 
 Yes. A link that has the ID **fancybox-auto** (Note: there can be only ONE link like that on a page!) will be triggered automatically on page load.
@@ -378,6 +380,7 @@ Use the instructions above for inline content but this time give the link also `
 
 Same can be done with an image, flash movie, PDF or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
 
+
 = Can I have a modal window ? =
 
 Yes, just create a hidden inline content light box (can be auto-popup) as described above and give the link an extra class "modal". This will remove all options to close the light box, like the close button, an overlay click or escape key.
@@ -385,8 +388,9 @@ Yes, just create a hidden inline content light box (can be auto-popup) as descri
 This means there is NO option to close the light box, unless you create a link like this inside the hidden inline content div:
 
 `
-<a href="" class="fancybox-close">Enter this site</a>
+<a href="" class="fancybox-close">Accept</a>
 `
+
 
 = Can I make a menu item open in a FancyBox overlay ? =
 
@@ -398,6 +402,19 @@ Yes. But it depends on you theme what you need to do to make it work. If you are
 4. Now give the menu item you want to open in a FancyBox iframe the class `fancybox-iframe`.
 
 If you are on an older version of WordPress or if you cannot use WP's Menus, you will need to do some heavy theme hacking to get it to work. Basically, what you need to achieve is that the menu item you want opened in a lightbox overlay, should get a class="fancybox-iframe" tag.
+
+
+= How can I make AJAX loaded content be seen by FancyBox ? =
+
+Easy FancyBox initially scans the page source for media links on the "Document Loaded" event. This means right after the page source has become available to and read by the browser. When content is added or modified through AJAX (meaning after initial page load) by your theme or another plugin, then FancyBox will not be aware of any media links in that new content.
+
+To make Easy FancyBox rescan the updated page source after content has been modified though AJAX, there is an event listener available. This event is also triggered by the Jetpack Infinite Scroll module. To use this event, you'll need to modify the theme or other plugin script that handles the AJAX calls.
+
+You can trigger the event like this:
+`
+jQuery(document.body).trigger('post-load');
+`
+Note: It completely depends on the AJAX script where this code snippet should be placed. Optimally, right _after_ the DOM modification where content is added or modified. In most cases at the end of the AJAX Success handler.
 
 
 = Is Easy FancyBox multi-site compatible? =
