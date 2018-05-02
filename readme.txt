@@ -78,7 +78,7 @@ If you wish to help build this plugin, you're very welcome to [translate Easy Fa
 
 = Wordpress =
 
-Quick installation: [Install now](http://coveredwebservices.com/wp-plugin-install/?plugin=easy-fancybox) !
+Quick installation: [Install now](https://coveredwebservices.com/wp-plugin-install/?plugin=easy-fancybox) !
 
  &hellip; OR &hellip;
 
@@ -126,12 +126,12 @@ The same thing goes for WordPress Galleries. Choose **Link To: Media File** when
 
 = Where is the settings page? =
 
-There is no new settings page but there are many options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](http://wordpress.org/plugins/easy-fancybox/screenshots/) ...
+There is no new settings page but there are many options you can change. You will find a new **FancyBox** section on **Settings > Media**. To see the default, check out the example under [Screenshots](https://wordpress.org/plugins/easy-fancybox/screenshots/) ...
 
 
 = Help! It does not work... =
 
-Please follow the trouble shooting steps near the end of the plugin description above to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](http://wordpress.org/tags/easy-fancybox) or go to the [development site](http://status301.net/wordpress-plugins/easy-fancybox/)
+Please follow the trouble shooting steps near the end of the plugin description above to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](https://wordpress.org/support/plugin/easy-fancybox) or go to the [development site](https://status301.net/wordpress-plugins/easy-fancybox/)
 
 
 = ADVANCED =
@@ -205,7 +205,7 @@ General steps:
 1. Use imagebrowser effect: No
 1. Add hidden images: Yes
 
-**C.** Optional: add the following new CSS rule to your theme stylesheet (or install [Custom CSS](http://wordpress.org/plugins/safecss/) or [Jetpack](http://wordpress.org/plugins/jetpack/) and add it on the new Appearance > Edit CSS admin page) to hide the page browsing links below the gallery thumbnail.
+**C.** Optional: add the following new CSS rule to your theme stylesheet (or install [Custom CSS](https://wordpress.org/plugins/safecss/) or [Jetpack](https://wordpress.org/plugins/jetpack/) and add it on the new Appearance > Edit CSS admin page) to hide the page browsing links below the gallery thumbnail.
 `
 .ngg-navigation {
 display:none;
@@ -220,7 +220,7 @@ If you have disabled Auto-detection, give the link a class attribute like `class
 
 Both YouTube and Vimeo movies can be made to play immediately after opening by adding the paramer `autoplay=1` to the URL. For example, a short-url YouTube link that should play in HD mode, have the full screen button and auto-start on open, would look like:
 `
-<a href="http://youtu.be/N_tONWXYviM?hd=1&fs=1&autoplay=1">text or thumbnail</a>
+<a href="https://youtu.be/N_tONWXYviM?hd=1&fs=1&autoplay=1">text or thumbnail</a>
 `
 
 
@@ -260,24 +260,24 @@ This script snippet will scan the image titles and if it finds a Youtube URL the
 
 You could do this manually by uploading individual thumbnails that you can retrieve by using the unique movie ID in these URLs for three different sizes:
 `
-http://img.youtube.com/vi/UNIQUE-MOVIE-ID/default.jpg
-http://img.youtube.com/vi/UNIQUE-MOVIE-ID/mqdefault.jpg
-http://img.youtube.com/vi/UNIQUE-MOVIE-ID/hqdefault.jpg
+https://img.youtube.com/vi/UNIQUE-MOVIE-ID/default.jpg
+https://img.youtube.com/vi/UNIQUE-MOVIE-ID/mqdefault.jpg
+https://img.youtube.com/vi/UNIQUE-MOVIE-ID/hqdefault.jpg
 `
 Other locations might be
 `
-http://img.youtube.com/vi/UNIQUE-MOVIE-ID/0.jpg (same as hqdefault.jpg)
-http://img.youtube.com/vi/UNIQUE-MOVIE-ID/1.jpg
-http://img.youtube.com/vi/UNIQUE-MOVIE-ID/2.jpg
-http://img.youtube.com/vi/UNIQUE-MOVIE-ID/3.jpg
-http://img.youtube.com/vi_webp/UNIQUE-MOVIE-ID/0.webp (same as hqdefault.webp)
+https://img.youtube.com/vi/UNIQUE-MOVIE-ID/0.jpg (same as hqdefault.jpg)
+https://img.youtube.com/vi/UNIQUE-MOVIE-ID/1.jpg
+https://img.youtube.com/vi/UNIQUE-MOVIE-ID/2.jpg
+https://img.youtube.com/vi/UNIQUE-MOVIE-ID/3.jpg
+https://img.youtube.com/vi_webp/UNIQUE-MOVIE-ID/0.webp (same as hqdefault.webp)
 etc...
 
 `
 
 But an easier method is this one, shared by Shashank Shekhar (thanks!) :
 
-To create Youtube thumbnail galleries, install http://wordpress.org/plugins/youtube-simplegallery/ and set the 'Effect' option to fancybox. Then disable Youtube autodetection on Settings > Media.
+To create Youtube thumbnail galleries, install https://wordpress.org/plugins/youtube-simplegallery/ and set the 'Effect' option to fancybox. Then disable Youtube autodetection on Settings > Media.
 
 
 = Can I display web pages or HTML files in a FancyBox overlay? =
@@ -305,7 +305,7 @@ If you don't have *Auto-detect* checked under **SWF** on Settings > Media admin 
 
 FancyBox tries to detect the size of the content automatically but if it can not find a size, it will default to the settings for that particular content type as set on the Settings > Media page.
 
-The **[Pro extension](http://premium.status301.net/downloads/easy-fancybox-pro/)** provides an extra option to allow you to manually override this by defining the width and height wrapped in curly braces in the class attribute of the link itself. Make sure the option "Include the Metadata jQuery extension script..." under FancyBox | Links on Settings > Media is enabled.
+The **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** provides an extra option to allow you to manually override this by defining the width and height wrapped in curly braces in the class attribute of the link itself. Make sure the option "Include the Metadata jQuery extension script..." under FancyBox | Links on Settings > Media is enabled.
 
 For example, a Flash movie with different size:
 
@@ -448,7 +448,7 @@ Yes. Designed to work with **Network Activate** and does not require manual acti
 - The **Mystique** theme has two options called "Lightbox" and "Optimize website for faster loading" that will break Easy FancyBox. Disable both in Mystique's options > Advanced.
 - **Imbalance** and other themes that uses the Photo Galleria jQuery extension: turn of the JSGallery option.
 - Themes like **Envisioned**, **Chameleon** and many others have FancyBox baked in. There is no solution other than stripping the theme of all FancyBox related code or better: disable the plugin and use the theme provided version...
-- Themes based on the **Thesis** framework might see issues in IE 8, for which [a hack has been proposed](http://voidzonemedia.com/solutions/thesis-ie8-remove-ie7-emulation/)
+- Themes based on the **Thesis** framework might see issues in IE 8, for which [a hack has been proposed](https://voidzonemedia.com/solutions/thesis-ie8-remove-ie7-emulation/)
 
 
 = Other =
