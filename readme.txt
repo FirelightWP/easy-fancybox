@@ -414,6 +414,7 @@ You can trigger the event like this:
 `
 jQuery(document.body).trigger('post-load');
 `
+
 Note: It completely depends on the AJAX script where this code snippet should be placed. Optimally, right _after_ the DOM modification where content is added or modified. In most cases at the end of the AJAX Success handler.
 
 
@@ -501,6 +502,10 @@ Many FancyBox improvements. New options: Google Docs Viewer for PDF, Youtube pri
 
 
 == Changelog ==
+
+= 1.8.1 =
+* FIX: default enqueue priority not 10
+* Move main method to JIT prosition in enqueue_scripts
 
 = 1.8 =
 * NEW: Google Docs Viewer for PDF

@@ -426,7 +426,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'label_for' => 'fancybox_scriptPriority',
 								'input' => 'number',
 								'step' => '1',
-								'min' => '1',
+								'min' => '-999',
 								'max' => '999',
 								'sanitize_callback' => 'intval',
 								'class' => 'small-text',

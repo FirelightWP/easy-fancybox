@@ -15,6 +15,8 @@ class easyFancyBox {
 
 	private static $inline_style_ie;
 
+	public static $priority = 10;
+
 	public static $onready_auto = false;
 
 	public static $add_scripts = false;
@@ -27,10 +29,10 @@ class easyFancyBox {
 	   MAIN SCRIPT OUTPUT
 	 **********************/
 
-	public static function main() {
+	private static function main() {
 
 		if ( empty(self::$options) )
-			return;
+			return false;
 
 		// check for any enabled sections
 		foreach ( self::$options['Global']['options']['Enable']['options'] as $value )
@@ -41,7 +43,7 @@ class easyFancyBox {
 
 		// and abort when none are active
 		if ( !self::$add_scripts )
-			return;
+			return false;
 
 		// begin building output FancyBox settings
 		$script = 'var fb_timeout, fb_opts={';
@@ -248,32 +250,31 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		// customized styles
 		$styles = '';
-		if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight ) {
+		if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight )
 			$styles .= '#fancybox-overlay{background-attachment:fixed;background-image:url("' . self::$plugin_url . 'images/light-mask.png");background-position:center;background-repeat:no-repeat;background-size:100% 100%}';
-		}
-		if ( !empty($borderRadius) ) {
+
+		if ( !empty($borderRadius) )
 			$styles .= '#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}.fancybox-title-inside{padding-top:'.$borderRadius.'px;margin-top:-'.$borderRadius.'px !important;border-radius: 0 0 '.$borderRadius.'px '.$borderRadius.'px}';
-		}
+
 		$content_style = '';
-		if ( !empty($backgroundColor) ) {
+		if ( !empty($backgroundColor) )
 			$content_style .= 'background:'.$backgroundColor.';';
-		}
-		if ( !empty($paddingColor) ) {
+
+		if ( !empty($paddingColor) )
 			$content_style .= 'border-color:'.$paddingColor.';';
-		}
+
 		if ( !empty($textColor) ) {
 			$content_style .= 'color:'.$textColor.';';
 			$styles .= '#fancybox-outer{background:'.$paddingColor.'}'; //.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}
 		}
-		if ( !empty($content_style) ) {
+		if ( !empty($content_style) )
 			$styles .= '#fancybox-content{'.$content_style.'}';
-		}
-		if ( !empty($titleColor) ) {
+
+		if ( !empty($titleColor) )
 			$styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
-		}
-		if ( !empty($styles) ) {
+
+		if ( !empty($styles) )
 			self::$inline_style = $styles;
-		}
 
 		// running our IE alphaimageloader relative path styles here
 		if ( isset($compatIE8) && 'true' == $compatIE8 ) {
@@ -301,6 +302,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 				self::$inline_style_ie .= '
 #fancybox-overlay{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/light-mask.png",sizingMethod="scale")}';
 
+			return true;
 		}
 	}
 
@@ -309,6 +311,13 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	 ***********************/
 
 	public static function enqueue_scripts() {
+
+		// load defaults
+		easyFancyBox_Options::load_defaults();
+
+		// treat settings and build inline scripts and styles
+		self::main();
+
 		// make sure whe actually need to do anything
 		if ( !self::$add_scripts )
 			return;
@@ -361,13 +370,12 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		if ( get_option( 'fancybox_pre45Compat', false ) || !function_exists( 'wp_add_inline_script' ) ) {
 			// do it the old way
-			$priority = intval( get_option( 'fancybox_scriptPriority', 10 ) ) + 1;
 			if ( !empty(self::$inline_style) )
 				add_action( 'wp_head', array(__CLASS__, 'print_inline_style'), 11 );
 			if ( !empty(self::$inline_style_ie) )
 				add_action( 'wp_head', array(__CLASS__, 'print_inline_style_ie'), 12 );
 			if ( !empty(self::$inline_script) )
-				add_action( $footer ? 'wp_footer' : 'wp_head', array(__CLASS__, 'print_inline_script'), $priority );
+				add_action( $footer ? 'wp_footer' : 'wp_head', array(__CLASS__, 'print_inline_script'), self::$priority + 1 );
 		} else {
 			if ( !empty(self::$inline_style) )
 				wp_add_inline_style( 'fancybox', self::$inline_style );
@@ -430,17 +438,14 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	public static function init() {
 		$version = get_option('easy_fancybox_version', 0);
 
-		if ( version_compare( EASY_FANCYBOX_VERSION, $version, '>' ) ) {
+		if ( version_compare( EASY_FANCYBOX_VERSION, $version, '>' ) )
 			self::upgrade($version);
-		}
 
-		easyFancyBox_Options::load_defaults();
-
-		$priority = intval( get_option( 'fancybox_scriptPriority', 11 ) );
+		$priority = get_option( 'fancybox_scriptPriority' );
+		if ( is_numeric($priority) ) self::$priority = $priority;
 
 		// HOOKS
-		add_action( 'wp_loaded', array(__CLASS__, 'main') );
-		add_action( 'wp_enqueue_scripts', array(__CLASS__, 'enqueue_scripts'), $priority );
+		add_action( 'wp_enqueue_scripts', array(__CLASS__, 'enqueue_scripts'), self::$priority );
 
 		// FILTERS
 		add_filter( 'embed_oembed_html', array(__CLASS__,'add_video_wmode_opaque'), 10, 3 );
@@ -458,6 +463,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		require_once dirname(__FILE__) . '/class-easyfancybox-options.php';
 
-		add_action( 'plugins_loaded', array(__CLASS__, 'init') );
+		add_action( 'init', array(__CLASS__, 'init'), 9 );
 	}
 }
