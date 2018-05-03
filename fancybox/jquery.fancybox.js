@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.15 (2018/05/03)
+ * Version: 1.3.16 (2018/05/03)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -452,7 +452,7 @@
 						.css({
 							'border-width' : currentOpts.padding,
 							'width'	: final_pos.width - currentOpts.padding * 2,
-							'height' : selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
+							'height' : currentOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
 						});
 
 					if (equal) {
@@ -635,7 +635,7 @@
 				wrap.css('filter', 0);
 			}
 
-			if (selectedOpts.autoDimensions) {
+			if (currentOpts.autoDimensions) {
 				content.css('height','auto');
 			}
 
@@ -704,7 +704,7 @@
 		_preload_next = function() {
 			var pos = typeof arguments[0] == 'number' ? arguments[0] : currentIndex + 1;
 
-			if (pos >= currentArray.length) {
+			if ( pos >= currentArray.length ) {
 				if (currentOpts.cyclic) {
 					pos = 0;
 				} else {
@@ -712,7 +712,14 @@
 				}
 			}
 
-			if ( pos == currentIndex || _preload_image( pos ) ) {
+			if ( pos == currentIndex ) {
+				currentOpts.enableKeyboardNav = false;
+				wrap.off('mousewheel.fb');
+				nav_right.hide();
+				return;
+			}
+
+			if ( _preload_image( pos ) ) {
 				return;
 			} else {
 				_preload_next( pos + 1 );
@@ -722,7 +729,7 @@
 		_preload_prev = function() {
 			var pos = typeof arguments[0] == 'number' ? arguments[0] : currentIndex - 1;
 
-			if (pos < 0) {
+			if ( pos < 0 ) {
 				if (currentOpts.cyclic) {
 					pos = currentArray.length - 1;
 				} else {
@@ -730,7 +737,14 @@
 				}
 			}
 
-			if ( pos == currentIndex || _preload_image( pos ) ) {
+			if ( pos == currentIndex ) {
+				currentOpts.enableKeyboardNav = false;
+				wrap.off('mousewheel.fb');
+				nav_left.hide();
+				return;
+			}
+
+			if ( _preload_image( pos ) ) {
 				return;
 			} else {
 				_preload_prev( pos - 1 );
