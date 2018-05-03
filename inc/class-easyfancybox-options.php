@@ -9,7 +9,8 @@ class easyFancyBox_Options extends easyFancyBox {
 
 		$url = "https://premium.status301.net/downloads/easy-fancybox-pro/";
 
-		parent::$options = array (
+		if ( empty(parent::$options) )
+			parent::$options = array (
 
 			'Global' => array(
 				'title' => __('Global settings','easy-fancybox'),

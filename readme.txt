@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.9
-Stable tag: 1.8
+Stable tag: 1.8.1
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -497,16 +497,17 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8 =
-Many FancyBox improvements. New options: Google Docs Viewer for PDF, Youtube privacy-enhanced embed, theme and plugins compatibility options. Pre WP 4.5 compatibility.
+= 1.8.1 =
+Bugfix release: default enqueue priority + possible max stack reached by image preloader.
 
 
 == Changelog ==
 
 = 1.8.1 =
 * FIX: default enqueue priority not 10
-* Move main method to JIT prosition in enqueue_scripts
 * FIX: possible infinite loop in prev/next and image preloader
+* Move main method (back) to init, position 9
+* Introducing easy_fancybox_enqueue_scripts action hook
 
 = 1.8 =
 * NEW: Google Docs Viewer for PDF

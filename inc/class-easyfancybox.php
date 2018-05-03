@@ -26,13 +26,12 @@ class easyFancyBox {
 	public static $events = array( 'post-load' );
 
 	/**********************
-	   MAIN SCRIPT OUTPUT
+	   MAIN INLINE SCRIPT
 	 **********************/
 
 	private static function main() {
 
-		if ( empty(self::$options) )
-			return false;
+		easyFancyBox_Options::load_defaults();
 
 		// check for any enabled sections
 		foreach ( self::$options['Global']['options']['Enable']['options'] as $value )
@@ -312,18 +311,12 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 	public static function enqueue_scripts() {
 
-		// load defaults
-		easyFancyBox_Options::load_defaults();
-
-		// treat settings and build inline scripts and styles
-		self::main();
-
 		// make sure whe actually need to do anything
 		if ( !self::$add_scripts )
 			return;
 
 		global $wp_styles;
-		$min = ( defined('WP_DEBUG') && true == WP_DEBUG ) ? '' : '.min';
+		$min = ( defined('WP_DEBUG') && WP_DEBUG ) ? '' : '.min';
 
 		// ENQUEUE STYLE
 		wp_enqueue_style( 'fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.css', false, FANCYBOX_VERSION, 'screen' );
@@ -333,8 +326,8 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		}
 
 		// ENQUEUE SCRIPTS
-		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
 		$dep = get_option( 'fancybox_nojQuery', false ) ? array() : array('jquery');
+		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
 
 		// register main fancybox script
 		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox'.$min.'.js', $dep, FANCYBOX_VERSION, $footer );
@@ -384,6 +377,8 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 			if ( !empty(self::$inline_script) )
 				wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 		}
+
+		do_action( 'easy_fancybox_enqueue_scripts', array($min,$dep,$footer) );
 	}
 
 	// fallback methods for WordPress pre-4.5
@@ -441,15 +436,16 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		if ( version_compare( EASY_FANCYBOX_VERSION, $version, '>' ) )
 			self::upgrade($version);
 
-		$priority = get_option( 'fancybox_scriptPriority' );
-		if ( is_numeric($priority) ) self::$priority = $priority;
+		// Treat settings and prepare inline scripts and styles, or log debug message
+		if ( self::main() ) {
+			$priority = get_option( 'fancybox_scriptPriority' );
+			if ( is_numeric($priority) ) self::$priority = $priority;
 
-		// HOOKS
-		add_action( 'wp_enqueue_scripts', array(__CLASS__, 'enqueue_scripts'), self::$priority );
-
-		// FILTERS
-		add_filter( 'embed_oembed_html', array(__CLASS__,'add_video_wmode_opaque'), 10, 3 );
-		add_filter( 'easy_fancybox_inline_script', array(__CLASS__,'onready_callback') );
+			add_action( 'wp_enqueue_scripts', array(__CLASS__,'enqueue_scripts'), self::$priority );
+			add_filter( 'embed_oembed_html', array(__CLASS__,'add_video_wmode_opaque'), 10, 3 );
+		} elseif ( defined('WP_DEBUG') && WP_DEBUG ) {
+			error_log('No active Easy FancyBox media types set.');
+		}
 	}
 
 	/**********************
@@ -464,5 +460,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		require_once dirname(__FILE__) . '/class-easyfancybox-options.php';
 
 		add_action( 'init', array(__CLASS__, 'init'), 9 );
+		add_filter( 'easy_fancybox_inline_script', array(__CLASS__,'onready_callback') );
 	}
 }
