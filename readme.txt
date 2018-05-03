@@ -506,6 +506,7 @@ Many FancyBox improvements. New options: Google Docs Viewer for PDF, Youtube pri
 = 1.8.1 =
 * FIX: default enqueue priority not 10
 * Move main method to JIT prosition in enqueue_scripts
+* FIX: possible infinite loop in prev/next and image preloader
 
 = 1.8 =
 * NEW: Google Docs Viewer for PDF

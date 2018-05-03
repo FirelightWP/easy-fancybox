@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.14 (23/04/2018)
+ * Version: 1.3.15 (2018/05/03)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -712,7 +712,7 @@
 				}
 			}
 
-			if ( _preload_image( pos ) ) {
+			if ( pos == currentIndex || _preload_image( pos ) ) {
 				return;
 			} else {
 				_preload_next( pos + 1 );
@@ -730,7 +730,7 @@
 				}
 			}
 
-			if ( _preload_image( pos ) ) {
+			if ( pos == currentIndex || _preload_image( pos ) ) {
 				return;
 			} else {
 				_preload_prev( pos - 1 );
@@ -993,7 +993,7 @@
 
 		obj = currentArray[pos];
 
-		if ( typeof obj !== 'undefined' && typeof obj.href !== 'undefined' && obj.href === currentOpts.href ) {
+		if ( pos != currentIndex && typeof obj !== 'undefined' && typeof obj.href !== 'undefined' && obj.href === currentOpts.href ) {
 			$.fancybox.next( pos + 1 );
 		} else {
 			$.fancybox.pos( pos );
@@ -1015,7 +1015,7 @@
 
 		obj = currentArray[pos];
 
-		if ( typeof obj !== 'undefined' && typeof obj.href !== 'undefined' && obj.href === currentOpts.href ) {
+		if ( pos != currentIndex && typeof obj !== 'undefined' && typeof obj.href !== 'undefined' && obj.href === currentOpts.href ) {
 			$.fancybox.prev( pos - 1 );
 		} else {
 			$.fancybox.pos( pos );
