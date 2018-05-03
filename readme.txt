@@ -56,7 +56,7 @@ Visit [FancyBox](http://fancybox.net/) for more information and examples.
 - Priority support on dedicated forum
 - Slideshow effect for galleries (autorotation)
 - Spotlight effect for the light box overlay
-- Gforms and TablePress compatibility
+- FacetWP, Gravity Forms and TablePress compatibility
 - More styling options: rounded corners, inline content background and text colors
 - More automatic popup options: triggered by URL hash, first link by media type, hide popup after first visit
 - Pass dedicated light box setting per media link via link class (see [Metadata instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#how%20do%20i%20show%20content%20with%20different%20sizes%3F))
