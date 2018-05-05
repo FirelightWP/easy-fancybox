@@ -300,9 +300,9 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 			if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight )
 				self::$inline_style_ie .= '
 #fancybox-overlay{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/light-mask.png",sizingMethod="scale")}';
-
-			return true;
 		}
+
+		return true;
 	}
 
 	/***********************

@@ -497,13 +497,14 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.1 =
+= 1.8.2 =
 Bugfix release: video autoplay and https; default enqueue priority; possible max stack reached by image preloader.
 
 
 == Changelog ==
 
-= 1.8.1 =
+= 1.8.2 =
+* FIX: main method not returning true in some cases
 * Force all hosted video to https
 * FIX: video iframe needs allow="autoplay" on modern browsers
 * FIX: default enqueue priority not 10
