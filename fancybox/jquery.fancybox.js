@@ -681,7 +681,7 @@
 			if (currentOpts.type == 'iframe') {
 				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '')
 				  + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="'
-				  + currentOpts.href + '"' + (false === currentOpts.allowfullscreen ? '' : ' allowfullscreen') + ' tabindex="999"></iframe>')
+				  + currentOpts.href + '"' + (false === currentOpts.allowfullscreen ? '' : ' allowfullscreen') + ' allow="autoplay; encrypted-media" tabindex="999"></iframe>')
 				  .appendTo(content).load(function() {
 					$.fancybox.hideActivity();
 				}).focus();
