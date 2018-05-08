@@ -165,9 +165,7 @@ NetxGEN has its own built in FancyBox version along with a choice of other light
 1. Go to your Settings > Media admin page and switch OFF the FancyBox "Auto-gallery" option in the Images section;
 1. Go to Gallery > Other Options and set the Lightbox Effects option to "Custom" and click on **Show Advanced Settings**;
 1. fill the Code field with
-`
-class="fancybox" rel="%GALLERY_NAME%"
-`
+`class="fancybox" rel="%GALLERY_NAME%"`
 1. Leave the other fields empty and save your settings.
 
 
@@ -184,7 +182,7 @@ It can be done manually (using the internal WordPress gallery feature, or not) _
 <div class="fancybox-hidden">
 `
 
-**C.** Right after that starting on a new line, insert all other images you want to show in your gallery. You can even use the WordPress internal gallery feature with the shortcode `[gallery link="file"]`. NOTE: if the gallery thumbnail is attached to the post, it will be show a second time when flipping through the gallery in FancyBox. If you do not want that, use an image that is not attached to the post as gallery thumbnail.
+**C.** Right after that starting on a new line, insert all other images you want to show in your gallery. You can even use the WordPress internal gallery feature with the shortcode `[ gallery link="file" ]`. NOTE: if the gallery thumbnail is attached to the post, it will be show a second time when flipping through the gallery in FancyBox. If you do not want that, use an image that is not attached to the post as gallery thumbnail.
 
 **D.** Close the hidden div with the following code on a new line:
 `
@@ -401,7 +399,7 @@ Yes. But it depends on you theme what you need to do to make it work. If you are
 3. Enable the option "CSS Classes" under Advanced menu properties.
 4. Now give the menu item you want to open in a FancyBox iframe the class `fancybox-iframe`.
 
-If you are on an older version of WordPress or if you cannot use WP's Menus, you will need to do some heavy theme hacking to get it to work. Basically, what you need to achieve is that the menu item you want opened in a lightbox overlay, should get a class="fancybox-iframe" tag.
+If you are on an older version of WordPress or if you cannot use WP's Menus, you will need to do some heavy theme hacking to get it to work. Basically, what you need to achieve is that the menu item you want opened in a lightbox overlay, should get a `class="fancybox-iframe"` attribute.
 
 
 = How can I make AJAX loaded content be seen by FancyBox ? =
@@ -502,6 +500,9 @@ Bugfix release: video autoplay and https; default enqueue priority; possible max
 
 
 == Changelog ==
+
+= 1.8.3 =
+* FIX: AutoScale option restored
 
 = 1.8.2 =
 * FIX: main method not returning true in some cases

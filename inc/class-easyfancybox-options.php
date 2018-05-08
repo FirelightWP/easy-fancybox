@@ -290,6 +290,13 @@ class easyFancyBox_Options extends easyFancyBox {
 								'default' => '1',
 								'description' => __('Esc key stroke closes FancyBox','easy-fancybox')
 							),
+							'autoScale' => array (
+								'id' => 'fancybox_autoScale',
+								'input' => 'checkbox',
+								'noquotes' => true,
+								'default' => '1',
+								'description' => __('Scale large content down to fit in the browser viewport.','easy-fancybox')
+							),
 							'speedIn' => array (
 								'id' => 'fancybox_speedIn',
 								'title' => __('Opening speed','easy-fancybox'),
