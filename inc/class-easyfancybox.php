@@ -34,11 +34,12 @@ class easyFancyBox {
 		easyFancyBox_Options::load_defaults();
 
 		// check for any enabled sections
-		foreach ( self::$options['Global']['options']['Enable']['options'] as $value )
+		foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
 			if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
 				self::$add_scripts = true;
 				break;
 			}
+		}
 
 		// and abort when none are active
 		if ( !self::$add_scripts )
