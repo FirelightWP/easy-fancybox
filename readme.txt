@@ -504,6 +504,7 @@ Bugfix release: autoscale option back and outline issue in Firefox.
 = 1.8.3 =
 * FIX: AutoScale option restored
 * FIX: outline issue in Firefox
+* Prevent SiteGround Optimizer warning about break outside loop
 
 = 1.8.2 =
 * FIX: main method not returning true in some cases
