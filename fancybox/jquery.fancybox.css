@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.14 (23/04/2018)
+ * Version: 1.3.17 (2018/05/12)
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -223,20 +223,29 @@
 	right:-9999px
 }
 
-#fancybox-left:hover span {
+#fancybox-left:focus, #fancybox-right:focus {
+	outline: none;
+	background: initial;
+}
+
+#fancybox-left:hover span,
+#fancybox-left:focus span {
 	left: 20px;
 }
 
-.rtl #fancybox-left:hover span {
+.rtl #fancybox-left:hover span,
+.rtl #fancybox-left:focus span {
 	right:20px
 }
 
-#fancybox-right:hover span {
+#fancybox-right:hover span,
+#fancybox-right:focus span {
 	left: auto;
 	right: 20px;
 }
 
-.rtl #fancybox-right:hover span {
+.rtl #fancybox-right:hover span,
+.rtl #fancybox-right:focus span {
 	right:auto;
 	left:20px
 }
