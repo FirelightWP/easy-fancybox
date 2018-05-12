@@ -228,24 +228,20 @@
 	background: initial;
 }
 
-#fancybox-left:hover span,
-#fancybox-left:focus span {
+#fancybox-left:hover span {
 	left: 20px;
 }
 
-.rtl #fancybox-left:hover span,
-.rtl #fancybox-left:focus span {
+.rtl #fancybox-left:hover span {
 	right:20px
 }
 
-#fancybox-right:hover span,
-#fancybox-right:focus span {
+#fancybox-right:hover span {
 	left: auto;
 	right: 20px;
 }
 
-.rtl #fancybox-right:hover span,
-.rtl #fancybox-right:focus span {
+.rtl #fancybox-right:hover span {
 	right:auto;
 	left:20px
 }
