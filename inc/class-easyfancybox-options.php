@@ -281,7 +281,7 @@ class easyFancyBox_Options extends easyFancyBox {
 								'input' => 'checkbox',
 								'noquotes' => true,
 								'default' => '',
-								'description' => __('Center while scrolling (disabled on touch devices)','easy-fancybox')
+								'description' => __('Center while scrolling (always disabled on touch devices and when content, including the title, might be larger than the viewport)','easy-fancybox')
 							),
 							'enableEscapeButton' => array (
 								'id' => 'fancybox_enableEscapeButton',

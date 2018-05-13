@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.17 (2018/05/12)
+ * Version: 1.3.18 (2018/05/14)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -790,13 +790,16 @@
 					window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth,
 				h = !isTouch && window.innerHeight && document.documentElement.clientHeight ?
 					Math.min(window.innerHeight, document.documentElement.clientHeight) :
-					window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
+					window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight,
+				margin;
+
+			margin = arguments[0] === true ? 0 : currentOpts.margin;
 
 			return [
-				w - (currentOpts.margin * 2),
-				h - (currentOpts.margin * 2),
-				$(document).scrollLeft() + currentOpts.margin,
-				$(document).scrollTop() + currentOpts.margin
+				w - (margin * 2),
+				h - (margin * 2),
+				$(document).scrollLeft() + margin,
+				$(document).scrollTop() + margin
 			];
 		},
 
@@ -1213,9 +1216,9 @@
 		}
 
 		align = arguments[0] === true ? 1 : 0;
-		view = _get_viewport();
+		view = _get_viewport(true);
 
-		if (!align && (wrap.width() > view[0] || wrap.height() > view[1])) {
+		if (!align && ((wrap.width() + 40) > view[0] || (wrap.height() + 40) > view[1])) {
 			return;
 		}
 

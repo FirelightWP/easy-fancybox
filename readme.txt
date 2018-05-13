@@ -501,6 +501,9 @@ Bugfix release: autoscale option back and outline issue in Firefox.
 
 == Changelog ==
 
+= 1.8.4 =
+* Improved center on scroll behavior with title outside
+
 = 1.8.3 =
 * FIX: AutoScale option restored
 * FIX: outline issue in Firefox
