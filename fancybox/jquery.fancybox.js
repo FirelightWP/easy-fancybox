@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.18 (2018/05/14)
+ * Version: 1.3.19 (2018/05/18)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -84,6 +84,10 @@
 			if ( document.documentElement.clientWidth < selectedOpts.minViewportWidth ) {
 				busy = false;
 				return;
+			}
+
+			if ('object' === typeof arguments[0] && 'click' === arguments[0].type) {
+				arguments[0].preventDefault();
 			}
 
 			ret = selectedOpts.onStart(selectedArray, selectedIndex, selectedOpts);
@@ -329,8 +333,7 @@
 		},
 
 		_process_inline = function() {
-			var
-				w = selectedOpts.width,
+			var w = selectedOpts.width,
 				h = selectedOpts.height,
 				ww = $(window).width() == 0 ? window.innerWidth : $(window).width(),
 				wh = $(window).height() == 0 ? window.innerHeight : $(window).height();
@@ -915,8 +918,6 @@
 			.data('fancybox', $.extend({}, options, ($.metadata ? $(this).metadata() : {})))
 			.off('click.fb')
 			.on('click.fb', function(e) {
-				e.preventDefault();
-
 				if (busy) {
 					return;
 				}
@@ -937,7 +938,7 @@
 					selectedIndex = selectedArray.index( this );
 				}
 
-				_start();
+				_start(e);
 
 				return;
 			});
