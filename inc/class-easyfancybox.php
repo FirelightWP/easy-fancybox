@@ -7,7 +7,7 @@ class easyFancyBox {
 
 	private static $plugin_url;
 
-	protected static $plugin_basename;
+	public static $plugin_basename;
 
 	private static $inline_script;
 
@@ -30,8 +30,6 @@ class easyFancyBox {
 	 **********************/
 
 	private static function main() {
-
-		easyFancyBox_Options::load_defaults();
 
 		// check for any enabled sections
 		foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
@@ -431,12 +429,21 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		update_option('easy_fancybox_version', EASY_FANCYBOX_VERSION);
 	}
 
-	public static function init() {
+	public static function load_defaults() {
+		if ( empty(self::$options) ) {
+			include 'easyfancybox-options.php';
+			self::$options = $efb_options;
+		}
+	}
+
+	public static function maybe_upgrade() {
 		$version = get_option('easy_fancybox_version', 0);
 
 		if ( version_compare( EASY_FANCYBOX_VERSION, $version, '>' ) )
 			self::upgrade($version);
+	}
 
+	public static function load_main() {
 		// Treat settings and prepare inline scripts and styles, or log debug message
 		if ( self::main() ) {
 			$priority = get_option( 'fancybox_scriptPriority' );
@@ -458,9 +465,10 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		self::$plugin_url = plugins_url( '/', $file );
 		self::$plugin_basename = plugin_basename( $file );
 
-		require_once dirname(__FILE__) . '/class-easyfancybox-options.php';
+		add_action( 'init', array(__CLASS__, 'maybe_upgrade') );
+		add_action( 'init', array(__CLASS__, 'load_defaults') );
+		add_action( 'init', array(__CLASS__, 'load_main'), 12 );
 
-		add_action( 'init', array(__CLASS__, 'init'), 9 );
 		add_filter( 'easy_fancybox_inline_script', array(__CLASS__,'onready_callback') );
 	}
 }

@@ -29,27 +29,29 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 			switch($value['input']) {
 				case 'deep':
-					// go deeper by looping back on itself
-					self::register_settings($value['options']);
-					break;
+				// go deeper by looping back on itself
+				self::register_settings($value['options']);
+				break;
+				
 				case 'multiple':
-					add_settings_field( 'fancybox_'.$key, '<a name="'.$value['title'].'"></a>'.$value['title'], array(__CLASS__, 'settings_fields'), 'media', 'fancybox_section', $value);
-					foreach ( $value['options'] as $_value ) {
-						if ( !isset($_value['sanitize_callback']) )
-							$sanitize_callback = '';
-						else
-							$sanitize_callback = array(__CLASS__, $_value['sanitize_callback']);
-						if ( isset($_value['id']) )
-							register_setting( 'media', $_value['id'], $sanitize_callback );
-					}
-					break;
+				add_settings_field( 'fancybox_'.$key, '<a name="'.$value['title'].'"></a>'.$value['title'], array(__CLASS__, 'settings_fields'), 'media', 'fancybox_section', $value);
+				foreach ( $value['options'] as $_value ) {
+					if ( !isset($_value['sanitize_callback']) )
+						$sanitize_callback = '';
+					else
+						$sanitize_callback = array(__CLASS__, $_value['sanitize_callback']);
+					if ( isset($_value['id']) )
+						register_setting( 'media', $_value['id'], $sanitize_callback );
+				}
+				break;
+
 				default:
-					if ( !isset($value['sanitize_callback']) )
-							$sanitize_callback = '';
-						else
-							$sanitize_callback = array(__CLASS__, $value['sanitize_callback']);
-					if ( isset($value['id']) )
-						register_setting( 'media', 'fancybox_'.$key, $sanitize_callback );
+				if ( !isset($value['sanitize_callback']) )
+					$sanitize_callback = '';
+				else
+					$sanitize_callback = array(__CLASS__, $value['sanitize_callback']);
+				if ( isset($value['id']) )
+					register_setting( 'media', 'fancybox_'.$key, $sanitize_callback );
 			}
 		}
 	}
