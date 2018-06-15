@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.19 (2018/05/18)
+ * Version: 1.3.20 (2018/06/15)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -509,7 +509,7 @@
 			content
 				.css({
 					'width' : final_pos.width - currentOpts.padding * 2,
-					'height' : selectedOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
+					'height' : currentOpts.autoDimensions ? 'auto' : final_pos.height - titleHeight - currentOpts.padding * 2
 				})
 				.html( tmp.contents() );
 
@@ -683,7 +683,7 @@
 
 			if (currentOpts.type == 'iframe') {
 				$('<iframe id="fancybox-frame" name="fancybox-frame' + new Date().getTime() + '"' + (navigator.userAgent.match(/msie [6]/i) ? ' allowtransparency="true""' : '')
-				  + ' style="border:0;margin:0;overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="'
+				  + ' style="border:0;margin:0;overflow:' + (currentOpts.scrolling == 'auto' ? 'auto' : (currentOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + '" src="'
 				  + currentOpts.href + '"' + (false === currentOpts.allowfullscreen ? '' : ' allowfullscreen') + ' allow="autoplay; encrypted-media" tabindex="999"></iframe>')
 				  .appendTo(content).load(function() {
 					$.fancybox.hideActivity();
