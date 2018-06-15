@@ -841,6 +841,10 @@ $efb_options = array (
 				'noquotes' => true,
 				'default' => '',
 				'description' => __('Close FancyBox when content is clicked','easy-fancybox')
+			),
+			'titleShow' => array (
+				'noquotes' => true,
+				'default' => 'false',
 			)
 		)
 	),

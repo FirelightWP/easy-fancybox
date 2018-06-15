@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.9
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -495,11 +495,14 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.4 =
-Bugfix release: improved center on scroll and pro options compat.
+= 1.8.5 =
+Bugfix release: prevent Inline content title.
 
 
 == Changelog ==
+
+= 1.8.5 =
+* FIX: prevent Inline content title
 
 = 1.8.4 =
 * Improved center on scroll behavior with title outside
