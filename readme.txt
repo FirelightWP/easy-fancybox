@@ -501,6 +501,9 @@ Bugfix release: prevent Inline content title.
 
 == Changelog ==
 
+= 1.8.6 =
+* FIX: Missing argument in easyFancyBox::add_video_wmode_opaque()
+
 = 1.8.5 =
 * FIX: prevent Inline content title
 
