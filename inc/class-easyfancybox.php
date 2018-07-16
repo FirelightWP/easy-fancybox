@@ -81,7 +81,7 @@ class easyFancyBox {
 		$script .= ' };
 if(typeof easy_fancybox_handler===\'undefined\'){
 var easy_fancybox_handler=function(){
-jQuery(\'.nofancybox,a.pin-it-button,a[href*="pinterest.com/pin/create"]\').addClass(\'nolightbox\');';
+jQuery(\'.nofancybox,a.wp-block-file__button,a.pin-it-button,a[href*="pinterest.com/pin/create"]\').addClass(\'nolightbox\');';
 
 		foreach (self::$options as $key => $value) {
 			// check if not enabled or hide=true then skip

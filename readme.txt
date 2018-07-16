@@ -502,6 +502,7 @@ Bugfix release: prevent Inline content title.
 == Changelog ==
 
 = 1.8.6 =
+* Gutenberg file block download button compatibility.
 * FIX: Missing argument in easyFancyBox::add_video_wmode_opaque()
 
 = 1.8.5 =
