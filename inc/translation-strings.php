@@ -61,7 +61,7 @@ __('easeInOutBounce','easy-fancybox');
 // advanced
 __('Galleries per Section (below)','easy-fancybox');
 __('This applies when <em>Apply to</em> is set to <em>Limited to Sections</em> and/or <em>Autogallery</em> is set to <em>Galleries per Section</em>. Adapt it to conform with your theme.','easy-fancybox');
-__('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you only want to group images in a WordPress gallery together, use "div.gallery". If you want to include images in a sidebar with ID primary, add ", #primary".','easy-fancybox');
+__('Examples: If your theme wraps post content in a div with class post, change this value to "div.post". If you want to group images in a WordPress gallery together, use ".gallery,.wp-block-gallery,.tiled-gallery". If you want to include images in a sidebar with ID primary, add ", #primary".','easy-fancybox');
 __('Hide/show title on mouse hover action works best with Overlay title position.','easy-fancybox');
 __('Auto-rotation uses a fixed 3, 6, 9 or 12 second pause per image.','easy-fancybox');
 __('(3 seconds)','easy-fancybox');
