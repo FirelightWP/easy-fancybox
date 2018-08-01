@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.9
-Stable tag: 1.8.5
+Stable tag: 1.8.6
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -495,8 +495,8 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.5 =
-Bugfix release: prevent Inline content title.
+= 1.8.6 =
+Gutenberg compatibility and other bugfixes.
 
 
 == Changelog ==
@@ -505,6 +505,8 @@ Bugfix release: prevent Inline content title.
 * Gutenberg file block download button compatibility
 * Gutenberg gallery block compatibility
 * FIX: Missing argument in easyFancyBox::add_video_wmode_opaque()
+* Remove version URL parameters
+* FIX: jQuery 3+ e.indexOf is not a function
 
 = 1.8.5 =
 * FIX: prevent Inline content title
