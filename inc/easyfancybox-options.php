@@ -884,7 +884,7 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'function(a,i,o){o.type=\'pdf\';}' => __('Object tag (plus fall-back link)','easy-fancybox'),
-					'function(a,i,o){o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}' => __('Embed tag','easy-fancybox'),
+					'function(a,i,o){o.type=\'html\';o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}' => __('Embed tag','easy-fancybox'),
 					'' => __('iFrame tag (let browser decide)','easy-fancybox'),
 					'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => __('Google Docs Viewer (external)','easy-fancybox')
 				),
