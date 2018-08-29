@@ -400,7 +400,7 @@ $efb_options = array (
 						'default' => '',
 						'description' => __('(leave empty to ignore)','easy-fancybox') . '<br/>'
 					),
-/*							'forceNewtab' => array (
+/*					'forceNewtab' => array (
 						'id' => 'fancybox_forceNewtab',
 						'input' => 'checkbox',
 						'hide' => true,
@@ -424,6 +424,7 @@ $efb_options = array (
 						'id' => 'fancybox_scriptPriority',
 						'title' => __('FancyBox script priority','easy-fancybox'),
 						'label_for' => 'fancybox_scriptPriority',
+						'hide' => true,
 						'input' => 'number',
 						'step' => '1',
 						'min' => '-999',
