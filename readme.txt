@@ -496,6 +496,12 @@ Gutenberg compatibility and other bugfixes.
 
 == Changelog ==
 
+= 1.9 =
+* TODO set up filter for vimeo with regex : vimeo.com/[0-9]+
+* TODO exclude facebook/twitter share link with .jpg in it (with regex?)
+* FIX: PDF embed tag
+* FIX: Dailymotion only /video URLs
+
 = 1.8.6 =
 * Gutenberg file block download button compatibility
 * Gutenberg gallery block compatibility

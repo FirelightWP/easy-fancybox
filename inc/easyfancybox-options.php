@@ -1382,7 +1382,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => 'a[href*="dailymotion.com/"],area[href*="dailymotion.com/"]',
+				'selector' => 'a[href*="dailymotion.com/video"],area[href*="dailymotion.com/video"]',
 				'description' => __('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
