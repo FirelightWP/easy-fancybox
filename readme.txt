@@ -499,7 +499,7 @@ Gutenberg compatibility and other bugfixes.
 = 1.8.7 =
 * Autoplay Youtube/Vimeo/Dailymotion
 * FIX: Exclude Vimeo user pages from autodetect
-* FIX: Exclude facebook/twitter share links
+* FIX: Exclude facebook/twitter share link
 * FIX: PDF embed tag
 
 = 1.8.6 =
