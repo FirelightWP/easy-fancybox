@@ -81,7 +81,7 @@ class easyFancyBox {
 		$script .= ' };
 if(typeof easy_fancybox_handler===\'undefined\'){
 var easy_fancybox_handler=function(){
-jQuery(\'.nofancybox,a.wp-block-file__button,a.pin-it-button,a[href*="pinterest.com/pin/create"]\').addClass(\'nolightbox\');';
+jQuery(\'.nofancybox,a.wp-block-file__button,a.pin-it-button,a[href*="pinterest.com/pin/create"],a[href*="facebook.com/share"],a[href*="twitter.com/share"]\').addClass(\'nolightbox\');';
 
 		foreach (self::$options as $key => $value) {
 			// check if not enabled or hide=true then skip
@@ -99,7 +99,7 @@ jQuery(\'.nofancybox,a.wp-block-file__button,a.pin-it-button,a[href*="pinterest.
 			if ( !empty($autoAttribute) ) {
 				if ( is_numeric($autoAttribute) ) {
 					$script .= '
-jQuery(\''.$value['options']['autoAttribute']['selector'].'\').not(\'.nolightbox,li.nolightbox>a\').addClass(\''.$value['options']['class']['default'].'\');';
+jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nolightbox,li.nolightbox>a\').addClass(\''.$value['options']['class']['default'].'\');';
 				} else {
 					// set selectors
 					$file_types = array_filter( explode( ' ', str_replace( ',', ' ', $autoAttribute ) ) );
@@ -150,7 +150,7 @@ jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\
 
 							case '1':
 								$script .= ';
-var fb_'.$key.'_sections = jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
+var fb_'.$key.'_sections=jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 								break;
 
