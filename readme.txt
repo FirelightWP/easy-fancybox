@@ -14,6 +14,10 @@ Easy FancyBox plugin for WordPress websites gives you a flexible and aesthetic l
 
 After activation, all links to **JPG, GIF and PNG images** are automatically opened in the [FancyBox](http://fancybox.net/) Mac/Gnome-style lightbox that floats over the web page.
 
+**GDPR / EU Privacy**
+
+This plugin does not collect any data and does not set any browser cookies. However, the PRO version offers an option to disable the automatic popup after the first visit, which needs a browser cookie. This cookie stores the visitors first website visit timestamp and path on the client side. It is not shared nor is any data stored server side or elsewhere.
+
 **FEATURES**
 
 Supported media and content types:
@@ -495,6 +499,9 @@ Autoplay for Youtube, Vimeo and Dailymotion. Bugfixes.
 
 
 == Changelog ==
+
+= 1.9 =
+* TODO:
 
 = 1.8.7 =
 * Autoplay Youtube/Vimeo/Dailymotion
