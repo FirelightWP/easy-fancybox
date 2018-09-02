@@ -863,7 +863,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => 'a[href*=".pdf"],area[href*=".pdf"],a[href*=".PDF"],area[href*=".PDF"]',
+				'selector' => '\'a[href*=".pdf"],area[href*=".pdf"],a[href*=".PDF"],area[href*=".PDF"]\'',
 				'description' => __('Autodetect','easy-fancybox')
 			),
 			'tag' => array (
@@ -976,7 +976,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => 'a[href*=".swf"],area[href*=".swf"],a[href*=".SWF"],area[href*=".SWF"]',
+				'selector' => '\'a[href*=".swf"],area[href*=".swf"],a[href*=".SWF"],area[href*=".SWF"]\'',
 				'description' => __('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1071,7 +1071,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => 'a[href*=".svg"],area[href*=".svg"],a[href*=".SVG"],area[href*=".SVG"]',
+				'selector' => '\'a[href*=".svg"],area[href*=".svg"],a[href*=".SVG"],area[href*=".SVG"]\'',
 				'description' => __('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1167,7 +1167,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => 'a[href*="youtu.be/"],area[href*="youtu.be/"],a[href*="youtube.com/watch"],area[href*="youtube.com/watch"]',
+				'selector' => '\'a[href*="youtu.be/"],area[href*="youtu.be/"],a[href*="youtube.com/"],area[href*="youtube.com/"]\').filter(function(){return this.href.match(/\/(?:youtu\.be|watch\?|embed\/)/);}',
 				'description' => __('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1260,8 +1260,8 @@ $efb_options = array (
 			'onStart' => array (
 				'noquotes' => true,
 				'default' => get_option( 'fancybox_YoutubenoCookie' ) ?
-					'function(a,i,o){o.href=a[i].href.replace(/https?:\/\/youtu\.be/gi,"https://www.youtube-nocookie.com/embed").replace(/https?:\/\/(?:www\.)?youtube\.com\/watch\?(.*)v=([a-z0-9\_\-]+)(?:&|&amp;|\?)?(.*)/gi,"https://www.youtube-nocookie.com/embed/$2?$1$3");var splitOn=o.href.indexOf("?");var urlParms=(splitOn>-1)?o.href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fs=0")>-1)?false:true}' :
-					'function(a,i,o){o.href=a[i].href.replace(/https?:\/\/youtu\.be/gi,"https://www.youtube.com/embed").replace(/https?:\/\/(?:www\.)?youtube\.com\/watch\?(.*)v=([a-z0-9\_\-]+)(?:&amp;|&|\?)?(.*)/gi,"https://www.youtube.com/embed/$2?$1$3");var splitOn=o.href.indexOf("?");var urlParms=(splitOn>-1)?o.href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fs=0")>-1)?false:true}'
+					'function(a,i,o){var splitOn=a[i].href.indexOf("?");var urlParms=(splitOn>-1)?a[i].href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fs=0")>-1)?false:true;o.href=a[i].href.replace(/https?:\/\/(?:www\.)?youtu(?:\.be\/([^\?]+)|be\.com\/watch\?v=([^&]+))(.*)/gi,"https://www.youtube-nocookie.com/embed/$1$2?$3");}' :
+					'function(a,i,o){var splitOn=a[i].href.indexOf("?");var urlParms=(splitOn>-1)?a[i].href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fs=0")>-1)?false:true;o.href=a[i].href.replace(/https?:\/\/(?:www\.)?youtu(?:\.be\/([^\?]+)|be\.com\/watch\?v=([^&]+))(.*)/gi,"https://www.youtube.com/embed/$1$2?$3")+"&autoplay=1";}'
 			)
 		)
 	),
@@ -1279,7 +1279,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => 'a[href*="vimeo.com/"],area[href*="vimeo.com/"]',
+				'selector' => '\'a[href*="vimeo.com/"],area[href*="vimeo.com/"]\').filter(function(){return this.href.match(/\/(?:[0-9]+|video\/)/);}',
 				'description' => __('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1364,7 +1364,7 @@ $efb_options = array (
 			),
 			'onStart' => array (
 				'noquotes' => true,
-				'default' => 'function(a,i,o){o.href=a[i].href.replace(/https?:\/\/(?:www\.)?vimeo\.com\/([0-9]+)(?:&|&amp;|\?)?(.*)/gi,"https://player.vimeo.com/video/$1?$2");var splitOn=o.href.indexOf("?");var urlParms=(splitOn>-1)?o.href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fullscreen=0")>-1)?false:true}'
+				'default' => 'function(a,i,o){var splitOn=a[i].href.indexOf("?");var urlParms=(splitOn>-1)?a[i].href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fullscreen=0")>-1)?false:true;o.href=a[i].href.replace(/https?:\/\/(?:www\.)?vimeo\.com\/([0-9]+)\??(.*)/gi,"https://player.vimeo.com/video/$1?$2")+"&autoplay=1";}'
 			)
 		)
 	),
@@ -1382,7 +1382,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => 'a[href*="dailymotion.com/video"],area[href*="dailymotion.com/video"]',
+				'selector' => '\'a[href*="dailymotion.com/"],area[href*="dailymotion.com/"]\').filter(function(){return this.href.match(/\/video\//);}',
 				'description' => __('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1467,7 +1467,7 @@ $efb_options = array (
 			),
 			'onStart' => array (
 				'noquotes' => true,
-				'default' => 'function(a,i,o){o.href=a[i].href.replace(/^https?:\/\/(?:www\.)dailymotion.com\/video\/(.*)/gi,"https://www.dailymotion.com/embed/video/$1");var splitOn=o.href.indexOf("?");var urlParms=(splitOn>-1)?o.href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fullscreen=0")>-1)?false:true}'
+				'default' => 'function(a,i,o){var splitOn=a[i].href.indexOf("?");var urlParms=(splitOn>-1)?a[i].href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fullscreen=0")>-1)?false:true;o.href=a[i].href.replace(/^https?:\/\/(?:www\.)?dailymotion.com\/video\/([^\?]+)(.*)/gi,"https://www.dailymotion.com/embed/video/$1?$2")+"&autoPlay=1";}'
 			)
 		)
 	),
