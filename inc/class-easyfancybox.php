@@ -277,24 +277,24 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		// running our IE alphaimageloader relative path styles here
 		if ( isset($compatIE8) && 'true' == $compatIE8 ) {
 			self::$inline_style_ie = '/* IE6 */
-.fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_close.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-left-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_nav_left.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-right-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_nav_right.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-over{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_title_over.png",sizingMethod="scale");zoom:1}
-.fancybox-ie6 #fancybox-title-float-left{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_title_left.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-float-main{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_title_main.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-float-right{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_title_right.png",sizingMethod="scale")}
-#fancybox-loading.fancybox-ie6 div{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_loading.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_close.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-left-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_nav_left.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-right-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_nav_right.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-over{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_title_over.png",sizingMethod="scale");zoom:1}
+.fancybox-ie6 #fancybox-title-float-left{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_title_left.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-float-main{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_title_main.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-float-right{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_title_right.png",sizingMethod="scale")}
+#fancybox-loading.fancybox-ie6 div{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_loading.png",sizingMethod="scale")}
 /* IE6, IE7, IE8 */
-.fancybox-ie #fancybox-title-over{background-image:url('.self::$plugin_url.'fancybox/fancy_title_over.png)}
-.fancybox-ie #fancybox-bg-n{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_shadow_n.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-ne{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_shadow_ne.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-e{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_shadow_e.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-se{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_shadow_se.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-s{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_shadow_s.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-sw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_shadow_sw.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_shadow_w.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'fancybox/fancy_shadow_nw.png",sizingMethod="scale")}';
+.fancybox-ie #fancybox-title-over{background-image:url('.self::$plugin_url.'images/fancy_title_over.png)}
+.fancybox-ie #fancybox-bg-n{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_n.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-ne{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_ne.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-e{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_e.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-se{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_se.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-s{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_s.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-sw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_sw.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_w.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_nw.png",sizingMethod="scale")}';
 
 			if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight )
 				self::$inline_style_ie .= '
@@ -318,9 +318,9 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		$min = ( defined('WP_DEBUG') && WP_DEBUG ) ? '' : '.min';
 
 		// ENQUEUE STYLE
-		wp_enqueue_style( 'fancybox', self::$plugin_url.'fancybox/jquery.fancybox.'.FANCYBOX_VERSION.$min.'.css', false, null, 'screen' );
+		wp_enqueue_style( 'fancybox', self::$plugin_url.'css/jquery.fancybox.'.FANCYBOX_VERSION.$min.'.css', false, null, 'screen' );
 		if ( !empty(self::$inline_style_ie) ) {
-			wp_enqueue_style( 'fancybox-ie', self::$plugin_url.'fancybox/jquery.fancybox-ie.'.FANCYBOX_VERSION.$min.'.css', false, null, 'screen' );
+			wp_enqueue_style( 'fancybox-ie', self::$plugin_url.'css/jquery.fancybox-ie.'.FANCYBOX_VERSION.$min.'.css', false, null, 'screen' );
 			$wp_styles->add_data( 'fancybox-ie', 'conditional', 'lt IE 9' );
 		}
 
@@ -329,7 +329,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
 
 		// register main fancybox script
-		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'fancybox/jquery.fancybox.'.FANCYBOX_VERSION.$min.'.js', $dep, null, $footer );
+		wp_enqueue_script( 'jquery-fancybox', self::$plugin_url.'js/jquery.fancybox.'.FANCYBOX_VERSION.$min.'.js', $dep, null, $footer );
 
 		// jQuery Easing, which is ot needed if jQueryUI Core Effects are loaded
 		if ( !wp_script_is( 'jquery-effects-core', 'enqueued' ) ) {

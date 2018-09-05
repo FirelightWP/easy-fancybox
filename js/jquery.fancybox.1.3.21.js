@@ -275,6 +275,8 @@
 
 				case 'pdf':
 					selectedOpts.scrolling = 'no';
+					selectedOpts.enableKeyboardNav = false;
+					selectedOpts.showNavArrows = false;
 
 					str = '<object type="application/pdf" width="100%" height="100%" data="' + href + '"><a href="' + href + '" style="display:block;position:absolute;top:48%;width:100%;text-align:center">' + $(obj).html() + '</a></object>';
 
@@ -324,6 +326,8 @@
 				break;
 
 				case 'iframe':
+					selectedOpts.enableKeyboardNav = false;
+					selectedOpts.showNavArrows = false;
 
 					$.fancybox.showActivity();
 
