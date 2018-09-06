@@ -407,6 +407,8 @@
 			currentOpts = selectedOpts;
 
 			if (currentOpts.overlayShow) {
+				$('html').addClass('fancybox-active');
+
 				overlay.css({
 					'background-color' : currentOpts.overlayColor,
 					'opacity' : currentOpts.overlayOpacity,
@@ -1159,6 +1161,7 @@
 			wrap.fadeOut( currentOpts.transitionOut == 'none' ? 0 : currentOpts.speedOut, _cleanup);
 		}
 
+		$('html').removeClass('fancybox-active');
 	};
 
 	$.fancybox.resize = function() {
