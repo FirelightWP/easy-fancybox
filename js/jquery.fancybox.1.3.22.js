@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.21 (2018/08/01)
+ * Version: 1.3.22 (2018/09/14)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -1103,7 +1103,8 @@
 		$(window).off("orientationchange.fb resize.fb scroll.fb mousewheel.fb");
 		$(document).off('keydown.fb');
 
-		content.find('iframe#fancybox-frame').attr('src', isIE6 && /^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank');
+		/* causes an extra entry in the browser history. why is this needed at all?
+		content.find('iframe#fancybox-frame').attr('src', isIE6 && /^https/i.test(window.location.href || '') ? 'javascript:void(false)' : 'about:blank');*/
 
 		if (currentOpts.titlePosition !== 'inside') {
 			title.empty();
