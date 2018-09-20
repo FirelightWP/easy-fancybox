@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.9
-Stable tag: 1.8.7
+Stable tag: 1.8.8
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -494,14 +494,14 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.7 =
-Autoplay for Youtube, Vimeo and Dailymotion. Bugfixes.
+= 1.8.8 =
+Improved Youtube regex.
 
 
 == Changelog ==
 
-= 1.9 =
-* TODO:
+= 1.8.8 =
+* FIX: allow youtube url parameters before v=
 
 = 1.8.7 =
 * Autoplay Youtube/Vimeo/Dailymotion
