@@ -14,7 +14,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 	     ADMIN FUNCTIONS
 	 ***********************/
 
-	 public static function add_settings_section() {
+	public static function add_settings_section() {
  		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
  	}
 
@@ -32,7 +32,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 				// go deeper by looping back on itself
 				self::register_settings($value['options']);
 				break;
-				
+
 				case 'multiple':
 				add_settings_field( 'fancybox_'.$key, '<a name="'.$value['title'].'"></a>'.$value['title'], array(__CLASS__, 'settings_fields'), 'media', 'fancybox_section', $value);
 				foreach ( $value['options'] as $_value ) {

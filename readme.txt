@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
 Tested up to: 4.9
-Stable tag: 1.8.8
+Stable tag: 1.8.9
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -336,7 +336,7 @@ If you don't have *Auto-detect* checked under **SWF** on Settings > Media admin 
 
 FancyBox tries to detect the size of the content automatically but if it can not find a size, it will default to the settings for that particular content type as set on the Settings > Media page.
 
-The **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** provides an extra option to allow you to manually override this by defining the width and height wrapped in curly braces in the class attribute of the link itself. Make sure the option "Include the Metadata jQuery extension script..." under FancyBox | Links on Settings > Media is enabled.
+The **[Pro extension](https://premium.status301.net/downloads/easy-fancybox-pro/)** provides an extra option to allow you to manually override this by defining the width and height wrapped in curly braces in the class attribute of the link itself. Make sure the option "Include the Metadata jQuery extension script..." under FancyBox | Miscellaneous | Advanced on Settings > Media is enabled.
 
 For example, a Flash movie with different size:
 
@@ -494,13 +494,14 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.8 =
-Improved Youtube regex.
+= 1.8.9 =
+Prevent gallery next/prev links to show dud target.
 
 
 == Changelog ==
 
-= 1.8.8 =
+= 1.8.9 =
+* Prevent gallery next/prev links to show dud target
 * FIX: allow youtube url parameters before v=
 
 = 1.8.7 =
