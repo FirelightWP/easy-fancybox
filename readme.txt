@@ -313,9 +313,9 @@ To create Youtube thumbnail galleries, install https://wordpress.org/plugins/you
 
 = Can I display web pages or HTML files in a FancyBox overlay? =
 
-Yes. First, enable the iFrame option on Settings > Media. Then, in your post or page content create a link with either `class="fancybox-iframe"` or `class="fancybox iframe"` (notice the space instead of the hyphen) to any web page or .htm(l) file in your content.
+Yes. First, enable the iFrame option on Settings > Media. Then, in your post or page content create a link to any web page or .htm(l) file in your content. Then switch to the Text tab in the Classic Editor or to Edit as HTML (under More options in the block menu) in Gutenberg, find the link `<a ... >` tag and give it a `class="fancybox-iframe"` attribute.
 
-NOTE: The difference between these two classes ('-' or space) is in size of the overlay window. Try it out and use the one that works best for you :)
+Note: Not all external web pages are allowed to be embedded in an iframe and may be blocked by a server response header or script. The result will be either an empty/blank light box or the target page "breaking out" of the light box and loading in the main browser tab.
 
 
 = Can I show PDF files in a FancyBox overlay? =
