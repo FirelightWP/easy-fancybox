@@ -116,11 +116,13 @@ var fb_'.$key.'_select=\'';
 					}
 					$script .= '\';';
 
+					$autoselector = class_exists('easyFancyBox_Advanced') ? get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']) : $value['options']['autoSelector']['default'];
+
 					// class and rel depending on settings
 					if( '1' == get_option($value['options']['autoAttributeLimit']['id'],$value['options']['autoAttributeLimit']['default']) ) {
 						// add class
 						$script .= '
-var fb_'.$key.'_sections=jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
+var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 						// and set rel
 						switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
@@ -150,7 +152,7 @@ jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\
 
 							case '1':
 								$script .= ';
-var fb_'.$key.'_sections=jQuery(\''.get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']).'\');
+var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 								break;
 
@@ -426,6 +428,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 				delete_option('fancybox_PDFclassType');
 			}
 		}
+		// mark upgrade done
 		update_option('easy_fancybox_version', EASY_FANCYBOX_VERSION);
 	}
 
