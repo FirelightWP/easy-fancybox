@@ -427,7 +427,7 @@ $efb_options = array (
 						'hide' => true,
 						'input' => 'number',
 						'step' => '1',
-						'min' => '-999',
+						'min' => '-99',
 						'max' => '999',
 						'sanitize_callback' => 'intval',
 						'class' => 'small-text',
@@ -466,6 +466,14 @@ $efb_options = array (
 						'status' => get_option('fancybox_metaData') ? '' : 'disabled',
 						'default' =>  '',
 						'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . ( get_option('fancybox_metaData') ? '' : '. <em><a href="'.$efb_url.'">' . __('Make available &raquo;','easy-fancybox') ) . '</a></em>'
+					),
+					'vcMasonryCompat' => array (
+						'id' => 'fancybox_vcMasonryCompat',
+						'hide' => true,
+						'input' => 'checkbox',
+						'status' => 'disabled',
+						'default' =>  '',
+						'description' => __('WPBakery / Visual Composer Masonry Gallery compatibility.','easy-fancybox') . '. <em><a href="'.$efb_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					)
 				)
 			)
