@@ -495,13 +495,13 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 == Upgrade Notice ==
 
 = 1.8.12 =
-Prepare Visual Composer Masonry Gallery compatibility option
+Prepare Visual Composer Masonry Grid Gallery compatibility option
 
 
 == Changelog ==
 
 = 1.8.12 =
-* Prepare Visual Composer Masonry Gallery compatibility option
+* Prepare Visual Composer Masonry Grid Gallery compatibility option
 
 = 1.8.11 =
 * Fix Vimeo player direct links breaking
