@@ -473,7 +473,7 @@ $efb_options = array (
 						'input' => 'checkbox',
 						'status' => 'disabled',
 						'default' =>  '',
-						'description' => __('WPBakery / Visual Composer - Masonry Grid Gallery compatibility.','easy-fancybox') . '. <em><a href="'.$efb_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+						'description' => __('WPBakery / Visual Composer - Masonry Grid Gallery compatibility.','easy-fancybox') . ' <em><a href="'.$efb_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					)
 				)
 			)
