@@ -494,13 +494,13 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.14 =
+= 1.8.15 =
 Fix inline wrapper nesting issue, versionless file names
 
 
 == Changelog ==
 
-= 1.8.14 =
+= 1.8.15 =
 * Fix inline wrapper nesting issue
 * Revert to file names without version
 
