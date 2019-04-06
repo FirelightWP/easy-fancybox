@@ -494,11 +494,15 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.13 =
-Prepare Visual Composer Masonry Grid Gallery compatibility option
+= 1.8.14 =
+Fix inline wrapper nesting issue, versionless file names
 
 
 == Changelog ==
+
+= 1.8.14 =
+* Fix inline wrapper nesting issue
+* Revert to file names without version
 
 = 1.8.13 =
 * Fix version constant issue

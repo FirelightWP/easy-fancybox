@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.23 (2018/10/01)
+ * Version: 1.3.24 (2019/04/06)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -209,9 +209,9 @@
 						.hide()
 						.insertBefore( $(obj) )
 						.on('fancybox-cleanup', function() {
-							$(this).replaceWith(content.children('div:first'));
+							$(this).replaceWith(content.find(obj));
 						}).on('fancybox-cancel', function() {
-							$(this).replaceWith(tmp.children('div:first'));
+							$(this).replaceWith(tmp.find(obj));
 						});
 
 					$(obj).appendTo(tmp);
@@ -356,7 +356,7 @@
 				h = h == 'auto' ? 'auto' : h + 'px';
 			}
 
-			tmp.wrapInner('<div style="width:' + w + ';height:' + h + ';overflow: ' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + ';position:relative;"></div>');
+			tmp.wrapInner('<div style="width:' + w + ';height:' + h + ';overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + ';position:relative;"></div>');
 
 			selectedOpts.width = tmp.width();
 			selectedOpts.height = tmp.height();
