@@ -502,6 +502,7 @@ Fix Trying to get property 'ID' of non-object
 
 = 1.8.16 =
 * FIX: Trying to get property 'ID' of non-object
+* mark WordPress 5.2 compatible
 
 = 1.8.15 =
 * FIX: inline wrapper nesting issue
