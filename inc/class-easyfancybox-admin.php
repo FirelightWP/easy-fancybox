@@ -6,7 +6,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 	public static $pagehook;
 
-	public static $compat_pro_min = '1.5.3';
+	public static $compat_pro_min = '1.8';
 
 	public static $do_compat_warning = false;
 
