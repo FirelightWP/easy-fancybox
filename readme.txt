@@ -3,8 +3,8 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
-Tested up to: 5.1
-Stable tag: 1.8.15
+Tested up to: 5.2
+Stable tag: 1.8.16
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -494,22 +494,25 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.15 =
-Fix inline wrapper nesting issue, versionless file names
+= 1.8.16 =
+Fix Trying to get property 'ID' of non-object
 
 
 == Changelog ==
 
+= 1.8.16 =
+* FIX: Trying to get property 'ID' of non-object
+
 = 1.8.15 =
-* Fix inline wrapper nesting issue
+* FIX: inline wrapper nesting issue
 * Revert to file names without version
 
 = 1.8.13 =
-* Fix version constant issue
+* FIX: version constant issue
 * Prepare Visual Composer Masonry Grid Gallery compatibility option
 
 = 1.8.11 =
-* Fix Vimeo player direct links breaking
+* FIX: Vimeo player direct links breaking
 
 = 1.8.10 =
 * Force default autoselector for galleries
