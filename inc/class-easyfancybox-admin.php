@@ -11,14 +11,16 @@ class easyFancyBox_Admin extends easyFancyBox {
 	public static $do_compat_warning = false;
 
 	/***********************
-	     ADMIN FUNCTIONS
+	     ADMIN METHODS
 	 ***********************/
 
-	public static function add_settings_section() {
+	public static function add_settings_section()
+	{
  		add_settings_section('fancybox_section', __('FancyBox','easy-fancybox'), array(__CLASS__, 'settings_section'), 'media');
  	}
 
-	public static function register_settings( $args = array() ) {
+	public static function register_settings( $args = array() )
+	{
 		if ( empty( $args ) ) $args = parent::$options;
 		foreach ($args as $key => $value) {
 			// check to see if the section is enabled, else skip to next
@@ -57,7 +59,8 @@ class easyFancyBox_Admin extends easyFancyBox {
 	}
 
 	// add our FancyBox Media Settings Section on Settings > Media admin page
-	public static function settings_section() {
+	public static function settings_section()
+	{
 		echo '<style type="text/css">.options-media-php br { display: initial; }</style><!-- undo WP style rule introduced in 4.9 on settings-media -->
 		<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox&item_number='.EASY_FANCYBOX_VERSION.'&no_shipping=0&tax=0&charset=UTF%2d8&currency_code=EUR" title="'.__('Donate to keep the Easy FancyBox plugin development going!','easy-fancybox').'">
 		<img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" style="border:none;float:right;margin:5px 0 0 10px" alt="'.__('Donate to keep the Easy FancyBox plugin development going!','easy-fancybox').'" width="92" height="26" /></a>';
@@ -92,7 +95,8 @@ class easyFancyBox_Admin extends easyFancyBox {
 	}
 
 	// add our FancyBox Media Settings Fields
-	public static function settings_fields($args){
+	public static function settings_fields($args)
+	{
 		$disabled = (isset($args['status']) && 'disabled' == $args['status']) ? ' disabled="disabled"' : '';
 		if (isset($args['input']))
 			switch($args['input']) {
@@ -181,7 +185,8 @@ class easyFancyBox_Admin extends easyFancyBox {
 	/**
 	 * Adds an action link to the Plugins page
 	 */
-	public static function add_action_link( $links ) {
+	public static function add_action_link( $links )
+	{
 		$settings_link = '<a href="' . admin_url('options-media.php') . '">' . translate('Settings') . '</a>';
 		array_unshift( $links, $settings_link );
 		return $links;
@@ -191,7 +196,8 @@ class easyFancyBox_Admin extends easyFancyBox {
 	 * Santize Callbacks
 	 */
 
-	public static function intval($setting = '') {
+	public static function intval($setting = '')
+	{
 		if ($setting == '')
 			return '';
 
@@ -241,11 +247,13 @@ class easyFancyBox_Admin extends easyFancyBox {
 		}
 	}
 
-	public static function load_textdomain() {
+	public static function load_textdomain()
+	{
 		load_plugin_textdomain('easy-fancybox', false, dirname( parent::$plugin_basename ) . '/languages' );
 	}
 
-	public static function admin_init() {
+	public static function admin_init()
+	{
 		/* Dismissable notice */
 		/* If user clicks to ignore the notice, add that to their user meta */
 		global $current_user;
@@ -263,7 +271,8 @@ class easyFancyBox_Admin extends easyFancyBox {
 	         RUN
 	 **********************/
 
-	public function __construct() {
+	public function __construct()
+	{
 		add_action('plugins_loaded', array(__CLASS__, 'load_textdomain'));
 		add_action('admin_notices', array(__CLASS__, 'admin_notice'));
 		add_filter('plugin_action_links_'.parent::$plugin_basename, array(__CLASS__, 'add_action_link') );

@@ -31,8 +31,8 @@ class easyFancyBox {
 	   MAIN INLINE SCRIPT
 	 **********************/
 
-	private static function main() {
-
+	private static function main()
+	{
 		// check for any enabled sections
 		foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
 			if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
@@ -312,8 +312,8 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	    ACTIONS & FILTERS
 	 ***********************/
 
-	public static function enqueue_scripts() {
-
+	public static function enqueue_scripts()
+	{
 		// make sure whe actually need to do anything
 		if ( !self::$add_scripts )
 			return;
@@ -385,22 +385,26 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	}
 
 	// fallback methods for WordPress pre-4.5
-	public static function print_inline_script() {
+	public static function print_inline_script()
+	{
 		print( '<script type="text/javascript">' . self::$inline_script . '</script>' );
 	}
 
-	public static function print_inline_style() {
+	public static function print_inline_style()
+	{
 		print( '<style id="fancybox-inline-css" type="text/css">' . self::$inline_style . '</style>' );
 	}
 
-	public static function print_inline_style_ie() {
+	public static function print_inline_style_ie()
+	{
 		print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie . '</style><![endif]-->' );
 	}
 
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
 	// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
 	// without the wmode, videos will float over the light box no matter what z-index is set.
-	public static function add_video_wmode_opaque($html) {
+	public static function add_video_wmode_opaque($html)
+	{
 		if ( strpos($html, "<embed src=" ) !== false ) {
 			$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque"', $html);
 		} elseif ( strpos($html, 'youtube' ) !== false && strpos($html, 'wmode' ) == false ) {
@@ -413,8 +417,8 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		return $html;
 	}
 
-	public static function onready_callback( $content ) {
-
+	public static function onready_callback( $content )
+	{
 		$content .= 'jQuery(easy_fancybox_handler);jQuery(document).on(\'' . implode(" ", self::$events) . '\',easy_fancybox_handler);' . PHP_EOL;
 
 		if ( self::$onready_auto )
@@ -423,7 +427,8 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		return $content;
 	}
 
-	public static function upgrade( $old_version ) {
+	public static function upgrade( $old_version )
+	{
 		if ( !$old_version ) { // upgrade from 1.7 or older
 			if ( 'html' === get_option('fancybox_PDFclassType') ) {
 				update_option('fancybox_PDFonStart', 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.type=\'pdf\';}');
@@ -434,21 +439,24 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		update_option('easy_fancybox_version', EASY_FANCYBOX_VERSION);
 	}
 
-	public static function load_defaults() {
+	public static function load_defaults()
+	{
 		if ( empty(self::$options) ) {
 			include self::$plugin_dir . '/inc/easyfancybox-options.php';
 			self::$options = $efb_options;
 		}
 	}
 
-	public static function maybe_upgrade() {
+	public static function maybe_upgrade()
+	{
 		$version = get_option('easy_fancybox_version', 0);
 
 		if ( version_compare( EASY_FANCYBOX_VERSION, $version, '>' ) )
 			self::upgrade($version);
 	}
 
-	public static function load_main() {
+	public static function load_main()
+	{
 		// Treat settings and prepare inline scripts and styles, or log debug message
 		if ( self::main() ) {
 			$priority = get_option( 'fancybox_scriptPriority' );
@@ -456,8 +464,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 			add_action( 'wp_enqueue_scripts', array(__CLASS__,'enqueue_scripts'), self::$priority );
 			add_filter( 'embed_oembed_html', array(__CLASS__,'add_video_wmode_opaque'), 10 );
-		} elseif ( defined('WP_DEBUG') && WP_DEBUG ) {
-			error_log('No active Easy FancyBox media types set.');
 		}
 	}
 
@@ -465,7 +471,8 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	         RUN
 	 **********************/
 
-	public function __construct( $file ) {
+	public function __construct( $file )
+	{
 		// VARS
 		self::$plugin_url = plugins_url( '/', $file );
 		self::$plugin_basename = plugin_basename( $file );

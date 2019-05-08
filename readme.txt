@@ -494,11 +494,13 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.16 =
-Fix Trying to get property 'ID' of non-object
+= 1.8.17 =
 
 
 == Changelog ==
+
+= 1.8.17 =
+*
 
 = 1.8.16 =
 * FIX: Trying to get property 'ID' of non-object
