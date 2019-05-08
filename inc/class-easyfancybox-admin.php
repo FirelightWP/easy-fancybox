@@ -192,6 +192,19 @@ class easyFancyBox_Admin extends easyFancyBox {
 		return $links;
 	}
 
+	/**
+	* Adds links to plugin's description
+	*/
+	public static function plugin_meta_links( $links, $file )
+	{
+	  if ( $file == plugin_basename(__FILE__) ) {
+	    $links[] = '<a target="_blank" href="https://wordpress.org/support/plugin/easy-fancybox/">' . __('Support','easy-fancybox') . '</a>';
+	    $links[] = '<a target="_blank" href="https://wordpress.org/support/plugin/easy-fancybox/reviews/?filter=5#new-post">' . __('Rate ★★★★★','easy-fancybox') . '</a>';
+	  }
+
+	  return $links;
+	}
+
 	/***
 	 * Santize Callbacks
 	 */

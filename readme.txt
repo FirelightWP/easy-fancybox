@@ -500,7 +500,8 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 == Changelog ==
 
 = 1.8.17 =
-*
+* Pro compatibility messages
+* Support forum link
 
 = 1.8.16 =
 * FIX: Trying to get property 'ID' of non-object
