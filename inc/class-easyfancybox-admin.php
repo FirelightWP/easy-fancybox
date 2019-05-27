@@ -77,7 +77,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 				Black Friday to Cyber Monday: THE BIG 30 SALE at Status301.
 				<em>A whopping 30% discount but only for the first 30 customers.
 				After that, there will still be a discount of 15% for everybody until tuesday 0:00 GMT so
-				<strong><a href="https://premium.status301.net/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">to take advantage of this opportunity</a></strong>
+				<strong><a href="https://premium.status301.com/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">to take advantage of this opportunity</a></strong>
 				before it\'s too late</em>...</p>';
 		}
 
@@ -87,7 +87,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 			_e('Notice: The current Easy FancyBox plugin version is not fully compatible with your version of the Pro extension. Some advanced options may not be functional.','easy-fancybox');
 			echo ' ';
 			if ( current_user_can( 'install_plugins' ) )
-				printf(__('Please <a href="%1$s" target="_blank">download and install the latest Pro version</a>.','easy-fancybox'), 'https://premium.status301.net/account/');
+				printf(__('Please <a href="%1$s" target="_blank">download and install the latest Pro version</a>.','easy-fancybox'), 'https://premium.status301.com/account/');
 			else
 				_e('Please contact your web site administrator.','easy-fancybox');
 			echo '</p>';
@@ -253,7 +253,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 			//echo '<a href="?easy_fancybox_ignore_notice=1" title="' . __('Hide message','easy-fancybox') . '" style="display:block;float:right">X</a>';
 			_e('Notice: The current Easy FancyBox plugin version is not fully compatible with your version of the Pro extension. Some advanced options may not be functional.','easy-fancybox');
 			echo '<br />';
-			printf(__('Please <a href="%1$s" target="_blank">download and install the latest Pro version</a>.','easy-fancybox'), 'https://premium.status301.net/account/');
+			printf(__('Please <a href="%1$s" target="_blank">download and install the latest Pro version</a>.','easy-fancybox'), 'https://premium.status301.com/account/');
 			echo ' ';
 			printf(__('Or you can ignore and <a href="%1$s">hide this message</a>.','easy-fancybox'), '?easy_fancybox_ignore_notice=1');
 			echo '</p></div>';

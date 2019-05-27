@@ -2,7 +2,7 @@
 /**
 * Easy FancyBox options and their defaults array
 */
-$efb_url = "https://premium.status301.net/downloads/easy-fancybox-pro/";
+$efb_url = "https://premium.status301.com/downloads/easy-fancybox-pro/";
 
 $efb_options = array (
 	'Global' => array(

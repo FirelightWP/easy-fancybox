@@ -253,8 +253,8 @@ msgid "Tweak the value 641 to target other screen sizes."
 msgstr "Tweak значэнне 641 у дачыненнi да iншых памераў экрана."
 
 #. Found in faq paragraph.
-msgid "In the <a href=\"http://premium.status301.net/downloads/easy-fancybox-pro/\">Pro extension</a>, there is an Advanced option called \"Gallery Auto-rotation\" for that."
-msgstr "У <a href=\"http://premium.status301.net/downloads/easy-fancybox-pro/\">Pro пашырэннея</a>для гэтага ёсць пашыраны варыянт пад назвай \"Галерэя Аўтаратацыі\"."
+msgid "In the <a href=\"http://premium.status301.com/downloads/easy-fancybox-pro/\">Pro extension</a>, there is an Advanced option called \"Gallery Auto-rotation\" for that."
+msgstr "У <a href=\"http://premium.status301.com/downloads/easy-fancybox-pro/\">Pro пашырэннея</a>для гэтага ёсць пашыраны варыянт пад назвай \"Галерэя Аўтаратацыі\"."
 
 #. Found in faq paragraph.
 msgid "Yes. All links with class <strong>nolightbox</strong> that would normally get auto-enabled, will be excluded from opening in a FancyBox overlay."
@@ -361,8 +361,8 @@ msgid "FancyBox tries to detect the size of the content automatically but if it 
 msgstr "FancyBox спрабуе вызначыць памер змесціва аўтаматычна, але калі ён не можа знайсці памер, па змаўчанні будзе выкарыстоўвацца налады для канкрэтнага тыпу кантэнту, якая ўсталяваная на Налады>Медыя-старонка."
 
 #. Found in faq paragraph.
-msgid "The <strong><a href=\"http://premium.status301.net/downloads/easy-fancybox-pro/\">Pro extension</a></strong> provides an extra option to allow you to manually override this by defining the width and height wrapped in curly brases in the class attribute of the link itself. Make sure the option \"Inlcude the Metadata jQuery extension script...\" under FancyBox | Links on Settings &gt; Media is enabled."
-msgstr "<strong><a href=\"http://premium.status301.net/downloads/easy-fancybox-pro/\">Pro пашырэнне</a></strong> забяспечвае дадатковы параметр, каб дазволіць вам ўручную перавызначыць значэння шырыні і вышыні, абгорнутыz ў фігурныя дужкі ў атрыбуце класа самой спасылкі. Пераканайцеся, што опцыя \"Уключаць пашырэнне сцэнара Metadata jQuery ...\" пад FancyBox|Спасылкі на Налады>Медыя ўключана."
+msgid "The <strong><a href=\"http://premium.status301.com/downloads/easy-fancybox-pro/\">Pro extension</a></strong> provides an extra option to allow you to manually override this by defining the width and height wrapped in curly brases in the class attribute of the link itself. Make sure the option \"Inlcude the Metadata jQuery extension script...\" under FancyBox | Links on Settings &gt; Media is enabled."
+msgstr "<strong><a href=\"http://premium.status301.com/downloads/easy-fancybox-pro/\">Pro пашырэнне</a></strong> забяспечвае дадатковы параметр, каб дазволіць вам ўручную перавызначыць значэння шырыні і вышыні, абгорнутыz ў фігурныя дужкі ў атрыбуце класа самой спасылкі. Пераканайцеся, што опцыя \"Уключаць пашырэнне сцэнара Metadata jQuery ...\" пад FancyBox|Спасылкі на Налады>Медыя ўключана."
 
 #. Found in faq paragraph.
 msgid "For example, a Flash movie with different size:"
@@ -833,8 +833,8 @@ msgid "<strong>Also supports:</strong>"
 msgstr "<strong>Таксама падтрымлівае:</strong>"
 
 #. Found in description paragraph.
-msgid "For <strong>advanced options</strong> and <strong>priority support</strong>, there is a <strong><a href=\"http://premium.status301.net/downloads/easy-fancybox-pro/\">Pro extension</a></strong> available."
-msgstr "Для <strong>Дадатковыя параметры</strong>  і <strong>прыярытэтная падтрымка</strong>, ёсць даступнае<strong><a href=\"http://premium.status301.net/downloads/easy-fancybox-pro/\">Pro пашырэнне</a></strong>."
+msgid "For <strong>advanced options</strong> and <strong>priority support</strong>, there is a <strong><a href=\"http://premium.status301.com/downloads/easy-fancybox-pro/\">Pro extension</a></strong> available."
+msgstr "Для <strong>Дадатковыя параметры</strong>  і <strong>прыярытэтная падтрымка</strong>, ёсць даступнае<strong><a href=\"http://premium.status301.com/downloads/easy-fancybox-pro/\">Pro пашырэнне</a></strong>."
 
 #. Found in description paragraph.
 msgid "See <a href=\"http://wordpress.org/plugins/easy-fancybox/screenshots/\">Screenshots</a> for an impression on how images and YouTube movies will be presented on your site as soon as you have installed and (network) activated this simple plugin."
