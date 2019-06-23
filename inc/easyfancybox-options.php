@@ -319,7 +319,7 @@ $efb_options = array (
 						'id' => 'fancybox_mouseWheel',
 						'hide' => true,
 						'input' => 'checkbox',
-						'default' => '1',
+						'default' => '',
 						'description' => __('Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action.','easy-fancybox')
 					)
 				)
