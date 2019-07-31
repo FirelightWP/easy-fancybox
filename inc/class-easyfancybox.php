@@ -431,7 +431,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	{
 		if ( !$old_version ) { // upgrade from 1.7 or older
 			if ( 'html' === get_option('fancybox_PDFclassType') ) {
-				update_option('fancybox_PDFonStart', 'function(selectedArray,selectedIndex,selectedOpts){selectedOpts.type=\'pdf\';}');
+				update_option('fancybox_PDFonStart', 'function(a,i,o){o.type=\'pdf\';}');
 				delete_option('fancybox_PDFclassType');
 			}
 		}

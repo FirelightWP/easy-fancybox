@@ -889,7 +889,7 @@ $efb_options = array (
 				'id' => 'fancybox_PDFonStart',
 				'noquotes' => true,
 				'title' => __('Embed with','easy-fancybox'),
-				'label_for' => 'fancybox_PDFtitlePosition',
+				'label_for' => 'fancybox_PDFonStart',
 				'input' => 'select',
 				'options' => array(
 					'function(a,i,o){o.type=\'pdf\';}' => __('Object tag (plus fall-back link)','easy-fancybox'),

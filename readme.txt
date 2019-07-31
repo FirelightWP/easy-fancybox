@@ -81,7 +81,7 @@ If you wish to help build this plugin, you're very welcome to [translate Easy Fa
 
 = General =
 
-- **Outbound links or Downloads tracking** in some of the stats plugins can interfere with FancyBox. Disable such option or exclude links manually with a class (see instructions for SlimStat below)
+- **Outbound click or Download tracking** in some of the stats plugins can interfere with FancyBox. Disable such options or exclude links manually with a class if possible (see instructions for SlimStat below)
 - Most plugins and themes that already include a light box script. Continue reading to see if you are using one of the know ones or follow the troubleshooting steps to find out what is conflicting on your site.
 - Any theme that is missing the obligatory `<?php wp_footer(); ?>` call in the footer.php template.
 - When showing an iframe as inline content in FancyBox -- not advised, use fancybox-iframe instead! -- the iframe will become blank after opening and closing it. The solution is to link directly to the iframe source and use `class="fancybox-iframe"` instead.
