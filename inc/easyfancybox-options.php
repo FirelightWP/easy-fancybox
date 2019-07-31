@@ -726,21 +726,7 @@ $efb_options = array (
 				),
 				'default' => '',
 				'description' =>  '<em><a href="'.$efb_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
-			),
-/*					'titleFormat' => array (
-				'id' => 'fancybox_titleFormat',
-				'title' => __('Title format','easy-fancybox'),
-				'label_for' => 'fancybox_titleFormat',
-				'input' => 'select',
-				'options' => array(
-					'' => __('Default FancyBox style','easy-fancybox'),
-					'function(title, currentArray, currentIndex, currentOpts) { return \'<div style="font-face:Arial,sans-serif;text-align:left"><span style="float:right;font-size:large"><a href="javascript:;" onclick="$.fancybox.close();">' . __('Close','easy-fancybox') . ' <img src="' . plugins_url(FANCYBOX_SUBDIR, __FILE__) . '/fancybox/fancy_close.png" /></a></span>\' + (title && title.length ? \'<b style="display:block;margin-right:80px">\' + title + \'</b>\' : \'\' ) + \'' . __('Image','easy-fancybox') . '\' + (currentIndex + 1) + \' ' . __('of','easy-fancybox') . ' \' + currentArray.length + \'</div>\';
-}' => __('Mimic Lightbox2 style','easy-fancybox'),
-					),
-				'noquotes' => true,
-				'default' => '',
-				'description' =>  '<br />' . __('To improve Lightbox2 style disable Show close button and set titleposition to Inside or Outside','easy-fancybox') . '<br />'
-				),*/
+			)
 		)
 	),
 
@@ -898,9 +884,7 @@ $efb_options = array (
 					'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => __('Google Docs Viewer (external)','easy-fancybox')
 				),
 				'default' => '',
-								// 'function(a,i,o){o.content=\'<object data="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%"><a href="\'+a[i].href+\'" style="display:block;position:absolute;top:48%;width:100%;text-align:center">\'+jQuery(a[i]).html()+\'</a></object>\'}'
-				// 'function(a, i, o) { o.content = \'<embed src="\' + a[i].href + \'#toolbar=1&navpanes=0&nameddest=self&page=1&view=FitH,0&zoom=80,0,0" type="application/pdf" height="100%" width="100%" />\' }'
-				'description' => __('Note:','easy-fancybox') . ' ' . __('External viewers have bandwidth, usage rate and and file size limits.','easy-fancybox') . '<br /><br />' //' <em><a href="'.$efb_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br /><br />'
+				'description' => __('Note:','easy-fancybox') . ' ' . __('External viewers have bandwidth, usage rate and and file size limits.','easy-fancybox') . '<br /><br />'
 			),
 			'width' => array (
 				'id' => 'fancybox_PDFwidth',
@@ -1526,20 +1510,6 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 			'type' => array (
 				'default' => 'iframe'
 			),
-/* 				other than overflow:auto not supported on many browsers
-		'scrolling' => array (
-				'id' => 'fancybox_iFrameScrolling',
-				'title' => __('Scrolling','easy-fancybox'),
-				'label_for' => 'fancybox_iFrameScrolling',
-				'input' => 'select',
-				'options' => array(
-					'auto' => __('Auto','easy-fancybox'),
-					'yes' => __('Always','easy-fancybox'),
-					'no' => __('Never','easy-fancybox')
-					),
-				'default' => 'auto',
-				'description' => __('Define scrolling and scrollbar visibility.','easy-fancybox') . '<br />'
-				),*/
 			'width' => array (
 				'id' => 'fancybox_iFramewidth',
 				'title' => translate('Width'),
