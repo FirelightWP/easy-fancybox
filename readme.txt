@@ -499,6 +499,10 @@ Fix compat messages and links
 
 == Changelog ==
 
+= 1.8.18 =
+* FIX: Jetpack Tiled Gallery block compatibility
+* Don't include mousewheel script by default
+
 = 1.8.17 =
 * Pro compatibility messages
 * Support forum link
