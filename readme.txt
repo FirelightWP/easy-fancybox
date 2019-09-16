@@ -502,7 +502,7 @@ Fix Jetpack Tiled Gallery compat + security issue reported by Jakob Hagl sba-res
 = 1.8.18 =
 * FIX: Jetpack Tiled Gallery block compatibility
 * Don't include mousewheel script by default
-* SECURITY: color value sanitization failing, issue reported by Jakob Hagl sba-research.org
+* SECURITY: fixed failing color value sanitization + added inline styles output filter, issue reported by Jakob Hagl sba-research.org
 
 = 1.8.17 =
 * Pro compatibility messages
