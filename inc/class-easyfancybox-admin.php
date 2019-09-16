@@ -209,7 +209,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 	 * Santize Callbacks
 	 */
 
-	public static function intval($setting = '')
+	public static function intval( $setting = '' )
 	{
 		if ($setting == '')
 			return '';
@@ -225,18 +225,14 @@ class easyFancyBox_Admin extends easyFancyBox {
 		return ( $val != 0 ) ? $val.$prc : 0;
 	}
 
-	public static function colorval($setting = '') {
-		if ($setting == '')
-			return '';
+	public static function colorval( $setting = '' ) {
+		// strip possible # to prepare for sanitizing
+		$setting = substr($setting, 0, 1) == '#' ? substr($setting, 1) : $setting;
 
-		if (substr($setting, 0, 1) == '#')
-			if ( ctype_xdigit(substr($setting, 1)) )
-				return $setting;
+		// only allow hex values or empty string
+		$sanitized = ctype_xdigit($setting) ? '#'.$setting : '';
 
-		if (ctype_xdigit($setting))
-				return '#'.$setting;
-
-		return $setting;
+		return $sanitized;
 	}
 
 	/***********************

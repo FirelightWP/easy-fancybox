@@ -493,8 +493,8 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.17 =
-Fix compat messages and links
+= 1.8.18 =
+Fix Jetpack Tiled Gallery compat + security issue reported by Jakob Hagl sba-research.org
 
 
 == Changelog ==
@@ -502,6 +502,7 @@ Fix compat messages and links
 = 1.8.18 =
 * FIX: Jetpack Tiled Gallery block compatibility
 * Don't include mousewheel script by default
+* SECURITY: color value sanitization failing, issue reported by Jakob Hagl sba-research.org
 
 = 1.8.17 =
 * Pro compatibility messages
