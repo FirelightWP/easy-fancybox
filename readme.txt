@@ -499,6 +499,9 @@ Fix Jetpack Tiled Gallery compat + security issue reported by Jakob Hagl sba-res
 
 == Changelog ==
 
+= 1.8.19 =
+* Remove redundant CSS
+
 = 1.8.18 =
 * FIX: Jetpack Tiled Gallery block compatibility
 * Don't include mousewheel script by default
