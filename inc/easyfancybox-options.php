@@ -671,6 +671,13 @@ $efb_options = array (
 				'default' => '1',
 				'description' => __('Arrow key strokes browse the gallery','easy-fancybox')
 			),
+			'enableSwipeNav' => array (
+				'id' => 'fancybox_enableSwipeNav',
+				'input' => 'checkbox',
+				'noquotes' => true,
+				'default' => '1',
+				'description' => __('Touch swipes browse the gallery','easy-fancybox')
+			),
 			'cyclic' => array (
 				'id' => 'fancybox_cyclic',
 				'input' => 'checkbox',
