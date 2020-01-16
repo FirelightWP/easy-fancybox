@@ -407,13 +407,6 @@ $efb_options = array (
 						'default' => '1',
 						'description' => __('Make media links open in a new tab when viewport falls below minimum width (above)','easy-fancybox')
 					),*/
-					'compatIE8' => array (
-						'id' => 'fancybox_compatIE8',
-						'input' => 'checkbox',
-						'hide' => true,
-						'default' => '',
-						'description' => __('Include IE 8 compatibility style rules','easy-fancybox')
-					),
 					'p2' => array (
 						'hide' => true,
 						'description' => '<br /><strong>' . __('Theme & plugins compatibility','easy-fancybox') . '</strong><br />'

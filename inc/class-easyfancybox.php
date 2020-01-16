@@ -15,8 +15,6 @@ class easyFancyBox {
 
 	private static $inline_style;
 
-	private static $inline_style_ie;
-
 	public static $priority = 10;
 
 	public static $onready_auto = false;
@@ -278,33 +276,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		if ( !empty($styles) )
 			self::$inline_style = wp_strip_all_tags( $styles, true );
 
-		// running our IE alphaimageloader relative path styles here
-		if ( isset($compatIE8) && 'true' == $compatIE8 ) {
-			self::$inline_style_ie = '/* IE6 */
-.fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_close.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-left-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_nav_left.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-right-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_nav_right.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-over{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_title_over.png",sizingMethod="scale");zoom:1}
-.fancybox-ie6 #fancybox-title-float-left{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_title_left.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-float-main{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_title_main.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-float-right{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_title_right.png",sizingMethod="scale")}
-#fancybox-loading.fancybox-ie6 div{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_loading.png",sizingMethod="scale")}
-/* IE6, IE7, IE8 */
-.fancybox-ie #fancybox-title-over{background-image:url('.self::$plugin_url.'images/fancy_title_over.png)}
-.fancybox-ie #fancybox-bg-n{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_n.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-ne{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_ne.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-e{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_e.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-se{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_se.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-s{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_s.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-sw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_sw.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_w.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/fancy_shadow_nw.png",sizingMethod="scale")}';
-
-			if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight )
-				self::$inline_style_ie .= '
-#fancybox-overlay{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.self::$plugin_url.'images/light-mask.png",sizingMethod="scale")}';
-		}
-
 		return true;
 	}
 
@@ -323,10 +294,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 		// ENQUEUE STYLE
 		wp_enqueue_style( 'fancybox', self::$plugin_url.'css/jquery.fancybox'.$min.'.css', false, FANCYBOX_VERSION, 'screen' );
-		if ( !empty(self::$inline_style_ie) ) {
-			wp_enqueue_style( 'fancybox-ie', self::$plugin_url.'css/jquery.fancybox-ie'.$min.'.css', false, FANCYBOX_VERSION, 'screen' );
-			$wp_styles->add_data( 'fancybox-ie', 'conditional', 'lt IE 9' );
-		}
 
 		// ENQUEUE SCRIPTS
 		$dep = get_option( 'fancybox_nojQuery', false ) ? array() : array('jquery');
@@ -368,15 +335,11 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 			// do it the old way
 			if ( !empty(self::$inline_style) )
 				add_action( 'wp_head', array(__CLASS__, 'print_inline_style'), 11 );
-			if ( !empty(self::$inline_style_ie) )
-				add_action( 'wp_head', array(__CLASS__, 'print_inline_style_ie'), 12 );
 			if ( !empty(self::$inline_script) )
 				add_action( $footer ? 'wp_footer' : 'wp_head', array(__CLASS__, 'print_inline_script'), self::$priority + 1 );
 		} else {
 			if ( !empty(self::$inline_style) )
 				wp_add_inline_style( 'fancybox', self::$inline_style );
-			if ( !empty(self::$inline_style_ie) )
-				wp_add_inline_style( 'fancybox-ie', self::$inline_style_ie );
 			if ( !empty(self::$inline_script) )
 				wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 		}
@@ -393,11 +356,6 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	public static function print_inline_style()
 	{
 		print( '<style id="fancybox-inline-css" type="text/css">' . self::$inline_style . '</style>' );
-	}
-
-	public static function print_inline_style_ie()
-	{
-		print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie . '</style><![endif]-->' );
 	}
 
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
@@ -434,6 +392,8 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 				update_option('fancybox_PDFonStart', 'function(a,i,o){o.type=\'pdf\';}');
 				delete_option('fancybox_PDFclassType');
 			}
+		} elseif ( version_compare( '1.9', $old_version, '>' ) ) {
+			delete_option('fancybox_compatIE8');			
 		}
 		// mark upgrade done
 		update_option('easy_fancybox_version', EASY_FANCYBOX_VERSION);
