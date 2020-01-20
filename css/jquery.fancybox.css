@@ -273,6 +273,7 @@
 	background: #000;
 	border: 2px solid #fff;
 	border-radius: 12px;
+	box-shadow: 0 0 4px #000;
 	position: relative;
 	z-index: 111104;
 }
