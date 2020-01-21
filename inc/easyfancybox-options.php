@@ -407,13 +407,6 @@ $efb_options = array (
 						'default' => '1',
 						'description' => __('Make media links open in a new tab when viewport falls below minimum width (above)','easy-fancybox')
 					),*/
-					'compatIE8' => array (
-						'id' => 'fancybox_compatIE8',
-						'input' => 'checkbox',
-						'hide' => true,
-						'default' => '',
-						'description' => __('Include IE 8 compatibility style rules','easy-fancybox')
-					),
 					'p2' => array (
 						'hide' => true,
 						'description' => '<br /><strong>' . __('Theme & plugins compatibility','easy-fancybox') . '</strong><br />'
@@ -677,6 +670,13 @@ $efb_options = array (
 				'noquotes' => true,
 				'default' => '1',
 				'description' => __('Arrow key strokes browse the gallery','easy-fancybox')
+			),
+			'enableSwipeNav' => array (
+				'id' => 'fancybox_enableSwipeNav',
+				'input' => 'checkbox',
+				'noquotes' => true,
+				'default' => '1',
+				'description' => __('Touch swipes browse the gallery','easy-fancybox')
 			),
 			'cyclic' => array (
 				'id' => 'fancybox_cyclic',

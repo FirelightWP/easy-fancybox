@@ -499,8 +499,10 @@ Fix Jetpack Tiled Gallery compat + security issue reported by Jakob Hagl sba-res
 
 == Changelog ==
 
-= 1.8.19 =
+= 1.9 =
+* NEW: Swipe support
 * Remove redundant CSS
+* Drop IE legacy support
 
 = 1.8.18 =
 * FIX: Jetpack Tiled Gallery block compatibility
