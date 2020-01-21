@@ -500,8 +500,10 @@ Fix Jetpack Tiled Gallery compat + security issue reported by Jakob Hagl sba-res
 == Changelog ==
 
 = 1.9 =
+* TODO: no more background scrolling
 * NEW: Swipe support
 * Remove redundant CSS
+* Drop pre-CSS3 support
 * Drop IE legacy support
 
 = 1.8.18 =
