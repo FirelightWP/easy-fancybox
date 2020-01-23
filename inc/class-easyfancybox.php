@@ -395,6 +395,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		} elseif ( version_compare( '1.9', $old_version, '>' ) ) {
 			delete_option( 'fancybox_compatIE8' );
 			delete_option( 'fancybox_centerOnScroll' );
+			delete_option( 'fancybox_opacity' );
 		}
 		// mark upgrade done
 		update_option('easy_fancybox_version', EASY_FANCYBOX_VERSION);
