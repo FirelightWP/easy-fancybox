@@ -1145,11 +1145,11 @@
 		transitionIn : 'fade', // 'elastic', 'fade' or 'none'
 		transitionOut : 'fade', // 'elastic', 'fade' or 'none'
 
-		speedIn : 300,
-		speedOut : 300,
+		speedIn : 400,
+		speedOut : 400,
 
-		changeSpeed : 300,
-		changeFade : 'fast',
+		changeSpeed : 200,
+		changeFade : 200,
 
 		easingIn : 'swing',
 		easingOut : 'swing',
