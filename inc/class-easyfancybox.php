@@ -111,7 +111,7 @@ var fb_'.$key.'_select=\'';
 							$type = '.'.$type;
 						if ($more>0)
 							$script .= ',';
-						$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
+						$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox>a,a[href*="?s="]),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
 						$more++;
 					}
 					$script .= '\';';

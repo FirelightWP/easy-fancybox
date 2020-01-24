@@ -843,7 +843,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => '\'a[href*=".pdf"],area[href*=".pdf"],a[href*=".PDF"],area[href*=".PDF"]\'',
+				'selector' => '\'a[href*=".pdf"]:not(a[href*="?s="]),area[href*=".pdf"],a[href*=".PDF"]:not(a[href*="?s="]),area[href*=".PDF"]\'',
 				'description' => __('Autodetect','easy-fancybox')
 			),
 			'tag' => array (
@@ -954,7 +954,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => '\'a[href*=".swf"],area[href*=".swf"],a[href*=".SWF"],area[href*=".SWF"]\'',
+				'selector' => '\'a[href*=".swf"]:not(a[href*="?s="]),area[href*=".swf"],a[href*=".SWF"]:not(a[href*="?s="]),area[href*=".SWF"]\'',
 				'description' => __('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1049,7 +1049,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => '\'a[href*=".svg"],area[href*=".svg"],a[href*=".SVG"],area[href*=".SVG"]\'',
+				'selector' => '\'a[href*=".svg"]:not(a[href*="?s="]),area[href*=".svg"],a[href*=".SVG"]:not(a[href*="?s="]),area[href*=".SVG"]\'',
 				'description' => __('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
