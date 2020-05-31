@@ -500,8 +500,10 @@ Fix Jetpack Tiled Gallery compat + security issue reported by Jakob Hagl sba-res
 == Changelog ==
 
 = 1.9 =
-* TODO: no more background scrolling
+* TODO: show arrows permanently on border
+* NEW: no background scrolling
 * NEW: Swipe support
+* Smaller script and stylesheet
 * Remove redundant CSS
 * Drop pre-CSS3 support
 * Drop IE legacy support

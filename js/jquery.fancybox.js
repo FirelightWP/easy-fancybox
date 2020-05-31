@@ -9,7 +9,7 @@
 *
 * Copyright (c) 2020 - RavanH
 
-* Version: 1.4 (2020/01/21)
+* Version: 1.4 (2020/01/24)
 * Requires: jQuery v1.7+
 *
 * Licensed GPLv3
