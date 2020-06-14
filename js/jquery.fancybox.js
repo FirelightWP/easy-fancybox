@@ -8,7 +8,7 @@
 * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
 *
 * Copyright (c) 2020 - RavanH
-* Version: 1.4 (2020/01/24)
+* Version: 1.4.1 (2020/06/14)
 * Requires: jQuery v1.7+
 *
 * Licensed GPLv3
