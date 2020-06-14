@@ -8,7 +8,6 @@
 * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
 *
 * Copyright (c) 2020 - RavanH
-
 * Version: 1.4 (2020/01/24)
 * Requires: jQuery v1.7+
 *
@@ -388,6 +387,7 @@
 		busy = true;
 
 		$('html').addClass('fancybox-active');
+
 		$(content.add( overlay )).off();
 
 		$(window).off("orientationchange.fb resize.fb scroll.fb");
@@ -409,7 +409,7 @@
 				overlay.css('cursor','pointer');
 
 			if (!overlay.is(':visible')) {
-				overlay.show();
+				overlay.fadeIn('fast');
 			}
 		} else {
 			overlay.hide();
@@ -599,9 +599,9 @@
 	},
 
 	_finish = function () {
-		if (currentOpts.autoDimensions) {
+		/*if (currentOpts.autoDimensions) {
 			content.css('height','auto');
-		}
+		}*/
 
 		if (titleStr && titleStr.length) {
 			title.show();
@@ -712,16 +712,14 @@
 		}
 	},
 
-	_get_viewport = function() {
+/*	_get_viewport = function() {
 		var w = !isTouch && window.innerWidth && document.documentElement.clientWidth ?
-		Math.min(window.innerWidth, document.documentElement.clientWidth) :
-		window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth,
-		h = !isTouch && window.innerHeight && document.documentElement.clientHeight ?
-		Math.min(window.innerHeight, document.documentElement.clientHeight) :
-		window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight,
-		margin;
-
-		margin = arguments[0] === true ? 0 : currentOpts.margin;
+				Math.min(window.innerWidth, document.documentElement.clientWidth) :
+				window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth,
+			h = !isTouch && window.innerHeight && document.documentElement.clientHeight ?
+				Math.min(window.innerHeight, document.documentElement.clientHeight) :
+				window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight,
+			margin = arguments[0] === true ? 0 : currentOpts.margin;
 
 		return [
 			w - (margin * 2),
@@ -729,13 +727,18 @@
 			$(document).scrollLeft() + margin,
 			$(document).scrollTop() + margin
 		];
-	},
+	},*/
 
 	_get_zoom_to = function () {
-		var view = _get_viewport(),
-		to = {},
-		double_padding = currentOpts.padding * 2,
-		ratio;
+		var view = [
+				window.innerWidth - (currentOpts.margin * 2),
+				window.innerHeight - (currentOpts.margin * 2),
+				$(document).scrollLeft() + currentOpts.margin,
+				$(document).scrollTop() + currentOpts.margin
+			],
+			to = {},
+			double_padding = currentOpts.padding * 2,
+			ratio;
 
 		if (currentOpts.width.toString().indexOf('%') > -1) {
 			to.width = parseInt((view[0] * parseFloat(currentOpts.width)) / 100, 10);
@@ -1042,29 +1045,29 @@
 		clearTimeout( resize_timeout );
 
 		resize_timeout = setTimeout( function() {
+			var restore = [];
 
 			final_pos = _get_zoom_to();
 
 			busy = true;
 
 			_process_title();
-			close.hide();
-			nav_prev.hide();
-			nav_next.hide();
+
+			close.is(":visible") && restore.push(close) && close.hide();
+			nav_prev.is(":visible") && restore.push(nav_prev) && nav_prev.hide();
+			nav_next.is(":visible") && restore.push(nav_next) && nav_next.hide();
 
 			wrap.animate(final_pos, {
 				duration : currentOpts.changeSpeed,
 				easing : currentOpts.easingChange,
 				complete : function() {
-					if (selectedOpts.autoDimensions) {
+					/*if (selectedOpts.autoDimensions) {
 						content.css('height','auto');
-					}
+					}*/
 					if (titleStr && titleStr.length) {
 						title.show();
 					}
-					close.show();
-					nav_prev.show();
-					nav_next.show();
+					restore.forEach( el => el.show() )
 					busy = false;
 				}
 			});
