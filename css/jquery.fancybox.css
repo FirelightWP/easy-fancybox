@@ -371,5 +371,8 @@
 }
 
 html.fancybox-active, html.fancybox-active body {
+	touch-action: none;
+	overscroll-behavior: none;
+	-webkit-overflow-scrolling: auto;
 	overflow: hidden;
 }
