@@ -972,9 +972,8 @@
 
 		pos = parseInt(pos);
 
-		selectedArray = currentArray;
-
-		if (pos > -1 && pos < currentArray.length) {
+		if (currentArray.length > 1 && pos != currentIndex && pos > -1 && pos < currentArray.length) {
+			selectedArray = currentArray;
 			selectedIndex = pos;
 			_start();
 		}
