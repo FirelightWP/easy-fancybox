@@ -493,16 +493,17 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.18 =
-Fix Jetpack Tiled Gallery compat + security issue reported by Jakob Hagl sba-research.org
+= 1.9 =
 
+Swipe support, new options, no background scrolling
 
 == Changelog ==
 
 = 1.9 =
-* TODO: show arrows permanently on border
 * NEW: no background scrolling
 * NEW: Swipe support
+* NEW: Option to work with deferred jQuery
+* Gallery arrows on edge
 * Smaller script and stylesheet
 * Remove redundant CSS
 * Drop pre-CSS3 support
