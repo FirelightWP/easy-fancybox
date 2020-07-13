@@ -434,6 +434,13 @@ $efb_options = array (
 						'default' => '',
 						'description' => __('Do not include standard WordPress jQuery library (do this only if you are sure jQuery is included from another source!)','easy-fancybox')
 					),
+					'jQueryDeferred' => array (
+						'id' => 'fancybox_jQueryDeferred',
+						'input' => 'checkbox',
+						'hide' => true,
+						'default' => '',
+						'description' => __('Try to work with deferred jQuery (fires FancyBox as late as possible)','easy-fancybox')
+					),
 					'pre45Compat' => array (
 						'id' => 'fancybox_pre45Compat',
 						'input' => 'checkbox',

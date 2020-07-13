@@ -380,10 +380,18 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 	public static function onready_callback( $content )
 	{
-		$content .= 'jQuery(easy_fancybox_handler);jQuery(document).on(\'' . implode(" ", self::$events) . '\',easy_fancybox_handler);' . PHP_EOL;
+		$late = get_option( 'fancybox_jQueryDeferred' ) ? true : false;
+
+		if ( $late )
+			$content .= 'window[addEventListener?"addEventListener":"attachEvent"](addEventListener?"load":"onload",function(){';
+
+		$content .= 'jQuery(easy_fancybox_handler);jQuery(document).on(\'' . implode(" ", self::$events) . '\',easy_fancybox_handler);';
 
 		if ( self::$onready_auto )
 			$content .=	apply_filters( 'easy_fancybox_onready_auto', 'jQuery(easy_fancybox_auto);' );
+
+		if ( $late )
+			$content .= '});';
 
 		return $content;
 	}
