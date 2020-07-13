@@ -65,6 +65,9 @@ class easyFancyBox {
 				if ( isset($_value['input']) && 'checkbox'==$_value['input'] )
 					$parm = ( '1' == $parm ) ? 'true' : 'false';
 
+				// keep global value for later reference
+				${$_key} = $parm;
+
 				if( !isset($_value['hide']) && $parm!='' ) {
 					$quote = (is_numeric($parm) || (isset($_value['noquotes']) && $_value['noquotes'] == true) ) ? '' : '\'';
 					if ($more>0)
@@ -72,8 +75,6 @@ class easyFancyBox {
 					$script .= '\''.$_key.'\':';
 					$script .= $quote.$parm.$quote;
 					$more++;
-				} else {
-					${$_key} = $parm;
 				}
 			}
 		}
@@ -111,7 +112,7 @@ var fb_'.$key.'_select=\'';
 							$type = '.'.$type;
 						if ($more>0)
 							$script .= ',';
-						$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
+						$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox>a,a[href*="?s="]),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
 						$more++;
 					}
 					$script .= '\';';
@@ -249,7 +250,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		// HEADER STYLES //
 
 		// customized styles
-		$styles = '';
+		$styles = '.fancybox-hidden{display:none}';
 		if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight )
 			$styles .= '#fancybox-overlay{background-attachment:fixed;background-image:url("' . self::$plugin_url . 'images/light-mask.png");background-position:center;background-repeat:no-repeat;background-size:100% 100%}';
 
@@ -273,8 +274,10 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		if ( !empty($titleColor) )
 			$styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
 
-		if ( !empty($styles) )
-			self::$inline_style = wp_strip_all_tags( $styles, true );
+		if ( 'false' !== $autoScale )
+			$styles .= 'html.fancybox-active,html.fancybox-active body{touch-action:none;overscroll-behavior:none;-webkit-overflow-scrolling:auto;overflow:hidden;}';
+
+		self::$inline_style = wp_strip_all_tags( $styles, true );
 
 		return true;
 	}
@@ -377,10 +380,18 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 
 	public static function onready_callback( $content )
 	{
-		$content .= 'jQuery(easy_fancybox_handler);jQuery(document).on(\'' . implode(" ", self::$events) . '\',easy_fancybox_handler);' . PHP_EOL;
+		$late = get_option( 'fancybox_jQueryDeferred' ) ? true : false;
+
+		if ( $late )
+			$content .= 'window[addEventListener?"addEventListener":"attachEvent"](addEventListener?"load":"onload",function(){';
+
+		$content .= 'jQuery(easy_fancybox_handler);jQuery(document).on(\'' . implode(" ", self::$events) . '\',easy_fancybox_handler);';
 
 		if ( self::$onready_auto )
 			$content .=	apply_filters( 'easy_fancybox_onready_auto', 'jQuery(easy_fancybox_auto);' );
+
+		if ( $late )
+			$content .= '});';
 
 		return $content;
 	}
@@ -389,11 +400,13 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	{
 		if ( !$old_version ) { // upgrade from 1.7 or older
 			if ( 'html' === get_option('fancybox_PDFclassType') ) {
-				update_option('fancybox_PDFonStart', 'function(a,i,o){o.type=\'pdf\';}');
-				delete_option('fancybox_PDFclassType');
+				update_option( 'fancybox_PDFonStart', 'function(a,i,o){o.type=\'pdf\';}' );
+				delete_option( 'fancybox_PDFclassType' );
 			}
 		} elseif ( version_compare( '1.9', $old_version, '>' ) ) {
-			delete_option('fancybox_compatIE8');			
+			delete_option( 'fancybox_compatIE8' );
+			delete_option( 'fancybox_centerOnScroll' );
+			delete_option( 'fancybox_opacity' );
 		}
 		// mark upgrade done
 		update_option('easy_fancybox_version', EASY_FANCYBOX_VERSION);
