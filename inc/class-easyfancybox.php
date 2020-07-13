@@ -65,6 +65,9 @@ class easyFancyBox {
 				if ( isset($_value['input']) && 'checkbox'==$_value['input'] )
 					$parm = ( '1' == $parm ) ? 'true' : 'false';
 
+				// keep global value for later reference
+				${$_key} = $parm;
+
 				if( !isset($_value['hide']) && $parm!='' ) {
 					$quote = (is_numeric($parm) || (isset($_value['noquotes']) && $_value['noquotes'] == true) ) ? '' : '\'';
 					if ($more>0)
@@ -72,8 +75,6 @@ class easyFancyBox {
 					$script .= '\''.$_key.'\':';
 					$script .= $quote.$parm.$quote;
 					$more++;
-				} else {
-					${$_key} = $parm;
 				}
 			}
 		}
@@ -249,7 +250,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		// HEADER STYLES //
 
 		// customized styles
-		$styles = '';
+		$styles = '.fancybox-hidden{display:none}';
 		if ( isset($overlaySpotlight) && 'true' == $overlaySpotlight )
 			$styles .= '#fancybox-overlay{background-attachment:fixed;background-image:url("' . self::$plugin_url . 'images/light-mask.png");background-position:center;background-repeat:no-repeat;background-size:100% 100%}';
 
@@ -273,8 +274,10 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 		if ( !empty($titleColor) )
 			$styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
 
-		if ( !empty($styles) )
-			self::$inline_style = wp_strip_all_tags( $styles, true );
+		if ( 'false' !== $autoScale )
+			$styles .= 'html.fancybox-active,html.fancybox-active body{touch-action:none;overscroll-behavior:none;-webkit-overflow-scrolling:auto;overflow:hidden;}';
+
+		self::$inline_style = wp_strip_all_tags( $styles, true );
 
 		return true;
 	}

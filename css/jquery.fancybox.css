@@ -8,7 +8,7 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
  * Copyright (c) 2020 - RavanH
- * Version: 1.4.1 (2020/06/14)
+ * Version: 1.4 (2020/06/15)
  *
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -24,7 +24,7 @@
 #fancybox-title, #fancybox-title div,
 #fancybox-prev, #fancybox-next, .fancy-ico {
 	-webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
+	-moz-box-sizing: content-box;
 	box-sizing: content-box;
 }
 
@@ -120,10 +120,10 @@
 	box-shadow: 0 0 4px #000;
 	transition: transform .25s ease-in-out;
 }
-#fancybox-close:hover, #fancybox-next-ico:hover {
+#fancybox-close:hover, #fancybox-next:hover, .rtl #fancybox-prev:hover {
   transform: rotate(360deg);
 }
-#fancybox-prev-ico:hover {
+#fancybox-prev:hover, .rtl #fancybox-next:hover {
   transform: rotate(-360deg);
 }
 /* close button */
@@ -136,7 +136,7 @@
 }
 #fancybox-close::after, #fancybox-close::before {
     position: absolute;
-		top: 9px;
+	top: 9px;
     left: 4px;
     content: '';
     width: 12px;
@@ -152,44 +152,25 @@
 
 /* navigation elements */
 #fancybox-prev, #fancybox-next {
-	position: absolute;
-	bottom: 0px;
-	height: 100%;
-	width: 35%;
+	top: 50%;
+	margin-top: -10px;
 	cursor: pointer;
-	background: initial;
 	z-index: 111102;
 	display: none;
 }
 
-#fancybox-prev {
-	left: 0px;
-}
-
+#fancybox-next,
 .rtl #fancybox-prev {
-	left:auto;
-	right:0px
+	left: auto;
+	right: -12px;
 }
 
-#fancybox-next {
-	right: 0px;
-}
-
+#fancybox-prev,
 .rtl #fancybox-next {
-	left:0px;
-	right:auto
+	left: -12px;
+	right: auto;
 }
-
-#fancybox-prev-ico, #fancybox-next-ico {
-	top: 50%;
-	left: -9999px;
-	margin-top: -12px;
-	cursor: pointer;
-	z-index: 111103;
-	display: block;
-}
-
-#fancybox-prev-ico::after, #fancybox-next-ico::after {
+#fancybox-prev::after, #fancybox-next::after {
 	content: '';
 	position: absolute;
 	top: 6px;
@@ -198,26 +179,14 @@
 	border-top: 2px solid #fff;
 	border-right: 2px solid #fff;
 }
-
-#fancybox-prev-ico::after, .rtl #fancybox-next-ico::after {
+#fancybox-prev::after, .rtl #fancybox-next::after {
 	transform: rotate(-135deg);
 	left: 7px;
 }
-
-#fancybox-next-ico::after, .rtl #fancybox-prev-ico::after {
+#fancybox-next::after, .rtl #fancybox-prev::after {
 	transform: rotate(45deg);
 	left: initial;
 	right: 7px;
-}
-
-#fancybox-prev:hover .fancy-ico, .rtl #fancybox-next:hover .fancy-ico {
-	right:auto;
-	left: 20px;
-}
-
-#fancybox-next:hover .fancy-ico, .rtl #fancybox-prev:hover .fancy-ico {
-	left: auto;
-	right: 20px;
 }
 
 /* title elements */
@@ -363,17 +332,4 @@
   100% {
     opacity: 0;
   }
-}
-
-/* other */
-
-.fancybox-hidden {
-	display:none
-}
-
-html.fancybox-active, html.fancybox-active body {
-	touch-action: none;
-	overscroll-behavior: none;
-	-webkit-overflow-scrolling: auto;
-	overflow: hidden;
 }

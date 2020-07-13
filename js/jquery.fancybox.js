@@ -8,7 +8,7 @@
 * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
 *
 * Copyright (c) 2020 - RavanH
-* Version: 1.4.1 (2020/06/14)
+* Version: 1.4 (2020/06/15)
 * Requires: jQuery v1.7+
 *
 * Licensed GPLv3
@@ -1093,8 +1093,8 @@
 			close = $('<a id="fancybox-close" class="fancy-ico"></a>'),
 			title = $('<div id="fancybox-title"></div>'),
 
-			nav_prev = $('<a id="fancybox-prev"><span class="fancy-ico" id="fancybox-prev-ico"></span></a>'),
-			nav_next = $('<a id="fancybox-next"><span class="fancy-ico" id="fancybox-next-ico"></span></a>')
+			nav_prev = $('<a id="fancybox-prev" class="fancy-ico"></a>'),
+			nav_next = $('<a id="fancybox-next" class="fancy-ico"></a>')
 		);
 
 		close.click($.fancybox.close);
