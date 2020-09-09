@@ -491,7 +491,7 @@ $efb_options = array(
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox,area.fancybox,li.fancybox a'
+				'default' => 'a.fancybox,area.fancybox,.fancybox a'
 			),
 			'class' => array(
 				'hide' => true,
@@ -741,11 +741,7 @@ $efb_options = array(
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox-inline,area.fancybox-inline,li.fancybox-inline a'
-			),
-			'class' => array(
-				'hide' => true,
-				'default' => 'fancybox-inline'
+				'default' => 'a.fancybox-inline,area.fancybox-inline,.fancybox-inline a'
 			),
 			'type' => array(
 				'default' => 'inline'
@@ -1005,7 +1001,7 @@ $efb_options = array(
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox-pdf,area.fancybox-pdf,li.fancybox-pdf a'
+				'default' => 'a.fancybox-pdf,area.fancybox-pdf,.fancybox-pdf a'
 			),
 			'class' => array(
 				'hide' => true,
@@ -1116,7 +1112,7 @@ $efb_options = array(
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox-swf,area.fancybox-swf,li.fancybox-swf a'
+				'default' => 'a.fancybox-swf,area.fancybox-swf,.fancybox-swf a'
 			),
 			'class' => array(
 				'hide' => true,
@@ -1211,7 +1207,7 @@ $efb_options = array(
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox-svg,area.fancybox-svg,li.fancybox-svg a'
+				'default' => 'a.fancybox-svg,area.fancybox-svg,.fancybox-svg a'
 			),
 			'class' => array(
 				'hide' => true,
@@ -1307,7 +1303,7 @@ $efb_options = array(
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox-youtube,area.fancybox-youtube,li.fancybox-youtube a'
+				'default' => 'a.fancybox-youtube,area.fancybox-youtube,.fancybox-youtube a'
 			),
 			'class' => array(
 				'hide' => true,
@@ -1419,7 +1415,7 @@ $efb_options = array(
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox-vimeo,area.fancybox-vimeo,li.fancybox-vimeo a'
+				'default' => 'a.fancybox-vimeo,area.fancybox-vimeo,.fancybox-vimeo a'
 			),
 			'class' => array(
 				'hide' => true,
@@ -1522,7 +1518,7 @@ $efb_options = array(
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox-dailymotion,area.fancybox-dailymotion,li.fancybox-dailymotion a'
+				'default' => 'a.fancybox-dailymotion,area.fancybox-dailymotion,.fancybox-dailymotion a'
 			),
 			'class' => array(
 				'hide' => true,
@@ -1644,7 +1640,7 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 			),
 			'tag' => array(
 				'hide' => true,
-				'default' => 'a.fancybox-iframe,area.fancybox-iframe,li.fancybox-iframe a'
+				'default' => 'a.fancybox-iframe,area.fancybox-iframe,.fancybox-iframe a'
 			),
 			'class' => array(
 				'hide' => true,
@@ -1721,4 +1717,5 @@ http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
 			)
 		)
 	)
+
 );
