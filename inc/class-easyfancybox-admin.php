@@ -106,6 +106,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 						self::settings_fields($options);
 					if (isset($args['description'])) echo $args['description'];
 					break;
+
 				case 'select':
 					if( !empty($args['label_for']) )
 						echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
@@ -125,6 +126,17 @@ class easyFancyBox_Admin extends easyFancyBox {
 					else
 						if (isset($args['description'])) echo $args['description'];
 					break;
+
+				case 'radio':
+					if (isset($args['title'])) echo '<strong>' . $args['title'] . '</strong><br>';
+					foreach ($args['options'] as $optionkey => $optionvalue) {
+						$selected = (get_option($args['id'], $args['default']) == $optionkey) ? ' selected="selected"' : '';
+						echo '
+						<label><input type="radio" name="' . $args['id'] . '" value="'.esc_attr($optionkey).'"'.$selected.' '.$disabled.' > '.$optionvalue.'</label><br>';
+					}
+					if (isset($args['description'])) echo $args['description'];
+					break;
+
 				case 'checkbox':
 					if( !empty($args['label_for']) )
 						echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
@@ -146,6 +158,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 						echo '
 					<input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '.$checked.' '.$disabled.' /> '.$args['description'].'<br />';
 					break;
+
 				case 'text':
 				case 'color': // TODO make color picker available for color values but do NOT use type="color" because that does not allow empty fields!
 					if( !empty($args['label_for']) )
@@ -159,6 +172,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 					else
 						if (isset($args['description'])) echo $args['description'];
 					break;
+
 				case 'number':
 					if( !empty($args['label_for']) )
 						echo '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
@@ -171,10 +185,12 @@ class easyFancyBox_Admin extends easyFancyBox {
 					else
 						if (isset($args['description'])) echo $args['description'];
 					break;
+
 				case 'hidden':
 					echo '
 					<input type="hidden" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" /> ';
 					break;
+
 				default:
 					if (isset($args['description'])) echo $args['description'];
 			}

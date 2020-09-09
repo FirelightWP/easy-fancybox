@@ -33,6 +33,13 @@ $efb_options = array(
 						'default' => '',
 						'description' => '<strong>' . __('Inline content','easy-fancybox') . '</strong>'
 					),
+					'Subscription' => array(
+						'id' => 'fancybox_enableSubscription',
+						'input' => 'checkbox',
+						'hide' => true,
+						'default' => '',
+						'description' => '<strong>' . __('Subscription form','easy-fancybox') . '</strong>'
+					),
 					'PDF' => array(
 						'id' => 'fancybox_enablePDF',
 						'input' => 'checkbox',
@@ -336,6 +343,7 @@ $efb_options = array(
 						'options' => array(
 							'' => translate('None'),
 							'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
+							'subscription' => __('Subscription form','easy-fancybox'),
 						),
 						'default' => '1',
 						'description' => '<em><a href="'.$efb_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
@@ -829,6 +837,155 @@ $efb_options = array(
 				'noquotes' => true,
 				'default' => '',
 				'description' => __('Close FancyBox when content is clicked','easy-fancybox')
+			),
+			'titleShow' => array(
+				'noquotes' => true,
+				'default' => 'false',
+			)
+		)
+	),
+
+	'Subscription' => array(
+		'title' => __('Subscription form','easy-fancybox'),
+		'input' => 'multiple',
+		'options' => array(
+			'intro' => array(
+				'hide' => true,
+				'description' => __('To make a subscription form open in an overlay, first select a subscription provider, then set up the form details below.','easy-fancybox') .
+					' ' . __('If you have not done so already, you can adhere to your chosen subscription provider via the link on the right.','easy-fancybox') .
+					' ' . __('Next, create ...','easy-fancybox') . 
+					' ' . sprintf( __('If you wish the subscription popup to open automatically, then set the option %1$s (above) to %2$s.','easy-fancybox'), '<strong>' . __('Open on page load','easy-fancybox') . '</strong>', '<strong>' . __('Subscription form','easy-fancybox') . '</strong>' ) .
+					'<br /><br />'
+			),
+			'tag' => array(
+				'hide' => true,
+				'default' => 'a.fancybox-subscription,.fancybox-subscription a'
+			),
+			'type' => array(
+				'default' => 'inline'
+			),
+			'subscriptionProvider' => array(
+				'id' => 'fancybox_subscriptionProvider',
+				'title' => __('Subscription provider','easy-fancybox'),
+				'input' => 'radio',
+				'options' => array(
+					'https://api.follow.it/subscribe?pub=FTZLeoxIAQYdnqrsK0305HOFESPuQWsX' => __('Follow.it','easy-fancybox') . ' <em><a href="https://follow.it/s/JywF" target="_blank">' . __('Get an account &raquo;','easy-fancybox') . '</a> ' . __('(affiliate link, free tier available)','easy-fancybox') . '</em>',
+					'#' => __('Jetpack','easy-fancybox') . ' <em><a href="https://jetpack.com/?aff=73&cid=11955953" target="_blank">' . __('Get an account &raquo;','easy-fancybox') . '</a> ' . __('(affiliate link, free tier available)','easy-fancybox') . '</em>',
+					/*'aweber' => __('Aweber','easy-fancybox'), https://blog.aweber.com/afftips/affiliate-url */
+					/* Mailjet: https://mailjet.tapfiliate.com/publisher/signup/mailjet-s-affiliate-program-1/ */
+				),
+				'default' => '',
+				'description' => ' <em>' . __('Choose your subscription provider.','easy-fancybox') . '</em><br /><br />'
+			),
+			'formTitle' => array(
+				'id' => 'fancybox_subscriptionFormTitle',
+				'title' => translate('Title'),
+				'label_for' => 'fancybox_subscriptionFormTitle',
+				'input' => 'text',
+				'class' => 'regular-text',
+				'hide' => true,
+				'default' => __('Get new posts by email','easy-fancybox'),
+				//'selector' => 'href*=',
+				'description' => '<br />'
+			),
+			'formText' => array(
+				'id' => 'fancybox_subscriptionFormText',
+				'title' => __('Call to action','easy-fancybox'),
+				'label_for' => 'fancybox_subscriptionFormText',
+				'input' => 'text',
+				'class' => 'regular-text',
+				'hide' => true,
+				'default' => '',
+				//'selector' => 'href*=',
+				'description' => '<br />'
+			),
+			'formPlaceholder' => array(
+				'id' => 'fancybox_subscriptionPlaceholder',
+				'title' => __('Placeholder text','easy-fancybox'),
+				'label_for' => 'fancybox_subscriptionPlaceholder',
+				'input' => 'text',
+				'class' => 'regular-text',
+				'hide' => true,
+				'default' => __('E-mail address','easy-fancybox'),
+				//'selector' => 'href*=',
+				'description' => '<br />'
+			),
+			'formButton' => array(
+				'id' => 'fancybox_subscriptionButton',
+				'title' => __('Button text','easy-fancybox'),
+				'label_for' => 'fancybox_subscriptionButton',
+				'input' => 'text',
+				'class' => 'regular-text',
+				'hide' => true,
+				'default' => __('Subscribe','easy-fancybox'),
+				//'selector' => 'href*=',
+				'description' => '<br />'
+			),
+			'formShowSubscribers' => array(
+				'id' => 'fancybox_subscriptionShowSubscribers',
+				'input' => 'checkbox',
+				'hide' => true,
+				'default' => '1',
+				//'selector' => '\'a[href*=".pdf"]:not(a[href*="?s="]),area[href*=".pdf"],a[href*=".PDF"]:not(a[href*="?s="]),area[href*=".PDF"]\'',
+				'description' => __('Show total number of subscribers?','easy-fancybox')
+			),
+			'transitionIn' => array(
+				'id' => 'fancybox_transitionInSubscription',
+				'title' => '<br><br>' . __('Transition In','easy-fancybox'),
+				'label_for' => 'fancybox_transitionInSubscription',
+				'input' => 'select',
+				'options' => array(
+					'none' => translate('None'),
+					'' => __('Fade','easy-fancybox'),
+					'elastic' => __('Elastic','easy-fancybox'),
+				),
+				'default' => '',
+				'description' => ' '
+			),
+			'easingIn' => array(
+				'id' => 'fancybox_easingInSubscription',
+				'title' => __('Easing In','easy-fancybox'),
+				'label_for' => 'fancybox_easingInSubscription',
+				'input' => 'select',
+				'options' => array(
+					'linear' => __('Linear','easy-fancybox'),
+					'' => __('Swing','easy-fancybox'),
+					'easeInBack' => __('easeInBack','easy-fancybox'),
+					'easeOutBack' => __('easeOutBack','easy-fancybox')
+				),
+				'default' => 'easeOutBack',
+				'description' => ' <em><a href="'.$efb_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />'
+			),
+			'transitionOut' => array(
+				'id' => 'fancybox_transitionOutSubscription',
+				'title' => __('Transition Out','easy-fancybox'),
+				'label_for' => 'fancybox_transitionOutSubscription',
+				'input' => 'select',
+				'options' => array(
+					'none' => translate('None'),
+					'' => __('Fade','easy-fancybox'),
+					'elastic' => __('Elastic','easy-fancybox'),
+				),
+				'default' => '',
+				'description' => ' '
+			),
+			'easingOut' => array(
+				'id' => 'fancybox_easingOutSubscription',
+				'title' => __('Easing Out','easy-fancybox'),
+				'label_for' => 'fancybox_easingOutSubscription',
+				'input' => 'select',
+				'options' => array(
+					'linear' => __('Linear','easy-fancybox'),
+					'' => __('Swing','easy-fancybox'),
+					'easeInBack' => __('easeInBack','easy-fancybox'),
+					'easeOutBack' => __('easeOutBack','easy-fancybox')
+				),
+				'default' => 'easeInBack',
+				'description' => ' <em><a href="'.$efb_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+			),
+			'hideOnContentClick' => array(
+				'noquotes' => true,
+				'default' => 'false',
 			),
 			'titleShow' => array(
 				'noquotes' => true,
