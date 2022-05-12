@@ -54,7 +54,6 @@ $efb_options = array (
 						'description' => '<strong>' . __('SVG','easy-fancybox') . '</strong>'
 					),
 					'VideoPress' => array (
-						'id' => 'fancybox_enableVideoPress',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
