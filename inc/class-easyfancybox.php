@@ -27,6 +27,8 @@ class easyFancyBox {
 
 	public static $events = array( 'post-load' );
 
+	public static $pro_plugin_url = "https://premium.status301.com/downloads/easy-fancybox-pro/";
+
 	/**********************
 	   MAIN INLINE SCRIPT
 	 **********************/

@@ -68,17 +68,8 @@ class easyFancyBox_Admin extends easyFancyBox {
 		echo '</p><p>'.__('First enable each sub-section that you need. Then save and come back to adjust its specific settings.','easy-fancybox').' '.__('Note: Each additional sub-section and features like <em>Auto-detection</em>, <em>Elastic transitions</em> and all <em>Easing effects</em> (except Swing) will have some extra impact on client-side page speed. Enable only those sub-sections and options that you actually need on your site.','easy-fancybox').' '.__('Some setting like Transition options are unavailable for SWF video, PDF and iFrame content to ensure browser compatibility and readability.','easy-fancybox').'</p>';
 
 		/* Black Friday offer */
-		if ( !class_exists('easyFancyBox_Advanced')
-			&& current_user_can( 'install_plugins' )
-			&& strtotime('now') > strtotime('23-11-2018')
-			&& strtotime('now') < strtotime('27-11-2018') ) {
-			echo '<p style="background-color:#F9D400;padding:5px 10px;border-radius:15px;box-shadow:#333 0 1px 1px;color:#000;">
-				<strong>Easy FancyBox advanced options at 30% OFF!</strong>
-				Black Friday to Cyber Monday: THE BIG 30 SALE at Status301.
-				<em>A whopping 30% discount but only for the first 30 customers.
-				After that, there will still be a discount of 15% for everybody until tuesday 0:00 GMT so
-				<strong><a href="https://premium.status301.com/black-friday-til-cyber-monday-big-30-sale/?discount=BFCM30" target="_blank">to take advantage of this opportunity</a></strong>
-				before it\'s too late</em>...</p>';
+		if ( ! class_exists('easyFancyBox_Advanced') ) {
+			echo '<p><a href="'.easyFancyBox::$pro_plugin_url.'"><strong><em>' . __('For advanced options and support, please get the Easy FancyBox - Pro extension.','easy-fancybox') . '</strong></a></p>';
 		}
 
 		// Pro extension version compatibility message
