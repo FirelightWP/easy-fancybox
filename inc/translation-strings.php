@@ -1,7 +1,6 @@
 <?php return;
 /**
- * This file exists solely to store the plugin translation strings.
- * It is never included anywhere, used only for PO parsing.
+ * This file exists solely to store the plugin translation strings, used only for PO parsing.
  */
 
 // Admin.
@@ -17,6 +16,7 @@ __('First Image link','easy-fancybox');
 __('First PDF link','easy-fancybox');
 __('First SWF link','easy-fancybox');
 __('First SVG link','easy-fancybox');
+__('First VideoPress link','easy-fancybox');
 __('First YouTube link','easy-fancybox');
 __('First Vimeo link','easy-fancybox');
 __('First Dailymotion link','easy-fancybox');
@@ -205,3 +205,5 @@ sprintf( /* Translators: http repsonse code */
 	__( 'Unexpected response code %d.', 'easy-fancybox' ),
 	'<code>' . $response . '</code>'
 );
+
+__('To make any VideoPress movie open in an overlay, switch on Autodetect or use the class "fancybox-videopress" for its link.','easy-fancybox');
