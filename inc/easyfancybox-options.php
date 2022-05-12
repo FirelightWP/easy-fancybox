@@ -22,71 +22,71 @@ $efb_options = array (
 						'id' => 'fancybox_enableImg',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => ( function_exists('is_plugin_active_for_network') && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1',
-						'description' => '<strong>' . __('Images','easy-fancybox') . '</strong>'
+						'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1',
+						'description' => '<strong>' . __( 'Images', 'easy-fancybox' ) . '</strong>' . ( get_option('fancybox_enableImg') ? ' &mdash; <a href="#IMG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Inline' => array (
 						'id' => 'fancybox_enableInline',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . __('Inline content','easy-fancybox') . '</strong>'
+						'description' => '<strong>' . __( 'Inline content', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableInline') ? ' &mdash; <a href="#Inline">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'PDF' => array (
 						'id' => 'fancybox_enablePDF',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . __('PDF','easy-fancybox') . '</strong>'
+						'description' => '<strong>' . __( 'PDF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enablePDF') ? ' &mdash; <a href="#PDF">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'SWF' => array (
 						'id' => 'fancybox_enableSWF',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . __('SWF','easy-fancybox') . '</strong>'
+						'description' => '<strong>' . __( 'SWF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSWF') ? ' &mdash; <a href="#SWF">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'SVG' => array (
 						'id' => 'fancybox_enableSVG',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . __('SVG','easy-fancybox') . '</strong>'
+						'description' => '<strong>' . __( 'SVG', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSVG') ? ' &mdash; <a href="#SVG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'VideoPress' => array (
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
 						'status' => 'disabled',
-						'description' => '<strong>' . __('VideoPress','easy-fancybox') . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+						'description' => '<strong>' . __( 'VideoPress', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 					'YouTube' => array (
 						'id' => 'fancybox_enableYoutube',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . __('YouTube','easy-fancybox') . '</strong>'
+						'description' => '<strong>' . __( 'YouTube', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableYouTube') ? ' &mdash; <a href="#YouTube">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Vimeo' => array (
 						'id' => 'fancybox_enableVimeo',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . __('Vimeo','easy-fancybox') . '</strong>'
+						'description' => '<strong>' . __( 'Vimeo', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableVimeo') ? ' &mdash; <a href="#Vimeo">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Dailymotion' => array (
 						'id' => 'fancybox_enableDailymotion',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . __('Dailymotion','easy-fancybox') . '</strong>'
+						'description' => '<strong>' . __( 'Dailymotion', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableDailymotion') ? ' &mdash; <a href="#Dailymotion">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'iFrame' => array (
 						'id' => 'fancybox_enableiFrame',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . __('iFrames','easy-fancybox') . '</strong>'
+						'description' => '<strong>' . __('iFrames','easy-fancybox') . '</strong>' . '</strong>' . ( get_option('fancybox_enableiFrame') ? ' &mdash; <a href="#iFrame">' . translate( 'Settings' ) . '</a>' : '' )
 					)
 				),
 				'description' => ''
@@ -1150,6 +1150,9 @@ $efb_options = array (
 				'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
 			)
 		)
+	),
+
+	'VideoPress' => array(
 	),
 
 	'YouTube' => array(

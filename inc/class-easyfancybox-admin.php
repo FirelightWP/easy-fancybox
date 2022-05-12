@@ -41,7 +41,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 					break;
 
 				case 'multiple':
-					add_settings_field( 'fancybox_'.$key, '<a name="'.$value['title'].'"></a>'.$value['title'], array( __CLASS__, 'settings_fields' ), 'media', 'fancybox_section', $value);
+					add_settings_field( 'fancybox_'.$key, '<a name="'.$key.'"></a>'.$value['title'], array( __CLASS__, 'settings_fields' ), 'media', 'fancybox_section', $value);
 					foreach ( $value['options'] as $_value ) {
 						if ( !isset($_value['sanitize_callback']) )
 							$sanitize_callback = '';
@@ -93,7 +93,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 	}
 
 	// Add our FancyBox Media Settings Fields.
-	public static function settings_fields($args)
+	public static function settings_fields( $args )
 	{
 		$output = array();
 
@@ -184,7 +184,9 @@ class easyFancyBox_Admin extends easyFancyBox {
 					break;
 
 				default:
-					if ( isset($args['description']) ) $output[] = $args['description'];
+					if ( isset( $args['description'] ) ) {
+						$output[] = $args['description'];
+					}
 
 			}
 
