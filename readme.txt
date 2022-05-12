@@ -493,11 +493,14 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.18 =
-Fix Jetpack Tiled Gallery compat + security issue reported by Jakob Hagl sba-research.org
+= 1.8.19 =
 
+Pro compatibility message for VideoPress.
 
 == Changelog ==
+
+= 1.8.19 =
+* Pro compatibility message for VideoPress
 
 = 1.8.18 =
 * FIX: Jetpack Tiled Gallery block compatibility
