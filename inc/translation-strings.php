@@ -3,10 +3,6 @@
  * This file exists solely to store the plugin translation strings, used only for PO parsing.
  */
 
-// Admin.
-__('Thank you for purchasing the Easy FancyBox - Pro extension. New options are available.','easy-fancybox');
-__('Get support here.','easy-fancybox');
-
 // Appearance.
 __('Set a border radius to create rounded corners. Higher is rounder.','easy-fancybox');
 
