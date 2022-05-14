@@ -495,11 +495,12 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 = 1.8.19 =
 
-Pro compatibility message for VideoPress.
+Admin settings links, Pro compatibility message for VideoPress.
 
 == Changelog ==
 
 = 1.8.19 =
+* Admin settings links
 * Pro compatibility message for VideoPress
 
 = 1.8.18 =
