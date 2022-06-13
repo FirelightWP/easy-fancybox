@@ -89,7 +89,7 @@ If you wish to help build this plugin, you're very welcome to [translate Easy Fa
 
 = Plugin conflicts =
 
-- **jQuery Updater** moves jQuery to version 2+ which is incompatible.
+- Google Translate plugins like **GTranslate**, **Weglot** and **Google Language Translator** cause the light box to be off-center, pushed downward for logged-in users (with admin bar). A work-around: add `.admin-bar #fancybox-outer{margin-top:-32px}` to Custom CSS in your theme Customizer.
 - **WP Slimstat** and **Matomo/Piwik** with Track Outbound Clicks enabled, will break the light box effect on some browsers. Adding `fancybox` (or any of the other classes like `fancybox-youtube,fancybox-iframe,fancybox-inline` depending on which media should be displayed in FancyBox) to the Do Not Track field is reported to solve the issue. Slimstat also might interfere with the YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
 - **Google Analytics for WordPress** converts links like `href="#anyID"` to `href="http://yoursite.url/page/#anyID"`, disabling inline content shown in FancyBox.
 - Both the **uBillBoard** and **Camera slideshow** have their own easing script hard-coded which conflicts with the one in Easy FancyBox. The only way around the conflict is to set both the Easing In and Easing Out options on your Settings > Media page to **Swing**.
@@ -502,6 +502,7 @@ Admin settings links, Pro compatibility message for VideoPress.
 = 1.8.19 =
 * Admin settings links
 * Pro compatibility message for VideoPress
+* FIX: border 0 ignored sometimes
 
 = 1.8.18 =
 * FIX: Jetpack Tiled Gallery block compatibility
