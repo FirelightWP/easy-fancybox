@@ -3,8 +3,8 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
-Tested up to: 5.9
-Stable tag: 1.8.18
+Tested up to: 6.0
+Stable tag: 1.8.19
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -495,7 +495,7 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 = 1.8.19 =
 
-Admin settings links, Pro compatibility message for VideoPress.
+Admin settings links, new Exclude selector option.
 
 == Changelog ==
 
