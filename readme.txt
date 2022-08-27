@@ -667,7 +667,7 @@ Admin settings links, Pro compatibility message for VideoPress.
 * Some small Touch device compatibility improvement hacks to the 1.3.4 script
 * Major plugin overhaul: Class implementation
 * NEW: Disable hide on overlay click
-* NEW: Allow automatic resizing to large image size set on Settings > Media during media upload via the hidden WordPress function media_upload_max_image_resize() TODO test more!
+* NEW: Allow automatic resizing to large image size set on Settings > Media during media upload via the hidden WordPress function media_upload_max_image_resize()
 * NEW Options: iFrame scrolling, autoScale, key navigation/close, cyclic galleries
 * Metadata custom parameters and Mousewheel gallery scrolling scripts optional
 * Basic RTL languages/text direction support (gallery navigation inversion, title position)
