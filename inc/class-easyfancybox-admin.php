@@ -254,6 +254,27 @@ class easyFancyBox_Admin extends easyFancyBox {
 		return $sanitized;
 	}
 
+	public static function csl_text( $setting = '' ) {
+		$settings_array = explode( ',', $setting );
+
+		$sanitized_array = array();
+		foreach ( $settings_array as $text ) {
+			if ( empty( $text ) ) {
+				continue;
+			}
+			$sanitized_array[] = sanitize_text_field( $text );
+		}
+
+		$json = wp_json_encode( $sanitized_array );
+		if ( ! $json ) {
+			return '';
+		}
+		$sanitized_array = json_decode( $json );
+		$sanitized = implode( ',', $sanitized_array );
+
+		return $sanitized;
+	}
+
 	/***********************
 	    ACTIONS & FILTERS
 	 ***********************/

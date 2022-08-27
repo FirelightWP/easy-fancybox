@@ -54,6 +54,7 @@ $efb_options = array (
 						'description' => '<strong>' . __( 'SVG', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSVG') ? ' &mdash; <a href="#SVG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'VideoPress' => array (
+						'id' => 'fancybox_enableVideoPress',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
@@ -480,6 +481,17 @@ $efb_options = array (
 						'status' => 'disabled',
 						'default' =>  '',
 						'description' => __('WPBakery / Visual Composer - Masonry Grid Gallery compatibility.','easy-fancybox') . ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
+					),
+					'autoExclude' => array (
+						'id' => 'fancybox_autoExclude',
+						'title' => __('Exclude','easy-fancybox'),
+						'label_for' => 'fancybox_autoExclude',
+						'input' => 'text',
+						'class' => 'regular-text',
+						'hide' => true,
+						'default' => '.nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
+						'sanitize_callback' => 'csl_text',
+						'description' => __('A comma-separated list of selectors for elements to which FancyBox should not automatically bind itself. Media links inside these elements will be ignored by Autodetect.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
 					)
 				)
 			)
@@ -509,9 +521,10 @@ $efb_options = array (
 				'input' => 'text',
 				'class' => 'regular-text',
 				'hide' => true,
-				'default' => '.jpg .jpeg .png .webp',
+				'default' => '.jpg,.png,.webp',
+				'sanitize_callback' => 'csl_text',
 				'selector' => 'href*=',
-				'description' => ' <em>' . __('Example:','easy-fancybox') . ' .jpg .jpeg .png .gif</em><br />'
+				'description' => __('A comma-separated list of image file extensions to which FancyBox should automatically bind itself.','easy-fancybox') . ' <em>' . __('Example:','easy-fancybox') . ' .jpg,.png,.gif,.jpeg</em><br />'
 			),
 			'autoAttributeLimit' => array (
 				'id' => 'fancybox_autoAttributeLimit',

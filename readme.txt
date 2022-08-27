@@ -502,6 +502,7 @@ Admin settings links, Pro compatibility message for VideoPress.
 = 1.8.19 =
 * Admin settings links
 * Pro compatibility message for VideoPress
+* NEW: Exclude selector option
 * FIX: border 0 ignored sometimes
 
 = 1.8.18 =

@@ -84,38 +84,48 @@ class easyFancyBox {
 
 		$script .= ' };
 if(typeof easy_fancybox_handler===\'undefined\'){
-var easy_fancybox_handler=function(){
-jQuery(\'.nofancybox,a.wp-block-file__button,a.pin-it-button,a[href*="pinterest.com/pin/create"],a[href*="facebook.com/share"],a[href*="twitter.com/share"]\').addClass(\'nolightbox\');';
+var easy_fancybox_handler=function(){';
+
+		$exclude = get_option( 'fancybox_autoExclude', self::$options['Global']['options']['Miscellaneous']['options']['autoExclude']['default'] );
+		$exclude_array = $exclude ? explode( ',', $exclude ) : array();
+		$exclude_selectors = ! empty( $exclude_array ) ? wp_json_encode( $exclude_array ) : false;
+		if ( $exclude_selectors ) {
+			$script .= '
+	jQuery(' . $exclude_selectors . '.join(\',\')).addClass(\'nofancybox\');';
+		}
+
+		$script .= '
+	jQuery(\'a.fancybox-close\').on(\'click\',function(e){e.preventDefault();jQuery.fancybox.close()});';
 
 		foreach (self::$options as $key => $value) {
 			// Check if not enabled or hide=true then skip.
-			if ( isset($value['hide']) || !get_option(self::$options['Global']['options']['Enable']['options'][$key]['id'], self::$options['Global']['options']['Enable']['options'][$key]['default']) )
+			if ( isset( $value['hide'] ) || ! isset( self::$options['Global']['options']['Enable']['options'][$key]['id'] ) || ! get_option( self::$options['Global']['options']['Enable']['options'][$key]['id'], self::$options['Global']['options']['Enable']['options'][$key]['default'] ) )
 				continue;
 
 			$script .= '
-/* ' . $key . ' */';
+	/* ' . $key . ' */';
 
 			/**
 			 * Auto-detection routines (2x)
 			 */
-			$autoAttribute = isset($value['options']['autoAttribute']) ? get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] ) : '';
+			$autoAttribute = isset( $value['options']['autoAttribute'] ) ? get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] ) : '';
 
 			if ( !empty($autoAttribute) ) {
 				if ( is_numeric($autoAttribute) ) {
 					$script .= '
-jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nolightbox,li.nolightbox>a\').addClass(\''.$value['options']['class']['default'].'\');';
+	jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.nofancybox>a\').addClass(\''.$value['options']['class']['default'].'\');';
 				} else {
 					// Set selectors.
-					$file_types = array_filter( explode( ' ', str_replace( ',', ' ', $autoAttribute ) ) );
+					$file_types = array_filter( explode( ',', str_replace( ' ', ',', $autoAttribute ) ) );
 					$more = 0;
 					$script .= '
-var fb_'.$key.'_select=\'';
+	var fb_'.$key.'_select=\'';
 					foreach ( $file_types as $type ) {
-						if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "gif")
+						if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "webp" || $type == "gif")
 							$type = '.'.$type;
 						if ($more>0)
 							$script .= ',';
-						$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox,li.nolightbox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nolightbox)';
+						$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox,li.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)';
 						$more++;
 					}
 					$script .= '\';';
@@ -126,8 +136,8 @@ var fb_'.$key.'_select=\'';
 					if( '1' == get_option($value['options']['autoAttributeLimit']['id'],$value['options']['autoAttributeLimit']['default']) ) {
 						// Add class.
 						$script .= '
-var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
-fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+	var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
+	fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 						// Set rel.
 						switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 							case '':
@@ -146,7 +156,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 					} else {
 						// Add class.
 						$script .= '
-jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+	jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 						// Set rel.
 						switch( get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 							case '':
@@ -156,8 +166,8 @@ jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\
 
 							case '1':
 								$script .= ';
-var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
-fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
+	var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
+	fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 								break;
 
 							case '2':
@@ -177,7 +187,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 				$trigger = $value['options']['class']['default'];
 
 			$script .= '
-jQuery(\'' . $value['options']['tag']['default'] . '\')';
+	jQuery(\'' . $value['options']['tag']['default'] . '\')';
 
 			// Use each() to allow different metadata values per instance; fix by Elron. Thanks!
 			$script .= '.each(function(){';
@@ -210,9 +220,8 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 			$script .= '});';
 		}
 
-		$script .= '};
-jQuery(\'a.fancybox-close\').on(\'click\',function(e){e.preventDefault();jQuery.fancybox.close()});
-};';
+		$script .= '
+};};';
 
 		if ( empty($delayClick) ) $delayClick = '0';
 
