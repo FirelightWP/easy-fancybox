@@ -9,8 +9,6 @@ class easyFancyBox {
 
 	public static $plugin_basename;
 
-	public static $plugin_dir;
-
 	private static $inline_script;
 
 	private static $inline_style;
@@ -455,7 +453,7 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	public static function load_defaults()
 	{
 		if ( empty( self::$options ) ) {
-			include self::$plugin_dir . '/inc/easyfancybox-options.php';
+			include EASY_FANCYBOX_DIR . '/inc/easyfancybox-options.php';
 			self::$options = $efb_options;
 		}
 	}
@@ -485,12 +483,11 @@ var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$tr
 	         RUN
 	 **********************/
 
-	public function __construct( $file )
+	public function __construct()
 	{
 		// VARS
-		self::$plugin_url = plugins_url( '/', $file );
-		self::$plugin_basename = plugin_basename( $file );
-		self::$plugin_dir = dirname( $file );
+		self::$plugin_url = plugins_url( '/', EASY_FANCYBOX_DIR );
+		self::$plugin_basename = plugin_basename( EASY_FANCYBOX_DIR );
 
 		add_action( 'init', array(__CLASS__, 'maybe_upgrade') );
 		add_action( 'init', array(__CLASS__, 'load_defaults') );

@@ -38,19 +38,20 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  **************/
 
 define( 'EASY_FANCYBOX_VERSION', '1.8.19' );
-define( 'FANCYBOX_VERSION', '1.3.24' );
+define( 'FANCYBOX_VERSION', '3.5.7' );
 define( 'MOUSEWHEEL_VERSION', '3.1.13' );
 define( 'EASING_VERSION', '1.4.1' );
 define( 'METADATA_VERSION', '2.22.1' );
+define( 'EASY_FANCYBOX_DIR', dirname( __FILE__ ) );
 
 /**************
  *   CLASSES
  **************/
 
-require_once dirname( __FILE__ ) . '/inc/class-easyfancybox.php';
-new easyFancyBox( __FILE__ );
+require_once EASY_FANCYBOX_DIR . '/inc/class-easyfancybox.php';
+new easyFancyBox();
 
 if ( is_admin() ) {
-    require_once dirname( __FILE__ ) . '/inc/class-easyfancybox-admin.php';
+    require_once EASY_FANCYBOX_DIR . '/inc/class-easyfancybox-admin.php';
     new easyFancyBox_Admin();
 }
