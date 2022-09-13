@@ -1,0 +1,325 @@
+<?php
+/**
+ * FancyBox v1
+ */
+
+namespace easyFancyBox\fancyBox_1;
+
+/**
+ * MAIN INLINE SCRIPT
+ */
+
+function prepare_inline() {
+	// Begin building output FancyBox settings.
+	$script = 'var fb_timeout, fb_opts={';
+
+	/**
+	 * Global settings routine.
+	 */
+	$more = 0;
+	foreach ( \easyFancyBox::$options['Global']['options'] as $globals ) {
+		foreach ( $globals['options'] as $_key => $_value ) {
+			if ( isset($_value['id']) )
+				if ( isset($_value['default']) )
+					$parm = \get_option($_value['id'], $_value['default']);
+				else
+					$parm = \get_option($_value['id']);
+			elseif ( isset($_value['default']) )
+				$parm = $_value['default'];
+			else
+				$parm = '';
+
+			if ( isset($_value['input']) && 'checkbox'==$_value['input'] )
+				$parm = ( '1' == $parm ) ? 'true' : 'false';
+
+			if( ! isset($_value['hide']) && $parm!='' ) {
+				$quote = ( is_numeric($parm) || (isset($_value['noquotes']) && $_value['noquotes'] == true) ) ? '' : '\'';
+				if ($more>0)
+					$script .= ',';
+				$script .= '\''.$_key.'\':';
+				$script .= $quote.$parm.$quote;
+				$more++;
+			} else {
+				${$_key} = $parm;
+			}
+		}
+	}
+
+	$script .= ' };
+if(typeof easy_fancybox_handler===\'undefined\'){
+var easy_fancybox_handler=function(){';
+
+	$exclude = \get_option( 'fancybox_autoExclude', \easyFancyBox::$options['Global']['options']['Miscellaneous']['options']['autoExclude']['default'] );
+	$exclude_array = $exclude ? explode( ',', $exclude ) : array();
+	$exclude_selectors = ! empty( $exclude_array ) ? \wp_json_encode( $exclude_array ) : false;
+	if ( $exclude_selectors ) {
+		$script .= '
+jQuery(' . $exclude_selectors . '.join(\',\')).addClass(\'nofancybox\');';
+	}
+
+	$script .= '
+jQuery(\'a.fancybox-close\').on(\'click\',function(e){e.preventDefault();jQuery.fancybox.close()});';
+
+	foreach ( \easyFancyBox::$options as $key => $value ) {
+		// Check if not enabled or hide=true then skip.
+		if ( isset( $value['hide'] ) || ! isset( \easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['id'] ) || ! \get_option( \easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['id'], \easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['default'] ) )
+			continue;
+
+		$script .= '
+/* ' . $key . ' */';
+
+		/**
+		 * Auto-detection routines (2x)
+		 */
+		$autoAttribute = isset( $value['options']['autoAttribute'] ) ? \get_option( $value['options']['autoAttribute']['id'], $value['options']['autoAttribute']['default'] ) : '';
+
+		if ( !empty($autoAttribute) ) {
+			if ( is_numeric($autoAttribute) ) {
+				$script .= '
+jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.nofancybox>a\').addClass(\''.$value['options']['class']['default'].'\');';
+			} else {
+				// Set selectors.
+				$file_types = array_filter( explode( ',', str_replace( ' ', ',', $autoAttribute ) ) );
+				$more = 0;
+				$script .= '
+var fb_'.$key.'_select=\'';
+				foreach ( $file_types as $type ) {
+					if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "webp" || $type == "gif")
+						$type = '.'.$type;
+					if ($more>0)
+						$script .= ',';
+					$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox,li.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)';
+					$more++;
+				}
+				$script .= '\';';
+
+				$autoselector = class_exists('easyFancyBox_Advanced') ? \get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']) : $value['options']['autoSelector']['default'];
+
+				// Class and rel depending on settings.
+				if( '1' == \get_option($value['options']['autoAttributeLimit']['id'],$value['options']['autoAttributeLimit']['default']) ) {
+					// Add class.
+					$script .= '
+var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
+fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+					// Set rel.
+					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
+						case '':
+						default :
+							$script .= ';});';
+							break;
+
+						case '1':
+							$script .= '.attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
+							break;
+
+						case '2':
+							$script .= '.attr(\'rel\',\'gallery\');});';
+							break;
+					}
+				} else {
+					// Add class.
+					$script .= '
+jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+					// Set rel.
+					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
+						case '':
+						default :
+							$script .= ';';
+							break;
+
+						case '1':
+							$script .= ';
+var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
+fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
+							break;
+
+						case '2':
+							$script .= '.attr(\'rel\',\'gallery\');';
+							break;
+					}
+				}
+			}
+		}
+
+		/**
+		 * Generate .fancybox() bind.
+		 */
+
+		// Prepare auto popup.
+		if ( $key == $autoClick )
+			$trigger = $value['options']['class']['default'];
+
+		$script .= '
+jQuery(\'' . $value['options']['tag']['default'] . '\')';
+
+		// Use each() to allow different metadata values per instance; fix by Elron. Thanks!
+		$script .= '.each(function(){';
+
+		// Filter here.
+		$bind = 'jQuery(this).fancybox(jQuery.extend({},fb_opts,{';
+		$more = 0;
+		foreach ( $value['options'] as $_key => $_value ) {
+			if ( isset($_value['id']) || isset($_value['default']) )
+				$parm = isset($_value['id']) ? strval( \get_option($_value['id'], $_value['default']) ) : strval( $_value['default'] );
+			else
+				$parm = '';
+
+			if ( isset($_value['input']) && 'checkbox'==$_value['input'] )
+				$parm = ( '1' == $parm ) ? 'true' : 'false';
+
+			if ( !isset($_value['hide']) && $parm!='' ) {
+				$quote = ( is_numeric($parm) || ( isset($_value['noquotes']) && $_value['noquotes'] == true ) ) ? '' : '\'';
+				if ( $more > 0 )
+					$bind .= ',';
+				$bind .= '\''.$_key.'\':';
+				$bind .= $quote.$parm.$quote;
+				$more++;
+			}
+		}
+		$bind .= '}))';
+
+		$script .= \apply_filters( 'easy_fancybox_bind', $bind );
+
+		$script .= '});';
+	}
+
+	$script .= '
+};};';
+
+	if ( empty( $delayClick ) ) $delayClick = '0';
+
+	switch ( $autoClick ) {
+		case '':
+			break;
+
+		case '1':
+			$script .= PHP_EOL . 'var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'#fancybox-auto\').trigger(\'click\')},'.$delayClick.');};';
+			\easyFancyBox::$onready_auto = true;
+			break;
+
+		case '2':
+			$script .= PHP_EOL . 'var easy_fancybox_auto=function(){setTimeout(function(){if(location.hash){jQuery(location.hash).trigger(\'click\');}},'.$delayClick.');};';
+			\easyFancyBox::$onready_auto = true;
+			break;
+
+		case '99':
+			$script .= PHP_EOL . 'var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class|="fancybox"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');};';
+			\easyFancyBox::$onready_auto = true;
+			break;
+
+		default :
+			if ( ! empty( $trigger ) ) {
+				$script .= PHP_EOL . 'var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a[class*="'.$trigger.'"]\').filter(\':first\').trigger(\'click\')},'.$delayClick.');};';
+				\easyFancyBox::$onready_auto = true;
+			}
+	}
+
+	$script .= PHP_EOL;
+
+	\easyFancyBox::$inline_script = \apply_filters( 'easy_fancybox_inline_script', $script );
+
+	/**
+	 * HEADER STYLES
+	 */
+
+	// Customized styles.
+	$styles = '';
+	! isset( $overlaySpotlight ) || 'true' !== $overlaySpotlight || $styles .= '#fancybox-overlay{background-attachment:fixed;background-image:url("' . \easyFancyBox::$plugin_url . 'images/light-mask.png");background-position:center;background-repeat:no-repeat;background-size:100% 100%}';
+
+	empty( $borderRadius ) || $styles .= '#fancybox-outer,#fancybox-content{border-radius:'.$borderRadius.'px}.fancybox-title-inside{padding-top:'.$borderRadius.'px;margin-top:-'.$borderRadius.'px !important;border-radius: 0 0 '.$borderRadius.'px '.$borderRadius.'px}';
+
+	$content_style = '';
+	empty( $backgroundColor ) || $content_style .= 'background:'.$backgroundColor.';';
+	empty( $paddingColor ) || $content_style .= 'border-color:'.$paddingColor.';';
+	if ( ! empty( $textColor ) ) {
+		$content_style .= 'color:'.$textColor.';';
+		$styles .= '#fancybox-outer{background:'.$paddingColor.'}'; //.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}
+	}
+	empty( $content_style ) || $styles .= '#fancybox-content{'.$content_style.'}';
+	empty( $titleColor ) || $styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
+
+	empty( $styles ) || \easyFancyBox::$inline_style = \wp_strip_all_tags( $styles, true );
+
+	// Running our IE alphaimageloader relative path styles here.
+	if ( isset( $compatIE8 ) && 'true' == $compatIE8 ) {
+		\easyFancyBox::$inline_style_ie = '/* IE6 */
+.fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_close.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-left-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_nav_left.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-right-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_nav_right.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-over{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_title_over.png",sizingMethod="scale");zoom:1}
+.fancybox-ie6 #fancybox-title-float-left{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_title_left.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-float-main{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_title_main.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-float-right{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_title_right.png",sizingMethod="scale")}
+#fancybox-loading.fancybox-ie6 div{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_loading.png",sizingMethod="scale")}
+/* IE6, IE7, IE8 */
+.fancybox-ie #fancybox-title-over{background-image:url('.\easyFancyBox::$plugin_url.'images/fancy_title_over.png)}
+.fancybox-ie #fancybox-bg-n{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_n.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-ne{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_ne.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-e{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_e.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-se{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_se.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-s{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_s.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-sw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_sw.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_w.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_nw.png",sizingMethod="scale")}';
+
+		if ( isset( $overlaySpotlight ) && 'true' == $overlaySpotlight )
+			\easyFancyBox::$inline_style_ie .= '
+#fancybox-overlay{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/light-mask.png",sizingMethod="scale")}';
+	}
+}
+
+/**
+ *  ACTIONS & FILTERS
+ */
+
+function prepare_scripts_styles() {
+	// Make sure whe actually need to do anything.
+	if ( ! \easyFancyBox::add_scripts() ){
+		return;
+	}
+
+	// INLINE SCRIPT & STYLE
+	namespace\prepare_inline();
+
+	$min = ( defined('WP_DEBUG') && WP_DEBUG ) ? '' : '.min';
+
+	// STYLE URLS
+	\easyFancyBox::$fancybox_style_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox'.$min.'.css';
+	\easyFancyBox::$fancybox_style_ie_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox-ie'.$min.'.css';
+
+	// SCRIPT URLS
+
+	// Register main fancybox script.
+	\easyFancyBox::$fancybox_script_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox'.$min.'.js';
+
+	// jQuery Easing, which is not needed if jQueryUI Core Effects are loaded or when using fancyBox 3.
+	if (
+		// Check IMG settings.
+		( \get_option( 'fancybox_enableImg', \easyFancyBox::$options['Global']['options']['Enable']['options']['IMG']['default'] ) && ( 'elastic' === \get_option( 'fancybox_transitionIn', 'elastic' ) || 'elastic' === \get_option( 'fancybox_transitionOut', 'elastic' ) ) ) ||
+		// Check Inline Content settings.
+		( \get_option( 'fancybox_enableInline', false ) && ( 'elastic' === \get_option( 'fancybox_transitionInInline' ) || 'elastic' === \get_option( 'fancybox_transitionOutInline' ) ) )
+	) {
+		\easyFancyBox::$easing_script_url = \easyFancyBox::$plugin_url.'vendor/jquery.easing'.$min.'.js';
+	}
+
+	// jQuery Mousewheel, which is not needed if jQueryUI Mouse is loaded or when using fancyBox 3.
+	if ( \get_option( 'fancybox_mouseWheel', true ) ) {
+		\easyFancyBox::$mousewheel_script_url = \easyFancyBox::$plugin_url.'vendor/jquery.mousewheel'.$min.'.js';
+	}
+
+	// Metadata in Miscellaneous settings?
+	if ( \get_option( 'fancybox_metaData' ) ) {
+		\easyFancyBox::$metadata_script_url = \easyFancyBox::$plugin_url.'vendor/jquery.metadata'.$min.'.js';
+	}
+}
+\add_action( 'init', __NAMESPACE__.'\prepare_scripts_styles', 12 );
+
+function onready_callback( $content ) {
+	$content .= 'jQuery(easy_fancybox_handler);jQuery(document).on(\'' . implode( " ", \easyFancyBox::$events ) . '\',easy_fancybox_handler);' . PHP_EOL;
+
+	if ( \easyFancyBox::$onready_auto )
+		$content .= \apply_filters( 'easy_fancybox_onready_auto', 'jQuery(easy_fancybox_auto);' );
+
+	return $content;
+}
+\add_filter( 'easy_fancybox_inline_script', __NAMESPACE__.'\onready_callback' );
