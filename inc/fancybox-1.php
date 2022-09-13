@@ -284,13 +284,13 @@ function prepare_scripts_styles() {
 	$min = ( defined('WP_DEBUG') && WP_DEBUG ) ? '' : '.min';
 
 	// STYLE URLS
-	\easyFancyBox::$fancybox_style_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox'.$min.'.css';
-	\easyFancyBox::$fancybox_style_ie_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox-ie'.$min.'.css';
+	\easyFancyBox::$style_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox'.$min.'.css';
+	\easyFancyBox::$style_ie_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox-ie'.$min.'.css';
 
 	// SCRIPT URLS
 
 	// Register main fancybox script.
-	\easyFancyBox::$fancybox_script_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox'.$min.'.js';
+	\easyFancyBox::$script_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox'.$min.'.js';
 
 	// jQuery Easing, which is not needed if jQueryUI Core Effects are loaded or when using fancyBox 3.
 	if (

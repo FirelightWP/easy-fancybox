@@ -9,8 +9,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 	*/
 	private static $screen_id;
 
-	private static $plugin_basename;
-
 	private static $compat_pro_min = '1.8';
 
 	private static $do_compat_warning = false;

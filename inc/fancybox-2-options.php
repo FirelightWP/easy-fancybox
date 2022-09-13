@@ -1,6 +1,6 @@
 <?php
 /**
-* Easy FancyBox options and their defaults array
+* FancyBox v2 options and their defaults array.
 */
 
 $efb_options = array (

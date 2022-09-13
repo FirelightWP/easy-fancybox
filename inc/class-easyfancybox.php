@@ -7,17 +7,17 @@ class easyFancyBox {
 
 	public static $plugin_url;
 
-	protected static $priority;
+	public static $priority;
 
-	protected static $plugin_basename;
+	public static $plugin_basename;
 
 	public static $add_scripts;
 
-	public static $fancybox_style_url;
+	public static $style_url;
 
-	public static $fancybox_style_ie_url;
+	public static $style_ie_url;
 
-	public static $fancybox_script_url;
+	public static $script_url;
 
 	public static $inline_script;
 
@@ -53,9 +53,9 @@ class easyFancyBox {
 		global $wp_styles;
 
 		// ENQUEUE STYLE
-		wp_enqueue_style( 'fancybox', self::$fancybox_style_url, false, null, 'screen' );
+		wp_enqueue_style( 'fancybox', self::$style_url, false, null, 'screen' );
 		if ( ! empty( self::$inline_style_ie ) ) {
-			wp_enqueue_style( 'fancybox-ie', self::$fancybox_style_ie_url, false, null, 'screen' );
+			wp_enqueue_style( 'fancybox-ie', self::$style_ie_url, false, null, 'screen' );
 			$wp_styles->add_data( 'fancybox-ie', 'conditional', 'lt IE 9' );
 		}
 
@@ -64,7 +64,7 @@ class easyFancyBox {
 		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
 
 		// Register main fancybox script.
-		wp_enqueue_script( 'jquery-fancybox', self::$fancybox_script_url, $dep, null, $footer );
+		wp_enqueue_script( 'jquery-fancybox', self::$script_url, $dep, null, $footer );
 
 		// jQuery Easing, which is not needed if jQueryUI Core Effects are loaded or when using fancyBox 3.
 		if ( ! empty( self::$easing_script_url ) && ! wp_script_is( 'jquery-effects-core', 'enqueued' ) ) {
@@ -87,9 +87,9 @@ class easyFancyBox {
 			empty( self::$inline_script )   || wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 		} else {
 			// Do it the old way.
-			empty( self::$inline_style )    || add_action( 'wp_head', function() { print( '<style id="fancybox-inline-css" type="text/css">' . easyFancyBox::$inline_style . '</style>' ); }, 11 );
-			empty( self::$inline_style_ie ) || add_action( 'wp_head', function() { print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . easyFancyBox::$inline_style_ie . '</style><![endif]-->' ); }, 12 );
-			empty( self::$inline_script )   || add_action( $footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . easyFancyBox::$inline_script . '</script>' ); }, self::priority() + 1 );
+			empty( self::$inline_style )    || add_action( 'wp_head', function() { print( '<style id="fancybox-inline-css" type="text/css">' . self::$inline_style . '</style>' ); }, 11 );
+			empty( self::$inline_style_ie ) || add_action( 'wp_head', function() { print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie . '</style><![endif]-->' ); }, 12 );
+			empty( self::$inline_script )   || add_action( $footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
 		}
 	}
 
@@ -118,12 +118,20 @@ class easyFancyBox {
 
 	public static function upgrade( $old_version )
 	{
-		if ( ! $old_version ) { // Upgrade from 1.7 or older.
+		// Upgrade from 1.7 or older.
+		if ( ! $old_version ) {
 			if ( 'html' === get_option('fancybox_PDFclassType') ) {
-				update_option('fancybox_PDFonStart', 'function(a,i,o){o.type=\'pdf\';}');
-				delete_option('fancybox_PDFclassType');
+				update_option( 'fancybox_PDFonStart', 'function(a,i,o){o.type=\'pdf\';}' );
+				delete_option( 'fancybox_PDFclassType' );
 			}
 		}
+
+		// Upgrade from before 2.0.
+		if ( version_compare( $old_version, '2.0', '<' ) ) {
+			// TODO figure out when to upgrade
+			//update_option( 'fancybox_scriptVersion', '2' );
+		}
+
 		// Save new version.
 		update_option( 'easy_fancybox_version', EASY_FANCYBOX_VERSION );
 	}
@@ -151,7 +159,7 @@ class easyFancyBox {
 
 	public static function maybe_upgrade()
 	{
-		$old_version = get_option('easy_fancybox_version', 0);
+		$old_version = get_option( 'easy_fancybox_version', 0 );
 
 		if ( 0 !== version_compare( EASY_FANCYBOX_VERSION, $old_version ) ) {
 			self::upgrade( $old_version );
@@ -167,7 +175,7 @@ class easyFancyBox {
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-1.php';
 				// Load defaults.
 				if ( empty( self::$options ) ) {
-					include EASY_FANCYBOX_DIR . '/inc/easyfancybox-options.php';
+					include EASY_FANCYBOX_DIR . '/inc/fancybox-1-options.php';
 					self::$options = $efb_options;
 				}
 				// Check for any enabled sections to set the scripts flag.
@@ -182,12 +190,26 @@ class easyFancyBox {
 				break;
 
 			case '3':
-				include EASY_FANCYBOX_DIR . '/inc/fancybox-3.php';
+				//include EASY_FANCYBOX_DIR . '/inc/fancybox-3.php';
 				break;
 
 			default:
 			case '2':
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-2.php';
+				// Load defaults.
+				if ( empty( self::$options ) ) {
+					include EASY_FANCYBOX_DIR . '/inc/fancybox-2-options.php';
+					self::$options = $efb_options;
+				}
+				// Check for any enabled sections to set the scripts flag.
+				foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
+					if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
+						self::$add_scripts = true;
+						break;
+					} else {
+						self::$add_scripts = false;
+					}
+				}
 		}
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
