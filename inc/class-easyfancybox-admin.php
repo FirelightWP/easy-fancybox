@@ -25,7 +25,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 	/**
 	* Add options page
 	*/
-	public function add_settings_page()
+	public static function add_settings_page()
 	{
 		// This page will be under "Settings"
 		self::$screen_id = add_options_page (
@@ -258,11 +258,33 @@ class easyFancyBox_Admin extends easyFancyBox {
 	}
 
 	public static function colorval( $setting = '' ) {
-		// Strip possible # to prepare for sanitizing.
-		$setting = substr($setting, 0, 1) == '#' ? substr($setting, 1) : $setting;
+		$setting = trim( $setting );
+		$sanitized = '';
 
-		// Only allow hex values or empty string.
-		$sanitized = ctype_xdigit($setting) ? '#'.$setting : '';
+		// Is it a hex value?
+		if ( substr( $setting, 0, 1 ) == '#' ) {
+			// Strip #.
+			$setting = substr( $setting, 1 );
+
+			// Only allow hex values or empty string.
+			$sanitized = ctype_xdigit( $setting ) ? '#'.$setting : '';
+		}
+
+		// Is it an rgb value?
+		if ( substr( $setting, 0, 3 ) == 'rgb' ) {
+			// Strip...
+			$setting = str_replace( array('rgb(','rgba(',')'), '', $setting );
+
+			$rgb_array = explode( ',', $setting );
+
+			if ( $rgb_array ) {
+				$r = isset( $rgb_array[0] ) ? (int) $rgb_array[0] : 119;
+				$g = isset( $rgb_array[1] ) ? (int) $rgb_array[1] : 119;
+				$b = isset( $rgb_array[2] ) ? (int) $rgb_array[2] : 119;
+				$a = isset( $rgb_array[3] ) ? (float) $rgb_array[3] : 0.7;
+				$sanitized = 'rgba('.$r.','.$g.','.$b.','.$a.')';
+			}
+		}
 
 		return $sanitized;
 	}
@@ -340,11 +362,9 @@ class easyFancyBox_Admin extends easyFancyBox {
 		add_action( 'admin_notices', array(__CLASS__, 'admin_notice') );
 		add_filter( 'plugin_action_links_'.parent::$plugin_basename, array(__CLASS__, 'add_action_link') );
 
-		// In preparation of dedicated admin page move:
-		//add_action('admin_menu', array(__CLASS__, 'add_menu'));
+		add_action( 'admin_menu', array(__CLASS__, 'add_settings_page') );
 
 		add_action( 'admin_init', array(__CLASS__, 'add_settings_section') );
-		//add_action( 'admin_menu', array(__CLASS__, 'add_settings_page') );
 		add_action( 'admin_init', array(__CLASS__, 'register_settings') );
 		add_action( 'admin_init', array(__CLASS__, 'admin_init') );
 	}

@@ -735,7 +735,7 @@ $efb_options = array (
 				'input' => 'hidden',
 				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery'
 			),
-			'onComplete' => array (
+			'afterShow' => array (
 				'id' => '',
 				'title' => __('Advanced','easy-fancybox'),
 				'input' => 'select',

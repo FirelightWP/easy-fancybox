@@ -1,6 +1,6 @@
 /*!
  * Media helper for fancyBox
- * version: 1.0.6 (Fri, 14 Jun 2013)
+ * version: 1.1.0 (Fri, 14 Sep 2022)
  * @requires fancyBox v2.0 or later
  *
  * Usage:
@@ -45,15 +45,8 @@
  *          http://vimeo.com/channels/staffpicks/38843628
  *          http://vimeo.com/groups/surrealism/videos/36516384
  *          http://player.vimeo.com/video/45074303
- *      Metacafe
- *          http://www.metacafe.com/watch/7635964/dr_seuss_the_lorax_movie_trailer/
- *          http://www.metacafe.com/watch/7635964/
  *      Dailymotion
  *          http://www.dailymotion.com/video/xoytqh_dr-seuss-the-lorax-premiere_people
- *      Twitvid
- *          http://twitvid.com/QY7MD
- *      Twitpic
- *          http://twitpic.com/7p93st
  *      Instagram
  *          http://instagr.am/p/IejkuUGxQn/
  *          http://instagram.com/p/IejkuUGxQn/
@@ -117,39 +110,14 @@
 				type : 'iframe',
 				url  : '//player.vimeo.com/video/$1'
 			},
-			metacafe : {
-				matcher : /metacafe.com\/(?:watch|fplayer)\/([\w\-]{1,10})/,
-				params  : {
-					autoPlay : 'yes'
-				},
-				type : 'swf',
-				url  : function( rez, params, obj ) {
-					obj.swf.flashVars = 'playerVars=' + $.param( params, true );
-
-					return '//www.metacafe.com/fplayer/' + rez[1] + '/.swf';
-				}
-			},
 			dailymotion : {
 				matcher : /dailymotion.com\/video\/(.*)\/?(.*)/,
 				params  : {
 					additionalInfos : 0,
 					autoStart : 1
 				},
-				type : 'swf',
-				url  : '//www.dailymotion.com/swf/video/$1'
-			},
-			twitvid : {
-				matcher : /twitvid\.com\/([a-zA-Z0-9_\-\?\=]+)/i,
-				params  : {
-					autoplay : 0
-				},
 				type : 'iframe',
-				url  : '//www.twitvid.com/embed.php?guid=$1'
-			},
-			twitpic : {
-				matcher : /twitpic\.com\/(?!(?:place|photos|events)\/)([a-zA-Z0-9\?\=\-]+)/i,
-				type : 'image',
-				url  : '//twitpic.com/show/full/$1/'
+				url  : '//www.dailymotion.com/embed/video/$1'
 			},
 			instagram : {
 				matcher : /(instagr\.am|instagram\.com)\/p\/([a-zA-Z0-9_\-]+)\/?/i,

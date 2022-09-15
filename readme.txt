@@ -499,6 +499,9 @@ Admin settings links, new Exclude selector option.
 
 == Changelog ==
 
+= 2.0 =
+* NEW: fancyBox 2 script
+
 = 1.8.19 =
 * Admin settings links
 * Pro compatibility message for VideoPress

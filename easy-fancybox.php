@@ -5,7 +5,7 @@ Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
 Description: Easily enable the FancyBox 3 jQuery extension on all media file links. Also supports iFrame and inline content.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 2.0-alpha1
+Version: 2.0-alpha3
 Author: RavanH
 Author URI: http://status301.net/
 */
@@ -31,9 +31,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * CONSTANTS
  **************/
 
-define( 'EASY_FANCYBOX_VERSION', '2.0' );
+define( 'EASY_FANCYBOX_VERSION', '2.0-alpha3' );
 define( 'FANCYBOX_VERSION', '1.3.24' );
-define( 'FANCYBOX_2_VERSION', '2.1.7' );
+define( 'FANCYBOX_2_VERSION', '2.1.8' );
 define( 'FANCYBOX_3_VERSION', '3.5.7' );
 define( 'MOUSEWHEEL_VERSION', '3.1.13' );
 define( 'EASING_VERSION', '1.4.1' );

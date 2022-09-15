@@ -91,6 +91,7 @@ class easyFancyBox {
 			empty( self::$inline_style_ie ) || add_action( 'wp_head', function() { print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie . '</style><![endif]-->' ); }, 12 );
 			empty( self::$inline_script )   || add_action( $footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
 		}
+
 	}
 
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
@@ -127,9 +128,47 @@ class easyFancyBox {
 		}
 
 		// Upgrade from before 2.0.
-		if ( version_compare( $old_version, '2.0', '<' ) ) {
+		if ( version_compare( $old_version, '0', '>' ) && version_compare( $old_version, '2.0', '<' ) ) {
 			// TODO figure out when to upgrade
-			//update_option( 'fancybox_scriptVersion', '2' );
+			update_option( 'fancybox_scriptVersion', '1' );
+			// OR convert fancybox_overlayColor and fancybox_overlayOpacity values to one rgba for new rgba fancybox_overlayColor:
+			/*function hex2rgba($color, $opacity = false) {
+
+				$default = 'rgb(0,0,0)';
+
+				//Return default if no color provided
+				if(empty($color))
+					  return $default;
+
+				//Sanitize $color if "#" is provided
+					if ($color[0] == '#' ) {
+						$color = substr( $color, 1 );
+					}
+
+					//Check if color has 6 or 3 characters and get values
+					if (strlen($color) == 6) {
+							$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
+					} elseif ( strlen( $color ) == 3 ) {
+							$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
+					} else {
+							return $default;
+					}
+
+					//Convert hexadec to rgb
+					$rgb =  array_map('hexdec', $hex);
+
+					//Check if opacity is set(rgba or rgb)
+					if($opacity){
+						if(abs($opacity) > 1)
+							$opacity = 1.0;
+						$output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+					} else {
+						$output = 'rgb('.implode(",",$rgb).')';
+					}
+
+					//Return rgb(a) color string
+					return $output;
+			}*/
 		}
 
 		// Save new version.
@@ -213,7 +252,7 @@ class easyFancyBox {
 		}
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
-		add_filter( 'embed_oembed_html',  array( __CLASS__, 'add_video_wmode_opaque' ) );
+		//add_filter( 'embed_oembed_html',  array( __CLASS__, 'add_video_wmode_opaque' ) );
 	}
 
 	/**
@@ -223,7 +262,7 @@ class easyFancyBox {
 	public function __construct()
 	{
 		// VARS
-		self::$plugin_url      = plugins_url( '/', EASY_FANCYBOX_DIR );
+		self::$plugin_url      = plugins_url( '/', EASY_FANCYBOX_DIR.'/easy-fancybox.php' );
 		self::$plugin_basename = plugin_basename( EASY_FANCYBOX_DIR );
 
 		add_action( 'init', array( __CLASS__, 'maybe_upgrade' ), 9 );
