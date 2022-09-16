@@ -55,12 +55,7 @@ function prepare_inline() {
 	}
 
 	// Media.
-	if ( \get_option( 'fancybox_enableYoutube' ) ||
-		 \get_option( 'fancybox_enableVimeo' ) ||
-		 \get_option( 'fancybox_enableDailymotion' ) ||
-		 \get_option( 'fancybox_enableInstagram' ) ||
-		 \get_option( 'fancybox_enableGoogleMaps' )
-	) {
+	if ( add_media() ) {
 		$fb_opts['helpers']['media'] = array();
 	}
 
@@ -254,7 +249,12 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 		$script .= \apply_filters( 'easy_fancybox_onready_auto', 'jQuery(easy_fancybox_auto);' );
 	}
 
-	\easyFancyBox::$inline_script = \apply_filters( 'easy_fancybox_inline_script', $script );
+	$script = \apply_filters( 'easy_fancybox_inline_script', $script );
+
+	\easyFancyBox::$inline_scripts['jquery-fancybox'] = array(
+		'data' => $script,
+		'position' => 'after'
+	);
 
 	/**
 	 * HEADER STYLES
@@ -277,8 +277,43 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 
 	empty( $titleColor ) || $styles .= '.fancybox-title{color:'.$titleColor.'}';
 
-	empty( $styles ) || \easyFancyBox::$inline_style = \wp_strip_all_tags( $styles, true );
+	$styles = \apply_filters( 'easy_fancybox_inline_style', $styles );
 
+	empty( $styles ) || \easyFancyBox::$inline_styles['fancybox'] = \wp_strip_all_tags( $styles, true );
+}
+
+function add_media() {
+	static $add;
+
+	if ( null === $add ) {
+		$add = \get_option( 'fancybox_enableYoutube' ) ||
+		       \get_option( 'fancybox_enableVimeo' ) ||
+		       \get_option( 'fancybox_enableDailymotion' ) ||
+		       \get_option( 'fancybox_enableInstagram' ) ||
+		       \get_option( 'fancybox_enableGoogleMaps' );
+	}
+
+	return $add;
+}
+
+function add_thumbs() {
+	static $add;
+
+	if ( null === $add ) {
+		$add = true;
+	}
+
+	return $add;
+}
+
+function add_buttons() {
+	static $add;
+
+	if ( null === $add ) {
+		$add = true;
+	}
+
+	return $add;
 }
 
 function add_easing() {
@@ -318,15 +353,70 @@ function prepare_scripts_styles() {
 	// INLINE SCRIPT & STYLE
 	namespace\prepare_inline();
 
-	// STYLE URLS
-	\easyFancyBox::$style_url    = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/jquery.fancybox.min.css';
+	// SCRIPT & STYLE URLS
 
-	// SCRIPT URLS
+	$dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
+	$ver    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? time()  : false;
+	$min    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? ''      : '.min';
+	$footer = get_option( 'fancybox_noFooter', false ) ? false   : true;
+
 	// https://cdnjs.com/libraries/fancybox
 
-	// Register main fancybox script.
-	\easyFancyBox::$script_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/jquery.fancybox.min.js';
-	//\easyFancyBox::$script_url = \easyFancyBox::$plugin_url.'vendor/fancybox-'.FANCYBOX_2_VERSION.'/source/jquery.fancybox.pack.js';
+	// FancyBox.
+	\easyFancyBox::$styles['fancybox'] = array(
+		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/jquery.fancybox'.$min.'.css',
+		'deps'  => array(),
+		'ver'   => $ver,
+		'media' => 'screen'
+	);
+	\easyFancyBox::$scripts['jquery-fancybox'] = array(
+		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/jquery.fancybox'.$min.'.js',
+		'deps'   => $dep,
+		'ver'    => $ver,
+		'footer' => $footer
+	);
+
+	// Fancybox Media Helpers.
+	if ( add_media() ) {
+		\easyFancyBox::$scripts['jquery-fancybox-media'] = array(
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-media'.$min.'.js',
+			'deps'   => array('jquery-fancybox'),
+			'ver'    => $ver,
+			'footer' => $footer
+		);
+	}
+
+	// Fancybox Thumbs Helpers.
+	if ( add_thumbs() ) {
+		\easyFancyBox::$styles['fancybox-thumbs'] = array(
+			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-thumbs'.$min.'.css',
+			'deps'  => array('fancybox'),
+			'ver'   => $ver,
+			'media' => 'screen'
+		);
+		\easyFancyBox::$scripts['jquery-fancybox-thumbs'] = array(
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-thumbs'.$min.'.js',
+			'deps'   => array('jquery-fancybox'),
+			'ver'    => $ver,
+			'footer' => $footer
+		);
+	}
+
+	// Fancybox Buttons Helpers.
+	if ( add_thumbs() ) {
+		\easyFancyBox::$styles['fancybox-buttons'] = array(
+			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-buttons'.$min.'.css',
+			'deps'  => array('fancybox'),
+			'ver'   => $ver,
+			'media' => 'screen'
+		);
+		\easyFancyBox::$scripts['jquery-fancybox-buttons'] = array(
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-buttons'.$min.'.js',
+			'deps'   => array('jquery-fancybox'),
+			'ver'    => $ver,
+			'footer' => $footer
+		);
+	}
 
 	// jQuery Easing, which is not needed if Easing is set to swing or linear.
 	if ( add_easing() ) {
@@ -340,7 +430,12 @@ function prepare_scripts_styles() {
 
 	// Metadata in Miscellaneous settings?
 	if ( \get_option( 'fancybox_metaData' ) ) {
-		\easyFancyBox::$metadata_script_url = \easyFancyBox::$plugin_url.'vendor/jquery.metadata.min.js';
+		\easyFancyBox::$scripts['jquery-metadata'] = array(
+			'src'    => \easyFancyBox::$plugin_url.'vendor/jquery.metadata.min.js',
+			'deps'   => $dep,
+			'ver'    => METADATA_VERSION,
+			'footer' => $footer
+		);
 	}
 }
 \add_action( 'init', __NAMESPACE__.'\prepare_scripts_styles', 12 );

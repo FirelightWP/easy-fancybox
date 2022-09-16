@@ -13,6 +13,11 @@ class easyFancyBox {
 
 	public static $add_scripts;
 
+	public static $styles         = array();
+	public static $inline_styles  = array();
+	public static $scripts        = array();
+	public static $inline_scripts = array();
+
 	public static $style_url;
 
 	public static $style_ie_url;
@@ -52,19 +57,46 @@ class easyFancyBox {
 
 		global $wp_styles;
 
-		// ENQUEUE STYLE
-		wp_enqueue_style( 'fancybox', self::$style_url, false, null, 'screen' );
-		if ( ! empty( self::$inline_style_ie ) ) {
-			wp_enqueue_style( 'fancybox-ie', self::$style_ie_url, false, null, 'screen' );
-			$wp_styles->add_data( 'fancybox-ie', 'conditional', 'lt IE 9' );
+		// ENQUEUE STYLES
+		if ( !empty( self::$styles ) ) {
+			foreach ( self::$styles as $handle => $options ) {
+				$src   = ! empty( $options['src'] )   ?         $options['src']   : '';
+				$deps  = ! empty( $options['deps'] )  ? (array) $options['deps']  : array();
+				$ver   = ! empty( $options['ver'] )   ?         $options['ver']   : false;
+				$media = ! empty( $options['media'] ) ?         $options['media'] : 'all';
+				wp_enqueue_style( $handle, $src, $deps, $ver, $media );
+				if ( ! empty( $options['conditional']) ) {
+					$wp_styles->add_data( $handle, 'conditional', $options['conditional'] );
+				}
+			}
+		} else {
+			wp_enqueue_style( 'fancybox', self::$style_url, false, null, 'screen' );
+			if ( ! empty( self::$inline_style_ie ) ) {
+				wp_enqueue_style( 'fancybox-ie', self::$style_ie_url, false, null, 'screen' );
+				$wp_styles->add_data( 'fancybox-ie', 'conditional', 'lt IE 9' );
+			}
 		}
 
 		// ENQUEUE SCRIPTS
 		$dep = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
 		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
 
-		// Register main fancybox script.
-		wp_enqueue_script( 'jquery-fancybox', self::$script_url, $dep, null, $footer );
+		if ( !empty( self::$scripts ) ) {
+			foreach ( self::$scripts as $handle => $options ) {
+				$src   = ! empty( $options['src'] )   ?         $options['src']   : '';
+				$deps  = ! empty( $options['deps'] )  ? (array) $options['deps']  : array();
+				$ver   = ! empty( $options['ver'] )   ?         $options['ver']   : false;
+				wp_enqueue_script( $handle, $src, $deps, $ver, ! empty( $options['footer'] ) );
+			}
+		} else {
+			// Register main fancybox script.
+			wp_enqueue_script( 'jquery-fancybox', self::$script_url, $dep, null, $footer );
+
+			// Metadata in Miscellaneous settings?
+			if ( ! empty( self::$metadata_script_url ) ) {
+				wp_enqueue_script( 'jquery-metadata', self::$metadata_script_url, $dep, METADATA_VERSION, $footer );
+			}
+		}
 
 		// jQuery Easing, which is not needed if jQueryUI Core Effects are loaded or when using fancyBox 3.
 		if ( ! empty( self::$easing_script_url ) && ! wp_script_is( 'jquery-effects-core', 'enqueued' ) ) {
@@ -76,20 +108,48 @@ class easyFancyBox {
 			wp_enqueue_script( 'jquery-mousewheel', self::$mousewheel_script_url, $dep, MOUSEWHEEL_VERSION, $footer );
 		}
 
-		// Metadata in Miscellaneous settings?
-		if ( ! empty( self::$metadata_script_url ) ) {
-			wp_enqueue_script( 'jquery-metadata', self::$metadata_script_url, $dep, METADATA_VERSION, $footer );
+		// Inline styles.
+		if ( !empty( self::$inline_styles ) ) {
+			foreach ( self::$inline_styles as $handle => $data ) {
+				if ( function_exists( 'wp_add_inline_script' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
+					wp_add_inline_style( $handle, $data );
+				} else {
+					// Do it the old way.
+					add_action( 'wp_head', function() use ( $data ) { print( '<style id="fancybox-inline-css" type="text/css">' . $data . '</style>' ); }, 11 );
+				}
+			}
+		} else {
+			if ( function_exists( 'wp_add_inline_style' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
+				empty( self::$inline_style )    || wp_add_inline_style( 'fancybox', self::$inline_style );
+				empty( self::$inline_style_ie ) || wp_add_inline_style( 'fancybox-ie', self::$inline_style_ie );
+			} else {
+				// Do it the old way.
+				empty( self::$inline_style )    || add_action( 'wp_head', function() { print( '<style id="fancybox-inline-css" type="text/css">' . self::$inline_style . '</style>' ); }, 11 );
+				empty( self::$inline_style_ie ) || add_action( 'wp_head', function() { print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie . '</style><![endif]-->' ); }, 12 );
+			}
 		}
 
-		if ( function_exists( 'wp_add_inline_script' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
-			empty( self::$inline_style )    || wp_add_inline_style( 'fancybox', self::$inline_style );
-			empty( self::$inline_style_ie ) || wp_add_inline_style( 'fancybox-ie', self::$inline_style_ie );
-			empty( self::$inline_script )   || wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
+		// Inline scripts.
+		if ( !empty( self::$inline_scripts ) ) {
+			foreach ( self::$inline_scripts as $handle => $data ) {
+				if ( function_exists( 'wp_add_inline_script' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
+					if ( is_array( $data ) ) {
+						$position = ! empty( $data['position'] ) ? $data['position'] : 'after';
+						$data = ! empty( $data['data'] ) ? $data['data'] : '';
+					}
+					wp_add_inline_script( $handle, $data, $position );
+				} else {
+					// Do it the old way.
+					add_action( $footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
+				}
+			}
 		} else {
-			// Do it the old way.
-			empty( self::$inline_style )    || add_action( 'wp_head', function() { print( '<style id="fancybox-inline-css" type="text/css">' . self::$inline_style . '</style>' ); }, 11 );
-			empty( self::$inline_style_ie ) || add_action( 'wp_head', function() { print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie . '</style><![endif]-->' ); }, 12 );
-			empty( self::$inline_script )   || add_action( $footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
+			if ( function_exists( 'wp_add_inline_script' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
+				empty( self::$inline_script )   || wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
+			} else {
+				// Do it the old way.
+				empty( self::$inline_script )   || add_action( $footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
+			}
 		}
 
 	}
