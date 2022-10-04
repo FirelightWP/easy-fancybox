@@ -8,12 +8,16 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
  * Copyright (c) 2020 - RavanH
- * Version: 1.4 (2020/06/15)
+ * Version: 1.5 (2020/11/09)
  *
  * Dual licensed under the MIT and GPL licenses:
  *	 http://www.opensource.org/licenses/mit-license.php
  *	 http://www.gnu.org/licenses/gpl.html
  */
+
+ html.fancybox-active, html.fancybox-active body {
+	margin: 0; height: 100%; overflow: hidden
+ }
 
  #fancybox-loading, #fancybox-loading div,
  #fancybox-overlay,

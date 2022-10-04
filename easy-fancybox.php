@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  **************/
 
 define( 'EASY_FANCYBOX_VERSION', '2.0-alpha3' );
-define( 'FANCYBOX_VERSION', '1.3.25' );
+define( 'FANCYBOX_VERSION', '1.5' );
 define( 'FANCYBOX_2_VERSION', '2.2.0' );
 define( 'FANCYBOX_3_VERSION', '3.5.7' );
 define( 'MOUSEWHEEL_VERSION', '3.1.13' );

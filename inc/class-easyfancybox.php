@@ -56,13 +56,16 @@ class easyFancyBox {
 		}
 
 		global $wp_styles;
+		$_dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
+		$_ver    = defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : false;
+		$_footer = get_option( 'fancybox_noFooter', false ) ? false : true;
 
 		// ENQUEUE STYLES
 		if ( !empty( self::$styles ) ) {
 			foreach ( self::$styles as $handle => $options ) {
 				$src   = ! empty( $options['src'] )   ?         $options['src']   : '';
 				$deps  = ! empty( $options['deps'] )  ? (array) $options['deps']  : array();
-				$ver   = ! empty( $options['ver'] )   ?         $options['ver']   : false;
+				$ver   = ! empty( $options['ver'] )   ?         $options['ver']   : $_ver;
 				$media = ! empty( $options['media'] ) ?         $options['media'] : 'all';
 				wp_enqueue_style( $handle, $src, $deps, $ver, $media );
 				if ( ! empty( $options['conditional']) ) {
@@ -70,7 +73,7 @@ class easyFancyBox {
 				}
 			}
 		} else {
-			wp_enqueue_style( 'fancybox', self::$style_url, false, null, 'screen' );
+			wp_enqueue_style( 'fancybox', self::$style_url, array(), $_ver, 'screen' );
 			if ( ! empty( self::$inline_style_ie ) ) {
 				wp_enqueue_style( 'fancybox-ie', self::$style_ie_url, false, null, 'screen' );
 				$wp_styles->add_data( 'fancybox-ie', 'conditional', 'lt IE 9' );
@@ -78,34 +81,31 @@ class easyFancyBox {
 		}
 
 		// ENQUEUE SCRIPTS
-		$dep = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
-		$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
-
 		if ( !empty( self::$scripts ) ) {
 			foreach ( self::$scripts as $handle => $options ) {
 				$src   = ! empty( $options['src'] )   ?         $options['src']   : '';
 				$deps  = ! empty( $options['deps'] )  ? (array) $options['deps']  : array();
-				$ver   = ! empty( $options['ver'] )   ?         $options['ver']   : false;
+				$ver   = ! empty( $options['ver'] )   ?         $options['ver']   : $_ver;
 				wp_enqueue_script( $handle, $src, $deps, $ver, ! empty( $options['footer'] ) );
 			}
 		} else {
 			// Register main fancybox script.
-			wp_enqueue_script( 'jquery-fancybox', self::$script_url, $dep, null, $footer );
+			wp_enqueue_script( 'jquery-fancybox', self::$script_url, $_dep, $_ver, $_footer );
 
 			// Metadata in Miscellaneous settings?
 			if ( ! empty( self::$metadata_script_url ) ) {
-				wp_enqueue_script( 'jquery-metadata', self::$metadata_script_url, $dep, METADATA_VERSION, $footer );
+				wp_enqueue_script( 'jquery-metadata', self::$metadata_script_url, $_dep, METADATA_VERSION, $_footer );
 			}
 		}
 
 		// jQuery Easing, which is not needed if jQueryUI Core Effects are loaded or when using fancyBox 3.
 		if ( ! empty( self::$easing_script_url ) && ! wp_script_is( 'jquery-effects-core', 'enqueued' ) ) {
-			wp_enqueue_script( 'jquery-easing', self::$easing_script_url, $dep, EASING_VERSION, $footer );
+			wp_enqueue_script( 'jquery-easing', self::$easing_script_url, $_dep, EASING_VERSION, $_footer );
 		}
 
 		// jQuery Mousewheel, which is not needed if jQueryUI Mouse is loaded or when using fancyBox 3.
 		if ( ! empty( self::$mousewheel_script_url ) && ! wp_script_is( 'jquery-ui-mouse', 'enqueued' ) ) {
-			wp_enqueue_script( 'jquery-mousewheel', self::$mousewheel_script_url, $dep, MOUSEWHEEL_VERSION, $footer );
+			wp_enqueue_script( 'jquery-mousewheel', self::$mousewheel_script_url, $_dep, MOUSEWHEEL_VERSION, $_footer );
 		}
 
 		// Inline styles.

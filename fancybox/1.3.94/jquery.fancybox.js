@@ -1320,7 +1320,7 @@
 		showNavArrows : true,
 		enableEscapeButton : true,
 		enableKeyboardNav : true,
-		enableSwipedNav : true,
+		enableSwipeNav : true,
 
 		onStart : function(){},
 		onCancel : function(){},

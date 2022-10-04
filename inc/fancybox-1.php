@@ -260,7 +260,8 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 .fancybox-ie #fancybox-bg-s{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_s.png",sizingMethod="scale")}
 .fancybox-ie #fancybox-bg-sw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_sw.png",sizingMethod="scale")}
 .fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_w.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_nw.png",sizingMethod="scale")}';
+.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_nw.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-left, .fancybox-ie #fancybox-right{background-image:url("'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/blank.gif");}';
 
 		if ( isset( $overlaySpotlight ) && 'true' == $overlaySpotlight )
 			\easyFancyBox::$inline_style_ie .= '

@@ -216,8 +216,6 @@
 
 				busy = false;
 
-				$.fancybox.showActivity();
-
 				imgPreloader = new Image();
 
 				imgPreloader.onerror = function() {
@@ -227,12 +225,25 @@
 				imgPreloader.onload = function() {
 					busy = true;
 
+					$.fancybox.hideActivity();
+
 					imgPreloader.onerror = imgPreloader.onload = null;
 
-					_process_image();
+					selectedOpts.width = imgPreloader.width;
+					selectedOpts.height = imgPreloader.height;
+
+					$("<img />").attr({
+						'id' : 'fancybox-img',
+						'src' : imgPreloader.src,
+						'alt' : selectedOpts.title
+					}).appendTo( tmp );
+
+					_show();
 				};
 
 				imgPreloader.src = href;
+
+				$.fancybox.showActivity();
 			break;
 
 			case 'swf':
@@ -350,28 +361,12 @@
 		selectedOpts.width = tmp.width();
 		selectedOpts.height = tmp.height();
 
-		_show();
-	},
-
-	_process_image = function() {
-		selectedOpts.width = imgPreloader.width;
-		selectedOpts.height = imgPreloader.height;
-
-		$("<img />").attr({
-			'id' : 'fancybox-img',
-			'src' : imgPreloader.src,
-			'alt' : selectedOpts.title
-		}).appendTo( tmp );
+		$.fancybox.hideActivity();
 
 		_show();
 	},
 
 	_show = function() {
-
-		if (selectedOpts.type !== 'iframe') {
-			$.fancybox.hideActivity();
-		}
-
 		if (wrap.is(":visible") && false === currentOpts.onCleanup(currentArray, currentIndex, currentOpts)) {
 			$(document).trigger('fancybox-cancel');
 
@@ -1140,7 +1135,7 @@
 		showNavArrows : true,
 		enableEscapeButton : true,
 		enableKeyboardNav : true,
-		enableSwipedNav : true,
+		enableSwipeNav : true,
 
 		onStart : function(){},
 		onCancel : function(){},

@@ -402,11 +402,13 @@
 		currentOpts = selectedOpts;
 
 		if (currentOpts.overlayShow) {
-			if (currentOpts.overlayColor)
+			if (currentOpts.overlayColor){
 				overlay.css('background-color',currentOpts.overlayColor);
+			}
 
-			if (currentOpts.hideOnOverlayClick)
+			if (currentOpts.hideOnOverlayClick){
 				overlay.css('cursor','pointer');
+			}
 
 			if (!overlay.is(':visible')) {
 				overlay.fadeIn('fast');
@@ -1160,7 +1162,7 @@
 		showNavArrows : true,
 		enableEscapeButton : true,
 		enableKeyboardNav : true,
-		enableSwipedNav : true,
+		enableSwipeNav : true,
 
 		onStart : function(){},
 		onCancel : function(){},
