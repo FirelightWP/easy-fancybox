@@ -243,24 +243,24 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 	// Running our IE alphaimageloader relative path styles here.
 	if ( isset( $compatIE8 ) && 'true' == $compatIE8 ) {
 		\easyFancyBox::$inline_style_ie = '/* IE6 */
-.fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_close.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-left-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_nav_left.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-right-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_nav_right.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-over{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_title_over.png",sizingMethod="scale");zoom:1}
-.fancybox-ie6 #fancybox-title-float-left{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_title_left.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-float-main{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_title_main.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-float-right{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_title_right.png",sizingMethod="scale")}
-#fancybox-loading.fancybox-ie6 div{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_loading.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_close.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-left-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_nav_left.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-right-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_nav_right.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-over{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_over.png",sizingMethod="scale");zoom:1}
+.fancybox-ie6 #fancybox-title-float-left{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_left.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-float-main{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_main.png",sizingMethod="scale")}
+.fancybox-ie6 #fancybox-title-float-right{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_right.png",sizingMethod="scale")}
+#fancybox-loading.fancybox-ie6 div{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_loading.png",sizingMethod="scale")}
 /* IE6, IE7, IE8 */
-.fancybox-ie #fancybox-title-over{background-image:url('.\easyFancyBox::$plugin_url.'images/fancy_title_over.png)}
-.fancybox-ie #fancybox-bg-n{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_n.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-ne{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_ne.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-e{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_e.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-se{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_se.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-s{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_s.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-sw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_sw.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_w.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/fancy_shadow_nw.png",sizingMethod="scale")}';
+.fancybox-ie #fancybox-title-over{background-image:url('.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_over.png)}
+.fancybox-ie #fancybox-bg-n{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_n.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-ne{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_ne.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-e{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_e.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-se{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_se.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-s{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_s.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-sw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_sw.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_w.png",sizingMethod="scale")}
+.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_nw.png",sizingMethod="scale")}';
 
 		if ( isset( $overlaySpotlight ) && 'true' == $overlaySpotlight )
 			\easyFancyBox::$inline_style_ie .= '
@@ -279,7 +279,7 @@ function prepare_scripts_styles() {
 	}
 
 	// INLINE SCRIPT & STYLE
-	namespace\prepare_inline();
+	prepare_inline();
 
 	$min = ( defined('WP_DEBUG') && WP_DEBUG ) ? '' : '.min';
 

@@ -86,15 +86,15 @@ $efb_options = array (
 						'id' => 'fancybox_enableInstagram',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '',
-						'description' => '<strong>' . __( 'Instagram', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableInstagram') ? ' &mdash; <a href="#Instagram">' . translate( 'Settings' ) . '</a>' : '' )
+						'status' => 'disabled',
+						'description' => '<strong>' . __( 'Instagram', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 					'GoogleMaps' => array (
 						'id' => 'fancybox_enableGoogleMaps',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => '',
-						'description' => '<strong>' . __( 'Google Maps', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableGoogleMaps') ? ' &mdash; <a href="#GoogleMaps">' . translate( 'Settings' ) . '</a>' : '' )
+						'status' => 'disabled',
+						'description' => '<strong>' . __( 'Google Maps', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 					'iFrame' => array (
 						'id' => 'fancybox_enableiFrame',
@@ -410,7 +410,7 @@ Default value:
 						'hide' => true,
 						'description' => '<br /><strong>' . __('Browser & device compatibility','easy-fancybox') . '</strong><br />'
 					),
-					'minViewportWidth' => array (
+					'minVpWidth' => array (
 						'id' => 'fancybox_minViewportWidth',
 						'title' => __('Minimum browser/device viewport width','easy-fancybox'),
 						'label_for' => 'fancybox_minViewportWidth',
@@ -421,7 +421,20 @@ Default value:
 						'sanitize_callback' => 'intval',
 						'class' => 'small-text',
 						'default' => '',
-						'description' => __('(leave empty to ignore)','easy-fancybox') . '<br/>'
+						'description' => '<em>' . __('Default:','easy-fancybox') . ' 320</em><br />'
+					),
+					'minVpHeight' => array (
+						'id' => 'fancybox_minViewportHeight',
+						'title' => __('Minimum browser/device viewport height','easy-fancybox'),
+						'label_for' => 'fancybox_minViewportHeight',
+						'input' => 'number',
+						'step' => '1',
+						'min' => '320',
+						'max' => '900',
+						'sanitize_callback' => 'intval',
+						'class' => 'small-text',
+						'default' => '',
+						'description' => '<em>' . __('Default:','easy-fancybox') . ' 320</em><br />'
 					),
 /*					'forceNewtab' => array (
 						'id' => 'fancybox_forceNewtab',
@@ -670,9 +683,7 @@ Default value:
 				'hide' => true,
 				'options' => array(
 					'' => __('Bottom','easy-fancybox'),
-					'top' => __('Top','easy-fancybox'),
-					'left' => __('Left','easy-fancybox'),
-					'right' => __('Right','easy-fancybox')
+					'top' => __('Top','easy-fancybox')
 				),
 				'default' => '',
 				'description' => '<br />'
@@ -892,6 +903,7 @@ Default value:
 			),
 			'titleShow' => array (
 				'default' => 'false',
+				'hide' => true
 			)
 		)
 	),

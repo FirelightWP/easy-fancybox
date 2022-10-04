@@ -74,6 +74,8 @@
 			aspectRatio : false,
 			topRatio    : 0.5,
 			leftRatio   : 0.5,
+			minVpWidth  : 320,
+			minVpHeight : 320,
 
 			scrolling : 'auto', // 'auto', 'yes' or 'no'
 			wrapCSS   : '',
@@ -82,8 +84,9 @@
 			closeBtn   : true,
 			closeClick : false,
 			nextClick  : false,
+			zoomClick  : false,
 			mouseWheel : true,
-			swipe      : true,
+			swipe      : isTouch,
 			autoPlay   : false,
 			playSpeed  : 3000,
 			preload    : 3,
@@ -141,11 +144,24 @@
 				wrap     : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
 				image    : '<img class="fancybox-image" src="{href}" alt="" />',
 				iframe   : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
-				error    : '<p class="fancybox-error">The requested content cannot be loaded.<br/>Please try again later.</p>',
-				closeBtn : '<a title="Close" class="fancybox-item fancybox-close" href="javascript:;"></a>',
-				next     : '<a title="Next" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
-				prev     : '<a title="Previous" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>',
+				error    : '<p class="fancybox-error">{error}</p>',
+				closeBtn : '<a title="{close}" class="fancybox-item fancybox-close" href="javascript:;"></a>',
+				next     : '<a title="{next}" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
+				prev     : '<a title="{prev}" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>',
 				loading  : '<div id="fancybox-loading"><div></div></div>'
+			},
+
+			// Texts
+			txt: {
+				error : {
+					content : 'The requested content cannot be loaded.<br/>Please try again later.',
+					image   : 'The requested image cannot be loaded.<br/>Please try again later.',
+					ajax    : 'An AJAX error occurred.<br/>Please contact the site administrator.',
+					href    : 'Missing media target URL.<br/>Please contact the site administrator.',
+				},
+				close : 'Close',
+				next  : 'Next',
+				prev  : 'Previous'
 			},
 
 			// Properties for each animation type
@@ -350,6 +366,13 @@
 
 			// Extend the defaults
 			F.opts = $.extend(true, {}, F.defaults, opts);
+
+
+			// Abort if not enough screen space
+			var viewport = F.getViewport();
+			if ( viewport.w < F.opts.minVpWidth || viewport.h < F.opts.minVpHeight ) {
+				return;
+			}
 
 			// All options are merged recursive except keys
 			if (opts.keys !== undefined) {
@@ -715,41 +738,54 @@
 				});
 			}
 
-			if (isTouch && current.swipe) {
+			if (current.swipe) {
 				F.wrap.on('touchstart.fb', function(e){
-					var target = e.target || null,
+					let target = e.target || null,
 						parent = $(target),
 						canScroll = false,
-						touch = {};
+						touch = {},
+						fingers = typeof e.touches !== 'undefined' ? e.touches.length : e.originalEvent.touches.length;
+
+					if ( fingers > 1 ) {
+						return;
+					}
 
 					while (parent.length) {
-						if (canScroll || parent.is('.fancybox-skin') || parent.is('.fancybox-wrap')) {
+						if (canScroll) {
+							return;
+						}
+						if (parent.is('.fancybox-skin') || parent.is('.fancybox-wrap')) {
 							break;
 						}
 						canScroll = isScrollable( parent[0] );
 						parent    = $(parent).parent();
 					}
 
-					if (!canScroll) {
-						e.preventDefault();
-						touch.startX = typeof e.touches !== 'undefined' ? e.touches[0].clientX : e.originalEvent.touches[0].clientX,
-						touch.startY = typeof e.touches !== 'undefined' ? e.touches[0].clientY : e.originalEvent.touches[0].clientY
+					e.preventDefault();
 
-						F.wrap.on('touchmove.fb',function(e) {
-							e.preventDefault();
-							var x = typeof e.touches !== 'undefined' ? e.touches[0].clientX : e.originalEvent.touches[0].clientX,
-								dx = ( touch.startX - x ) * current.pixelRatio,
-								y = typeof e.touches !== 'undefined' ? e.touches[0].clientY : e.originalEvent.touches[0].clientY,
-								dy = ( touch.startY - y ) * current.pixelRatio;
-							if ( dx > 100 || dy > 100 ) {
-								F.wrap.off('touchmove.fb');
-								F.next( dy > 100 ? 'up' : 'left' );
-							} else if ( dx < -100 || dy < -100 ) {
-								F.wrap.off('touchmove.fb');
-								F.prev( dy < -100 ? 'down' : 'right' );
-							}
-						});
-					}
+					touch.startX = typeof e.touches !== 'undefined' ? e.touches[0].clientX : e.originalEvent.touches[0].clientX,
+					touch.startY = typeof e.touches !== 'undefined' ? e.touches[0].clientY : e.originalEvent.touches[0].clientY
+
+					F.wrap.on('touchmove.fb',function(e) {
+						fingers = typeof e.touches !== 'undefined' ? e.touches.length : e.originalEvent.touches.length;
+						if ( fingers > 1 ) {
+							return;
+						}
+						e.preventDefault();
+
+						let x = typeof e.touches !== 'undefined' ? e.touches[0].clientX : e.originalEvent.touches[0].clientX,
+							dx = ( touch.startX - x ) * current.pixelRatio,
+							y = typeof e.touches !== 'undefined' ? e.touches[0].clientY : e.originalEvent.touches[0].clientY,
+							dy = ( touch.startY - y ) * current.pixelRatio;
+
+						if ( dx > 100 || dy > 100 ) {
+							F.wrap.off('touchmove.fb');
+							F.next( dy > 100 ? 'up' : 'left' );
+						} else if ( dx < -100 || dy < -100 ) {
+							F.wrap.off('touchmove.fb');
+							F.prev( dy < -100 ? 'down' : 'right' );
+						}
+					});
 				});
 				F.wrap.on('touchend.fb', function(){
 					F.wrap.off('touchmove.fb');
@@ -758,7 +794,7 @@
 
 			if ($.fn.mousewheel && current.mouseWheel) {
 				F.wrap.on('mousewheel.fb', function (e, delta, deltaX, deltaY) {
-					var target = e.target || null,
+					let target = e.target || null,
 						parent = $(target),
 						canScroll = false;
 
@@ -854,6 +890,7 @@
 					closeBtn   : false,
 					closeClick : false,
 					nextClick  : false,
+					zoomClick  : false,
 					arrows     : false,
 					mouseWheel : false,
 					keys       : null,
@@ -968,6 +1005,10 @@
 		},
 
 		_error: function ( type ) {
+			let msg = defaults.txt.error[type] || defaults.txt.error['content'];
+			if( arguments.length > 1 ) {
+				msg = msg + '<br/><br/>' + arguments[1];
+			}
 			$.extend(F.coming, {
 				type       : 'html',
 				autoWidth  : true,
@@ -975,8 +1016,7 @@
 				minWidth   : 0,
 				minHeight  : 0,
 				scrolling  : 'no',
-				hasError   : type,
-				content    : F.coming.tpl.error
+				content    : F.coming.tpl.error.replace(/\{error\}/g, msg  )
 			});
 
 			F._afterLoad();
@@ -1018,7 +1058,6 @@
 				error: function (jqXHR, textStatus) {
 					if (F.coming && textStatus !== 'abort') {
 						F._error( 'ajax', jqXHR );
-
 					} else {
 						F.hideLoading();
 					}
@@ -1478,12 +1517,12 @@
 			F.update();
 
 			// Assign a click event
-			if ( current.closeClick || (current.nextClick && F.group.length > 1) ) {
-				F.inner.css('cursor', 'pointer').on('click.fb', function(e) {
+			if ( current.zoomClick || current.closeClick || (current.nextClick && F.group.length > 1) ) {
+				F.inner.css('cursor','pointer').on('click.fb', function(e) {
 					if (!$(e.target).is('a') && !$(e.target).parent().is('a')) {
 						e.preventDefault();
 
-						F[ current.closeClick ? 'close' : 'next' ]();
+						F[ current.zoomClick && (current.canExpand || current.canShrink) ? 'toggle' : ( current.closeClick ? 'close' : 'next' ) ]();
 					}
 				});
 			}

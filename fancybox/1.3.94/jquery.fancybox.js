@@ -1246,11 +1246,11 @@
 
 		outer.append(
 			content = $('<div id="fancybox-content"></div>'),
-			close = $('<a id="fancybox-close" class="fancy-ico"></a>'),
+			close = $('<a id="fancybox-close" title="Close" class="fancy-ico" href="javascript:;"></a>'),
 			title = $('<div id="fancybox-title"></div>'),
 
-			nav_prev = $('<a id="fancybox-prev"><span class="fancy-ico" id="fancybox-prev-ico"></span></a>'),
-			nav_next = $('<a id="fancybox-next"><span class="fancy-ico" id="fancybox-next-ico"></span></a>')
+			nav_prev = $('<a id="fancybox-prev" title="Previous" href="javascript:;"><span class="fancy-ico" id="fancybox-prev-ico"></span></a>'),
+			nav_next = $('<a id="fancybox-next" title="Next" href="javascript:;"><span class="fancy-ico" id="fancybox-next-ico"></span></a>')
 		);
 
 		close.click($.fancybox.close);

@@ -500,6 +500,15 @@ Admin settings links, new Exclude selector option.
 == Changelog ==
 
 = 2.0 =
+TODO:
+- add template text translations,
+- test translations,
+- test scrolling in pdf/iframe/inline,
+- test embedded video wmode
+- search solution for spotlight scroll issue on touch devices
+- test pro version
+
+* NEW: swipe support
 * NEW: fancyBox 2 script
 
 = 1.8.19 =

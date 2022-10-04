@@ -6,14 +6,15 @@
 namespace easyFancyBox\fancyBox_2;
 
 /**
- * MAIN INLINE SCRIPT
+ * MAIN INLINE SCRIPT & STYLE
  */
 
-function prepare_inline() {
+function prepare_inline_scripts() {
 	/**
 	 * Global parameters and value extraction.
 	 */
 	$fb_opts = array();
+
 	foreach ( \easyFancyBox::$options['Global']['options'] as $globals ) {
 		foreach ( $globals['options'] as $_key => $_value ) {
 			if ( isset($_value['id']) )
@@ -208,12 +209,11 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 
 	$fb_handler .= '};';
 
-	$fb_handler = str_replace( '"{{titleFromAlt}}"', 'function(){var alt = this.element.find(\'img\').attr(\'alt\');this.inner.find(\'img\').attr(\'alt\',alt);this.title=this.title||alt;}', $fb_handler );
+	$fb_handler = str_replace( '"{{titleFromAlt}}"', 'function(){var alt=this.element.find(\'img\').attr(\'alt\');this.inner.find(\'img\').attr(\'alt\',alt);this.title=this.title||alt;}', $fb_handler );
 
 	// Build script.
-	$script = 'var fb_timeout,fb_opts=' . \json_encode( $fb_opts, JSON_NUMERIC_CHECK ) . ',' . PHP_EOL;
-
-	$script .= 'easy_fancybox_handler=easy_fancybox_handler||' . $fb_handler . '' . PHP_EOL;
+	$script = 'var fb_timeout,fb_opts=' . \json_encode( $fb_opts, JSON_NUMERIC_CHECK ) . ',' . PHP_EOL .
+	          'easy_fancybox_handler=easy_fancybox_handler||' . $fb_handler . '' . PHP_EOL;
 
 	if ( empty( $delayClick ) ) $delayClick = '0';
 
@@ -255,31 +255,38 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 		'data' => $script,
 		'position' => 'after'
 	);
+}
 
-	/**
-	 * HEADER STYLES
-	 */
-
-	// Customized styles.
+function prepare_inline_styles() {
 	$styles = '';
-	! isset( $overlaySpotlight ) || 'true' !== $overlaySpotlight || $styles .= '.fancybox-overlay{background-attachment:fixed;background-image:url("' . \easyFancyBox::$plugin_url . 'images/light-mask.png");background-position:center;background-repeat:no-repeat;background-size:100% 100%}';
+	$backgroundColor = get_option( 'fancybox_backgroundColor' );
+	$textColor = get_option( 'fancybox_textColor' );
+	$borderRadius = get_option( 'fancybox_borderRadius' );
+	$paddingColor = get_option( 'fancybox_paddingColor' );
+	$overlaySpotlight = get_option( 'fancybox_overlaySpotlight' );
 
-	$content_style = '';
-	empty( $backgroundColor ) || $content_style .= 'background:'.$backgroundColor.';';
-	empty( $textColor )       || $content_style .= 'color:'.$textColor.';';
-	empty( $content_style )   || $styles .= '.fancybox-inner{'.$content_style.'}';
+		// Content styles.
+		$content_style = '';
+		empty( $backgroundColor ) || $content_style .= 'background:'.$backgroundColor.';';
+		empty( $textColor )       || $content_style .= 'color:'.$textColor.';';
 
-	$skin_style = '';
-	empty( $borderRadius ) || $skin_style .= 'border-radius:'.$borderRadius.'px;';
-	empty( $paddingColor ) || $skin_style .= 'background:'.$paddingColor.';';
-		//$styles .= '.fancybox-outer{background:'.$paddingColor.'}'; //.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}
-	empty( $skin_style ) || $styles .= '.fancybox-skin{'.$skin_style.'}';
+		// Skin styles.
+		$skin_style = '';
+		empty( $borderRadius ) || $skin_style .= 'border-radius:'.$borderRadius.'px;';
+		empty( $paddingColor ) || $skin_style .= 'background:'.$paddingColor.';';
 
-	empty( $titleColor ) || $styles .= '.fancybox-title{color:'.$titleColor.'}';
+	// Overlay.
+	empty( $overlaySpotlight ) || $styles .= '.fancybox-overlay{background-image:url("' . \easyFancyBox::$plugin_url . 'images/light-mask.png")!important;background-repeat:no-repeat!important;background-size:100% 100% !important}';
+	// Content.
+	empty( $content_style )    || $styles .= '.fancybox-inner{'.$content_style.'}';
+	// Skin.
+	empty( $skin_style )       || $styles .= '.fancybox-skin{'.$skin_style.'}';
+	// Title.
+	empty( $titleColor )       || $styles .= '.fancybox-title{color:'.$titleColor.'}';
 
 	$styles = \apply_filters( 'easy_fancybox_inline_style', $styles );
 
-	empty( $styles ) || \easyFancyBox::$inline_styles['fancybox'] = \wp_strip_all_tags( $styles, true );
+	\easyFancyBox::$inline_styles['fancybox'] = \wp_strip_all_tags( $styles, true );
 }
 
 function add_media() {
@@ -300,7 +307,7 @@ function add_thumbs() {
 	static $add;
 
 	if ( null === $add ) {
-		$add = true;
+		$add = apply_filters( 'easy_fancybox_add_thumbs', false );
 	}
 
 	return $add;
@@ -310,7 +317,7 @@ function add_buttons() {
 	static $add;
 
 	if ( null === $add ) {
-		$add = true;
+		$add = apply_filters( 'easy_fancybox_add_thumbs', false );;
 	}
 
 	return $add;
@@ -334,7 +341,7 @@ function add_easing() {
 			( 'linear' !== \get_option( 'fancybox_easingOutInline', '' ) && '' !== \get_option( 'fancybox_easingOutInline', '' ) )
 		 )
 	) {
-			return true;
+		return true;
 	}
 
 	return false;
@@ -351,7 +358,8 @@ function prepare_scripts_styles() {
 	}
 
 	// INLINE SCRIPT & STYLE
-	namespace\prepare_inline();
+	prepare_inline_scripts();
+	prepare_inline_styles();
 
 	// SCRIPT & STYLE URLS
 
