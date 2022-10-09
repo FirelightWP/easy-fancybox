@@ -3,8 +3,8 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
 Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
 Requires at least: 3.3
-Tested up to: 6.0
-Stable tag: 1.8.19
+Tested up to: 6.1-beta3
+Stable tag: 1.9
 
 Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
 
@@ -499,17 +499,27 @@ Admin settings links, new Exclude selector option.
 
 == Changelog ==
 
-= 2.0 =
+= 2.0-alpha1 =
 TODO:
-- add template text translations,
-- test translations,
-- test scrolling in pdf/iframe/inline,
-- test embedded video wmode
-- search solution for spotlight scroll issue on touch devices
+- add/test template error & text translations in 2.2,
+- make 2.2.0 imageless,
+- fix close button on touch
+- fix SVG support
+- 2.2.0 rtl styles
+- revisit swipe support (add dragging, rtl?)
+- v1.5.0 find solution for rtl and swipe/drag directions
 - test pro version
 
-* NEW: swipe support
-* NEW: fancyBox 2 script
+= 1.9 =
+TODO:
+- admin page
+- test pro version
+- check update routine
+
+* NEW: Swipe support
+* NEW: Optional fancyBox 2 script
+* Dropped IE6-8 support
+* Accessibility improvements
 
 = 1.8.19 =
 * Admin settings links

@@ -156,7 +156,7 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 		$script .= '.each(function(){';
 
 		// Filter here.
-		$bind = 'jQuery(this).fancybox(jQuery.extend({},fb_opts,{';
+		$bind = 'jQuery(this).fancybox(jQuery.extend(true,{},fb_opts,{';
 		$more = 0;
 		foreach ( $value['options'] as $_key => $_value ) {
 			if ( isset($_value['id']) || isset($_value['default']) )
@@ -214,8 +214,20 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 			}
 	}
 
+
 	$script .= PHP_EOL;
 
+	// Replace PDF embed shortcodes.
+	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart') ) ) {
+		$replaces = array(
+			'{{object}}'       => 'function(a,i,o){o.type=\'pdf\';}',
+			'{{embed}}'        => 'function(a,i,o){o.type=\'html\';o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}',
+			'{{googleviewer}}' => 'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}'
+		);
+		foreach ($replaces as $needle => $replace) {
+			$script = str_replace( $needle, $replace, $script );
+		}
+	}
 	\easyFancyBox::$inline_script = \apply_filters( 'easy_fancybox_inline_script', $script );
 
 	/**
@@ -236,37 +248,36 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 		$styles .= '#fancybox-outer{background:'.$paddingColor.'}'; //.fancybox-title-inside{background-color:'.$paddingColor.';margin-left:0 !important;margin-right:0 !important;width:100% !important;}
 	}
 	empty( $content_style ) || $styles .= '#fancybox-content{'.$content_style.'}';
+
 	empty( $titleColor ) || $styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
 
-	empty( $styles ) || \easyFancyBox::$inline_style = \wp_strip_all_tags( $styles, true );
+	//if ( get_option( 'fancybox_autoScale' ) ) {
+		$styles .= PHP_EOL . 'html.fancybox-active,html.fancybox-active body{touch-action:none;overscroll-behavior:none;-webkit-overflow-scrolling:auto;overflow:hidden}html.fancybox-active body:not(.rtl){padding-right:var(--vertical-scrollbar-width);padding-bottom:var(--horizontal-scrollbar-width)}html.fancybox-active body.rtl{padding-left:var(--vertical-scrollbar-width);padding-bottom:var(--horizontal-scrollbar-width)}';
+	//}
 
-	// Running our IE alphaimageloader relative path styles here.
-	if ( isset( $compatIE8 ) && 'true' == $compatIE8 ) {
-		\easyFancyBox::$inline_style_ie = '/* IE6 */
-.fancybox-ie6 #fancybox-close{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_close.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-left-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_nav_left.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-right-ico{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_nav_right.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-over{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_over.png",sizingMethod="scale");zoom:1}
-.fancybox-ie6 #fancybox-title-float-left{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_left.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-float-main{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_main.png",sizingMethod="scale")}
-.fancybox-ie6 #fancybox-title-float-right{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_right.png",sizingMethod="scale")}
-#fancybox-loading.fancybox-ie6 div{background:transparent;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_loading.png",sizingMethod="scale")}
-/* IE6, IE7, IE8 */
-.fancybox-ie #fancybox-title-over{background-image:url('.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_title_over.png)}
-.fancybox-ie #fancybox-bg-n{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_n.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-ne{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_ne.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-e{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_e.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-se{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_se.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-s{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_s.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-sw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_sw.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-w{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_w.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-bg-nw{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/fancy_shadow_nw.png",sizingMethod="scale")}
-.fancybox-ie #fancybox-left, .fancybox-ie #fancybox-right{background-image:url("'.\easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/blank.gif");}';
+	$styles .= '.fancybox-hidden{display:none}#fancybox-content .fancybox-hidden,#fancybox-tmp .fancybox-hidden{display:revert}';
 
-		if ( isset( $overlaySpotlight ) && 'true' == $overlaySpotlight )
-			\easyFancyBox::$inline_style_ie .= '
-#fancybox-overlay{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="'.\easyFancyBox::$plugin_url.'images/light-mask.png",sizingMethod="scale")}';
+	empty( $styles ) || \easyFancyBox::$inline_style = \wp_strip_all_tags( $styles );
+}
+
+function add_easing() {
+	// Check IMG settings.
+	if (
+		\get_option( 'fancybox_enableImg', \easyFancyBox::$options['Global']['options']['Enable']['options']['IMG']['default'] ) &&
+		( 'elastic' === \get_option( 'fancybox_transitionIn', 'elastic' ) || 'elastic' === \get_option( 'fancybox_transitionOut', 'elastic' ) )
+	) {
+		return true;
 	}
+
+	// Check Inline Content settings.
+	if (
+		\get_option( 'fancybox_enableInline', false ) &&
+		( 'elastic' === \get_option( 'fancybox_transitionInInline' ) || 'elastic' === \get_option( 'fancybox_transitionOutInline' ) )
+	) {
+		return true;
+	}
+
+	return false;
 }
 
 /**
@@ -284,22 +295,29 @@ function prepare_scripts_styles() {
 
 	$min = ( defined('WP_DEBUG') && WP_DEBUG ) ? '' : '.min';
 
-	// STYLE URLS
-	\easyFancyBox::$style_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox'.$min.'.css';
-	\easyFancyBox::$style_ie_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox-ie'.$min.'.css';
+	// SCRIPT & STYLE URLS
 
-	// SCRIPT URLS
+	$dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
+	$ver    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? time()  : false;
+	$min    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? ''      : '.min';
+	$footer = get_option( 'fancybox_noFooter', false ) ? false   : true;
 
-	// Register main fancybox script.
-	\easyFancyBox::$script_url = \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSION.'/jquery.fancybox'.$min.'.js';
+	// FancyBox.
+	\easyFancyBox::$styles['fancybox'] = array(
+		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['classic'].'/jquery.fancybox'.$min.'.css',
+		'deps'  => array(),
+		'ver'   => $ver,
+		'media' => 'screen'
+	);
+	\easyFancyBox::$scripts['jquery-fancybox'] = array(
+		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['classic'].'/jquery.fancybox'.$min.'.js',
+		'deps'   => $dep,
+		'ver'    => $ver,
+		'footer' => $footer
+	);
 
 	// jQuery Easing, which is not needed if jQueryUI Core Effects are loaded or when using fancyBox 3.
-	if (
-		// Check IMG settings.
-		( \get_option( 'fancybox_enableImg', \easyFancyBox::$options['Global']['options']['Enable']['options']['IMG']['default'] ) && ( 'elastic' === \get_option( 'fancybox_transitionIn', 'elastic' ) || 'elastic' === \get_option( 'fancybox_transitionOut', 'elastic' ) ) ) ||
-		// Check Inline Content settings.
-		( \get_option( 'fancybox_enableInline', false ) && ( 'elastic' === \get_option( 'fancybox_transitionInInline' ) || 'elastic' === \get_option( 'fancybox_transitionOutInline' ) ) )
-	) {
+	if ( add_easing() ) {
 		\easyFancyBox::$easing_script_url = \easyFancyBox::$plugin_url.'vendor/jquery.easing'.$min.'.js';
 	}
 
@@ -310,7 +328,12 @@ function prepare_scripts_styles() {
 
 	// Metadata in Miscellaneous settings?
 	if ( \get_option( 'fancybox_metaData' ) ) {
-		\easyFancyBox::$metadata_script_url = \easyFancyBox::$plugin_url.'vendor/jquery.metadata'.$min.'.js';
+		\easyFancyBox::$scripts['jquery-metadata'] = array(
+			'src'    => \easyFancyBox::$plugin_url.'vendor/jquery.metadata.min.js',
+			'deps'   => $dep,
+			'ver'    => METADATA_VERSION,
+			'footer' => $footer
+		);
 	}
 }
 \add_action( 'init', __NAMESPACE__.'\prepare_scripts_styles', 12 );

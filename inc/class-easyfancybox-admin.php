@@ -56,6 +56,9 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 	public static function register_settings( $args = array() )
 	{
+		// Version.
+		add_settings_field( 'fancybox_Version', esc_html__('Version','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'media', 'fancybox_section', array('label_for'=>'fancybox_scriptVersion') );
+		register_setting( 'media', 'fancybox_scriptVersion', 'sanitize_text_field' );
 
 		if ( empty( $args ) ) {
 			$args = parent::$options;
@@ -85,6 +88,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 							$sanitize_callback = array( __CLASS__, $_value['sanitize_callback'] );
 						if ( isset($_value['id']) )
 							register_setting( 'media', $_value['id'], $sanitize_callback );
+						//register_setting( 'media', $_value['id'], isset($_value['sanitize_callback']) ? array( __CLASS__, $_value['sanitize_callback'] ) : '' );
 					}
 					break;
 
@@ -102,7 +106,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 	// Add our FancyBox Media Settings Section on Settings > Media admin page.
 	public static function settings_section()
 	{
-		include EASY_FANCYBOX_DIR . '/admin/settings-section.php';
+		include EASY_FANCYBOX_DIR . '/views/settings-section.php';
 	}
 
 	// Add our FancyBox Media Settings Fields.
@@ -200,7 +204,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 					if ( isset( $args['description'] ) ) {
 						$output[] = $args['description'];
 					}
-
 			}
 
 		else :
@@ -324,7 +327,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 		/* Version Nag */
 		if ( self::$do_compat_warning ) {
-			include EASY_FANCYBOX_DIR . '/admin/admin-notice.php';
+			include EASY_FANCYBOX_DIR . '/views/admin-notice.php';
 		}
 	}
 

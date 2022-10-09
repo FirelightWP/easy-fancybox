@@ -27,10 +27,11 @@ function prepare_inline_scripts() {
 			else
 				$parm = '';
 
-			if ( isset($_value['input']) && 'checkbox' == $_value['input'] )
+			if ( isset($_value['input']) && 'checkbox' == $_value['input'] ) {
 				$parm = ( '1' == $parm ) ? true : false;
+			}
 
-			if( ! isset($_value['hide']) && $parm != '' ) {
+			if( ! isset($_value['hide']) && $parm !== '' ) {
 				$fb_opts[$_key] = $parm;
 			} else {
 				${$_key} = $parm;
@@ -181,17 +182,27 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 		// Title.
 		if ( isset( $value['options']['titleShow'] ) && ! empty( $value['options']['titleShow']['id'] ) && \get_option( $value['options']['titleShow']['id'] ) ) {
 			$bind_parameters['helpers'] = array( 'title' => array() );
-			if ( isset( $value['options']['titleType'] ) && \get_option( $value['options']['titleType']['id'] ) ) {
+/*			if ( isset( $value['options']['titleType'] ) && \get_option( $value['options']['titleType']['id'] ) ) {
 				$bind_parameters['helpers']['title']['type'] = \esc_attr( \get_option( $value['options']['titleType']['id'] ) );
-			}
-			if ( isset( $value['options']['titlePosition'] ) && \get_option( $value['options']['titlePosition']['id'] ) ) {
-				$bind_parameters['helpers']['title']['position'] = \esc_attr( \get_option( $value['options']['titlePosition']['id'] ) );
+			}*/
+			if ( isset( $value['options']['titlePosition'] ) ) {
+				$position = \get_option( $value['options']['titlePosition']['id'], $value['options']['titlePosition']['default'] );
+				$title = explode( '-', $position );
+				if ( ! empty( $title ) ) {
+					$bind_parameters['helpers']['title']['type'] = $title[0];
+					isset( $title[1] ) && $bind_parameters['helpers']['title']['position'] = $title[1];
+				}
 			}
 			if ( isset( $value['options']['titleFromAlt'] ) && \get_option( $value['options']['titleFromAlt']['id'] ) ) {
 				$bind_parameters['beforeShow'] = '{{titleFromAlt}}'; //;
 			}
 		} else {
 			$bind_parameters['helpers'] = array( 'title' => null );
+		}
+
+		// Iframe
+		if ( isset( $value['options']['allowFullScreen'] ) && ! \get_option( $value['options']['allowFullScreen']['id'], $value['options']['allowFullScreen']['default'] ) ) {
+			$bind_parameters['iframe'] = array( 'allowfullscreen' => false ); //;
 		}
 
 		// Keys.
@@ -209,7 +220,20 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 
 	$fb_handler .= '};';
 
+	// Replace TitleFromAlt shortcode.
 	$fb_handler = str_replace( '"{{titleFromAlt}}"', 'function(){var alt=this.element.find(\'img\').attr(\'alt\');this.inner.find(\'img\').attr(\'alt\',alt);this.title=this.title||alt;}', $fb_handler );
+
+	// Replace PDF embed shortcodes.
+	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart') ) ) {
+		$replaces = array(
+			'{{object}}'       => 'function(){this.type=\'html\';this.content=\'<object data="\'+this.href+\'" type="application/pdf" height="\'+this.width+\'" width="\'+this.height+\'" aria-label="\'+this.title+\'" />\'}',
+			'{{embed}}'        => 'function(){this.type=\'html\';this.autoSize=false;this.content=\'<embed src="\'+this.href+\'" type="application/pdf" height="\'+this.width+\'" width="\'+this.height+\'" aria-label="\'+this.title+\'" />\'}',
+			'{{googleviewer}}' => 'function(){this.href=\'https://docs.google.com/viewer?embedded=true&url=\'+this.href;}'
+		);
+		foreach ($replaces as $needle => $replace) {
+			$fb_handler = str_replace( '"'.$needle.'"', $replace, $fb_handler );
+		}
+	}
 
 	// Build script.
 	$script = 'var fb_timeout,fb_opts=' . \json_encode( $fb_opts, JSON_NUMERIC_CHECK ) . ',' . PHP_EOL .
@@ -283,6 +307,8 @@ function prepare_inline_styles() {
 	empty( $skin_style )       || $styles .= '.fancybox-skin{'.$skin_style.'}';
 	// Title.
 	empty( $titleColor )       || $styles .= '.fancybox-title{color:'.$titleColor.'}';
+
+	$styles .= '.fancybox-hidden{display:none}.fancybox-inner .fancybox-hidden{display:revert}';
 
 	$styles = \apply_filters( 'easy_fancybox_inline_style', $styles );
 
@@ -372,13 +398,13 @@ function prepare_scripts_styles() {
 
 	// FancyBox.
 	\easyFancyBox::$styles['fancybox'] = array(
-		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/jquery.fancybox'.$min.'.css',
+		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/jquery.fancybox'.$min.'.css',
 		'deps'  => array(),
 		'ver'   => $ver,
 		'media' => 'screen'
 	);
 	\easyFancyBox::$scripts['jquery-fancybox'] = array(
-		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/jquery.fancybox'.$min.'.js',
+		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/jquery.fancybox'.$min.'.js',
 		'deps'   => $dep,
 		'ver'    => $ver,
 		'footer' => $footer
@@ -387,7 +413,7 @@ function prepare_scripts_styles() {
 	// Fancybox Media Helpers.
 	if ( add_media() ) {
 		\easyFancyBox::$scripts['jquery-fancybox-media'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-media'.$min.'.js',
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-media'.$min.'.js',
 			'deps'   => array('jquery-fancybox'),
 			'ver'    => $ver,
 			'footer' => $footer
@@ -397,13 +423,13 @@ function prepare_scripts_styles() {
 	// Fancybox Thumbs Helpers.
 	if ( add_thumbs() ) {
 		\easyFancyBox::$styles['fancybox-thumbs'] = array(
-			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-thumbs'.$min.'.css',
+			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-thumbs'.$min.'.css',
 			'deps'  => array('fancybox'),
 			'ver'   => $ver,
 			'media' => 'screen'
 		);
 		\easyFancyBox::$scripts['jquery-fancybox-thumbs'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-thumbs'.$min.'.js',
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-thumbs'.$min.'.js',
 			'deps'   => array('jquery-fancybox'),
 			'ver'    => $ver,
 			'footer' => $footer
@@ -413,13 +439,13 @@ function prepare_scripts_styles() {
 	// Fancybox Buttons Helpers.
 	if ( add_thumbs() ) {
 		\easyFancyBox::$styles['fancybox-buttons'] = array(
-			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-buttons'.$min.'.css',
+			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-buttons'.$min.'.css',
 			'deps'  => array('fancybox'),
 			'ver'   => $ver,
 			'media' => 'screen'
 		);
 		\easyFancyBox::$scripts['jquery-fancybox-buttons'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_2_VERSION.'/helpers/jquery.fancybox-buttons'.$min.'.js',
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-buttons'.$min.'.js',
 			'deps'   => array('jquery-fancybox'),
 			'ver'    => $ver,
 			'footer' => $footer

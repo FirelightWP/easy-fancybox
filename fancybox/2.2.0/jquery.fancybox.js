@@ -1,4 +1,6 @@
-/*!
+/*! fancyBox v2.2 fancyapps.com | fancyapps.com/fancybox/#license */
+
+/**
  * fancyBox - jQuery Plugin
  * version: 2.2.0 (Tue, 16 Sep 2022)
  * requires jQuery v1.6 or later
@@ -7,7 +9,6 @@
  * License: www.fancyapps.com/fancybox/#license
  *
  * Copyright 2017 fancyapps.com
- *
  */
 
 ;(function (window, document, $, undefined) {
@@ -19,9 +20,9 @@
 		F = $.fancybox = function () {
 			F.open.apply( this, arguments );
 		},
-		IE =  navigator.userAgent.match(/msie/i),
-		didUpdate	= null,
-		isTouch		= 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0,
+		IE = navigator.userAgent.match(/msie/i),
+		didUpdate = null,
+		isTouch	  = 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0,
 
 		isQuery	= function(obj) {
 			return obj && obj.hasOwnProperty && obj instanceof $;
@@ -98,11 +99,12 @@
 				headers  : { 'X-fancyBox': true }
 			},
 			iframe : {
-				scrolling : 'auto',
-				preload   : true
+				scrolling       : 'auto',
+				allowfullscreen : true,
+				preload         : true
 			},
 			swf : {
-				wmode: 'transparent',
+				wmode             : 'transparent',
 				allowfullscreen   : 'true',
 				allowscriptaccess : 'always'
 			},
@@ -141,14 +143,14 @@
 
 			// HTML templates
 			tpl: {
-				wrap     : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
-				image    : '<img class="fancybox-image" src="{href}" alt="" />',
-				iframe   : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
-				error    : '<p class="fancybox-error">{error}</p>',
-				closeBtn : '<a title="{close}" class="fancybox-item fancybox-close" href="javascript:;"></a>',
-				next     : '<a title="{next}" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
-				prev     : '<a title="{prev}" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>',
-				loading  : '<div id="fancybox-loading"><div></div></div>'
+				wrap    : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+				image   : '<img class="fancybox-image" src="{href}" alt="" />',
+				iframe  : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0"' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
+				error   : '<p class="fancybox-error">{error}</p>',
+				close   : '<a title="{close}" class="fancybox-item fancybox-close" href="javascript:;"></a>',
+				next    : '<a title="{next}" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
+				prev    : '<a title="{prev}" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>',
+				loading : '<div id="fancybox-loading"><div></div></div>'
 			},
 
 			// Texts
@@ -644,9 +646,10 @@
 			// If user will press the escape-button, the request will be canceled
 			D.on('keydown.loading', function(e) {
 				if ((e.which || e.keyCode) === 27) {
-					e.preventDefault();
-
 					F.cancel();
+
+					e.preventDefault();
+					return false;
 				}
 			});
 
@@ -1005,7 +1008,7 @@
 		},
 
 		_error: function ( type ) {
-			let msg = defaults.txt.error[type] || defaults.txt.error['content'];
+			let msg = F.coming.txt.error[type] || F.coming.txt.error['content'];
 			if( arguments.length > 1 ) {
 				msg = msg + '<br/><br/>' + arguments[1];
 			}
@@ -1016,7 +1019,7 @@
 				minWidth   : 0,
 				minHeight  : 0,
 				scrolling  : 'no',
-				content    : F.coming.tpl.error.replace(/\{error\}/g, msg  )
+				content    : F.coming.tpl.error.replace(/\{error\}/g, msg)
 			});
 
 			F._afterLoad();
@@ -1075,8 +1078,13 @@
 		_loadIframe: function() {
 			var coming = F.coming,
 				iframe = $(coming.tpl.iframe.replace(/\{rnd\}/g, new Date().getTime()))
-					.attr('scrolling', isTouch ? 'auto' : coming.iframe.scrolling)
-					.attr('src', coming.href);
+					.attr({
+						'scrolling' : (isTouch ? 'auto' : coming.iframe.scrolling),
+					    'src' : coming.href,
+						'webkitallowfullscreen' : coming.iframe.allowfullscreen,
+						'mozallowfullscreen' : coming.iframe.allowfullscreen,
+						'allowfullscreen' : coming.iframe.allowfullscreen
+					});
 
 			// This helps IE
 			$(coming.wrap).on('onReset', function () {
@@ -1189,14 +1197,14 @@
 
 					} else if (isQuery(content)) {
 						if (!content.data(placeholder)) {
-							content.data(placeholder, $('<div class="' + placeholder + '"></div>').insertAfter( content ).hide() );
+							content.data(placeholder, content.clone().removeAttr('id').addClass(placeholder).insertAfter( content ) );
 						}
 
-						content = content.show().detach();
+						content = content.detach();
 
 						current.wrap.on('onReset', function () {
 							if ($(this).find(content).length) {
-								content.hide().replaceAll( content.data(placeholder) ).data(placeholder, false);
+								content.replaceAll( content.data(placeholder) ).data(placeholder, false);
 							}
 						});
 					}
@@ -1241,7 +1249,6 @@
 
 			if (!F.isOpened) {
 				$('.fancybox-wrap').not( current.wrap ).stop(true).trigger('onReset').remove();
-
 			} else if (previous.prevMethod) {
 				F.transitions[ previous.prevMethod ]();
 			}
@@ -1529,7 +1536,7 @@
 
 			// Create a close button
 			if (current.closeBtn) {
-				$(current.tpl.closeBtn).appendTo(F.skin).on('click.fb', function(e) {
+				$(current.tpl.close.replace(/\{close\}/g, current.txt.close)).appendTo(F.skin).on('click.fb', function(e) {
 					e.preventDefault();
 
 					F.close();
@@ -1539,11 +1546,11 @@
 			// Create navigation arrows
 			if (current.arrows && F.group.length > 1) {
 				if (current.loop || current.index > 0) {
-					$(current.tpl.prev).appendTo(F.outer).on('click.fb', F.prev);
+					$(current.tpl.prev.replace(/\{prev\}/g, current.txt.prev)).appendTo(F.outer).on('click.fb', F.prev);
 				}
 
 				if (current.loop || current.index < F.group.length - 1) {
-					$(current.tpl.next).appendTo(F.outer).on('click.fb', F.next);
+					$(current.tpl.next.replace(/\{next\}/g, current.txt.next)).appendTo(F.outer).on('click.fb', F.next);
 				}
 			}
 
@@ -2031,6 +2038,7 @@
 					// Stop an event from bubbling if everything is fine
 					if (F.open(what, options) !== false) {
 						e.preventDefault();
+						return false;
 					}
 				}
 			};

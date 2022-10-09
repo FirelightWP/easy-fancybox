@@ -190,7 +190,21 @@ class easyFancyBox {
 		// Upgrade from before 2.0.
 		if ( version_compare( $old_version, '0', '>' ) && version_compare( $old_version, '2.0', '<' ) ) {
 			// TODO figure out when to upgrade
-			update_option( 'fancybox_scriptVersion', '1' );
+			update_option( 'fancybox_scriptVersion', 'classic' );
+
+			$onstart = get_option('fancybox_PDFonStart');
+			if ( ! empty( $onstart ) ) {
+				$replaces = array(
+					'function(a,i,o){o.type=\'pdf\';}' => '{{object}}',
+					'function(a,i,o){o.type=\'html\';o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}' => '{{embed}}',
+					'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => '{{googleviewer}}'
+				);
+				if ( array_key_exists( $onstart, $replaces ) ) {
+					update_option( 'fancybox_PDFonStart', $replaces[$onstart] );
+				} else {
+					update_option( 'fancybox_PDFonStart', '{{object}}' );
+				}
+			}
 			// OR convert fancybox_overlayColor and fancybox_overlayOpacity values to one rgba for new rgba fancybox_overlayColor:
 			/*function hex2rgba($color, $opacity = false) {
 
@@ -267,14 +281,17 @@ class easyFancyBox {
 
 	public static function extend()
 	{
-		$version = get_option( 'fancybox_scriptVersion', '2' );
+		$script_version = get_option( 'fancybox_scriptVersion', 'classic' );
+		if ( ! array_key_exists( $script_version, FANCYBOX_VERSIONS ) ) {
+			$script_version = 'classic';
+		}
 
-		switch( $version ) {
-			case '1':
-				include EASY_FANCYBOX_DIR . '/inc/fancybox-1.php';
+		switch( $script_version ) {
+			case 'legacy':
+				include EASY_FANCYBOX_DIR . '/inc/fancybox-legacy.php';
 				// Load defaults.
 				if ( empty( self::$options ) ) {
-					include EASY_FANCYBOX_DIR . '/inc/fancybox-1-options.php';
+					include EASY_FANCYBOX_DIR . '/inc/fancybox-legacy-options.php';
 					self::$options = $efb_options;
 				}
 				// Check for any enabled sections to set the scripts flag.
@@ -288,16 +305,34 @@ class easyFancyBox {
 				}
 				break;
 
-			case '3':
-				//include EASY_FANCYBOX_DIR . '/inc/fancybox-3.php';
-				break;
-
-			default:
-			case '2':
+			case 'fancyBox2':
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-2.php';
 				// Load defaults.
 				if ( empty( self::$options ) ) {
 					include EASY_FANCYBOX_DIR . '/inc/fancybox-2-options.php';
+					self::$options = $efb_options;
+				}
+				// Check for any enabled sections to set the scripts flag.
+				foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
+					if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
+						self::$add_scripts = true;
+						break;
+					} else {
+						self::$add_scripts = false;
+					}
+				}
+				break;
+
+			case 'fancyBox3':
+				//include EASY_FANCYBOX_DIR . '/inc/fancybox-3.php';
+				break;
+
+			case 'classic':
+			default:
+				include EASY_FANCYBOX_DIR . '/inc/fancybox-classic.php';
+				// Load defaults.
+				if ( empty( self::$options ) ) {
+					include EASY_FANCYBOX_DIR . '/inc/fancybox-classic-options.php';
 					self::$options = $efb_options;
 				}
 				// Check for any enabled sections to set the scripts flag.
