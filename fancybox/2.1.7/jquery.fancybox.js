@@ -1,14 +1,13 @@
-/*! fancyBox v2.2 fancyapps.com | fancyapps.com/fancybox/#license */
-
-/**
+/*!
  * fancyBox - jQuery Plugin
- * version: 2.2.0 (Tue, 16 Sep 2022)
+ * version: 2.1.7 (Tue, 28 Feb 2017)
  * requires jQuery v1.6 or later
  *
  * Examples at http://fancyapps.com/fancybox/
  * License: www.fancyapps.com/fancybox/#license
  *
  * Copyright 2017 fancyapps.com
+ *
  */
 
 ;(function (window, document, $, undefined) {
@@ -20,9 +19,9 @@
 		F = $.fancybox = function () {
 			F.open.apply( this, arguments );
 		},
-		IE = navigator.userAgent.match(/msie/i),
-		didUpdate = null,
-		isTouch	  = 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0,
+		IE =  navigator.userAgent.match(/msie/i),
+		didUpdate	= null,
+		isTouch		= document.createTouch !== undefined,
 
 		isQuery	= function(obj) {
 			return obj && obj.hasOwnProperty && obj instanceof $;
@@ -51,7 +50,7 @@
 
 	$.extend(F, {
 		// The current version of fancyBox
-		version: '2.2.0',
+		version: '2.1.7',
 
 		defaults: {
 			padding : 15,
@@ -63,7 +62,7 @@
 			minHeight : 100,
 			maxWidth  : 9999,
 			maxHeight : 9999,
-			pixelRatio: window.devicePixelRatio || 1, // Set to 2 for retina display support
+			pixelRatio: 1, // Set to 2 for retina display support
 
 			autoSize   : true,
 			autoHeight : false,
@@ -75,8 +74,6 @@
 			aspectRatio : false,
 			topRatio    : 0.5,
 			leftRatio   : 0.5,
-			minVpWidth  : 320,
-			minVpHeight : 320,
 
 			scrolling : 'auto', // 'auto', 'yes' or 'no'
 			wrapCSS   : '',
@@ -85,9 +82,7 @@
 			closeBtn   : true,
 			closeClick : false,
 			nextClick  : false,
-			zoomClick  : false,
 			mouseWheel : true,
-			swipe      : isTouch,
 			autoPlay   : false,
 			playSpeed  : 3000,
 			preload    : 3,
@@ -99,12 +94,11 @@
 				headers  : { 'X-fancyBox': true }
 			},
 			iframe : {
-				scrolling       : 'auto',
-				allowfullscreen : true,
-				preload         : true
+				scrolling : 'auto',
+				preload   : true
 			},
 			swf : {
-				wmode             : 'transparent',
+				wmode: 'transparent',
 				allowfullscreen   : 'true',
 				allowscriptaccess : 'always'
 			},
@@ -143,27 +137,14 @@
 
 			// HTML templates
 			tpl: {
-				wrap    : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
-				image   : '<img class="fancybox-image" src="{href}" alt="" />',
-				iframe  : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0"' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
-				error   : '<p class="fancybox-error">{error}</p>',
-				close   : '<a title="{close}" class="fancybox-item fancybox-close" href="javascript:;"></a>',
-				next    : '<a title="{next}" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
-				prev    : '<a title="{prev}" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>',
-				loading : '<div id="fancybox-loading"><div></div></div>'
-			},
-
-			// Texts
-			txt: {
-				error : {
-					content : 'The requested content cannot be loaded.<br/>Please try again later.',
-					image   : 'The requested image cannot be loaded.<br/>Please try again later.',
-					ajax    : 'An AJAX error occurred.<br/>Please contact the site administrator.',
-					href    : 'Missing media target URL.<br/>Please contact the site administrator.',
-				},
-				close : 'Close',
-				next  : 'Next',
-				prev  : 'Previous'
+				wrap     : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
+				image    : '<img class="fancybox-image" src="{href}" alt="" />',
+				iframe   : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
+				error    : '<p class="fancybox-error">The requested content cannot be loaded.<br/>Please try again later.</p>',
+				closeBtn : '<a title="Close" class="fancybox-item fancybox-close" href="javascript:;"></a>',
+				next     : '<a title="Next" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
+				prev     : '<a title="Previous" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>',
+				loading  : '<div id="fancybox-loading"><div></div></div>'
 			},
 
 			// Properties for each animation type
@@ -289,8 +270,8 @@
 						if ($.metadata) {
 							$.extend(true, obj, element.metadata());
 						}
-					}
-					else {
+
+					} else {
 						obj = element;
 					}
 				}
@@ -315,14 +296,14 @@
 					if (!type) {
 						if (F.isImage(href)) {
 							type = 'image';
-						}
-						else if (F.isSWF(href)) {
+
+						} else if (F.isSWF(href)) {
 							type = 'swf';
-						}
-						else if (href.charAt(0) === '#') {
+
+						} else if (href.charAt(0) === '#') {
 							type = 'inline';
-						}
-						else if (isString(element)) {
+
+						} else if (isString(element)) {
 							type    = 'html';
 							content = element;
 						}
@@ -341,15 +322,15 @@
 					if (type === 'inline') {
 						if (href) {
 							content = $( isString(href) ? href.replace(/.*(?=#[^\s]+$)/, '') : href ); //strip for ie7
-						}
-						else if (obj.isDom) {
+
+						} else if (obj.isDom) {
 							content = element;
 						}
-					}
-					else if (type === 'html') {
+
+					} else if (type === 'html') {
 						content = href;
-					}
-					else if (!type && !href && obj.isDom) {
+
+					} else if (!type && !href && obj.isDom) {
 						type    = 'inline';
 						content = element;
 					}
@@ -368,13 +349,6 @@
 
 			// Extend the defaults
 			F.opts = $.extend(true, {}, F.defaults, opts);
-
-
-			// Abort if not enough screen space
-			var viewport = F.getViewport();
-			if ( viewport.w < F.opts.minVpWidth || viewport.h < F.opts.minVpHeight ) {
-				return;
-			}
 
 			// All options are merged recursive except keys
 			if (opts.keys !== undefined) {
@@ -440,8 +414,8 @@
 				$('.fancybox-wrap').stop(true).trigger('onReset').remove();
 
 				F._afterZoomOut();
-			}
-			else {
+
+			} else {
 				F.isOpen = F.isOpened = false;
 				F.isClosing = true;
 
@@ -471,7 +445,7 @@
 				stop = function () {
 					clear();
 
-					D.off('.player');
+					D.unbind('.player');
 
 					F.player.isActive = false;
 
@@ -481,7 +455,7 @@
 					if (F.current && (F.current.loop || F.current.index < F.group.length - 1)) {
 						F.player.isActive = true;
 
-						D.on({
+						D.bind({
 							'onCancel.player beforeClose.player' : stop,
 							'onUpdate.player'   : set,
 							'beforeLoad.player' : clear
@@ -495,21 +469,8 @@
 
 			if (action === true || (!F.player.isActive && action !== false)) {
 				start();
-			}
-			else {
+			} else {
 				stop();
-			}
-		},
-
-		// Navigate on mousewheel, swipe or drag
-		swipe: function ( deltaX, deltaY, threshold ) {
-			if ( deltaX > threshold || deltaY > threshold ) {
-				F.wrap.off('touchstart.fb touchmove.fb touchend.fb mouseup.fb mousedown.fb mousemove.fb mousewheel.fb');
-				F.next( deltaY > threshold ? 'up' : 'left' );
-			}
-			else if ( deltaX < -threshold || deltaY < -threshold ) {
-				F.wrap.off('touchstart.fb touchmove.fb touchend.fb mouseup.fb mousedown.fb mousemove.fb mousewheel.fb');
-				F.prev( deltaY < -threshold ? 'down' : 'right' );
 			}
 		},
 
@@ -562,24 +523,9 @@
 
 			if (current.group[ index ] !== undefined) {
 				F.cancel();
-				F.isJumping = true;
+
 				F._start(index);
 			}
-		},
-
-		canScroll: function ( target ) {
-			let canScroll = false,
-			    parent = $(target);
-
-			while (parent.length) {
-				if (canScroll || parent.is('.fancybox-skin') || parent.is('.fancybox-wrap')) {
-					break;
-				}
-				canScroll = isScrollable( parent[0] );
-				parent    = $(parent).parent();
-			}
-
-			return canScroll;
 		},
 
 		// Center inside viewport and toggle position type to fixed or absolute if needed
@@ -595,8 +541,8 @@
 					delete pos.position;
 
 					wrap.stop(true, true).animate(pos, 200);
-				}
-				else {
+
+				} else {
 					wrap.css(pos);
 
 					current.pos = $.extend({}, current.dim, pos);
@@ -635,10 +581,6 @@
 					F.reposition(e);
 				}
 
-				if (current.zoomClick) {
-					F.inner.css('cursor', current.canExpand ? 'zoom-in' : 'zoom-out');
-				}
-
 				F.trigger('onUpdate');
 
 				didUpdate = null;
@@ -663,7 +605,7 @@
 		},
 
 		hideLoading: function () {
-			D.off('.loading');
+			D.unbind('.loading');
 
 			$('#fancybox-loading').remove();
 		},
@@ -676,12 +618,11 @@
 			el = $(F.opts.tpl.loading).click(F.cancel).appendTo('body');
 
 			// If user will press the escape-button, the request will be canceled
-			D.on('keydown.loading', function(e) {
+			D.bind('keydown.loading', function(e) {
 				if ((e.which || e.keyCode) === 27) {
-					F.cancel();
-
 					e.preventDefault();
-					return false;
+
+					F.cancel();
 				}
 			});
 
@@ -708,8 +649,8 @@
 			if (locked && locked.length) {
 				rez.w = locked[0].clientWidth;
 				rez.h = locked[0].clientHeight;
-			}
-			else {
+
+			} else {
 				// See http://bugs.jquery.com/ticket/6724
 				rez.w = isTouch && window.innerWidth  ? window.innerWidth  : W.width();
 				rez.h = isTouch && window.innerHeight ? window.innerHeight : W.height();
@@ -721,11 +662,11 @@
 		// Unbind the keyboard / clicking actions
 		unbindEvents: function () {
 			if (F.wrap && isQuery(F.wrap)) {
-				F.wrap.off('.fb');
+				F.wrap.unbind('.fb');
 			}
 
-			D.off('.fb');
-			W.off('.fb');
+			D.unbind('.fb');
+			W.unbind('.fb');
 		},
 
 		bindEvents: function () {
@@ -738,12 +679,12 @@
 
 			// Changing document height on iOS devices triggers a 'resize' event,
 			// that can change document height... repeating infinitely
-			W.on('orientationchange.fb' + (isTouch ? '' : ' resize.fb') + (current.autoCenter && !current.locked ? ' scroll.fb' : ''), F.update);
+			W.bind('orientationchange.fb' + (isTouch ? '' : ' resize.fb') + (current.autoCenter && !current.locked ? ' scroll.fb' : ''), F.update);
 
 			keys = current.keys;
 
 			if (keys) {
-				D.on('keydown.fb', function (e) {
+				D.bind('keydown.fb', function (e) {
 					var code   = e.which || e.keyCode,
 						target = e.target || e.srcElement;
 
@@ -773,75 +714,34 @@
 				});
 			}
 
-			if (current.group.length > 1) {
-				F.wrap.css('cursor','move');
-				F.wrap.on('mousedown.fb', function(e){
-					let drag = {};
+			if ($.fn.mousewheel && current.mouseWheel) {
+				F.wrap.bind('mousewheel.fb', function (e, delta, deltaX, deltaY) {
+					var target = e.target || null,
+						parent = $(target),
+						canScroll = false;
 
-					e.preventDefault();
-
-					drag.startX = typeof e.clientX !== 'undefined' ? e.clientX : e.originalEvent.clientX;
-					drag.startY = typeof e.clientY !== 'undefined' ? e.clientY : e.originalEvent.clientY;
-
-					F.wrap.on('mousemove.fb',function(e) {
-						e.preventDefault();
-
-						drag.endX = typeof e.clientX !== 'undefined' ? e.clientX : e.originalEvent.clientX;
-						drag.endY = typeof e.clientY !== 'undefined' ? e.clientY : e.originalEvent.clientY;
-					});
-
-					F.wrap.on('mouseup.fb', function(){
-						F.wrap.off('mousemove.fb');
-						F.swipe(drag.startX - drag.endX, drag.startY - drag.endY, 100);
-					});
-				});
-
-				if (current.swipe) {
-					F.wrap.on('touchstart.fb', function(e){
-						let target  = e.target || null,
-							touch   = {},
-							fingers = typeof e.touches !== 'undefined' ? e.touches.length : e.originalEvent.touches.length;
-
-						if ( current.canShrink || fingers > 1 || F.canScroll( target ) ) {
-							return;
+					while (parent.length) {
+						if (canScroll || parent.is('.fancybox-skin') || parent.is('.fancybox-wrap')) {
+							break;
 						}
 
-						e.preventDefault();
+						canScroll = isScrollable( parent[0] );
+						parent    = $(parent).parent();
+					}
 
-						touch.startX = typeof e.touches !== 'undefined' ? e.touches[0].clientX : e.originalEvent.touches[0].clientX;
-						touch.startY = typeof e.touches !== 'undefined' ? e.touches[0].clientY : e.originalEvent.touches[0].clientY;
+					if (delta !== 0 && !canScroll) {
+						if (F.group.length > 1 && !current.canShrink) {
+							if (deltaY > 0 || deltaX > 0) {
+								F.prev( deltaY > 0 ? 'down' : 'left' );
 
-						F.wrap.on('touchmove.fb',function(e) {
-							fingers = typeof e.touches !== 'undefined' ? e.touches.length : e.originalEvent.touches.length;
-							if ( fingers > 1 ) {
-								return;
+							} else if (deltaY < 0 || deltaX < 0) {
+								F.next( deltaY < 0 ? 'up' : 'right' );
 							}
+
 							e.preventDefault();
-
-							let x  = typeof e.touches !== 'undefined' ? e.touches[0].clientX : e.originalEvent.touches[0].clientX,
-								y  = typeof e.touches !== 'undefined' ? e.touches[0].clientY : e.originalEvent.touches[0].clientY;
-
-							F.swipe(touch.startX - x, touch.startY - y, 100);
-						});
-					});
-					F.wrap.on('touchend.fb', function(){
-						F.wrap.off('touchmove.fb');
-					});
-				}
-
-				if ($.fn.mousewheel && current.mouseWheel) {
-					F.wrap.on('mousewheel.fb', function (e, delta, deltaX, deltaY) {
-						let target = e.target || null;
-
-						if (current.canShrink || delta === 0 || F.canScroll(target)) {
-							return;
 						}
-
-						e.preventDefault();
-
-						F.swipe(-deltaX, -deltaY, 0);
-					});
-				}
+					}
+				});
 			}
 		},
 
@@ -912,7 +812,6 @@
 					closeBtn   : false,
 					closeClick : false,
 					nextClick  : false,
-					zoomClick  : false,
 					arrows     : false,
 					mouseWheel : false,
 					keys       : null,
@@ -1007,30 +906,26 @@
 				if (!coming.content || !coming.content.length) {
 					return F._error( 'content' );
 				}
-			}
-			else if (!href) {
+
+			} else if (!href) {
 				return F._error( 'href' );
 			}
 
 			if (type === 'image') {
 				F._loadImage();
-			}
-			else if (type === 'ajax') {
+
+			} else if (type === 'ajax') {
 				F._loadAjax();
-			}
-			else if (type === 'iframe') {
+
+			} else if (type === 'iframe') {
 				F._loadIframe();
-			}
-			else {
+
+			} else {
 				F._afterLoad();
 			}
 		},
 
 		_error: function ( type ) {
-			let msg = F.coming.txt.error[type] || F.coming.txt.error['content'];
-			if( arguments.length > 1 ) {
-				msg = msg + '<br/><br/>' + arguments[1];
-			}
 			$.extend(F.coming, {
 				type       : 'html',
 				autoWidth  : true,
@@ -1038,7 +933,8 @@
 				minWidth   : 0,
 				minHeight  : 0,
 				scrolling  : 'no',
-				content    : F.coming.tpl.error.replace(/\{error\}/g, msg)
+				hasError   : type,
+				content    : F.coming.tpl.error
 			});
 
 			F._afterLoad();
@@ -1080,8 +976,8 @@
 				error: function (jqXHR, textStatus) {
 					if (F.coming && textStatus !== 'abort') {
 						F._error( 'ajax', jqXHR );
-					}
-					else {
+
+					} else {
 						F.hideLoading();
 					}
 				},
@@ -1098,16 +994,11 @@
 		_loadIframe: function() {
 			var coming = F.coming,
 				iframe = $(coming.tpl.iframe.replace(/\{rnd\}/g, new Date().getTime()))
-					.attr({
-						'scrolling' : (isTouch ? 'auto' : coming.iframe.scrolling),
-					    'src' : coming.href,
-						'webkitallowfullscreen' : coming.iframe.allowfullscreen,
-						'mozallowfullscreen' : coming.iframe.allowfullscreen,
-						'allowfullscreen' : coming.iframe.allowfullscreen
-					});
+					.attr('scrolling', isTouch ? 'auto' : coming.iframe.scrolling)
+					.attr('src', coming.href);
 
 			// This helps IE
-			$(coming.wrap).on('onReset', function () {
+			$(coming.wrap).bind('onReset', function () {
 				try {
 					$(this).find('iframe').hide().attr('src', '//about:blank').end().empty();
 				} catch (e) {}
@@ -1121,7 +1012,7 @@
 
 					// iOS will lose scrolling if we resize
 					if (!isTouch) {
-						$(this).on('load.fb', F.update);
+						$(this).bind('load.fb', F.update);
 					}
 
 					// Without this trick:
@@ -1214,17 +1105,17 @@
 				case 'html':
 					if (current.selector) {
 						content = $('<div>').html(content).find(current.selector);
-					}
-					else if (isQuery(content)) {
+
+					} else if (isQuery(content)) {
 						if (!content.data(placeholder)) {
-							content.data(placeholder, content.clone().removeAttr('id').addClass(placeholder).insertAfter( content ) );
+							content.data(placeholder, $('<div class="' + placeholder + '"></div>').insertAfter( content ).hide() );
 						}
 
-						content = content.detach();
+						content = content.show().detach();
 
-						current.wrap.on('onReset', function () {
+						current.wrap.bind('onReset', function () {
 							if ($(this).find(content).length) {
-								content.replaceAll( content.data(placeholder) ).data(placeholder, false);
+								content.hide().replaceAll( content.data(placeholder) ).data(placeholder, false);
 							}
 						});
 					}
@@ -1269,8 +1160,8 @@
 
 			if (!F.isOpened) {
 				$('.fancybox-wrap').not( current.wrap ).stop(true).trigger('onReset').remove();
-			}
-			else if (previous.prevMethod) {
+
+			} else if (previous.prevMethod) {
 				F.transitions[ previous.prevMethod ]();
 			}
 
@@ -1347,8 +1238,8 @@
 
 					} catch (e) {}
 				}
-			}
-			else if (current.autoWidth || current.autoHeight) {
+
+			} else if (current.autoWidth || current.autoHeight) {
 				inner.addClass( 'fancybox-tmp' );
 
 				// Set width or height in case we need to calculate only one dimension
@@ -1415,8 +1306,8 @@
 					height = minHeight;
 					width  = getScalar(height * ratio);
 				}
-			}
-			else {
+
+			} else {
 				width = Math.max(minWidth, Math.min(width, maxWidth));
 
 				if (current.autoHeight && current.type !== 'iframe') {
@@ -1464,8 +1355,8 @@
 						width_  = wrap.width();
 						height_ = wrap.height();
 					}
-				}
-				else {
+
+				} else {
 					width  = Math.max(minWidth,  Math.min(width,  width  - (width_  - maxWidth_)));
 					height = Math.max(minHeight, Math.min(height, height - (height_ - maxHeight_)));
 				}
@@ -1519,8 +1410,8 @@
 
 			if (current.autoCenter && current.fixed && !onlyAbsolute && height <= viewport.h && width <= viewport.w) {
 				rez.position = 'fixed';
-			}
-			else if (!current.locked) {
+
+			} else if (!current.locked) {
 				rez.top  += viewport.y;
 				rez.left += viewport.x;
 			}
@@ -1545,19 +1436,19 @@
 			F.update();
 
 			// Assign a click event
-			if ( current.zoomClick || current.closeClick || (current.nextClick && F.group.length > 1) ) {
-				F.inner.css('cursor', !current.zoomClick ? 'pointer' : (current.canExpand ? 'zoom-in' : 'zoom-out')).on('click.fb', function(e) {
+			if ( current.closeClick || (current.nextClick && F.group.length > 1) ) {
+				F.inner.css('cursor', 'pointer').bind('click.fb', function(e) {
 					if (!$(e.target).is('a') && !$(e.target).parent().is('a')) {
 						e.preventDefault();
 
-						F[ current.zoomClick && (current.canExpand || current.canShrink) ? 'toggle' : ( current.closeClick ? 'close' : 'next' ) ]();
+						F[ current.closeClick ? 'close' : 'next' ]();
 					}
 				});
 			}
 
 			// Create a close button
 			if (current.closeBtn) {
-				$(current.tpl.close.replace(/\{close\}/g, current.txt.close)).appendTo(F.skin).on('click.fb', function(e) {
+				$(current.tpl.closeBtn).appendTo(F.skin).bind('click.fb', function(e) {
 					e.preventDefault();
 
 					F.close();
@@ -1567,11 +1458,11 @@
 			// Create navigation arrows
 			if (current.arrows && F.group.length > 1) {
 				if (current.loop || current.index > 0) {
-					$(current.tpl.prev.replace(/\{prev\}/g, current.txt.prev)).appendTo(F.outer).on('click.fb', F.prev);
+					$(current.tpl.prev).appendTo(F.outer).bind('click.fb', F.prev);
 				}
 
 				if (current.loop || current.index < F.group.length - 1) {
-					$(current.tpl.next.replace(/\{next\}/g, current.txt.next)).appendTo(F.outer).on('click.fb', F.next);
+					$(current.tpl.next).appendTo(F.outer).bind('click.fb', F.next);
 				}
 			}
 
@@ -1581,8 +1472,8 @@
 			if (!current.loop && current.index === current.group.length - 1) {
 
 				F.play( false );
-			}
-			else if (F.opts.autoPlay && !F.player.isActive) {
+
+			} else if (F.opts.autoPlay && !F.player.isActive) {
 				F.opts.autoPlay = false;
 
 				F.play(true);
@@ -1644,8 +1535,8 @@
 					width  = orig.outerWidth();
 					height = orig.outerHeight();
 				}
-			}
-			else {
+
+			} else {
 				pos.top  = viewport.y + (viewport.h - height) * current.topRatio;
 				pos.left = viewport.x + (viewport.w - width)  * current.leftRatio;
 			}
@@ -1705,8 +1596,8 @@
 				if (current.openOpacity) {
 					startPos.opacity = 0.1;
 				}
-			}
-			else if (effect === 'fade') {
+
+			} else if (effect === 'fade') {
 				startPos.opacity = 0.1;
 			}
 
@@ -1757,8 +1648,8 @@
 				if (direction === 'down' || direction === 'right') {
 					startPos[ field ] = getValue(getScalar(startPos[ field ]) - distance);
 					endPos[ field ]   = '+=' + distance + 'px';
-				}
-				else {
+
+				} else {
 					startPos[ field ] = getValue(getScalar(startPos[ field ]) + distance);
 					endPos[ field ]   = '-=' + distance + 'px';
 				}
@@ -1767,8 +1658,8 @@
 			// Workaround for http://bugs.jquery.com/ticket/12273
 			if (effect === 'none') {
 				F._afterZoomIn();
-			}
-			else {
+
+			} else {
 				F.wrap.css(startPos).animate(endPos, {
 					duration : current.nextSpeed,
 					easing   : current.nextEasing,
@@ -1844,27 +1735,27 @@
 			opts = $.extend({}, this.defaults, opts);
 
 			if (this.overlay) {
-				this.overlay.off('.overlay').width('auto').height('auto');
-			}
-			else {
+				this.overlay.unbind('.overlay').width('auto').height('auto');
+
+			} else {
 				this.create(opts);
 			}
 
 			if (!this.fixed) {
-				W.on('resize.overlay', $.proxy( this.update, this) );
+				W.bind('resize.overlay', $.proxy( this.update, this) );
 
 				this.update();
 			}
 
 			if (opts.closeClick) {
-				this.overlay.on('click.overlay', function(e) {
+				this.overlay.bind('click.overlay', function(e) {
 					if ($(e.target).hasClass('fancybox-overlay')) {
 						if (F.isActive) {
 							F.close();
-						}
-						else {
+						} else {
 							that.close();
 						}
+
 						return false;
 					}
 				});
@@ -1874,7 +1765,7 @@
 		},
 
 		close : function() {
-			W.off('resize.overlay');
+			W.unbind('resize.overlay');
 
 			if (this.el.hasClass('fancybox-lock')) {
 				$('.fancybox-margin').removeClass('fancybox-margin');
@@ -1907,8 +1798,8 @@
 				if (D.width() > offsetWidth) {
 					width = D.width();
 				}
-			}
-			else if (D.width() > W.width()) {
+
+			} else if (D.width() > W.width()) {
 				width = D.width();
 			}
 
@@ -2059,7 +1950,6 @@
 					// Stop an event from bubbling if everything is fine
 					if (F.open(what, options) !== false) {
 						e.preventDefault();
-						return false;
 					}
 				}
 			};
@@ -2068,9 +1958,9 @@
 		index   = options.index || 0;
 
 		if (!selector || options.live === false) {
-			that.off('click.fb-start').on('click.fb-start', run);
-		}
-		else {
+			that.unbind('click.fb-start').bind('click.fb-start', run);
+
+		} else {
 			D.undelegate(selector, 'click.fb-start').delegate(selector + ":not('.fancybox-item, .fancybox-nav')", 'click.fb-start', run);
 		}
 

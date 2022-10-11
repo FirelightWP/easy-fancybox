@@ -4,8 +4,8 @@
 */
 
 $efb_options = array (
-	'Global' => array(
-		'title' => esc_html__('Global settings','easy-fancybox'),
+	'Global' => array (
+		'backwardcompatible' => true, // Marks older Pro version compatibility.
 		'input' => 'deep',
 		'hide' => true,
 		'options' => array(

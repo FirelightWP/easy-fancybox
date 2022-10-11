@@ -17,6 +17,7 @@ if ( ! array_key_exists( $selected, FANCYBOX_VERSIONS ) ) {
 </select>
 <p class="description">
 	<?php printf( /* Translators: FancyBox Legacy */ esc_html__( 'Choose %s if you wish to keep backward support for Internet Explorer versions 8 and below.', 'easy-fancybox' ), '<strong>' . esc_html__( 'Legacy', 'easy-fancybox' ) . '</strong>' ); ?>
-	<?php printf( /* Translators: FancyBox Classic Reloaded */ esc_html__( 'Choose %s for the classic FancyBox with added swipe support for touch devices.', 'easy-fancybox' ),  '<strong>' . esc_html__( 'Classic Reloaded', 'easy-fancybox' ) . '</strong>' ); ?>
+	<?php printf( /* Translators: FancyBox Classic Reloaded */ esc_html__( 'Choose %s for the classic FancyBox with added swipe support for touch devices and accessibility improvements.', 'easy-fancybox' ),  '<strong>' . esc_html__( 'Classic Reloaded', 'easy-fancybox' ) . '</strong>' ); ?>
+		<br>
 	<?php printf( /* Translators: fancyBox 2 and Support Forum, linked */ esc_html__( 'The integration of %1$s is currently in beta. You can try it out but some features may not work as expected. Please let us know on the %2$s.', 'easy-fancybox' ),  '<strong>' . esc_html__( 'fancyBox 2', 'easy-fancybox' ) . '</strong>', '<a href="https://wordpress.org/support/plugin/easy-fancybox/" target="_blank">'.esc_html__( 'Support Forum', 'easy-fancybox' ).'</a>' ); ?>
 </p>

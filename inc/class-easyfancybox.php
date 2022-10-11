@@ -38,11 +38,11 @@ class easyFancyBox {
 
 	public static $onready_auto = false;
 
-	public static    $options = array();
+	public static $options = array();
 
-	public static    $events = array( 'post-load' );
+	public static $events = array( 'post-load' );
 
-	public static    $pro_plugin_url = "https://premium.status301.com/downloads/easy-fancybox-pro/";
+	public static $pro_plugin_url = "https://premium.status301.com/downloads/easy-fancybox-pro/";
 
 	/**
 	 * ACTIONS & FILTERS
@@ -140,7 +140,7 @@ class easyFancyBox {
 					wp_add_inline_script( $handle, $data, $position );
 				} else {
 					// Do it the old way.
-					add_action( $footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
+					add_action( $_footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
 				}
 			}
 		} else {
@@ -148,7 +148,7 @@ class easyFancyBox {
 				empty( self::$inline_script )   || wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 			} else {
 				// Do it the old way.
-				empty( self::$inline_script )   || add_action( $footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
+				empty( self::$inline_script )   || add_action( $_footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
 			}
 		}
 
@@ -347,7 +347,7 @@ class easyFancyBox {
 		}
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
-		//add_filter( 'embed_oembed_html',  array( __CLASS__, 'add_video_wmode_opaque' ) );
+		//add_filter( 'embed_oembed_html',  array( __CLASS__, 'add_video_wmode_opaque' ) ); // Maybe TODO: make optional?
 	}
 
 	/**

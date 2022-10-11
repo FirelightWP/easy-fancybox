@@ -308,8 +308,6 @@ function prepare_inline_styles() {
 	// Title.
 	empty( $titleColor )       || $styles .= '.fancybox-title{color:'.$titleColor.'}';
 
-	$styles .= '.fancybox-hidden{display:none}.fancybox-inner .fancybox-hidden{display:revert}';
-
 	$styles = \apply_filters( 'easy_fancybox_inline_style', $styles );
 
 	\easyFancyBox::$inline_styles['fancybox'] = \wp_strip_all_tags( $styles, true );

@@ -251,12 +251,6 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 
 	empty( $titleColor ) || $styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
 
-	//if ( get_option( 'fancybox_autoScale' ) ) {
-		$styles .= PHP_EOL . 'html.fancybox-active,html.fancybox-active body{touch-action:none;overscroll-behavior:none;-webkit-overflow-scrolling:auto;overflow:hidden}html.fancybox-active body:not(.rtl){padding-right:var(--vertical-scrollbar-width);padding-bottom:var(--horizontal-scrollbar-width)}html.fancybox-active body.rtl{padding-left:var(--vertical-scrollbar-width);padding-bottom:var(--horizontal-scrollbar-width)}';
-	//}
-
-	$styles .= '.fancybox-hidden{display:none}#fancybox-content .fancybox-hidden,#fancybox-tmp .fancybox-hidden{display:revert}';
-
 	empty( $styles ) || \easyFancyBox::$inline_style = \wp_strip_all_tags( $styles );
 }
 

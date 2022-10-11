@@ -813,6 +813,7 @@
 		currentIndex = selectedIndex = 0;
 		currentOpts = selectedOpts	= {};
 
+		$('html').css( { '--vertical-scrollbar' : '', '--horizontal-scrollbar' : '' } );
 		$('html').removeClass('fancybox-active');
 
 		$(document).off('fancybox-cancel fancybox-change fancybox-cleanup fancybox-closed');
@@ -855,6 +856,9 @@
 				selectedArray = $('a[rel="' + rel + '"], area[rel="' + rel + '"]');
 				selectedIndex = selectedArray.index( this );
 			}
+
+			$('html').css( { '--vertical-scrollbar' : window.innerWidth-$(window).width() + 'px', '--horizontal-scrollbar' : window.innerHeight-$(window).height() + 'px' } );
+			$('html').addClass('fancybox-active');
 
 			_start();
 
@@ -900,6 +904,9 @@
 		if (selectedIndex > selectedArray.length || selectedIndex < 0) {
 			selectedIndex = 0;
 		}
+
+		$('html').css( { '--vertical-scrollbar' : window.innerWidth-$(window).width() + 'px', '--horizontal-scrollbar' : window.innerHeight-$(window).height() + 'px' } );
+		$('html').addClass('fancybox-active');
 
 		_start();
 	};
@@ -1095,9 +1102,6 @@
 		if ($("#fancybox").length) {
 			return;
 		}
-
-		$('html').css( { '--vertical-scrollbar-width' : window.innerWidth-$(window).width() + 'px', '--horizontal-scrollbar-width' : window.innerHeight-$(window).height() + 'px' } );
-		$('html').addClass('fancybox-active');
 
 		$('body').append(
 			tmp = $('<div id="fancybox-tmp"></div>'),

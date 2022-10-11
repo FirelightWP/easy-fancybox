@@ -501,18 +501,22 @@ Admin settings links, new Exclude selector option.
 
 = 2.0-alpha1 =
 TODO:
-- add/test template error & text translations in 2.2,
-- make 2.2.0 imageless,
+- add/test template error & text translations,
+- make 2.2 spriteless (see 1.5),
+- 2.2 skip double gallery images (see 1.5)
+- 2.2 accesibility improvements (see 1.5)
 - fix close button on touch
 - fix SVG support
-- 2.2.0 rtl styles
-- revisit swipe support (add dragging, rtl?)
-- v1.5.0 find solution for rtl and swipe/drag directions
+- 2.2 rtl styles
+- find solution for rtl and swipe/drag directions
 - test pro version
+- regroup options
+- admin page
 
 = 1.9 =
 TODO:
 - admin page
+- fix plugin action links
 - test pro version
 - check update routine
 

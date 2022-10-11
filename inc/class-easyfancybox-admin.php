@@ -2,7 +2,7 @@
 /**
  * Easy FancyBox Admin Class.
  */
-class easyFancyBox_Admin extends easyFancyBox {
+class easyFancyBox_Admin {
 
 	/**
 	* Holds the values to be used in the fields callbacks
@@ -17,58 +17,132 @@ class easyFancyBox_Admin extends easyFancyBox {
 	 * ADMIN METHODS
 	 */
 
-	public static function add_settings_section()
+	public static function add_media_settings_section()
 	{
- 		add_settings_section( 'fancybox_section', __( 'FancyBox', 'easy-fancybox' ), array( __CLASS__, 'settings_section' ), 'media');
+ 		add_settings_section( 'fancybox_section', __( 'FancyBox', 'easy-fancybox' ), function() { include EASY_FANCYBOX_DIR . '/views/settings-section-enable.php'; }, 'media' );
  	}
 
 	/**
 	* Add options page
 	*/
-	public static function add_settings_page()
+	public static function add_options_page()
 	{
-		// This page will be under "Settings"
-		self::$screen_id = add_options_page (
-		  __( 'FancyBox', 'easy-fancybox' ),
-		  __( 'FancyBox', 'easy-fancybox' ),
-		  'manage_options',
-		  'easy_fancybox',
-		  array( __CLASS__, 'settings_page' ),
-		  5
+		// This page will be under "Settings".
+		$screen_id = add_options_page (
+			__( 'FancyBox', 'easy-fancybox' ),
+			__( 'FancyBox', 'easy-fancybox' ),
+			'manage_options',
+			'easy_fancybox',
+			array( __CLASS__, 'options_page' ),
+			5
+		);
+
+		// Help tab.
+		add_action(
+			'load-'.$screen_id,
+			array( __CLASS__, 'help_tab' )
 		);
 	}
 
-	public static function settings_page()
+	public static function help_tab()
 	{
-		/** GENERAL */
-		add_settings_section( 'easy_fancybox_general_section', /*'<a name="xmlsf"></a>'.__('XML Sitemap','xml-sitemap-feed')*/ '', '', 'easy_fancybox_general' );
-		add_settings_field( 'easy_fancybox_media', __( 'Media', 'easy-fancybox' ), array( __CLASS__, 'media_fields' ), 'easy_fancybox_general', 'easy_fancybox_general_section' );
-
-		/** GENERAL */
-
-
+		// TODO
 	}
 
-	public static function add_settings_fields()
+	public static function options_page()
 	{
+		// Prepare sections and settings and nav tabs.
+		self::add_settings();
 
+		// Prepare nav tabs.
+		$active_tab = isset( $_GET[ 'tab' ] ) ? $_GET[ 'tab' ] : 'general';
+		$tabs = array (
+			'general'     => translate( 'General' ),
+			'images'      => get_option('fancybox_enableImg')         ? esc_html__( 'Images', 'easy-fancybox' )         : false,
+			'inline'      => get_option('fancybox_enableInline')      ? esc_html__( 'Inline content', 'easy-fancybox' ) : false,
+			'pdf'         => get_option('fancybox_enablePDF')         ? esc_html__( 'PDF', 'easy-fancybox' )            : false,
+			'swf'         => get_option('fancybox_enableSWF')         ? esc_html__( 'SWF', 'easy-fancybox' )            : false,
+			'videopress'  => get_option('fancybox_enableVideoPress')  ? esc_html__( 'VideoPress', 'easy-fancybox' )     : false,
+			'youtube'     => get_option('fancybox_enableYoutube')     ? esc_html__( 'YouTube', 'easy-fancybox' )        : false,
+			'vimeo'       => get_option('fancybox_enableVimeo')       ? esc_html__( 'Vimeo', 'easy-fancybox' )          : false,
+			'dailymotion' => get_option('fancybox_enableDailymotion') ? esc_html__( 'Dailymotion', 'easy-fancybox' )    : false,
+			'instagram'   => get_option('fancybox_enableInstagram')   ? esc_html__( 'Instagram', 'easy-fancybox' )      : false,
+			'googlemaps'  => get_option('fancybox_enableGoogleMaps')  ? esc_html__( 'Google Maps', 'easy-fancybox' )    : false,
+			'iframe'      => get_option('fancybox_enableiFrame')      ? esc_html__( 'iFrames', 'easy-fancybox' )        : false,
+		);
+
+		// Render page.
+		include EASY_FANCYBOX_DIR . '/views/admin-page.php';
 	}
 
-	public static function register_settings( $args = array() )
+	public static function add_settings()
+	{
+		/** SECTIONS */
+		//add_settings_section( 'easy_fancybox_intro_section', __( 'FancyBox', 'easy-fancybox' ), function() { include EASY_FANCYBOX_DIR . '/views/settings-section-intro.php'; }, 'easy_fancybox_intro');
+		add_settings_section( 'default', null, null, 'easy_fancybox_general' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_images' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_inline' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_pdf' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_swf' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_videopress' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_youtube' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_vimeo' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_dailymotion' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_instagram' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_googlemaps' );
+		add_settings_section( 'default', null, null, 'easy_fancybox_iframe' );
+
+		/** GENERAL */
+		add_settings_field( 'fancybox_version', esc_html__( 'Version', 'easy-fancybox' ), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'easy_fancybox_general', 'default', array('label_for'=>'fancybox_scriptVersion') );
+		add_settings_field( 'fancybox_media',   esc_html__( 'Media', 'easy-fancybox' ),   function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-media.php'; },   'easy_fancybox_general', 'default' );
+
+		/** IMAGES */
+		if ( get_option('fancybox_enableImg') ) {
+			add_settings_field( 'fancybox_version', esc_html__( 'Version', 'easy-fancybox' ), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'easy_fancybox_image', 'default', array('label_for'=>'fancybox_scriptVersion') );
+
+		}
+	}
+
+	public static function register_settings()
 	{
 		// Version.
-		add_settings_field( 'fancybox_Version', esc_html__('Version','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'media', 'fancybox_section', array('label_for'=>'fancybox_scriptVersion') );
+		register_setting( 'easy_fancybox_general', 'fancybox_scriptVersion',     array( 'default' => 'classic', 'sanitize_callback' => 'sanitize_text_field' ) );
+		// Media.
+		register_setting( 'easy_fancybox_general', 'fancybox_enableImg',         array( 'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableInline',      array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enablePDF',         array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableSWF',         array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableVideoPress',  array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableYoutube',     array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableVimeo',       array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableDailymotion', array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableInstagram',   array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableGoogleMaps',  array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		register_setting( 'easy_fancybox_general', 'fancybox_enableiFrame',      array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+
+	}
+
+	public static function register_media_settings( $args = array() )
+	{
+		if ( ! in_array( get_option( 'fancybox_scriptVersion', 'classic' ), array( 'classic', 'legacy' ) ) ) {
+			register_setting( 'media', 'easy_fancyboxEnabled', array( 'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1', 'sanitize_callback' => 'int' ) );
+			add_settings_field( 'easy_fancyboxEnabled', esc_html__('FancyBox','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-enabled.php'; }, 'media', 'fancybox_section', array('label_for'=>'easy_fancyboxEnabled') );
+			return;
+		}
+
+		// Version.
+		add_settings_field( 'fancybox_scriptVersion', esc_html__('Version','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'media', 'fancybox_section', array('label_for'=>'fancybox_scriptVersion') );
 		register_setting( 'media', 'fancybox_scriptVersion', 'sanitize_text_field' );
 
 		if ( empty( $args ) ) {
-			$args = parent::$options;
+			$args = easyFancyBox::$options;
 		}
 
 		foreach ( $args as $key => $value ) {
 			// Check to see if the section is enabled, else skip to next.
 			if ( ! isset( $value['input'] ) ||
-				array_key_exists($key, parent::$options['Global']['options']['Enable']['options']) &&
-				!get_option( parent::$options['Global']['options']['Enable']['options'][$key]['id'], parent::$options['Global']['options']['Enable']['options'][$key]['default'])
+				array_key_exists($key, easyFancyBox::$options['Global']['options']['Enable']['options']) &&
+				!get_option( easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['id'], easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['default'])
 			) {
 				continue;
 			}
@@ -76,7 +150,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 			switch( $value['input'] ) {
 				case 'deep':
 					// Go deeper by looping back on itself.
-					self::register_settings($value['options']);
+					self::register_media_settings($value['options']);
 					break;
 
 				case 'multiple':
@@ -101,12 +175,6 @@ class easyFancyBox_Admin extends easyFancyBox {
 						register_setting( 'media', 'fancybox_'.$key, $sanitize_callback );
 			}
 		}
-	}
-
-	// Add our FancyBox Media Settings Section on Settings > Media admin page.
-	public static function settings_section()
-	{
-		include EASY_FANCYBOX_DIR . '/views/settings-section.php';
 	}
 
 	// Add our FancyBox Media Settings Fields.
@@ -222,7 +290,13 @@ class easyFancyBox_Admin extends easyFancyBox {
 	 */
 	public static function add_action_link( $links )
 	{
-		array_unshift( $links, '<a href="' . admin_url('options-media.php') . '">' . translate('Settings') . '</a>' );
+		if ( get_option( 'fancybox_Enabled', ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1' ) ) {
+			$url = admin_url( '?page=easy_fancybox' );
+		} else {
+			$url = admin_url( 'options-media.php' );
+		}
+
+		array_unshift( $links, '<a href="' . $url . '">' . translate( 'Settings' ) . '</a>' );
 
 		return $links;
 	}
@@ -232,7 +306,7 @@ class easyFancyBox_Admin extends easyFancyBox {
 	*/
 	public static function plugin_meta_links( $links, $file )
 	{
-	  if ( $file == parent::$plugin_basename ) {
+	  if ( $file == easyFancyBox::$plugin_basename ) {
 	    $links[] = '<a target="_blank" href="https://wordpress.org/support/plugin/easy-fancybox/">' . __('Support','easy-fancybox') . '</a>';
 	    $links[] = '<a target="_blank" href="https://wordpress.org/support/plugin/easy-fancybox/reviews/?filter=5#new-post">' . __('Rate ★★★★★','easy-fancybox') . '</a>';
 	  }
@@ -333,10 +407,10 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 	public static function load_textdomain()
 	{
-		load_plugin_textdomain('easy-fancybox', false, dirname( parent::$plugin_basename ) . '/languages' );
+		load_plugin_textdomain('easy-fancybox', false, dirname( easyFancyBox::$plugin_basename ) . '/languages' );
 	}
 
-	public static function admin_init()
+	public static function compat_warning()
 	{
 		/* Dismissable notice */
 		/* If user clicks to ignore the notice, add that to their user meta */
@@ -361,14 +435,20 @@ class easyFancyBox_Admin extends easyFancyBox {
 
 	public function __construct()
 	{
+		// Text domain.
 		add_action( 'plugins_loaded', array(__CLASS__, 'load_textdomain') );
-		add_action( 'admin_notices', array(__CLASS__, 'admin_notice') );
-		add_filter( 'plugin_action_links_'.parent::$plugin_basename, array(__CLASS__, 'add_action_link') );
 
-		add_action( 'admin_menu', array(__CLASS__, 'add_settings_page') );
+		// Admin notices.
+		add_action( 'admin_init',     array(__CLASS__, 'compat_warning') );
+		add_action( 'admin_notices',  array(__CLASS__, 'admin_notice') );
 
-		add_action( 'admin_init', array(__CLASS__, 'add_settings_section') );
+		// Plugin action links.
+		add_filter( 'plugin_action_links_'.easyFancyBox::$plugin_basename, array(__CLASS__, 'add_action_link') );
+
 		add_action( 'admin_init', array(__CLASS__, 'register_settings') );
-		add_action( 'admin_init', array(__CLASS__, 'admin_init') );
+		add_action( 'admin_menu', array(__CLASS__, 'add_options_page') );
+
+		add_action( 'admin_init', array(__CLASS__, 'register_media_settings') );
+		//add_action( 'admin_init', array(__CLASS__, 'add_media_settings') );
 	}
 }

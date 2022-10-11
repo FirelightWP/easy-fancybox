@@ -632,7 +632,7 @@ Default value:
 				'default' => '',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 			),
-/*			'openOpacity' => array (
+			/*'openOpacity' => array (
 				'id' => 'fancybox_openOpacity',
 				'input' => 'checkbox',
 				'default' => '1',
@@ -876,12 +876,6 @@ Default value:
 				),
 				'default' => 'easeInBack',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
-			),
-			'opacity' => array (
-				'id' => 'fancybox_opacityInline',
-				'input' => 'checkbox',
-				'default' => '',
-				'description' => esc_html__('Transparency fade during elastic transition. CAUTION: Use only when at least Transition In is set to Elastic!','easy-fancybox')
 			),
 			'closeClick' => array (
 				'id' => 'fancybox_hideOnContentClickInline',
