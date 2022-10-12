@@ -217,7 +217,7 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 	$script .= PHP_EOL;
 
 	// Replace PDF embed shortcodes.
-	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart') ) ) {
+	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart', '{{object}}') ) ) {
 		$replaces = array(
 			'{{object}}'       => 'function(a,i,o){o.type=\'pdf\';}',
 			'{{embed}}'        => 'function(a,i,o){o.type=\'html\';o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}',
@@ -250,10 +250,6 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 	empty( $content_style ) || $styles .= '#fancybox-content{'.$content_style.'}';
 
 	empty( $titleColor ) || $styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
-
-	if ( get_option( 'fancybox_autoScale' ) ) {
-		$styles .= PHP_EOL . 'html.fancybox-active,html.fancybox-active body{touch-action:none;overscroll-behavior:none;-webkit-overflow-scrolling:auto;overflow:hidden;}';
-	}
 
 	$styles .= '.fancybox-hidden{display:none}#fancybox-content .fancybox-hidden,#fancybox-tmp .fancybox-hidden{display:revert}';
 

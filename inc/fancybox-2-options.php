@@ -732,22 +732,10 @@ Default value:
 				'default' => '1',
 				'description' => esc_html__('Allow gallery browsing by mousewheel action.','easy-fancybox')
 			),
-			'nextSpeed' => array (
-				'id' => 'fancybox_nextSpeed',
-				'title' => esc_html__('Change speed to next item','easy-fancybox'),
-				'label_for' => 'fancybox_nextSpeed',
-				'input' => 'number',
-				'step' => '1',
-				'min' => '0',
-				'max' => '6000',
-				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
-				'default' => '',
-			),
-			'prevSpeed' => array (
-				'id' => 'fancybox_prevSpeed',
-				'title' => esc_html__('Change speed to previous item','easy-fancybox'),
-				'label_for' => 'fancybox_prevSpeed',
+			'changeSpeed' => array (
+				'id' => 'fancybox_changeSpeed',
+				'title' => esc_html__( 'Change speed', 'easy-fancybox' ),
+				'label_for' => 'fancybox_changeSpeed',
 				'input' => 'number',
 				'step' => '1',
 				'min' => '0',

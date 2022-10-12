@@ -1,4 +1,4 @@
-/*
+/**
  * FancyBox - jQuery Plugin
  * Simple and fancy lightbox alternative
  *
@@ -14,6 +14,7 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  */
+
 (function($) {
 	var tmp, loading, overlay, wrap, outer, content, close, title, nav_left, nav_right, resize_timeout,
 		selectedIndex = 0, selectedOpts = {}, selectedArray = [], currentIndex = 0, currentOpts = {}, currentArray = [],
@@ -396,8 +397,6 @@
 		currentOpts = selectedOpts;
 
 		if (currentOpts.overlayShow) {
-			$('html').addClass('fancybox-active');
-
 			overlay.css({
 				'background-color' : currentOpts.overlayColor,
 				'opacity' : currentOpts.overlayOpacity,
@@ -1154,8 +1153,6 @@
 		} else {
 			wrap.fadeOut( currentOpts.transitionOut == 'none' ? 0 : currentOpts.speedOut, _cleanup);
 		}
-
-		$('html').removeClass('fancybox-active');
 	};
 
 	$.fancybox.resize = function() {

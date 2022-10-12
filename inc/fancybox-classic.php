@@ -218,14 +218,14 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 	$script .= PHP_EOL;
 
 	// Replace PDF embed shortcodes.
-	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart') ) ) {
+	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option( 'fancybox_PDFonStart', '{{object}}' ) ) ) {
 		$replaces = array(
 			'{{object}}'       => 'function(a,i,o){o.type=\'pdf\';}',
 			'{{embed}}'        => 'function(a,i,o){o.type=\'html\';o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}',
 			'{{googleviewer}}' => 'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}'
 		);
-		foreach ($replaces as $needle => $replace) {
-			$script = str_replace( $needle, $replace, $script );
+		foreach ($replaces as $short => $replace) {
+			$script = str_replace( $short, $replace, $script );
 		}
 	}
 	\easyFancyBox::$inline_script = \apply_filters( 'easy_fancybox_inline_script', $script );

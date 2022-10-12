@@ -194,74 +194,28 @@ class easyFancyBox {
 	{
 		// Upgrade from 1.7 or older.
 		if ( ! $old_version ) {
-			if ( 'html' === get_option('fancybox_PDFclassType') ) {
-				update_option( 'fancybox_PDFonStart', 'function(a,i,o){o.type=\'pdf\';}' );
-				delete_option( 'fancybox_PDFclassType' );
-			}
+			delete_option( 'fancybox_PDFclassType' );
 		}
 
-		// Upgrade from before 2.0.
+		// Upgrade from before 1.9.
 		if ( version_compare( $old_version, '0', '>' ) && version_compare( $old_version, '1.9', '<' ) ) {
-			// TODO figure out when to upgrade
-			update_option( 'fancybox_scriptVersion', 'classic' );
+			// Introducing script version.
+			add_option( 'fancybox_scriptVersion', 'classic' );
 
+			// Change PDF embed option default.
 			$onstart = get_option('fancybox_PDFonStart');
-			if ( ! empty( $onstart ) ) {
-				$replaces = array(
-					'function(a,i,o){o.type=\'pdf\';}' => '{{object}}',
-					'function(a,i,o){o.type=\'html\';o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}' => '{{embed}}',
-					'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => '{{googleviewer}}'
-				);
-				if ( array_key_exists( $onstart, $replaces ) ) {
-					update_option( 'fancybox_PDFonStart', $replaces[$onstart] );
-				} else {
-					update_option( 'fancybox_PDFonStart', '{{object}}' );
-				}
+			$replaces = array(
+				'function(a,i,o){o.type=\'pdf\';}' => '{{object}}',
+				'function(a,i,o){o.type=\'html\';o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}' => '{{embed}}',
+				'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => '{{googleviewer}}'
+			);
+			if ( false === $onstart ) {
+				add_option( 'fancybox_PDFonStart', '{{object}}' );
+			} elseif ( array_key_exists( $onstart, $replaces ) ) {
+				update_option( 'fancybox_PDFonStart', $replaces[$onstart] );
+			} else {
+				update_option( 'fancybox_PDFonStart', '' );
 			}
-
-			$changespeed = get_option('fancybox_changeSpeed');
-			if ( ! empty( $changespeed ) ) {
-				false === get_option( 'fancybox_prevSpeed' ) && add_option( 'fancybox_prevSpeed', $changespeed );
-				false === get_option( 'fancybox_nextSpeed' ) && add_option( 'fancybox_nextSpeed', $changespeed );
-			}
-			// OR convert fancybox_overlayColor and fancybox_overlayOpacity values to one rgba for new rgba fancybox_overlayColor:
-			/*function hex2rgba($color, $opacity = false) {
-
-				$default = 'rgb(0,0,0)';
-
-				//Return default if no color provided
-				if(empty($color))
-					  return $default;
-
-				//Sanitize $color if "#" is provided
-					if ($color[0] == '#' ) {
-						$color = substr( $color, 1 );
-					}
-
-					//Check if color has 6 or 3 characters and get values
-					if (strlen($color) == 6) {
-							$hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
-					} elseif ( strlen( $color ) == 3 ) {
-							$hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
-					} else {
-							return $default;
-					}
-
-					//Convert hexadec to rgb
-					$rgb =  array_map('hexdec', $hex);
-
-					//Check if opacity is set(rgba or rgb)
-					if($opacity){
-						if(abs($opacity) > 1)
-							$opacity = 1.0;
-						$output = 'rgba('.implode(",",$rgb).','.$opacity.')';
-					} else {
-						$output = 'rgb('.implode(",",$rgb).')';
-					}
-
-					//Return rgb(a) color string
-					return $output;
-			}*/
 		}
 
 		// Save new version.

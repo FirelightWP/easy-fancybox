@@ -1,9 +1,10 @@
-/*! fancyBox v2.2 fancyapps.com | fancyapps.com/fancybox/#license */
-
 /**
  * fancyBox - jQuery Plugin
  * version: 2.2.0 (Tue, 16 Sep 2022)
  * requires jQuery v1.6 or later
+ *
+ * Licensed GPLv3 for open source use
+ * or fancyBox Commercial License for commercial use
  *
  * Examples at http://fancyapps.com/fancybox/
  * License: www.fancyapps.com/fancybox/#license

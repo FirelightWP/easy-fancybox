@@ -124,8 +124,6 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_changeSpeed' );
 		delete_option( 'fancybox_changeFade' );
 		delete_option( 'fancybox_autoSelector' );
-		delete_option( 'fancybox_nextSpeed' ); // fb2
-		delete_option( 'fancybox_prevSpeed' ); // fb2
 
 		// Inline.
 		delete_option( 'fancybox_autoDimensions' );

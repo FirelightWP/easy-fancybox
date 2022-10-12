@@ -1,5 +1,3 @@
-/*! fancyBox v1.5 fancybox.net | http://www.opensource.org/licenses/mit-license.php http://www.gnu.org/licenses/gpl.html */
-
 /**
  * FancyBox Classic - jQuery Plugin
  * Simple but fancy lightbox, based on the original FancyBox by Janis Skarnelis, modernized.
@@ -13,7 +11,9 @@
  * Version: 1.5.0 (2020/11/09)
  * Requires: jQuery v1.7+
  *
- * Licensed GPLv3
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
  */
 
 (function($) {

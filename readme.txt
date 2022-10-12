@@ -480,16 +480,14 @@ TODO:
 - add SVG support (see 1.5)
 - 2.2 rtl styles
 - find solution for rtl and swipe/drag directions
+- dedicated w/h/border options for inline
 - test pro version
 - regroup options
 - new admin page
 
 = 1.9 =
-TODO:
-- do update test
-
 * NEW: Swipe support
-* NEW: Optional fancyBox 2 script
+* NEW: Optional fancyBox 2 or Legacy scripts
 * Fixed background
 * Dropped IE6-8 support
 * Dropped SWF support (only availbale in Legacy)

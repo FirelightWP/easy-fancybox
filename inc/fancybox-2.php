@@ -39,6 +39,13 @@ function prepare_inline_scripts() {
 		}
 	}
 
+	// Change speeds.
+	$changespeed = get_option( 'fancybox_changeSpeed' );
+	if ( ! empty( $changespeed ) ) {
+		$fb_opts['prevSpeed'] = intval( $changespeed );
+		$fb_opts['nextSpeed'] = intval( $changespeed );
+	}
+
 	// Keys.
 	if ( ! \get_option( 'fancybox_enableEscapeButton', true ) ) {
 		$fb_opts['keys'] = array( 'close' => null );
@@ -203,7 +210,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 		// Title.
 		if ( isset( $value['options']['titleShow'] ) && ! empty( $value['options']['titleShow']['id'] ) && \get_option( $value['options']['titleShow']['id'] ) ) {
 			$bind_parameters['helpers'] = array( 'title' => array() );
-/*			if ( isset( $value['options']['titleType'] ) && \get_option( $value['options']['titleType']['id'] ) ) {
+			/*if ( isset( $value['options']['titleType'] ) && \get_option( $value['options']['titleType']['id'] ) ) {
 				$bind_parameters['helpers']['title']['type'] = \esc_attr( \get_option( $value['options']['titleType']['id'] ) );
 			}*/
 			if ( isset( $value['options']['titlePosition'] ) ) {
@@ -245,14 +252,14 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 	$fb_handler = str_replace( '"{{titleFromAlt}}"', 'function(){var alt=this.element.find(\'img\').attr(\'alt\');this.inner.find(\'img\').attr(\'alt\',alt);this.title=this.title||alt;}', $fb_handler );
 
 	// Replace PDF embed shortcodes.
-	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart') ) ) {
+	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart', '{{object}}') ) ) {
 		$replaces = array(
-			'{{object}}'       => 'function(){this.type=\'html\';this.content=\'<object data="\'+this.href+\'" type="application/pdf" height="\'+this.width+\'" width="\'+this.height+\'" aria-label="\'+this.title+\'" />\'}',
-			'{{embed}}'        => 'function(){this.type=\'html\';this.autoSize=false;this.content=\'<embed src="\'+this.href+\'" type="application/pdf" height="\'+this.width+\'" width="\'+this.height+\'" aria-label="\'+this.title+\'" />\'}',
-			'{{googleviewer}}' => 'function(){this.href=\'https://docs.google.com/viewer?embedded=true&url=\'+this.href;}'
+			'"{{object}}"'       => 'function(){this.type=\'html\';this.content=\'<object data="\'+this.href+\'" type="application/pdf" height="\'+this.width+\'" width="\'+this.height+\'" aria-label="\'+this.title+\'" />\'}',
+			'"{{embed}}"'        => 'function(){this.type=\'html\';this.autoSize=false;this.content=\'<embed src="\'+this.href+\'" type="application/pdf" height="\'+this.width+\'" width="\'+this.height+\'" aria-label="\'+this.title+\'" />\'}',
+			'"{{googleviewer}}"' => 'function(){this.href=\'https://docs.google.com/viewer?embedded=true&url=\'+this.href;}'
 		);
-		foreach ($replaces as $needle => $replace) {
-			$fb_handler = str_replace( '"'.$needle.'"', $replace, $fb_handler );
+		foreach ($replaces as $short => $replace) {
+			$fb_handler = str_replace( $short, $replace, $fb_handler );
 		}
 	}
 
