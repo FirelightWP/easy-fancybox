@@ -1,6 +1,6 @@
-/*!
- * Media helper for fancyBox
- * version: 1.1.0 (Fri, 14 Sep 2022)
+/*! Media helper for fancyBox */
+/**
+ * version: 1.1.1 (Fri, 14 Sep 2022)
  * @requires fancyBox v2.0 or later
  *
  * Usage:
@@ -84,15 +84,10 @@
 			youtube : {
 				matcher : /(youtube\.com|youtu\.be|youtube-nocookie\.com)\/(watch\?v=|v\/|u\/|embed\/?)?(videoseries\?list=(.*)|[\w-]{11}|\?listType=(.*)&list=(.*)).*/i,
 				params  : {
-					autoplay    : 1,
-					autohide    : 1,
-					fs          : 1,
-					rel         : 0,
-					hd          : 1,
-					wmode       : 'opaque',
-					enablejsapi : 1,
-                    			ps: 'docs',
-                    			controls: 1
+					autoplay       : 1,
+					fs             : 1,
+					rel            : 0,
+					modestbranding : 1
 				},
 				type : 'iframe',
 				url  : '//www.youtube.com/embed/$3'
@@ -100,12 +95,10 @@
 			vimeo : {
 				matcher : /(?:vimeo(?:pro)?.com)\/(?:[^\d]+)?(\d+)(?:.*)/,
 				params  : {
-					autoplay      : 1,
-					hd            : 1,
-					show_title    : 1,
-					show_byline   : 1,
-					show_portrait : 0,
-					fullscreen    : 1
+					autoplay   : 1,
+					title      : 1,
+					byline     : 1,
+					portrait   : 0
 				},
 				type : 'iframe',
 				url  : '//player.vimeo.com/video/$1'
@@ -113,8 +106,7 @@
 			dailymotion : {
 				matcher : /dailymotion.com\/video\/(.*)\/?(.*)/,
 				params  : {
-					additionalInfos : 0,
-					autoStart : 1
+					autoplay : 1
 				},
 				type : 'iframe',
 				url  : '//www.dailymotion.com/embed/video/$1'
@@ -144,7 +136,7 @@
 			for (what in opts) {
 				if (opts.hasOwnProperty(what)) {
 					item = opts[ what ];
-					rez  = url.match( item.matcher );
+					rez  = item && item.matcher ? url.match( item.matcher ) : false;
 
 					if (rez) {
 						type   = item.type;

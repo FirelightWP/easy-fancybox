@@ -32,8 +32,8 @@ html.fancybox-active body.rtl {
 
 #fancybox-loading, #fancybox-loading div,
 #fancybox-overlay,
-#fancybox *,
-#fancybox *::before, #fancybox *::after {
+#fancybox-wrap *,
+#fancybox-wrap *::before, #fancybox-wrap *::after {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -59,7 +59,7 @@ html.fancybox-active body.rtl {
 	display: none;
 }
 
-#fancybox {
+#fancybox-wrap {
 	position: absolute;
 	top: 0;
 	left: 0;

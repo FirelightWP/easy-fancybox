@@ -8,7 +8,7 @@ if ( property_exists( 'easyFancyBox', '$options' ) && is_array( easyFancyBox::$o
 		array (
 			'IMG' => array (
 				'id' => 'fancybox_enableImg',
-				'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1',
+				'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1',
 				'description' => '<strong>' . esc_html__( 'Images', 'easy-fancybox' ) . '</strong>' . ( get_option('fancybox_enableImg') ? ' &mdash; <a href="?page=easy_fancybox&tab=images">' . translate( 'Settings' ) . '</a>' : '' )
 			),
 			'Inline' => array (

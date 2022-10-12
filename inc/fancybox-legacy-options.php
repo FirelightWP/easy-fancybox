@@ -22,7 +22,7 @@ $efb_options = array (
 						'id' => 'fancybox_enableImg',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1',
+						'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1',
 						'description' => '<strong>' . esc_html__( 'Images', 'easy-fancybox' ) . '</strong>' . ( get_option('fancybox_enableImg') ? ' &mdash; <a href="#IMG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Inline' => array (
@@ -567,11 +567,9 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox'),
-					'easeInBack' => esc_html__('easeInBack','easy-fancybox'),
-					'easeOutBack' => esc_html__('easeOutBack','easy-fancybox')
+					'' => esc_html__('Swing','easy-fancybox')
 				),
-				'default' => 'easeOutBack',
+				'default' => '',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />'
 			),
 			'transitionOut' => array (
@@ -594,11 +592,9 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox'),
-					'easeInBack' => esc_html__('easeInBack','easy-fancybox'),
-					'easeOutBack' => esc_html__('easeOutBack','easy-fancybox')
+					'' => esc_html__('Swing','easy-fancybox')
 				),
-				'default' => 'easeInBack',
+				'default' => '',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 			),
 			'opacity' => array (
@@ -728,7 +724,7 @@ $efb_options = array (
 				'input' => 'hidden',
 				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery'
 			),
-			'afterShow' => array (
+			'onComplete' => array (
 				'id' => '',
 				'title' => esc_html__('Advanced','easy-fancybox'),
 				'input' => 'select',
@@ -801,9 +797,7 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox'),
-					'easeInBack' => esc_html__('easeInBack','easy-fancybox'),
-					'easeOutBack' => esc_html__('easeOutBack','easy-fancybox')
+					'' => esc_html__('Swing','easy-fancybox')
 				),
 				'default' => 'easeOutBack',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />'
@@ -828,11 +822,9 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox'),
-					'easeInBack' => esc_html__('easeInBack','easy-fancybox'),
-					'easeOutBack' => esc_html__('easeOutBack','easy-fancybox')
+					'' => esc_html__('Swing','easy-fancybox')
 				),
-				'default' => 'easeInBack',
+				'default' => '',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 			),
 			'opacity' => array (

@@ -22,7 +22,7 @@ $efb_options = array (
 						'id' => 'fancybox_enableImg',
 						'input' => 'checkbox',
 						'hide' => true,
-						'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1',
+						'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1',
 						'description' => '<strong>' . esc_html__( 'Images', 'easy-fancybox' ) . '</strong>' . ( get_option('fancybox_enableImg') ? ' &mdash; <a href="#IMG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Inline' => array (
@@ -38,13 +38,6 @@ $efb_options = array (
 						'hide' => true,
 						'default' => '',
 						'description' => '<strong>' . esc_html__( 'PDF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enablePDF') ? ' &mdash; <a href="#PDF">' . translate( 'Settings' ) . '</a>' : '' )
-					),
-					'SWF' => array (
-						'id' => 'fancybox_enableSWF',
-						'input' => 'checkbox',
-						'hide' => true,
-						'default' => '',
-						'description' => '<strong>' . esc_html__( 'SWF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSWF') ? ' &mdash; <a href="#SWF">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'SVG' => array (
 						'id' => 'fancybox_enableSVG',
@@ -567,11 +560,9 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox'),
-					'easeInBack' => esc_html__('easeInBack','easy-fancybox'),
-					'easeOutBack' => esc_html__('easeOutBack','easy-fancybox')
+					'' => esc_html__('Swing','easy-fancybox')
 				),
-				'default' => 'easeOutBack',
+				'default' => '',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />'
 			),
 			'transitionOut' => array (
@@ -594,11 +585,9 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox'),
-					'easeInBack' => esc_html__('easeInBack','easy-fancybox'),
-					'easeOutBack' => esc_html__('easeOutBack','easy-fancybox')
+					'' => esc_html__('Swing','easy-fancybox')
 				),
-				'default' => 'easeInBack',
+				'default' => '',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 			),
 			'opacity' => array (
@@ -728,7 +717,7 @@ $efb_options = array (
 				'input' => 'hidden',
 				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery'
 			),
-			'afterShow' => array (
+			'onComplete' => array (
 				'id' => '',
 				'title' => esc_html__('Advanced','easy-fancybox'),
 				'input' => 'select',
@@ -801,9 +790,7 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox'),
-					'easeInBack' => esc_html__('easeInBack','easy-fancybox'),
-					'easeOutBack' => esc_html__('easeOutBack','easy-fancybox')
+					'' => esc_html__('Swing','easy-fancybox')
 				),
 				'default' => 'easeOutBack',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />'
@@ -828,11 +815,9 @@ $efb_options = array (
 				'input' => 'select',
 				'options' => array(
 					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox'),
-					'easeInBack' => esc_html__('easeInBack','easy-fancybox'),
-					'easeOutBack' => esc_html__('easeOutBack','easy-fancybox')
+					'' => esc_html__('Swing','easy-fancybox')
 				),
-				'default' => 'easeInBack',
+				'default' => '',
 				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
 			),
 			'opacity' => array (
@@ -964,101 +949,6 @@ $efb_options = array (
 			'scrolling' => array (
 				'default' => 'no',
 			),
-		)
-	),
-
-	'SWF' => array(
-		'title' => esc_html__('SWF','easy-fancybox'),
-		'input' => 'multiple',
-		'options' => array(
-			'intro' => array (
-				'hide' => true,
-				'description' => esc_html__('To make any Flash (.swf) file open in an overlay, switch on Autodetect or use the class "fancybox-swf" for its link.','easy-fancybox') . '<br />'
-			),
-			'autoAttribute' => array (
-				'id' => 'fancybox_autoAttributeSWF',
-				'input' => 'checkbox',
-				'hide' => true,
-				'default' => '1',
-				'selector' => '\'a[href*=".swf"],area[href*=".swf"],a[href*=".SWF"],area[href*=".SWF"]\'',
-				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
-			),
-			'tag' => array (
-				'hide' => true,
-				'default' => 'a.fancybox-swf,area.fancybox-swf,.fancybox-swf>a'
-			),
-			'class' => array (
-				'hide' => true,
-				'default' => 'fancybox-swf'
-			),
-			'type' => array(
-				'default' => 'swf'
-			),
-			'width' => array (
-				'id' => 'fancybox_SWFWidth',
-				'title' => translate('Width'),
-				'label_for' => 'fancybox_SWFWidth',
-				'input' => 'text',
-				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
-				'options' => array(),
-				'default' => '680',
-				'description' => ' '
-			),
-			'height' => array (
-				'id' => 'fancybox_SWFHeight',
-				'title' => translate('Height'),
-				'label_for' => 'fancybox_SWFHeight',
-				'input' => 'text',
-				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
-				'options' => array(),
-				'default' => '495',
-			),
-			'padding' => array (
-				'id' => 'fancybox_SWFpadding',
-				'title' => translate('Border'),
-				'label_for' => 'fancybox_SWFpadding',
-				'input' => 'number',
-				'step' => '1',
-				'min' => '0',
-				'max' => '100',
-				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
-				'default' => '0',
-				'description' => '<br /><br />'
-			),
-			'titleShow' => array (
-				'id' => 'fancybox_SWFtitleShow',
-				'input' => 'checkbox',
-				'noquotes' => true,
-				'default' => '',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
-			),
-			'titlePosition' => array (
-				'id' => 'fancybox_SWFtitlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
-				'label_for' => 'fancybox_SWFtitlePosition',
-				'input' => 'select',
-				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
-				),
-				'default' => 'float',
-				'description' => '<br />'
-			),
-			'titleFromAlt' => array (
-				'id' => 'fancybox_SWFtitleFromAlt',
-				'input' => 'checkbox',
-				'noquotes' => true,
-				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox')
-			),
-			'swf' => array (
-				'noquotes' => true,
-				'default' => '{\'wmode\':\'opaque\',\'allowfullscreen\':true}'
-			)
 		)
 	),
 

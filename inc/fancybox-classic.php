@@ -160,7 +160,7 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 		$more = 0;
 		foreach ( $value['options'] as $_key => $_value ) {
 			if ( isset($_value['id']) || isset($_value['default']) )
-				$parm = isset($_value['id']) ? strval( \get_option($_value['id'], $_value['default']) ) : strval( $_value['default'] );
+				$parm = isset($_value['id']) ? strval( \get_option($_value['id'], isset($_value['default']) ? $_value['default'] : '' ) ) : strval( $_value['default'] );
 			else
 				$parm = '';
 

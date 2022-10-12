@@ -1,5 +1,5 @@
 <?php
-$enabled = get_option( 'fancybox_Enabled', ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( easyFancyBox::$plugin_basename ) ) ? '' : '1' );
+$enabled = get_option( 'fancybox_Enabled', ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1' );
 ?>
 <table class="form-table" role="presentation">
 	<tbody><tr>

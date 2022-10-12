@@ -103,11 +103,7 @@
 				allowfullscreen : true,
 				preload         : true
 			},
-			swf : {
-				wmode             : 'transparent',
-				allowfullscreen   : 'true',
-				allowscriptaccess : 'always'
-			},
+			svg : {},
 
 			keys  : {
 				next : {
@@ -145,7 +141,7 @@
 			tpl: {
 				wrap    : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
 				image   : '<img class="fancybox-image" src="{href}" alt="" />',
-				iframe  : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0"' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
+				iframe  : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0" allow="autoplay"' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
 				error   : '<p class="fancybox-error">{error}</p>',
 				close   : '<a title="{close}" class="fancybox-item fancybox-close" href="javascript:;"></a>',
 				next    : '<a title="{next}" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
@@ -316,8 +312,8 @@
 						if (F.isImage(href)) {
 							type = 'image';
 						}
-						else if (F.isSWF(href)) {
-							type = 'swf';
+						else if (F.isSVG(href)) {
+							type = 'svg';
 						}
 						else if (href.charAt(0) === '#') {
 							type = 'inline';
@@ -368,13 +364,6 @@
 
 			// Extend the defaults
 			F.opts = $.extend(true, {}, F.defaults, opts);
-
-
-			// Abort if not enough screen space
-			var viewport = F.getViewport();
-			if ( viewport.w < F.opts.minVpWidth || viewport.h < F.opts.minVpHeight ) {
-				return;
-			}
 
 			// All options are merged recursive except keys
 			if (opts.keys !== undefined) {
@@ -873,8 +862,8 @@
 			return isString(str) && str.match(/(^data:image\/.*,)|(\.(jp(e|g|eg)|gif|png|bmp|webp|svg)((\?|#).*)?$)/i);
 		},
 
-		isSWF: function (str) {
-			return isString(str) && str.match(/\.(swf)((\?|#).*)?$/i);
+		isSVG: function (str) {
+			return isString(str) && str.match(/\.(svg)((\?|#).*)?$/i);
 		},
 
 		_start: function (index) {
@@ -974,12 +963,9 @@
 
 			F.isActive = true;
 
-			if (type === 'image' || type === 'swf') {
+			if (type === 'image' || type === 'svg') {
 				coming.autoHeight = coming.autoWidth = false;
 				coming.scrolling  = 'visible';
-			}
-
-			if (type === 'image') {
 				coming.aspectRatio = true;
 			}
 
@@ -1209,6 +1195,14 @@
 			href = current.href;
 
 			switch (type) {
+				case 'image':
+					content = current.tpl.image.replace(/\{href\}/g, href);
+				break;
+
+				case 'svg':
+					content = '<object type="image/svg+xml" width="100%" height="100%" data="' + href + '"></object>';
+				break;
+
 				case 'inline':
 				case 'ajax':
 				case 'html':
@@ -1228,22 +1222,6 @@
 							}
 						});
 					}
-				break;
-
-				case 'image':
-					content = current.tpl.image.replace(/\{href\}/g, href);
-				break;
-
-				case 'swf':
-					content = '<object id="fancybox-swf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%"><param name="movie" value="' + href + '"></param>';
-					embed   = '';
-
-					$.each(current.swf, function(name, val) {
-						content += '<param name="' + name + '" value="' + val + '"></param>';
-						embed   += ' ' + name + '="' + val + '"';
-					});
-
-					content += '<embed src="' + href + '" type="application/x-shockwave-flash" width="100%" height="100%"' + embed + '></embed></object>';
 				break;
 			}
 
@@ -2055,6 +2033,12 @@
 					}
 
 					options.index = idx;
+
+					// Abort if not enough screen space
+					var viewport = F.getViewport();
+					if ( (options.minVpWidth && viewport.w < options.minVpWidth) || (options.minVpHeight && viewport.h < options.minVpHeight) ) {
+						return;
+					}
 
 					// Stop an event from bubbling if everything is fine
 					if (F.open(what, options) !== false) {

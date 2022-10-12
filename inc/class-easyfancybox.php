@@ -111,11 +111,11 @@ class easyFancyBox {
 		// Inline styles.
 		if ( !empty( self::$inline_styles ) ) {
 			foreach ( self::$inline_styles as $handle => $data ) {
-				if ( function_exists( 'wp_add_inline_script' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
+				if ( function_exists( 'wp_add_inline_style' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
 					wp_add_inline_style( $handle, $data );
 				} else {
 					// Do it the old way.
-					add_action( 'wp_head', function() use ( $data ) { print( '<style id="fancybox-inline-css" type="text/css">' . $data . '</style>' ); }, 11 );
+					add_action( 'wp_head', function() use ( $data ) { print( '<style id="fancybox-inline-css" type="text/css">' . $data . '</style>' ); }, self::priority() );
 				}
 			}
 		} else {
@@ -124,23 +124,27 @@ class easyFancyBox {
 				empty( self::$inline_style_ie ) || wp_add_inline_style( 'fancybox-ie', self::$inline_style_ie );
 			} else {
 				// Do it the old way.
-				empty( self::$inline_style )    || add_action( 'wp_head', function() { print( '<style id="fancybox-inline-css" type="text/css">' . self::$inline_style . '</style>' ); }, 11 );
-				empty( self::$inline_style_ie ) || add_action( 'wp_head', function() { print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie . '</style><![endif]-->' ); }, 12 );
+				empty( self::$inline_style )    || add_action( 'wp_head', function() { print( '<style id="fancybox-inline-css" type="text/css">' . self::$inline_style . '</style>' ); }, self::priority() );
+				empty( self::$inline_style_ie ) || add_action( 'wp_head', function() { print( '<!--[if lt IE 9]><style id="fancybox-inline-css-ie" type="text/css">' . self::$inline_style_ie . '</style><![endif]-->' ); }, self::priority() );
 			}
 		}
 
 		// Inline scripts.
 		if ( !empty( self::$inline_scripts ) ) {
 			foreach ( self::$inline_scripts as $handle => $data ) {
+				if ( is_array( $data ) ) {
+					$position = ! empty( $data['position'] ) ? $data['position'] : 'after';
+					$data = ! empty( $data['data'] ) ? $data['data'] : '';
+				}
 				if ( function_exists( 'wp_add_inline_script' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
-					if ( is_array( $data ) ) {
-						$position = ! empty( $data['position'] ) ? $data['position'] : 'after';
-						$data = ! empty( $data['data'] ) ? $data['data'] : '';
-					}
 					wp_add_inline_script( $handle, $data, $position );
 				} else {
 					// Do it the old way.
-					add_action( $_footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
+					$priority = self::priority();
+					if ( 'after' !== $position ) {
+						$priority = $priority - 1;
+					}
+					add_action( $_footer ? 'wp_footer' : 'wp_head', function() use ( $data ) { print( '<script type="text/javascript">' . $data . '</script>' ); }, $priority );
 				}
 			}
 		} else {
@@ -148,7 +152,7 @@ class easyFancyBox {
 				empty( self::$inline_script )   || wp_add_inline_script( 'jquery-fancybox', self::$inline_script );
 			} else {
 				// Do it the old way.
-				empty( self::$inline_script )   || add_action( $_footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() + 1 );
+				empty( self::$inline_script )   || add_action( $_footer ? 'wp_footer' : 'wp_head', function() { print( '<script type="text/javascript">' . self::$inline_script . '</script>' ); }, self::priority() );
 			}
 		}
 
@@ -177,6 +181,15 @@ class easyFancyBox {
 		return $html;
 	}
 
+	public static function maybe_upgrade()
+	{
+		$old_version = get_option( 'easy_fancybox_version', 0 );
+
+		if ( 0 !== version_compare( EASY_FANCYBOX_VERSION, $old_version ) ) {
+			self::upgrade( $old_version );
+		}
+	}
+
 	public static function upgrade( $old_version )
 	{
 		// Upgrade from 1.7 or older.
@@ -188,7 +201,7 @@ class easyFancyBox {
 		}
 
 		// Upgrade from before 2.0.
-		if ( version_compare( $old_version, '0', '>' ) && version_compare( $old_version, '2.0', '<' ) ) {
+		if ( version_compare( $old_version, '0', '>' ) && version_compare( $old_version, '1.9', '<' ) ) {
 			// TODO figure out when to upgrade
 			update_option( 'fancybox_scriptVersion', 'classic' );
 
@@ -204,6 +217,12 @@ class easyFancyBox {
 				} else {
 					update_option( 'fancybox_PDFonStart', '{{object}}' );
 				}
+			}
+
+			$changespeed = get_option('fancybox_changeSpeed');
+			if ( ! empty( $changespeed ) ) {
+				false === get_option( 'fancybox_prevSpeed' ) && add_option( 'fancybox_prevSpeed', $changespeed );
+				false === get_option( 'fancybox_nextSpeed' ) && add_option( 'fancybox_nextSpeed', $changespeed );
 			}
 			// OR convert fancybox_overlayColor and fancybox_overlayOpacity values to one rgba for new rgba fancybox_overlayColor:
 			/*function hex2rgba($color, $opacity = false) {
@@ -268,15 +287,6 @@ class easyFancyBox {
 		}
 
 		return self::$add_scripts;
-	}
-
-	public static function maybe_upgrade()
-	{
-		$old_version = get_option( 'easy_fancybox_version', 0 );
-
-		if ( 0 !== version_compare( EASY_FANCYBOX_VERSION, $old_version ) ) {
-			self::upgrade( $old_version );
-		}
 	}
 
 	public static function extend()
@@ -357,8 +367,7 @@ class easyFancyBox {
 	public function __construct()
 	{
 		// VARS
-		self::$plugin_url      = plugins_url( '/', EASY_FANCYBOX_DIR.'/easy-fancybox.php' );
-		self::$plugin_basename = plugin_basename( EASY_FANCYBOX_DIR );
+		self::$plugin_url = plugins_url( '/', EASY_FANCYBOX_BASENAME /* EASY_FANCYBOX_DIR.'/easy-fancybox.php' */ );
 
 		add_action( 'init', array( __CLASS__, 'maybe_upgrade' ), 9 );
 		add_action( 'init', array( __CLASS__, 'extend' ), 9 );

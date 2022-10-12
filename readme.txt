@@ -501,28 +501,29 @@ Admin settings links, new Exclude selector option.
 
 = 2.0-alpha1 =
 TODO:
+- move styles to footer + bw compat option?
+- consider: move (only selected) media helpers inline
 - add/test template error & text translations,
 - make 2.2 spriteless (see 1.5),
 - 2.2 skip double gallery images (see 1.5)
 - 2.2 accesibility improvements (see 1.5)
 - fix close button on touch
-- fix SVG support
+- add SVG support (see 1.5)
 - 2.2 rtl styles
 - find solution for rtl and swipe/drag directions
 - test pro version
 - regroup options
-- admin page
+- new admin page
 
 = 1.9 =
 TODO:
-- admin page
-- fix plugin action links
-- test pro version
-- check update routine
+- do update test
 
 * NEW: Swipe support
 * NEW: Optional fancyBox 2 script
+* Fixed background
 * Dropped IE6-8 support
+* Dropped SWF support (only availbale in Legacy)
 * Accessibility improvements
 
 = 1.8.19 =

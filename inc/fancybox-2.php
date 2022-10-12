@@ -50,16 +50,28 @@ function prepare_inline_scripts() {
 			$fb_opts['helpers']['overlay']['closeClick'] = false;
 		}
 		if ( \get_option( 'fancybox_overlayColor' ) ) {
-			$fb_opts['helpers']['overlay']['css'] = array( 'background' => \esc_attr( \get_option('fancybox_overlayColor') ) );
+			$fb_opts['helpers']['overlay']['css'] = array(
+				'background' =>
+				\esc_attr( \get_option('fancybox_overlayColor') )
+			);
 		}
 	} else {
 		$fb_opts['helpers']['overlay'] = null;
 	}
 
-	// Media.
+	// Media helpers.
 	if ( add_media() ) {
 		$fb_opts['helpers']['media'] = array();
+
+		// Null the unselected.
+		\get_option( 'fancybox_enableYoutube' )     || $fb_opts['helpers']['media']['youtube']     = null;
+		\get_option( 'fancybox_enableVimeo' )       || $fb_opts['helpers']['media']['vimeo']       = null;
+		\get_option( 'fancybox_enableDailymotion' ) || $fb_opts['helpers']['media']['dailymotion'] = null;
+		\get_option( 'fancybox_enableInstagram' )   || $fb_opts['helpers']['media']['instagram']   = null;
+		\get_option( 'fancybox_enableGoogleMaps' )  || $fb_opts['helpers']['media']['google_maps'] = null;
 	}
+
+	$fb_opts = apply_filters( 'easy_fancybox_fb_opts', $fb_opts );
 
 	/**
 	 * Build main handler.
@@ -166,8 +178,17 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 
 		$bind_parameters = array();
 		foreach ( $value['options'] as $_key => $_value ) {
+			// Treat some known keys differently
+			$convert_to = array(
+				'easingIn' => 'openEasing',
+				'easingOut' => 'closeEasing',
+			);
+			if ( array_key_exists ( $_key, $convert_to ) ) {
+				$_key = $convert_to[$_key];
+			}
+
 			if ( isset($_value['id']) || isset($_value['default']) )
-				$parm = isset($_value['id']) ? strval( \get_option($_value['id'], $_value['default']) ) : strval( $_value['default'] );
+				$parm = ! empty($_value['id']) ? strval( \get_option($_value['id'], isset($_value['default']) ? $_value['default'] : '' ) ) : strval( $_value['default'] );
 			else
 				$parm = '';
 
@@ -283,11 +304,13 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 
 function prepare_inline_styles() {
 	$styles = '';
+
 	$backgroundColor = get_option( 'fancybox_backgroundColor' );
 	$textColor = get_option( 'fancybox_textColor' );
 	$borderRadius = get_option( 'fancybox_borderRadius' );
 	$paddingColor = get_option( 'fancybox_paddingColor' );
 	$overlaySpotlight = get_option( 'fancybox_overlaySpotlight' );
+	$titleColor = get_option( 'fancybox_titleColor' );
 
 		// Content styles.
 		$content_style = '';
