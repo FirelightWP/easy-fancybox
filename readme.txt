@@ -1,12 +1,12 @@
 === Easy FancyBox ===
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
-Tags: fancybox, lightbox, gallery, image, photo, video, flash, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, swf, jquery, webp
+Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
 Requires at least: 3.3
 Tested up to: 6.1-beta3
 Stable tag: 1.9
 
-Easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Supports iFrame and Flash movies.
+Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe and well known video hosts.
 
 == Description ==
 
@@ -25,7 +25,6 @@ Supported media and content types:
 - All common image formats _including_ webp
 - Hosted video on **Youtube**, **Vimeo** _and_ **Dailmotion**
 - PDF files (embed with object tag, in iframe or in external Google Docs Viewer)
-- SWF (Flash) files
 - SVG media images (thanks to Simon Maillard)
 - Inline HTML content (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#how%20can%20i%20display%20inline%20content%20in%20a%20fancybox%20overlay%20%3F))
 - External web pages (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20display%20web%20pages%20or%20html%20files%20in%20a%20fancybox%20overlay%3F))
@@ -85,7 +84,6 @@ If you wish to help build this plugin, you're very welcome to [translate Easy Fa
 - Most plugins and themes that already include a light box script. Continue reading to see if you are using one of the know ones or follow the troubleshooting steps to find out what is conflicting on your site.
 - Any theme that is missing the obligatory `<?php wp_footer(); ?>` call in the footer.php template.
 - When showing an iframe as inline content in FancyBox -- not advised, use fancybox-iframe instead! -- the iframe will become blank after opening and closing it. The solution is to link directly to the iframe source and use `class="fancybox-iframe"` instead.
-- Embedded flash content that has no wmode or wmode 'window', is displayed above the overlay and other javascript rendered content like dropdown menus. WordPress does NOT check for missing wmode in oEmbed generated embed code. Since version 1.3.4.5, the missing wmode is added by this plugin for WP (auto-)embeds but not for other user-embedded content. Please make sure you set the wmode parameter to 'opaque' (best performance) or 'transparent' (only when you need transparency) for your embedded content.
 
 = Plugin conflicts =
 
@@ -324,46 +322,17 @@ Yes. Just place a link _with the URL ending in .pdf_ to your Portable Document f
 If you don't have *Auto-detect* checked under **PDF** on Settings > Media admin page, you will need to add `class="fancybox-pdf"` (to force pdf content recognition) to the link to enable FancyBox for it.
 
 
-= Can I play SWF files in a FancyBox overlay? =
-
-Yes. Just place a link _with the URL ending in .swf_ to your Flash file in the page content.
-
-If you don't have *Auto-detect* checked under **SWF** on Settings > Media admin page, you will need to add either `class="fancybox"` or `class="fancybox-swf"` (to force swf content recognition) to the link to enable FancyBox for it.
-
-
 = How do I show content with different sizes? =
 
 FancyBox tries to detect the size of the content automatically but if it can not find a size, it will default to the settings for that particular content type as set on the Settings > Media page.
 
 The **[Pro extension](https://premium.status301.com/downloads/easy-fancybox-pro/)** provides an extra option to allow you to manually override this by defining the width and height wrapped in curly braces in the class attribute of the link itself. Make sure the option "Include the Metadata jQuery extension script..." under FancyBox | Miscellaneous | Advanced on Settings > Media is enabled.
 
-For example, a Flash movie with different size:
+For example, an SVG file with different size:
 
 `
-<a class="fancybox-swf {width:1024,height:675}" href="link-to-your-swf"></a>
+<a class="fancybox-svg {width:1024,height:675}" href="_your_svg_"></a>
 `
-
-= The flash movie in the overlay shows BELOW some other flash content that is on the same page! =
-
-Make sure the OTHER flash content as a **wmode** set, preferably to 'opaque' or else 'transparent' but never 'window' or missing. For example, if your embedded object looks something like:
-`
-<object type="application/x-shockwave-flash" width="200" height="300" data="...url...">
-<param name="allowfullscreen" value="true" />
-<param name="allowscriptaccess" value="always" />
-<param name="movie" value="...url..." />
-</object>
-`
-just add `<param name="wmode" value="opaque" />` among the other parameters. Or if you are using an embed like:
-`
-<object width="640" height="385">
-<param name="movie" value="...url..."></param>
-<param name="allowFullScreen" value="true"></param>
-<param name="allowscriptaccess" value="always"></param>
-<embed src="...url..." type="application/x-shockwave-flash" width="640" height="385" allowscriptaccess="always" allowfullscreen="true" wmode="window"></embed>
-</object>
-`
-just change that `wmode="window"` to `wmode="opaque"` or add the attribute if it is missing.
-
 
 = How can I display INLINE content in a FancyBox overlay ? =
 
@@ -408,7 +377,7 @@ Yes. A link that has the ID **fancybox-auto** (Note: there can be only ONE link 
 
 Use the instructions above for inline content but this time give the link also `id="fancybox-auto"` (leave the class too) and remove the anchor text to hide it. Now the hidden div content will pop up automatically when a visitor opens the page.
 
-Same can be done with an image, flash movie, PDF or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
+Same can be done with any other media or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
 
 
 = Can I have a modal window ? =
