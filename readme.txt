@@ -3,10 +3,10 @@ Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
 Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
 Requires at least: 3.3
-Tested up to: 6.1-beta3
+Tested up to: 6.1-RC1
 Stable tag: 1.9
 
-Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe and well known video hosts.
+Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe, inline content and well known video hosts.
 
 == Description ==
 
@@ -467,23 +467,6 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 Admin settings links, new Exclude selector option.
 
 == Changelog ==
-
-= 2.0-alpha1 =
-TODO:
-- move styles to footer + bw compat option?
-- consider: move (only selected) media helpers inline
-- add/test template error & text translations,
-- make 2.2 spriteless (see 1.5),
-- 2.2 skip double gallery images (see 1.5)
-- 2.2 accesibility improvements (see 1.5)
-- fix close button on touch
-- add SVG support (see 1.5)
-- 2.2 rtl styles
-- find solution for rtl and swipe/drag directions
-- dedicated w/h/border options for inline
-- test pro version
-- regroup options
-- new admin page
 
 = 1.9 =
 * NEW: Swipe support
