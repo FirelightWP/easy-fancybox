@@ -54,6 +54,8 @@ class easyFancyBox_Uninstall {
 	 */
 	function uninstall( $blog_id = false )
 	{
+		delete_option( 'easy_fancybox_version' );
+
 		// General settings.
 		delete_option( 'fancybox_scriptVersion' );
 		delete_option( 'fancybox_enableImg' );
@@ -71,6 +73,7 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_hideOnOverlayClick' );
 		delete_option( 'fancybox_overlayColor' );
 		delete_option( 'fancybox_overlaySpotlight' );
+		delete_option( 'fancybox_overlayOpacity' );
 
 		// Window settings.
 		delete_option( 'fancybox_showCloseButton' );
@@ -100,7 +103,7 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_pre45Compat' );
 		delete_option( 'fancybox_vcMasonryCompat' );
 		delete_option( 'fancybox_autoExclude' );
-
+		delete_option( 'fancybox_compatIE8' );
 		delete_option( 'fancybox_mouseWheel' );
 		delete_option( 'fancybox_metaData' );
 
@@ -124,6 +127,7 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_changeSpeed' );
 		delete_option( 'fancybox_changeFade' );
 		delete_option( 'fancybox_autoSelector' );
+		delete_option( 'fancybox_autoPlay' ); // fb 2
 
 		// Inline.
 		delete_option( 'fancybox_autoDimensions' );
@@ -161,7 +165,7 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_SVGpadding' );
 		delete_option( 'fancybox_SVGtitleShow' );
 		delete_option( 'fancybox_SVGtitlePosition' );
-		delete_option( 'fancybox_SWFtitleFromAlt' );
+		delete_option( 'fancybox_SVGtitleFromAlt' );
 
 		// Youtube.
 		delete_option( 'fancybox_autoAttributeYoutube' );
@@ -171,6 +175,7 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_YoutubetitleShow' );
 		delete_option( 'fancybox_YoutubetitlePosition' );
 		delete_option( 'fancybox_YoutubetitleFromAlt' );
+		delete_option( 'fancybox_YoutubenoCookie' );
 
 		// Vimeo.
 		delete_option( 'fancybox_autoAttributeVimeo' );
@@ -198,6 +203,11 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_iFrametitlePosition' );
 		delete_option( 'fancybox_iFrametitleFromAlt' );
 		delete_option( 'fancybox_allowFullScreen' );
+
+		// Google Maps.
+		delete_option( 'fancybox_enableGoogleMaps' ); // fb 2
+		// Instagram
+		delete_option( 'fancybox_enableInstagram' ); // fb 2
 
 		// Kilroy was here.
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
