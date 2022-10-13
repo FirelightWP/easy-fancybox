@@ -274,7 +274,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 			break;
 
 		case '1':
-			$script .= PHP_EOL . 'var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'#fancybox-auto\').trigger(\'click\')},'.$delayClick.');};';
+			$script .= PHP_EOL . 'var easy_fancybox_auto=function(){setTimeout(function(){jQuery(\'a#fancybox-auto,#fancybox-auto>a\').first().trigger(\'click\')},'.$delayClick.');};';
 			\easyFancyBox::$onready_auto = true;
 			break;
 

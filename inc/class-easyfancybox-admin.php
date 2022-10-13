@@ -67,7 +67,7 @@ class easyFancyBox_Admin {
 			/*'video'       => get_option( 'fancybox_enableVideoPress' ) ||
 			                 get_option( 'fancybox_enableYoutube' ) || get_option( 'fancybox_enableVimeo' ) ||
 							 get_option( 'fancybox_enableDailymotion' ) ? esc_html__( 'Video', 'easy-fancybox' )       : false,*/
-			'videopress'  => get_option( 'fancybox_enableVideoPress' )  ? esc_html__( 'VideoPress', 'easy-fancybox' )  : false,
+			//'videopress'  => get_option( 'fancybox_enableVideoPress' )  ? esc_html__( 'VideoPress', 'easy-fancybox' )  : false,
 			'youtube'     => get_option( 'fancybox_enableYoutube' )     ? esc_html__( 'YouTube', 'easy-fancybox' )     : false,
 			'vimeo'       => get_option( 'fancybox_enableVimeo' )       ? esc_html__( 'Vimeo', 'easy-fancybox' )       : false,
 			'dailymotion' => get_option( 'fancybox_enableDailymotion' ) ? esc_html__( 'Dailymotion', 'easy-fancybox' ) : false,
@@ -122,7 +122,7 @@ class easyFancyBox_Admin {
 		register_setting( 'easy_fancybox_general', 'fancybox_enableInline',      array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enablePDF',         array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableSWF',         array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
-		register_setting( 'easy_fancybox_general', 'fancybox_enableVideoPress',  array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
+		//register_setting( 'easy_fancybox_general', 'fancybox_enableVideoPress',  array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableYoutube',     array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableVimeo',       array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableDailymotion', array( 'default' => '', 'sanitize_callback' => 'boolval' ) );

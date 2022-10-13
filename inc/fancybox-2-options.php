@@ -47,7 +47,7 @@ $efb_options = array (
 						'description' => '<strong>' . esc_html__( 'SVG', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSVG') ? ' &mdash; <a href="#SVG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'VideoPress' => array (
-						'id' => 'fancybox_enableVideoPress',
+						'id' => '',
 						'input' => 'checkbox',
 						'hide' => true,
 						'default' => '',
