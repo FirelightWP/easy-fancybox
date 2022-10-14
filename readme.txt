@@ -462,11 +462,36 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.8.19 =
+= 1.9.1 =
 
-Admin settings links, new Exclude selector option.
+Bugfix release.
 
 == Changelog ==
+
+= 2.0-alpha1 =
+
+TODO:
+- move styles to footer + backw compat option?
+- consider: move (only selected) media helpers inline
+- add/test template error & text translations,
+- make 2.2 spriteless (see 1.5),
+- 2.2 skip double gallery images (see 1.5)
+- 2.2 accesibility improvements (see 1.5)
+- fix close button on touch
+- fix wrong size when pdf in iframe (see fiddle example?)
+- add SVG support (see 1.5)
+- 2.2 rtl styles
+- find solution for rtl and swipe/drag directions
+- test pro version
+- regroup options
+- new admin page
+- dedicated upgrade file
+- NEW: Video file support (mp4,webm,wav etc.) https://www.w3schools.com/TAGS/tag_video.asp
+
+= 1.9.1 =
+* FIX: Passing event parameters failing
+* FIX: Case insesitive selectors failing
+* FIX: Admin message display issue
 
 = 1.9 =
 * NEW: Swipe support
