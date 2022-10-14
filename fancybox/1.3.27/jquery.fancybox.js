@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.26 (2019/04/07)
+ * Version: 1.3.27 (2019/04/07)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -79,6 +79,8 @@
 			busy = false;
 			return;
 		}
+
+		$(document).trigger('fancybox-start', [ selectedArray, selectedIndex, selectedOpts ] );
 
 		ret = selectedOpts.onStart(selectedArray, selectedIndex, selectedOpts);
 
@@ -690,6 +692,8 @@
 
 		$.fancybox.center();
 
+		$(document).trigger('fancybox-complete', [ currentArray, currentIndex, currentOpts ] );
+
 		currentOpts.onComplete(currentArray, currentIndex, currentOpts);
 
 		if (currentArray.length > 1) {
@@ -1113,6 +1117,8 @@
 			$('.fancybox-inline-tmp').trigger('fancybox-cleanup');
 
 			content.empty();
+
+			$(document).trigger('fancybox-closed', [ currentArray, currentIndex, currentOpts ] );
 
 			currentOpts.onClosed(currentArray, currentIndex, currentOpts);
 

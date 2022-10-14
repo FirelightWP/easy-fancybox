@@ -8,7 +8,7 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
  * Copyright (c) 2020 - RavanH
- * Version: 1.5.0 (2020/11/09)
+ * Version: 1.5.1 (2020/11/09)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -71,7 +71,7 @@
 
 		$('html').addClass('fancybox-active');
 
-		$(document).trigger('fancybox-start', selectedArray, selectedIndex, selectedOpts);
+		$(document).trigger('fancybox-start', [ selectedArray, selectedIndex, selectedOpts ] );
 
 		ret = selectedOpts.onStart(selectedArray, selectedIndex, selectedOpts);
 
@@ -633,7 +633,7 @@
 
 		busy = false;
 
-		$(document).trigger('fancybox-complete', currentArray, currentIndex, currentOpts);
+		$(document).trigger('fancybox-complete', [ currentArray, currentIndex, currentOpts ] );
 
 		currentOpts.onComplete(currentArray, currentIndex, currentOpts);
 
@@ -770,7 +770,7 @@
 	_closed = function() {
 		overlay.fadeOut('fast');
 
-		$(document).trigger('fancybox-closed', currentArray, currentIndex, currentOpts);
+		$(document).trigger('fancybox-closed', [ currentArray, currentIndex, currentOpts ] );
 
 		currentOpts.onClosed(currentArray, currentIndex, currentOpts);
 
@@ -968,7 +968,7 @@
 
 		_abort();
 
-		$(document).trigger('fancybox-cancel', selectedArray, selectedIndex, selectedOpts);
+		$(document).trigger('fancybox-cancel', [ selectedArray, selectedIndex, selectedOpts ] );
 
 		if (selectedOpts && false === selectedOpts.onCancel(selectedArray, selectedIndex, selectedOpts) ) {
 			busy = false;
@@ -1005,7 +1005,7 @@
 
 		_abort();
 
-		$(document).trigger('fancybox-cleanup', currentArray, currentIndex, currentOpts);
+		$(document).trigger('fancybox-cleanup', [ currentArray, currentIndex, currentOpts ] );
 
 		if (currentOpts && false === currentOpts.onCleanup(currentArray, currentIndex, currentOpts)) {
 			busy = false;
@@ -1132,7 +1132,7 @@
 		keepRatio : false,
 		minViewportWidth : 0,
 
-		swipeThreshold: 80,
+		swipeThreshold: 100,
 
 		ajax : {},
 		svg : { wmode: 'opaque' },
