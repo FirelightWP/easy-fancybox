@@ -36,7 +36,8 @@ if ( ! class_exists('easyFancyBox_Advanced') ) { ?>
 <?php }
 // Pro extension version compatibility message.
 if ( self::$do_compat_warning ) { ?>
-<p class="update-nag">';
+<div class="notice notice-warning is-dismissible">
+<p>
 	<?php esc_html_e( 'Notice: The current Easy FancyBox plugin version is not fully compatible with your version of the Pro extension. Some advanced options may not be functional.', 'easy-fancybox' ); ?>
 	<?php
 	if ( current_user_can( 'install_plugins' ) )
@@ -45,4 +46,5 @@ if ( self::$do_compat_warning ) { ?>
 		esc_html_e( 'Please contact your web site administrator.', 'easy-fancybox' );
 	?>
 </p>
+</div>
 <?php } ?>
