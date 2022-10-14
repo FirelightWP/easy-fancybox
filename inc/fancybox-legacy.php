@@ -82,16 +82,16 @@ jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.
 				$file_types = array_filter( explode( ',', str_replace( ' ', ',', $autoAttribute ) ) );
 				$more = 0;
 				$script .= '
-var fb_'.$key.'_select=\'';
+var fb_'.$key.'_select=jQuery(\'';
 				foreach ( $file_types as $type ) {
 					if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "webp" || $type == "gif")
 						$type = '.'.$type;
 					if ($more>0)
 						$script .= ',';
-					$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox,li.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)';
+					$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox,li.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox)';
 					$more++;
 				}
-				$script .= '\';';
+				$script .= '\');';
 
 				$autoselector = class_exists('easyFancyBox_Advanced') ? \get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']) : $value['options']['autoSelector']['default'];
 
@@ -119,7 +119,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 				} else {
 					// Add class.
 					$script .= '
-jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 						case '':
@@ -252,6 +252,8 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 	empty( $titleColor ) || $styles .= '#fancybox-title,#fancybox-title-float-main{color:'.$titleColor.'}';
 
 	$styles .= '.fancybox-hidden{display:none}#fancybox-content .fancybox-hidden,#fancybox-tmp .fancybox-hidden{display:revert}';
+
+	$styles = \apply_filters( 'easy_fancybox_inline_style', $styles );
 
 	empty( $styles ) || \easyFancyBox::$inline_style = \wp_strip_all_tags( $styles );
 

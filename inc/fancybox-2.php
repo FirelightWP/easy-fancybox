@@ -117,16 +117,16 @@ jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.
 				$file_types = array_filter( explode( ',', str_replace( ' ', ',', $autoAttribute ) ) );
 				$more = 0;
 				$fb_handler .= '
-var fb_'.$key.'_select=\'';
+var fb_'.$key.'_select=jQuery(\'';
 				foreach ( $file_types as $type ) {
 					if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "webp" || $type == "gif")
 						$type = '.'.$type;
 					if ($more>0)
 						$fb_handler .= ',';
-					$fb_handler .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox,li.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'"]:not(.nofancybox)';
+					$fb_handler .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox,li.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox)';
 					$more++;
 				}
-				$fb_handler .= '\';';
+				$fb_handler .= '\');';
 
 				$autoselector = class_exists('easyFancyBox_Advanced') ? \get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']) : $value['options']['autoSelector']['default'];
 
@@ -154,7 +154,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 				} else {
 					// Add class.
 					$fb_handler .= '
-jQuery(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 						case '':
@@ -187,11 +187,19 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 		foreach ( $value['options'] as $_key => $_value ) {
 			// Treat some known keys differently
 			$convert_to = array(
-				'easingIn' => 'openEasing',
-				'easingOut' => 'closeEasing',
+				'easingIn'   => 'openEasing',
+				'easingOut'  => 'closeEasing',
+				'onStart'    => false, // Keep for Pro backward compat.
+				'onComplete' => false, // Keep for Pro backward compat.
+				'onCleanup'  => false, // Keep for Pro backward compat.
 			);
 			if ( array_key_exists ( $_key, $convert_to ) ) {
-				$_key = $convert_to[$_key];
+				if ( $convert_to[$_key] ) {
+					$_key = $convert_to[$_key];
+				} else {
+					// Skip this one.
+					continue;
+				}
 			}
 
 			if ( isset($_value['id']) || isset($_value['default']) )
@@ -352,6 +360,8 @@ function add_media() {
 		       \get_option( 'fancybox_enableDailymotion' ) ||
 		       \get_option( 'fancybox_enableInstagram' ) ||
 		       \get_option( 'fancybox_enableGoogleMaps' );
+
+		 $add = apply_filters( 'easy_fancybox_add_media', $add );
 	}
 
 	return $add;
@@ -371,7 +381,7 @@ function add_buttons() {
 	static $add;
 
 	if ( null === $add ) {
-		$add = apply_filters( 'easy_fancybox_add_thumbs', false );;
+		$add = apply_filters( 'easy_fancybox_add_buttons', false );;
 	}
 
 	return $add;

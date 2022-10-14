@@ -631,14 +631,11 @@ $efb_options = array (
 			),
 			'onStart' => array (
 				'id' => '',
-				'title' => esc_html__('Advanced','easy-fancybox'),
-				'input' => 'select',
+				'hide' => true,
+				'input' => 'checkbox',
 				'status' => 'disabled',
-				'options' => array(
-					'' => esc_html__('Hide/show title on mouse hover action','easy-fancybox')
-				),
 				'default' => '',
-				'description' =>  '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+				'description' => esc_html__( 'Hide/show title on mouse hover action', 'easy-fancybox' ) . ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 			),
 			'p3' => array (
 				'hide' => true,
@@ -710,16 +707,23 @@ $efb_options = array (
 				'input' => 'hidden',
 				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery'
 			),
-			'onComplete' => array (
+			'autoPlay' => array (
 				'id' => '',
-				'title' => esc_html__('Advanced','easy-fancybox'),
-				'input' => 'select',
+				'hide' => true,
+				'input' => 'checkbox',
 				'status' => 'disabled',
-				'options' => array(
-					'' => esc_html__('Slideshow','easy-fancybox')
-				),
 				'default' => '',
-				'description' =>  '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
+				'description' =>  esc_html__( 'Slideshow', 'easy-fancybox' ) . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
+			),
+			'playSpeed' => array(
+				'id' => '',
+				'hide' => true,
+				'title' => esc_html__( 'Play speed', 'easy-fancybox' ),
+				'input' => 'number',
+				'status' => 'disabled',
+				'class' => 'small-text',
+				'default' => '',
+				'description' => '<br />' . esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 3000</em><br /><br />'
 			)
 		)
 	),
@@ -847,7 +851,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => '\'a[href*=".pdf"],area[href*=".pdf"],a[href*=".PDF"],area[href*=".PDF"]\'',
+				'selector' => '\'a[href*=".pdf" i],area[href*=".pdf" i]\'',
 				'description' => esc_html__('Autodetect','easy-fancybox')
 			),
 			'tag' => array (
@@ -958,7 +962,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => '\'a[href*=".svg"],area[href*=".svg"],a[href*=".SVG"],area[href*=".SVG"]\'',
+				'selector' => '\'a[href*=".svg" i],area[href*=".svg" i]\'',
 				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1057,7 +1061,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => '\'a[href*="youtu.be/"],area[href*="youtu.be/"],a[href*="youtube.com/"],area[href*="youtube.com/"]\').filter(function(){return this.href.match(/\/(?:youtu\.be|watch\?|embed\/)/);}',
+				'selector' => '\'a[href*="youtu.be/" i],area[href*="youtu.be/" i],a[href*="youtube.com/" i],area[href*="youtube.com/" i]\').filter(function(){return this.href.match(/\/(?:youtu\.be|watch\?|embed\/)/);}',
 				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1169,7 +1173,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => '\'a[href*="vimeo.com/"],area[href*="vimeo.com/"]\').filter(function(){return this.href.match(/\/(?:[0-9]+|video\/)/);}',
+				'selector' => '\'a[href*="vimeo.com/" i],area[href*="vimeo.com/" i]\').filter(function(){return this.href.match(/\/(?:[0-9]+|video\/)/);}',
 				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1272,7 +1276,7 @@ $efb_options = array (
 				'input' => 'checkbox',
 				'hide' => true,
 				'default' => '1',
-				'selector' => '\'a[href*="dailymotion.com/"],area[href*="dailymotion.com/"]\').filter(function(){return this.href.match(/\/video\//);}',
+				'selector' => '\'a[href*="dailymotion.com/" i],area[href*="dailymotion.com/" i]\').filter(function(){return this.href.match(/\/video\//);}',
 				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
@@ -1357,7 +1361,7 @@ $efb_options = array (
 			),
 			'onStart' => array (
 				'noquotes' => true,
-				'default' => 'function(a,i,o){var splitOn=a[i].href.indexOf("?");var urlParms=(splitOn>-1)?a[i].href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fullscreen=0")>-1)?false:true;o.href=a[i].href.replace(/^https?:\/\/(?:www\.)?dailymotion.com\/video\/([^\?]+)(.*)/gi,"https://www.dailymotion.com/embed/video/$1?$2&autoPlay=1");}'
+				'default' => 'function(a,i,o){var splitOn=a[i].href.indexOf("?");var urlParms=(splitOn>-1)?a[i].href.substring(splitOn):"";o.allowfullscreen=(urlParms.indexOf("fullscreen=0")>-1)?false:true;o.href=a[i].href.replace(/^https?:\/\/(?:www\.)?dailymotion.com\/video\/([^\?]+)(.*)/gi,"https://www.dailymotion.com/embed/video/$1?$2&autoplay=1");}'
 			)
 		)
 	),
