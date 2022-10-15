@@ -121,9 +121,9 @@ $efb_options = array (
 						'description' => esc_html__('Close FancyBox when overlay is clicked.','easy-fancybox')
 					),
 					'overlayColor' => array (
-						'id' => 'fancybox_overlayColor',
+						'id' => 'fancybox_overlayColor2',
 						'title' => esc_html__('Color','easy-fancybox'),
-						'label_for' => 'fancybox_overlayColor',
+						'label_for' => 'fancybox_overlayColor2',
 						'input' => 'text',
 						'hide' => true,
 						'sanitize_callback' => 'colorval',

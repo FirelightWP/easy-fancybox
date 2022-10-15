@@ -56,10 +56,10 @@ function prepare_inline_scripts() {
 		if ( ! \get_option( 'fancybox_hideOnOverlayClick', true ) ) {
 			$fb_opts['helpers']['overlay']['closeClick'] = false;
 		}
-		if ( \get_option( 'fancybox_overlayColor' ) ) {
+		if ( \get_option( 'fancybox_overlayColor2' ) ) {
 			$fb_opts['helpers']['overlay']['css'] = array(
 				'background' =>
-				\esc_attr( \get_option('fancybox_overlayColor') )
+				\esc_attr( \get_option('fancybox_overlayColor2') )
 			);
 		}
 	} else {
