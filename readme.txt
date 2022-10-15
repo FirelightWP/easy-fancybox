@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
 Requires at least: 3.3
 Tested up to: 6.1-RC1
-Stable tag: 1.9
+Stable tag: 1.9.2
 
 Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe, inline content and well known video hosts.
 
@@ -32,8 +32,8 @@ Supported media and content types:
 Also supports:
 
 - WordPress Galleries (option "Link to" must be set to "Media File")
-- NextGEN galleries (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20nextgen%20gallery%20work%20with%20easy%20fancybox%20%3F))
-- Image maps
+- NextGEN galleries (see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/nextgen-gallery/))
+- Image maps (see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/image-maps/))
 - WordPress menu items (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20make%20a%20menu%20item%20open%20in%20a%20fancybox%20overlay%20%3F))
 - Jetpack Infinite Scroll
 
@@ -82,7 +82,7 @@ If you wish to help build this plugin, you're very welcome to [translate Easy Fa
 
 - **Outbound click or Download tracking** in some of the stats plugins can interfere with FancyBox. Disable such options or exclude links manually with a class if possible (see instructions for SlimStat below)
 - Most plugins and themes that already include a light box script. Continue reading to see if you are using one of the know ones or follow the troubleshooting steps to find out what is conflicting on your site.
-- Any theme that is missing the obligatory `<?php wp_footer(); ?>` call in the footer.php template.
+- Any theme that is missing the obligatory `<?php wp_footer();?>` call in the footer.php template.
 - When showing an iframe as inline content in FancyBox -- not advised, use fancybox-iframe instead! -- the iframe will become blank after opening and closing it. The solution is to link directly to the iframe source and use `class="fancybox-iframe"` instead.
 
 = Plugin conflicts =
@@ -188,57 +188,15 @@ Yes. All links with class **nolightbox** that would normally get auto-enabled, w
 `<a href="url/to/fullimg.jpg" class="nolightbox"><img src="url/to/thumbnail.jpg" /></a>`
 
 
-= Can NextGEN Gallery work with Easy FancyBox ? =
+= Can NextGEN Gallery work with Easy FancyBox? =
 
-NetxGEN has its own built in FancyBox version along with a choice of other light box scripts but if you prefer to use Easy FancyBox (because of better customizability and other media support) then you need to take some steps to make the two plugins compatible.
-
-1. Go to your Settings > Media admin page and switch OFF the FancyBox "Auto-gallery" option in the Images section;
-1. Go to Gallery > Other Options and set the Lightbox Effects option to "Custom" and click on **Show Advanced Settings**;
-1. fill the Code field with
-`class="fancybox" rel="%GALLERY_NAME%"`
-1. Leave the other fields empty and save your settings.
+Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/nextgen-gallery/)
 
 
-= Can I use ONE thumbnail to open a complete gallery ? =
+= Can I use ONE thumbnail to open a complete gallery? =
 
-It can be done manually (using the internal WordPress gallery feature, or not) _or_ in combination with NextGen Gallery.
+Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/one-thumbnail-to-open-a-complete-gallery-slideshow/)
 
-**Manual**
-
-**A.** Open your post for editing in HTML mode and insert the first image thumbnail in your post content (linking to the images file, not page) to serve as the gallery thumbnail.
-
-**B.** Place the following code to start a hidden div containing all the other images that should only be visible in FancyBox:
-`
-<div class="fancybox-hidden">
-`
-
-**C.** Right after that starting on a new line, insert all other images you want to show in your gallery. You can even use the WordPress internal gallery feature with the shortcode `[ gallery link="file" ]`. NOTE: if the gallery thumbnail is attached to the post, it will be show a second time when flipping through the gallery in FancyBox. If you do not want that, use an image that is not attached to the post as gallery thumbnail.
-
-**D.** Close the hidden div with the following code on a new line:
-`
-</div>
-`
-
-**With NextGEN Gallery**
-
-You can choose between two shortcodes to show a gallery that (1) limits images per gallery using the shortcode `[nggallery id=x]` or (2) per tag name (accross galleries; you need to set tag name manually => more work but more control) using the shortcode `[nggtags gallery=YourTagName,AnotherTagName]`.
-
-General steps:
-
-**A.** Place the shortcode of your choice in your page/post content.
-
-**B.** Configure NextGen on **Gallery > Gallery Settings** to Display galleries as "NextGEN Basic Thumbnails" and then under the NextGEN Basic Thumbnails to at least have the following options set like this:
-
-1. Number of images per page: 1
-1. Use imagebrowser effect: No
-1. Add hidden images: Yes
-
-**C.** Optional: add the following new CSS rule to your theme stylesheet (or install [Custom CSS](https://wordpress.org/plugins/safecss/) or [Jetpack](https://wordpress.org/plugins/jetpack/) and add it on the new Appearance > Edit CSS admin page) to hide the page browsing links below the gallery thumbnail.
-`
-.ngg-navigation {
-display:none;
-}
-`
 
 = Can I play YouTube, Dailymotion and Vimeo movies in a FancyBox overlay? =
 
@@ -252,11 +210,6 @@ Both YouTube and Vimeo movies can be made to play immediately after opening by a
 `
 
 
-= I want that 'Show in full-screen' button on my YouTube movies =
-
-Append `&fs=1` to your YouTube share URL.
-
-
 = Can I show a Youtube playlist in FancyBox? =
 
 Yes, just go to Youtube page of any movie that's in the playlist and use the Share button to get the share URL just like with single movies, but this time place a checkmark at the 'Share with playlist' option.
@@ -264,24 +217,7 @@ Yes, just go to Youtube page of any movie that's in the playlist and use the Sha
 
 = Can I link a NextGEN thumbnail to a Youtube movie in FancyBox? =
 
-User Mark Szoldan shared a neat trick how to do this:
-
-1. Follow the instructions to make Easy FancyBox work smoothly with NextGEN above and make sure it all works correctly for normal thumbnails linked to their full-size version.
-1. Then give the image that you want to link to a Youtube movie the URL to the Youtube page as title.
-1. Finally paste the code below into a Custom HTML widget that will live in your sidebar or footer bar, or you can hard-code it into your theme but make sure it come before the `wp_footer()` call...
-
-`
-<script type="text/javascript">
-jQuery('.fancybox [title*="www.youtube.com"]').each(function() {
-  var title = jQuery(this).attr('title');
-  var desc = jQuery(this).parent().attr('title');
-  jQuery(this).attr('title', desc);
-  jQuery(this).parent().attr('href', title);
-});
-</script>
-`
-
-This script snippet will scan the image titles and if it finds a Youtube URL there, it will replace the links href attribute value accordingly.
+Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/nextgen-gallery/)
 
 
 = Can I create a gallery of Youtube thumbnails which open in FancyBox? =
@@ -334,41 +270,9 @@ For example, an SVG file with different size:
 <a class="fancybox-svg {width:1024,height:675}" href="_your_svg_"></a>
 `
 
-= How can I display INLINE content in a FancyBox overlay ? =
+= How can I display INLINE content in a FancyBox overlay? =
 
-First go to your **Settings > Media** admin page and activate the **Inline** option under the FancyBox settings. After saving, the amin page will show a new section called Inline where you can tweak its parameters.
-
-Next, open your page/post for editing in the HTML tab and wrap the inline content in
-`
-<div style="display:none" class="fancybox-hidden"><div id="fancyboxID-1" class="hentry" style="width:460px;max-width:100%;">
-...inline content here...
-</div></div>
-`
-
-Then place a FancyBox link tag with class attribute "fancybox-inline" anywhere else in the post/page content that will point to the inline content like
-`
-<a href="#fancyboxID-1" class="fancybox-inline">Read my inline content</a>
-`
-
-NOTE: The wrapping divs ID *must* be unique and it must correspond with the links HREF with a # in front of it. When using the above example for more FancyBox inline content (hidden div + opening link) combinations on one page, give the second one the ID  fancyboxID-2 and so on...
-
-NOTE 2: If you find that the inline content shown in FancyBox is styled very different than the rests of the page content, then you might want to change the div tag attribute `class="hentry"` to something else that matches your theme. Find out what class name is used for the main content on your site and re-use that.
-
-
-= Can I display a contact form in FancyBox? =
-
-Yes. There are several methods imaginable but the easiest would be to use the Inline method. First go to your Settings > Media admin page and enable the Inline Content option. Next, go back to edit your post or page in the Text editor tab. The inline content can be a shortcode like in this example using Contact Forms 7 and Easy FancyBox:
-
-`
-<a href="#contact_form_pop" class="fancybox-inline">Contact Us</a>
-
-<div style="display:none" class="fancybox-hidden">
-    <div id="contact_form_pop" class="hentry" style="width:460px;max-width:100%;">
-        [contact-form-7 id="87" title="Contact form 1"]
-    </div>
-</div>
-`
-Where you replace the shortcode (between the [ and ] characters) with the one given by the plugin. It can also work with shortcode by other plugins like Jetpack's Contact Form module. Change the class attribute to reflect the class used for the div that wraps your post content to have any form CSS style rules that are limited to post content, be applied to the inline content inside FancyBox.
+Follow the [Inline content instructions](https://premium.status301.com/show-inline-content-in-a-light-box/).
 
 
 = Can I make an image or hidden content to pop up in FancyBox on page load? =
@@ -380,7 +284,7 @@ Use the instructions above for inline content but this time give the link also `
 Same can be done with any other media or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
 
 
-= Can I have a modal window ? =
+= Can I have a modal window? =
 
 Yes, just create a hidden inline content light box (can be auto-popup) as described above and give the link an extra class "modal". This will remove all options to close the light box, like the close button, an overlay click or escape key.
 
@@ -391,7 +295,12 @@ This means there is NO option to close the light box, unless you create a link l
 `
 
 
-= Can I make a menu item open in a FancyBox overlay ? =
+= Can I make a popup open from an image map? =
+
+Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/image-maps/)
+
+
+= Can I make a menu item open in a FancyBox overlay? =
 
 Yes. But it depends on you theme what you need to do to make it work. If you are on WordPress 3+ and your theme supports the new internal Custom Menu feature or if you are using a custom menu in a sidebar widget, it's easy:
 
@@ -403,7 +312,7 @@ Yes. But it depends on you theme what you need to do to make it work. If you are
 If you are on an older version of WordPress or if you cannot use WP's Menus, you will need to do some heavy theme hacking to get it to work. Basically, what you need to achieve is that the menu item you want opened in a lightbox overlay, should get a `class="fancybox-iframe"` attribute.
 
 
-= How can I make AJAX loaded content be seen by FancyBox ? =
+= How can I make AJAX loaded content be seen by FancyBox? =
 
 Easy FancyBox initially scans the page source for media links on the "Document Loaded" event. This means right after the page source has become available to and read by the browser. When content is added or modified through AJAX (meaning after initial page load) by your theme or another plugin, then FancyBox will not be aware of any media links in that new content.
 
@@ -486,7 +395,11 @@ TODO:
 - regroup options
 - new admin page
 - dedicated upgrade file
-- NEW: Video file support (mp4,webm,wav etc.) https://www.w3schools.com/TAGS/tag_video.asp
+- fix pinch zoom for legacy / classic / v2?
+
+= 1.9.2 =
+* FIX: overlay opacity ignored (classic)
+* FIX: onStart not a function (legacy)
 
 = 1.9.1 =
 * FIX: Passing event parameters failing
