@@ -8,7 +8,7 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
  * Copyright (c) 2020 - RavanH
- * Version: 1.5.1 (2020/11/09)
+ * Version: 1.5.2 (2020/11/09)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -358,11 +358,11 @@
 		currentOpts = selectedOpts;
 
 		if (currentOpts.overlayShow) {
-			if (currentOpts.overlayColor)
-				overlay.css('background-color',currentOpts.overlayColor);
-
-			if (currentOpts.hideOnOverlayClick)
-				overlay.css('cursor','pointer');
+			overlay.css({
+				'background-color' : currentOpts.overlayColor,
+				'opacity' : currentOpts.overlayOpacity,
+				'cursor' : currentOpts.hideOnOverlayClick ? 'pointer' : 'auto'
+			});
 
 			if (!overlay.is(':visible')) {
 				overlay.fadeIn('fast');
@@ -387,13 +387,13 @@
 					.first()
 					.next().fadeOut(currentOpts.changeSpeed, function(){ $( this ).remove(); } );
 
-					content.css('border-width', currentOpts.padding);
+				content.css('border-width', currentOpts.padding);
 
-					wrap.animate(final_pos, {
-						duration : currentOpts.changeSpeed,
-						easing : currentOpts.easingChange,
-						complete : _finish
-					});
+				wrap.animate(final_pos, {
+					duration : currentOpts.changeSpeed,
+					easing : currentOpts.easingChange,
+					complete : _finish
+				});
 			} else {
 				content.fadeTo(currentOpts.changeFade, 0.3, function() {
 
@@ -1141,7 +1141,8 @@
 		hideOnContentClick : false,
 
 		overlayShow : true,
-		overlayColor : '',
+		overlayColor : '#000',
+		overlayOpacity : 0.6,
 
 		titleShow : true,
 		titlePosition : 'float', // 'float', 'outside', 'inside' or 'over'
