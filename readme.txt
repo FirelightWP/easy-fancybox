@@ -372,32 +372,11 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.9.1 =
+= 1.9.2 =
 
 Bugfix release.
 
 == Changelog ==
-
-= 2.0-alpha1 =
-
-TODO:
-- move styles to footer + backw compat option?
-- consider: move (only selected) media helpers inline
-- add/test template error & text translations,
-- make 2.2 spriteless (see 1.5),
-- 2.2 skip double gallery images (see 1.5)
-- 2.2 accesibility improvements (see 1.5)
-- fix close button on touch
-- fix wrong size when pdf in iframe (see fiddle example?)
-- add SVG support (see 1.5)
-- 2.2 rtl styles
-- find solution for rtl and swipe/drag directions
-- test pro version
-- regroup options
-- new admin page
-- dedicated upgrade file
-- fix pinch zoom for legacy / classic / v2?
-- color picker on admin
 
 = 1.9.2 =
 * FIX: overlay opacity ignored (classic)
