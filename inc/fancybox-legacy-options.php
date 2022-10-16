@@ -645,6 +645,7 @@ $efb_options = array (
 			),
 			'onStart' => array (
 				'id' => '',
+				'hide' => true,
 				'input' => 'checkbox',
 				'status' => 'disabled',
 				'default' => '',

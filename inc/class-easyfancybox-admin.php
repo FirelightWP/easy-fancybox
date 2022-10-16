@@ -353,29 +353,27 @@ class easyFancyBox_Admin {
 		$setting = trim( $setting );
 		$sanitized = '';
 
-		// Is it a hex value?
-		if ( substr( $setting, 0, 1 ) == '#' ) {
-			// Strip #.
-			$setting = substr( $setting, 1 );
-
-			// Only allow hex values or empty string.
-			$sanitized = ctype_xdigit( $setting ) ? '#'.$setting : '';
-		}
+		// Strip #.
+		$setting = ltrim( $setting, '#' );
 
 		// Is it an rgb value?
-		if ( substr( $setting, 0, 3 ) == 'rgb' ) {
+		if ( substr( $setting, 0, 3 ) === 'rgb' ) {
 			// Strip...
 			$setting = str_replace( array('rgb(','rgba(',')'), '', $setting );
 
 			$rgb_array = explode( ',', $setting );
 
-			if ( $rgb_array ) {
-				$r = isset( $rgb_array[0] ) ? (int) $rgb_array[0] : 119;
-				$g = isset( $rgb_array[1] ) ? (int) $rgb_array[1] : 119;
-				$b = isset( $rgb_array[2] ) ? (int) $rgb_array[2] : 119;
-				$a = isset( $rgb_array[3] ) ? (float) $rgb_array[3] : 0.7;
-				$sanitized = 'rgba('.$r.','.$g.','.$b.','.$a.')';
-			}
+			$r = ! empty( $rgb_array[0] ) ? (int) $rgb_array[0] : 0;
+			$g = ! empty( $rgb_array[1] ) ? (int) $rgb_array[1] : 0;
+			$b = ! empty( $rgb_array[2] ) ? (int) $rgb_array[2] : 0;
+			$a = ! empty( $rgb_array[3] ) ? (float) $rgb_array[3] : 0.6;
+
+			$sanitized = 'rgba('.$r.','.$g.','.$b.','.$a.')';
+		}
+		// Is it a hex value?
+		elseif ( ctype_xdigit( $setting ) ) {
+			// Only allow max 6 hexdigit values.
+			$sanitized = '#'. substr( $setting, 0, 6 );
 		}
 
 		return $sanitized;

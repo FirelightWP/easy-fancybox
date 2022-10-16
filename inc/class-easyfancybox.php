@@ -181,47 +181,6 @@ class easyFancyBox {
 		return $html;
 	}
 
-	public static function maybe_upgrade()
-	{
-		$old_version = get_option( 'easy_fancybox_version', 0 );
-
-		if ( 0 !== version_compare( EASY_FANCYBOX_VERSION, $old_version ) ) {
-			self::upgrade( $old_version );
-		}
-	}
-
-	public static function upgrade( $old_version )
-	{
-		// Upgrade from 1.7 or older.
-		if ( ! $old_version ) {
-			delete_option( 'fancybox_PDFclassType' );
-		}
-
-		// Upgrade from before 1.9.
-		if ( version_compare( $old_version, '0', '>' ) && version_compare( $old_version, '1.9', '<' ) ) {
-			// Introducing script version.
-			add_option( 'fancybox_scriptVersion', 'classic' );
-
-			// Change PDF embed option default.
-			$onstart = get_option('fancybox_PDFonStart');
-			$replaces = array(
-				'function(a,i,o){o.type=\'pdf\';}' => '{{object}}',
-				'function(a,i,o){o.type=\'html\';o.content=\'<embed src="\'+a[i].href+\'" type="application/pdf" height="100%" width="100%" />\'}' => '{{embed}}',
-				'function(a,i,o){o.href=\'https://docs.google.com/viewer?embedded=true&url=\'+a[i].href;}' => '{{googleviewer}}'
-			);
-			if ( false === $onstart ) {
-				add_option( 'fancybox_PDFonStart', '{{object}}' );
-			} elseif ( array_key_exists( $onstart, $replaces ) ) {
-				update_option( 'fancybox_PDFonStart', $replaces[$onstart] );
-			} else {
-				update_option( 'fancybox_PDFonStart', '' );
-			}
-		}
-
-		// Save new version.
-		update_option( 'easy_fancybox_version', EASY_FANCYBOX_VERSION );
-	}
-
 	public static function priority()
 	{
 		if ( null === self::$priority ) {
@@ -323,7 +282,6 @@ class easyFancyBox {
 		// VARS
 		self::$plugin_url = plugins_url( '/', EASY_FANCYBOX_BASENAME /* EASY_FANCYBOX_DIR.'/easy-fancybox.php' */ );
 
-		add_action( 'init', array( __CLASS__, 'maybe_upgrade' ), 9 );
 		add_action( 'init', array( __CLASS__, 'extend' ), 9 );
 	}
 }

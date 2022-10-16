@@ -72,6 +72,7 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_overlayShow' );
 		delete_option( 'fancybox_hideOnOverlayClick' );
 		delete_option( 'fancybox_overlayColor' );
+		delete_option( 'fancybox_overlayColor2' ); // fb2
 		delete_option( 'fancybox_overlaySpotlight' );
 		delete_option( 'fancybox_overlayOpacity' );
 
@@ -127,7 +128,7 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_changeSpeed' );
 		delete_option( 'fancybox_changeFade' );
 		delete_option( 'fancybox_autoSelector' );
-		delete_option( 'fancybox_autoPlay' ); // fb 2
+		delete_option( 'fancybox_autoPlay' ); // fb2
 
 		// Inline.
 		delete_option( 'fancybox_autoDimensions' );
@@ -205,9 +206,9 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_allowFullScreen' );
 
 		// Google Maps.
-		delete_option( 'fancybox_enableGoogleMaps' ); // fb 2
+		delete_option( 'fancybox_enableGoogleMaps' ); // fb2
 		// Instagram
-		delete_option( 'fancybox_enableInstagram' ); // fb 2
+		delete_option( 'fancybox_enableInstagram' ); // fb2
 
 		// Kilroy was here.
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
