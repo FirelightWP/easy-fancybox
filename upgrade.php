@@ -10,8 +10,10 @@
 // Exit if not called from within WordPress.
 defined( 'ABSPATH' ) || exit();
 
+$old_version = get_option( 'easy_fancybox_version', 0 );
+
 // Upgrade from 1.7 or older.
-if ( ! $old_version ) {
+if ( 0 === $old_version ) {
 	delete_option( 'fancybox_PDFclassType' );
 }
 
