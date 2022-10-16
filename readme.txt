@@ -396,6 +396,7 @@ TODO:
 - new admin page
 - dedicated upgrade file
 - fix pinch zoom for legacy / classic / v2?
+- color picker on admin
 
 = 1.9.2 =
 * FIX: overlay opacity ignored (classic)
