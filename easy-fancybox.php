@@ -63,5 +63,5 @@ if ( is_admin() ) {
  */
 
 add_action( 'init', function() {
-	0 !== version_compare( EASY_FANCYBOX_VERSION, get_option( 'easy_fancybox_version', 0 ) ) || include EASY_FANCYBOX_DIR . '/upgrade.php';
+	0 === version_compare( EASY_FANCYBOX_VERSION, get_option( 'easy_fancybox_version', 0 ) ) || include EASY_FANCYBOX_DIR . '/upgrade.php';
 } );
