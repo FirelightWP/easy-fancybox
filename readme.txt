@@ -192,7 +192,6 @@ Yes. All links with class **nolightbox** that would normally get auto-enabled, w
 
 Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/nextgen-gallery/)
 
-= Can I use ONE thumbnail to open a complete gallery? =
 
 = Can I use ONE thumbnail to open a complete gallery? =
 
