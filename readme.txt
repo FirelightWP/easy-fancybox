@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
 Requires at least: 3.3
 Tested up to: 6.1-RC1
-Stable tag: 1.9.2
+Stable tag: 1.9.3
 
 Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe, inline content and well known video hosts.
 
@@ -36,6 +36,7 @@ Also supports:
 - Image maps (see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/image-maps/))
 - WordPress menu items (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20make%20a%20menu%20item%20open%20in%20a%20fancybox%20overlay%20%3F))
 - Jetpack Infinite Scroll
+- WordPress Multsite (see Installation instructions)
 
 Additional features:
 
@@ -76,32 +77,9 @@ If you're happy with this plugin as it is, please consider writing a quick [rati
 
 If you wish to help build this plugin, you're very welcome to [translate Easy FancyBox into your language](https://translate.wordpress.org/projects/wp-plugins/easy-fancybox/) or contribute bug reports, feature suggestions and/or code on [Github](https://github.com/RavanH/easy-fancybox/).
 
-**KNOWN ISSUES**
+= Known conflicts & issues =
 
-= General =
-
-- **Outbound click or Download tracking** in some of the stats plugins can interfere with FancyBox. Disable such options or exclude links manually with a class if possible (see instructions for SlimStat below)
-- Most plugins and themes that already include a light box script. Continue reading to see if you are using one of the know ones or follow the troubleshooting steps to find out what is conflicting on your site.
-- Any theme that is missing the obligatory `<?php wp_footer();?>` call in the footer.php template.
-- When showing an iframe as inline content in FancyBox -- not advised, use fancybox-iframe instead! -- the iframe will become blank after opening and closing it. The solution is to link directly to the iframe source and use `class="fancybox-iframe"` instead.
-
-= Plugin conflicts =
-
-- Google Translate plugins like **GTranslate**, **Weglot** and **Google Language Translator** cause the light box to be off-center, pushed downward for logged-in users (with admin bar). A work-around: add `.admin-bar #fancybox-outer{margin-top:-32px}` to Custom CSS in your theme Customizer.
-- **WP Slimstat** and **Matomo/Piwik** with Track Outbound Clicks enabled, will break the light box effect on some browsers. Adding `fancybox` (or any of the other classes like `fancybox-youtube,fancybox-iframe,fancybox-inline` depending on which media should be displayed in FancyBox) to the Do Not Track field is reported to solve the issue. Slimstat also might interfere with the YouTube url conversion. When clicking a Youtube link, the movie opens in an overlay as it is supposed to but immediately after that, the complete page gets redirected to the original YouTube page. Adding a `class="noslimstat"` to the link is reported to work around the issue.
-- **Google Analytics for WordPress** converts links like `href="#anyID"` to `href="http://yoursite.url/page/#anyID"`, disabling inline content shown in FancyBox.
-- Both the **uBillBoard** and **Camera slideshow** have their own easing script hard-coded which conflicts with the one in Easy FancyBox. The only way around the conflict is to set both the Easing In and Easing Out options on your Settings > Media page to **Swing**.
-- **Wordpress Firewall 2** blocks access to image files needed for proper display of the FancyBox overlay in older IE and other non-css3 browsers.
-- **WordPress Amazon Associate**: A script provided by Amazon and the FancyBox script are incompatible. Disabling _Product Preview_ in the **WP - Amazon > Settings** page should work around the issue.
-- **WP Supersized** uses the Animate Enhanced jQuery extension which causes a conflict with the Easing extension used by FancyBox resulting in a 0px sized lightbox frame and/or some kind of positioning issue with auto-centering.
-
-= Theme conflicts =
-
-- Older versions of **Elegant Themes** have FancyBox integrated in a hard-coded way, making them incompatible with Easy FancyBox. In the latest versions of these themes, there is an option to disable the included FancyBox. Use this option to make your theme compatible with Easy FancyBox :)
-- The **Mystique** theme has two options called "Lightbox" and "Optimize website for faster loading" that will break Easy FancyBox. Disable both in Mystique's options > Advanced.
-- **Imbalance** and other themes that uses the Photo Galleria jQuery extension: turn of the JSGallery option.
-- Themes like **Envisioned**, **Chameleon** and many others have FancyBox baked in. There is no solution other than stripping the theme of all FancyBox related code or better: disable the plugin and use the theme provided version...
-- Themes based on the **Thesis** framework might see issues in IE 8, for which [a hack has been proposed](https://voidzonemedia.com/solutions/thesis-ie8-remove-ie7-emulation/)
+See [Easy FancyBox Troubleshooting](https://premium.status301.com/knowledge-base/easy-fancybox/troubleshooting/).
 
 
 == Installation ==
@@ -130,12 +108,14 @@ Not happy with the default settings? Check out the new options under **Settings 
 
 = Wordpress MU / WordPress 3+ in Multi Site mode =
 
-Same as above but do a **Network Activate** to activate FancyBox image overlays on each site on your network. No database tables are created or manipulated and no activation hook needs to be run for it to function with default settings.
+Install as above. You can activate the plugin per site, or network wide.
+
+When activating the plugin per site, each site will have the Images media type activated and Easy FancyBox will immediately try opening image links in the light box.
+
+When activated network wide with **Network Activate**, each sub-site will _not_ have any media type activated. The options will be there for individual site admins, ready to either activate or leave deactivated.
 
 
 == Frequently Asked Questions ==
-
-= BASIC =
 
 = What's FancyBox? =
 
@@ -161,205 +141,12 @@ There is no new settings page but there are many options you can change. You wil
 
 = Help! It does not work... =
 
-Please follow the trouble shooting steps near the end of the plugin description above to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](https://wordpress.org/support/plugin/easy-fancybox) or go to the [development site](https://status301.net/wordpress-plugins/easy-fancybox/)
+Please follow the [trouble shooting steps](https://premium.status301.com/knowledge-base/easy-fancybox/troubleshooting/) to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](https://wordpress.org/support/plugin/easy-fancybox) or go to the [development site](https://status301.net/wordpress-plugins/easy-fancybox/)
 
 
-= ADVANCED =
+= I have another question... =
 
-= Will a WordPress gallery be displayed in a FancyBox overlay? =
-
-Yes, but _only_ if you used the option **Link To: Media File** when inserting the gallery! The gallery quicktag/shortcode should look something like `[ gallery link="file" ]`.
-
-
-= The lightbox does not look good on mobile devices. What can I do about that? =
-
-The original FancyBox 1.3.4 script was not developed with mobile devices in mind and although the version used in this plugin has some adaptations for mobile devices, it might still be less optimal for very small screens. The only way around this issue is currently to disable FancyBox for small screen sizes on **Settings > Media** in the section **Miscellaneous > Browser & device compatibility**.
-
-
-= Can I make a slideshow from my gallery? =
-
-In the [Pro extension](https://premium.status301.com/downloads/easy-fancybox-pro/), there is an Advanced option called "Gallery Auto-rotation" for that.
-
-
-= Can I exclude images or other links from auto-attribution? =
-
-Yes. All links with class **nolightbox** that would normally get auto-enabled, will be excluded from opening in a FancyBox overlay.
-
-`<a href="url/to/fullimg.jpg" class="nolightbox"><img src="url/to/thumbnail.jpg" /></a>`
-
-
-= Can NextGEN Gallery work with Easy FancyBox? =
-
-Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/nextgen-gallery/)
-
-
-= Can I use ONE thumbnail to open a complete gallery? =
-
-Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/one-thumbnail-to-open-a-complete-gallery-slideshow/)
-
-
-= Can I play YouTube, Dailymotion and Vimeo movies in a FancyBox overlay? =
-
-Yes. Simply create a link using the Share URL (the full Page URL, the Short URL with or without options like HD etc.) to the YouTube/Vimeo/Dailymotion page in your post content. If you have Auto-detect enabled, the plugin will take care of the rest for you! :)
-
-If you have disabled Auto-detection, give the link a class attribute like `class="fancybox-youtube"` for Youtube, `class="fancybox-vimeo"` for Vimeo and `class="fancybox-dailymotion"` for Dailymotion, to manually enable FancyBox for it.
-
-Both YouTube and Vimeo movies can be made to play immediately after opening by adding the paramer `autoplay=1` to the URL. For example, a short-url YouTube link that should play in HD mode, have the full screen button and auto-start on open, would look like:
-`
-<a href="https://youtu.be/N_tONWXYviM?hd=1&fs=1&autoplay=1">text or thumbnail</a>
-`
-
-
-= Can I show a Youtube playlist in FancyBox? =
-
-Yes, just go to Youtube page of any movie that's in the playlist and use the Share button to get the share URL just like with single movies, but this time place a checkmark at the 'Share with playlist' option.
-
-
-= Can I link a NextGEN thumbnail to a Youtube movie in FancyBox? =
-
-Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/nextgen-gallery/)
-
-
-= Can I create a gallery of Youtube thumbnails which open in FancyBox? =
-
-You could do this manually by uploading individual thumbnails that you can retrieve by using the unique movie ID in these URLs for three different sizes:
-`
-https://img.youtube.com/vi/UNIQUE-MOVIE-ID/default.jpg
-https://img.youtube.com/vi/UNIQUE-MOVIE-ID/mqdefault.jpg
-https://img.youtube.com/vi/UNIQUE-MOVIE-ID/hqdefault.jpg
-`
-Other locations might be
-`
-https://img.youtube.com/vi/UNIQUE-MOVIE-ID/0.jpg (same as hqdefault.jpg)
-https://img.youtube.com/vi/UNIQUE-MOVIE-ID/1.jpg
-https://img.youtube.com/vi/UNIQUE-MOVIE-ID/2.jpg
-https://img.youtube.com/vi/UNIQUE-MOVIE-ID/3.jpg
-https://img.youtube.com/vi_webp/UNIQUE-MOVIE-ID/0.webp (same as hqdefault.webp)
-etc...
-
-`
-
-But an easier method is this one, shared by Shashank Shekhar (thanks!) :
-
-To create Youtube thumbnail galleries, install https://wordpress.org/plugins/youtube-simplegallery/ and set the 'Effect' option to fancybox. Then disable Youtube autodetection on Settings > Media.
-
-
-= Can I display web pages or HTML files in a FancyBox overlay? =
-
-Yes. First, enable the iFrame option on Settings > Media. Then, in your post or page content create a link to any web page or .htm(l) file in your content. Then switch to the Text tab in the Classic Editor or to Edit as HTML (under More options in the block menu) in Gutenberg, find the link `<a ... >` tag and give it a `class="fancybox-iframe"` attribute.
-
-Note: Not all external web pages are allowed to be embedded in an iframe and may be blocked by a server response header or script. The result will be either an empty/blank light box or the target page "breaking out" of the light box and loading in the main browser tab.
-
-
-= Can I show PDF files in a FancyBox overlay? =
-
-Yes. Just place a link _with the URL ending in .pdf_ to your Portable Document file in the page content.
-
-If you don't have *Auto-detect* checked under **PDF** on Settings > Media admin page, you will need to add `class="fancybox-pdf"` (to force pdf content recognition) to the link to enable FancyBox for it.
-
-
-= How do I show content with different sizes? =
-
-FancyBox tries to detect the size of the content automatically but if it can not find a size, it will default to the settings for that particular content type as set on the Settings > Media page.
-
-The **[Pro extension](https://premium.status301.com/downloads/easy-fancybox-pro/)** provides an extra option to allow you to manually override this by defining the width and height wrapped in curly braces in the class attribute of the link itself. Make sure the option "Include the Metadata jQuery extension script..." under FancyBox | Miscellaneous | Advanced on Settings > Media is enabled.
-
-For example, an SVG file with different size:
-
-`
-<a class="fancybox-svg {width:1024,height:675}" href="_your_svg_"></a>
-`
-
-= How can I display INLINE content in a FancyBox overlay? =
-
-Follow the [Inline content instructions](https://premium.status301.com/show-inline-content-in-a-light-box/).
-
-
-= Can I make an image or hidden content to pop up in FancyBox on page load? =
-
-Yes. A link that has the ID **fancybox-auto** (Note: there can be only ONE link like that on a page!) will be triggered automatically on page load.
-
-Use the instructions above for inline content but this time give the link also `id="fancybox-auto"` (leave the class too) and remove the anchor text to hide it. Now the hidden div content will pop up automatically when a visitor opens the page.
-
-Same can be done with any other media or iframe link! But please remember there can be only **one** item using the ID fancybox-auto per page...
-
-
-= Can I have a modal window? =
-
-Yes, just create a hidden inline content light box (can be auto-popup) as described above and give the link an extra class "modal". This will remove all options to close the light box, like the close button, an overlay click or escape key.
-
-This means there is NO option to close the light box, unless you create a link like this inside the hidden inline content div:
-
-`
-<a href="" class="fancybox-close">Accept</a>
-`
-
-
-= Can I make a popup open from an image map? =
-
-Yes, see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/image-maps/)
-
-
-= Can I make a menu item open in a FancyBox overlay? =
-
-Yes. But it depends on you theme what you need to do to make it work. If you are on WordPress 3+ and your theme supports the new internal Custom Menu feature or if you are using a custom menu in a sidebar widget, it's easy:
-
-1. Go to Settings > Media and enable FancyBox iFrame support.
-2. Go to Appearance > Menus and open the little tab "Screen Options" in the top-right corner.
-3. Enable the option "CSS Classes" under Advanced menu properties.
-4. Now give the menu item you want to open in a FancyBox iframe the class `fancybox-iframe`.
-
-If you are on an older version of WordPress or if you cannot use WP's Menus, you will need to do some heavy theme hacking to get it to work. Basically, what you need to achieve is that the menu item you want opened in a lightbox overlay, should get a `class="fancybox-iframe"` attribute.
-
-
-= How can I make AJAX loaded content be seen by FancyBox? =
-
-Easy FancyBox initially scans the page source for media links on the "Document Loaded" event. This means right after the page source has become available to and read by the browser. When content is added or modified through AJAX (meaning after initial page load) by your theme or another plugin, then FancyBox will not be aware of any media links in that new content.
-
-To make Easy FancyBox rescan the updated page source after content has been modified though AJAX, there is an event listener available. This event is also triggered by the Jetpack Infinite Scroll module. To use this event, you'll need to modify the theme or other plugin script that handles the AJAX calls.
-
-You can trigger the event like this:
-`
-jQuery(document.body).trigger('post-load');
-`
-
-Note: It completely depends on the AJAX script where this code snippet should be placed. Optimally, right _after_ the DOM modification where content is added or modified. In most cases at the end of the AJAX Success handler.
-
-
-= Is Easy FancyBox multi-site compatible? =
-
-Yes. Designed to work with **Network Activate** and does not require manual activation on each site in your network.
-
-
-= TROUBLE SHOOTING =
-
-If, after activation, your images do not open in a FancyBox overlay, there are several possible reasons. Some are easily solved, others are more difficult. Follow these basic checks to make sure everything is in place:
-
-= Basic checks =
-
-1. Make sure that thumbnail images are linked *directly* to their larger counterpart, not to a dynamic WordPress page that includes the larger image. This means when you insert an image in your posts or pages, you need to select **Media File** at the Link option instead of Page URL. You'll have to manually edit your old posts if you have always inserted images with `Page URL` before, FancyBox cannot do this for you.
-1. Make sure you have all the needed media and their *Auto-detect* options activated on your **Settings > Media** admin page. If you are using images in other formats that JPG, GIF or PNG, you need to add the extensions to the Auto-detect field for Images. Please note: The image file names must actaully _end_ with that extension! This means that if you have an image file that (for example) has _no_ extension (does not end with .jpg or any other) even if is in JPEG compressed format, the FancyBox will not be able to detect is as an image. You will need to manually give those links the class `fancybox image` to trigger FancyBox.
-
-= General trouble shooting steps =
-
-1. Switch off all other plugins and switch your sites appearance to the default Twenty Seventeen theme. FancyBox should work now. If so, continue with the next step. If not, re-install the plugin and verify the basic steps above.
-1. Switch back to your original theme and check if FancyBox is still working. If so, continue with the next step. If not, See the Theme Incompatibility checks below.
-1. One by one, switch each plugin that you had running before back ON. Keep checking to see at which point FancyBox starts failing and you will hve found the conflicting plugin.
-
-= Theme Incompatibility checks =
-
-1. See known theme conflicts above first, then continue with these following steps.
-1. Make sure your theme is capable of placing the needed javascript and css in the page header and footer. Open any page on your site and view the source code by right-clicking on an empty section and selecting 'View source...' (or similar). There you will need to check of there are any references to javascript files like `jquery.fancybox.min.js?ver=x.x.x` near the closing `</body>` tag. There should also be a `easy-fancybox.min.css?ver=x.x.x` in the head section... If it's not there, your theme is really out of date. Consider switching to a new theme fast!
-1. Make sure that your theme does not load the main jQuery library file more than once. Look for references to javascript files like `jquery.js?ver=x.x.x` or `jquery.min.js` in the page source code. If you find more than one, try to find out in which theme template file that second reference is hard-coded and remove that line. Usually in header.php or footer.php
-1. Check if your theme loads another or the same lightbox script. Look for references to Thickbox, Prettyphoto, Lightbox2, Colorbox or FancyBox script files or code. These are very likely to cause the incompatibility and you will either have to remove these by hacking your theme or switch to another theme.
-
-If you still do not get to see your images in FancyBox, ask on the [Easy FancyBox WordPress forum](https://wordpress.org/tags/easy-fancybox) or go to the [development site](https://status301.net/wordpress-plugins/easy-fancybox/)
-
-= Plugin Incompatibility checks =
-
-1. If you followed the general trouble shooting steps above, you should now be aware of which plugin is conflicting whith Easy FancyBox. See known plugin conflicts above first. If the plugin and its solution are not mentioned there, continue with the following steps.
-1. Make sure that the plugins do not make the main jQuery library file load more than once. Look for references to javascript files like `jquery.js?ver=x.x.x` or `jquery.min.js` in the page source code. If you find more than one, try to find out where that comes from.
-1. Check if your theme loads another or the same lightbox script or any other of the needed jQuery extensions like jquery.easing or jquery.mousewheel. Look for references to Thickbox, Prettyphoto, Lightbox2, Colorbox or FancyBox script files or code. These are very likely to cause the incompatibility and you will have to either find a setting in the other plugin to switch OFF the use of the conflicting script (possible in NextGEN for example, see under Advanced below) or choose between the two conflicting plugins.
+See the advanced [Easy FancyBox FAQ's](https://premium.status301.com/knowledge-base/easy-fancybox/faqs/).
 
 
 == Screenshots ==
@@ -371,17 +158,16 @@ If you still do not get to see your images in FancyBox, ask on the [Easy FancyBo
 
 == Upgrade Notice ==
 
-= 1.9.2 =
+= 1.9.3 =
 
 Bugfix release.
 
 == Changelog ==
 
-= 1.9.2 =
+= 1.9.3 =
+* FIX: upgrade notice
 * FIX: overlay opacity ignored (classic)
 * FIX: onStart not a function (legacy)
-
-= 1.9.1 =
 * FIX: Passing event parameters failing
 * FIX: Case insesitive selectors failing
 * FIX: Admin message display issue

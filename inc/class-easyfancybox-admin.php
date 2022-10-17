@@ -435,7 +435,11 @@ class easyFancyBox_Admin {
 
 		if (
 			class_exists( 'easyFancyBox_Advanced' ) &&
-			( ! defined( 'easyFancyBox_Advanced::VERSION' ) || version_compare( easyFancyBox_Advanced::VERSION, self::$compat_pro_min, '<' ) )
+			(
+				( ! defined( 'easyFancyBox_Advanced::VERSION' ) && ! defined( 'EASY_FANCYBOX_PRO_VERSION' ) ) ||
+				( defined( 'easyFancyBox_Advanced::VERSION' ) && version_compare( easyFancyBox_Advanced::VERSION, self::$compat_pro_min, '<' ) ) ||
+				( defined( 'EASY_FANCYBOX_PRO_VERSION' ) && version_compare( EASY_FANCYBOX_PRO_VERSION, self::$compat_pro_min, '<' ) )
+			)
 		) {
 			self::$do_compat_warning = true;
 		}
