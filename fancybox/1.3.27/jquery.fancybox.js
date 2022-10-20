@@ -336,22 +336,20 @@
 
 		if (w.toString().indexOf('%') > -1) {
 			w = parseInt( (ww - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
-
 		} else {
 			w = w == 'auto' ? 'auto' : w + 'px';
 		}
 
 		if (h.toString().indexOf('%') > -1) {
 			h = parseInt( (wh - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
-
 		} else {
 			h = h == 'auto' ? 'auto' : h + 'px';
 		}
 
 		tmp.wrapInner('<div style="width:' + w + ';height:' + h + ';overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + ';position:relative;"></div>');
 
-		selectedOpts.width = tmp.width();
-		selectedOpts.height = tmp.height();
+		selectedOpts.width = Math.ceil( tmp.width() );
+		selectedOpts.height = Math.ceil( tmp.height() );
 
 		_show();
 	},
