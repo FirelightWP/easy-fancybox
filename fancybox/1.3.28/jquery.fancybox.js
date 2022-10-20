@@ -7,7 +7,7 @@
  * Copyright (c) 2008 - 2010 Janis Skarnelis
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
- * Version: 1.3.27 (2019/04/07)
+ * Version: 1.3.28 (2019/04/07)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -336,22 +336,20 @@
 
 		if (w.toString().indexOf('%') > -1) {
 			w = parseInt( (ww - (selectedOpts.margin * 2)) * parseFloat(w) / 100, 10) + 'px';
-
 		} else {
 			w = w == 'auto' ? 'auto' : w + 'px';
 		}
 
 		if (h.toString().indexOf('%') > -1) {
 			h = parseInt( (wh - (selectedOpts.margin * 2)) * parseFloat(h) / 100, 10) + 'px';
-
 		} else {
 			h = h == 'auto' ? 'auto' : h + 'px';
 		}
 
 		tmp.wrapInner('<div style="width:' + w + ';height:' + h + ';overflow:' + (selectedOpts.scrolling == 'auto' ? 'auto' : (selectedOpts.scrolling == 'yes' ? 'scroll' : 'hidden')) + ';position:relative;"></div>');
 
-		selectedOpts.width = tmp.width();
-		selectedOpts.height = tmp.height();
+		selectedOpts.width = Math.ceil( tmp.width() );
+		selectedOpts.height = Math.ceil( tmp.height() );
 
 		_show();
 	},
@@ -560,7 +558,8 @@
 						'width' : final_pos.width - (currentOpts.padding * 2),
 						'marginLeft' : currentOpts.padding,
 						'marginRight' : currentOpts.padding
-					}).appendTo( outer );
+					})
+					.appendTo( outer );
 
 				titleHeight = title.outerHeight(true);
 
@@ -580,7 +579,7 @@
 			case 'float':
 				title
 					.css('left', parseInt( ( title.width() - final_pos.width ) / 2, 10 ) * -1 )
-					.appendTo( outer );
+					.appendTo( wrap );
 			break;
 
 			default:

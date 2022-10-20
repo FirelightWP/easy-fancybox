@@ -8,7 +8,7 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
  * Copyright (c) 2020 - RavanH
- * Version: 1.5.2 (2020/11/09)
+ * Version: 1.5.3 (2020/11/09)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -730,13 +730,21 @@
 		}
 
 		// scale down to fit viewport, recalculate by ratio based on width and height without border and title
-		if (currentOpts.autoScale && to.width > view[0]) {
-			to.width = view[0] - (currentOpts.padding * 2);
-			to.height = parseInt(to.width / ratio, 10);
+		if (to.width > view[0]) {
+			if (currentOpts.autoScale) {
+				to.width = view[0] - (currentOpts.padding * 2);
+				to.height = parseInt(to.width / ratio, 10);
+			} else {
+				$('html').addClass('fancybox-allowscroll');
+			}
 		}
 		if (currentOpts.autoScale && to.height > view[1]) {
-			to.height = view[1] - (currentOpts.padding * 2);
-			to.width = parseInt(to.height * ratio, 10);
+			if (currentOpts.autoScale) {
+				to.height = view[1] - (currentOpts.padding * 2);
+				to.width = parseInt(to.height * ratio, 10);
+			} else {
+				$('html').addClass('fancybox-allowscroll');
+			}
 		}
 
 		// calculate position
@@ -790,7 +798,7 @@
 		currentOpts = selectedOpts	= {};
 
 		$('html').css( { '--vertical-scrollbar' : '', '--horizontal-scrollbar' : '' } );
-		$('html').removeClass('fancybox-active');
+		$('html').removeClass('fancybox-active fancybox-allowscroll');
 
 		$(document).off('fancybox-cancel fancybox-change fancybox-cleanup fancybox-closed');
 
@@ -1083,10 +1091,10 @@
 		}
 
 		$('body').append(
-			tmp =     $('<div id="fancybox-tmp"></div>'),
+			tmp     = $('<div id="fancybox-tmp"></div>'),
 			loading = $('<div id="fancybox-loading" title="Cancel"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>'),
 			overlay = $('<div id="fancybox-overlay"></div>'),
-			wrap =    $('<div id="fancybox-wrap" role="dialog" aria-hidden="true" aria-labelledby="fancybox-title" tabindex="-1"></div>')
+			wrap    = $('<div id="fancybox-wrap" role="dialog" aria-hidden="true" aria-labelledby="fancybox-title" tabindex="-1"></div>')
 		);
 
 		wrap.append(
@@ -1094,11 +1102,11 @@
 		);
 
 		outer.append(
-			content =  $('<div id="fancybox-content"></div>'),
-			close =    $('<a id="fancybox-close" href="javascript:;" title="Close" class="fancy-ico" tabindex="1"><span></span></a>'),
+			content  = $('<div id="fancybox-content"></div>'),
+			close    = $('<a id="fancybox-close" href="javascript:;" title="Close" class="fancy-ico" tabindex="1"><span></span></a>'),
 			nav_next = $('<a id="fancybox-next" href="javascript:;" title="Next" class="fancy-ico" tabindex="2"><span></span></a>'),
 			nav_prev = $('<a id="fancybox-prev" href="javascript:;" title="Previous" class="fancy-ico" tabindex="3"><span></span></a>'),
-			title =    $('<div id="fancybox-title-wrap"></div>')
+			title    = $('<div id="fancybox-title-wrap"></div>')
 		);
 
 		close.click($.fancybox.close);

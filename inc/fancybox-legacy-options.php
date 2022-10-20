@@ -268,13 +268,20 @@ $efb_options = array (
 						'max' => '80',
 						'sanitize_callback' => 'intval',
 						'class' => 'small-text',
-						'default' => '20',
+						'default' => '40',
 						'description' => '<em>' . esc_html__('Default:','easy-fancybox')  . ' 40</em><br />'
 					),
 
 					'p2' => array (
 						'hide' => true,
 						'description' => '<br /><strong>' . esc_html__('Behavior','easy-fancybox') . '</strong><br />'
+					),
+					'centerOnScroll' => array (
+						'id' => 'fancybox_centerOnScroll',
+						'input' => 'checkbox',
+						'noquotes' => true,
+						'default' => '',
+						'description' => __('Center while scrolling (always disabled on touch devices and when content, including the title, might be larger than the viewport)','easy-fancybox')
 					),
 					'enableEscapeButton' => array (
 						'id' => 'fancybox_enableEscapeButton',

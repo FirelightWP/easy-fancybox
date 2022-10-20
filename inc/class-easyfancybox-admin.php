@@ -4,11 +4,6 @@
  */
 class easyFancyBox_Admin {
 
-	/**
-	* Holds the values to be used in the fields callbacks
-	*/
-	private static $screen_id;
-
 	private static $compat_pro_min = '1.8';
 
 	private static $do_compat_warning = false;
@@ -16,9 +11,10 @@ class easyFancyBox_Admin {
 	/**
 	 * ADMIN METHODS
 	 */
-
 	public static function add_media_settings_section()
 	{
+		add_filter( 'easy_fancybox_enable', function() { return easyFancyBox::$options['Global']['options']['Enable']['options']; } );
+
  		add_settings_section( 'fancybox_section', '<a name="fancybox"></a>'.__( 'FancyBox', 'easy-fancybox' ), function() { include EASY_FANCYBOX_DIR . '/views/settings-section-intro.php'; }, 'media' );
  	}
 
@@ -42,6 +38,75 @@ class easyFancyBox_Admin {
 			'load-'.$screen_id,
 			array( __CLASS__, 'help_tab' )
 		);
+
+		add_filter( 'easy_fancybox_enable', function() {
+			return array (
+				'IMG' => array (
+					'id' => 'fancybox_enableImg',
+					'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1',
+					'description' => '<strong>' . esc_html__( 'Images', 'easy-fancybox' ) . '</strong>' . ( get_option('fancybox_enableImg') ? ' &mdash; <a href="?page=easy_fancybox&tab=images">' . translate( 'Settings' ) . '</a>' : '' )
+				),
+				'Inline' => array (
+					'id' => 'fancybox_enableInline',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'Inline content', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableInline') ? ' &mdash; <a href="?page=easy_fancybox&tab=inline">' . translate( 'Settings' ) . '</a>' : '' )
+				),
+				'PDF' => array (
+					'id' => 'fancybox_enablePDF',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'PDF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enablePDF') ? ' &mdash; <a href="?page=easy_fancybox&tab=pdf">' . translate( 'Settings' ) . '</a>' : '' )
+				),
+				'SWF' => array (
+					'id' => 'fancybox_enableSWF',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'SWF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSWF') ? ' &mdash; <a href="?page=easy_fancybox&tab=swf">' . translate( 'Settings' ) . '</a>' : '' )
+				),
+				'SVG' => array (
+					'id' => 'fancybox_enableSVG',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'SVG', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSVG') ? ' &mdash; <a href="?page=easy_fancybox&tab=svg">' . translate( 'Settings' ) . '</a>' : '' )
+				),
+				'VideoPress' => array (
+					'id' => 'fancybox_enableVideoPress',
+					'default' => '',
+					'status' => 'disabled',
+					'description' => '<strong>' . esc_html__( 'VideoPress', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
+				),
+				'YouTube' => array (
+					'id' => 'fancybox_enableYoutube',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'YouTube', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableYouTube') ? ' &mdash; <a href="?page=easy_fancybox&tab=youtube">' . translate( 'Settings' ) . '</a>' : '' )
+				),
+				'Vimeo' => array (
+					'id' => 'fancybox_enableVimeo',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'Vimeo', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableVimeo') ? ' &mdash; <a href="?page=easy_fancybox&tab=vimeo">' . translate( 'Settings' ) . '</a>' : '' )
+				),
+				'Dailymotion' => array (
+					'id' => 'fancybox_enableDailymotion',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'Dailymotion', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableDailymotion') ? ' &mdash; <a href="?page=easy_fancybox&tab=dailymotion">' . translate( 'Settings' ) . '</a>' : '' )
+				),
+				'Instagram' => array (
+					'id' => 'fancybox_enableInstagram',
+					'status' => 'disabled',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'Instagram', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
+				),
+				'GoogleMaps' => array (
+					'id' => 'fancybox_enableGoogleMaps',
+					'status' => 'disabled',
+					'default' => '',
+					'description' => '<strong>' . esc_html__( 'Google Maps', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
+				),
+				'iFrame' => array (
+					'id' => 'fancybox_enableiFrame',
+					'default' => '',
+					'description' => '<strong>' . esc_html__('iFrames','easy-fancybox') . '</strong>' . '</strong>' . ( get_option('fancybox_enableiFrame') ? ' &mdash; <a href="?page=easy_fancybox&tab=iframe">' . translate( 'Settings' ) . '</a>' : '' )
+				)
+				);
+		} );
+
 	}
 
 	public static function help_tab()
@@ -273,7 +338,7 @@ class easyFancyBox_Admin {
 					} else {
 						$output[] = $args['title'];
 					}
-					$output[] = '<input type="number" step="'.$args['step'].'" min="'.$args['min'].'" max="'.$args['max'].'" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
 					} else {
