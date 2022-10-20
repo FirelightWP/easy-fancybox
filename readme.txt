@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
 Requires at least: 3.3
 Tested up to: 6.1-RC1
-Stable tag: 1.9.3
+Stable tag: 1.9.4
 
 Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe, inline content and well known video hosts.
 
@@ -158,7 +158,7 @@ See the advanced [Easy FancyBox FAQ's](https://premium.status301.com/knowledge-b
 
 == Upgrade Notice ==
 
-= 1.9.3 =
+= 1.9.4 =
 
 Bugfix release.
 
@@ -167,6 +167,7 @@ Bugfix release.
 = 1.9.4 =
 * FIX: Classic large content scroll
 * FIX: Classic gallery overflow flicker
+* FIX: Legacy float title position
 * FIX: upgrade notice
 * FIX: overlay opacity ignored (classic)
 * FIX: onStart not a function (legacy)

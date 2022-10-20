@@ -87,7 +87,7 @@ class easyFancyBox_Uninstall {
 		delete_option( 'fancybox_height' );
 		delete_option( 'fancybox_padding' );
 		delete_option( 'fancybox_margin' );
-		delete_option( 'fancybox_centerOnScroll' );
+		delete_option( 'fancybox_centerOnScroll' ); // fb1
 		delete_option( 'fancybox_enableEscapeButton' );
 		delete_option( 'fancybox_autoScale' );
 		delete_option( 'fancybox_speedIn' );
