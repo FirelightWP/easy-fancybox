@@ -164,7 +164,9 @@ Bugfix release.
 
 == Changelog ==
 
-= 1.9.3 =
+= 1.9.4 =
+* FIX: Classic large content scroll
+* FIX: Classic gallery overflow flicker
 * FIX: upgrade notice
 * FIX: overlay opacity ignored (classic)
 * FIX: onStart not a function (legacy)
