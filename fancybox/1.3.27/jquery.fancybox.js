@@ -560,7 +560,8 @@
 						'width' : final_pos.width - (currentOpts.padding * 2),
 						'marginLeft' : currentOpts.padding,
 						'marginRight' : currentOpts.padding
-					}).appendTo( outer );
+					})
+					.appendTo( outer );
 
 				titleHeight = title.outerHeight(true);
 
@@ -580,7 +581,7 @@
 			case 'float':
 				title
 					.css('left', parseInt( ( title.width() - final_pos.width ) / 2, 10 ) * -1 )
-					.appendTo( outer );
+					.appendTo( wrap );
 			break;
 
 			default:
