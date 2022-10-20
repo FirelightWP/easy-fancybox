@@ -166,6 +166,7 @@ Bugfix release.
 
 = 1.9.4 =
 * FIX: Classic large content scroll
+* FIX: Classic gallery change fade
 * FIX: Classic gallery overflow flicker
 * FIX: Legacy float title position
 * FIX: upgrade notice

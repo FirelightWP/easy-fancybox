@@ -687,18 +687,6 @@ $efb_options = array (
 				'sanitize_callback' => 'intval',
 				'class' => 'small-text',
 				'default' => '',
-			),
-			'changeFade' => array (
-				'id' => 'fancybox_changeFade',
-				'title' => esc_html__('Fade speed','easy-fancybox'),
-				'label_for' => 'fancybox_changeFade',
-				'input' => 'number',
-				'step' => '1',
-				'min' => '0',
-				'max' => '6000',
-				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
-				'default' => '',
 				'description' => '<br />' . esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 300</em><br /><br />'
 			),
 			'autoSelector' => array (

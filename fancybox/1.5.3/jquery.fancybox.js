@@ -395,7 +395,7 @@
 					complete : _finish
 				});
 			} else {
-				content.fadeTo(currentOpts.changeFade, 0.3, function() {
+				content.fadeTo(currentOpts.changeSpeed, 0.3, function() {
 
 					content.css('border-width', currentOpts.padding);
 
@@ -403,7 +403,7 @@
 						duration : currentOpts.changeSpeed,
 						easing : currentOpts.easingChange,
 						complete : function() {
-							content.html( tmp.contents() ).fadeTo(currentOpts.changeFade, 1, _finish);
+							content.html( tmp.contents() ).fadeTo(currentOpts.changeSpeed, 1, _finish);
 						}
 					});
 				});
@@ -1164,7 +1164,6 @@
 		speedOut : 400,
 
 		changeSpeed : 200,
-		changeFade : 200,
 
 		easingIn : 'swing',
 		easingOut : 'swing',
