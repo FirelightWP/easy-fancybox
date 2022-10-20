@@ -14,5 +14,10 @@ TODO 2.0:
 - regroup options
 - new admin page
 - dedicated upgrade file
-- fix pinch zoom for legacy / classic / v2?
+- fix pinch zoom for classic / v2?
 - color picker on admin
+
+TODO 1.9.x
+- fix legacy float title position + background
+- fix classic reloaded overlflow scroll flicker
+
