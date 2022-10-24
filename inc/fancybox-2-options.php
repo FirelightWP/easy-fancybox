@@ -908,7 +908,7 @@ Default value:
 					''                 => esc_html__('iFrame tag (let browser decide)','easy-fancybox'),
 					'{{googleviewer}}' => esc_html__('Google Docs Viewer (external)','easy-fancybox')
 				),
-				'default' => '',
+				'default' => '{{object}}',
 				'description' => esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('External viewers have bandwidth, usage rate and and file size limits.','easy-fancybox') . '<br /><br />'
 			),
 			'width' => array (
