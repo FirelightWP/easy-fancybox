@@ -164,6 +164,9 @@ Bugfix release.
 
 == Changelog ==
 
+= 2.0 =
+* Exclude download links
+
 = 1.9.4 =
 * FIX: Classic large content scroll
 * FIX: Classic gallery change fade
