@@ -166,6 +166,7 @@ Bugfix release.
 
 = 2.0 =
 * Exclude download links
+* NEW: easy_fancybox_do_scripts filter
 
 = 1.9.4 =
 * FIX: Classic large content scroll
