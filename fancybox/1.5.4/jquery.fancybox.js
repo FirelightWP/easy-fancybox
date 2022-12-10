@@ -8,7 +8,7 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
  * Copyright (c) 2020 - RavanH
- * Version: 1.5.3 (2020/11/09)
+ * Version: 1.5 (2020/11/09)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -819,7 +819,7 @@
 		if ( ! objOpts.minViewportWidth || document.documentElement.clientWidth >= objOpts.minViewportWidth ) {
 			$(this)
 			.data('fancybox', objOpts)
-			.attr({'aria-controls':'fancybox','aria-haspopup':'dialog'})
+			.attr({'aria-controls':'fancybox-wrap','aria-haspopup':'dialog'})
 			.off('click.fb')
 			.on('click.fb', function(e) {
 				e.preventDefault();
