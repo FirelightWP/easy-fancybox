@@ -5367,7 +5367,7 @@
           });
 
           // Opening links in a popup window
-          shareCurrent.$content.find(".fancybox-share__button").click(function () {
+          shareCurrent.$content.find(".fancybox-share__button").on("click",function () {
             window.open(this.href, "Share", "width=550, height=450");
             return false;
           });

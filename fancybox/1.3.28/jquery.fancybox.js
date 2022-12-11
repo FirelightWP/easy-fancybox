@@ -1259,15 +1259,15 @@
 			nav_right = $('<a id="fancybox-right" title="Next" href="javascript:;"><span class="fancy-ico" id="fancybox-right-ico"></span></a>')
 		);
 
-		close.click($.fancybox.close);
-		loading.click($.fancybox.cancel);
+		close.on('click',$.fancybox.close);
+		loading.on('click',$.fancybox.cancel);
 
-		nav_left.click(function(e) {
+		nav_left.on('click',function(e) {
 			e.preventDefault();
 			$.fancybox.prev();
 		});
 
-		nav_right.click(function(e) {
+		nav_right.on('click',function(e) {
 			e.preventDefault();
 			$.fancybox.next();
 		});
