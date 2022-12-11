@@ -61,11 +61,11 @@
 				this.list = $(opts.tpl).addClass(opts.position).appendTo('body');
 
 				buttons = {
-					prev   : this.list.find('.btnPrev').click( F.prev ),
-					next   : this.list.find('.btnNext').click( F.next ),
-					play   : this.list.find('.btnPlay').click( F.play ),
-					toggle : this.list.find('.btnToggle').click( F.toggle ),
-					close  : this.list.find('.btnClose').click( F.close )
+					prev   : this.list.find('.btnPrev').on('click', F.prev ),
+					next   : this.list.find('.btnNext').on('click', F.next ),
+					play   : this.list.find('.btnPlay').on('click', F.play ),
+					toggle : this.list.find('.btnToggle').on('click', F.toggle ),
+					close  : this.list.find('.btnClose').on('click', F.close )
 				}
 			}
 

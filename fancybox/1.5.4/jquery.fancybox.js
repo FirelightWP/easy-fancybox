@@ -1109,15 +1109,15 @@
 			title    = $('<div id="fancybox-title-wrap"></div>')
 		);
 
-		close.click($.fancybox.close);
-		loading.click($.fancybox.cancel);
+		close.on('click',$.fancybox.close);
+		loading.on('click',$.fancybox.cancel);
 
-		nav_prev.click(function(e) {
+		nav_prev.on('click',function(e) {
 			e.preventDefault();
 			$.fancybox.prev();
 		});
 
-		nav_next.click(function(e) {
+		nav_next.on('click',function(e) {
 			e.preventDefault();
 			$.fancybox.next();
 		});
