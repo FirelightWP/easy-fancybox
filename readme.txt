@@ -166,6 +166,7 @@ Bugfix release.
 
 =1.9.5 =
 * FIX: ARIA attributes
+* FIX: jQuery.fn.click() shorthand deprecated
 
 = 1.9.4 =
 * FIX: Classic large content scroll
