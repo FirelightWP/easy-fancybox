@@ -629,7 +629,7 @@
 			$(content).children().css('overflow', currentOpts.scrolling == 'auto' ? 'auto' : (currentOpts.scrolling == 'yes' ? 'scroll' : 'hidden') );
 		}
 
-		wrap.show().focus();
+		wrap.show( 400, function(){ $(this)[0].focus({preventScroll:true,focusVisible:false}); });
 
 		busy = false;
 
@@ -983,7 +983,7 @@
 			return;
 		};
 
-		$(selectedArray[ selectedIndex ]).focus();
+		$(selectedArray[ selectedIndex ])[0].focus({preventScroll:true,focusVisible:false});
 
 		$(close.add( nav_prev ).add( nav_next )).hide();
 
@@ -1020,7 +1020,7 @@
 			return;
 		}
 
-		$(currentArray[ currentIndex ]).focus();
+		$(currentArray[ currentIndex ])[0].focus({preventScroll:true,focusVisible:false});
 
 		$(close.add( nav_prev ).add( nav_next )).hide();
 
