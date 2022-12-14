@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define( 'EASY_FANCYBOX_VERSION', '1.9.5' );
 define( 'FANCYBOX_VERSIONS', array(
 	'legacy'   => '1.3.28',
-	'classic'  => '1.5.4',
+	'classic'  => '1.5.5',
 	'fancyBox2' => '2.2.0',
 	//'fancyBox3' => '3.5.7'
 ) );

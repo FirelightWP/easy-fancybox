@@ -169,6 +169,7 @@ Bugfix release.
 = 2.0 =
 * Exclude download links
 * FIX: version 1.5 focus issue
+* FIX: version 1.5 iframe proportion issue
 * NEW: easy_fancybox_do_scripts filter
 
 =1.9.5 =
