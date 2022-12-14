@@ -629,7 +629,7 @@
 			$(content).children().css('overflow', currentOpts.scrolling == 'auto' ? 'auto' : (currentOpts.scrolling == 'yes' ? 'scroll' : 'hidden') );
 		}
 
-		wrap.show( 400, function(){ $(this)[0].focus({preventScroll:true,focusVisible:false}); });
+		$(wrap)[0].focus({preventScroll:true,focusVisible:false});
 
 		busy = false;
 
@@ -987,8 +987,9 @@
 			return;
 		};
 
-		if (selectedOpts.type !== 'html' && selectedOpts.type !== 'inline' && selectedOpts.type !== 'ajax') {
-			$(selectedArray[ selectedIndex ])[0].focus({preventScroll:true,focusVisible:false});
+		var orig = $(currentOpts.orig);
+		if ( orig.length && orig.is(':visible') ) {
+			orig[0].focus({preventScroll:true,focusVisible:false});
 		}
 
 		$(close.add( nav_prev ).add( nav_next )).hide();
@@ -1026,8 +1027,9 @@
 			return;
 		}
 
-		if (currentOpts.type !== 'html' && currentOpts.type !== 'inline' && currentOpts.type !== 'ajax') {
-			$(currentArray[ currentIndex ])[0].focus({preventScroll:true,focusVisible:false});
+		var orig = $(currentOpts.orig);
+		if ( orig.length && orig.is(':visible') ) {
+			orig[0].focus({preventScroll:true,focusVisible:false});
 		}
 
 		$(close.add( nav_prev ).add( nav_next )).hide();
