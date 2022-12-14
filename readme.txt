@@ -168,6 +168,7 @@ Bugfix release.
 =======
 = 2.0 =
 * Exclude download links
+* FIX: version 1.5 focus issue
 * NEW: easy_fancybox_do_scripts filter
 
 =1.9.5 =
