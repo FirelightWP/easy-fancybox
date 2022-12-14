@@ -8,7 +8,7 @@
  * That said, it is hardly a one-person project. Many people have submitted bugs, code, and offered their advice freely. Their support is greatly appreciated.
  *
  * Copyright (c) 2020 - RavanH
- * Version: 1.5.4 (2020/11/09)
+ * Version: 1.5 (2020/11/09)
  * Requires: jQuery v1.7+
  *
  * Dual licensed under the MIT and GPL licenses:
@@ -397,7 +397,6 @@
 				});
 			} else {
 				content.fadeTo(currentOpts.changeSpeed, 0.3, function() {
-
 					content.css('border-width', currentOpts.padding);
 
 					wrap.animate(final_pos, {
@@ -824,7 +823,7 @@
 		if ( ! objOpts.minViewportWidth || document.documentElement.clientWidth >= objOpts.minViewportWidth ) {
 			$(this)
 			.data('fancybox', objOpts)
-			.attr({'aria-controls':'fancybox','aria-haspopup':'dialog'})
+			.attr({'aria-controls':'fancybox-wrap','aria-haspopup':'dialog'})
 			.off('click.fb')
 			.on('click.fb', function(e) {
 				e.preventDefault();
@@ -1120,15 +1119,15 @@
 			title    = $('<div id="fancybox-title-wrap"></div>')
 		);
 
-		close.click($.fancybox.close);
-		loading.click($.fancybox.cancel);
+		close.on('click',$.fancybox.close);
+		loading.on('click',$.fancybox.cancel);
 
-		nav_prev.click(function(e) {
+		nav_prev.on('click',function(e) {
 			e.preventDefault();
 			$.fancybox.prev();
 		});
 
-		nav_next.click(function(e) {
+		nav_next.on('click',function(e) {
 			e.preventDefault();
 			$.fancybox.next();
 		});
