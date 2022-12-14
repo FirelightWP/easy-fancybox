@@ -292,7 +292,7 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 
 function prepare_scripts_styles() {
 	// Make sure whe actually need to do anything.
-	if ( ! \easyFancyBox::add_scripts() ){
+	if ( ! \easyFancyBox::do_scripts() ){
 		return;
 	}
 

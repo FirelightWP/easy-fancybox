@@ -506,7 +506,7 @@ Default value:
 						'input' => 'text',
 						'class' => 'regular-text',
 						'hide' => true,
-						'default' => '.nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
+						'default' => '.nolightbox,a[download],a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
 						'sanitize_callback' => 'csl_text',
 						'description' => esc_html__('A comma-separated list of selectors for elements to which FancyBox should not automatically bind itself. Media links inside these elements will be ignored by Autodetect.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
 					)
@@ -908,7 +908,7 @@ Default value:
 					''                 => esc_html__('iFrame tag (let browser decide)','easy-fancybox'),
 					'{{googleviewer}}' => esc_html__('Google Docs Viewer (external)','easy-fancybox')
 				),
-				'default' => '',
+				'default' => '{{object}}',
 				'description' => esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('External viewers have bandwidth, usage rate and and file size limits.','easy-fancybox') . '<br /><br />'
 			),
 			'width' => array (

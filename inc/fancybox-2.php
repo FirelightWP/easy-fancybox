@@ -262,8 +262,8 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 	// Replace PDF embed shortcodes.
 	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart', '{{object}}') ) ) {
 		$replaces = array(
-			'"{{object}}"'       => 'function(){this.type=\'html\';this.content=\'<object data="\'+this.href+\'" type="application/pdf" height="\'+this.width+\'" width="\'+this.height+\'" aria-label="\'+this.title+\'" />\'}',
-			'"{{embed}}"'        => 'function(){this.type=\'html\';this.autoSize=false;this.content=\'<embed src="\'+this.href+\'" type="application/pdf" height="\'+this.width+\'" width="\'+this.height+\'" aria-label="\'+this.title+\'" />\'}',
+			'"{{object}}"'       => 'function(){this.type=\'html\';this.autoSize=this.autoWidth=this.autoHeight=false;this.content=\'<object data="\'+this.href+\'" type="application/pdf" height="100%" width="100%" aria-label="\'+this.title+\'" />\'}',
+			'"{{embed}}"'        => 'function(){this.type=\'html\';this.autoSize=this.autoWidth=this.autoHeight=false;this.content=\'<embed src="\'+this.href+\'" type="application/pdf" height="100%" width="100%" aria-label="\'+this.title+\'" />\'}',
 			'"{{googleviewer}}"' => 'function(){this.href=\'https://docs.google.com/viewer?embedded=true&url=\'+this.href;}'
 		);
 		foreach ($replaces as $short => $replace) {
@@ -417,7 +417,7 @@ function add_easing() {
 
 function prepare_scripts_styles() {
 	// Make sure whe actually need to do anything.
-	if ( ! \easyFancyBox::add_scripts() ){
+	if ( ! \easyFancyBox::do_scripts() ){
 		return;
 	}
 
