@@ -282,7 +282,7 @@ function add_easing() {
 
 function prepare_scripts_styles() {
 	// Make sure whe actually need to do anything.
-	if ( ! \easyFancyBox::add_scripts() ){
+	if ( ! \easyFancyBox::do_scripts() ){
 		return;
 	}
 

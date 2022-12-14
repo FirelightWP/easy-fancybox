@@ -51,7 +51,7 @@ class easyFancyBox {
 	public static function enqueue_scripts()
 	{
 		// Make sure whe actually need to do anything.
-		if ( ! self::add_scripts() ){
+		if ( ! self::do_scripts() ){
 			return;
 		}
 
@@ -158,29 +158,6 @@ class easyFancyBox {
 
 	}
 
-	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
-	// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
-	// without the wmode, videos will float over the light box no matter what z-index is set.
-	public static function add_video_wmode_opaque( $html )
-	{
-		// Make sure whe actually need this at all.
-		if ( ! self::add_scripts() ) {
-			return $html;
-		}
-
-		if ( strpos($html, "<embed src=" ) !== false ) {
-			$html = str_replace('</param><embed', '</param><param name="wmode" value="opaque"></param><embed wmode="opaque"', $html);
-		} elseif ( strpos($html, 'youtube' ) !== false && strpos($html, 'wmode' ) == false ) {
-			$html = str_replace('feature=oembed', 'feature=oembed&amp;wmode=opaque', $html);
-		} elseif ( strpos($html, "vimeo" ) !== false  && strpos($html, 'wmode' ) == false ) {
-			$html = str_replace('" width', '?theme=none&amp;wmode=opaque" width', $html);
-		} elseif ( strpos($html, "dailymotion" ) !== false  && strpos($html, 'wmode' ) == false ) {
-			$html = str_replace('" width', '?wmode=opaque" width', $html);
-		}
-
-		return $html;
-	}
-
 	public static function priority()
 	{
 		if ( null === self::$priority ) {
@@ -192,14 +169,14 @@ class easyFancyBox {
 		return self::$priority;
 	}
 
-	public static function add_scripts()
+	public static function do_scripts()
 	{
 		if ( null === self::$add_scripts ) {
 			_doing_it_wrong( __FUNCTION__, 'Method easyFancyBox::add_scripts() has been called before init.', '2.0' );
 			return false;
 		}
 
-		return self::$add_scripts;
+		return apply_filters( 'easy_fancybox_do_scripts', self::$add_scripts );
 	}
 
 	public static function extend()
@@ -270,7 +247,6 @@ class easyFancyBox {
 		}
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
-		//add_filter( 'embed_oembed_html',  array( __CLASS__, 'add_video_wmode_opaque' ) ); // Maybe TODO: make optional?
 	}
 
 	/**

@@ -468,9 +468,9 @@ $efb_options = array (
 						'input' => 'text',
 						'class' => 'regular-text',
 						'hide' => true,
-						'default' => '.nolightbox,a.wp-block-fileesc_html__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
+						'default' => '.nolightbox,a[download],a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
 						'sanitize_callback' => 'csl_text',
-						'description' => esc_html__('A comma-separated list of selectors for elements to which FancyBox should not automatically bind itself. Media links inside these elements will be ignored by Autodetect.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-fileesc_html__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
+						'description' => esc_html__('A comma-separated list of selectors for elements to which FancyBox should not automatically bind itself. Media links inside these elements will be ignored by Autodetect.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
 					)
 				)
 			)
@@ -680,18 +680,6 @@ $efb_options = array (
 				'id' => 'fancybox_changeSpeed',
 				'title' => esc_html__('Change speed','easy-fancybox'),
 				'label_for' => 'fancybox_changeSpeed',
-				'input' => 'number',
-				'step' => '1',
-				'min' => '0',
-				'max' => '6000',
-				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
-				'default' => '',
-			),
-			'changeFade' => array (
-				'id' => 'fancybox_changeFade',
-				'title' => esc_html__('Fade speed','easy-fancybox'),
-				'label_for' => 'fancybox_changeFade',
 				'input' => 'number',
 				'step' => '1',
 				'min' => '0',

@@ -164,12 +164,19 @@ Bugfix release.
 
 == Changelog ==
 
+
+=======
+= 2.0 =
+* Exclude download links
+* NEW: easy_fancybox_do_scripts filter
+
 =1.9.5 =
 * FIX: ARIA attributes
 * FIX: jQuery.fn.click() shorthand deprecated
 
 = 1.9.4 =
 * FIX: Classic large content scroll
+* FIX: Classic gallery change fade
 * FIX: Classic gallery overflow flicker
 * FIX: Legacy float title position
 * FIX: upgrade notice
