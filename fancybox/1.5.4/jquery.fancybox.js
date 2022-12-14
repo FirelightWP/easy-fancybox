@@ -629,7 +629,7 @@
 			$(content).children().css('overflow', currentOpts.scrolling == 'auto' ? 'auto' : (currentOpts.scrolling == 'yes' ? 'scroll' : 'hidden') );
 		}
 
-		wrap.show().focus();
+		wrap.show( 400, function(){ $(this)[0].focus({preventScroll:true,focusVisible:false}); });
 
 		busy = false;
 
@@ -988,7 +988,7 @@
 		};
 
 		if (selectedOpts.type !== 'html' && selectedOpts.type !== 'inline' && selectedOpts.type !== 'ajax') {
-			$(selectedArray[ selectedIndex ]).focus();
+			$(selectedArray[ selectedIndex ])[0].focus({preventScroll:true,focusVisible:false});
 		}
 
 		$(close.add( nav_prev ).add( nav_next )).hide();
@@ -1027,7 +1027,7 @@
 		}
 
 		if (currentOpts.type !== 'html' && currentOpts.type !== 'inline' && currentOpts.type !== 'ajax') {
-			$(currentArray[ currentIndex ]).focus();
+			$(currentArray[ currentIndex ])[0].focus({preventScroll:true,focusVisible:false});
 		}
 
 		$(close.add( nav_prev ).add( nav_next )).hide();
