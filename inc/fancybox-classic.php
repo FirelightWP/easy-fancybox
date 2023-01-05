@@ -289,8 +289,6 @@ function prepare_scripts_styles() {
 	// INLINE SCRIPT & STYLE
 	prepare_inline();
 
-	$min = ( defined('WP_DEBUG') && WP_DEBUG ) ? '' : '.min';
-
 	// SCRIPT & STYLE URLS
 
 	$dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
