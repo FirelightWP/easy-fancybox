@@ -14,3 +14,5 @@ TODO 2.0:
 - new admin page
 - fix pinch zoom for classic / v2?
 - color picker on admin
+- work enhanced privacy mode back in (without autostart?)
+- use inline footer script to ONLY load script files when media links are found.
