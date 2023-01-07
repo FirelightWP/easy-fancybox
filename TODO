@@ -16,3 +16,5 @@ TODO 2.0:
 - color picker on admin
 - work enhanced privacy mode back in (without autostart?)
 - use inline footer script to ONLY load script files when media links are found.
+- FIX https://wordpress.org/support/topic/potential-mouse-whell-scroll-bug-in-fancybox-2/
+- make scroll wheel animation direction an option
