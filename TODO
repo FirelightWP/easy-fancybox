@@ -1,4 +1,6 @@
 TODO 2.0:
+- 2.2 FIX overlay scroll bar issue
+- 1.5 FIX close/navigation icons deforming when page is zoomed
 - move styles to footer + backw compat option?
 - consider: move (only selected) media helpers inline
 - add/test template error & text translations,
@@ -18,3 +20,4 @@ TODO 2.0:
 - use inline footer script to ONLY load script files when media links are found.
 - FIX https://wordpress.org/support/topic/potential-mouse-whell-scroll-bug-in-fancybox-2/
 - make scroll wheel animation direction an option
+
