@@ -1,6 +1,6 @@
 TODO 2.0:
-- 2.2 FIX overlay scroll bar issue
-- 1.5 FIX close/navigation icons deforming when page is zoomed
+- 2.2 FIX overlay scroll bar issue https://premium.status301.com/wp-admin/post.php?post=39529&action=edit
+- 1.5 FIX close/navigation icons deforming when page is zoomed https://premium.status301.com/wp-admin/post.php?post=39529&action=edit
 - move styles to footer + backw compat option?
 - consider: move (only selected) media helpers inline
 - add/test template error & text translations,
