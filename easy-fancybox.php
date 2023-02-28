@@ -43,7 +43,7 @@ define( 'FANCYBOX_VERSIONS', array(
 define( 'MOUSEWHEEL_VERSION', '3.1.13' );
 define( 'EASING_VERSION', '1.4.1' );
 define( 'METADATA_VERSION', '2.22.1' );
-define( 'EASY_FANCYBOX_DIR', dirname( __FILE__ ) );
+define( 'EASY_FANCYBOX_DIR', __DIR__ );
 define( 'EASY_FANCYBOX_BASENAME', plugin_basename( __FILE__ ) );
 
 /**************
