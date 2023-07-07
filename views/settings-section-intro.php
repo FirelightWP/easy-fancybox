@@ -27,7 +27,7 @@ if ( ! class_exists('easyFancyBox_Advanced') ) { ?>
 	<strong>
 		<em>
 			<?php esc_html_e( 'Thank you for purchasing the Easy FancyBox - Pro extension. Your advanced options are available!', 'easy-fancybox' ); ?>
-			<a href="https://premium.status301.com/support-forums/forum/easy-fancybox-pro/">
+			<a href="https://premium.status301.com/support/forum/easy-fancybox-pro/">
 				<?php esc_html_e( 'Get support here.', 'easy-fancybox' ); ?>
 			</a>
 		</em>
