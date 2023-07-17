@@ -1,3 +1,7 @@
+TODO 1.9.6
+- drop array constant (requires PHP 7+)
+- test/fix Ninjaforms + recaptcha
+
 TODO 2.0:
 - FIX ajax forms inside 1.5 and 2.2 fail because of duplicate inline content... maybe replace with temp dummy content, not duplicate?
 - v2.2 FIX overlay scroll bar issue https://premium.status301.com/wp-admin/post.php?post=39529&action=edit
@@ -20,5 +24,5 @@ TODO 2.0:
 - work enhanced privacy mode back in (without autostart?)
 - use inline footer script to ONLY load script files when media links are found.
 - FIX https://wordpress.org/support/topic/potential-mouse-whell-scroll-bug-in-fancybox-2/
-- make scroll wheel animation direction an option
+- consider: make scroll wheel animation direction an option
 - changespeed in v1.5 does not affect image fade transition, only window transition (looks weird)

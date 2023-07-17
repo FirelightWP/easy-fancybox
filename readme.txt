@@ -2,7 +2,8 @@
 Contributors: RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
 Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
-Requires at least: 3.3
+Requires at least: 4.6
+Requires PHP: 5.6
 Tested up to: 6.1
 Stable tag: 1.9.5
 
@@ -164,9 +165,7 @@ Bugfix release.
 
 == Changelog ==
 
-
-=======
-= 2.0 =
+= 1.9.6 =
 * Exclude download links
 * FIX: version 1.5 focus issue
 * FIX: version 1.5 iframe proportion issue
