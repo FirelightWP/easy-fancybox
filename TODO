@@ -1,6 +1,7 @@
 TODO 1.9.6
 - drop array constant (requires PHP 7+)
 - test/fix Ninjaforms + recaptcha
+- allow titles for inline content
 
 TODO 2.0:
 - FIX ajax forms inside 1.5 and 2.2 fail because of duplicate inline content... maybe replace with temp dummy content, not duplicate?
