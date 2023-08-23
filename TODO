@@ -1,4 +1,5 @@
 TODO 2.0:
+- test Jetpack Boost Critical CSS conflict
 - move styles to footer + backw compat option?
 - consider: move (only selected) media helpers inline
 - add/test template error & text translations,
