@@ -40,7 +40,7 @@ function prepare_inline_scripts() {
 	}
 
 	// Change speeds.
-	$changespeed = get_option( 'fancybox_changeSpeed' );
+	$changespeed = \get_option( 'fancybox_changeSpeed' );
 	if ( ! empty( $changespeed ) ) {
 		$fb_opts['prevSpeed'] = intval( $changespeed );
 		$fb_opts['nextSpeed'] = intval( $changespeed );
@@ -260,15 +260,10 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 	$fb_handler = str_replace( '"{{titleFromAlt}}"', 'function(){var alt=this.element.find(\'img\').attr(\'alt\');this.inner.find(\'img\').attr(\'alt\',alt);this.title=this.title||alt;}', $fb_handler );
 
 	// Replace PDF embed shortcodes.
-	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart', '{{object}}') ) ) {
-		$replaces = array(
-			'"{{object}}"'       => 'function(){this.type=\'html\';this.autoSize=this.autoWidth=this.autoHeight=false;this.content=\'<object data="\'+this.href+\'" type="application/pdf" height="100%" width="100%" aria-label="\'+this.title+\'" />\'}',
-			'"{{embed}}"'        => 'function(){this.type=\'html\';this.autoSize=this.autoWidth=this.autoHeight=false;this.content=\'<embed src="\'+this.href+\'" type="application/pdf" height="100%" width="100%" aria-label="\'+this.title+\'" />\'}',
-			'"{{googleviewer}}"' => 'function(){this.href=\'https://docs.google.com/viewer?embedded=true&url=\'+this.href;}'
-		);
-		foreach ($replaces as $short => $replace) {
-			$fb_handler = str_replace( $short, $replace, $fb_handler );
-		}
+	if ( ! empty( \get_option('fancybox_enablePDF') ) && ! empty( \get_option('fancybox_PDFonStart', '{{object}}') ) ) {
+		$fb_handler = str_replace( '"{{object}}"',       'function(){this.type=\'html\';this.autoSize=this.autoWidth=this.autoHeight=false;this.content=\'<object data="\'+this.href+\'" type="application/pdf" height="100%" width="100%" aria-label="\'+this.title+\'" />\'}', $fb_handler );
+		$fb_handler = str_replace( '"{{embed}}"',        'function(){this.type=\'html\';this.autoSize=this.autoWidth=this.autoHeight=false;this.content=\'<embed src="\'+this.href+\'" type="application/pdf" height="100%" width="100%" aria-label="\'+this.title+\'" />\'}', $fb_handler );
+		$fb_handler = str_replace( '"{{googleviewer}}"', 'function(){this.href=\'https://docs.google.com/viewer?embedded=true&url=\'+this.href;}', $fb_handler );
 	}
 
 	// Build script.
@@ -320,12 +315,12 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 function prepare_inline_styles() {
 	$styles = '';
 
-	$backgroundColor = get_option( 'fancybox_backgroundColor' );
-	$textColor = get_option( 'fancybox_textColor' );
-	$borderRadius = get_option( 'fancybox_borderRadius' );
-	$paddingColor = get_option( 'fancybox_paddingColor' );
-	$overlaySpotlight = get_option( 'fancybox_overlaySpotlight' );
-	$titleColor = get_option( 'fancybox_titleColor' );
+	$backgroundColor  = \get_option( 'fancybox_backgroundColor' );
+	$textColor        = \get_option( 'fancybox_textColor' );
+	$borderRadius     = \get_option( 'fancybox_borderRadius' );
+	$paddingColor     = \get_option( 'fancybox_paddingColor' );
+	$overlaySpotlight = \get_option( 'fancybox_overlaySpotlight' );
+	$titleColor       = \get_option( 'fancybox_titleColor' );
 
 		// Content styles.
 		$content_style = '';
