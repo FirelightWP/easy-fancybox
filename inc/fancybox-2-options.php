@@ -52,7 +52,7 @@ $efb_options = array (
 						'hide' => true,
 						'default' => '',
 						'status' => 'disabled',
-						'description' => '<strong>' . esc_html__( 'VideoPress', 'easy-fancybox' ) . '</strong>' . ' ' . '<em>' . esc_html__('Under development','easy-fancybox') . '</em>'
+						'description' => '<strong>' . esc_html__( 'VideoPress', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 					'YouTube' => array (
 						'id' => 'fancybox_enableYoutube',
