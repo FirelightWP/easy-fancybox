@@ -7,7 +7,7 @@ Text Domain: easy-fancybox
 Domain Path: languages
 Version: 1.9.6-beta1
 Requires at least: 4.6
-Requires PHP: 5.6
+Requires PHP: 7.0
 Author: RavanH
 Author URI: http://status301.net/
 */
