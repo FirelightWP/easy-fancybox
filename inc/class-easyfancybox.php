@@ -22,6 +22,8 @@ class easyFancyBox {
 
 	public static $style_ie_url;
 
+	public static $script_version;
+
 	public static $script_url;
 
 	public static $inline_script;
@@ -181,12 +183,12 @@ class easyFancyBox {
 
 	public static function extend()
 	{
-		$script_version = get_option( 'fancybox_scriptVersion', 'classic' );
-		if ( ! array_key_exists( $script_version, FANCYBOX_VERSIONS ) ) {
-			$script_version = 'classic';
+		self::$script_version = get_option( 'fancybox_scriptVersion', 'classic' );
+		if ( ! array_key_exists( self::$script_version, FANCYBOX_VERSIONS ) ) {
+			self::$script_version = 'classic';
 		}
 
-		switch( $script_version ) {
+		switch( self::$script_version ) {
 			case 'legacy':
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-legacy.php';
 				// Load defaults.
