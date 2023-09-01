@@ -37,7 +37,7 @@ define( 'EASY_FANCYBOX_VERSION', '1.9.6-beta1' );
 define( 'FANCYBOX_VERSIONS', array(
 	'legacy'   => '1.3.28',
 	'classic'  => '1.5.5',
-	'fancyBox2' => '2.2.0',
+	'fancyBox2' => '2.2.1',
 	//'fancyBox3' => '3.5.7'
 ) );
 define( 'MOUSEWHEEL_VERSION', '3.1.13' );

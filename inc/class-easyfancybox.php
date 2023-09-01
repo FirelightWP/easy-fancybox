@@ -248,7 +248,14 @@ class easyFancyBox {
 				}
 		}
 
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
+		// Enqueue styles and scripts.
+		$_footer = get_option( 'fancybox_noFooter', false ) ? false : true;
+		if ( $_footer ) {
+			add_action( 'wp_footer', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
+		} else {
+			add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
+		}
+
 	}
 
 	/**

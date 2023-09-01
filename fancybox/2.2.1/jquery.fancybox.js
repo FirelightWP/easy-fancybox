@@ -1,6 +1,6 @@
 /**
  * fancyBox - jQuery Plugin
- * version: 2.2.0 (Tue, 16 Sep 2022)
+ * version: 2.2.1 (Tue, 1 Sep 2023)
  * requires jQuery v1.6 or later
  *
  * Licensed GPLv3 for open source use
@@ -142,7 +142,7 @@
 			tpl: {
 				wrap    : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
 				image   : '<img class="fancybox-image" src="{href}" alt="" />',
-				iframe  : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" frameborder="0" vspace="0" hspace="0" allow="autoplay; encrypted-media;"' + (IE ? ' allowtransparency="true"' : '') + '></iframe>',
+				iframe  : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" src="{href}" frameborder="0" vspace="0" hspace="0" allow="autoplay; encrypted-media; clipboard-write;"></iframe>',
 				error   : '<p class="fancybox-error">{error}</p>',
 				close   : '<a title="{close}" class="fancybox-item fancybox-close" href="javascript:;"></a>',
 				next    : '<a title="{next}" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
@@ -1084,13 +1084,15 @@
 
 		_loadIframe: function() {
 			var coming = F.coming,
-				iframe = $(coming.tpl.iframe.replace(/\{rnd\}/g, new Date().getTime()))
+				iframe = $(coming.tpl.iframe
+					.replace(/\{rnd\}/g, new Date().getTime())
+					.replace(/\{href\}/g, coming.href))
 					.attr({
 						'scrolling' : (isTouch ? 'auto' : coming.iframe.scrolling),
-					    'src' : coming.href,
 						'webkitallowfullscreen' : coming.iframe.allowfullscreen,
 						'mozallowfullscreen' : coming.iframe.allowfullscreen,
-						'allowfullscreen' : coming.iframe.allowfullscreen
+						'allowfullscreen' : coming.iframe.allowfullscreen,
+						'allowtransparency' : IE
 					});
 
 			// This helps IE
