@@ -720,7 +720,7 @@ $efb_options = array (
 				'sanitize_callback' => 'intval',
 				'class' => 'small-text',
 				'default' => '',
-				'description' => '<br />' . esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 300</em><br /><br />'
+				'description' => '<br />' . esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox') . ' 300</em><br /><br />'
 			),
 			'autoSelector' => array (
 				'id' => 'fancybox_autoSelector',
