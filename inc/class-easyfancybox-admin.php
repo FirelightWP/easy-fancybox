@@ -204,11 +204,18 @@ class easyFancyBox_Admin {
 		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
 		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
 		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
+
+		// Texts.
+		register_setting( 'media', 'fancybox_texts', array(
+			'type' => 'array',
+			'sanitize_callback' => array( __CLASS__, 'sanitize_texts' ),
+			'default' => array(),
+		) );
 	}
 
-	public static function register_media_settings( $args = array() )
+	public static function register_media_settings()
 	{
-/*		if ( ! in_array( get_option( 'fancybox_scriptVersion', 'classic' ), array( 'classic', 'legacy' ) ) ) {
+		/*if ( ! in_array( get_option( 'fancybox_scriptVersion', 'classic' ), array( 'classic', 'legacy' ) ) ) {
 			register_setting( 'media', 'easy_fancyboxEnabled', array( 'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1', 'sanitize_callback' => 'int' ) );
 			add_settings_field( 'easy_fancyboxEnabled', esc_html__('FancyBox','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-enable.php'; }, 'media', 'fancybox_section', array('label_for'=>'easy_fancyboxEnabled') );
 			return;
@@ -216,17 +223,34 @@ class easyFancyBox_Admin {
 
 		// Version.
 		add_settings_field( 'fancybox_scriptVersion', esc_html__('Version','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'media', 'fancybox_section', array('label_for'=>'fancybox_scriptVersion') );
-		register_setting( 'media', 'fancybox_scriptVersion', 'sanitize_text_field' );
+		register_setting( 'media', 'fancybox_scriptVersion', array(
+			'type' => 'string',
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => '',
+		) );
 
-		if ( empty( $args ) ) {
-			$args = easyFancyBox::$options;
-		}
+		// Parse options.
+		self::register_options( easyFancyBox::$options );
 
+		// Text strings.
+		// TODO for Classic + V2...
+		//add_settings_field( 'fancybox_texts', esc_html__( 'Texts','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'media', 'fancybox_section', array('label_for'=>'fancybox_scriptVersion') );
+		/*register_setting( 'media', 'fancybox_texts', array(
+			'type' => 'array',
+			'sanitize_callback' => array( __CLASS__, 'sanitize_texts' ),
+			'default' => array(),
+		) );*/
+
+	}
+
+	// Register settings from options array.
+	public static function register_options( $args = array() )
+	{
 		foreach ( $args as $key => $value ) {
 			// Check to see if the section is enabled, else skip to next.
 			if ( ! isset( $value['input'] ) ||
 				array_key_exists($key, easyFancyBox::$options['Global']['options']['Enable']['options']) &&
-				!get_option( easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['id'], easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['default'])
+				! get_option( easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['id'], easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['default'])
 			) {
 				continue;
 			}
@@ -234,7 +258,7 @@ class easyFancyBox_Admin {
 			switch( $value['input'] ) {
 				case 'deep':
 					// Go deeper by looping back on itself.
-					self::register_media_settings($value['options']);
+					self::register_options($value['options']);
 					break;
 
 				case 'multiple':
