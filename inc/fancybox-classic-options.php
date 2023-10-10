@@ -468,7 +468,7 @@ $efb_options = array (
 						'input' => 'text',
 						'class' => 'regular-text',
 						'hide' => true,
-						'default' => '.nolightbox,a[download],a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
+						'default' => '.nolightbox,a[download],a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\'],a[href*=\'google.com/calendar/event\']',
 						'sanitize_callback' => 'csl_text',
 						'description' => esc_html__('A comma-separated list of selectors for elements to which FancyBox should not automatically bind itself. Media links inside these elements will be ignored by Autodetect.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
 					)
