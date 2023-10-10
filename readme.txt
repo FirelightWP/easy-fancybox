@@ -166,7 +166,7 @@ Bugfix release.
 == Changelog ==
 
 = 1.9.6 =
-* Exclude download links
+* Exclude download and Google Calendar Event subscription links
 * FIX: version 1.5 focus issue
 * FIX: version 1.5 iframe proportion issue
 * NEW: easy_fancybox_do_scripts filter
