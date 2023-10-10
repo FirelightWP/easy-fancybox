@@ -87,10 +87,11 @@ function prepare_inline_scripts() {
 
 	// Exclude.
 	$exclude = \get_option( 'fancybox_autoExclude', \easyFancyBox::$options['Global']['options']['Miscellaneous']['options']['autoExclude']['default'] );
-	$exclude_array = $exclude ? \explode( ',', $exclude ) : array();
-	$exclude_selectors = ! empty( $exclude_array ) ? \json_encode( $exclude_array ) : false;
-
-	$fb_handler .= $exclude_selectors ? PHP_EOL . 'jQuery(' . $exclude_selectors . '.join(\',\')).addClass(\'nofancybox\');' : '';
+	if ( $exclude ) {
+		$exclude_array = \explode( ',', $exclude );
+		$exclude_selectors = ! empty( $exclude_array ) ? \json_encode( $exclude_array ) : false;
+		$fb_handler .= $exclude_selectors ? PHP_EOL . 'jQuery(' . $exclude_selectors . '.join(\',\')).addClass(\'nofancybox\');' : '';
+	}
 
 	// Close link.
 	$fb_handler .= PHP_EOL . 'jQuery(\'a.fancybox-close\').on(\'click\',function(e){e.preventDefault();jQuery.fancybox.close()});';
@@ -100,8 +101,7 @@ function prepare_inline_scripts() {
 		if ( isset( $value['hide'] ) || ! isset( \easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['id'] ) || ! \get_option( \easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['id'], \easyFancyBox::$options['Global']['options']['Enable']['options'][$key]['default'] ) )
 			continue;
 
-		$fb_handler .= '
-/* ' . $key . ' */';
+		$fb_handler .= PHP_EOL . '/* ' . $key . ' */';
 
 		/**
 		 * Auto-detection routines (2x)
@@ -110,14 +110,12 @@ function prepare_inline_scripts() {
 
 		if ( !empty($autoAttribute) ) {
 			if ( is_numeric($autoAttribute) ) {
-				$fb_handler .= '
-jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.nofancybox>a\').addClass(\''.$value['options']['class']['default'].'\');';
+				$fb_handler .= PHP_EOL . 'jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.nofancybox>a\').addClass(\''.$value['options']['class']['default'].'\');';
 			} else {
 				// Set selectors.
 				$file_types = array_filter( explode( ',', str_replace( ' ', ',', $autoAttribute ) ) );
 				$more = 0;
-				$fb_handler .= '
-var fb_'.$key.'_select=jQuery(\'';
+				$fb_handler .= PHP_EOL . 'var fb_'.$key.'_select=jQuery(\'';
 				foreach ( $file_types as $type ) {
 					if ($type == "jpg" || $type == "jpeg" || $type == "png" || $type == "webp" || $type == "gif")
 						$type = '.'.$type;
@@ -133,9 +131,7 @@ var fb_'.$key.'_select=jQuery(\'';
 				// Class and rel depending on settings.
 				if( '1' == \get_option($value['options']['autoAttributeLimit']['id'],$value['options']['autoAttributeLimit']['default']) ) {
 					// Add class.
-					$fb_handler .= '
-var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
-fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+					$fb_handler .= PHP_EOL . 'var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');' . PHP_EOL . 'fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 						case '':
@@ -153,8 +149,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 					}
 				} else {
 					// Add class.
-					$fb_handler .= '
-fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
+					$fb_handler .= PHP_EOL . 'fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 						case '':
@@ -163,9 +158,7 @@ fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 							break;
 
 						case '1':
-							$fb_handler .= ';
-var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
-fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'data-fancybox-group\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
+							$fb_handler .= ';' . PHP_EOL . 'var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');' . PHP_EOL . 'fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'data-fancybox-group\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
 
 						case '2':
