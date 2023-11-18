@@ -1,16 +1,16 @@
 <?php
-/*
-Plugin Name: Easy FancyBox
-Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
-Description: Easily enable the FancyBox jQuery light box on all media file links. Also supports iframe, inline content and well known video hosts.
-Text Domain: easy-fancybox
-Domain Path: languages
-Version: 1.9.6-beta2
-Requires at least: 4.6
-Requires PHP: 7.0
-Author: RavanH
-Author URI: http://status301.net/
-*/
+/**
+ * Plugin Name: Easy FancyBox
+ * Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
+ * Description: Easily enable the FancyBox jQuery light box on all media file links. Also supports iframe, inline content and well known video hosts.
+ * Text Domain: easy-fancybox
+ * Domain Path: languages
+ * Version: 1.9.6-beta2
+ * Requires at least: 4.6
+ * Requires PHP: 7.0
+ * Author: RavanH
+ * Author URI: http://status301.net/
+ */
 
 /**
  * Copyright 2023 RavanH
@@ -27,18 +27,13 @@ Author URI: http://status301.net/
  * GNU General Public License for more details.
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined( 'ABSPATH' ) || exit;
 
 /**
  * CONSTANTS
  */
 
 define( 'EASY_FANCYBOX_VERSION', '1.9.6-beta1' );
-
-
-define( 'MOUSEWHEEL_VERSION', '3.1.13' );
-define( 'EASING_VERSION', '1.4.1' );
-define( 'METADATA_VERSION', '2.22.1' );
 define( 'EASY_FANCYBOX_DIR', __DIR__ );
 define( 'EASY_FANCYBOX_BASENAME', plugin_basename( __FILE__ ) );
 

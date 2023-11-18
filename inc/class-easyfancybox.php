@@ -12,6 +12,12 @@ class easyFancyBox {
 		// TODO 'fancyBox3' => '3.5.7'.
 	);
 
+	public static $mousewheel_version = '3.1.13';
+
+	public static $easing_version = '1.4.1';
+
+	public static $metadata_version = '2.22.1';
+
 	public static $plugin_url;
 
 	public static $priority;
@@ -101,18 +107,18 @@ class easyFancyBox {
 
 			// Metadata in Miscellaneous settings?
 			if ( ! empty( self::$metadata_script_url ) ) {
-				wp_enqueue_script( 'jquery-metadata', self::$metadata_script_url, $_dep, METADATA_VERSION, $_footer );
+				wp_enqueue_script( 'jquery-metadata', self::$metadata_script_url, $_dep, self::$metadata_version, $_footer );
 			}
 		}
 
 		// jQuery Easing, which is not needed if jQueryUI Core Effects are loaded or when using fancyBox 3.
 		if ( ! empty( self::$easing_script_url ) && ! wp_script_is( 'jquery-effects-core', 'enqueued' ) ) {
-			wp_enqueue_script( 'jquery-easing', self::$easing_script_url, $_dep, EASING_VERSION, $_footer );
+			wp_enqueue_script( 'jquery-easing', self::$easing_script_url, $_dep, self::$easing_version, $_footer );
 		}
 
 		// jQuery Mousewheel, which is not needed if jQueryUI Mouse is loaded or when using fancyBox 3.
 		if ( ! empty( self::$mousewheel_script_url ) && ! wp_script_is( 'jquery-ui-mouse', 'enqueued' ) ) {
-			wp_enqueue_script( 'jquery-mousewheel', self::$mousewheel_script_url, $_dep, MOUSEWHEEL_VERSION, $_footer );
+			wp_enqueue_script( 'jquery-mousewheel', self::$mousewheel_script_url, $_dep, self::$mousewheel_version, $_footer );
 		}
 
 		// Inline styles.

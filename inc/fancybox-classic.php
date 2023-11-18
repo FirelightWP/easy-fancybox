@@ -315,8 +315,8 @@ function prepare_scripts_styles() {
 		\easyFancyBox::$scripts['jquery-metadata'] = array(
 			'src'    => \easyFancyBox::$plugin_url.'vendor/jquery.metadata.min.js',
 			'deps'   => $dep,
-			'ver'    => METADATA_VERSION,
-			'footer' => $footer
+			'ver'    => \easyFancyBox::$metadata_version,
+			'footer' => $footer,
 		);
 	}
 }
