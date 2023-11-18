@@ -1,5 +1,5 @@
 === Easy FancyBox ===
-Contributors: RavanH
+Contributors: edanzer, RavanH
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
 Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
 Requires at least: 4.6
