@@ -424,13 +424,13 @@ function prepare_scripts_styles() {
 
 	// FancyBox.
 	\easyFancyBox::$styles['fancybox'] = array(
-		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/jquery.fancybox'.$min.'.css',
+		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['fancyBox2'].'/jquery.fancybox'.$min.'.css',
 		'deps'  => array(),
 		'ver'   => $ver,
 		'media' => 'screen'
 	);
 	\easyFancyBox::$scripts['jquery-fancybox'] = array(
-		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/jquery.fancybox'.$min.'.js',
+		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['fancyBox2'].'/jquery.fancybox'.$min.'.js',
 		'deps'   => $dep,
 		'ver'    => $ver,
 		'footer' => $footer
@@ -439,7 +439,7 @@ function prepare_scripts_styles() {
 	// Fancybox Media Helpers.
 	if ( add_media() ) {
 		\easyFancyBox::$scripts['jquery-fancybox-media'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-media'.$min.'.js',
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['fancyBox2'].'/helpers/jquery.fancybox-media'.$min.'.js',
 			'deps'   => array('jquery-fancybox'),
 			'ver'    => $ver,
 			'footer' => $footer
@@ -449,13 +449,13 @@ function prepare_scripts_styles() {
 	// Fancybox Thumbs Helpers.
 	if ( add_thumbs() ) {
 		\easyFancyBox::$styles['fancybox-thumbs'] = array(
-			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-thumbs'.$min.'.css',
+			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['fancyBox2'].'/helpers/jquery.fancybox-thumbs'.$min.'.css',
 			'deps'  => array('fancybox'),
 			'ver'   => $ver,
 			'media' => 'screen'
 		);
 		\easyFancyBox::$scripts['jquery-fancybox-thumbs'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-thumbs'.$min.'.js',
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['fancyBox2'].'/helpers/jquery.fancybox-thumbs'.$min.'.js',
 			'deps'   => array('jquery-fancybox'),
 			'ver'    => $ver,
 			'footer' => $footer
@@ -465,13 +465,13 @@ function prepare_scripts_styles() {
 	// Fancybox Buttons Helpers.
 	if ( add_thumbs() ) {
 		\easyFancyBox::$styles['fancybox-buttons'] = array(
-			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-buttons'.$min.'.css',
+			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['fancyBox2'].'/helpers/jquery.fancybox-buttons'.$min.'.css',
 			'deps'  => array('fancybox'),
 			'ver'   => $ver,
 			'media' => 'screen'
 		);
 		\easyFancyBox::$scripts['jquery-fancybox-buttons'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-buttons'.$min.'.js',
+			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['fancyBox2'].'/helpers/jquery.fancybox-buttons'.$min.'.js',
 			'deps'   => array('jquery-fancybox'),
 			'ver'    => $ver,
 			'footer' => $footer

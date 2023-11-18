@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravan
 Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
 Requires at least: 4.6
 Requires PHP: 5.6
-Tested up to: 6.1
+Tested up to: 6.3
 Stable tag: 1.9.5
 
 Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe, inline content and well known video hosts.
@@ -171,7 +171,7 @@ Bugfix release.
 * FIX: version 1.5 iframe proportion issue
 * NEW: easy_fancybox_do_scripts filter
 
-=1.9.5 =
+= 1.9.5 =
 * FIX: ARIA attributes
 * FIX: jQuery.fn.click() shorthand deprecated
 

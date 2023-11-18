@@ -288,13 +288,13 @@ function prepare_scripts_styles() {
 
 	// FancyBox.
 	\easyFancyBox::$styles['fancybox'] = array(
-		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['classic'].'/jquery.fancybox'.$min.'.css',
+		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['classic'].'/jquery.fancybox'.$min.'.css',
 		'deps'  => array(),
 		'ver'   => $ver,
 		'media' => 'screen'
 	);
 	\easyFancyBox::$scripts['jquery-fancybox'] = array(
-		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['classic'].'/jquery.fancybox'.$min.'.js',
+		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.\easyFancyBox::$fancybox_versions['classic'].'/jquery.fancybox'.$min.'.js',
 		'deps'   => $dep,
 		'ver'    => $ver,
 		'footer' => $footer

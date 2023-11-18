@@ -5,6 +5,13 @@
 
 class easyFancyBox {
 
+	public static $fancybox_versions = array(
+		'legacy'   => '1.3.28',
+		'classic'  => '1.5.5',
+		'fancyBox2' => '2.2.1',
+		// TODO 'fancyBox3' => '3.5.7'.
+	);
+
 	public static $plugin_url;
 
 	public static $priority;
@@ -49,11 +56,9 @@ class easyFancyBox {
 	/**
 	 * ACTIONS & FILTERS
 	 */
-
-	public static function enqueue_scripts()
-	{
+	public static function enqueue_scripts() {
 		// Make sure whe actually need to do anything.
-		if ( ! self::do_scripts() ){
+		if ( ! self::do_scripts() ) {
 			return;
 		}
 
@@ -111,13 +116,13 @@ class easyFancyBox {
 		}
 
 		// Inline styles.
-		if ( !empty( self::$inline_styles ) ) {
+		if ( ! empty( self::$inline_styles ) ) {
 			foreach ( self::$inline_styles as $handle => $data ) {
 				if ( function_exists( 'wp_add_inline_style' ) && ! get_option( 'fancybox_pre45Compat', false ) ) {
 					wp_add_inline_style( $handle, $data );
 				} else {
 					// Do it the old way.
-					add_action( 'wp_head', function() use ( $data ) { print( '<style id="fancybox-inline-css" type="text/css">' . $data . '</style>' ); }, self::priority() );
+					add_action( 'wp_head', function () use ( $data ) { print( '<style id="fancybox-inline-css" type="text/css">' . $data . '</style>' ); }, self::priority() );
 				}
 			}
 		} else {
@@ -184,7 +189,7 @@ class easyFancyBox {
 	public static function extend()
 	{
 		self::$script_version = get_option( 'fancybox_scriptVersion', 'classic' );
-		if ( ! array_key_exists( self::$script_version, FANCYBOX_VERSIONS ) ) {
+		if ( ! array_key_exists( self::$script_version, self::$fancybox_versions ) ) {
 			self::$script_version = 'classic';
 		}
 
