@@ -2,7 +2,6 @@
 - test Jetpack Boost Critical CSS conflict
 
 TODO 1.9.6
-- drop array constant (requires PHP 7+)
 - test/fix Ninjaforms + recaptcha
 - allow titles for inline content
 - move styles to footer
