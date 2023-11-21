@@ -7,12 +7,10 @@
  * Domain Path: languages
  * Version: 1.9.6-beta2
  * Requires at least: 4.6
- * Requires PHP: 7.0
+ * Requires PHP: 5.6
  * Author: RavanH
  * Author URI: http://status301.net/
- */
-
-/**
+ *
  * Copyright 2023 RavanH
  * https://status301.net/
  * mailto: ravanhagen@gmail.com
@@ -25,6 +23,8 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
+ *
+ * @package Easy FancyBox
  */
 
 defined( 'ABSPATH' ) || exit;
