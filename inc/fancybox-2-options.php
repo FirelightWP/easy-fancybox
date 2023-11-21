@@ -409,6 +409,14 @@ $efb_options = array(
 				),
 			),
 
+			'Texts' => array( // TODO make these optional.
+				'options' => array(
+					'txt' => array(
+						'default' => '{{texts}}',
+					),
+				),
+			),
+
 			'Miscellaneous' => array(
 				'title' => esc_html__( 'Miscellaneous', 'easy-fancybox' ),
 				'input' => 'multiple',

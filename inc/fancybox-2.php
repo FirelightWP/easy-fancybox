@@ -1,6 +1,6 @@
 <?php
 /**
- * FancyBox v1
+ * FancyBox v2
  */
 
 namespace easyFancyBox\fancyBox_2;
@@ -58,8 +58,7 @@ function prepare_inline_scripts() {
 		}
 		if ( \get_option( 'fancybox_overlayColor2' ) ) {
 			$fb_opts['helpers']['overlay']['css'] = array(
-				'background' =>
-				\esc_attr( \get_option('fancybox_overlayColor2') )
+				'background' => \esc_attr( \get_option( 'fancybox_overlayColor2' ) ),
 			);
 		}
 	} else {
@@ -71,11 +70,11 @@ function prepare_inline_scripts() {
 		$fb_opts['helpers']['media'] = array();
 
 		// Null the unselected.
-		\get_option( 'fancybox_enableYoutube' )     || $fb_opts['helpers']['media']['youtube']     = null;
-		\get_option( 'fancybox_enableVimeo' )       || $fb_opts['helpers']['media']['vimeo']       = null;
+		\get_option( 'fancybox_enableYoutube' ) || $fb_opts['helpers']['media']['youtube'] = null;
+		\get_option( 'fancybox_enableVimeo' ) || $fb_opts['helpers']['media']['vimeo'] = null;
 		\get_option( 'fancybox_enableDailymotion' ) || $fb_opts['helpers']['media']['dailymotion'] = null;
-		\get_option( 'fancybox_enableInstagram' )   || $fb_opts['helpers']['media']['instagram']   = null;
-		\get_option( 'fancybox_enableGoogleMaps' )  || $fb_opts['helpers']['media']['google_maps'] = null;
+		\get_option( 'fancybox_enableInstagram' ) || $fb_opts['helpers']['media']['instagram'] = null;
+		\get_option( 'fancybox_enableGoogleMaps' ) || $fb_opts['helpers']['media']['google_maps'] = null;
 	}
 
 	$fb_opts = apply_filters( 'easy_fancybox_fb_opts', $fb_opts );
@@ -223,15 +222,15 @@ function prepare_inline_scripts() {
 				}
 			}
 			if ( isset( $value['options']['titleFromAlt'] ) && \get_option( $value['options']['titleFromAlt']['id'] ) ) {
-				$bind_parameters['beforeShow'] = '{{titleFromAlt}}'; //;
+				$bind_parameters['beforeShow'] = '{{titleFromAlt}}';
 			}
 		} else {
 			$bind_parameters['helpers'] = array( 'title' => null );
 		}
 
-		// Iframe
+		// Iframe.
 		if ( isset( $value['options']['allowFullScreen'] ) && ! \get_option( $value['options']['allowFullScreen']['id'], $value['options']['allowFullScreen']['default'] ) ) {
-			$bind_parameters['iframe'] = array( 'allowfullscreen' => false ); //;
+			$bind_parameters['iframe'] = array( 'allowfullscreen' => false );
 		}
 
 		// Keys.
@@ -260,8 +259,10 @@ function prepare_inline_scripts() {
 	}
 
 	// Build script.
-	$script = 'var fb_timeout,fb_opts=' . \json_encode( $fb_opts, JSON_NUMERIC_CHECK ) . ',' . PHP_EOL .
-	          'easy_fancybox_handler=easy_fancybox_handler||' . $fb_handler . '' . PHP_EOL;
+	$script = 'var fb_timeout,fb_opts=' . \json_encode( $fb_opts, JSON_NUMERIC_CHECK ) . ',' . PHP_EOL . 'easy_fancybox_handler=easy_fancybox_handler||' . $fb_handler . '' . PHP_EOL;
+
+	// Replace texts.
+	$script = str_replace( '"{{texts}}"', '{error:{content:"' . esc_attr__( 'The requested content cannot be loaded. Please try again later.', 'easy-fancybox' ) . '",image:"' . esc_attr__( 'The requested image cannot be loaded. Please try again later.', 'easy-fancybox' ) . '",href:"' . esc_attr__( 'Missing media target URL. Please contact the site administrator.', 'easy-fancybox' ) . '",type:"' . esc_attr__( 'No content type found. Please contact the site administrator.', 'easy-fancybox' ) . '",ajax:"' . esc_attr__( 'An AJAX error occurred. Please contact the site administrator.', 'easy-fancybox' ) . '",},loading:"' . esc_attr__( 'Cancel', 'easy-fancybox' ) . '",close:"' . esc_attr__( 'Close', 'easy-fancybox' ) . '",next:"' . esc_attr__( 'Next', 'easy-fancybox' ) . '",prev:"' . esc_attr__( 'Previous', 'easy-fancybox' ) . '"}', $script );
 
 	if ( empty( $delayClick ) ) $delayClick = '0';
 
@@ -300,8 +301,8 @@ function prepare_inline_scripts() {
 	$script = \apply_filters( 'easy_fancybox_inline_script', $script );
 
 	\easyFancyBox::$inline_scripts['jquery-fancybox'] = array(
-		'data' => $script,
-		'position' => 'after'
+		'data'     => $script,
+		'position' => 'after',
 	);
 }
 

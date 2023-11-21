@@ -170,6 +170,7 @@ Bugfix release.
 * FIX: version 1.5 focus issue
 * FIX: version 1.5 iframe proportion issue
 * NEW: easy_fancybox_do_scripts filter
+* Multilingual support for Classic and fancyBox2
 
 = 1.9.5 =
 * FIX: ARIA attributes

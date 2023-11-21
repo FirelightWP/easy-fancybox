@@ -5,7 +5,7 @@
  * Description: Easily enable the FancyBox jQuery light box on all media file links. Also supports iframe, inline content and well known video hosts.
  * Text Domain: easy-fancybox
  * Domain Path: languages
- * Version: 1.9.6-beta2
+ * Version: 1.9.6-beta3
  * Requires at least: 4.6
  * Requires PHP: 5.6
  * Author: RavanH
@@ -33,7 +33,7 @@ defined( 'ABSPATH' ) || exit;
  * CONSTANTS
  */
 
-define( 'EASY_FANCYBOX_VERSION', '1.9.6-beta2' );
+define( 'EASY_FANCYBOX_VERSION', '1.9.6-beta3' );
 define( 'EASY_FANCYBOX_DIR', __DIR__ );
 define( 'EASY_FANCYBOX_BASENAME', plugin_basename( __FILE__ ) );
 

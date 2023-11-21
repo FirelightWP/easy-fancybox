@@ -47,7 +47,7 @@
 		}
 
 		if ( typeof msg === 'undefined' ) {
-			msg = selectedOpts.txt.error.later;
+			msg = selectedOpts.txt.error.content;
 		}
 
 		selectedOpts.type = 'html';
@@ -56,7 +56,7 @@
 		selectedOpts.width = 'auto';
 		selectedOpts.height = 'auto';
 
-		tmp.html('<p id="fancybox-error">' + selectedOpts.txt.error.content + '<br />' + msg + '</p>');
+		tmp.html('<p id="fancybox-error">' + msg + '</p>');
 
 		_process_inline();
 	};
@@ -119,6 +119,9 @@
 			} else {
 				type = 'ajax';
 			}
+		} else {
+			_error(selectedOpts.txt.error.href);
+			return;
 		}
 
 		if (!type) {
@@ -299,7 +302,7 @@
 							}
 
 							if ( data.indexOf("<!DOCTYPE") > -1 || data.indexOf("<html") > -1 || data.indexOf("<body") > -1 ) {
-								_error(selectedOpts.txt.error.unexpected);
+								_error(selectedOpts.txt.error.ajax);
 							} else {
 								tmp.html(data);
 								_process_inline();
@@ -1188,11 +1191,11 @@
 
 		txt: {
 			error : {
-				content    : 'The requested content cannot be loaded.',
-				later      : 'Please try again later.',
-				type       : 'No content type found.',
-				image      : 'No image found.',
-				unexpected : 'Unexpected response.'
+				content : 'The requested content cannot be loaded. Please try again later.',
+				image   : 'The requested image cannot be loaded. Please try again later.',
+				href    : 'Missing media target URL. Please contact the site administrator.',
+				type    : 'No content type found. Please contact the site administrator.',
+				ajax    : 'An AJAX error occurred. Please contact the site administrator.'
 			},
 			loading : 'Cancel',
 			close   : 'Close',

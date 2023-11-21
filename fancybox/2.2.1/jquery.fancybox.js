@@ -148,20 +148,21 @@
 				close   : '<a title="{close}" class="fancybox-item fancybox-close" href="javascript:;"></a>',
 				next    : '<a title="{next}" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
 				prev    : '<a title="{prev}" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>',
-				loading : '<div id="fancybox-loading"><div></div></div>'
+				loading : '<div id="fancybox-loading" title="{loading}"><div></div></div>'
 			},
 
 			// Texts
 			txt: {
 				error : {
-					content : 'The requested content cannot be loaded.<br/>Please try again later.',
-					image   : 'The requested image cannot be loaded.<br/>Please try again later.',
-					ajax    : 'An AJAX error occurred.<br/>Please contact the site administrator.',
-					href    : 'Missing media target URL.<br/>Please contact the site administrator.',
+					content : 'The requested content cannot be loaded. Please try again later.',
+					image   : 'The requested image cannot be loaded. Please try again later.',
+					href    : 'Missing media target URL. Please contact the site administrator.',
+					ajax    : 'An AJAX error occurred. Please contact the site administrator.'
 				},
-				close : 'Close',
-				next  : 'Next',
-				prev  : 'Previous'
+				loading : 'Cancel',
+				close   : 'Close',
+				next    : 'Next',
+				prev    : 'Previous'
 			},
 
 			// Properties for each animation type
@@ -664,7 +665,7 @@
 
 			F.hideLoading();
 
-			el = $(F.opts.tpl.loading).on('click',F.cancel).appendTo('body');
+			el = $(F.opts.tpl.loading.replace(/\{loading\}/g, current.txt.loading)).on('click',F.cancel).appendTo('body');
 
 			// If user will press the escape-button, the request will be canceled
 			D.on('keydown.loading', function(e) {

@@ -12,7 +12,7 @@ TODO 2.0
 - v1.5 FIX close/navigation icons deforming when page is zoomed https://premium.status301.com/wp-admin/post.php?post=39529&action=edit
 - styles to header (backw compat) option?
 - consider: move (only selected) media helpers inline
-- add/test template error & text translations,
+- add/test template error & text translations as options,
 - make v2.2 spriteless (see 1.5),
 - v2.2 skip double gallery images (see 1.5)
 - v2.2 accesibility improvements (see 1.5)
