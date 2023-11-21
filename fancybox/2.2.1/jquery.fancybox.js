@@ -143,7 +143,7 @@
 				overlay : '<div class="fancybox-overlay"></div>',
 				wrap    : '<div class="fancybox-wrap" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"></div></div></div></div>',
 				image   : '<img class="fancybox-image" src="{href}" alt="" />',
-				iframe  : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" src="{href}" frameborder="0" vspace="0" hspace="0" allow="autoplay; encrypted-media; clipboard-write;"></iframe>',
+				iframe  : '<iframe id="fancybox-frame{rnd}" name="fancybox-frame{rnd}" class="fancybox-iframe" src="{href}" allow="autoplay; encrypted-media;"></iframe>',
 				error   : '<p class="fancybox-error">{error}</p>',
 				close   : '<a title="{close}" class="fancybox-item fancybox-close" href="javascript:;"></a>',
 				next    : '<a title="{next}" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
@@ -1810,7 +1810,7 @@
 
 			parent = F.coming ? F.coming.parent : opts.parent;
 
-			this.overlay = $(F.defaults.tpl.overlay).appendTo( parent && parent.length ? parent : 'body' );
+			this.overlay = $(F.opts.tpl.overlay).appendTo( parent && parent.length ? parent : 'body' );
 			this.fixed   = false;
 
 			if (opts.fixed && F.defaults.fixed) {

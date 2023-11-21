@@ -33,7 +33,7 @@ defined( 'ABSPATH' ) || exit;
  * CONSTANTS
  */
 
-define( 'EASY_FANCYBOX_VERSION', '1.9.6-beta1' );
+define( 'EASY_FANCYBOX_VERSION', '1.9.6-beta2' );
 define( 'EASY_FANCYBOX_DIR', __DIR__ );
 define( 'EASY_FANCYBOX_BASENAME', plugin_basename( __FILE__ ) );
 
