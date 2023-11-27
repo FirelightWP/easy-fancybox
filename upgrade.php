@@ -2,7 +2,7 @@
 /**
  * Easy FancyBox upgrade routines.
  *
- * Uses $old_version, EASY_FANCYBOX_PRO_VERSION
+ * Uses $old_version, EASY_FANCYBOX_VERSION
  *
  * @since 1.9.2
  */
