@@ -8,8 +8,8 @@ TODO 1.9.6
 
 TODO 2.0
 - FIX ajax forms inside 1.5 and 2.2 fail because of duplicate inline content... maybe replace with temp dummy content, not duplicate?
-- v2.2 FIX overlay scroll bar issue https://premium.status301.com/wp-admin/post.php?post=39529&action=edit
-- v1.5 FIX close/navigation icons deforming when page is zoomed https://premium.status301.com/wp-admin/post.php?post=39529&action=edit
+- v2.2 FIX overlay scroll bar issue https://efbpro.firelightwp.com/wp-admin/post.php?post=39529&action=edit
+- v1.5 FIX close/navigation icons deforming when page is zoomed https://efbpro.firelightwp.com/wp-admin/post.php?post=39529&action=edit
 - styles to header (backw compat) option?
 - consider: move (only selected) media helpers inline
 - add/test template error & text translations as options,

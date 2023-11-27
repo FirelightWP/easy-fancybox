@@ -33,8 +33,8 @@ Supported media and content types:
 Also supports:
 
 - WordPress Galleries (option "Link to" must be set to "Media File")
-- NextGEN galleries (see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/nextgen-gallery/))
-- Image maps (see [instructions](https://premium.status301.com/knowledge-base/easy-fancybox/image-maps/))
+- NextGEN galleries (see [instructions](https://firelightwp.com/wordpress-lightbox-docs/nextgen-gallery-and-easy-fancybox/))
+- Image maps (see [instructions](https://firelightwp.com/wordpress-lightbox-docs/image-maps-and-easy-fancybox/))
 - WordPress menu items (see [instructions in the FAQs](https://wordpress.org/plugins/easy-fancybox#can%20i%20make%20a%20menu%20item%20open%20in%20a%20fancybox%20overlay%20%3F))
 - Jetpack Infinite Scroll
 - WordPress Multsite (see Installation instructions)
@@ -48,7 +48,7 @@ Additional features:
 - Fade or Elastic popup effects
 - Styling options for light box overlay (color and opacity) and window (border size and color)
 
-For **advanced options** and **priority support**, there is a **[Pro extension](https://premium.status301.com/downloads/easy-fancybox-pro/)** available. See Pro features below.
+For **advanced options** and **priority support**, there is a **[Pro extension](https://firelightwp.com/easy-fancybox-pro/)** available. See Pro features below.
 
 See [FAQ's](https://wordpress.org/plugins/easy-fancybox/#faq) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay.
 
@@ -69,7 +69,7 @@ Visit [FancyBox](http://fancybox.net/) for more information and examples.
 - Show/hide image title on mouse hover
 - Fine-tune media link and gallery autodetection to match your theme source markup to allow galleries per post for example
 
-For these additional features, you need to install the **[Pro extension](https://premium.status301.com/downloads/easy-fancybox-pro/)** alongside this free plugin.
+For these additional features, you need to install the **[Pro extension](https://firelightwp.com/easy-fancybox-pro/)** alongside this free plugin.
 
 
 = Contribute =
@@ -80,7 +80,7 @@ If you wish to help build this plugin, you're very welcome to [translate Easy Fa
 
 = Known conflicts & issues =
 
-See [Easy FancyBox Troubleshooting](https://premium.status301.com/knowledge-base/easy-fancybox/troubleshooting/).
+See [Easy FancyBox Troubleshooting](https://firelightwp.com/wordpress-lightbox-docs/troubleshooting-easy-fancybox/).
 
 
 == Installation ==
@@ -142,12 +142,12 @@ There is no new settings page but there are many options you can change. You wil
 
 = Help! It does not work... =
 
-Please follow the [trouble shooting steps](https://premium.status301.com/knowledge-base/easy-fancybox/troubleshooting/) to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](https://wordpress.org/support/plugin/easy-fancybox) or go to the [development site](https://status301.net/wordpress-plugins/easy-fancybox/)
+Please follow the [trouble shooting steps](https://firelightwp.com/wordpress-lightbox-docs/troubleshooting-easy-fancybox/) to determine the cause. If that fails, ask for support on the [Easy FancyBox WordPress forum](https://wordpress.org/support/plugin/easy-fancybox) or go to the [development site](https://status301.net/wordpress-plugins/easy-fancybox/)
 
 
 = I have another question... =
 
-See the advanced [Easy FancyBox FAQ's](https://premium.status301.com/knowledge-base/easy-fancybox/faqs/).
+See the advanced [Easy FancyBox FAQ's](https://firelightwp.com/wordpress-lightbox-docs/).
 
 
 == Screenshots ==

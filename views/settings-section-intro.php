@@ -27,7 +27,7 @@ if ( ! class_exists('easyFancyBox_Advanced') ) { ?>
 	<strong>
 		<em>
 			<?php esc_html_e( 'Thank you for purchasing the Easy FancyBox - Pro extension. Your advanced options are available!', 'easy-fancybox' ); ?>
-			<a href="https://premium.status301.com/support-forums/forum/easy-fancybox-pro/">
+			<a href="https://efbpro.firelightwp.com/support/">
 				<?php esc_html_e( 'Get support here.', 'easy-fancybox' ); ?>
 			</a>
 		</em>
@@ -41,7 +41,7 @@ if ( self::$do_compat_warning ) { ?>
 	<?php esc_html_e( 'Notice: The current Easy FancyBox plugin version is not fully compatible with your version of the Pro extension. Some advanced options may not be functional.', 'easy-fancybox' ); ?>
 	<?php
 	if ( current_user_can( 'install_plugins' ) )
-		printf( esc_html__( 'Please download and install the latest %s.', 'easy-fancybox' ), '<a href="https://premium.status301.com/account/" target="_blank">' . esc_html__( 'Pro version', 'easy-fancybox' ) . '</a>' );
+		printf( esc_html__( 'Please download and install the latest %s.', 'easy-fancybox' ), '<a href="https://efbpro.firelightwp.com/account/" target="_blank">' . esc_html__( 'Pro version', 'easy-fancybox' ) . '</a>' );
 	else
 		esc_html_e( 'Please contact your web site administrator.', 'easy-fancybox' );
 	?>
