@@ -4,7 +4,7 @@
  */
 class easyFancyBox_Admin {
 
-	private static $compat_pro_min = '1.8';
+	private static $compat_pro_min = '1.9';
 
 	private static $do_compat_warning = false;
 
