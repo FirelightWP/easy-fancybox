@@ -19,8 +19,9 @@ class easyFancyBox_Admin {
  	}
 
 	/**
-	* Add options page
-	*/
+	 * TODO Add options page
+	 */
+	/*
 	public static function add_options_page()
 	{
 		// This page will be under "Settings".
@@ -106,7 +107,6 @@ class easyFancyBox_Admin {
 				)
 				);
 		} );
-
 	}
 
 	public static function help_tab()
@@ -129,9 +129,9 @@ class easyFancyBox_Admin {
 			'inline'      => get_option( 'fancybox_enableInline' )      ? esc_html__( 'Inline', 'easy-fancybox' )      : false,
 			'pdf'         => get_option( 'fancybox_enablePDF' )         ? esc_html__( 'PDF', 'easy-fancybox' )         : false,
 			'swf'         => get_option( 'fancybox_enableSWF' )         ? esc_html__( 'SWF', 'easy-fancybox' )         : false,
-			/*'video'       => get_option( 'fancybox_enableVideoPress' ) ||
+			'video'       => get_option( 'fancybox_enableVideoPress' ) ||
 			                 get_option( 'fancybox_enableYoutube' ) || get_option( 'fancybox_enableVimeo' ) ||
-							 get_option( 'fancybox_enableDailymotion' ) ? esc_html__( 'Video', 'easy-fancybox' )       : false,*/
+							 get_option( 'fancybox_enableDailymotion' ) ? esc_html__( 'Video', 'easy-fancybox' )       : false,
 			//'videopress'  => get_option( 'fancybox_enableVideoPress' )  ? esc_html__( 'VideoPress', 'easy-fancybox' )  : false,
 			'youtube'     => get_option( 'fancybox_enableYoutube' )     ? esc_html__( 'YouTube', 'easy-fancybox' )     : false,
 			'vimeo'       => get_option( 'fancybox_enableVimeo' )       ? esc_html__( 'Vimeo', 'easy-fancybox' )       : false,
@@ -148,8 +148,8 @@ class easyFancyBox_Admin {
 
 	public static function add_settings()
 	{
-		/** SECTIONS */
-		add_settings_section( 'easy_fancybox_general_section',    null, null, 'easy_fancybox_general' );
+		// SECTIONS
+		add_settings_section( 'easy_fancybox_general_section', null, null, 'easy_fancybox_general' );
 		//add_settings_section( 'easy_fancybox_appearance_section', null, null, 'easy_fancybox_appearance' );
 		//add_settings_section( 'easy_fancybox_behavior_section',   null, null, 'easy_fancybox_behavior' );
 
@@ -166,15 +166,14 @@ class easyFancyBox_Admin {
 		add_settings_section( 'easy_fancybox_googlemaps_section', null, null, 'easy_fancybox_googlemaps' );
 		add_settings_section( 'easy_fancybox_iframe_section', null, null, 'easy_fancybox_iframe' );
 
-		/** GENERAL */
+		// GENERAL
 		add_settings_field( 'fancybox_version', esc_html__( 'Version', 'easy-fancybox' ), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'easy_fancybox_general', 'easy_fancybox_general_section', array('label_for'=>'fancybox_scriptVersion') );
 		add_settings_field( 'fancybox_media',   esc_html__( 'Media', 'easy-fancybox' ),   function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-media.php'; },   'easy_fancybox_general', 'easy_fancybox_general_section' );
 
-		/** IMAGES */
+		// IMAGES
 		if ( get_option('fancybox_enableImg') ) {
 			add_settings_field( 'fancybox_auto', esc_html__( 'Autodetect', 'easy-fancybox' ), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-images-auto.php'; }, 'easy_fancybox_images', 'easy_fancybox_images_section', array('label_for'=>'fancybox_autoAttribute') );
 			//add_settings_field( 'fancybox_autolimit', esc_html__( 'Autodetect', 'easy-fancybox' ), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-images-auto-limit.php'; }, 'easy_fancybox_images', 'easy_fancybox_images_section', array('label_for'=>'fancybox_autoAttributeLimit') );
-
 		}
 	}
 
@@ -182,12 +181,12 @@ class easyFancyBox_Admin {
 	{
 		// Version.
 		register_setting( 'easy_fancybox_general', 'fancybox_scriptVersion',     array( 'default' => 'classic', 'sanitize_callback' => 'sanitize_text_field' ) );
+
 		// Media.
 		register_setting( 'easy_fancybox_general', 'fancybox_enableImg',         array( 'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableInline',      array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enablePDF',         array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableSWF',         array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
-		//register_setting( 'easy_fancybox_general', 'fancybox_enableVideoPress',  array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableYoutube',     array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableVimeo',       array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
 		register_setting( 'easy_fancybox_general', 'fancybox_enableDailymotion', array( 'default' => '', 'sanitize_callback' => 'boolval' ) );
@@ -198,29 +197,14 @@ class easyFancyBox_Admin {
 		// Images.
 		register_setting( 'easy_fancybox_images', 'fancybox_autoAttribute',      array( 'default' => '.jpg,.png,.webp', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
 		register_setting( 'easy_fancybox_images', 'fancybox_autoAttributeLimit', array( 'default' => '', 'sanitize_callback' => 'sanitize_text_field' ) );
-		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
-		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
-		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
-		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
-		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
-		//register_setting( 'easy_fancybox_images', 'fancybox_',      array( 'default' => '', 'sanitize_callback' => array( __CLASS__, 'csl_text' ) ) );
 
 		// Texts.
-		register_setting( 'media', 'fancybox_texts', array(
-			'type' => 'array',
-			'sanitize_callback' => array( __CLASS__, 'sanitize_texts' ),
-			'default' => array(),
-		) );
+		// TODO make text options for Classic + fb2...
 	}
+	*/
 
 	public static function register_media_settings()
 	{
-		/*if ( ! in_array( get_option( 'fancybox_scriptVersion', 'classic' ), array( 'classic', 'legacy' ) ) ) {
-			register_setting( 'media', 'easy_fancyboxEnabled', array( 'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1', 'sanitize_callback' => 'int' ) );
-			add_settings_field( 'easy_fancyboxEnabled', esc_html__('FancyBox','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-enable.php'; }, 'media', 'fancybox_section', array('label_for'=>'easy_fancyboxEnabled') );
-			return;
-		}*/
-
 		// Version.
 		add_settings_field( 'fancybox_scriptVersion', esc_html__('Version','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'media', 'fancybox_section', array('label_for'=>'fancybox_scriptVersion') );
 		register_setting( 'media', 'fancybox_scriptVersion', array(
@@ -231,16 +215,6 @@ class easyFancyBox_Admin {
 
 		// Parse options.
 		self::register_options( easyFancyBox::$options );
-
-		// Text strings.
-		// TODO for Classic + V2...
-		//add_settings_field( 'fancybox_texts', esc_html__( 'Texts','easy-fancybox'), function(){ include EASY_FANCYBOX_DIR . '/views/settings-field-version.php'; }, 'media', 'fancybox_section', array('label_for'=>'fancybox_scriptVersion') );
-		/*register_setting( 'media', 'fancybox_texts', array(
-			'type' => 'array',
-			'sanitize_callback' => array( __CLASS__, 'sanitize_texts' ),
-			'default' => array(),
-		) );*/
-
 	}
 
 	// Register settings from options array.
