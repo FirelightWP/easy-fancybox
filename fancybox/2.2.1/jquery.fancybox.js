@@ -665,7 +665,7 @@
 
 			F.hideLoading();
 
-			el = $(F.opts.tpl.loading.replace(/\{loading\}/g, current.txt.loading)).on('click',F.cancel).appendTo('body');
+			el = $(F.opts.tpl.loading.replace(/\{loading\}/g, F.coming.txt.loading)).on('click',F.cancel).appendTo('body');
 
 			// If user will press the escape-button, the request will be canceled
 			D.on('keydown.loading', function(e) {
