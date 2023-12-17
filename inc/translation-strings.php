@@ -164,7 +164,7 @@ __( 'An unkown error occurred. Please try again.', 'easy-fancybox' );
 sprintf( /* Translators: license error code, Support (linked) */
 	__( 'Unexpected license error code %1$s. Please try again or get %2$s.', 'easy-fancybox' ),
 	'<code>' . $error . '</code>',
-	'<a target="_blank" href="https://efbpro.firelightwp.com/support-ticket/">' . __( 'Support', 'easy-fancybox' ) . '</a>'
+	'<a target="_blank" href="https://firelightwp.com/contact/">' . __( 'Support', 'easy-fancybox' ) . '</a>'
 );
 sprintf( /* Translators: Plugin name */
 	__( 'You have not yet entered your license key for %s.', 'easy-fancybox' ),

@@ -27,7 +27,7 @@ if ( ! class_exists('easyFancyBox_Advanced') ) { ?>
 	<strong>
 		<em>
 			<?php esc_html_e( 'Thank you for purchasing the Easy FancyBox - Pro extension. Your advanced options are available!', 'easy-fancybox' ); ?>
-			<a href="https://efbpro.firelightwp.com/support/">
+			<a href="https://firelightwp.com/contact/">
 				<?php esc_html_e( 'Get support here.', 'easy-fancybox' ); ?>
 			</a>
 		</em>
