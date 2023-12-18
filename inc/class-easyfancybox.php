@@ -42,7 +42,7 @@ class easyFancyBox {
 
 	public static $events = array( 'post-load' );
 
-	public static $pro_plugin_url = "https://premium.status301.com/downloads/easy-fancybox-pro/";
+	public static $pro_plugin_url = "https://efbpro.firelightwp.com/downloads/easy-fancybox-pro/";
 
 	/**
 	 * ACTIONS & FILTERS
