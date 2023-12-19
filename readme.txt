@@ -1,11 +1,10 @@
 === Easy FancyBox ===
-Contributors: RavanH
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ravanhagen%40gmail%2ecom&item_name=Easy%20FancyBox
+Contributors: edanzer
 Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
 Requires at least: 3.3
 Requires PHP: 7.0
-Tested up to: 6.1
-Stable tag: 1.9.5
+Tested up to: 6.4.2
+Stable tag: 1.9.6
 
 Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe, inline content and well known video hosts.
 
@@ -76,7 +75,7 @@ For these additional features, you need to install the **[Pro extension](https:/
 
 If you're happy with this plugin as it is, please consider writing a quick [rating](https://wordpress.org/support/plugin/easy-fancybox/reviews/#new-post) or helping other users out on the [support forum](https://wordpress.org/support/plugin/easy-fancybox).
 
-If you wish to help build this plugin, you're very welcome to [translate Easy FancyBox into your language](https://translate.wordpress.org/projects/wp-plugins/easy-fancybox/) or contribute bug reports, feature suggestions and/or code on [Github](https://github.com/RavanH/easy-fancybox/).
+If you wish to help build this plugin, you're very welcome to [translate Easy FancyBox into your language](https://translate.wordpress.org/projects/wp-plugins/easy-fancybox/) or contribute bug reports, feature suggestions and/or code on [Github](https://github.com/edanzer/easy-fancybox/).
 
 = Known conflicts & issues =
 
@@ -159,11 +158,14 @@ See the advanced [Easy FancyBox FAQ's](https://premium.status301.com/knowledge-b
 
 == Upgrade Notice ==
 
-= 1.9.5 =
-
-Bugfix release.
+= 1.9.6 =
+Updates plugin to new author and website.
 
 == Changelog ==
+
+=1.9.6 =
+* Update author
+* Update links to new site
 
 =1.9.5 =
 * FIX: ARIA attributes
