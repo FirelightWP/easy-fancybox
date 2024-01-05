@@ -1,19 +1,19 @@
 <?php
 /*
 Plugin Name: Easy FancyBox
-Plugin URI: http://status301.net/wordpress-plugins/easy-fancybox/
+Plugin URI: https://firelightwp.com
 Description: Easily enable the FancyBox jQuery light box on all media file links. Also supports iframe, inline content and well known video hosts.
 Text Domain: easy-fancybox
 Domain Path: languages
-Version: 1.9.5
+Version: 1.9.6
 Author: RavanH
-Author URI: http://status301.net/
+Author URI: https://firelightwp.com
 */
 
 /**
- * Copyright 2022 RavanH
- * https://status301.net/
- * mailto: ravanhagen@gmail.com
+ * Copyright 2023 Reactr
+ * https://firelightwp.com
+ * mailto: support@firelightwp.com
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * CONSTANTS
  **************/
 
-define( 'EASY_FANCYBOX_VERSION', '1.9.5' );
+define( 'EASY_FANCYBOX_VERSION', '1.9.6' );
 define( 'FANCYBOX_VERSIONS', array(
 	'legacy'   => '1.3.28',
 	'classic'  => '1.5.4',

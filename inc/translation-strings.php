@@ -78,7 +78,7 @@ __( 'An active license key grants you access to plugin updates and support. If a
 sprintf( /* Translators: Plugin name, Status301 Premium account (linked) */
 	__( 'You can find your %1$s license key in your %2$s.', 'easy-fancybox' ),
 	__( 'Easy FancyBox Pro', 'easy-fancybox' ),
-	'<a href="https://premium.status301.com/account/" target="_blank">' . __( 'Status301 Premium account', 'easy-fancybox' ) . '</a>'
+	'<a href="https://efbpro.firelightwp.com/account/" target="_blank">' . __( 'Status301 Premium account', 'easy-fancybox' ) . '</a>'
 );
 __( 'License key', 'easy-fancybox' );
 __( 'Enter your license key.', 'easy-fancybox' );
@@ -164,7 +164,7 @@ __( 'An unkown error occurred. Please try again.', 'easy-fancybox' );
 sprintf( /* Translators: license error code, Support (linked) */
 	__( 'Unexpected license error code %1$s. Please try again or get %2$s.', 'easy-fancybox' ),
 	'<code>' . $error . '</code>',
-	'<a target="_blank" href="https://premium.status301.com/support-ticket/">' . __( 'Support', 'easy-fancybox' ) . '</a>'
+	'<a target="_blank" href="https://firelightwp.com/contact/">' . __( 'Support', 'easy-fancybox' ) . '</a>'
 );
 sprintf( /* Translators: Plugin name */
 	__( 'You have not yet entered your license key for %s.', 'easy-fancybox' ),
