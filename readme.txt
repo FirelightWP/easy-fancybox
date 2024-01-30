@@ -1,75 +1,59 @@
-=== Easy FancyBox ===
-Contributors: edanzer
-Tags: fancybox, lightbox, gallery, image, photo, video, overlay, youtube, vimeo, dailymotion, pdf, svg, iframe, jquery, webp
+=== Easy FancyBox - Lightbox Plugin for WordPress ===
+Contributors: firelightwp
+Tags: lightbox, modal, image, photo, video
 Requires at least: 3.3
 Requires PHP: 7.0
 Tested up to: 6.4.2
-Stable tag: 1.9.6
+Stable tag: 1.9.7
 
-Easily enable the FancyBox light box on just about all media links. Multi-Site compatible. Supports iframe, inline content and well known video hosts.
+The most popular lightbox plugin for WordPress. Adds a simple, fast lightbox for viewing images, videos, and other media.
 
 == Description ==
 
-Easy FancyBox plugin for WordPress websites gives you a flexible and aesthetic light box solution for just about all media links on your website. Easy FancyBox uses an updated version of the traditional FancyBox jQuery extension and is WP 3+ Multi-Site compatible. After activation you can find a new section **FancyBox** on your **Settings > Media** admin page where you can manage the media light box options.
+Easy FancyBox is the **most popular lighbox plugin for WordPress**, active on over 200,000 WordPress installations. It adds a lightweight and flexible lightbox for viewing images and other media on your website.
 
-After activation, all links to **JPG, GIF and PNG images** are automatically opened in the [FancyBox](http://fancybox.net/) Mac/Gnome-style lightbox that floats over the web page.
+After activation, links to images, galleries, and other media will be automatically opened in a new lightbox that floats over the web page.
 
-**GDPR / EU Privacy**
-
-This plugin does not collect any data and does not set any browser cookies. However, the PRO version offers an option to disable the automatic popup after the first visit, which needs a browser cookie. This cookie stores the visitors first website visit timestamp and path on the client side. It is not shared nor is any data stored server side or elsewhere.
-
-**FEATURES**
-
-Supported media and content types:
-
-- All common image formats _including_ webp
-- Hosted video on **Youtube**, **Vimeo** _and_ **Dailmotion**
-- PDF files (embed with object tag, in iframe or in external Google Docs Viewer)
-- SVG media images (thanks to Simon Maillard)
-- Inline HTML content (see [instructions in the FAQs](https://firelightwp.com/wordpress-lightbox-docs/#inline-content))
-- External web pages (see [instructions in the FAQs](https://firelightwp.com/wordpress-lightbox-docs/#web-pages))
-
-Also supports:
-
-- WordPress Galleries (option "Link to" must be set to "Media File")
-- NextGEN galleries (see [instructions](https://firelightwp.com/wordpress-lightbox-docs/nextgen-gallery-and-easy-fancybox/))
-- Image maps (see [instructions](https://firelightwp.com/wordpress-lightbox-docs/image-maps-and-easy-fancybox/))
-- WordPress menu items (see [instructions in the FAQs](https://firelightwp.com/wordpress-lightbox-docs/#menu-item-open))
-- Jetpack Infinite Scroll
-- WordPress Multsite (see Installation instructions)
-
-Additional features:
-
-- Modal window option (see [instructions in the FAQs](https://firelightwp.com/wordpress-lightbox-docs/#modal-window))
-- Automatic detection of media file links
+**LIGHTBOX FEATURES**
+- Automatic detection of images
 - Automatic detection of galleries
-- Popup on page load optional (see [instructions in the FAQs](https://firelightwp.com/wordpress-lightbox-docs/#popup-on-page-load))
-- Fade or Elastic popup effects
-- Styling options for light box overlay (color and opacity) and window (border size and color)
-
-For **advanced options** and **priority support**, there is a **[Pro extension](https://firelightwp.com/easy-fancybox-pro/)** available. See Pro features below.
+- Customize options for Lightbox appearance, style, and behavior
+- Opens all common image formats including webp and svg
+- Opens WordPress core galleries ("Link to" must be set to "Media File")
+- Opens videos from Youtube, Vimeo, and Dailmotion
+- Opens PDF files (embed with object tag, iframe, external Google Docs Viewer)
+- Opens NextGEN galleries ([instructions](https://firelightwp.com/wordpress-lightbox-docs/nextgen-gallery-and-easy-fancybox/))
+- Opens content from external web pages ([instructions](https://firelightwp.com/wordpress-lightbox-docs/#web-pages))
+- Create easy modals and popup boxes ([instructions](https://firelightwp.com/wordpress-lightbox-docs/#modal-window))
+- Open image maps ([instructions](https://firelightwp.com/wordpress-lightbox-docs/image-maps-and-easy-fancybox/))
+- Open lightbox from WordPress menu items ([instructions](https://firelightwp.com/wordpress-lightbox-docs/#menu-item-open))
+- Support for Jetpack Infinite Scroll
+- Support for WordPress Multsite (see Installation instructions)
 
 See [FAQ's](https://firelightwp.com/wordpress-lightbox-docs/) for instructions to manage YouTube, Dailymotion and Vimeo movies (and similar services) and tips to make inline content display in a FancyBox overlay.
 
 Get support on the [Easy FancyBox web page](https://firelightwp.com/) or [WordPress forum](https://wordpress.org/support/plugin/easy-fancybox).
 
-Visit [FancyBox](http://fancybox.net/) for more information and examples.
+**PRO LIGHTBOX FEATURES**
 
-**PRO FEATURES**
+For **advanced options** and **priority support**, there is a **[pro lighbox plugin extension](https://firelightwp.com/easy-fancybox-pro/)** available. See Pro lightbox features below.
 
-- Priority support on dedicated forum
+- Priority support
 - Slideshow effect for galleries (autorotation)
 - Spotlight effect for the light box overlay
 - FacetWP, Gravity Forms and TablePress compatibility
-- More styling options: rounded corners, inline content background and text colors
+- More lightbox styling options: rounded corners, inline content background and text colors
 - More automatic popup options: triggered by URL hash, first link by media type, hide popup after first visit
 - Pass dedicated light box setting per media link via link class (see [Metadata instructions](https://firelightwp.com/wordpress-lightbox-docs/pro-meta-data-how-to-use-different-parameters-per-link/))
 - More elastic (easing) popup effects on open and close
 - Show/hide image title on mouse hover
 - Fine-tune media link and gallery autodetection to match your theme source markup to allow galleries per post for example
 
-For these additional features, you need to install the **[Pro extension](https://firelightwp.com/easy-fancybox-pro/)** alongside this free plugin.
+For these additional features, you need to install the **[Pro lightbox plugin](https://firelightwp.com/easy-fancybox-pro/)** alongside the free lightbox plugin.
 
+**GDPR / EU Privacy**
+
+This plugin does not collect any data and does not set any browser cookies. However, the PRO version offers an option to disable the automatic popup after the first visit, which needs a browser cookie. This cookie stores the visitors first website visit timestamp and path on the client side. It is not shared nor is any data stored server side or elsewhere.
 
 = Contribute =
 
@@ -158,14 +142,18 @@ See the advanced [Easy FancyBox FAQ's](https://firelightwp.com/wordpress-lightbo
 
 == Upgrade Notice ==
 
-= 1.9.6 =
-Updates plugin to new author and website.
+= 1.9.7 =
+Updates author, readme, plugin meta.
 
 == Changelog ==
 
+= 1.9.7 =
+* First small release by FirelightWP
+* Updated author, readme, plugin meta
+
 =1.9.6 =
-* Update author
-* Update links to new site
+* Updated author
+* Updated links to new site
 
 =1.9.5 =
 * FIX: ARIA attributes
