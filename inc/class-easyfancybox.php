@@ -214,7 +214,7 @@ class easyFancyBox {
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-legacy.php';
 				// Load defaults.
 				if ( empty( self::$options ) ) {
-					include EASY_FANCYBOX_DIR . '/inc/fancybox-legacy-options.php';
+					include EASY_FANCYBOX_DIR . '/inc/fancybox-options.php';
 					self::$options = $efb_options;
 				}
 				// Check for any enabled sections to set the scripts flag.
@@ -232,7 +232,7 @@ class easyFancyBox {
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-2.php';
 				// Load defaults.
 				if ( empty( self::$options ) ) {
-					include EASY_FANCYBOX_DIR . '/inc/fancybox-2-options.php';
+					include EASY_FANCYBOX_DIR . '/inc/fancybox-options.php';
 					self::$options = $efb_options;
 				}
 				// Check for any enabled sections to set the scripts flag.
@@ -255,7 +255,7 @@ class easyFancyBox {
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-classic.php';
 				// Load defaults.
 				if ( empty( self::$options ) ) {
-					include EASY_FANCYBOX_DIR . '/inc/fancybox-classic-options.php';
+					include EASY_FANCYBOX_DIR . '/inc/fancybox-options.php';
 					self::$options = $efb_options;
 				}
 				// Check for any enabled sections to set the scripts flag.
