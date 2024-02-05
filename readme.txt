@@ -3,7 +3,7 @@ Contributors: firelightwp
 Tags: lightbox, gallery, image, photo, modal
 Requires at least: 3.3
 Requires PHP: 7.0
-Tested up to: 6.4.2
+Tested up to: 6.4.3
 Stable tag: 1.9.8
 
 The most popular lightbox plugin for WordPress. Adds a simple, fast lightbox for viewing images, videos, and other media.
