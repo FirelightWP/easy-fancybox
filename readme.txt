@@ -1,6 +1,6 @@
-=== Easy FancyBox - Lightbox Plugin for WordPress ===
+=== Lightbox - Easy FancyBox ===
 Contributors: firelightwp
-Tags: lightbox, modal, image, photo, video
+Tags: lightbox, gallery, image, photo, modal
 Requires at least: 3.3
 Requires PHP: 7.0
 Tested up to: 6.4.2
