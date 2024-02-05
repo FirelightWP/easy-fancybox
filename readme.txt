@@ -1,7 +1,7 @@
 === Lightbox - Easy FancyBox ===
 Contributors: firelightwp
 Tags: lightbox, gallery, image, photo, modal
-Requires at least: 3.3
+Requires at least: 5.0
 Requires PHP: 7.0
 Tested up to: 6.4.3
 Stable tag: 1.9.8
