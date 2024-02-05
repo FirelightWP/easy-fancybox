@@ -143,12 +143,14 @@ See the advanced [Easy FancyBox FAQ's](https://firelightwp.com/wordpress-lightbo
 == Upgrade Notice ==
 
 = 1.9.8 =
-Removes unused scripts and files.
+Removes unused scripts and files
+Updates WordPress required version to 5.0
 
 == Changelog ==
 
 = 1.9.8 =
-* Removed unused scripts and files.
+* Removed unused scripts and files
+* Updated WordPress required version to 5.0
 
 = 1.9.7 =
 * First small release by FirelightWP
