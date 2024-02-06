@@ -81,6 +81,99 @@ if ( version_compare( $old_version, '0', '>' ) && version_compare( $old_version,
 	update_option( 'fancybox_overlayColor2', $color2 );
 }
 
+/**
+ * Set approximate activation date based on version.
+ * This will be very inaccurate as many will
+ * have already updated to most recent version.
+ * But it will allow us to catch at least some data.
+ */
+$date = new DateTimeImmutable( date('Y-m-d') );
+switch ( $old_version ) {
+	case '1.7':
+		$date = new DateTimeImmutable( "2018-04-15" );
+		break;
+	case '1.7.1':
+		$date = new DateTimeImmutable( "2018-04-24" );
+		break;
+	case '1.8':
+		$date = new DateTimeImmutable( "2018-05-11" );
+		break;
+	case '1.8.2':
+		$date = new DateTimeImmutable( "2018-05-11" );
+		break;
+	case '1.8.3':
+		$date = new DateTimeImmutable( "2018-06-01" );
+		break;
+	case '1.8.4':
+		$date = new DateTimeImmutable( "2018-06-15" );
+			break;
+	case '1.8.5':
+		$date = new DateTimeImmutable( "2018-08-01" );
+		break;
+	case '1.8.6':
+		$date = new DateTimeImmutable( "2018-09-01" );
+		break;
+	case '1.8.7':
+		$date = new DateTimeImmutable( "2018-09-10" );
+		break;
+	case '1.8.8':
+		$date = new DateTimeImmutable( "2018-10-01" );
+			break;
+	case '1.8.9':
+		$date = new DateTimeImmutable( "2018-12-14" );
+		break;
+	case '1.8.10':
+		$date = new DateTimeImmutable( "2018-12-28" );
+		break;
+	case '1.8.11':
+		$date = new DateTimeImmutable( "2019-01-18" );
+		break;
+	case '1.8.12':
+		$date = new DateTimeImmutable( "2019-01-22" );
+			break;
+	case '1.8.13':
+		$date = new DateTimeImmutable( "2019-04-05" );
+		break;
+	case '1.8.15':
+		$date = new DateTimeImmutable( "2019-05-05" );
+		break;
+	case '1.8.16':
+		$date = new DateTimeImmutable( "2019-05-27" );
+		break;
+	case '1.8.17':
+		$date = new DateTimeImmutable( "2019-09-16" );
+		break;
+	case '1.8.18':
+		$date = new DateTimeImmutable( "2022-10-12" );
+		break;
+	case '1.8.19':
+		$date = new DateTimeImmutable( "2022-10-13" );
+		break;
+	case '1.9':
+		$date = new DateTimeImmutable( "2022-10-14" );
+			break;
+	case '1.9.1':
+		$date = new DateTimeImmutable( "2022-10-15" );
+		break;
+	case '1.9.2':
+		$date = new DateTimeImmutable( "2022-10-17" );
+		break;
+	case '1.9.3':
+		$date = new DateTimeImmutable( "2023-08-31" );
+		break;
+	case '1.9.5':
+		$date = new DateTimeImmutable( "2024-01-08" );
+		break;
+	default:
+		$date = new DateTimeImmutable( date('Y-m-d') );
+}
+
+if ( ! class_exists( 'easyFancyBox_Admin' ) ) {
+	require_once EASY_FANCYBOX_DIR . '/inc/class-easyfancybox-admin.php';
+}
+$date_as_string = $date->format( 'Y-m-d' );
+easyFancyBox_Admin::save_date( $date_as_string );
+
 // Save new version.
 update_option( 'easy_fancybox_version', EASY_FANCYBOX_VERSION );
 

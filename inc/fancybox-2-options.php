@@ -538,7 +538,7 @@ Default value:
 				'input' => 'text',
 				'class' => 'regular-text',
 				'hide' => true,
-				'default' => '.jpg,.png,.webp',
+				'default' => '.jpg,.png,.webp,.jpeg',
 				'sanitize_callback' => 'csl_text',
 				'selector' => 'href*=',
 				'description' => esc_html__('A comma-separated list of image file extensions to which FancyBox should automatically bind itself.','easy-fancybox') . ' <em>' . esc_html__('Example:','easy-fancybox') . ' .jpg,.png,.gif,.jpeg</em><br />'

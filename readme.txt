@@ -1,10 +1,10 @@
-=== Lightbox - Easy FancyBox ===
+=== Easy FancyBox - WordPress Lightbox Plugin ===
 Contributors: firelightwp
 Tags: lightbox, gallery, image, photo, modal
 Requires at least: 5.0
 Requires PHP: 7.0
 Tested up to: 6.4.3
-Stable tag: 1.9.8
+Stable tag: 1.9.9
 
 The most popular lightbox plugin for WordPress. Adds a simple, fast lightbox for viewing images, videos, and other media.
 
@@ -142,11 +142,14 @@ See the advanced [Easy FancyBox FAQ's](https://firelightwp.com/wordpress-lightbo
 
 == Upgrade Notice ==
 
-= 1.9.8 =
-Removes unused scripts and files
-Updates WordPress required version to 5.0
+= 1.9.9 =
+Adds .jpeg autodetect and activation timestamp
 
 == Changelog ==
+
+= 1.9.9 =
+* Added .jpeg to autodetect extensions
+* Added plugin activation timestamp
 
 = 1.9.8 =
 * Removed unused scripts and files
