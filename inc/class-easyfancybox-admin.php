@@ -511,6 +511,27 @@ class easyFancyBox_Admin {
 
 	}
 
+	public static function save_date( $date_to_set = null ) {
+		$date = get_option( 'easy_fancybox_date' );
+
+		// Date has already been set in the past
+		if ( $date ) {
+			return;
+		}
+
+		// Method is being called from upgrade routine with date provided
+		if ( $date_to_set ) {
+			update_option( 'easy_fancybox_date', $date_to_set );
+			return;
+		}
+
+		// Method is being called in this file, not upgrade.
+		// Best we can do is set it to now.
+		$now = new DateTimeImmutable( date( 'Y-m-d' ) );
+		$now_as_string = $now->format( 'Y-m-d' );
+		update_option( 'easy_fancybox_date', $now_as_string );
+	}
+
 	/**
 	 * RUN
 	 */
@@ -533,5 +554,7 @@ class easyFancyBox_Admin {
 
 		add_action( 'admin_init', array(__CLASS__, 'register_media_settings') );
 		add_action( 'admin_init', array(__CLASS__, 'add_media_settings_section') );
+
+		add_action( 'wp_loaded', array(__CLASS__, 'save_date' ) );
 	}
 }
