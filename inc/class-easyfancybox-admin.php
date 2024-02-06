@@ -4,7 +4,7 @@
  */
 class easyFancyBox_Admin {
 
-	private static $screen_id;
+	private static $screen_id = 'toplevel_page_lightbox-settings';
 
 	private static $compat_pro_min = '1.8';
 
@@ -21,6 +21,7 @@ class easyFancyBox_Admin {
 		// Admin notices.
 		add_action( 'admin_init',     array(__CLASS__, 'compat_warning') );
 		add_action( 'admin_notices',  array(__CLASS__, 'admin_notice') );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
 
 		// Plugin action links.
 		add_filter( 'plugin_action_links_'.EASY_FANCYBOX_BASENAME, array(__CLASS__, 'add_action_link') );
@@ -32,6 +33,21 @@ class easyFancyBox_Admin {
 		add_action( 'admin_menu', array(__CLASS__, 'add_options_page') );
 
 		add_action( 'wp_loaded', array(__CLASS__, 'save_date' ) );
+	}
+
+	/**
+	 * Enqueue admin styles and scripts
+	 */
+	public static function enqueue_scripts( $hook ) {
+		if ( self::$screen_id === $hook ) {
+			$css_file = easyFancyBox::$plugin_url . 'inc/admin.css';
+			wp_enqueue_style( 'firelight-css' );
+			wp_register_style( 'firelight-css', $css_file, false, EASY_FANCYBOX_VERSION );
+			
+			$js_file = easyFancyBox::$plugin_url . 'inc/admin.js';
+			wp_register_script( 'firelight-js', $js_file, array( 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
+			wp_enqueue_script( 'firelight-js' );
+		}
 	}
 
 	/**
@@ -54,6 +70,7 @@ class easyFancyBox_Admin {
 	 */
 	public static function options_page() {
 		echo '<h2>LIGHTBOX SETTINGS</h2>';
+		echo '<h4>Settings for the Easy Fancybox Lightbox plugin.</h4>';
 		echo '<form method="post" action="options.php">';
 
 		do_settings_sections( 'lightbox-settings' );
@@ -123,9 +140,13 @@ class easyFancyBox_Admin {
 	public static function add_settings_sections() {
 		add_settings_section(
 			'lightbox-general-settings-section', // Section ID
-			'', // Section title
+			'General Lightbox Settings', // Section title
 			null, // Callback for section heading
-			'lightbox-settings' // Page ID
+			'lightbox-settings', // Page ID
+			array(
+				'before_section' => '<div class="general-settings-section settings-section">',
+				'after_section'  => '</div>',
+			)
 		);
 
 		$lightboxes = array( 'legacy', 'classic', 'fancybox2' );
@@ -133,14 +154,15 @@ class easyFancyBox_Admin {
 
 		foreach ( $lightboxes as $lightbox ) {
 			foreach ( $sections as $section ) {
-				$title = 'FancyBox ' . ucfirst( $lightbox ) . ': ' . ucfirst( $section ) . ' Settings';
+				$lightboxCapitalized = 'fancybox2' === $lightbox ? 'FancyBox 2' : ucfirst( $lightbox );
+				$title = $lightboxCapitalized . ' Lightbox: ' . ucfirst( $section );
 				add_settings_section(
 					$lightbox . '-' . $section . '-settings-section', // Section ID
 					$title, // Section title
 					null, // Callback for section heading
 					'lightbox-settings', // Page ID
 					array(
-						'before_section' => '<div class="' . $lightbox . ' ' . $section . '-settings-section">',
+						'before_section' => '<div class="' . $lightbox . ' ' . $section . '-settings-section settings-section sub-settings-section">',
 						'after_section'  => '</div>',
 					)
 				);
@@ -168,19 +190,16 @@ class easyFancyBox_Admin {
 
 
 		// Add FB Legacy settings fields
-		// include EASY_FANCYBOX_DIR . '/inc/fancybox-legacy-options.php';
 		$legacy_options = $efb_options;
 		$legacy_options_filtered = self::filter_fb_options( $legacy_options, 'legacy' );
 		self::add_settings_fields_recursively( $legacy_options_filtered, 'legacy' );
 
 		// Add FB Class settings fields
-		// include EASY_FANCYBOX_DIR . '/inc/fancybox-classic-options.php';
 		$classic_options = $efb_options;
 		$classic_options_filtered = self::filter_fb_options( $classic_options, 'classic' );
 		self::add_settings_fields_recursively( $classic_options_filtered, 'classic' );
 
 		// Add FB V2 settings fields
-		// include EASY_FANCYBOX_DIR . '/inc/fancybox-2-options.php';
 		$fancybox2_options = $efb_options;
 		$fancybox2_options_filtered = self::filter_fb_options( $fancybox2_options, 'fancybox2' );
 		$fancybox2_options_renamed = self::rename_fb2_options( $fancybox2_options_filtered );
@@ -274,7 +293,7 @@ class easyFancyBox_Admin {
 	 */
 	public static function add_settings_fields_recursively( $options_to_filter, $script_version ) {
 		// First foreach cycles through Global, IMG, Inline, PDF
-		foreach ( $options_to_filter as $option_cateogry_key => $option_category ) {
+		foreach ( $options_to_filter as $option_category_key => $option_category ) {
 
 			// We need to go through Global[options], IMG[options], etc
 			// Second foreach through Global[options], IMG[options], etc
@@ -301,7 +320,7 @@ class easyFancyBox_Admin {
 					} elseif ( array_key_exists( 'id', $option ) ) {
 						$id = $option['id'];
 						$title = $option['title'] ?? 'MISSING';
-						$section = strtolower( $option_cateogry_key );
+						$section = strtolower( $option_category_key );
 						add_settings_field(  
 							$id, // Setting ID              
 							$title, // Setting label
@@ -338,11 +357,6 @@ class easyFancyBox_Admin {
 					break;
 
 				case 'select':
-					if ( ! empty( $args['label_for'] ) ) {
-						$output[] = '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
-					} else {
-						$output[] = $args['title'];
-					}
 					$output[] = '<select name="'.$args['id'].'" id="'.$args['id'].'">';
 					foreach ( $args['options'] as $optionkey => $optionvalue ) {
 						$output[] = '<option value="'.esc_attr( $optionkey ).'"'. selected( get_option( $args['id'], $args['default'] ) == $optionkey, true, false ) .' '. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' >'.$optionvalue.'</option>';
@@ -358,27 +372,11 @@ class easyFancyBox_Admin {
 					break;
 
 				case 'checkbox':
-					if ( ! empty($args['label_for']) ) {
-						$output[] = '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
-					} else {
-						if ( isset($args['title']) ) {
-							$output[] = $args['title'];
-						}
-					}
-					if ( empty($args['label_for']) ) {
-						$output[] = '<label><input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '. checked( get_option( $args['id'], $args['default'] ), true, false ) .' '. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> '.$args['description'].'</label><br />';
-					} else {
-						$output[] = '<input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '. checked( get_option( $args['id'], $args['default'] ), true, false ) .' '. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> '.$args['description'].'<br />';
-					}
+					$output[] = '<input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '. checked( get_option( $args['id'], $args['default'] ), true, false ) .' '. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> '.$args['description'].'<br />';
 					break;
 
 				case 'text':
 				case 'color': // TODO make color picker available for color values but do NOT use type="color" because that does not allow empty fields!
-					if ( ! empty( $args['label_for'] ) ) {
-						$output[] = '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
-					} else {
-						$output[] = $args['title'];
-					}
 					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
@@ -390,11 +388,6 @@ class easyFancyBox_Admin {
 					break;
 
 				case 'number':
-					if ( ! empty( $args['label_for'] ) ) {
-						$output[] = '<label for="'.$args['label_for'].'">'.$args['title'].'</label> ';
-					} else {
-						$output[] = $args['title'];
-					}
 					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';

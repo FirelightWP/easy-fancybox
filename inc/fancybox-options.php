@@ -21,105 +21,117 @@ $efb_options = array (
 					),
 					'IMG' => array (
 						'id' => 'fancybox_enableImg',
+						'title' => __( 'Enable for Images','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1',
-						'description' => '<strong>' . esc_html__( 'Images', 'easy-fancybox' ) . '</strong>' . ( get_option('fancybox_enableImg') ? ' &mdash; <a href="#IMG">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__( 'Images', 'easy-fancybox' ) . '</strong>' . ( get_option('fancybox_enableImg') ? ' &mdash; <a href="#IMG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Inline' => array (
 						'id' => 'fancybox_enableInline',
+						'title' => __( 'Enable for Inline Content','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . esc_html__( 'Inline content', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableInline') ? ' &mdash; <a href="#Inline">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__( 'Inline content', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableInline') ? ' &mdash; <a href="#Inline">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'PDF' => array (
 						'id' => 'fancybox_enablePDF',
+						'title' => __( 'Enable for PDFs','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . esc_html__( 'PDF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enablePDF') ? ' &mdash; <a href="#PDF">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__( 'PDF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enablePDF') ? ' &mdash; <a href="#PDF">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'SWF' => array (
 						'id' => 'fancybox_enableSWF',
+						'title' => __( 'Enable for SWFs','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
 						'exclude' => array( 'classic', 'fancybox2' ),
-						'description' => '<strong>' . esc_html__( 'SWF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSWF') ? ' &mdash; <a href="#SWF">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__( 'SWF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSWF') ? ' &mdash; <a href="#SWF">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'SVG' => array (
 						'id' => 'fancybox_enableSVG',
+						'title' => __( 'Enable for SVGs','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . esc_html__( 'SVG', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSVG') ? ' &mdash; <a href="#SVG">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__( 'SVG', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSVG') ? ' &mdash; <a href="#SVG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'VideoPress' => array (
 						'id' => '',
+						'title' => __( 'Enable for VideoPress','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
 						'status' => 'disabled',
-						'description' => '<strong>' . esc_html__( 'VideoPress', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
+						// 'description' => '<strong>' . esc_html__( 'VideoPress', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 					'YouTube' => array (
 						'id' => 'fancybox_enableYoutube',
+						'title' => __( 'Enable for Youtube','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . esc_html__( 'YouTube', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableYouTube') ? ' &mdash; <a href="#YouTube">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__( 'YouTube', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableYouTube') ? ' &mdash; <a href="#YouTube">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Vimeo' => array (
 						'id' => 'fancybox_enableVimeo',
+						'title' => __( 'Enable for Vimeo','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . esc_html__( 'Vimeo', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableVimeo') ? ' &mdash; <a href="#Vimeo">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__( 'Vimeo', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableVimeo') ? ' &mdash; <a href="#Vimeo">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Dailymotion' => array (
 						'id' => 'fancybox_enableDailymotion',
+						'title' => __( 'Enable for Dailymotion','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . esc_html__( 'Dailymotion', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableDailymotion') ? ' &mdash; <a href="#Dailymotion">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__( 'Dailymotion', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableDailymotion') ? ' &mdash; <a href="#Dailymotion">' . translate( 'Settings' ) . '</a>' : '' )
 					),
-					'Instagram' => array (
-						'id' => 'fancybox_enableInstagram',
-						'input' => 'checkbox',
-						'sanitize_callback' => 'wp_validate_boolean',
-						'hide' => true,
-						'status' => 'disabled',
-						'default' => '',
-						'exclude' => array( 'classic', 'legacy' ),
-						'description' => '<strong>' . esc_html__( 'Instagram', 'easy-fancybox' ) . '</strong>' . ' ' . '<em>' . esc_html__('Under development','easy-fancybox') . '</em>'
-					),
+					// 'Instagram' => array (
+					// 	'id' => 'fancybox_enableInstagram',
+					// 	'title' => __( 'Enable for Images','easy-fancybox' ),
+					// 	'input' => 'checkbox',
+					// 	'sanitize_callback' => 'wp_validate_boolean',
+					// 	'hide' => true,
+					// 	'status' => 'disabled',
+					// 	'default' => '',
+					// 	'exclude' => array( 'classic', 'legacy' ),
+					// 'description' => '<strong>' . esc_html__( 'Instagram', 'easy-fancybox' ) . '</strong>' . ' ' . '<em>' . esc_html__('Under development','easy-fancybox') . '</em>'
+					// ),
 					'GoogleMaps' => array (
 						'id' => 'fancybox_enableGoogleMaps',
+						'title' => __( 'Enable for Google Maps','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'status' => 'disabled',
 						'default' => '',
 						'exclude' => array( 'classic', 'legacy' ),
-						'description' => '<strong>' . esc_html__( 'Google Maps', 'easy-fancybox' ) . '</strong>' . ' ' . '<em>' . esc_html__('Under development','easy-fancybox') . '</em>'
+						// 'description' => '<strong>' . esc_html__( 'Google Maps', 'easy-fancybox' ) . '</strong>' . ' ' . '<em>' . esc_html__('Under development','easy-fancybox') . '</em>'
 					),
 					'iFrame' => array (
 						'id' => 'fancybox_enableiFrame',
+						'title' => __( 'Enable for iFrames','easy-fancybox' ),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => '<strong>' . esc_html__('iFrames','easy-fancybox') . '</strong>' . '</strong>' . ( get_option('fancybox_enableiFrame') ? ' &mdash; <a href="#iFrame">' . translate( 'Settings' ) . '</a>' : '' )
+						// 'description' => '<strong>' . esc_html__('iFrames','easy-fancybox') . '</strong>' . '</strong>' . ( get_option('fancybox_enableiFrame') ? ' &mdash; <a href="#iFrame">' . translate( 'Settings' ) . '</a>' : '' )
 					)
 				),
 				'description' => ''
@@ -156,7 +168,7 @@ $efb_options = array (
 						'step' => '0.1',
 						'min' => '0',
 						'max' => '1',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => esc_html__('Value between 0 and 1. ','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 0.7</em><br />'
 					),
@@ -166,7 +178,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_overlayColor',
 						'input' => 'text',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'colorval' ),
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => esc_html__('Enter an HTML color value.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' #777</em><br />'
 					),
@@ -179,7 +191,7 @@ $efb_options = array (
 						'exclude' => array( 'classic', 'legacy' ),
 						'hide' => true,
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'colorval' ),
-						'class' => '',
+						// 'class' => '',
 						'default' => '',
 						'description' => esc_html__('Enter an RGBA color value.','easy-fancybox') . ' <em>' . esc_html__('Example:','easy-fancybox') . ' rgba(119,119,119,0.7)</em><br />'
 					),
@@ -220,7 +232,7 @@ $efb_options = array (
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
 						'status' => 'disabled',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => ''
 					),
@@ -232,7 +244,7 @@ $efb_options = array (
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
 						'status' => 'disabled',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 					),
@@ -243,7 +255,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_titleColor',
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => ''
 					),
@@ -254,7 +266,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_paddingColor',
 						'input' => 'text',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'colorval' ),
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => '<em>' . esc_html__('Default:','easy-fancybox')  . ' #000 x #fff</em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Use RGBA notation for semi-transparent borders.','easy-fancybox') . ' <em>' . esc_html__('Example:','easy-fancybox') . ' rgba(10,10,30,0.7)</em><br />'
 					),
@@ -269,7 +281,7 @@ $efb_options = array (
 						'max' => '99',
 						'sanitize_callback' => 'intval',
 						'status' => 'disabled',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em><br />'
 					),
@@ -284,7 +296,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_width',
 						'input' => 'text',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => ' '
 					),
@@ -294,7 +306,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_height',
 						'input' => 'text',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 					),
 					// TODO: minWidth minHeight maxWidth maxHeight
@@ -307,7 +319,7 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '100',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 					),
 					'margin' => array (
@@ -319,7 +331,7 @@ $efb_options = array (
 						'min' => '20',
 						'max' => '80',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '20',
 					),
 
@@ -393,7 +405,7 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '6000',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 					),
 					'speedOut' => array (
@@ -406,9 +418,9 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '6000',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
-						'description' => '<br />' . esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 300</em><br />'
+						'description' => esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 300</em><br />'
 					),
 					'mouseWheel' => array (
 						'id' => 'fancybox_mouseWheel',
@@ -453,7 +465,7 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '1000',
 						'description' => ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 1000</em><br />'
 					),
@@ -493,7 +505,7 @@ $efb_options = array (
 						'min' => '320',
 						'max' => '900',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => '<em>' . esc_html__('Default:','easy-fancybox') . ' 320</em><br />'
 					),
@@ -507,7 +519,7 @@ $efb_options = array (
 						'max' => '900',
 						'exclude' => array( 'classic', 'legacy' ),
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '',
 						'description' => '<em>' . esc_html__('Default:','easy-fancybox') . ' 320</em><br />'
 					),
@@ -544,7 +556,7 @@ $efb_options = array (
 						'min' => '-99',
 						'max' => '999',
 						'sanitize_callback' => 'intval',
-						'class' => 'small-text',
+						// 'class' => 'small-text',
 						'default' => '10',
 						'description' => esc_html__('Default priority is 10.','easy-fancybox') . ' ' . esc_html__('Higher is later.','easy-fancybox') . '<br/>'
 					),
@@ -887,9 +899,9 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '6000',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '',
-				'description' => '<br />' . esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 250</em><br /><br />'
+				'description' => esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 250</em><br /><br />'
 			),
 			'changeFade' => array (
 				'id' => 'fancybox_changeFade',
@@ -901,9 +913,9 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '6000',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '',
-				'description' => '<br />' . esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 300</em><br /><br />'
+				'description' => esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 300</em><br /><br />'
 			),
 			'autoSelector' => array (
 				'id' => 'fancybox_autoSelector',
@@ -931,9 +943,9 @@ $efb_options = array (
 				'min' => '3000',
 				'max' => '12000',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '',
-				'description' => '<br />' . esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 3000</em><br /><br />'
+				'description' => esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 3000</em><br /><br />'
 			)
 		)
 	),
@@ -1113,7 +1125,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_PDFwidth',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '90%',
 				'description' => ' '
 			),
@@ -1123,7 +1135,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_PDFheight',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '90%'
 			),
 			'padding' => array (
@@ -1135,7 +1147,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '10',
 				'description' => '<br /><br />'
 			),
@@ -1234,7 +1246,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_SWFWidth',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'options' => array(),
 				'default' => '680',
 				'description' => ' '
@@ -1245,7 +1257,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_SWFHeight',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'options' => array(),
 				'default' => '495',
 			),
@@ -1258,7 +1270,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '0',
 				'description' => '<br /><br />'
 			),
@@ -1333,7 +1345,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_SVGWidth',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'options' => array(),
 				'default' => '680',
 				'description' => ' '
@@ -1344,7 +1356,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_SVGHeight',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'options' => array(),
 				'default' => '495',
 			),
@@ -1357,7 +1369,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '0',
 				'description' => '<br /><br />'
 			),
@@ -1469,7 +1481,7 @@ $efb_options = array (
 				'min' => '420',
 				'max' => '1500',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '640',
 				'description' => ' '
 			),
@@ -1482,7 +1494,7 @@ $efb_options = array (
 				'min' => '315',
 				'max' => '900',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '360',
 			),
 			'padding' => array (
@@ -1494,7 +1506,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '0',
 				'description' => '<br /><br />'
 			),
@@ -1603,7 +1615,7 @@ $efb_options = array (
 				'min' => '400',
 				'max' => '1500',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '500',
 				'description' => ' '
 			),
@@ -1616,7 +1628,7 @@ $efb_options = array (
 				'min' => '225',
 				'max' => '900',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '281'
 			),
 			'padding' => array (
@@ -1628,7 +1640,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '0',
 				'description' => '<br /><br />'
 			),
@@ -1735,7 +1747,7 @@ $efb_options = array (
 				'min' => '320',
 				'max' => '1500',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '560',
 				'description' => ' '
 			),
@@ -1748,7 +1760,7 @@ $efb_options = array (
 				'min' => '180',
 				'max' => '900',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '315'
 			),
 			'padding' => array (
@@ -1760,7 +1772,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '0',
 				'description' => '<br /><br />'
 			),
@@ -1879,7 +1891,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_iFramewidth',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '70%',
 				'description' => ' '
 			),
@@ -1889,7 +1901,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_iFrameheight',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '90%',
 			),
 			'padding' => array (
@@ -1901,7 +1913,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				'class' => 'small-text',
+				// 'class' => 'small-text',
 				'default' => '0',
 				'description' => '<br /><br />'
 			),
