@@ -2,12 +2,18 @@
 	max-width: 90%;
 }
 
+.toplevel_page_lightbox-settings .firelight-logo {
+	max-width: 200px;
+    margin-top: 20px;
+}
+
 .toplevel_page_lightbox-settings .general-settings-section {
 	margin-bottom: 40px;
 }
 
 .toplevel_page_lightbox-settings .general-settings-section h2 {
 	font-size: 20px;
+	margin-top: 20px !important;
 }
 
 .toplevel_page_lightbox-settings .active-lightbox-heading {
@@ -23,8 +29,35 @@
 	margin-top: 40px;
 }
 
+.toplevel_page_lightbox-settings .sub-settings-section h2 {
+	background: #2271b1;
+	border-radius: 2px;
+	color: white;
+	font-size: 15px;
+	margin-bottom: 0;
+	margin-top: 8px;
+	padding: 12px 14px;
+}
+
+.toplevel_page_lightbox-settings .sub-settings-section h2:after {
+	content: '\25bc';
+    float: right;
+    font-size: 16px;
+}
+
+.toplevel_page_lightbox-settings .settings-section.active h2:after {
+	content: '\25b2';
+}
+
 .toplevel_page_lightbox-settings  .sub-settings-section table {
-    border-left: 3px solid gray;
+    border: 1px solid #ddd;
+	border-top: none;
+	display: none;
+	margin-top: 0;
+}
+
+.toplevel_page_lightbox-settings  .sub-settings-section.active table {
+	display: table;
 }
 
 .toplevel_page_lightbox-settings tr:nth-of-type(even) {
@@ -45,4 +78,18 @@
 .toplevel_page_lightbox-settings input[type=number],
 .toplevel_page_lightbox-settings input[type=text] {
 	width: 160px;
+}
+
+.toplevel_page_lightbox-settings .pro-button {
+	background: #ff5722;
+	border-radius: 3px;
+    color: white;
+	font-weight: 600;
+	font-style: normal;
+    font-size: 12px;
+	margin-left: 10px;
+    padding: 6px 12px;
+    text-decoration: none;
+    text-transform: uppercase;
+	cursor: pointer;
 }

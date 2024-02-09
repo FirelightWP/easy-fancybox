@@ -6,7 +6,7 @@ domReady( function () {
 	lightboxVersionSelect.addEventListener( 'change', () => showActiveLightboxSettings() );
 
 	/**
-	 * Method to update UI for active lightobx.
+	 * Method to show settings UI for active lightobx.
 	 *  - Update subheading to active lighbox.
 	 *  - Show settings for active lightbox.
 	 *  - Hide settings for other lightboxes.
@@ -22,6 +22,7 @@ domReady( function () {
 		const newSubHeading = document.createElement( 'h2' );
 		newSubHeading.classList.add( 'active-lightbox-heading' );
 		newSubHeading.innerHTML = 'Settings for ' + activeLightboxTitle + ' Lightbox';
+		newSubHeading.innerHTML = activeLightboxTitle + ' Settings';
 		generalSettingsSection.after( newSubHeading );
 
 		// Show settings only for active lightbox
@@ -30,4 +31,13 @@ domReady( function () {
 		activeLightboxSections.forEach( el => el.classList.remove( 'hide' ) );
 		inactiveLightboxSections.forEach( el => el.classList.add( 'hide' ) );
 	}
+
+	/**
+	 * Hide/show setting sub-section on click
+	 */
+	const sectionHeadings = document.querySelectorAll( '.sub-settings-section h2' );
+	sectionHeadings.forEach( el => el.addEventListener( 'click', ( event ) => {
+		currentSection = event.target.parentElement;
+		currentSection.classList.toggle( 'active' );
+	} ) );
 } );

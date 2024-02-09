@@ -69,8 +69,10 @@ class easyFancyBox_Admin {
 	 * Render the content of the Lightbox Settings page.
 	 */
 	public static function options_page() {
-		echo '<h2>LIGHTBOX SETTINGS</h2>';
-		echo '<h4>Settings for the Easy Fancybox Lightbox plugin.</h4>';
+		echo '<img class="firelight-logo" src="' . easyFancyBox::$plugin_url . 'images/firelight-logo.png">';
+
+		echo '<p>' . __( 'Easy FancyBox is now the Firelight Lightbox. Learn More.' ) . '</p>';
+
 		echo '<form method="post" action="options.php">';
 
 		do_settings_sections( 'lightbox-settings' );
@@ -140,7 +142,7 @@ class easyFancyBox_Admin {
 	public static function add_settings_sections() {
 		add_settings_section(
 			'lightbox-general-settings-section', // Section ID
-			'General Lightbox Settings', // Section title
+			'Easy Fancybox General Settings', // Section title
 			null, // Callback for section heading
 			'lightbox-settings', // Page ID
 			array(
@@ -156,6 +158,9 @@ class easyFancyBox_Admin {
 			foreach ( $sections as $section ) {
 				$lightboxCapitalized = 'fancybox2' === $lightbox ? 'FancyBox 2' : ucfirst( $lightbox );
 				$title = $lightboxCapitalized . ' Lightbox: ' . ucfirst( $section );
+				$title = 'fancybox2' === $lightbox
+					? 'FancyBox 2: ' . ucfirst( $section )
+					: 'FancyBox ' . ucfirst( $lightbox ) . ': ' . ucfirst( $section );
 				add_settings_section(
 					$lightbox . '-' . $section . '-settings-section', // Section ID
 					$title, // Section title
