@@ -5,19 +5,19 @@
 
 $efb_options = array (
 	'Global' => array(
-		'title' => esc_html__('Global settings','easy-fancybox'),
+		'title' => __('Global settings','easy-fancybox'),
 		'backwardcompatible' => true, // Marks older Pro version compatibility.
 		'input' => 'deep',
 		'hide' => true,
 		'options' => array(
 			'Enable' => array (
-				'title' => esc_html__('Media','easy-fancybox'),
+				'title' => __('Media','easy-fancybox'),
 				'input' => 'multiple',
 				'hide' => true,
 				'options' => array(
 					'p1' => array (
 						'hide' => true,
-						'description' => esc_html__('Enable FancyBox for','easy-fancybox') . '<br />'
+						'description' => __('Enable FancyBox for','easy-fancybox') . '<br />'
 					),
 					'IMG' => array (
 						'id' => 'fancybox_enableImg',
@@ -26,7 +26,6 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => ( function_exists( 'is_plugin_active_for_network' ) && is_plugin_active_for_network( EASY_FANCYBOX_BASENAME ) ) ? '' : '1',
-						// 'description' => '<strong>' . esc_html__( 'Images', 'easy-fancybox' ) . '</strong>' . ( get_option('fancybox_enableImg') ? ' &mdash; <a href="#IMG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Inline' => array (
 						'id' => 'fancybox_enableInline',
@@ -35,7 +34,6 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						// 'description' => '<strong>' . esc_html__( 'Inline content', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableInline') ? ' &mdash; <a href="#Inline">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'PDF' => array (
 						'id' => 'fancybox_enablePDF',
@@ -44,7 +42,6 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						// 'description' => '<strong>' . esc_html__( 'PDF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enablePDF') ? ' &mdash; <a href="#PDF">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'SWF' => array (
 						'id' => 'fancybox_enableSWF',
@@ -54,7 +51,6 @@ $efb_options = array (
 						'hide' => true,
 						'default' => '',
 						'exclude' => array( 'classic', 'fancybox2' ),
-						// 'description' => '<strong>' . esc_html__( 'SWF', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSWF') ? ' &mdash; <a href="#SWF">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'SVG' => array (
 						'id' => 'fancybox_enableSVG',
@@ -63,7 +59,6 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						// 'description' => '<strong>' . esc_html__( 'SVG', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableSVG') ? ' &mdash; <a href="#SVG">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'VideoPress' => array (
 						'id' => '',
@@ -73,7 +68,6 @@ $efb_options = array (
 						'hide' => true,
 						'default' => '',
 						'status' => 'disabled',
-						// 'description' => '<strong>' . esc_html__( 'VideoPress', 'easy-fancybox' ) . '</strong>' . ' ' . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
 					),
 					'YouTube' => array (
 						'id' => 'fancybox_enableYoutube',
@@ -82,7 +76,6 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						// 'description' => '<strong>' . esc_html__( 'YouTube', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableYouTube') ? ' &mdash; <a href="#YouTube">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Vimeo' => array (
 						'id' => 'fancybox_enableVimeo',
@@ -91,7 +84,6 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						// 'description' => '<strong>' . esc_html__( 'Vimeo', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableVimeo') ? ' &mdash; <a href="#Vimeo">' . translate( 'Settings' ) . '</a>' : '' )
 					),
 					'Dailymotion' => array (
 						'id' => 'fancybox_enableDailymotion',
@@ -100,19 +92,7 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						// 'description' => '<strong>' . esc_html__( 'Dailymotion', 'easy-fancybox' ) . '</strong>' . '</strong>' . ( get_option('fancybox_enableDailymotion') ? ' &mdash; <a href="#Dailymotion">' . translate( 'Settings' ) . '</a>' : '' )
 					),
-					// 'Instagram' => array (
-					// 	'id' => 'fancybox_enableInstagram',
-					// 	'title' => __( 'Enable for Images','easy-fancybox' ),
-					// 	'input' => 'checkbox',
-					// 	'sanitize_callback' => 'wp_validate_boolean',
-					// 	'hide' => true,
-					// 	'status' => 'disabled',
-					// 	'default' => '',
-					// 	'exclude' => array( 'classic', 'legacy' ),
-					// 'description' => '<strong>' . esc_html__( 'Instagram', 'easy-fancybox' ) . '</strong>' . ' ' . '<em>' . esc_html__('Under development','easy-fancybox') . '</em>'
-					// ),
 					'GoogleMaps' => array (
 						'id' => 'fancybox_enableGoogleMaps',
 						'title' => __( 'Enable for Google Maps','easy-fancybox' ),
@@ -122,7 +102,6 @@ $efb_options = array (
 						'status' => 'disabled',
 						'default' => '',
 						'exclude' => array( 'classic', 'legacy' ),
-						// 'description' => '<strong>' . esc_html__( 'Google Maps', 'easy-fancybox' ) . '</strong>' . ' ' . '<em>' . esc_html__('Under development','easy-fancybox') . '</em>'
 					),
 					'iFrame' => array (
 						'id' => 'fancybox_enableiFrame',
@@ -131,149 +110,145 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						// 'description' => '<strong>' . esc_html__('iFrames','easy-fancybox') . '</strong>' . '</strong>' . ( get_option('fancybox_enableiFrame') ? ' &mdash; <a href="#iFrame">' . translate( 'Settings' ) . '</a>' : '' )
 					)
 				),
 				'description' => ''
 			),
 			'Overlay' => array (
-				'title' => esc_html__('Overlay','easy-fancybox'),
+				'title' => __('Overlay','easy-fancybox'),
 				'input' => 'multiple',
 				'hide' => true,
 				'options' => array(
 					'overlayShow' => array (
 						'id' => 'fancybox_overlayShow',
+						'title' => __('Show overlay','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'noquotes' => true,
 						'fancybox2_hide' => true,
 						'default' => '1',
-						'description' => esc_html__('Show the overlay around content opened in FancyBox.','easy-fancybox')
+						'description' => __('Show the overlay around content opened in FancyBox.','easy-fancybox')
 					),
 					'hideOnOverlayClick' => array (
 						'id' => 'fancybox_hideOnOverlayClick',
+						'title' => __('Close on click','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'noquotes' => true,
 						'fancybox2_hide' => true,
 						'default' => '1',
-						'description' => esc_html__('Close FancyBox when overlay is clicked.','easy-fancybox')
+						'description' => __('Close FancyBox when overlay is clicked.','easy-fancybox')
 					),
 					'overlayOpacity' => array (
 						'id' => 'fancybox_overlayOpacity',
-						'title' => esc_html__('Opacity','easy-fancybox'),
+						'title' => __('Opacity','easy-fancybox'),
 						'label_for' => 'fancybox_overlayOpacity',
 						'input' => 'number',
 						'sanitize_callback' => 'intval',
 						'step' => '0.1',
 						'min' => '0',
 						'max' => '1',
-						// 'class' => 'small-text',
 						'default' => '',
-						'description' => esc_html__('Value between 0 and 1. ','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 0.7</em><br />'
+						'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em>'
 					),
 					'overlayColor' => array (
 						'id' => 'fancybox_overlayColor',
-						'title' => esc_html__('Color','easy-fancybox'),
+						'title' => __('Color','easy-fancybox'),
 						'label_for' => 'fancybox_overlayColor',
 						'input' => 'text',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'colorval' ),
-						// 'class' => 'small-text',
 						'default' => '',
-						'description' => esc_html__('Enter an HTML color value.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' #777</em><br />'
+						'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em>'
 					),
 					'overlayColor2' => array (
 						'id' => 'fancybox_overlayColor2',
-						'title' => esc_html__('Color','easy-fancybox'),
+						'title' => __('Color','easy-fancybox'),
 						'label_for' => 'fancybox_overlayColor2',
 						'input' => 'text',
 						'fancybox2_name' => 'overlayColor',
 						'exclude' => array( 'classic', 'legacy' ),
 						'hide' => true,
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'colorval' ),
-						// 'class' => '',
 						'default' => '',
-						'description' => esc_html__('Enter an RGBA color value.','easy-fancybox') . ' <em>' . esc_html__('Example:','easy-fancybox') . ' rgba(119,119,119,0.7)</em><br />'
+						'description' => __('Enter an RGBA color value.','easy-fancybox') . ' <em>' . __('Example:','easy-fancybox') . ' rgba(119,119,119,0.7)</em>'
 					),
 					'overlaySpotlight' => array (
 						'id' => 'fancybox_overlaySpotlight',
+						'title' => __('Spotlight effect','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'status' => get_option('fancybox_overlaySpotlight') ? '' : 'disabled',
 						'default' => '',
-						'description' => esc_html__('Spotlight effect','easy-fancybox') . ( get_option('fancybox_overlaySpotlight') ? '' : '. <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') ) . '</a></em>'
+						'description' => __('Show gradient spotlight effect around image.','easy-fancybox') . '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
 					)
 				)
 			),
 			'Window' => array (
-				'title' => esc_html__('Window','easy-fancybox'),
+				'title' => __('Window','easy-fancybox'),
 				'input' => 'multiple',
 				'hide' => true,
 				'options' => array(
 					'p1' => array (
 						'hide' => true,
-						'description' => '<strong>' . esc_html__('Appearance','easy-fancybox') . '</strong><br />'
+						'description' => '<strong>' . __('Appearance','easy-fancybox') . '</strong><br />'
 					),
 					'showCloseButton' => array (
 						'id' => 'fancybox_showCloseButton',
+						'title' => __('Show close button','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'fancybox2_name' => 'closeBtn',
 						'noquotes' => true,
 						'default' => '1',
-						'description' => esc_html__('Show the (X) close button','easy-fancybox')
+						'description' => __('Show the (X) close button','easy-fancybox')
 					),
 					'backgroundColor' => array (
 						'id' => 'fancybox_backgroundColor',
 						'hide' => true,
-						'title' => esc_html__('Background color','easy-fancybox'),
+						'title' => __('Background color','easy-fancybox'),
 						'label_for' => 'fancybox_backgroundColor',
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
 						'status' => 'disabled',
-						// 'class' => 'small-text',
 						'default' => '',
 						'description' => ''
 					),
 					'textColor' => array (
 						'id' => 'fancybox_textColor',
 						'hide' => true,
-						'title' => esc_html__('Text color','easy-fancybox'),
+						'title' => __('Text color','easy-fancybox'),
 						'label_for' => 'fancybox_textColor',
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
 						'status' => 'disabled',
-						// 'class' => 'small-text',
 						'default' => '',
-						'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+						'description' => '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
 					),
 					'titleColor' => array (
 						'id' => 'fancybox_titleColor',
 						'hide' => true,
-						'title' => esc_html__('Title color','easy-fancybox'),
+						'title' => __('Title color','easy-fancybox'),
 						'label_for' => 'fancybox_titleColor',
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
-						// 'class' => 'small-text',
 						'default' => '',
 						'description' => ''
 					),
 					'paddingColor' => array (
 						'id' => 'fancybox_paddingColor',
 						'hide' => true,
-						'title' => esc_html__('Border color','easy-fancybox'),
+						'title' => __('Border color','easy-fancybox'),
 						'label_for' => 'fancybox_paddingColor',
 						'input' => 'text',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'colorval' ),
-						// 'class' => 'small-text',
 						'default' => '',
-						'description' => '<em>' . esc_html__('Default:','easy-fancybox')  . ' #000 x #fff</em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Use RGBA notation for semi-transparent borders.','easy-fancybox') . ' <em>' . esc_html__('Example:','easy-fancybox') . ' rgba(10,10,30,0.7)</em><br />'
+						'description' => '<em>' . __('Default:','easy-fancybox')  . ' #000 x #fff</em><br />' . __('Note:','easy-fancybox') . ' ' . __('Use RGBA notation for semi-transparent borders.','easy-fancybox') . ' <em>' . __('Example:','easy-fancybox') . ' rgba(10,10,30,0.7)</em>'
 					),
 					'borderRadius' => array (
 						'id' => 'fancybox_borderRadius',
 						'hide' => true,
-						'title' => esc_html__('Border radius','easy-fancybox'),
+						'title' => __('Border radius','easy-fancybox'),
 						'label_for' => 'fancybox_borderRadius',
 						'input' => 'number',
 						'step' => '1',
@@ -281,14 +256,13 @@ $efb_options = array (
 						'max' => '99',
 						'sanitize_callback' => 'intval',
 						'status' => 'disabled',
-						// 'class' => 'small-text',
 						'default' => '',
-						'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+						'description' => '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
 					),
 
 					'p11' => array (
 						'hide' => true,
-						'description' => '<br /><strong>' . esc_html__('Dimensions','easy-fancybox') . '</strong><br />'
+						'description' => '<br /><strong>' . __('Dimensions','easy-fancybox') . '</strong><br />'
 					),
 					'width' => array (
 						'id' => 'fancybox_width',
@@ -296,7 +270,6 @@ $efb_options = array (
 						'label_for' => 'fancybox_width',
 						'input' => 'text',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '',
 						'description' => ' '
 					),
@@ -306,7 +279,6 @@ $efb_options = array (
 						'label_for' => 'fancybox_height',
 						'input' => 'text',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '',
 					),
 					// TODO: minWidth minHeight maxWidth maxHeight
@@ -319,56 +291,26 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '100',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '',
 					),
 					'margin' => array (
 						'id' => 'fancybox_margin',
-						'title' => esc_html__('Margin','easy-fancybox'),
+						'title' => __('Margin','easy-fancybox'),
 						'label_for' => 'fancybox_margin',
 						'input' => 'number',
 						'step' => '1',
 						'min' => '20',
 						'max' => '80',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '20',
 					),
-
 					'p2' => array (
 						'hide' => true,
-						'description' => '<br /><strong>' . esc_html__('Behavior','easy-fancybox') . '</strong><br />'
+						'description' => '<br /><strong>' . __('Behavior','easy-fancybox') . '</strong><br />'
 					),
-					/* TODO: autoResize
-					/* TODO: Autocenter select box for always true, always false or default (!isTouch)
-					'autoCenter' => array (
-						'id' => 'fancybox_centerOnScroll',
-						'input' => 'checkbox',
-						'sanitize_callback' => 'wp_validate_boolean',
-						'default' => '!isTouch',
-						'description' => esc_html__('Center while scrolling (always disabled on touch devices and when content, including the title, might be larger than the viewport)','easy-fancybox')
-					),*/
-					/* TODO: Section to define keyboard keys for gallery navigation, closing and slideshow
-					Default value:
-					'keys' : {
-						next : {
-							13 : 'left', // enter
-							34 : 'up',   // page down
-							39 : 'left', // right arrow
-							40 : 'up'    // down arrow
-						},
-						prev : {
-							8  : 'right',  // backspace
-							33 : 'down',   // page up
-							37 : 'right',  // left arrow
-							38 : 'down'    // up arrow
-						},
-						close  : [27], // escape key
-						play   : [32], // space - start/stop slideshow
-						toggle : [70]  // letter "f" - toggle fullscreen
-					}*/
 					'centerOnScroll' => array (
 						'id' => 'fancybox_centerOnScroll',
+						'title' => __('Center on scroll','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'noquotes' => true,
@@ -378,26 +320,27 @@ $efb_options = array (
 					),
 					'enableEscapeButton' => array (
 						'id' => 'fancybox_enableEscapeButton',
+						'title' => __('Enable ESC key','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'noquotes' => true,
 						'fancybox2_hide' => true,
 						'default' => '1',
-						'description' => esc_html__('Esc key stroke closes FancyBox','easy-fancybox')
+						'description' => __('Esc key closes FancyBox','easy-fancybox')
 					),
-					/* TODO: topRatio leftRatio for centering adjustments. */
 					'autoScale' => array (
 						'id' => 'fancybox_autoScale',
+						'title' => __('Auto scale to fit','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'noquotes' => true,
 						'fancybox_name' => 'fitToView',
 						'default' => '1',
-						'description' => esc_html__('Scale large content down to fit in the browser viewport.','easy-fancybox')
+						'description' => __('Scale large content down to fit in the browser viewport.','easy-fancybox')
 					),
 					'speedIn' => array (
 						'id' => 'fancybox_speedIn',
-						'title' => esc_html__('Opening speed','easy-fancybox'),
+						'title' => __('Opening speed','easy-fancybox'),
 						'label_for' => 'fancybox_speedIn',
 						'input' => 'number',
 						'fancybox2_name' => 'openSpeed',
@@ -405,12 +348,11 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '6000',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '',
 					),
 					'speedOut' => array (
 						'id' => 'fancybox_speedOut',
-						'title' => esc_html__('Closing speed','easy-fancybox'),
+						'title' => __('Closing speed','easy-fancybox'),
 						'label_for' => 'fancybox_speedOut',
 						'input' => 'number',
 						'fancybox2_name' => 'closeSpeed',
@@ -418,46 +360,46 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '6000',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '',
-						'description' => esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 300</em><br />'
+						'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em>'
 					),
 					'mouseWheel' => array (
 						'id' => 'fancybox_mouseWheel',
+						'title' => __('Load mousewheel nav script','easy-fancybox'),
 						'hide' => true,
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'default' => '',
-						'description' => esc_html__('Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action.','easy-fancybox')
+						'description' => __('Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action.','easy-fancybox')
 					)
 				)
 			),
 			'Miscellaneous' => array (
-				'title' => esc_html__('Miscellaneous','easy-fancybox'),
+				'title' => __('Miscellaneous','easy-fancybox'),
 				'input' => 'multiple',
 				'hide' => true,
 				'options' => array(
 					'p0' => array (
 						'hide' => true,
-						'description' => '<strong>' . esc_html__('Auto popup','easy-fancybox') . '</strong><br />'
+						'description' => '<strong>' . __('Auto popup','easy-fancybox') . '</strong><br />'
 					),
 					'autoClick' => array (
 						'id' => 'fancybox_autoClick',
-						'title' => esc_html__('Open on page load','easy-fancybox'),
+						'title' => __('Open on page load','easy-fancybox'),
 						'label_for' => 'fancybox_autoClick',
 						'hide' => true,
 						'input' => 'select',
 						'options' => array(
 							'' => translate('None'),
-							'1' => esc_html__('Link with ID "fancybox-auto"','easy-fancybox'),
+							'1' => __('Link with ID "fancybox-auto"','easy-fancybox'),
 						),
 						'sanitize_callback' => 'wp_validate_boolean',
 						'default' => '1',
-						'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />'
+						'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em>'
 					),
 					'delayClick' => array (
 						'id' => 'fancybox_delayClick',
-						'title' => esc_html__('Delay in milliseconds','easy-fancybox'),
+						'title' => __('Delay in milliseconds','easy-fancybox'),
 						'label_for' => 'fancybox_delayClick',
 						'hide' => true,
 						'input' => 'number',
@@ -465,13 +407,12 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '1000',
-						'description' => ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 1000</em><br />'
+						'description' => ' <em>' . __('Default:','easy-fancybox')  . ' 1000</em>'
 					),
 					'jqCookie' => array (
 						'id' => '',
-						'title' => esc_html__('Hide popup after first visit?','easy-fancybox'),
+						'title' => __('Hide popup after first visit?','easy-fancybox'),
 						'hide' => true,
 						'input' => 'select',
 						'status' => 'disabled',
@@ -479,12 +420,12 @@ $efb_options = array (
 						'sanitize_callback' => 'intval',
 						'options' => array(
 							'0' => translate('No'),
-							'1' => esc_html__('1 Day','easy-fancybox'),
-							'7' => esc_html__('1 Week','easy-fancybox'),
-							'30' => esc_html__('1 Month','easy-fancybox'),
-							'365' => esc_html__('1 Year','easy-fancybox')
+							'1' => __('1 Day','easy-fancybox'),
+							'7' => __('1 Week','easy-fancybox'),
+							'30' => __('1 Month','easy-fancybox'),
+							'365' => __('1 Year','easy-fancybox')
 						),
-						'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+						'description' => '<a class="pro-button" href="' . easyFancyBox::$pro_plugin_url . '">' . __('Get Pro','easy-fancybox') . '</a>'
 					),
 					'cookiePath' => array (
 						'id' => '',
@@ -493,11 +434,11 @@ $efb_options = array (
 					),
 					'p1' => array (
 						'hide' => true,
-						'description' => '<br /><strong>' . esc_html__('Browser & device compatibility','easy-fancybox') . '</strong><br />'
+						'description' => '<br /><strong>' . __('Browser & device compatibility','easy-fancybox') . '</strong><br />'
 					),
 					'minViewportWidth' => array (
 						'id' => 'fancybox_minViewportWidth',
-						'title' => esc_html__('Minimum browser/device viewport width','easy-fancybox'),
+						'title' => __('Minimum browser/device viewport width','easy-fancybox'),
 						'label_for' => 'fancybox_minViewportWidth',
 						'input' => 'number',
 						'fancybox2_name' => 'minVpWidth',
@@ -505,13 +446,12 @@ $efb_options = array (
 						'min' => '320',
 						'max' => '900',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
-						'default' => '',
-						'description' => '<em>' . esc_html__('Default:','easy-fancybox') . ' 320</em><br />'
+						'default' => '320',
+						'description' => '<em>' . __('Default:','easy-fancybox') . ' 320</em>'
 					),
 					'minVpHeight' => array (
 						'id' => 'fancybox_minViewportHeight',
-						'title' => esc_html__('Minimum browser/device viewport height','easy-fancybox'),
+						'title' => __('Minimum browser/device viewport height','easy-fancybox'),
 						'label_for' => 'fancybox_minViewportHeight',
 						'input' => 'number',
 						'step' => '1',
@@ -519,18 +459,9 @@ $efb_options = array (
 						'max' => '900',
 						'exclude' => array( 'classic', 'legacy' ),
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '',
-						'description' => '<em>' . esc_html__('Default:','easy-fancybox') . ' 320</em><br />'
+						'description' => '<em>' . __('Default:','easy-fancybox') . ' 320</em><br />'
 					),
-/*					'forceNewtab' => array (
-						'id' => 'fancybox_forceNewtab',
-						'input' => 'checkbox',
-						'sanitize_callback' => 'wp_validate_boolean',
-						'hide' => true,
-						'default' => '1',
-						'description' => esc_html__('Make media links open in a new tab when viewport falls below minimum width (above)','easy-fancybox')
-					),*/
 					'compatIE8' => array (
 						'id' => 'fancybox_compatIE8',
 						'input' => 'checkbox',
@@ -538,17 +469,15 @@ $efb_options = array (
 						'hide' => true,
 						'default' => '',
 						'exclude' => array( 'classic', 'fancybox2' ),
-						'description' => esc_html__('Include IE 8 compatibility style rules','easy-fancybox')
+						'description' => __('Include IE 8 compatibility style rules','easy-fancybox')
 					),
 					'p2' => array (
 						'hide' => true,
-						'description' => '<br /><strong>' . esc_html__('Theme & plugins compatibility','easy-fancybox') . '</strong><br />'
-										. esc_html__('Try to deactivate all conflicting light box scripts in your theme or other plugins. If this is not possible, try a higher script priority number which means scripts are added later, wich may allow them to override conflicting scripts. A lower priority number, excluding WordPress standard jQuery, or even moving the plugin scripts to the header may work in cases where there are blocking errors occuring in other script.','easy-fancybox')
-										. '<br /><br />'
+						'description' => '<br /><strong>' . __('Theme & plugins compatibility','easy-fancybox') . '</strong><br />' . __('Try to deactivate all conflicting light box scripts in your theme or other plugins. If this is not possible, try a higher script priority number which means scripts are added later, wich may allow them to override conflicting scripts. A lower priority number, excluding WordPress standard jQuery, or even moving the plugin scripts to the header may work in cases where there are blocking errors occuring in other script.','easy-fancybox')
 					),
 					'scriptPriority' => array (
 						'id' => 'fancybox_scriptPriority',
-						'title' => esc_html__('FancyBox script priority','easy-fancybox'),
+						'title' => __('FancyBox script priority','easy-fancybox'),
 						'label_for' => 'fancybox_scriptPriority',
 						'hide' => true,
 						'input' => 'number',
@@ -556,78 +485,82 @@ $efb_options = array (
 						'min' => '-99',
 						'max' => '999',
 						'sanitize_callback' => 'intval',
-						// 'class' => 'small-text',
 						'default' => '10',
-						'description' => esc_html__('Default priority is 10.','easy-fancybox') . ' ' . esc_html__('Higher is later.','easy-fancybox') . '<br/>'
+						'description' => __('Default priority is 10.','easy-fancybox') . ' ' . __('Higher is later.','easy-fancybox')
 					),
 					'noFooter' => array (
 						'id' => 'fancybox_noFooter',
+						'title' => __('Load scripts in head','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => esc_html__('Move scripts from footer to theme head section (not recommended for site load times!)','easy-fancybox')
+						'description' => __('Move scripts from footer to theme head section (not recommended for site load times!)','easy-fancybox')
 					),
 					'nojQuery' => array (
 						'id' => 'fancybox_nojQuery',
+						'title' => __('Exclude core jQuery','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => '',
-						'description' => esc_html__('Do not include standard WordPress jQuery library (do this only if you are sure jQuery is included from another source!)','easy-fancybox')
+						'description' => __('Do not include standard WordPress jQuery library (do this only if you are sure jQuery is included from another source!)','easy-fancybox')
 					),
 					'pre45Compat' => array (
 						'id' => 'fancybox_pre45Compat',
+						'title' => __('Exclude wp_add_inline_script','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => function_exists( 'wp_add_inline_script' ) ? '' : '1',
-						'description' => esc_html__('Do not use wp_add_inline_script/style functions (may solve issues with older script minification plugins)','easy-fancybox')
+						'description' => __('Do not use wp_add_inline_script/style functions (may solve issues with older script minification plugins)','easy-fancybox')
 					),
 					'p3' => array (
 						'hide' => true,
-						'description' => '<br /><strong>' . esc_html__('Advanced','easy-fancybox') . '</strong><br />'
+						'description' => '<br /><strong>' . __('Advanced','easy-fancybox') . '</strong><br />'
 					),
 					'metaData' => array (
 						'id' => 'fancybox_metaData',
+						'title' => __('Include jQuery metadata script','easy-fancybox'),
 						'hide' => true,
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'status' => get_option('fancybox_metaData') ? '' : 'disabled',
 						'default' =>  '',
-						'description' => esc_html__('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . ( get_option('fancybox_metaData') ? '' : '. <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') ) . '</a></em>'
+						'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
 					),
 					'vcMasonryCompat' => array (
 						'id' => 'fancybox_vcMasonryCompat',
+						'title' => __('WPBakery compatibility','easy-fancybox'),
 						'hide' => true,
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'status' => 'disabled',
 						'default' =>  '',
-						'description' => esc_html__('WPBakery / Visual Composer - Masonry Grid Gallery compatibility.','easy-fancybox') . ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
+						'description' => __('WPBakery / Visual Composer - Masonry Grid Gallery compatibility.','easy-fancybox') . ' <a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
 					),
 					'autoExclude' => array (
 						'id' => 'fancybox_autoExclude',
-						'title' => esc_html__('Exclude','easy-fancybox'),
+						'title' => __('Exclude','easy-fancybox'),
 						'label_for' => 'fancybox_autoExclude',
 						'input' => 'text',
 						'class' => 'regular-text',
 						'hide' => true,
 						'default' => '.nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
-						'sanitize_callback' => 'csl_text',
-						'description' => esc_html__('A comma-separated list of selectors for elements to which FancyBox should not automatically bind itself. Media links inside these elements will be ignored by Autodetect.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
+						'sanitize_callback' => 'sanitize_text_field',
+						'description' => __('A comma-separated list of selectors for elements to which FancyBox should not automatically bind itself. Media links inside these elements will be ignored by Autodetect.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
 					)
 				)
 			)
 		)
 	),
 	'IMG' => array(
-		'title' => esc_html__('Images','easy-fancybox'),
+		'title' => __('Images','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make images open in an overlay, add their extension to the Autodetect field or use the class "fancybox" for its link. Clear field to switch off all autodetection.','easy-fancybox') . '<br />'
+				'description' => __('To make images open in an overlay, add their extension to the Autodetect field or use the class "fancybox" for its link. Clear field to switch off all autodetection.','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
 				'hide' => true,
@@ -639,32 +572,32 @@ $efb_options = array (
 			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttribute',
-				'title' => esc_html__('Autodetect','easy-fancybox'),
+				'title' => __('Autodetect','easy-fancybox'),
 				'label_for' => 'fancybox_autoAttribute',
 				'input' => 'text',
 				'class' => 'regular-text',
 				'hide' => true,
 				'default' => '.jpg,.png,.webp,.jpeg',
-				'sanitize_callback' => 'csl_text',
+				'sanitize_callback' => 'sanitize_text_field',
 				'selector' => 'href*=',
-				'description' => esc_html__('A comma-separated list of image file extensions to which FancyBox should automatically bind itself.','easy-fancybox') . ' <em>' . esc_html__('Example:','easy-fancybox') . ' .jpg,.png,.gif,.jpeg</em><br />'
+				'description' => __('A comma-separated list of image file extensions to which FancyBox should automatically bind itself.','easy-fancybox') . ' <em>' . __('Example:','easy-fancybox') . ' .jpg,.png,.gif,.jpeg</em>'
 			),
 			'autoAttributeLimit' => array (
 				'id' => 'fancybox_autoAttributeLimit',
-				'title' => esc_html__('Apply to','easy-fancybox'),
+				'title' => __('Apply to','easy-fancybox'),
 				'label_for' => 'fancybox_autoAttributeLimit',
 				'hide' => true,
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options' => array(
-					'' => esc_html__('All image links', 'easy-fancybox')
+					'' => __('All image links', 'easy-fancybox')
 				),
 				'default' => '',
-				'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />'
+				'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em>'
 			),
 			'type' => array (
 				'id' => 'fancybox_classType',
-				'title' => esc_html__('Force FancyBox to treat all media linked with class="fancybox" as images?','easy-fancybox'),
+				'title' => __('Treat fancybox class as image','easy-fancybox'),
 				'label_for' => 'fancybox_classType',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -673,133 +606,118 @@ $efb_options = array (
 					'' => translate('No')
 				),
 				'default' => get_option('fancybox_enableInline') ? 'image' : '',
-				'description' => '<br/>'
+				'description' => __('Force FancyBox to treat all media linked with class="fancybox" as images?','easy-fancybox')
 			),
 			'p2' => array (
 				'hide' => true,
-				'description' => '<br /><strong>' . esc_html__('Behavior','easy-fancybox') . '</strong><br />'
+				'description' => '<br /><strong>' . __('Behavior','easy-fancybox') . '</strong><br />'
 			),
 			'transitionIn' => array (
 				'id' => 'fancybox_transitionIn',
-				'title' => esc_html__('Transition In','easy-fancybox'),
+				'title' => __('Transition In','easy-fancybox'),
 				'label_for' => 'fancybox_transitionIn',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name' => 'openEffect',
 				'options' => array(
 					'none' => translate('None'),
-					'' => esc_html__('Fade','easy-fancybox'),
-					'elastic' => esc_html__('Elastic','easy-fancybox'),
+					'' => __('Fade','easy-fancybox'),
+					'elastic' => __('Elastic','easy-fancybox'),
 				),
 				'default' => 'elastic',
-				'description' => ' '
 			),
 			'easingIn' => array (
 				'id' => 'fancybox_easingIn',
-				'title' => esc_html__('Easing In','easy-fancybox'),
+				'title' => __('Easing In','easy-fancybox'),
 				'label_for' => 'fancybox_easingIn',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options' => array(
-					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox')
+					'linear' => __('Linear','easy-fancybox'),
+					'' => __('Swing','easy-fancybox')
 				),
 				'default' => '',
-				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />'
+				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em>'
 			),
 			'transitionOut' => array (
 				'id' => 'fancybox_transitionOut',
-				'title' => esc_html__('Transition Out','easy-fancybox'),
+				'title' => __('Transition Out','easy-fancybox'),
 				'label_for' => 'fancybox_transitionOut',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name' => 'closeEffect',
 				'options' => array(
 					'none' => translate('None'),
-					'' => esc_html__('Fade','easy-fancybox'),
-					'elastic' => esc_html__('Elastic','easy-fancybox'),
+					'' => __('Fade','easy-fancybox'),
+					'elastic' => __('Elastic','easy-fancybox'),
 				),
 				'default' => 'elastic',
-				'description' => ' '
 			),
 			'easingOut' => array (
 				'id' => 'fancybox_easingOut',
-				'title' => esc_html__('Easing Out','easy-fancybox'),
+				'title' => __('Easing Out','easy-fancybox'),
 				'label_for' => 'fancybox_easingOut',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options' => array(
-					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox')
+					'linear' => __('Linear','easy-fancybox'),
+					'' => __('Swing','easy-fancybox')
 				),
 				'default' => '',
-				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
 			),
 			'opacity' => array (
 				'id' => 'fancybox_opacity',
+				'title' => __('Opacity','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'default' => '',
-				'description' => esc_html__('Transparency fade during elastic transition. CAUTION: Use only when at least Transition In is set to Elastic!','easy-fancybox')
+				'description' => __('Transparency fade during elastic transition. CAUTION: Use only when at least Transition In is set to Elastic!','easy-fancybox')
 			),
 			'hideOnContentClick' => array (
 				'id' => 'fancybox_hideOnContentClick',
+				'title' => __('Close on click','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_name' => 'closeClick',
 				'default' => '',
-				'description' => esc_html__('Close FancyBox when content is clicked','easy-fancybox')
+				'description' => __('Close FancyBox when content is clicked','easy-fancybox')
 			),
-			/*'openOpacity' => array (
-				'id' => 'fancybox_openOpacity',
-				'input' => 'checkbox',
-				'sanitize_callback' => 'wp_validate_boolean',
-				'default' => '1',
-				'description' => esc_html__('Transparency fade during elastic open transition.','easy-fancybox')
-			),
-			'closeOpacity' => array (
-				'id' => 'fancybox_closeOpacity',
-				'input' => 'checkbox',
-				'sanitize_callback' => 'wp_validate_boolean',
-				'default' => '1',
-				'description' => esc_html__('Transparency fade during elastic close transition.','easy-fancybox')
-			),*/
-			/* TODO: openMethod / closeMethod / nextMethod / prevMethod */
 			'p1' => array (
 				'hide' => true,
-				'description' => '<br /><strong>' . esc_html__('Appearance','easy-fancybox') . '</strong><br />'
+				'description' => '<br /><strong>' . __('Appearance','easy-fancybox') . '</strong><br />'
 			),
 			'titleShow' => array (
 				'id' => 'fancybox_titleShow',
+				'title' => __('Show title','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
+				'description' => __('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
 			),
 			'titlePosition' => array (
 				'id' => 'fancybox_titlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_titlePosition',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_hide' => true,
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox'),
-					'over' => esc_html__('Overlay','easy-fancybox')
+					'' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox'),
+					'over' => __('Overlay','easy-fancybox')
 				),
 				'default' => 'over',
-				'description' => '<br />'
 			),
 			'titlePosition2' => array (
 				'id' => 'fancybox_titlePosition2',
-				'title' => esc_html__('Title Style','easy-fancybox'),
+				'title' => __('Title Style','easy-fancybox'),
 				'label_for' => 'fancybox_titlePosition2',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -807,24 +725,24 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'fancybox2_name' => 'titlePosition',
 				'options' => array(
-					'' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'outside-top' => esc_html__('Outside top','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox'),
-					'inside-top' => esc_html__('Inside top','easy-fancybox'),
-					'over' => esc_html__('Overlay','easy-fancybox')
+					'' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'outside-top' => __('Outside top','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox'),
+					'inside-top' => __('Inside top','easy-fancybox'),
+					'over' => __('Overlay','easy-fancybox')
 				),
 				'default' => '',
-				'description' => '<br />'
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_titleFromAlt',
+				'title' => __('Title from alt?','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox')
+				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox')
 			),
 			'onStart' => array (
 				'id' => '',
@@ -833,79 +751,82 @@ $efb_options = array (
 				'sanitize_callback' => 'wp_validate_boolean',
 				'status' => 'disabled',
 				'default' => '',
-				'description' => esc_html__( 'Hide/show title on mouse hover action', 'easy-fancybox' ) . ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em><br />'
+				'description' => __( 'Hide/show title on mouse hover action', 'easy-fancybox' ) . ' <a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
 			),
 			'p3' => array (
 				'hide' => true,
-				'description' => '<br /><strong>' . esc_html__('Gallery','easy-fancybox') . '</strong><br />'
+				'description' => '<br /><strong>' . __('Gallery','easy-fancybox') . '</strong><br />'
 			),
 			'autoGallery' => array (
 				'id' => 'fancybox_autoGallery',
-				'title' => esc_html__('Autogallery','easy-fancybox'),
+				'title' => __('Autogallery','easy-fancybox'),
 				'label_for' => 'fancybox_autoGallery',
 				'hide' => true,
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options' => array(
 					'' => translate('Disabled'),
-					'1' => esc_html__('WordPress galleries only','easy-fancybox'),
-					'2' => esc_html__('All in one gallery','easy-fancybox')
+					'1' => __('WordPress galleries only','easy-fancybox'),
+					'2' => __('All in one gallery','easy-fancybox')
 				),
 				'default' => '1',
-				'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox') . '<br /><br />'
+				'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox')
 			),
 			'showNavArrows' => array (
 				'id' => 'fancybox_showNavArrows',
+				'title' => __('Show nav arrows','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'fancybox2_name' => 'arrows',
 				'noquotes' => true,
 				'default' => '1',
-				'description' => esc_html__('Show the gallery navigation arrows','easy-fancybox')
+				'description' => __('Show the gallery navigation arrows','easy-fancybox')
 			),
 			'enableKeyboardNav' => array (
 				'id' => 'fancybox_enableKeyboardNav',
+				'title' => __('Enable keyboard nav','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Arrow key strokes browse the gallery','easy-fancybox')
+				'description' => __('Arrow key strokes browse the gallery','easy-fancybox')
 			),
 			'cyclic' => array (
 				'id' => 'fancybox_cyclic',
+				'title' => __('Continuous navigation','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'fancybox2_name' => 'loop',
 				'fancybox2_hide' => true,
 				'noquotes' => true,
 				'default' => '',
-				'description' => esc_html__('Make galleries cyclic, allowing you to keep pressing next/back.','easy-fancybox')
+				'description' => __('Make galleries cyclic, allowing you to keep pressing next/back.','easy-fancybox')
 			),
 			'mouseWheel' => array (
 				'id' => 'fancybox_mouseWheel',
+				'title' => __('Mousewheel navigation','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'default' => '1',
 				'exclude' => array( 'classic', 'legacy' ),
-				'description' => esc_html__('Allow gallery browsing by mousewheel action.','easy-fancybox')
+				'description' => __('Allow gallery browsing by mousewheel action.','easy-fancybox')
 			),
 			'changeSpeed' => array (
 				'id' => 'fancybox_changeSpeed',
-				'title' => esc_html__( 'Change speed', 'easy-fancybox' ),
+				'title' => __( 'Change speed', 'easy-fancybox' ),
 				'label_for' => 'fancybox_changeSpeed',
 				'input' => 'number',
 				'step' => '50',
 				'min' => '0',
 				'max' => '6000',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '',
-				'description' => esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 250</em><br /><br />'
+				'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 250</em>'
 			),
 			'changeFade' => array (
 				'id' => 'fancybox_changeFade',
-				'title' => esc_html__('Fade speed','easy-fancybox'),
+				'title' => __('Fade speed','easy-fancybox'),
 				'label_for' => 'fancybox_changeFade',
 				'input' => 'number',
 				'exclude' => array( 'fancybox2' ),			
@@ -913,9 +834,8 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '6000',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '',
-				'description' => esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 300</em><br /><br />'
+				'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em>'
 			),
 			'autoSelector' => array (
 				'id' => 'fancybox_autoSelector',
@@ -925,17 +845,18 @@ $efb_options = array (
 			),
 			'autoPlay' => array (
 				'id' => 'fancybox_autoPlay',
+				'title' => __('Auto play slideshow','easy-fancybox'),
 				'hide' => true,
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'status' => 'disabled',
 				'default' => '',
-				'description' =>  esc_html__( 'Slideshow', 'easy-fancybox' ) . '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('Make available &raquo;','easy-fancybox') . '</a></em>'
+				'description' =>  '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
 			),
 			'playSpeed' => array(
 				'id' => 'fancybox_playSpeed',
 				'hide' => true,
-				'title' => esc_html__( 'Play speed', 'easy-fancybox' ),
+				'title' => __( 'Play speed', 'easy-fancybox' ),
 				'label_for' => 'fancybox_changeSpeed',
 				'input' => 'number',
 				'status' => 'disabled',
@@ -945,18 +866,18 @@ $efb_options = array (
 				'sanitize_callback' => 'intval',
 				// 'class' => 'small-text',
 				'default' => '',
-				'description' => esc_html__('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . esc_html__('Default:','easy-fancybox')  . ' 3000</em><br /><br />'
+				'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 3000</em>'
 			)
 		)
 	),
 
 	'Inline' => array(
-		'title' => esc_html__('Inline content','easy-fancybox'),
+		'title' => __('Inline content','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make inline content open in an overlay, wrap that content in a div with a unique ID, create a link with target "#uniqueID" and give it a class "fancybox-inline" attribute.','easy-fancybox') . '<br /><br />'
+				'description' => __('To make inline content open in an overlay, wrap that content in a div with a unique ID, create a link with target "#uniqueID" and give it a class "fancybox-inline" attribute.','easy-fancybox') . '<br /><br />'
 			),
 			'tag' => array (
 				'hide' => true,
@@ -971,100 +892,100 @@ $efb_options = array (
 			),
 			'autoDimensions' => array (
 				'id' => 'fancybox_autoDimensions',
+				'title' => __('Auto dimensios','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'fancybox2_name' => 'autoSize',
 				'noquotes' => true,
 				'default' => '1',
-				'description' => esc_html__('Try to adjust size to inline/html content. If unchecked the default dimensions will be used.','easy-fancybox') . ''
+				'description' => __('Try to adjust size to inline/html content. If unchecked the default dimensions will be used.','easy-fancybox') . ''
 			),
-			/* TODO: autoHeight autoWidth */
 			'scrolling' => array (
 				'id' => 'fancybox_InlineScrolling',
-				'title' => esc_html__('Scrolling','easy-fancybox'),
+				'title' => __('Scrolling','easy-fancybox'),
 				'label_for' => 'fancybox_InlineScrolling',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options' => array(
-					'auto' => esc_html__('Auto','easy-fancybox'),
-					'yes' => esc_html__('Always','easy-fancybox'),
-					'no' => esc_html__('Never','easy-fancybox')
+					'auto' => __('Auto','easy-fancybox'),
+					'yes' => __('Always','easy-fancybox'),
+					'no' => __('Never','easy-fancybox')
 				),
 				'default' => 'auto',
-				'description' => esc_html__('Define scrolling and scrollbar visibility.','easy-fancybox') . '<br /><br />'
+				'description' => __('Define scrolling and scrollbar visibility.','easy-fancybox')
 			),
 			'transitionIn' => array (
 				'id' => 'fancybox_transitionInInline',
-				'title' => esc_html__('Transition In','easy-fancybox'),
+				'title' => __('Transition In','easy-fancybox'),
 				'label_for' => 'fancybox_transitionInInline',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name' => 'openEffect',
 				'options' => array(
 					'none' => translate('None'),
-					'' => esc_html__('Fade','easy-fancybox'),
-					'elastic' => esc_html__('Elastic','easy-fancybox'),
+					'' => __('Fade','easy-fancybox'),
+					'elastic' => __('Elastic','easy-fancybox'),
 				),
 				'default' => '',
-				'description' => ' '
 			),
 			'easingIn' => array (
 				'id' => 'fancybox_easingInInline',
-				'title' => esc_html__('Easing In','easy-fancybox'),
+				'title' => __('Easing In','easy-fancybox'),
 				'label_for' => 'fancybox_easingInInline',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options' => array(
-					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox')
+					'linear' => __('Linear','easy-fancybox'),
+					'' => __('Swing','easy-fancybox')
 				),
 				'default' => 'easeOutBack',
-				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />'
+				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em>'
 			),
 			'transitionOut' => array (
 				'id' => 'fancybox_transitionOutInline',
-				'title' => esc_html__('Transition Out','easy-fancybox'),
+				'title' => __('Transition Out','easy-fancybox'),
 				'label_for' => 'fancybox_transitionOutInline',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name' => 'closeEffect',
 				'options' => array(
 					'none' => translate('None'),
-					'' => esc_html__('Fade','easy-fancybox'),
-					'elastic' => esc_html__('Elastic','easy-fancybox'),
+					'' => __('Fade','easy-fancybox'),
+					'elastic' => __('Elastic','easy-fancybox'),
 				),
 				'default' => '',
-				'description' => ' '
 			),
 			'easingOut' => array (
 				'id' => 'fancybox_easingOutInline',
-				'title' => esc_html__('Easing Out','easy-fancybox'),
+				'title' => __('Easing Out','easy-fancybox'),
 				'label_for' => 'fancybox_easingOutInline',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options' => array(
-					'linear' => esc_html__('Linear','easy-fancybox'),
-					'' => esc_html__('Swing','easy-fancybox')
+					'linear' => __('Linear','easy-fancybox'),
+					'' => __('Swing','easy-fancybox')
 				),
 				'default' => '',
-				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . esc_html__('More options &raquo;','easy-fancybox') . '</a></em><br />' . esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')  . '<br /><br />'
+				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
 			),
 			'opacity' => array (
 				'id' => 'fancybox_opacityInline',
+				'title' => __('Opacity','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'default' => '',
-				'description' => esc_html__('Transparency fade during elastic transition. CAUTION: Use only when at least Transition In is set to Elastic!','easy-fancybox')
+				'description' => __('Transparency fade during elastic transition. CAUTION: Use only when at least Transition In is set to Elastic!','easy-fancybox')
 			),
 			'hideOnContentClick' => array (
 				'id' => 'fancybox_hideOnContentClickInline',
+				'title' => __('Close on click','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'fancybox2_name' => 'closeClick',
 				'noquotes' => true,
 				'default' => '',
-				'description' => esc_html__('Close FancyBox when content is clicked','easy-fancybox')
+				'description' => __('Close FancyBox when content is clicked','easy-fancybox')
 			),
 			'titleShow' => array (
 				'noquotes' => true,
@@ -1075,12 +996,12 @@ $efb_options = array (
 	),
 
 	'PDF' => array(
-		'title' => esc_html__('PDF','easy-fancybox'),
+		'title' => __('PDF','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make any PDF document file open in an overlay, switch on Autodetect or use the class "fancybox-pdf" for its link.','easy-fancybox') . '<br />'
+				'description' => __('To make any PDF document file open in an overlay, switch on Autodetect or use the class "fancybox-pdf" for its link.','easy-fancybox') . '<br />'
 			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttributePDF',
@@ -1089,7 +1010,7 @@ $efb_options = array (
 				'hide' => true,
 				'default' => '1',
 				'selector' => '\'a[href*=".pdf" i],area[href*=".pdf" i]\'',
-				'description' => esc_html__('Autodetect','easy-fancybox')
+				'title' => __('Autodetect','easy-fancybox')
 			),
 			'tag' => array (
 				'hide' => true,
@@ -1105,19 +1026,19 @@ $efb_options = array (
 			'onStart' => array (
 				'id' => 'fancybox_PDFonStart',
 				'noquotes' => true,
-				'title' => esc_html__('Embed with','easy-fancybox'),
+				'title' => __('Embed with','easy-fancybox'),
 				'label_for' => 'fancybox_PDFonStart',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name' => 'beforeLoad',
 				'options' => array(
-					'{{object}}'       => esc_html__('Object tag (plus fall-back link)','easy-fancybox'),
-					'{{embed}}'        => esc_html__('Embed tag','easy-fancybox'),
-					''                 => esc_html__('iFrame tag (let browser decide)','easy-fancybox'),
-					'{{googleviewer}}' => esc_html__('Google Docs Viewer (external)','easy-fancybox')
+					'{{object}}'       => __('Object tag (plus fall-back link)','easy-fancybox'),
+					'{{embed}}'        => __('Embed tag','easy-fancybox'),
+					''                 => __('iFrame tag (let browser decide)','easy-fancybox'),
+					'{{googleviewer}}' => __('Google Docs Viewer (external)','easy-fancybox')
 				),
 				'default' => '{{object}}',
-				'description' => esc_html__('Note:','easy-fancybox') . ' ' . esc_html__('External viewers have bandwidth, usage rate and and file size limits.','easy-fancybox') . '<br /><br />'
+				'description' => __('Note:','easy-fancybox') . ' ' . __('External viewers have bandwidth, usage rate and and file size limits.','easy-fancybox')
 			),
 			'width' => array (
 				'id' => 'fancybox_PDFwidth',
@@ -1125,7 +1046,6 @@ $efb_options = array (
 				'label_for' => 'fancybox_PDFwidth',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '90%',
 				'description' => ' '
 			),
@@ -1135,7 +1055,6 @@ $efb_options = array (
 				'label_for' => 'fancybox_PDFheight',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '90%'
 			),
 			'padding' => array (
@@ -1147,37 +1066,35 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '10',
-				'description' => '<br /><br />'
 			),
 			'titleShow' => array (
 				'id' => 'fancybox_PDFtitleShow',
+				'title' => __('Show title','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
+				'description' => __('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
 			),
 			'titlePosition' => array (
 				'id' => 'fancybox_PDFtitlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_PDFtitlePosition',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
+					'float' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox')
 				),
 				'default' => 'float',
-				'description' => '<br />'
 			),
 			'titlePosition2' => array (
 				'id' => 'fancybox_PDFtitlePosition2',
-				'title' => esc_html__('Title Style','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_PDFtitlePosition2',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1185,21 +1102,21 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'hide' => true,
 				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
+					'float' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox')
 				),
 				'default' => 'float',
-				'description' => '<br />'
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_PDFtitleFromAlt',
+				'title' => __('Title from alt?','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox')
+				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox')
 			),
 			'autoDimensions' => array (
 				'noquotes' => true,
@@ -1212,22 +1129,22 @@ $efb_options = array (
 	),
 
 	'SWF' => array(
-		'title' => esc_html__('SWF','easy-fancybox'),
+		'title' => __('SWF','easy-fancybox'),
 		'input' => 'multiple',
 		'exclude' => array( 'classic', 'fancybox2' ),
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make any Flash (.swf) file open in an overlay, switch on Autodetect or use the class "fancybox-swf" for its link.','easy-fancybox') . '<br />'
+				'description' => __('To make any Flash (.swf) file open in an overlay, switch on Autodetect or use the class "fancybox-swf" for its link.','easy-fancybox')
 			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttributeSWF',
+				'title' => __('Autodetect','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'hide' => true,
 				'default' => '1',
 				'selector' => '\'a[href*=".swf" i],area[href*=".swf" i]\'',
-				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
 				'hide' => true,
@@ -1246,10 +1163,8 @@ $efb_options = array (
 				'label_for' => 'fancybox_SWFWidth',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'options' => array(),
 				'default' => '680',
-				'description' => ' '
 			),
 			'height' => array (
 				'id' => 'fancybox_SWFHeight',
@@ -1257,7 +1172,6 @@ $efb_options = array (
 				'label_for' => 'fancybox_SWFHeight',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'options' => array(),
 				'default' => '495',
 			),
@@ -1270,39 +1184,38 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '0',
-				'description' => '<br /><br />'
 			),
 			'titleShow' => array (
 				'id' => 'fancybox_SWFtitleShow',
+				'title' => __('Show title','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'default' => '',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
+				'description' => __('Show title.','easy-fancybox') . ' ' . __('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
 			),
 			'titlePosition' => array (
 				'id' => 'fancybox_SWFtitlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_SWFtitlePosition',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
+					'float' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox')
 				),
 				'default' => 'float',
-				'description' => '<br />'
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_SWFtitleFromAlt',
+				'title' => __('Title from alt?','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox')
+				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox')
 			),
 			'swf' => array (
 				'noquotes' => true,
@@ -1312,21 +1225,21 @@ $efb_options = array (
 	),
 
 	'SVG' => array(
-		'title' => esc_html__('SVG','easy-fancybox'),
+		'title' => __('SVG','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make any SVG (.svg) file open in an overlay, switch on Autodetect or use the class "fancybox-svg" for its link.','easy-fancybox') . '<br />'
+				'description' => __('To make any SVG (.svg) file open in an overlay, switch on Autodetect or use the class "fancybox-svg" for its link.','easy-fancybox') . '<br />'
 			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttributeSVG',
+				'title' => __('Autodetect','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'hide' => true,
 				'default' => '1',
 				'selector' => '\'a[href*=".svg" i],area[href*=".svg" i]\'',
-				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
 				'hide' => true,
@@ -1345,10 +1258,8 @@ $efb_options = array (
 				'label_for' => 'fancybox_SVGWidth',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'options' => array(),
 				'default' => '680',
-				'description' => ' '
 			),
 			'height' => array (
 				'id' => 'fancybox_SVGHeight',
@@ -1356,7 +1267,6 @@ $efb_options = array (
 				'label_for' => 'fancybox_SVGHeight',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'options' => array(),
 				'default' => '495',
 			),
@@ -1369,38 +1279,35 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '0',
-				'description' => '<br /><br />'
 			),
 			'titleShow' => array (
 				'id' => 'fancybox_SVGtitleShow',
+				'title' => __('Show title','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
+				'description' => __('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
 			),
 			'titlePosition' => array (
 				'id' => 'fancybox_SVGtitlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_SVGtitlePosition',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
-					//,'over' => esc_html__('Overlay','easy-fancybox')
+					'float' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox')
 				),
 				'default' => 'float',
-				'description' => '<br />'
 			),
 			'titlePosition2' => array (
 				'id' => 'fancybox_SVGtitlePosition2',
-				'title' => esc_html__('Title Style','easy-fancybox'),
+				'title' => __('Title Style','easy-fancybox'),
 				'label_for' => 'fancybox_SVGtitlePosition2',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1408,23 +1315,23 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'hide' => true,
 				'options' => array(
-					'' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'outside-top' => esc_html__('Outside top','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox'),
-					'inside-top' => esc_html__('Inside top','easy-fancybox'),
+					'' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'outside-top' => __('Outside top','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox'),
+					'inside-top' => __('Inside top','easy-fancybox'),
 				),
 				'default' => '',
-				'description' => '<br />'
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_SVGtitleFromAlt',
+				'title' => __('Title from alt?','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox')
+				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox')
 			),
 			'svg' => array (
 				'noquotes' => true,
@@ -1437,21 +1344,21 @@ $efb_options = array (
 	),
 
 	'YouTube' => array(
-		'title' => esc_html__('YouTube','easy-fancybox'),
+		'title' => __('YouTube','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make any YouTube movie open in an overlay, switch on Autodetect or use the class "fancybox-youtube" for its link.','easy-fancybox') . '<br />'
+				'description' => __('To make any YouTube movie open in an overlay, switch on Autodetect or use the class "fancybox-youtube" for its link.','easy-fancybox') . '<br />'
 			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttributeYoutube',
+				'title' => __('Autodetect','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'hide' => true,
 				'default' => '1',
 				'selector' => '\'a[href*="youtu.be/" i],area[href*="youtu.be/" i],a[href*="youtube.com/" i],area[href*="youtube.com/" i]\').filter(function(){return this.href.match(/\/(?:youtu\.be|watch\?|embed\/)/);}',
-				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
 				'hide' => true,
@@ -1470,7 +1377,7 @@ $efb_options = array (
 				'sanitize_callback' => 'wp_validate_boolean',
 				'hide' => true,
 				'default' => '',
-				'description' => esc_html__('Enable privacy-enhanced mode','easy-fancybox') . '<br />'
+				'description' => __('Enable privacy-enhanced mode','easy-fancybox')
 			),
 			'width' => array (
 				'id' => 'fancybox_YoutubeWidth',
@@ -1480,10 +1387,7 @@ $efb_options = array (
 				'step' => '1',
 				'min' => '420',
 				'max' => '1500',
-				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '640',
-				'description' => ' '
 			),
 			'height' => array (
 				'id' => 'fancybox_YoutubeHeight',
@@ -1494,7 +1398,6 @@ $efb_options = array (
 				'min' => '315',
 				'max' => '900',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '360',
 			),
 			'padding' => array (
@@ -1506,9 +1409,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '0',
-				'description' => '<br /><br />'
 			),
 			'keepRatio' => array(
 				'noquotes' => true,
@@ -1519,31 +1420,31 @@ $efb_options = array (
 			),
 			'titleShow' => array (
 				'id' => 'fancybox_YoutubetitleShow',
+				'title' => __('Show title','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
+				'description' => __('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
 			),
 			'titlePosition' => array (
 				'id' => 'fancybox_YoutubetitlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_YoutubetitlePosition',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
+					'float' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox')
 				),
 				'default' => 'float',
-				'description' => '<br />'
 			),
 			'titlePosition2' => array (
 				'id' => 'fancybox_YoutubetitlePosition2',
-				'title' => esc_html__('Title Style','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_YoutubetitlePosition2',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1551,23 +1452,23 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'hide' => true,
 				'options' => array(
-					'' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'outside-top' => esc_html__('Outside top','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox'),
-					'inside-top' => esc_html__('Inside top','easy-fancybox'),
+					'' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'outside-top' => __('Outside top','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox'),
+					'inside-top' => __('Inside top','easy-fancybox'),
 				),
 				'default' => '',
-				'description' => '<br />'
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_YoutubetitleFromAlt',
+				'title' => __('Title from alt?','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox')
+				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox')
 			),
 			'onStart' => array (
 				'noquotes' => true,
@@ -1579,21 +1480,21 @@ $efb_options = array (
 	),
 
 	'Vimeo' => array(
-		'title' => esc_html__('Vimeo','easy-fancybox'),
+		'title' => __('Vimeo','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make any Vimeo movie open in an overlay, switch on Autodetect or use the class "fancybox-vimeo" for its link.','easy-fancybox') . '<br />'
+				'description' => __('To make any Vimeo movie open in an overlay, switch on Autodetect or use the class "fancybox-vimeo" for its link.','easy-fancybox') . '<br />'
 			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttributeVimeo',
+				'title' => __('Autodetect','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'hide' => true,
 				'default' => '1',
 				'selector' => '\'a[href*="vimeo.com/" i],area[href*="vimeo.com/" i]\').filter(function(){return this.href.match(/\/(?:[0-9]+|video\/)/);}',
-				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
 				'hide' => true,
@@ -1615,9 +1516,7 @@ $efb_options = array (
 				'min' => '400',
 				'max' => '1500',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '500',
-				'description' => ' '
 			),
 			'height' => array (
 				'id' => 'fancybox_VimeoHeight',
@@ -1628,7 +1527,6 @@ $efb_options = array (
 				'min' => '225',
 				'max' => '900',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '281'
 			),
 			'padding' => array (
@@ -1640,9 +1538,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '0',
-				'description' => '<br /><br />'
 			),
 			'keepRatio' => array(
 				'noquotes' => true,
@@ -1653,31 +1549,31 @@ $efb_options = array (
 			),
 			'titleShow' => array (
 				'id' => 'fancybox_VimeotitleShow',
+				'title' => __('Show title','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
+				'description' => __('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
 			),
 			'titlePosition' => array (
 				'id' => 'fancybox_VimeotitlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_VimeotitlePosition',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
+					'float' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox')
 				),
 				'default' => 'float',
-				'description' => '<br />'
 			),
 			'titlePosition2' => array (
 				'id' => 'fancybox_VimeotitlePosition2',
-				'title' => esc_html__('Title Style','easy-fancybox'),
+				'title' => __('Title Style','easy-fancybox'),
 				'label_for' => 'fancybox_VimeotitlePosition2',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1685,23 +1581,23 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'hide' => true,
 				'options' => array(
-					'' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'outside-top' => esc_html__('Outside top','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox'),
-					'inside-top' => esc_html__('Inside top','easy-fancybox'),
+					'' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'outside-top' => __('Outside top','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox'),
+					'inside-top' => __('Inside top','easy-fancybox'),
 				),
 				'default' => '',
-				'description' => '<br />'
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_VimeotitleFromAlt',
+				'title' => __('Title from alt?','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox')
+				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox')
 			),
 			'onStart' => array (
 				'noquotes' => true,
@@ -1709,23 +1605,22 @@ $efb_options = array (
 			)
 		)
 	),
-
 	'Dailymotion' => array(
-		'title' => esc_html__('Dailymotion','easy-fancybox'),
+		'title' => __('Dailymotion','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make any Dailymotion movie open in an overlay, switch on Autodetect or use the class "fancybox-dailymotion" for its link.','easy-fancybox') . '<br />'
+				'description' => __('To make any Dailymotion movie open in an overlay, switch on Autodetect or use the class "fancybox-dailymotion" for its link.','easy-fancybox') . '<br />'
 			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttributeDailymotion',
+				'title' => __('Autodetect','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'hide' => true,
 				'default' => '1',
 				'selector' => '\'a[href*="dailymotion.com/" i],area[href*="dailymotion.com/" i]\').filter(function(){return this.href.match(/\/video\//);}',
-				'description' => esc_html__('Autodetect','easy-fancybox') . '<br />'
 			),
 			'tag' => array (
 				'hide' => true,
@@ -1747,9 +1642,7 @@ $efb_options = array (
 				'min' => '320',
 				'max' => '1500',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '560',
-				'description' => ' '
 			),
 			'height' => array (
 				'id' => 'fancybox_DailymotionHeight',
@@ -1760,7 +1653,6 @@ $efb_options = array (
 				'min' => '180',
 				'max' => '900',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '315'
 			),
 			'padding' => array (
@@ -1772,7 +1664,6 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '0',
 				'description' => '<br /><br />'
 			),
@@ -1785,31 +1676,31 @@ $efb_options = array (
 			),
 			'titleShow' => array (
 				'id' => 'fancybox_DailymotiontitleShow',
+				'title' => __('Show title','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
+				'description' => __('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
 			),
 			'titlePosition' => array (
 				'id' => 'fancybox_DailymotiontitlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_DailymotiontitlePosition',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
+					'float' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox')
 				),
 				'default' => 'float',
-				'description' => '<br />'
 			),
 			'titlePosition2' => array (
 				'id' => 'fancybox_DailymotiontitlePosition2',
-				'title' => esc_html__('Title Style','easy-fancybox'),
+				'title' => __('Title Style','easy-fancybox'),
 				'label_for' => 'fancybox_DailymotiontitlePosition2',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1817,23 +1708,23 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'hide' => true,
 				'options' => array(
-					'' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'outside-top' => esc_html__('Outside top','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox'),
-					'inside-top' => esc_html__('Inside top','easy-fancybox'),
+					'' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'outside-top' => __('Outside top','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox'),
+					'inside-top' => __('Inside top','easy-fancybox'),
 				),
 				'default' => '',
-				'description' => '<br />'
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_DailymotiontitleFromAlt',
+				'title' => __('Tile from alt?','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox')
+				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox')
 			),
 			'onStart' => array (
 				'noquotes' => true,
@@ -1841,38 +1732,13 @@ $efb_options = array (
 			)
 		)
 	),
-	/*		'Tudou' => array(
-			'id' => 'fancybox_Tudou',
-			'title' => esc_html__('Tudou','easy-fancybox'),
-			'label_for' => '',
-			'input' => 'multiple',
-			'class' => '',			'description' =>  '',
-			'options' => array(
-				'autoAttributeTudou' => array (
-					'id' => 'fancybox_autoAttributeTudou',
-					'label_for' => '',
-					'input' => 'checkbox',
-					'sanitize_callback' => 'wp_validate_boolean',
-					'class' => '',
-					'options' => array(),
-					'hide' => true,
-					'default' => '1',
-					'description' => esc_html__('Tudou links','easy-fancybox')
-					)
-				)
-			),*/
-
-	/*		'Animoto' => array(),
-	Example ANIMOTO page link http://animoto.com/play/Kf9POzQMSOGWyu41gtOtsw should become
-	http://static.animoto.com/swf/w.swf?w=swf/vp1&f=Kf9POzQMSOGWyu41gtOtsw&i=m
-	*/
 	'iFrame' => array(
-		'title' => esc_html__('iFrames','easy-fancybox'),
+		'title' => __('iFrames','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
 				'hide' => true,
-				'description' => esc_html__('To make a website or HTML document open in an overlay, use the class "fancybox-iframe" for its link.','easy-fancybox') . '<br /><br />'
+				'description' => __('To make a website or HTML document open in an overlay, use the class "fancybox-iframe" for its link.','easy-fancybox') . '<br /><br />'
 			),
 			'tag' => array (
 				'hide' => true,
@@ -1891,9 +1757,7 @@ $efb_options = array (
 				'label_for' => 'fancybox_iFramewidth',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '70%',
-				'description' => ' '
 			),
 			'height' => array (
 				'id' => 'fancybox_iFrameheight',
@@ -1901,7 +1765,6 @@ $efb_options = array (
 				'label_for' => 'fancybox_iFrameheight',
 				'input' => 'text',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '90%',
 			),
 			'padding' => array (
@@ -1913,37 +1776,35 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '100',
 				'sanitize_callback' => 'intval',
-				// 'class' => 'small-text',
 				'default' => '0',
-				'description' => '<br /><br />'
 			),
 			'titleShow' => array (
 				'id' => 'fancybox_iFrametitleShow',
+				'title' => __('Show title','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '',
-				'description' => esc_html__('Show title.','easy-fancybox') . ' ' . esc_html__('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
+				'description' => __('FancyBox will try to get a title from the link or thumbnail title attributes.','easy-fancybox')
 			),
 			'titlePosition' => array (
 				'id' => 'fancybox_iFrametitlePosition',
-				'title' => esc_html__('Title Position','easy-fancybox'),
+				'title' => __('Title Position','easy-fancybox'),
 				'label_for' => 'fancybox_iFrametitlePosition',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'float' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox')
+					'float' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox')
 				),
 				'default' => 'float',
-				'description' => '<br />'
 			),
 			'titlePosition2' => array (
 				'id' => 'fancybox_iFrametitlePosition2',
-				'title' => esc_html__('Title Style','easy-fancybox'),
+				'title' => __('Title Style','easy-fancybox'),
 				'label_for' => 'fancybox_iFrametitlePosition2',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1951,33 +1812,34 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'hide' => true,
 				'options' => array(
-					'' => esc_html__('Float','easy-fancybox'),
-					'outside' => esc_html__('Outside','easy-fancybox'),
-					'outside-top' => esc_html__('Outside top','easy-fancybox'),
-					'inside' => esc_html__('Inside','easy-fancybox'),
-					'inside-top' => esc_html__('Inside top','easy-fancybox'),
+					'' => __('Float','easy-fancybox'),
+					'outside' => __('Outside','easy-fancybox'),
+					'outside-top' => __('Outside top','easy-fancybox'),
+					'inside' => __('Inside','easy-fancybox'),
+					'inside-top' => __('Inside top','easy-fancybox'),
 				),
 				'default' => '',
-				'description' => '<br />'
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_iFrametitleFromAlt',
+				'title' => __('Title from alt?','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '1',
-				'description' => esc_html__('Allow title from thumbnail alt attribute.','easy-fancybox') . '<br/>'
+				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox') . '<br/>'
 			),
 			'allowfullscreen' => array (
 				'id' => 'fancybox_allowFullScreen',
+				'title' => __('Allow fullscreen','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'fancybox2_name' => 'allowFullScreen',
 				'noquotes' => true,
 				'fancybox2_hide' => true,
 				'default' => '',
-				'description' => esc_html__('Allow embedded content to jump to full screen mode','easy-fancybox')
+				'description' => __('Allow embedded content to jump to full screen mode','easy-fancybox')
 			)
 		)
 	)
