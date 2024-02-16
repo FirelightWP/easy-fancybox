@@ -46,6 +46,7 @@ class easyFancyBox_Admin {
 			
 			$js_file = easyFancyBox::$plugin_url . 'inc/admin.js';
 			wp_register_script( 'firelight-js', $js_file, array( 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
+			wp_register_script( 'firelight-js', $js_file, array( 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_enqueue_script( 'firelight-js' );
 		}
 	}
@@ -71,12 +72,10 @@ class easyFancyBox_Admin {
 	public static function options_page() {
 		echo '<img class="firelight-logo" src="' . easyFancyBox::$plugin_url . 'images/firelight-logo.png">';
 
-		echo '<p>' . __( 'Easy FancyBox is now the Firelight Lightbox. Learn More.' ) . '</p>';
-
 		echo '<form method="post" action="options.php">';
 
-		do_settings_sections( 'lightbox-settings' );
 		settings_fields( 'efb-settings-group' );
+		do_settings_sections( 'lightbox-settings' );
 		submit_button();
 
 		echo '</form>';
@@ -90,8 +89,10 @@ class easyFancyBox_Admin {
 		register_setting(
 			'efb-settings-group',
 			'fancybox_scriptVersion',
-			array( 'default' => 'classic',
-			'sanitize_callback' => 'sanitize_text_field' )
+			array(
+				'default' => 'classic',
+				'sanitize_callback' => 'sanitize_text_field'
+			)
 		);
 		
 		// Register settings for Fancybox Classic, Legacy, and V2
@@ -143,7 +144,7 @@ class easyFancyBox_Admin {
 		add_settings_section(
 			'lightbox-general-settings-section', // Section ID
 			'Easy Fancybox General Settings', // Section title
-			null, // Callback for section heading
+			null, // Callback for top-of-section content
 			'lightbox-settings', // Page ID
 			array(
 				'before_section' => '<div class="general-settings-section settings-section">',
@@ -152,22 +153,46 @@ class easyFancyBox_Admin {
 		);
 
 		$lightboxes = array( 'legacy', 'classic', 'fancybox2' );
-		$sections = array( 'enable', 'overlay', 'window', 'miscellaneous', 'img', 'inline', 'pdf', 'swf', 'svg', 'youtube', 'vimeo', 'dailymotion', 'iframe' );
+		$sections = array( 'enable', 'window', 'overlay', 'miscellaneous', 'img', 'inline', 'pdf', 'swf', 'svg', 'youtube', 'vimeo', 'dailymotion', 'iframe' );
 
 		foreach ( $lightboxes as $lightbox ) {
 			foreach ( $sections as $section ) {
-				$lightboxCapitalized = 'fancybox2' === $lightbox ? 'FancyBox 2' : ucfirst( $lightbox );
-				$title = $lightboxCapitalized . ' Lightbox: ' . ucfirst( $section );
+				$section_name = '';
+				switch ( $section ) {
+					case 'window':
+						$section_name = 'Window Appearance';
+						break;
+					case 'overlay':
+						$section_name = 'Overlay Appearance';
+						break;
+					case 'img':
+						$section_name = 'Images';
+						break;
+					case 'inline':
+						$section_name = 'Inline Content';
+						break;
+					case 'pdf':
+					case 'swf':
+					case 'svg';
+						$section_name = strtoupper( $section );
+						break;
+					default:
+						$section_name = ucfirst( $section );
+				}
+
+				$id = $lightbox . '-' . $section . '-settings-section';
+
 				$title = 'fancybox2' === $lightbox
-					? 'FancyBox 2: ' . ucfirst( $section )
-					: 'FancyBox ' . ucfirst( $lightbox ) . ': ' . ucfirst( $section );
+					? 'FancyBox 2: ' . $section_name
+					: 'FancyBox ' . ucfirst( $lightbox ) . ': ' . $section_name;
+
 				add_settings_section(
-					$lightbox . '-' . $section . '-settings-section', // Section ID
+					$id, // Section id
 					$title, // Section title
 					null, // Callback for section heading
 					'lightbox-settings', // Page ID
 					array(
-						'before_section' => '<div class="' . $lightbox . ' ' . $section . '-settings-section settings-section sub-settings-section">',
+						'before_section' => '<div id="' . $id . '" class="' . $lightbox . ' ' . $section . '-settings-section settings-section sub-settings-section">',
 						'after_section'  => '</div>',
 					)
 				);
@@ -191,21 +216,18 @@ class easyFancyBox_Admin {
 			array('label_for'=>'fancybox_scriptVersion')
 		);
 
-		include EASY_FANCYBOX_DIR . '/inc/fancybox-options.php';
-
-
 		// Add FB Legacy settings fields
-		$legacy_options = $efb_options;
+		$legacy_options = easyFancybox::$options;
 		$legacy_options_filtered = self::filter_fb_options( $legacy_options, 'legacy' );
 		self::add_settings_fields_recursively( $legacy_options_filtered, 'legacy' );
 
 		// Add FB Class settings fields
-		$classic_options = $efb_options;
+		$classic_options = easyFancybox::$options;
 		$classic_options_filtered = self::filter_fb_options( $classic_options, 'classic' );
 		self::add_settings_fields_recursively( $classic_options_filtered, 'classic' );
 
 		// Add FB V2 settings fields
-		$fancybox2_options = $efb_options;
+		$fancybox2_options = easyFancybox::$options;
 		$fancybox2_options_filtered = self::filter_fb_options( $fancybox2_options, 'fancybox2' );
 		$fancybox2_options_renamed = self::rename_fb2_options( $fancybox2_options_filtered );
 		self::add_settings_fields_recursively( $fancybox2_options_renamed, 'fancybox2' );
@@ -216,7 +238,7 @@ class easyFancyBox_Admin {
 	 */
 	public static function filter_fb_options( $options_to_filter, $script_version ) {
 		// First foreach cycles through Global, IMG, Inline, PDF
-		foreach ( $options_to_filter as $option_cateogry_key => $option_category ) {
+		foreach ( $options_to_filter as $option_category_key => $option_category ) {
 
 			// Second foreach through Global[options], IMG[options], etc
 			if ( array_key_exists( 'options', $option_category ) ) {
@@ -377,7 +399,18 @@ class easyFancyBox_Admin {
 					break;
 
 				case 'checkbox':
-					$output[] = '<input type="checkbox" name="'.$args['id'].'" id="'.$args['id'].'" value="1" '. checked( get_option( $args['id'], $args['default'] ), true, false ) .' '. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> '.$args['description'].'<br />';
+					$value = get_option( $args['id'], $args['default'] );
+					$output[] =
+						'<input type="checkbox" name="'
+						. $args['id']
+						. '" id="'.$args['id']
+						. '" value="1" '
+						. checked( get_option( $args['id'], $args['default'] ), true, false )
+						. ' '
+						. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false )
+						. ' /> '
+						. $args['description']
+						. '<br />';
 					break;
 
 				case 'text':
@@ -450,6 +483,14 @@ class easyFancyBox_Admin {
 	}
 
 	/**
+	* Sanitization function for number inputs.
+	*/
+	public static function sanitize_number( $setting = null ) {
+		return (float) $setting;
+	}
+
+
+	/**
 	* Sanitization function for RGB color values.
 	* For HEX values, use sanitize_hex_value from WP core.
 	*/
@@ -479,7 +520,6 @@ class easyFancyBox_Admin {
 			// Only allow max 6 hexdigit values.
 			$sanitized = '#'. substr( $setting, 0, 6 );
 		}
-
 		return $sanitized;
 	}
 
