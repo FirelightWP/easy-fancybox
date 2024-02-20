@@ -33,8 +33,14 @@ domReady( function () {
 		inactiveLightboxSections.forEach( el => el.classList.add( 'hide' ) );
 
 		// Re-open previously active sections
+		console.log( 'erick', storedActiveSections );
 		storedActiveSections.forEach( storedActiveSection => {
-			document.getElementById( storedActiveSection ).classList.add( 'active' );
+			const sectionOnPage = document.getElementById( storedActiveSection );
+			// Need extra check in case invalid section name
+			// somehow gets stored in sessionStorage.
+			if ( sectionOnPage ) {
+				sectionOnPage.classList.add( 'active' );
+			}
 		});
 	}
 
@@ -59,7 +65,9 @@ domReady( function () {
 	 * When one is updated, we want to update the other.
 	 */
 	const inputs = document.querySelectorAll( 'input' );
-	inputs.forEach( input => input.addEventListener( 'input', ( event ) => {
+	const selectInputs = document.querySelectorAll( 'select' );
+	const allInputs = [ ...inputs, ...selectInputs ];
+	allInputs.forEach( input => input.addEventListener( 'input', ( event ) => {
 		const matchingFields = document.querySelectorAll('[id="' + event.target.id + '"]');
 		if ( 'checkbox' === event.target.type ) {
 			const status = event.target.checked;

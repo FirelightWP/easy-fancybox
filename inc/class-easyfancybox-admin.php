@@ -153,7 +153,8 @@ class easyFancyBox_Admin {
 		);
 
 		$lightboxes = array( 'legacy', 'classic', 'fancybox2' );
-		$sections = array( 'enable', 'window', 'overlay', 'miscellaneous', 'img', 'inline', 'pdf', 'swf', 'svg', 'youtube', 'vimeo', 'dailymotion', 'iframe' );
+		$sections = array( 'enable', 'window', 'overlay', 'miscellaneous', 'img', 'inline', 'pdf', 'swf', 'svg', 'videopress', 'youtube', 'vimeo', 'dailymotion', 'iframe' );
+		$callback = null;
 
 		foreach ( $lightboxes as $lightbox ) {
 			foreach ( $sections as $section ) {
@@ -189,7 +190,7 @@ class easyFancyBox_Admin {
 				add_settings_section(
 					$id, // Section id
 					$title, // Section title
-					null, // Callback for section heading
+					$callback, // Callback for section heading
 					'lightbox-settings', // Page ID
 					array(
 						'before_section' => '<div id="' . $id . '" class="' . $lightbox . ' ' . $section . '-settings-section settings-section sub-settings-section">',
@@ -326,13 +327,17 @@ class easyFancyBox_Admin {
 			// Second foreach through Global[options], IMG[options], etc
 			if ( array_key_exists( 'options', $option_category ) ) {
 				foreach ( $option_category[ 'options' ] as $option_key => $option ) {
-
 					// Now check if this option is itself an array of options
-					if ( is_array( $option ) && array_key_exists( 'options', $option ) ) {
+					if (
+						is_array( $option )
+						&& array_key_exists( 'options', $option )
+						// Exclude select inputs, which have options key
+						&& 'select' !== $option[ 'input' ]
+					) {
 						foreach ( $option[ 'options' ] as $sub_option_key => $suboption ) {
 							if ( is_array( $suboption ) && array_key_exists( 'id', $suboption ) ) {
 								$id = $suboption['id'];
-								$title = $suboption['title'] ?? 'MISSING';
+								$title = $suboption['title'] ?? '-';
 								$section = strtolower( $option_key );
 								add_settings_field(  
 									$id, // Setting ID              
@@ -348,6 +353,10 @@ class easyFancyBox_Admin {
 						$id = $option['id'];
 						$title = $option['title'] ?? 'MISSING';
 						$section = strtolower( $option_category_key );
+						// if ( $option_category_key === 'VideoPress' ) {
+						// 	var_dump( $option_category_key );
+						// 	var_dump( $option );
+						// }
 						add_settings_field(  
 							$id, // Setting ID              
 							$title, // Setting label

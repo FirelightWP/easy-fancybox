@@ -3,6 +3,15 @@
 * Options for Fancybox Classic, Legacy, and V2 Lightboxes
 */
 
+if ( ! function_exists( 'efb_pro_button'  )) {
+	function efb_pro_button( $add_options = false ) {
+		if ( ! class_exists('easyFancyBox_Advanced') ) {
+			$options_prompt = $add_options ? __( 'Want more options? ' ) : '';
+			return $options_prompt . '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>';
+		}
+	}
+}
+
 $efb_options = array (
 	'Global' => array(
 		'title' => __('Global settings','easy-fancybox'),
@@ -15,10 +24,6 @@ $efb_options = array (
 				'input' => 'multiple',
 				'hide' => true,
 				'options' => array(
-					'p1' => array (
-						'hide' => true,
-						'description' => __('Enable FancyBox for','easy-fancybox') . '<br />'
-					),
 					'IMG' => array (
 						'id' => 'fancybox_enableImg',
 						'title' => __( 'Enable for Images','easy-fancybox' ),
@@ -68,7 +73,7 @@ $efb_options = array (
 						'hide' => true,
 						'default' => '',
 						'status' => 'disabled',
-						'description' => '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
+						'description' => efb_pro_button()
 					),
 					'YouTube' => array (
 						'id' => 'fancybox_enableYoutube',
@@ -137,7 +142,7 @@ $efb_options = array (
 						'input' => 'text',
 						'sanitize_callback' => 'intval',
 						'default' => '',
-						'description' => ' '
+						'description' => __( 'Default of 560 ussed if not set or cannot be determined automatically.' ),
 					),
 					'height' => array (
 						'id' => 'fancybox_height',
@@ -146,6 +151,7 @@ $efb_options = array (
 						'input' => 'text',
 						'sanitize_callback' => 'intval',
 						'default' => '',
+						'description' => __( 'Default of 340 ussed if not set or cannot be determined automatically.' ),
 					),
 					'margin' => array (
 						'id' => 'fancybox_margin',
@@ -156,7 +162,8 @@ $efb_options = array (
 						'min' => '20',
 						'max' => '80',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-						'default' => '20',
+						'default' => '40',
+						'description' => __( 'Default: 40' )
 					),
 					'backgroundColor' => array (
 						'id' => 'fancybox_backgroundColor',
@@ -167,7 +174,7 @@ $efb_options = array (
 						'sanitize_callback' => 'sanitize_hex_color',
 						'status' => 'disabled',
 						'default' => '',
-						'description' => ''
+						'description' => efb_pro_button()
 					),
 					'paddingColor' => array (
 						'id' => 'fancybox_paddingColor',
@@ -177,7 +184,7 @@ $efb_options = array (
 						'input' => 'text',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'colorval' ),
 						'default' => '',
-						'description' => '<em>' . __('Default:','easy-fancybox')  . ' #000 x #fff</em><br />' . __('Note:','easy-fancybox') . ' ' . __('Use RGBA notation for semi-transparent borders.','easy-fancybox') . ' <em>' . __('Example:','easy-fancybox') . ' rgba(10,10,30,0.7)</em>'
+						'description' => __('Use RGBA notation for semi-transparent borders.','easy-fancybox') . ' ' . __('Example:','easy-fancybox') . ' rgba(10,10,30,0.7)'
 					),
 					'padding' => array (
 						'id' => 'fancybox_padding',
@@ -188,7 +195,8 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '100',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-						'default' => '',
+						'default' => '10',
+						'description' => __( 'Default: 10' )
 					),
 					'borderRadius' => array (
 						'id' => 'fancybox_borderRadius',
@@ -202,7 +210,7 @@ $efb_options = array (
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
 						'status' => 'disabled',
 						'default' => '',
-						'description' => '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
+						'description' => efb_pro_button()
 					),
 					'titleColor' => array (
 						'id' => 'fancybox_titleColor',
@@ -223,80 +231,17 @@ $efb_options = array (
 						'sanitize_callback' => 'sanitize_hex_color',
 						'status' => 'disabled',
 						'default' => '',
-						'description' => '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
-					),
-					'overlayShow' => array (
-						'id' => 'fancybox_overlayShow',
-						'title' => __('Show overlay','easy-fancybox'),
-						'input' => 'checkbox',
-						'sanitize_callback' => 'wp_validate_boolean',
-						'noquotes' => true,
-						'fancybox2_hide' => true,
-						'default' => '1',
-						'description' => __('Show the overlay around content opened in FancyBox.','easy-fancybox')
-					),
-					'hideOnOverlayClick' => array (
-						'id' => 'fancybox_hideOnOverlayClick',
-						'title' => __('Close when overlay clicked','easy-fancybox'),
-						'input' => 'checkbox',
-						'sanitize_callback' => 'wp_validate_boolean',
-						'noquotes' => true,
-						'fancybox2_hide' => true,
-						'default' => '1',
-						'description' => __('Close FancyBox when overlay is clicked.','easy-fancybox')
-					),
-					'overlayColor' => array (
-						'id' => 'fancybox_overlayColor',
-						'title' => __('Overlay Color','easy-fancybox'),
-						'label_for' => 'fancybox_overlayColor',
-						'input' => 'text',
-						'sanitize_callback' => 'sanitize_text_field',
-						'default' => '',
-						'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em>'
-					),
-					'overlayColor2' => array (
-						'id' => 'fancybox_overlayColor2',
-						'title' => __('Overlay Color','easy-fancybox'),
-						'label_for' => 'fancybox_overlayColor2',
-						'input' => 'text',
-						'fancybox2_name' => 'overlayColor',
-						'exclude' => array( 'classic', 'legacy' ),
-						'hide' => true,
-						'sanitize_callback' => 'sanitize_text_field',
-						'default' => '',
-						'description' => __('Enter an RGBA color value.','easy-fancybox') . ' <em>' . __('Example:','easy-fancybox') . ' rgba(119,119,119,0.7)</em>'
-					),
-					'overlayOpacity' => array (
-						'id' => 'fancybox_overlayOpacity',
-						'title' => __('Overlay opacity','easy-fancybox'),
-						'label_for' => 'fancybox_overlayOpacity',
-						'input' => 'number',
-						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-						'step' => '0.1',
-						'min' => '0',
-						'max' => '1',
-						'default' => '',
-						'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em>'
-					),
-					'overlaySpotlight' => array (
-						'id' => 'fancybox_overlaySpotlight',
-						'title' => __('Overlay spotlight effect','easy-fancybox'),
-						'input' => 'checkbox',
-						'sanitize_callback' => 'wp_validate_boolean',
-						'hide' => true,
-						'status' => get_option('fancybox_overlaySpotlight') ? '' : 'disabled',
-						'default' => '',
-						'description' => __('Show gradient spotlight effect around image.','easy-fancybox') . '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
+						'description' => efb_pro_button()
 					),
 					'centerOnScroll' => array (
 						'id' => 'fancybox_centerOnScroll',
-						'title' => __('Center on scroll','easy-fancybox'),
+						'title' => __('Center when scrolling','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'noquotes' => true,
 						'default' => '',
 						'exclude' => array( 'classic', 'fancybox2' ),
-						'description' => __('Center while scrolling (always disabled on touch devices and when content, including the title, might be larger than the viewport)','easy-fancybox')
+						'description' => __('Disabled on touch devices and when content might be larger than the viewport.','easy-fancybox')
 					),
 					'enableEscapeButton' => array (
 						'id' => 'fancybox_enableEscapeButton',
@@ -319,6 +264,7 @@ $efb_options = array (
 						'max' => '6000',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
 						'default' => '',
+						'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em>'
 					),
 					'speedOut' => array (
 						'id' => 'fancybox_speedOut',
@@ -335,12 +281,12 @@ $efb_options = array (
 					),
 					'mouseWheel' => array (
 						'id' => 'fancybox_mouseWheel',
-						'title' => __('Load mousewheel nav script','easy-fancybox'),
+						'title' => __('Load mousewheel script','easy-fancybox'),
 						'hide' => true,
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'default' => '',
-						'description' => __('Include the Mousewheel jQuery extension script to allow gallery browsing by mousewheel action.','easy-fancybox')
+						'description' => __('Include Mousewheel jQuery extension to allow gallery browsing by mousewheel action.','easy-fancybox')
 					)
 				)
 			),
@@ -371,7 +317,7 @@ $efb_options = array (
 					),
 					'overlayColor' => array (
 						'id' => 'fancybox_overlayColor',
-						'title' => __('Overlay Color','easy-fancybox'),
+						'title' => __('Overlay color','easy-fancybox'),
 						'label_for' => 'fancybox_overlayColor',
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_text_field',
@@ -380,7 +326,7 @@ $efb_options = array (
 					),
 					'overlayColor2' => array (
 						'id' => 'fancybox_overlayColor2',
-						'title' => __('Overlay Color','easy-fancybox'),
+						'title' => __('Overlay color','easy-fancybox'),
 						'label_for' => 'fancybox_overlayColor2',
 						'input' => 'text',
 						'fancybox2_name' => 'overlayColor',
@@ -410,7 +356,7 @@ $efb_options = array (
 						'hide' => true,
 						'status' => get_option('fancybox_overlaySpotlight') ? '' : 'disabled',
 						'default' => '',
-						'description' => __('Show gradient spotlight effect around image.','easy-fancybox') . '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
+						'description' => __('Show gradient spotlight effect around image.','easy-fancybox') . efb_pro_button()
 					)
 				)
 			),
@@ -421,7 +367,7 @@ $efb_options = array (
 				'options' => array(
 					'autoClick' => array (
 						'id' => 'fancybox_autoClick',
-						'title' => __('Open on page load','easy-fancybox'),
+						'title' => __('Enable autopopup','easy-fancybox'),
 						'label_for' => 'fancybox_autoClick',
 						'hide' => true,
 						'input' => 'select',
@@ -431,11 +377,11 @@ $efb_options = array (
 						),
 						'sanitize_callback' => 'wp_validate_boolean',
 						'default' => '1',
-						'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em>'
+						'description' => __( 'Open lightbox automatically on page load' )
 					),
 					'delayClick' => array (
 						'id' => 'fancybox_delayClick',
-						'title' => __('Delay in milliseconds','easy-fancybox'),
+						'title' => __('Autopopup - delay','easy-fancybox'),
 						'label_for' => 'fancybox_delayClick',
 						'hide' => true,
 						'input' => 'number',
@@ -444,11 +390,11 @@ $efb_options = array (
 						'max' => '',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
 						'default' => '1000',
-						'description' => ' <em>' . __('Default:','easy-fancybox')  . ' 1000</em>'
+						'description' => __( 'Delay in milliseconds' ) . ' <em>' . __('Default:','easy-fancybox')  . ' 1000</em>'
 					),
 					'jqCookie' => array (
 						'id' => '',
-						'title' => __('Hide popup after first visit?','easy-fancybox'),
+						'title' => __('Autopopup - hide after first','easy-fancybox'),
 						'hide' => true,
 						'input' => 'select',
 						'status' => 'disabled',
@@ -461,7 +407,7 @@ $efb_options = array (
 							'30' => __('1 Month','easy-fancybox'),
 							'365' => __('1 Year','easy-fancybox')
 						),
-						'description' => '<a class="pro-button" href="' . easyFancyBox::$pro_plugin_url . '">' . __('Get Pro','easy-fancybox') . '</a>'
+						'description' => __( 'Hide auto popup for X time after first visit. ' ) . efb_pro_button()
 					),
 					'cookiePath' => array (
 						// 'id' => '',
@@ -470,7 +416,7 @@ $efb_options = array (
 					),
 					'minViewportWidth' => array (
 						'id' => 'fancybox_minViewportWidth',
-						'title' => __('Minimum browser/device viewport width','easy-fancybox'),
+						'title' => __('Minimum viewport width','easy-fancybox'),
 						'label_for' => 'fancybox_minViewportWidth',
 						'input' => 'number',
 						'fancybox2_name' => 'minVpWidth',
@@ -483,7 +429,7 @@ $efb_options = array (
 					),
 					'minVpHeight' => array (
 						'id' => 'fancybox_minViewportHeight',
-						'title' => __('Minimum browser/device viewport height','easy-fancybox'),
+						'title' => __('Minimum viewport height','easy-fancybox'),
 						'label_for' => 'fancybox_minViewportHeight',
 						'input' => 'number',
 						'step' => '1',
@@ -496,6 +442,7 @@ $efb_options = array (
 					),
 					'compatIE8' => array (
 						'id' => 'fancybox_compatIE8',
+						'title' => __('IE 8 compatibility','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
@@ -540,12 +487,12 @@ $efb_options = array (
 					),
 					'pre45Compat' => array (
 						'id' => 'fancybox_pre45Compat',
-						'title' => __('Exclude wp_add_inline_script','easy-fancybox'),
+						'title' => __('Exclude inline_script','easy-fancybox'),
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'hide' => true,
 						'default' => function_exists( 'wp_add_inline_script' ) ? '' : '1',
-						'description' => __('Do not use wp_add_inline_script/style functions (may solve issues with older script minification plugins)','easy-fancybox')
+						'description' => __('Do not use wp_add_inline_script/style (may solve issues with old minification plugins)','easy-fancybox')
 					),
 					'p3' => array (
 						'hide' => true,
@@ -553,13 +500,13 @@ $efb_options = array (
 					),
 					'metaData' => array (
 						'id' => 'fancybox_metaData',
-						'title' => __('Include jQuery metadata script','easy-fancybox'),
+						'title' => __('Include metadata script','easy-fancybox'),
 						'hide' => true,
 						'input' => 'checkbox',
 						'sanitize_callback' => 'wp_validate_boolean',
 						'status' => get_option('fancybox_metaData') ? '' : 'disabled',
 						'default' =>  '',
-						'description' => __('Include the Metadata jQuery extension script to allow passing custom parameters via link class.','easy-fancybox') . '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
+						'description' => __('Include Metadata jQuery extension to allow passing custom parameters via link class.','easy-fancybox') . efb_pro_button()
 					),
 					'vcMasonryCompat' => array (
 						'id' => 'fancybox_vcMasonryCompat',
@@ -569,7 +516,7 @@ $efb_options = array (
 						'sanitize_callback' => 'wp_validate_boolean',
 						'status' => 'disabled',
 						'default' =>  '',
-						'description' => __('WPBakery / Visual Composer - Masonry Grid Gallery compatibility.','easy-fancybox') . ' <a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
+						'description' => __('WPBakery / VC Masonry compatibility, replaces prettyPhoto lightbox. ','easy-fancybox') . efb_pro_button()
 					),
 					'autoExclude' => array (
 						'id' => 'fancybox_autoExclude',
@@ -580,7 +527,7 @@ $efb_options = array (
 						'hide' => true,
 						'default' => '.nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
 						'sanitize_callback' => 'sanitize_text_field',
-						'description' => __('A comma-separated list of selectors for elements to which FancyBox should not automatically bind itself. Media links inside these elements will be ignored by Autodetect.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
+						'description' => __( 'Comma-separated list of selectors to exclude for lightbox autodetect.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
 					)
 				)
 			)
@@ -590,9 +537,13 @@ $efb_options = array (
 		'title' => __('Images','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
-			'intro' => array (
+			'tag' => array (
 				'hide' => true,
-				'description' => __('To make images open in an overlay, add their extension to the Autodetect field or use the class "fancybox" for its link. Clear field to switch off all autodetection.','easy-fancybox') . '<br />'
+				'default' => 'a.fancybox,area.fancybox,.fancybox>a'
+			),
+			'class' => array (
+				'hide' => true,
+				'default' => 'fancybox image'
 			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttribute',
@@ -604,7 +555,7 @@ $efb_options = array (
 				'default' => '.jpg,.png,.webp,.jpeg',
 				'sanitize_callback' => 'sanitize_text_field',
 				'selector' => 'href*=',
-				'description' => __('A comma-separated list of image file extensions to which FancyBox should automatically bind itself.','easy-fancybox') . ' <em>' . __('Example:','easy-fancybox') . ' .jpg,.png,.gif,.jpeg</em>'
+				'description' => __('Comma-separated list of file extensions to detect. Clear field to disable autodetection. ','easy-fancybox') . ' ' . __('Example:','easy-fancybox') . ' .jpg,.png,.gif,.jpeg'
 			),
 			'autoAttributeLimit' => array (
 				'id' => 'fancybox_autoAttributeLimit',
@@ -617,7 +568,7 @@ $efb_options = array (
 					'' => __('All image links', 'easy-fancybox')
 				),
 				'default' => '',
-				'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em>'
+				'description' => efb_pro_button( true )
 			),
 			'type' => array (
 				'id' => 'fancybox_classType',
@@ -657,7 +608,7 @@ $efb_options = array (
 					'' => __('Swing','easy-fancybox')
 				),
 				'default' => '',
-				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em>'
+				'description' => __('Only applies when Transition is set to Elastic. ','easy-fancybox') . efb_pro_button( true )
 			),
 			'transitionOut' => array (
 				'id' => 'fancybox_transitionOut',
@@ -684,11 +635,11 @@ $efb_options = array (
 					'' => __('Swing','easy-fancybox')
 				),
 				'default' => '',
-				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
+				'description' => __('Only applies when Transition is set to Elastic. ','easy-fancybox') . efb_pro_button( true )
 			),
 			'opacity' => array (
 				'id' => 'fancybox_opacity',
-				'title' => __('Opacity','easy-fancybox'),
+				'title' => __('Transition Opacity','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
@@ -761,17 +712,18 @@ $efb_options = array (
 				'description' => __('Allow title from thumbnail alt attribute.','easy-fancybox')
 			),
 			'onStart' => array (
-				// 'id' => '',
+				'id' => 'fancybox_onStart',
+				'title' => __( 'Show title on hover' ),
 				'hide' => true,
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'status' => 'disabled',
 				'default' => '',
-				'description' => __( 'Hide/show title on mouse hover action', 'easy-fancybox' ) . ' <a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
+				'description' => __( 'Hide/show title on mouse hover action', 'easy-fancybox' ) . efb_pro_button()
 			),
 			'autoGallery' => array (
 				'id' => 'fancybox_autoGallery',
-				'title' => __('Autogallery','easy-fancybox'),
+				'title' => __('Automattically group images','easy-fancybox'),
 				'label_for' => 'fancybox_autoGallery',
 				'hide' => true,
 				'input' => 'select',
@@ -782,7 +734,7 @@ $efb_options = array (
 					'2' => __('All in one gallery','easy-fancybox')
 				),
 				'default' => '1',
-				'description' => '<em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('When disabled, you can use the rel attribute to manually group image links together.','easy-fancybox')
+				'description' => __('You can also use rel attribute to manually group images together. ','easy-fancybox') . efb_pro_button( true )
 			),
 			'showNavArrows' => array (
 				'id' => 'fancybox_showNavArrows',
@@ -849,14 +801,14 @@ $efb_options = array (
 				'default' => '',
 				'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em>'
 			),
-			// Prob need this, but as hiiden field, doesn't display right
+			//Prob need this, but as hiiden field, doesn't display right
 			// on options page, and can't remove ID.
-			// 'autoSelector' => array (
-			// 	'id' => 'fancybox_autoSelector',
-			// 	'hide' => true,
-			// 	'input' => 'hidden',
-			// 	'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery'
-			// ),
+			'autoSelector' => array (
+				'id' => 'fancybox_autoSelector',
+				'hide' => true,
+				'input' => 'text',
+				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery'
+			),
 			'autoPlay' => array (
 				'id' => 'fancybox_autoPlay',
 				'title' => __('Auto play slideshow','easy-fancybox'),
@@ -865,7 +817,7 @@ $efb_options = array (
 				'sanitize_callback' => 'wp_validate_boolean',
 				'status' => 'disabled',
 				'default' => '',
-				'description' =>  '<a class="pro-button" href="'.easyFancyBox::$pro_plugin_url.'">' . __('Get Pro','easy-fancybox') . '</a>'
+				'description' =>  efb_pro_button()
 			),
 			'playSpeed' => array(
 				'id' => 'fancybox_playSpeed',
@@ -888,10 +840,6 @@ $efb_options = array (
 		'title' => __('Inline content','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
-			'intro' => array (
-				'hide' => true,
-				'description' => __('To make inline content open in an overlay, wrap that content in a div with a unique ID, create a link with target "#uniqueID" and give it a class "fancybox-inline" attribute.','easy-fancybox') . '<br /><br />'
-			),
 			'tag' => array (
 				'hide' => true,
 				'default' => 'a.fancybox-inline,area.fancybox-inline,.fancybox-inline>a'
@@ -905,7 +853,7 @@ $efb_options = array (
 			),
 			'autoDimensions' => array (
 				'id' => 'fancybox_autoDimensions',
-				'title' => __('Auto dimensios','easy-fancybox'),
+				'title' => __('Auto dimensions','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'fancybox2_name' => 'autoSize',
@@ -952,7 +900,7 @@ $efb_options = array (
 					'' => __('Swing','easy-fancybox')
 				),
 				'default' => 'easeOutBack',
-				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em>'
+				'description' => __('Only applies when Transition is set to Elastic. ','easy-fancybox') . efb_pro_button( true )
 			),
 			'transitionOut' => array (
 				'id' => 'fancybox_transitionOutInline',
@@ -979,11 +927,11 @@ $efb_options = array (
 					'' => __('Swing','easy-fancybox')
 				),
 				'default' => '',
-				'description' => ' <em><a href="'.easyFancyBox::$pro_plugin_url.'">' . __('More options &raquo;','easy-fancybox') . '</a></em><br />' . __('Note:','easy-fancybox') . ' ' . __('Easing effects only apply when Transition is set to Elastic. ','easy-fancybox')
+				'description' => __('Only applies when Transition is set to Elastic. ','easy-fancybox') . efb_pro_button( true )
 			),
 			'opacity' => array (
 				'id' => 'fancybox_opacityInline',
-				'title' => __('Opacity','easy-fancybox'),
+				'title' => __('Transition Opacity','easy-fancybox'),
 				'input' => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'noquotes' => true,
@@ -1146,10 +1094,6 @@ $efb_options = array (
 		'input' => 'multiple',
 		'exclude' => array( 'classic', 'fancybox2' ),
 		'options' => array(
-			'intro' => array (
-				'hide' => true,
-				'description' => __('To make any Flash (.swf) file open in an overlay, switch on Autodetect or use the class "fancybox-swf" for its link.','easy-fancybox')
-			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttributeSWF',
 				'title' => __('Autodetect','easy-fancybox'),
@@ -1241,10 +1185,6 @@ $efb_options = array (
 		'title' => __('SVG','easy-fancybox'),
 		'input' => 'multiple',
 		'options' => array(
-			'intro' => array (
-				'hide' => true,
-				'description' => __('To make any SVG (.svg) file open in an overlay, switch on Autodetect or use the class "fancybox-svg" for its link.','easy-fancybox') . '<br />'
-			),
 			'autoAttribute' => array (
 				'id' => 'fancybox_autoAttributeSVG',
 				'title' => __('Autodetect','easy-fancybox'),
@@ -1354,6 +1294,20 @@ $efb_options = array (
 	),
 
 	'VideoPress' => array(
+		'title' => esc_html__('VideoPress','easy-fancybox'),
+		'input' => 'multiple',
+		'options' => array(
+			'autoAttribute' => array (
+				'id' => 'fancybox_autoAttributeVideoPress',
+				'title' => __( 'Autodetect' ),
+				'input' => 'checkbox',
+				'hide' => true,
+				'default' => '1',
+				'selector' => '\'a[href*="video.wordpress.com/v/"],area[href*="video.wordpress.com/v/"],a[href*="videopress.com/v/"],area[href*="videopress.com/v/"]\'',
+				'status' => 'disabled',
+				'description' => efb_pro_button()
+			),
+		),
 	),
 
 	'YouTube' => array(
