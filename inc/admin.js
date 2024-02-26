@@ -1,6 +1,6 @@
-const { domReady } = wp;
+// const { domReady } = wp;
 
-domReady( function () {
+wp.domReady( function () {
 	const lightboxVersionSelect = document.getElementById( 'fancybox_scriptVersion' );
 	lightboxVersionSelect.addEventListener( 'change', () => showActiveLightboxSettings() );
 	let storedActiveSections = JSON.parse( sessionStorage.getItem( 'efbActiveSections' ) ) || [];
@@ -33,8 +33,8 @@ domReady( function () {
 		inactiveLightboxSections.forEach( el => el.classList.add( 'hide' ) );
 
 		// Re-open previously active sections
-		console.log( 'erick', storedActiveSections );
 		storedActiveSections.forEach( storedActiveSection => {
+			console.log( 'erick', storedActiveSections );
 			const sectionOnPage = document.getElementById( storedActiveSection );
 			// Need extra check in case invalid section name
 			// somehow gets stored in sessionStorage.
