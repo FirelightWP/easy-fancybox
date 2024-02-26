@@ -1,6 +1,6 @@
-const { domReady } = wp;
+// const { domReady } = wp;
 
-domReady( function () {
+wp.domReady( function () {
 	const lightboxVersionSelect = document.getElementById( 'fancybox_scriptVersion' );
 	lightboxVersionSelect.addEventListener( 'change', () => showActiveLightboxSettings() );
 	let storedActiveSections = JSON.parse( sessionStorage.getItem( 'efbActiveSections' ) ) || [];
@@ -50,7 +50,9 @@ domReady( function () {
 	 */
 	const sectionHeadings = document.querySelectorAll( '.sub-settings-section h2' );
 	sectionHeadings.forEach( el => el.addEventListener( 'click', ( event ) => {
+		
 		currentSection = event.target.parentElement;
+		console.log( currentSection );
 		currentSection.classList.toggle( 'active' );
 		if ( currentSection.classList.contains( 'active' ) ) {
 			storedActiveSections.push( currentSection.id );
