@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Firelight Lightbox (formerly Easy Fancybox)
+ * Plugin Name: Easy FancyBox - WordPress Lightbox Plugin
  * Plugin URI: https://firelightwp.com
  * Description: Most popular WordPress lightbox plugin. Easily add a lightbox for viewing images and other media.
  * Text Domain: easy-fancybox
