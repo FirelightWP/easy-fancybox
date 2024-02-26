@@ -33,7 +33,6 @@ wp.domReady( function () {
 		inactiveLightboxSections.forEach( el => el.classList.add( 'hide' ) );
 
 		// Re-open previously active sections
-		console.log( 'erick', storedActiveSections );
 		storedActiveSections.forEach( storedActiveSection => {
 			const sectionOnPage = document.getElementById( storedActiveSection );
 			// Need extra check in case invalid section name
@@ -49,10 +48,8 @@ wp.domReady( function () {
 	 * Then always open first section.
 	 */
 	const sectionHeadings = document.querySelectorAll( '.sub-settings-section h2' );
-	sectionHeadings.forEach( el => el.addEventListener( 'click', ( event ) => {
-		
+	sectionHeadings.forEach( el => el.addEventListener( 'click', ( event ) => {	
 		currentSection = event.target.parentElement;
-		console.log( currentSection );
 		currentSection.classList.toggle( 'active' );
 		if ( currentSection.classList.contains( 'active' ) ) {
 			storedActiveSections.push( currentSection.id );

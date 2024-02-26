@@ -353,6 +353,10 @@ class easyFancyBox_Admin {
 						$id = $option['id'];
 						$title = $option['title'] ?? 'MISSING';
 						$section = strtolower( $option_category_key );
+						// if ( $option_category_key === 'VideoPress' ) {
+						// 	var_dump( $option_category_key );
+						// 	var_dump( $option );
+						// }
 						add_settings_field(  
 							$id, // Setting ID              
 							$title, // Setting label
