@@ -50,7 +50,6 @@ wp.domReady( function () {
 
 	/**
 	 * Hide/show setting sub-section on click.
-	 * Then always open first section.
 	 */
 	const sectionHeadings = document.querySelectorAll( '.sub-settings-section h2' );
 	sectionHeadings.forEach( el => el.addEventListener( 'click', ( event ) => {

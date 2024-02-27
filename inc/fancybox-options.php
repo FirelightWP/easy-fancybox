@@ -20,7 +20,8 @@ $efb_options = array (
 		'hide' => true,
 		'options' => array(
 			'Enable' => array (
-				'title' => __('Media','easy-fancybox'),
+				'title' => __('Enable','easy-fancybox'),
+				'slug' => 'enable-settings-section',
 				'input' => 'multiple',
 				'hide' => true,
 				'options' => array(
@@ -112,6 +113,7 @@ $efb_options = array (
 			),
 			'Window' => array (
 				'title' => __('Window Appearance','easy-fancybox'),
+				'slug' => 'window-settings-section',
 				'input' => 'multiple',
 				'hide' => true,
 				'options' => array(
@@ -292,6 +294,7 @@ $efb_options = array (
 			),
 			'Overlay' => array (
 				'title' => __('Overlay Appearance','easy-fancybox'),
+				'slug' => 'overlay-settings-section',
 				'input' => 'multiple',
 				'hide' => true,
 				'options' => array(
@@ -345,7 +348,7 @@ $efb_options = array (
 						'step' => '0.1',
 						'min' => '0',
 						'max' => '1',
-						'default' => '',
+						'default' => '0.7',
 						'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em>'
 					),
 					'overlaySpotlight' => array (
@@ -363,6 +366,7 @@ $efb_options = array (
 			'Miscellaneous' => array (
 				'title' => __('Miscellaneous','easy-fancybox'),
 				'input' => 'multiple',
+				'slug' => 'miscellaneous-settings-section',
 				'hide' => true,
 				'options' => array(
 					'autoClick' => array (
@@ -437,7 +441,7 @@ $efb_options = array (
 						'max' => '900',
 						'exclude' => array( 'classic', 'legacy' ),
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-						'default' => '',
+						'default' => '320',
 						'description' => '<em>' . __('Default:','easy-fancybox') . ' 320</em><br />'
 					),
 					'compatIE8' => array (
@@ -535,6 +539,10 @@ $efb_options = array (
 	),
 	'IMG' => array(
 		'title' => __('Images','easy-fancybox'),
+		'slug' => 'image-settings-section',
+		'section_description' => function() {
+			echo '<div class="setting-section-description">' . __( 'To make images open in an overlay, add their extension to the Autodetect field or use the class "fancybox" for its link. Clear field to switch off all autodetection.', 'easy-fancybox' ) . '</div>';
+		},
 		'input' => 'multiple',
 		'options' => array(
 			'tag' => array (
@@ -596,6 +604,7 @@ $efb_options = array (
 					'elastic' => __('Elastic','easy-fancybox'),
 				),
 				'default' => 'elastic',
+				'description' => efb_pro_button( true )
 			),
 			'easingIn' => array (
 				'id' => 'fancybox_easingIn',
@@ -623,6 +632,7 @@ $efb_options = array (
 					'elastic' => __('Elastic','easy-fancybox'),
 				),
 				'default' => 'elastic',
+				'description' => efb_pro_button( true )
 			),
 			'easingOut' => array (
 				'id' => 'fancybox_easingOut',
@@ -805,8 +815,10 @@ $efb_options = array (
 			// on options page, and can't remove ID.
 			'autoSelector' => array (
 				'id' => 'fancybox_autoSelector',
+				'title' => __( 'Image css selectors'),
 				'hide' => true,
 				'input' => 'text',
+				'status' => 'disabled',
 				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery'
 			),
 			'autoPlay' => array (
@@ -837,7 +849,8 @@ $efb_options = array (
 	),
 
 	'Inline' => array(
-		'title' => __('Inline content','easy-fancybox'),
+		'title' => __('Inline Content','easy-fancybox'),
+		'slug' => 'inline-settings-section',
 		'input' => 'multiple',
 		'options' => array(
 			'tag' => array (
@@ -888,6 +901,7 @@ $efb_options = array (
 					'elastic' => __('Elastic','easy-fancybox'),
 				),
 				'default' => '',
+				'description' => efb_pro_button( true )
 			),
 			'easingIn' => array (
 				'id' => 'fancybox_easingInInline',
@@ -915,6 +929,7 @@ $efb_options = array (
 					'elastic' => __('Elastic','easy-fancybox'),
 				),
 				'default' => '',
+				'description' => efb_pro_button( true )
 			),
 			'easingOut' => array (
 				'id' => 'fancybox_easingOutInline',
@@ -958,6 +973,7 @@ $efb_options = array (
 
 	'PDF' => array(
 		'title' => __('PDF','easy-fancybox'),
+		'slug' => 'pdf-settings-section',
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
@@ -1091,6 +1107,7 @@ $efb_options = array (
 
 	'SWF' => array(
 		'title' => __('SWF','easy-fancybox'),
+		'slug' => 'swf-settings-section',
 		'input' => 'multiple',
 		'exclude' => array( 'classic', 'fancybox2' ),
 		'options' => array(
@@ -1183,6 +1200,7 @@ $efb_options = array (
 
 	'SVG' => array(
 		'title' => __('SVG','easy-fancybox'),
+		'slug' => 'svg-settings-section',
 		'input' => 'multiple',
 		'options' => array(
 			'autoAttribute' => array (
@@ -1295,6 +1313,7 @@ $efb_options = array (
 
 	'VideoPress' => array(
 		'title' => esc_html__('VideoPress','easy-fancybox'),
+		'slug' => 'videopress-settings-section',
 		'input' => 'multiple',
 		'options' => array(
 			'autoAttribute' => array (
@@ -1312,6 +1331,7 @@ $efb_options = array (
 
 	'YouTube' => array(
 		'title' => __('YouTube','easy-fancybox'),
+		'slug' => 'youtube-settings-section',
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
@@ -1449,6 +1469,7 @@ $efb_options = array (
 
 	'Vimeo' => array(
 		'title' => __('Vimeo','easy-fancybox'),
+		'slug' => 'vimeo-settings-section',
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
@@ -1575,6 +1596,7 @@ $efb_options = array (
 	),
 	'Dailymotion' => array(
 		'title' => __('Dailymotion','easy-fancybox'),
+		'slug' => 'dailymotion-settings-section',
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (
@@ -1702,6 +1724,7 @@ $efb_options = array (
 	),
 	'iFrame' => array(
 		'title' => __('iFrames','easy-fancybox'),
+		'slug' => 'iframe-settings-section',
 		'input' => 'multiple',
 		'options' => array(
 			'intro' => array (

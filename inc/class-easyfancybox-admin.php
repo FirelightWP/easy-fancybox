@@ -163,47 +163,23 @@ class easyFancyBox_Admin {
 		);
 
 		$lightboxes = array( 'legacy', 'classic', 'fancybox2' );
-		$sections = array( 'enable', 'window', 'overlay', 'miscellaneous', 'img', 'inline', 'pdf', 'swf', 'svg', 'videopress', 'youtube', 'vimeo', 'dailymotion', 'iframe' );
-		$callback = null;
+		$global_setting_sections = easyFancybox::$options['Global']['options'];
+		$media_setting_sections = array_slice( easyFancybox::$options, 1); 
+		$sections = array_merge( $global_setting_sections, $media_setting_sections );
 
 		foreach ( $lightboxes as $lightbox ) {
 			foreach ( $sections as $section ) {
-				$section_name = '';
-				switch ( $section ) {
-					case 'window':
-						$section_name = 'Window Appearance';
-						break;
-					case 'overlay':
-						$section_name = 'Overlay Appearance';
-						break;
-					case 'img':
-						$section_name = 'Images';
-						break;
-					case 'inline':
-						$section_name = 'Inline Content';
-						break;
-					case 'pdf':
-					case 'swf':
-					case 'svg';
-						$section_name = strtoupper( $section );
-						break;
-					default:
-						$section_name = ucfirst( $section );
-				}
-
-				$id = $lightbox . '-' . $section . '-settings-section';
-
+				$id = $lightbox . '-' . $section['slug'];
 				$title = 'fancybox2' === $lightbox
-					? 'FancyBox 2: ' . $section_name
-					: 'FancyBox ' . ucfirst( $lightbox ) . ': ' . $section_name;
-
+					? 'FancyBox 2: ' . $section['title']
+					: 'FancyBox ' . ucfirst( $lightbox ) . ': ' . $section['title'];
 				add_settings_section(
 					$id, // Section id
 					$title, // Section title
-					$callback, // Callback for section heading
+					$section['section_description'] ? $section['section_description'] : null, // Callback for section heading
 					'lightbox-settings', // Page ID
 					array(
-						'before_section' => '<div id="' . $id . '" class="' . $lightbox . ' ' . $section . '-settings-section settings-section sub-settings-section">',
+						'before_section' => '<div id="' . $id . '" class="' . $lightbox . ' ' . $section['slug'] . ' settings-section sub-settings-section">',
 						'after_section'  => '</div>',
 					)
 				);
@@ -354,21 +330,20 @@ class easyFancyBox_Admin {
 									$title, // Setting label
 									array( __CLASS__, 'render_settings_fields' ), // Setting callback
 									'lightbox-settings', // Page ID           
-									$script_version . '-' . $section . '-settings-section', // Section ID
+									$script_version . '-' . $option['slug'], // Section ID
 									$suboption
 								);
 							}
 						}
 					} elseif ( array_key_exists( 'id', $option ) ) {
 						$id = $option['id'];
-						$title = $option['title'] ?? 'MISSING';
-						$section = strtolower( $option_category_key );
+						$title = $option['title'] ?? '';
 						add_settings_field(  
 							$id, // Setting ID              
 							$title, // Setting label
 							array( __CLASS__, 'render_settings_fields' ), // Setting callback
 							'lightbox-settings', // Page ID           
-							$script_version . '-' . $section . '-settings-section', // Section ID
+							$script_version . '-' . $option_category['slug'], // Section ID
 							$option
 						);
 					}

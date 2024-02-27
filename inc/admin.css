@@ -49,6 +49,20 @@
 	content: '\25b2';
 }
 
+.toplevel_page_lightbox-settings .setting-section-description {
+    background: #dddddd;
+    padding: 12px;
+    font-size: 14px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-style: italic;
+	display: none;
+}
+
+.toplevel_page_lightbox-settings  .sub-settings-section.active .setting-section-description {
+	display: block;
+}
+
 .toplevel_page_lightbox-settings  .sub-settings-section table {
     border: 1px solid #ddd;
 	border-top: none;
