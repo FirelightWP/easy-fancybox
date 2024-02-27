@@ -27,6 +27,8 @@ class easyFancyBox_Admin {
 		add_filter( 'plugin_action_links_'.EASY_FANCYBOX_BASENAME, array(__CLASS__, 'add_action_link') );
 
 		// Settings & Options page
+		// add_action( 'admin_init', array(__CLASS__, 'register_media_settings') );
+		add_action( 'admin_init', array(__CLASS__, 'add_media_settings_section') );
 		add_action( 'admin_init', array(__CLASS__, 'register_settings' ) );
 		add_action( 'admin_init', array(__CLASS__, 'add_settings_sections' ) );
 		add_action( 'admin_init', array(__CLASS__, 'add_settings_fields' ) );
@@ -34,6 +36,14 @@ class easyFancyBox_Admin {
 
 		add_action( 'wp_loaded', array(__CLASS__, 'save_date' ) );
 	}
+
+	/**
+	 * ADMIN METHODS
+	 */
+	public static function add_media_settings_section()
+	{
+ 		add_settings_section( 'fancybox_section', '<a name="fancybox"></a>'.__( 'Easy FancyBox', 'easy-fancybox' ), function() { include EASY_FANCYBOX_DIR . '/views/settings-section-intro.php'; }, 'media' );
+ 	}
 
 	/**
 	 * Enqueue admin styles and scripts
