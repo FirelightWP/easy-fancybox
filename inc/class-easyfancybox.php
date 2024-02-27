@@ -241,7 +241,6 @@ class easyFancyBox {
 		}
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
-		//add_filter( 'embed_oembed_html',  array( __CLASS__, 'add_video_wmode_opaque' ) ); // Maybe TODO: make optional?
 	}
 
 	/**

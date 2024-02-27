@@ -1,5 +1,3 @@
-// const { domReady } = wp;
-
 wp.domReady( function () {
 	const lightboxVersionSelect = document.getElementById( 'fancybox_scriptVersion' );
 	lightboxVersionSelect.addEventListener( 'change', () => showActiveLightboxSettings() );
@@ -34,7 +32,6 @@ wp.domReady( function () {
 
 		// Re-open previously active sections
 		storedActiveSections.forEach( storedActiveSection => {
-			console.log( 'erick', storedActiveSections );
 			const sectionOnPage = document.getElementById( storedActiveSection );
 			// Need extra check in case invalid section name
 			// somehow gets stored in sessionStorage.
