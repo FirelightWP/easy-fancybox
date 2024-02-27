@@ -3,10 +3,11 @@ wp.domReady( function () {
 	lightboxVersionSelect.addEventListener( 'change', () => showActiveLightboxSettings() );
 	let storedActiveSections = JSON.parse( sessionStorage.getItem( 'efbActiveSections' ) ) || [];
 	showActiveLightboxSettings();
+
 	/**
-	 * Method to show settings UI for active lightobx.
+	 * Show settings UI for active lightobx.
 	 *  - Update subheading to active lighbox.
-	 *  - Show settings for active lightbox.
+	 *  - Show settings for active lightbox only.
 	 *  - Hide settings for other lightboxes.
 	 *  - For active lightbox, reopen specific active sections
 	 */
@@ -24,21 +25,27 @@ wp.domReady( function () {
 		newSubHeading.innerHTML = activeLightboxTitle + ' Settings';
 		generalSettingsSection.after( newSubHeading );
 
-		// Show settings only for active lightbox
+		// Show settings only for the active lightbox
 		const activeLightboxSections = document.querySelectorAll( '.sub-settings-section.' + activeLightbox );
 		const inactiveLightboxSections = document.querySelectorAll( '.sub-settings-section:not(.' + activeLightbox + ')' );
 		activeLightboxSections.forEach( el => el.classList.remove( 'hide' ) );
 		inactiveLightboxSections.forEach( el => el.classList.add( 'hide' ) );
+		sessionStorage.removeItem( 'efbActiveSections' );
 
-		// Re-open previously active sections
+		// Re-open previously open setting sections
 		storedActiveSections.forEach( storedActiveSection => {
 			const sectionOnPage = document.getElementById( storedActiveSection );
 			// Need extra check in case invalid section name
-			// somehow gets stored in sessionStorage.
 			if ( sectionOnPage ) {
 				sectionOnPage.classList.add( 'active' );
 			}
 		});
+
+		// If no settings sections are open, open the first one
+		const activeAndOpenLightboxSections = document.querySelectorAll( '.active.sub-settings-section.' + activeLightbox );
+		if ( activeAndOpenLightboxSections.length === 0 ) {
+			activeLightboxSections[0].classList.add( 'active' );
+		}
 	}
 
 	/**

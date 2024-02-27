@@ -71,7 +71,7 @@ class easyFancyBox_Admin {
 			'manage_options',
 			'lightbox-settings',
 			array( __CLASS__, 'options_page' ),
-			'dashicons-grid-view',
+			'dashicons-format-image',
 			85
 		);
 	}
