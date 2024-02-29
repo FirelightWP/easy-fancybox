@@ -323,7 +323,7 @@ class easyFancyBox_Admin {
 						foreach ( $option[ 'options' ] as $sub_option_key => $suboption ) {
 							if ( is_array( $suboption ) && array_key_exists( 'id', $suboption ) ) {
 								$id = $suboption['id'];
-								$title = $suboption['title'] ?? '-';
+								$title = $suboption['title'] ?? '';
 								$section = strtolower( $option_key );
 								add_settings_field(  
 									$id, // Setting ID              
