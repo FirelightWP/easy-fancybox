@@ -35,6 +35,17 @@ class easyFancyBox_Admin {
 		add_action( 'admin_menu', array(__CLASS__, 'add_options_page') );
 
 		add_action( 'wp_loaded', array(__CLASS__, 'save_date' ) );
+
+		// Freemius customizations
+		firelight_fs()->add_filter( 'plugin_icon', array(__CLASS__, 'firelight_custom_icon' ) );
+		firelight_fs()->add_filter(
+			'connect-header_on-update',
+			array(__CLASS__, 'firelight_custom_connect_header'  )
+		);
+		firelight_fs()->add_filter(
+			'connect_message_on_update',
+			array(__CLASS__, 'firelight_custom_connect_message' ), 10, 6
+		);
 	}
 
 	/**
@@ -582,5 +593,31 @@ class easyFancyBox_Admin {
 		$now = new DateTimeImmutable( date( 'Y-m-d' ) );
 		$now_as_string = $now->format( 'Y-m-d' );
 		update_option( 'easy_fancybox_date', $now_as_string );
+	}
+
+	/**
+	 * Customize the plugin icon for Freemius.
+	 */
+	function firelight_custom_icon() {
+		return EASY_FANCYBOX_DIR . '/images/firelight-icon.png';
+	}
+
+	/**
+	 * Customize the opt in header for
+	 * users who update the plugin.
+	 */
+	function firelight_custom_connect_header( $header_html ) {
+		echo '<h3>' . __( 'Thanks for updating Easy FancyBox!', 'easy-fancybox' ) . '</h3>';
+	}
+
+	/**
+	 * Customize the optin message for
+	 * users who update the plugin.
+	 */
+	function firelight_custom_connect_message( $message, $user, $product, $login, $site_link, $freemius_link ) {
+		return sprintf(
+			__( 'Help us improve the plugin! If you opt-in, some data about your usage of Easy FancyBox will be sent to %1$s. If not, that\'s okay too! The plugin will work just fine.', 'easy-fancybox' ),
+			$freemius_link
+		);
 	}
 }
