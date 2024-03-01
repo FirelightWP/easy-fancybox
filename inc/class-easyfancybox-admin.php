@@ -4,7 +4,7 @@
  */
 class easyFancyBox_Admin {
 
-	private static $screen_id = 'toplevel_page_lightbox-settings';
+	private static $screen_id = 'toplevel_page_firelight-settings';
 
 	private static $compat_pro_min = '1.8';
 
@@ -51,11 +51,10 @@ class easyFancyBox_Admin {
 	public static function enqueue_scripts( $hook ) {
 		if ( self::$screen_id === $hook ) {
 			$css_file = easyFancyBox::$plugin_url . 'inc/admin.css';
-			wp_enqueue_style( 'firelight-css' );
 			wp_register_style( 'firelight-css', $css_file, false, EASY_FANCYBOX_VERSION );
-			
+			wp_enqueue_style( 'firelight-css' );
+
 			$js_file = easyFancyBox::$plugin_url . 'inc/admin.js';
-			wp_register_script( 'firelight-js', $js_file, array( 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_register_script( 'firelight-js', $js_file, array( 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_enqueue_script( 'firelight-js' );
 		}
@@ -69,7 +68,7 @@ class easyFancyBox_Admin {
 			__( 'Lightbox Settings - Easy Fancybox', 'easy-fancybox' ),
 			'Lightbox',
 			'manage_options',
-			'lightbox-settings',
+			'firelight-settings',
 			array( __CLASS__, 'options_page' ),
 			'dashicons-format-image',
 			85
@@ -84,8 +83,8 @@ class easyFancyBox_Admin {
 
 		echo '<form method="post" action="options.php">';
 
-		settings_fields( 'efb-settings-group' );
-		do_settings_sections( 'lightbox-settings' );
+		settings_fields( 'firelight-settings-group' );
+		do_settings_sections( 'firelight-settings' );
 		submit_button();
 
 		echo '</form>';
@@ -97,7 +96,7 @@ class easyFancyBox_Admin {
 	public static function register_settings() {
 		// Register general settings that apply to all lightboxes
 		register_setting(
-			'efb-settings-group',
+			'firelight-settings-group',
 			'fancybox_scriptVersion',
 			array(
 				'default' => 'classic',
@@ -128,7 +127,7 @@ class easyFancyBox_Admin {
 				$default = isset(  $setting['default'] ) ?  $setting['default'] : '';
 				$sanitize_callback = $setting['sanitize_callback'];
 				register_setting(
-					'efb-settings-group',
+					'firelight-settings-group',
 					$id,
 					array(
 						'sanitize_callback' => $sanitize_callback,
@@ -155,7 +154,7 @@ class easyFancyBox_Admin {
 			'lightbox-general-settings-section', // Section ID
 			'Easy Fancybox General Settings', // Section title
 			null, // Callback for top-of-section content
-			'lightbox-settings', // Page ID
+			'firelight-settings', // Page ID
 			array(
 				'before_section' => '<div class="general-settings-section settings-section">',
 				'after_section'  => '</div>',
@@ -177,7 +176,7 @@ class easyFancyBox_Admin {
 					$id, // Section id
 					$title, // Section title
 					$section['section_description'] ? $section['section_description'] : null, // Callback for section heading
-					'lightbox-settings', // Page ID
+					'firelight-settings', // Page ID
 					array(
 						'before_section' => '<div id="' . $id . '" class="' . $lightbox . ' ' . $section['slug'] . ' settings-section sub-settings-section">',
 						'after_section'  => '</div>',
@@ -198,7 +197,7 @@ class easyFancyBox_Admin {
 			function() { 
 				include EASY_FANCYBOX_DIR . '/views/settings-field-version.php';
 			},
-			'lightbox-settings',
+			'firelight-settings',
 			'lightbox-general-settings-section',
 			array('label_for'=>'fancybox_scriptVersion')
 		);
@@ -329,7 +328,7 @@ class easyFancyBox_Admin {
 									$id, // Setting ID              
 									$title, // Setting label
 									array( __CLASS__, 'render_settings_fields' ), // Setting callback
-									'lightbox-settings', // Page ID           
+									'firelight-settings', // Page ID
 									$script_version . '-' . $option['slug'], // Section ID
 									$suboption
 								);
@@ -342,7 +341,7 @@ class easyFancyBox_Admin {
 							$id, // Setting ID              
 							$title, // Setting label
 							array( __CLASS__, 'render_settings_fields' ), // Setting callback
-							'lightbox-settings', // Page ID           
+							'firelight-settings', // Page ID
 							$script_version . '-' . $option_category['slug'], // Section ID
 							$option
 						);
@@ -452,7 +451,7 @@ class easyFancyBox_Admin {
 	 */
 	public static function add_action_link( $links )
 	{
-		$url = admin_url( 'options-media.php#fancybox' );
+		$url = admin_url( 'admin.php?page=firelight-settings' );
 
 		array_unshift( $links, '<a href="' . $url . '">' . translate( 'Settings' ) . '</a>' );
 
