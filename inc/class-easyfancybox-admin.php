@@ -404,7 +404,15 @@ class easyFancyBox_Admin {
 
 				case 'text':
 				case 'color': // TODO make color picker available for color values but do NOT use type="color" because that does not allow empty fields!
-					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$value = get_option($args['id'], $args['default']);
+
+					// Options page update
+					// Fix improper past saving over overlay color
+					if ( 'fancybox_overlayOpacity' === $args['id'] && '0' ===  $value ) {
+						$value = $args['default'];
+					}
+
+					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
 					} else {
@@ -415,7 +423,22 @@ class easyFancyBox_Admin {
 					break;
 
 				case 'number':
-					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$value = get_option( $args['id'], $args['default'] );
+
+					// Options page update
+					// Fix for past options saving below minimums
+					$is_value_above_minimum = isset( $args['min'] )
+						? $value > $args['min']
+						: true;
+					$value = $is_value_above_minimum ? $value : $args['min'];
+
+					// Options page update
+					// Temp fix for fancybox_opacity being set to 0
+					if ( 'fancybox_opacity' === $args['id'] && 0 ===  $value ) {
+						$value = 0.7;
+					}
+
+					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
 					} else {
