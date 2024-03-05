@@ -45,8 +45,16 @@ class easyFancyBox {
 	public static $pro_plugin_url = "https://firelightwp.com/easy-fancybox-pro/";
 
 	/**
-	 * ACTIONS & FILTERS
+	 * Retrieves a list of all available lightboxes
 	 */
+	public static function get_lightboxes() {
+		$built_in_free_lightboxes = array(
+			'legacy' => esc_html__( 'FancyBox Legacy', 'easy-fancybox' ),
+			'classic' => esc_html__( 'FancyBox Classic Reloaded', 'easy-fancybox' ),
+			'fancyBox2' => esc_html__( 'FancyBox V2', 'easy-fancybox' ),
+		);
+		return apply_filters( 'firelight_get_lightboxes', $built_in_free_lightboxes );
+	}
 
 	public static function enqueue_scripts()
 	{
@@ -205,72 +213,34 @@ class easyFancyBox {
 	public static function extend()
 	{
 		$script_version = get_option( 'fancybox_scriptVersion', 'classic' );
-		if ( ! array_key_exists( $script_version, FANCYBOX_VERSIONS ) ) {
-			$script_version = 'classic';
+		if ( empty( self::$options ) ) {
+			include EASY_FANCYBOX_DIR . '/inc/fancybox-options.php';
+			self::$options = $efb_options;
+		}
+		foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
+			if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
+				self::$add_scripts = true;
+				break;
+			} else {
+				self::$add_scripts = false;
+			}
 		}
 
 		switch( $script_version ) {
 			case 'legacy':
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-legacy.php';
-				// Load defaults.
-				if ( empty( self::$options ) ) {
-					include EASY_FANCYBOX_DIR . '/inc/fancybox-legacy-options.php';
-					self::$options = $efb_options;
-				}
-				// Check for any enabled sections to set the scripts flag.
-				foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
-					if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
-						self::$add_scripts = true;
-						break;
-					} else {
-						self::$add_scripts = false;
-					}
-				}
 				break;
-
 			case 'fancyBox2':
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-2.php';
-				// Load defaults.
-				if ( empty( self::$options ) ) {
-					include EASY_FANCYBOX_DIR . '/inc/fancybox-2-options.php';
-					self::$options = $efb_options;
-				}
-				// Check for any enabled sections to set the scripts flag.
-				foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
-					if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
-						self::$add_scripts = true;
-						break;
-					} else {
-						self::$add_scripts = false;
-					}
-				}
 				break;
-
-			case 'fancyBox3':
-				//include EASY_FANCYBOX_DIR . '/inc/fancybox-3.php';
-				break;
-
 			case 'classic':
-			default:
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-classic.php';
-				// Load defaults.
-				if ( empty( self::$options ) ) {
-					include EASY_FANCYBOX_DIR . '/inc/fancybox-classic-options.php';
-					self::$options = $efb_options;
-				}
-				// Check for any enabled sections to set the scripts flag.
-				foreach ( self::$options['Global']['options']['Enable']['options'] as $value ) {
-					if ( isset($value['id']) && '1' == get_option($value['id'],$value['default']) ) {
-						self::$add_scripts = true;
-						break;
-					} else {
-						self::$add_scripts = false;
-					}
-				}
+				break;
+			default:
+				break;
 		}
 
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ), self::priority() );
-		//add_filter( 'embed_oembed_html',  array( __CLASS__, 'add_video_wmode_opaque' ) ); // Maybe TODO: make optional?
 	}
 
 	/**
