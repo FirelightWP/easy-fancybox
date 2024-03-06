@@ -410,7 +410,7 @@ class easyFancyBox_Admin {
 
 					// Options page update
 					// Fix improper past saving over overlay color
-					if ( 'fancybox_overlayOpacity' === $args['id'] && '0' ===  $value ) {
+					if ( 'fancybox_overlayColor' === $args['id'] && '' ===  $value ) {
 						$value = $args['default'];
 					}
 
@@ -435,9 +435,14 @@ class easyFancyBox_Admin {
 					$value = $is_value_above_minimum ? $value : $args['min'];
 
 					// Options page update
-					// Temp fix for fancybox_opacity being set to 0
-					if ( 'fancybox_opacity' === $args['id'] && 0 ===  $value ) {
-						$value = 0.7;
+					// One time fix for fancybox_opacity being set to 0
+					if (
+						'fancybox_overlayOpacity' === $args['id']
+						&& ! get_option( 'fancybox_overlayOpacity_fixed' )
+						&& '0' ===  $value
+					) {
+						update_option( 'fancybox_overlayOpacity_fixed', true );
+						$value = $args['default'];
 					}
 
 					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$css_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
