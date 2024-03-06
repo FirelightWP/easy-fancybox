@@ -436,12 +436,7 @@ class easyFancyBox_Admin {
 
 					// Options page update
 					// One time fix for fancybox_opacity being set to 0
-					if (
-						'fancybox_overlayOpacity' === $args['id']
-						&& ! get_option( 'fancybox_overlayOpacity_fixed' )
-						&& '0' ===  $value
-					) {
-						update_option( 'fancybox_overlayOpacity_fixed', true );
+					if ( 'fancybox_overlayOpacity' === $args['id'] && '0' ===  $value ) {
 						$value = $args['default'];
 					}
 
