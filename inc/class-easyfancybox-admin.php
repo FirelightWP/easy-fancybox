@@ -125,7 +125,7 @@ class easyFancyBox_Admin {
 			) {
 				$id = $setting['id'];
 				$default = isset(  $setting['default'] ) ?  $setting['default'] : '';
-				$sanitize_callback = $setting['sanitize_callback'];
+				$sanitize_callback = isset( $setting['sanitize_callback'] ) ? $setting['sanitize_callback'] : null;
 				register_setting(
 					'firelight-settings-group',
 					$id,
@@ -143,7 +143,6 @@ class easyFancyBox_Admin {
 				self::register_settings_recursively( $setting[ 'options' ] );
 			}
 		}
-		return $options_to_filter;
 	}
 
 	/**
@@ -175,7 +174,7 @@ class easyFancyBox_Admin {
 				add_settings_section(
 					$id, // Section id
 					$title, // Section title
-					$section['section_description'] ? $section['section_description'] : null, // Callback for section heading
+					isset( $section['section_description'] ) ? $section['section_description'] : null, // Callback for section heading
 					'firelight-settings', // Page ID
 					array(
 						'before_section' => '<div id="' . $id . '" class="' . $lightbox . ' ' . $section['slug'] . ' settings-section sub-settings-section">',
@@ -389,6 +388,7 @@ class easyFancyBox_Admin {
 
 				case 'checkbox':
 					$value = get_option( $args['id'], $args['default'] );
+					$description = isset( $args['description'] ) ? $args['description'] : '';
 					$output[] =
 						'<input type="checkbox" name="'
 						. $args['id']
@@ -398,13 +398,15 @@ class easyFancyBox_Admin {
 						. ' '
 						. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false )
 						. ' /> '
-						. $args['description']
+						. $description
 						. '<br />';
 					break;
 
 				case 'text':
 				case 'color': // TODO make color picker available for color values but do NOT use type="color" because that does not allow empty fields!
 					$value = get_option($args['id'], $args['default']);
+					$css_class = isset( $args['class'] ) ? $args['class'] : '';
+					$description = isset( $args['description'] ) ? $args['description'] : '';
 
 					// Options page update
 					// Fix improper past saving over overlay color
@@ -412,9 +414,9 @@ class easyFancyBox_Admin {
 						$value = $args['default'];
 					}
 
-					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$css_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
-						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
+						$output[] = '<label for="'.$args['id'].'">'.$description.'</label> ';
 					} else {
 						if ( isset( $args['description'] ) ) {
 							$output[] = $args['description'];
@@ -424,7 +426,7 @@ class easyFancyBox_Admin {
 
 				case 'number':
 					$value = get_option( $args['id'], $args['default'] );
-
+					$css_class = isset( $args['class'] ) ? $args['class'] : '';
 					// Options page update
 					// Fix for past options saving below minimums
 					$is_value_above_minimum = isset( $args['min'] )
@@ -438,7 +440,7 @@ class easyFancyBox_Admin {
 						$value = 0.7;
 					}
 
-					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$css_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
 					} else {
