@@ -405,7 +405,7 @@ class easyFancyBox_Admin {
 				case 'text':
 				case 'color': // TODO make color picker available for color values but do NOT use type="color" because that does not allow empty fields!
 					$value = get_option($args['id'], $args['default']);
-					$ccs_class = isset( $args['class'] ) ? $args['class'] : '';
+					$css_class = isset( $args['class'] ) ? $args['class'] : '';
 					$description = isset( $args['description'] ) ? $args['description'] : '';
 
 					// Options page update
@@ -414,7 +414,7 @@ class easyFancyBox_Admin {
 						$value = $args['default'];
 					}
 
-					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$ccs_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$css_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$description.'</label> ';
 					} else {
@@ -426,7 +426,7 @@ class easyFancyBox_Admin {
 
 				case 'number':
 					$value = get_option( $args['id'], $args['default'] );
-					$ccs_class = isset( $args['class'] ) ? $args['class'] : '';
+					$css_class = isset( $args['class'] ) ? $args['class'] : '';
 					// Options page update
 					// Fix for past options saving below minimums
 					$is_value_above_minimum = isset( $args['min'] )
@@ -440,7 +440,7 @@ class easyFancyBox_Admin {
 						$value = 0.7;
 					}
 
-					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$ccs_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$css_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
 					} else {
