@@ -685,10 +685,10 @@ $efb_options = array (
 				'fancybox2_hide' => true,
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'' => __('Float','easy-fancybox'),
+					'over' => __('Overlay','easy-fancybox'),
 					'outside' => __('Outside','easy-fancybox'),
 					'inside' => __('Inside','easy-fancybox'),
-					'over' => __('Overlay','easy-fancybox')
+					'' => __('Float','easy-fancybox'),
 				),
 				'default' => 'over',
 			),
@@ -702,14 +702,15 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'fancybox2_name' => 'titlePosition',
 				'options' => array(
-					'' => __('Float','easy-fancybox'),
+					'over' => __('Overlay','easy-fancybox'),
 					'outside' => __('Outside','easy-fancybox'),
 					'outside-top' => __('Outside top','easy-fancybox'),
 					'inside' => __('Inside','easy-fancybox'),
 					'inside-top' => __('Inside top','easy-fancybox'),
-					'over' => __('Overlay','easy-fancybox')
+					'' => __('Float','easy-fancybox'),
+					
 				),
-				'default' => '',
+				'default' => 'over',
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_titleFromAlt',
