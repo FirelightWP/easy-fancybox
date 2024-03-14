@@ -4,7 +4,7 @@ Tags: lightbox, gallery, image, photo, modal
 Requires at least: 5.0
 Requires PHP: 7.0
 Tested up to: 6.4.3
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 
 The most popular lightbox plugin for WordPress. Adds a simple, fast lightbox for viewing images, videos, and other media.
 
@@ -142,10 +142,13 @@ See the advanced [Easy FancyBox FAQ's](https://firelightwp.com/wordpress-lightbo
 
 == Upgrade Notice ==
 
-= 2.0.3 =
-Remove overlay background check
+= 2.0.4 =
+Fixed: Issues on new setting page
 
 == Changelog ==
+
+= 2.0.4 =
+* Fixed: Issues on new setting page
 
 = 2.0.3 =
 * Remove overlay background check
