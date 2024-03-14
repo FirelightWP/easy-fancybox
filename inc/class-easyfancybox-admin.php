@@ -274,24 +274,22 @@ class easyFancyBox_Admin {
 	 */
 	public static function rename_fb2_options( $options_to_filter ) {
 		// First foreach cycles through Global, IMG, Inline, PDF
-		foreach ( $options_to_filter as $option_cateogry_key => $option_category ) {
-
-			// Second foreach through Global[options], IMG[options], etc
-			if ( array_key_exists( 'options', $option_category ) ) {
-				foreach ( $option_category[ 'options' ] as $option_key => $option ) {
-
-					// Now check if this option is itself an array of options
-					if ( is_array( $option ) && array_key_exists( 'options', $option ) ) {
-						foreach ( $option[ 'options' ] as $sub_option_key => $suboption ) {
-							if ( is_array( $suboption ) && array_key_exists( 'fancybox2_name', $suboption ) ) {
-								$option['options'][ $suboption['fancybox2_name'] ] = $suboption;
-							}
+		foreach ( $options_to_filter as $option_category_key => $option_category ) {
+			if ( $option_category_key === 'Global' ) {
+				// Global options are nested, so there is an extra loop
+				foreach ( $option_category['options'] as $global_option_key => $global_option ) {
+					foreach ( $global_option['options'] as $key => $option ) {
+						if ( is_array( $option ) && array_key_exists( 'fancybox2_name', $option ) ) {
+							$new_key = $option['fancybox2_name'];
+							$options_to_filter['Global']['options'][$global_option_key]['options'][$new_key] = $option;
 						}
 					}
-
-					// Or else handle it as single option
+				}
+			} else {
+				foreach ( $option_category['options'] as $key => $option ) {
 					if ( is_array( $option ) && array_key_exists( 'fancybox2_name', $option ) ) {
-						$option_category_key['options'][ $option['fancybox2_name'] ] = $option;
+						$new_key = $option['fancybox2_name'];
+						$options_to_filter[$option_category_key]['options'][$new_key] = $option;
 					}
 				}
 			}
