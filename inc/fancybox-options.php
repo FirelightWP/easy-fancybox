@@ -194,7 +194,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_padding',
 						'input' => 'number',
 						'step' => '1',
-						'min' => '10',
+						'min' => '0',
 						'max' => '100',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
 						'default' => '10',
@@ -221,7 +221,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_titleColor',
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
-						'default' => '#000000',
+						'default' => '#fff',
 						'description' => ''
 					),
 					'textColor' => array (
