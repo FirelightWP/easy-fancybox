@@ -44,6 +44,50 @@ define( 'EASY_FANCYBOX_DIR', dirname( __FILE__ ) );
 define( 'EASY_FANCYBOX_BASENAME', plugin_basename( __FILE__ ) );
 
 /**************
+ *   FREEMIUS
+ **************/
+
+ if ( ! function_exists( 'firelight_fs' ) ) {
+    // Helper function for easy SDK access.
+    function firelight_fs() {
+        global $firelight_fs;
+
+        if ( ! isset( $firelight_fs ) ) {
+            // Include Freemius SDK.
+            require_once dirname(__FILE__) . '/freemius/start.php';
+
+            $firelight_fs = fs_dynamic_init( array(
+                'id'                  => '15090',
+                'slug'                => 'easy-fancybox',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_9569371c3f8bebe0f1798a124bf57',
+                'is_premium'          => false,
+                'has_addons'          => false,
+                'has_paid_plans'      => false,
+                'menu'                => array(
+                    'slug'           => 'lightbox-settings',
+                    'first-path'     => 'admin.php?page=lightbox-settings',
+                    'account'        => false,
+                    'contact'        => false,
+                    'support'        => false,
+                ),
+				'opt_in_moderation' => array(
+					'new'       => 100,
+					'updates'   => 100,
+					'localhost' => true,
+				),
+            ) );
+        }
+
+        return $firelight_fs;
+    }
+
+    // Init Freemius.
+    firelight_fs();
+    do_action( 'firelight_fs_loaded' );
+}
+
+/**************
  *   CLASSES
  **************/
 
