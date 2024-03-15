@@ -143,7 +143,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_width',
 						'input' => 'text',
 						'sanitize_callback' => 'intval',
-						'default' => '',
+						'default' => '560',
 						'description' => __( 'Default of 560 ussed if not set or cannot be determined automatically.' ),
 					),
 					'height' => array (
@@ -152,7 +152,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_height',
 						'input' => 'text',
 						'sanitize_callback' => 'intval',
-						'default' => '',
+						'default' => '340',
 						'description' => __( 'Default of 340 ussed if not set or cannot be determined automatically.' ),
 					),
 					'margin' => array (
@@ -164,8 +164,8 @@ $efb_options = array (
 						'min' => '20',
 						'max' => '80',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-						'default' => '40',
-						'description' => __( 'Default: 40' )
+						'default' => '20',
+						'description' => __( 'Default: 20' )
 					),
 					'backgroundColor' => array (
 						'id' => 'fancybox_backgroundColor',
@@ -175,7 +175,7 @@ $efb_options = array (
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
 						'status' => 'disabled',
-						'default' => '',
+						'default' => '#ffffff',
 						'description' => efb_pro_button()
 					),
 					'paddingColor' => array (
@@ -185,7 +185,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_paddingColor',
 						'input' => 'text',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'colorval' ),
-						'default' => '',
+						'default' => '#ffffff',
 						'description' => __('Use RGBA notation for semi-transparent borders.','easy-fancybox') . ' ' . __('Example:','easy-fancybox') . ' rgba(10,10,30,0.7)'
 					),
 					'padding' => array (
@@ -211,7 +211,7 @@ $efb_options = array (
 						'max' => '99',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
 						'status' => 'disabled',
-						'default' => '',
+						'default' => '0',
 						'description' => efb_pro_button()
 					),
 					'titleColor' => array (
@@ -221,7 +221,7 @@ $efb_options = array (
 						'label_for' => 'fancybox_titleColor',
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
-						'default' => '',
+						'default' => '#fff',
 						'description' => ''
 					),
 					'textColor' => array (
@@ -232,7 +232,7 @@ $efb_options = array (
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_hex_color',
 						'status' => 'disabled',
-						'default' => '',
+						'default' => '#000000',
 						'description' => efb_pro_button()
 					),
 					'centerOnScroll' => array (
@@ -265,7 +265,7 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '6000',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-						'default' => '',
+						'default' => '300',
 						'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em>'
 					),
 					'speedOut' => array (
@@ -278,7 +278,7 @@ $efb_options = array (
 						'min' => '0',
 						'max' => '6000',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-						'default' => '',
+						'default' => '300',
 						'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em>'
 					),
 					'mouseWheel' => array (
@@ -324,8 +324,8 @@ $efb_options = array (
 						'label_for' => 'fancybox_overlayColor',
 						'input' => 'text',
 						'sanitize_callback' => 'sanitize_text_field',
-						'default' => '',
-						'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #777</em>'
+						'default' => '#000',
+						'description' => __('Enter an HTML color value.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' #000</em>'
 					),
 					'overlayColor2' => array (
 						'id' => 'fancybox_overlayColor2',
@@ -348,8 +348,8 @@ $efb_options = array (
 						'step' => '0.1',
 						'min' => '0',
 						'max' => '1',
-						'default' => '0.7',
-						'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.7</em>'
+						'default' => '0.6',
+						'description' => __('Value between 0 and 1. ','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 0.6</em>'
 					),
 					'overlaySpotlight' => array (
 						'id' => 'fancybox_overlaySpotlight',
@@ -685,10 +685,10 @@ $efb_options = array (
 				'fancybox2_hide' => true,
 				'exclude' => array( 'fancybox2' ),
 				'options' => array(
-					'' => __('Float','easy-fancybox'),
+					'over' => __('Overlay','easy-fancybox'),
 					'outside' => __('Outside','easy-fancybox'),
 					'inside' => __('Inside','easy-fancybox'),
-					'over' => __('Overlay','easy-fancybox')
+					'' => __('Float','easy-fancybox'),
 				),
 				'default' => 'over',
 			),
@@ -702,14 +702,15 @@ $efb_options = array (
 				'exclude' => array( 'classic', 'legacy' ),
 				'fancybox2_name' => 'titlePosition',
 				'options' => array(
-					'' => __('Float','easy-fancybox'),
+					'over' => __('Overlay','easy-fancybox'),
 					'outside' => __('Outside','easy-fancybox'),
 					'outside-top' => __('Outside top','easy-fancybox'),
 					'inside' => __('Inside','easy-fancybox'),
 					'inside-top' => __('Inside top','easy-fancybox'),
-					'over' => __('Overlay','easy-fancybox')
+					'' => __('Float','easy-fancybox'),
+					
 				),
-				'default' => '',
+				'default' => 'over',
 			),
 			'titleFromAlt' => array (
 				'id' => 'fancybox_titleFromAlt',
@@ -795,7 +796,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '6000',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '',
+				'default' => '250',
 				'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 250</em>'
 			),
 			'changeFade' => array (
@@ -808,7 +809,7 @@ $efb_options = array (
 				'min' => '0',
 				'max' => '6000',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '',
+				'default' => '300',
 				'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 300</em>'
 			),
 			//Prob need this, but as hiiden field, doesn't display right
@@ -842,7 +843,7 @@ $efb_options = array (
 				'min' => '3000',
 				'max' => '12000',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '',
+				'default' => '3000',
 				'description' => __('Duration in milliseconds. Higher is slower.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox')  . ' 3000</em>'
 			)
 		)

@@ -4,7 +4,7 @@
  */
 class easyFancyBox_Admin {
 
-	private static $screen_id = 'toplevel_page_lightbox-settings';
+	private static $screen_id = 'toplevel_page_firelight-settings';
 
 	private static $compat_pro_min = '1.8';
 
@@ -62,11 +62,10 @@ class easyFancyBox_Admin {
 	public static function enqueue_scripts( $hook ) {
 		if ( self::$screen_id === $hook ) {
 			$css_file = easyFancyBox::$plugin_url . 'inc/admin.css';
-			wp_enqueue_style( 'firelight-css' );
 			wp_register_style( 'firelight-css', $css_file, false, EASY_FANCYBOX_VERSION );
-			
+			wp_enqueue_style( 'firelight-css' );
+
 			$js_file = easyFancyBox::$plugin_url . 'inc/admin.js';
-			wp_register_script( 'firelight-js', $js_file, array( 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_register_script( 'firelight-js', $js_file, array( 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_enqueue_script( 'firelight-js' );
 		}
@@ -80,7 +79,7 @@ class easyFancyBox_Admin {
 			__( 'Lightbox Settings - Easy Fancybox', 'easy-fancybox' ),
 			'Lightbox',
 			'manage_options',
-			'lightbox-settings',
+			'firelight-settings',
 			array( __CLASS__, 'options_page' ),
 			'dashicons-format-image',
 			85
@@ -95,8 +94,8 @@ class easyFancyBox_Admin {
 
 		echo '<form method="post" action="options.php">';
 
-		settings_fields( 'efb-settings-group' );
-		do_settings_sections( 'lightbox-settings' );
+		settings_fields( 'firelight-settings-group' );
+		do_settings_sections( 'firelight-settings' );
 		submit_button();
 
 		echo '</form>';
@@ -108,7 +107,7 @@ class easyFancyBox_Admin {
 	public static function register_settings() {
 		// Register general settings that apply to all lightboxes
 		register_setting(
-			'efb-settings-group',
+			'firelight-settings-group',
 			'fancybox_scriptVersion',
 			array(
 				'default' => 'classic',
@@ -137,9 +136,9 @@ class easyFancyBox_Admin {
 			) {
 				$id = $setting['id'];
 				$default = isset(  $setting['default'] ) ?  $setting['default'] : '';
-				$sanitize_callback = $setting['sanitize_callback'];
+				$sanitize_callback = isset( $setting['sanitize_callback'] ) ? $setting['sanitize_callback'] : null;
 				register_setting(
-					'efb-settings-group',
+					'firelight-settings-group',
 					$id,
 					array(
 						'sanitize_callback' => $sanitize_callback,
@@ -155,7 +154,6 @@ class easyFancyBox_Admin {
 				self::register_settings_recursively( $setting[ 'options' ] );
 			}
 		}
-		return $options_to_filter;
 	}
 
 	/**
@@ -166,7 +164,7 @@ class easyFancyBox_Admin {
 			'lightbox-general-settings-section', // Section ID
 			'Easy Fancybox General Settings', // Section title
 			null, // Callback for top-of-section content
-			'lightbox-settings', // Page ID
+			'firelight-settings', // Page ID
 			array(
 				'before_section' => '<div class="general-settings-section settings-section">',
 				'after_section'  => '</div>',
@@ -187,8 +185,8 @@ class easyFancyBox_Admin {
 				add_settings_section(
 					$id, // Section id
 					$title, // Section title
-					$section['section_description'] ? $section['section_description'] : null, // Callback for section heading
-					'lightbox-settings', // Page ID
+					isset( $section['section_description'] ) ? $section['section_description'] : null, // Callback for section heading
+					'firelight-settings', // Page ID
 					array(
 						'before_section' => '<div id="' . $id . '" class="' . $lightbox . ' ' . $section['slug'] . ' settings-section sub-settings-section">',
 						'after_section'  => '</div>',
@@ -209,7 +207,7 @@ class easyFancyBox_Admin {
 			function() { 
 				include EASY_FANCYBOX_DIR . '/views/settings-field-version.php';
 			},
-			'lightbox-settings',
+			'firelight-settings',
 			'lightbox-general-settings-section',
 			array('label_for'=>'fancybox_scriptVersion')
 		);
@@ -287,24 +285,22 @@ class easyFancyBox_Admin {
 	 */
 	public static function rename_fb2_options( $options_to_filter ) {
 		// First foreach cycles through Global, IMG, Inline, PDF
-		foreach ( $options_to_filter as $option_cateogry_key => $option_category ) {
-
-			// Second foreach through Global[options], IMG[options], etc
-			if ( array_key_exists( 'options', $option_category ) ) {
-				foreach ( $option_category[ 'options' ] as $option_key => $option ) {
-
-					// Now check if this option is itself an array of options
-					if ( is_array( $option ) && array_key_exists( 'options', $option ) ) {
-						foreach ( $option[ 'options' ] as $sub_option_key => $suboption ) {
-							if ( is_array( $suboption ) && array_key_exists( 'fancybox2_name', $suboption ) ) {
-								$option['options'][ $suboption['fancybox2_name'] ] = $suboption;
-							}
+		foreach ( $options_to_filter as $option_category_key => $option_category ) {
+			if ( $option_category_key === 'Global' ) {
+				// Global options are nested, so there is an extra loop
+				foreach ( $option_category['options'] as $global_option_key => $global_option ) {
+					foreach ( $global_option['options'] as $key => $option ) {
+						if ( is_array( $option ) && array_key_exists( 'fancybox2_name', $option ) ) {
+							$new_key = $option['fancybox2_name'];
+							$options_to_filter['Global']['options'][$global_option_key]['options'][$new_key] = $option;
 						}
 					}
-
-					// Or else handle it as single option
+				}
+			} else {
+				foreach ( $option_category['options'] as $key => $option ) {
 					if ( is_array( $option ) && array_key_exists( 'fancybox2_name', $option ) ) {
-						$option_category_key['options'][ $option['fancybox2_name'] ] = $option;
+						$new_key = $option['fancybox2_name'];
+						$options_to_filter[$option_category_key]['options'][$new_key] = $option;
 					}
 				}
 			}
@@ -340,7 +336,7 @@ class easyFancyBox_Admin {
 									$id, // Setting ID              
 									$title, // Setting label
 									array( __CLASS__, 'render_settings_fields' ), // Setting callback
-									'lightbox-settings', // Page ID           
+									'firelight-settings', // Page ID
 									$script_version . '-' . $option['slug'], // Section ID
 									$suboption
 								);
@@ -353,7 +349,7 @@ class easyFancyBox_Admin {
 							$id, // Setting ID              
 							$title, // Setting label
 							array( __CLASS__, 'render_settings_fields' ), // Setting callback
-							'lightbox-settings', // Page ID           
+							'firelight-settings', // Page ID
 							$script_version . '-' . $option_category['slug'], // Section ID
 							$option
 						);
@@ -401,6 +397,7 @@ class easyFancyBox_Admin {
 
 				case 'checkbox':
 					$value = get_option( $args['id'], $args['default'] );
+					$description = isset( $args['description'] ) ? $args['description'] : '';
 					$output[] =
 						'<input type="checkbox" name="'
 						. $args['id']
@@ -410,15 +407,25 @@ class easyFancyBox_Admin {
 						. ' '
 						. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false )
 						. ' /> '
-						. $args['description']
+						. $description
 						. '<br />';
 					break;
 
 				case 'text':
 				case 'color': // TODO make color picker available for color values but do NOT use type="color" because that does not allow empty fields!
-					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$value = get_option($args['id'], $args['default']);
+					$css_class = isset( $args['class'] ) ? $args['class'] : '';
+					$description = isset( $args['description'] ) ? $args['description'] : '';
+
+					// Options page update
+					// Fix improper past saving over overlay color
+					if ( 'fancybox_overlayColor' === $args['id'] && '' ===  $value ) {
+						$value = $args['default'];
+					}
+
+					$output[] = '<input type="text" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$css_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
-						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
+						$output[] = '<label for="'.$args['id'].'">'.$description.'</label> ';
 					} else {
 						if ( isset( $args['description'] ) ) {
 							$output[] = $args['description'];
@@ -427,7 +434,22 @@ class easyFancyBox_Admin {
 					break;
 
 				case 'number':
-					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( get_option($args['id'], $args['default']) ).'" class="'.$args['class'].'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
+					$value = get_option( $args['id'], $args['default'] );
+					$css_class = isset( $args['class'] ) ? $args['class'] : '';
+					// Options page update
+					// Fix for past options saving below minimums
+					$is_value_above_minimum = isset( $args['min'] )
+						? $value > $args['min']
+						: true;
+					$value = $is_value_above_minimum ? $value : $args['min'];
+
+					// Options page update
+					// One time fix for fancybox_opacity being set to 0
+					if ( 'fancybox_overlayOpacity' === $args['id'] && '0' ===  $value ) {
+						$value = $args['default'];
+					}
+
+					$output[] = '<input type="number" step="' . ( isset( $args['step'] ) ? $args['step'] : '' ) . '" min="' . ( isset( $args['min'] ) ? $args['min'] : '' ) . '" max="' . ( isset( $args['max'] ) ? $args['max'] : '' ) . '" name="'.$args['id'].'" id="'.$args['id'].'" value="'.esc_attr( $value ).'" class="'.$css_class.'"'. disabled( isset( $args['status']) && 'disabled' == $args['status'], true, false ) .' /> ';
 					if ( empty( $args['label_for'] ) ) {
 						$output[] = '<label for="'.$args['id'].'">'.$args['description'].'</label> ';
 					} else {
@@ -463,7 +485,7 @@ class easyFancyBox_Admin {
 	 */
 	public static function add_action_link( $links )
 	{
-		$url = admin_url( 'options-media.php#fancybox' );
+		$url = admin_url( 'admin.php?page=firelight-settings' );
 
 		array_unshift( $links, '<a href="' . $url . '">' . translate( 'Settings' ) . '</a>' );
 

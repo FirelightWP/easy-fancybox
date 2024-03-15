@@ -232,6 +232,10 @@ class easyFancyBox {
 				break;
 			case 'fancyBox2':
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-2.php';
+				if ( ! class_exists( 'easyFancyBox_Admin' ) ) {
+					include EASY_FANCYBOX_DIR . '/inc/class-easyfancybox-admin.php';
+				}
+				self::$options = easyFancyBox_Admin::rename_fb2_options( self::$options );
 				break;
 			case 'classic':
 				include EASY_FANCYBOX_DIR . '/inc/fancybox-classic.php';
