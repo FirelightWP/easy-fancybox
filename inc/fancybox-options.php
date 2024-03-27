@@ -1748,7 +1748,7 @@ $efb_options = array (
 				'title' => translate('Width'),
 				'label_for' => 'fancybox_iFramewidth',
 				'input' => 'text',
-				'sanitize_callback' => 'intval',
+				'sanitize_callback' => 'sanitize_text_field',
 				'default' => '70%',
 			),
 			'height' => array (
@@ -1756,7 +1756,7 @@ $efb_options = array (
 				'title' => translate('Height'),
 				'label_for' => 'fancybox_iFrameheight',
 				'input' => 'text',
-				'sanitize_callback' => 'intval',
+				'sanitize_callback' => 'sanitize_text_field',
 				'default' => '90%',
 			),
 			'padding' => array (
