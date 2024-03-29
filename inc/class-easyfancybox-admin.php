@@ -85,21 +85,23 @@ class easyFancyBox_Admin {
 			'dashicons-format-image',
 			85
 		);
-		add_submenu_page(
-			'firelight-settings',
-			'My Custom Page',
-			'Settings',
-			'manage_options',
-			'firelight-settings'
-		);
-		add_submenu_page(
-			'firelight-settings',
-			'Go Pro',
-			'Go Pro',
-			'manage_options',
-			'firelight-pro',
-			array( __CLASS__, 'pro_landing_page' )
-		);
+		if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
+			add_submenu_page(
+				'firelight-settings',
+				'My Custom Page',
+				'Settings',
+				'manage_options',
+				'firelight-settings'
+			);
+			add_submenu_page(
+				'firelight-settings',
+				'Go Pro',
+				'Go Pro',
+				'manage_options',
+				'firelight-pro',
+				array( __CLASS__, 'pro_landing_page' )
+			);
+		}
 	}
 
 	/**
