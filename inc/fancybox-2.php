@@ -39,6 +39,13 @@ function prepare_inline_scripts() {
 		}
 	}
 
+	// Transitions.
+	$transition = get_option( 'fancybox_transition' );
+	if ( ! empty( $transition ) ) {
+		$fb_opts['prevEffect'] = $transition;
+		$fb_opts['nextEffect'] = $transition;
+	}
+
 	// Change speeds.
 	$changespeed = get_option( 'fancybox_changeSpeed' );
 	if ( ! empty( $changespeed ) ) {

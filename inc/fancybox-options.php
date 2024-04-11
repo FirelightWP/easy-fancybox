@@ -161,8 +161,8 @@ $efb_options = array (
 						'label_for' => 'fancybox_margin',
 						'input' => 'number',
 						'step' => '1',
-						'min' => '20',
-						'max' => '80',
+						'min' => '0',
+						'max' => '300',
 						'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
 						'default' => '20',
 						'description' => __( 'Default: 20' )
@@ -591,9 +591,23 @@ $efb_options = array (
 				'default' => get_option('fancybox_enableInline') ? 'image' : '',
 				'description' => __('Force FancyBox to treat all media linked with class="fancybox" as images?','easy-fancybox')
 			),
+			'transition' => array (
+				'id' => 'fancybox_transition',
+				'title' => __('Transition Style','easy-fancybox'),
+				'label_for' => 'fancybox_transition',
+				'input' => 'select',
+				'sanitize_callback' => 'sanitize_text_field',
+				'exclude' => array( 'classic', 'legacy' ),
+				'options' => array(
+					'none' => translate('None'),
+					'fade' => __('Fade','easy-fancybox'),
+					'elastic' => __('Elastic','easy-fancybox'),
+				),
+				'default' => 'elastic',
+			),
 			'transitionIn' => array (
 				'id' => 'fancybox_transitionIn',
-				'title' => __('Transition In','easy-fancybox'),
+				'title' => __('Open Style','easy-fancybox'),
 				'label_for' => 'fancybox_transitionIn',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -617,11 +631,11 @@ $efb_options = array (
 					'' => __('Swing','easy-fancybox')
 				),
 				'default' => '',
-				'description' => __('Only applies when Transition is set to Elastic. ','easy-fancybox') . efb_pro_button( true )
+				'description' => __('Only applies when Open Style is set to Elastic. ','easy-fancybox') . efb_pro_button( true )
 			),
 			'transitionOut' => array (
 				'id' => 'fancybox_transitionOut',
-				'title' => __('Transition Out','easy-fancybox'),
+				'title' => __('Close Style','easy-fancybox'),
 				'label_for' => 'fancybox_transitionOut',
 				'input' => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -645,7 +659,7 @@ $efb_options = array (
 					'' => __('Swing','easy-fancybox')
 				),
 				'default' => '',
-				'description' => __('Only applies when Transition is set to Elastic. ','easy-fancybox') . efb_pro_button( true )
+				'description' => __('Only applies when Close Style is set to Elastic. ','easy-fancybox') . efb_pro_button( true )
 			),
 			'opacity' => array (
 				'id' => 'fancybox_opacity',
