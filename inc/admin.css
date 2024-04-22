@@ -4,6 +4,10 @@
 	max-width: 90%;
 }
 
+.toplevel_page_firelight-settings #wpbody-content > .notice {
+    margin-top: 30px;
+}
+
 .toplevel_page_firelight-settings .firelight-logo,
 .lightbox_page_firelight-pro .firelight-logo {
 	max-width: 200px;
@@ -161,6 +165,7 @@ body.lightbox_page_firelight-pro {
     font-size: 3em;
     line-height: 1.2;
 	margin-top: 0;
+    font-weight: 800;
 }
 
 .hero-section-copy-text {
@@ -209,6 +214,21 @@ body.lightbox_page_firelight-pro {
 }
 
 /* Pricing Table */
+
+.sale-notice h1,
+.sale-notice p {
+	text-align: center;
+	color: black;
+	font-size: 18px;
+	margin: 2px;
+}
+
+.sale-notice h1 {
+	font-size: 36px;
+	margin: 16px;
+    color: #8abc00;
+    font-weight: 800;
+}
 
 .pricing-table {
     color: #000000;
