@@ -111,7 +111,7 @@ class easyFancyBox_Admin {
 			$user_review_number = rand(1, 10);
 			update_option( 'efb_user_review_number', $user_review_number );
 		}
-		$selected = $user_review_number === '9';
+		$selected = $user_review_number === '1';
 
 		if ( ! $selected ) {
 			return;
@@ -130,14 +130,13 @@ class easyFancyBox_Admin {
 		}
 
 		// Do not show if user interacted with reviews within last 90 days
-		$efb_last_review_interaction_time_stamp = get_option( 'efb_last_review_interaction' );
-		$last_review_interaction_date = $efb_last_review_interaction_time_stamp
-			? new DateTimeImmutable( $efb_last_review_interaction_time_stamp )
-			: $current_date;
-		$days_since_last_interaction = $last_review_interaction_date->diff( $current_date )->days;
-
-		if ( $days_since_last_interaction < 90 ) {
-			return;
+		$efb_last_review_interaction = get_option( 'efb_last_review_interaction' );
+		if ( $efb_last_review_interaction ) {
+			$last_review_interaction_date = new DateTimeImmutable( $efb_last_review_interaction );
+			$days_since_last_interaction = $last_review_interaction_date->diff( $current_date )->days;
+			if ( $days_since_last_interaction < 90 ) {
+				return;
+			}
 		}
 
 		// To summarize, this will only show:
