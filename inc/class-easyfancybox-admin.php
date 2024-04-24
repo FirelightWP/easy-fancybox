@@ -100,7 +100,6 @@ class easyFancyBox_Admin {
 		$screen = get_current_screen();
 		$is_options_screen = self::$screen_id === $screen->id;
 		$already_rated = get_option( 'efb_plugin_rated' ) && get_option( 'efb_plugin_rated' ) === 'true';
-
 		if ( ! $is_options_screen || $already_rated ) {
 			return;
 		}
@@ -112,7 +111,6 @@ class easyFancyBox_Admin {
 			update_option( 'efb_user_review_number', $user_review_number );
 		}
 		$selected = $user_review_number === '1';
-
 		if ( ! $selected ) {
 			return;
 		}
@@ -124,7 +122,6 @@ class easyFancyBox_Admin {
 			? new DateTimeImmutable( $plugin_time_stamp )
 			: $current_date;
 		$days_using_plugin = $activation_date->diff( $current_date )->days;
-
 		if ( $days_using_plugin < 60 ) {
 			return;
 		}
@@ -165,19 +162,19 @@ class easyFancyBox_Admin {
 	 */
 	public static function process_efb_review_action() {
 		check_admin_referer( 'efb_review_action_nonce', '_n' );
-        if ( !current_user_can( 'manage_options' ) ) {
-            return;
-        }
+		if ( !current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
 		$rate_action = $_POST['rate_action'];
 		$current_date = new DateTimeImmutable( date( 'Y-m-d' ) );
 		$current_date_as_string = $current_date->format( 'Y-m-d' );
-
 		update_option( 'efb_last_review_interaction', $current_date_as_string );
+
 		if ( 'done' === $rate_action ) {
 			update_option( 'efb_plugin_rated', 'true' );
 		}
-		$last_interaction_date = get_option( 'efb_last_review_interaction' );
-		echo $last_interaction_date;
+
 		exit;
 	}
 
