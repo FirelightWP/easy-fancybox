@@ -35,6 +35,8 @@ class easyFancyBox_Admin {
 		add_action( 'admin_menu', array(__CLASS__, 'add_options_page') );
 
 		add_action( 'wp_loaded', array(__CLASS__, 'save_date' ) );
+		add_action( 'admin_notices', array(__CLASS__, 'show_review_request' ) );
+		add_action( 'wp_ajax_efb-review-action', array(__CLASS__, 'process_efb_review_action' ) );
 	}
 
 	/**
@@ -88,6 +90,92 @@ class easyFancyBox_Admin {
 		submit_button();
 
 		echo '</form>';
+	}
+
+	/**
+	 * Show request for plugin review on options page
+	 */
+	public static function show_review_request() {
+		// Don't show if not on options screen, or if already rated
+		$screen = get_current_screen();
+		$is_options_screen = self::$screen_id === $screen->id;
+		$already_rated = get_option( 'efb_plugin_rated' ) && get_option( 'efb_plugin_rated' ) === 'true';
+		if ( ! $is_options_screen || $already_rated ) {
+			return;
+		}
+
+		// Limit review notices to 10% of users initially
+		$user_review_number = get_option( 'efb_user_review_number' );
+		if ( ! $user_review_number ) {
+			$user_review_number = rand(1, 10);
+			update_option( 'efb_user_review_number', $user_review_number );
+		}
+		$selected = $user_review_number === '1';
+		if ( ! $selected ) {
+			return;
+		}
+
+		// Only show if user has been using plugin for more than 60 days
+		$current_date = new DateTimeImmutable( date( 'Y-m-d' ) );
+		$plugin_time_stamp = get_option( 'easy_fancybox_date' );
+		$activation_date = $plugin_time_stamp
+			? new DateTimeImmutable( $plugin_time_stamp )
+			: $current_date;
+		$days_using_plugin = $activation_date->diff( $current_date )->days;
+		if ( $days_using_plugin < 60 ) {
+			return;
+		}
+
+		// Do not show if user interacted with reviews within last 90 days
+		$efb_last_review_interaction = get_option( 'efb_last_review_interaction' );
+		if ( $efb_last_review_interaction ) {
+			$last_review_interaction_date = new DateTimeImmutable( $efb_last_review_interaction );
+			$days_since_last_interaction = $last_review_interaction_date->diff( $current_date )->days;
+			if ( $days_since_last_interaction < 90 ) {
+				return;
+			}
+		}
+
+		// To summarize, this will only show:
+		// if is options screen
+		// if has not already been rated
+		// if user is selected for metered rollout
+		// if user has plugin more than 60 days
+		// if use has not interacted with reviews within 90 days
+		?>
+			<div class="notice notice-success is-dismissible efb-review-notice" style="margin-top: 30px;">
+				<p><?php _e( 'You\'ve used Easy Fancybox for a while! Awesome! Would you do us a BIG favor and give it a 5-star review on WordPress.org? And thanks for using our plugin.', 'easy-fancybox' ); ?></p>
+
+				<ul data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_review_action_nonce' ) ) ?>">
+					<li><a data-rate-action="do-rate"
+						href="https://wordpress.org/support/plugin/easy-fancybox/reviews/#new-post" target="_blank"><?php _e( 'Ok, you deserve it!', 'easy-fancybox' ) ?></a>
+					</li>
+					<li><a data-rate-action="maybe-later" href="#"><?php _e( 'Maybe later', 'easy-fancybox' ) ?></a></li>
+					<li><a data-rate-action="done" href="#"><?php _e( 'Already did!', 'easy-fancybox' ) ?></a></li>
+				</ul>
+			</div>
+
+		<?php
+	}
+	/**
+	 * Process Ajax request when user interacts with review requests
+	 */
+	public static function process_efb_review_action() {
+		check_admin_referer( 'efb_review_action_nonce', '_n' );
+		if ( !current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$rate_action = $_POST['rate_action'];
+		$current_date = new DateTimeImmutable( date( 'Y-m-d' ) );
+		$current_date_as_string = $current_date->format( 'Y-m-d' );
+		update_option( 'efb_last_review_interaction', $current_date_as_string );
+
+		if ( 'done' === $rate_action ) {
+			update_option( 'efb_plugin_rated', 'true' );
+		}
+
+		exit;
 	}
 
 	/**
