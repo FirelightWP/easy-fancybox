@@ -57,7 +57,7 @@ class easyFancyBox_Admin {
 			wp_enqueue_style( 'firelight-css' );
 
 			$js_file = easyFancyBox::$plugin_url . 'inc/admin.js';
-			wp_register_script( 'firelight-js', $js_file, array( 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
+			wp_register_script( 'firelight-js', $js_file, array( 'jquery', 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_enqueue_script( 'firelight-js' );
 		}
 	}
