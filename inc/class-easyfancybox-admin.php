@@ -6,6 +6,7 @@ class easyFancyBox_Admin {
 
 	private static $screen_id = 'toplevel_page_firelight-settings';
 	private static $pro_screen_id = 'lightbox_page_firelight-pro';
+	private static $show_pro_landing = false;
 	private static $compat_pro_min = '1.8';
 	private static $do_compat_warning = false;
 
@@ -85,7 +86,7 @@ class easyFancyBox_Admin {
 			'dashicons-format-image',
 			85
 		);
-		if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
+		if ( self::$show_pro_landing && ! class_exists( 'easyFancyBox_Advanced' ) ) {
 			add_submenu_page(
 				'firelight-settings',
 				'My Custom Page',
@@ -216,7 +217,9 @@ class easyFancyBox_Admin {
 	 * Render the content of the Lightbox Settings page.
 	 */
 	public static function pro_landing_page() {
-		include EASY_FANCYBOX_DIR . '/views/pro-landing-page.php';
+		if ( self::$show_pro_landing ) {
+			include EASY_FANCYBOX_DIR . '/views/pro-landing-page.php';
+		}
 	}
 
 	/**
