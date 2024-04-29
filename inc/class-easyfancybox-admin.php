@@ -51,7 +51,9 @@ class easyFancyBox_Admin {
 	 * Enqueue admin styles and scripts
 	 */
 	public static function enqueue_scripts( $hook ) {
-		if ( self::$screen_id === $hook ) {
+		$screen = get_current_screen();
+		$is_dashboard_or_efb_options = 'dashboard' === $screen->id || self::$screen_id === $screen->id;
+		if ( $is_dashboard_or_efb_options ) {
 			$css_file = easyFancyBox::$plugin_url . 'inc/admin.css';
 			wp_register_style( 'firelight-css', $css_file, false, EASY_FANCYBOX_VERSION );
 			wp_enqueue_style( 'firelight-css' );
@@ -96,11 +98,11 @@ class easyFancyBox_Admin {
 	 * Show request for plugin review on options page
 	 */
 	public static function show_review_request() {
-		// Don't show if not on options screen, or if already rated
+		// Don't show if not on options screen or dashboard, or if already rated
 		$screen = get_current_screen();
-		$is_options_screen = self::$screen_id === $screen->id;
+		$is_dashboard_or_efb_options = 'dashboard' === $screen->id || self::$screen_id === $screen->id;
 		$already_rated = get_option( 'efb_plugin_rated' ) && get_option( 'efb_plugin_rated' ) === 'true';
-		if ( ! $is_options_screen || $already_rated ) {
+		if ( ! $is_dashboard_or_efb_options || $already_rated ) {
 			return;
 		}
 
@@ -110,7 +112,7 @@ class easyFancyBox_Admin {
 			$user_review_number = rand(1, 10);
 			update_option( 'efb_user_review_number', $user_review_number );
 		}
-		$selected = $user_review_number === '1' || $user_review_number === '2' || $user_review_number === '3' || $user_review_number === '4';
+		$selected = $user_review_number === '1';
 		if ( ! $selected ) {
 			return;
 		}
@@ -143,15 +145,21 @@ class easyFancyBox_Admin {
 		// if user has plugin more than 60 days
 		// if use has not interacted with reviews within 90 days
 		?>
-			<div class="notice notice-success is-dismissible efb-review-notice" style="margin-top: 30px;">
-				<p><?php _e( 'You\'ve used Easy Fancybox for a while! Awesome! Would you do us a BIG favor and give it a 5-star review on WordPress.org? And thanks for using our plugin.', 'easy-fancybox' ); ?></p>
+			<div class="notice notice-success is-dismissible efb-review-notice">
+				<p><?php _e( 'You\'ve been using Easy Fancybox for a long time! Awesome and thank you!', 'easy-fancybox' ); ?></p>
+				<p>
+					<?php printf(
+						__( 'We work hard to maintain it. If you like it, could you do us a big favor and give us a quick 5-star review on WordPress.org? We also welcome feedback <a %s>here</a>.', 'easy-fancybox' ),
+						'href="https://firelightwp.com/contact/" target="_blank"'
+					); ?>
+				</p>
 
 				<ul data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_review_action_nonce' ) ) ?>">
-					<li><a data-rate-action="do-rate"
+					<li style="display:inline;"><a class="button-primary" data-rate-action="do-rate"
 						href="https://wordpress.org/support/plugin/easy-fancybox/reviews/#new-post" target="_blank"><?php _e( 'Ok, you deserve it!', 'easy-fancybox' ) ?></a>
 					</li>
-					<li><a data-rate-action="maybe-later" href="#"><?php _e( 'Maybe later', 'easy-fancybox' ) ?></a></li>
-					<li><a data-rate-action="done" href="#"><?php _e( 'Already did!', 'easy-fancybox' ) ?></a></li>
+					<li style="display:inline;"><a class="button-secondary" data-rate-action="maybe-later" href="#"><?php _e( 'Maybe later', 'easy-fancybox' ) ?></a></li>
+					<li style="display:inline;"><a class="button-secondary" data-rate-action="done" href="#"><?php _e( 'Already did!', 'easy-fancybox' ) ?></a></li>
 				</ul>
 			</div>
 
