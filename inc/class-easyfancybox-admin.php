@@ -112,7 +112,7 @@ class easyFancyBox_Admin {
 			$user_review_number = rand(1, 10);
 			update_option( 'efb_user_review_number', $user_review_number );
 		}
-		$selected = $user_review_number === '1';
+		$selected = $user_review_number === '1' || $user_review_number === '2';
 		if ( ! $selected ) {
 			return;
 		}
@@ -146,15 +146,15 @@ class easyFancyBox_Admin {
 		// if use has not interacted with reviews within 90 days
 		?>
 			<div class="notice notice-success is-dismissible efb-review-notice">
-				<p><?php _e( 'You\'ve been using Easy Fancybox for a long time! Awesome and thank you!', 'easy-fancybox' ); ?></p>
+				<p><?php _e( 'You\'ve been using Easy Fancybox for a long time! Awesome and thanks!', 'easy-fancybox' ); ?></p>
 				<p>
 					<?php printf(
-						__( 'We work hard to maintain it. If you like it, could you do us a big favor and give us a quick 5-star review on WordPress.org? We also welcome feedback <a %s>here</a>.', 'easy-fancybox' ),
+						__( 'We work hard to maintain it. Would you do us a BIG favor and give us a 5-star review on WordPress.org? Or share feedback <a %s>here</a>.', 'easy-fancybox' ),
 						'href="https://firelightwp.com/contact/" target="_blank"'
 					); ?>
 				</p>
 
-				<ul data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_review_action_nonce' ) ) ?>">
+				<ul class="efb-review-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_review_action_nonce' ) ) ?>">
 					<li style="display:inline;"><a class="button-primary" data-rate-action="do-rate"
 						href="https://wordpress.org/support/plugin/easy-fancybox/reviews/#new-post" target="_blank"><?php _e( 'Ok, you deserve it!', 'easy-fancybox' ) ?></a>
 					</li>

@@ -96,7 +96,7 @@ wp.domReady( function () {
 	$( document ).ready( function() {
 		var container = $('.efb-review-notice');
 		if ( container.length ) {
-			container.find( 'a' ).click(function() {
+			container.find( '.efb-review-actions a' ).click(function() {
 				container.remove();
 				var rateAction = $( this ).attr( 'data-rate-action' );
 				$.post(
