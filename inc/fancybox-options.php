@@ -1037,7 +1037,7 @@ $efb_options = array (
 				'title' => translate('Width'),
 				'label_for' => 'fancybox_PDFwidth',
 				'input' => 'text',
-				'sanitize_callback' => 'intval',
+				'sanitize_callback' => 'sanitize_text_field',
 				'default' => '90%',
 				'description' => ' '
 			),
@@ -1046,7 +1046,7 @@ $efb_options = array (
 				'title' => translate('Height'),
 				'label_for' => 'fancybox_PDFheight',
 				'input' => 'text',
-				'sanitize_callback' => 'intval',
+				'sanitize_callback' => 'sanitize_text_field',
 				'default' => '90%'
 			),
 			'padding' => array (
