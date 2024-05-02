@@ -112,7 +112,7 @@ class easyFancyBox_Admin {
 			$user_review_number = rand(1, 10);
 			update_option( 'efb_user_review_number', $user_review_number );
 		}
-		$selected = $user_review_number === '1' || $user_review_number === '2';
+		$selected = $user_review_number === '1' || $user_review_number === '2'  || $user_review_number === '3'  || $user_review_number === '4'  || $user_review_number === '5';
 		if ( ! $selected ) {
 			return;
 		}
