@@ -166,6 +166,39 @@ class easyFancyBox {
 
 	}
 
+	/**
+	 * Removes filter and dequeues JS for core lightbox.
+	 * Note: we may want to make this dependent on a setting.
+	 * Note: we may want to add this to free version of plugin.
+	 */
+	public static function disable_core_lightbox_on_frontend() {
+		// These are added for the core lightbox here:
+		// https://github.com/WordPress/gutenberg/blob/8dc36f6d30cc163671bdaa33f0656fdfe91f1447/packages/block-library/src/image/index.php#L64
+		wp_dequeue_script_module( '@wordpress/block-library/image' );
+		remove_filter( 'render_block_core/image', 'block_core_image_render_lightbox', 15 );
+		remove_filter( 'render_block_core/image', 'block_core_image_render_lightbox', 15, 2 );
+	}
+
+	/**
+	 * Disables/hides core lightbox for editor > image blocks
+	 */
+	public static function hide_core_lightbox_in_editor( $theme_json ) {
+		$new_data = array(
+			'version'  => 2,
+			'settings' => array(
+				'blocks' => array(
+					'core/image' => array(
+						'lightbox' => array(
+							'allowEditing' => false,
+							'enabled' => false,
+						),
+					),
+				),
+			),
+		);
+		return $theme_json->update_with( $new_data );
+	}
+
 	// Hack to fix missing wmode in Youtube oEmbed code based on David C's code in the comments on
 	// http://www.mehigh.biz/wordpress/adding-wmode-transparent-to-wordpress-3-media-embeds.html
 	// without the wmode, videos will float over the light box no matter what z-index is set.
@@ -257,5 +290,7 @@ class easyFancyBox {
 		self::$plugin_url = plugins_url( '/', EASY_FANCYBOX_BASENAME /* EASY_FANCYBOX_DIR.'/easy-fancybox.php' */ );
 
 		add_action( 'init', array( __CLASS__, 'extend' ), 9 );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'disable_core_lightbox_on_frontend' ), 99 );
+		add_filter( 'wp_theme_json_data_user', array( __CLASS__, 'hide_core_lightbox_in_editor' ) );
 	}
 }
