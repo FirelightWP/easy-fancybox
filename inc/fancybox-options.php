@@ -834,8 +834,10 @@ $efb_options = array (
 				'title' => __( 'Image css selectors'),
 				'hide' => true,
 				'input' => 'text',
+				'sanitize_callback' => 'sanitize_text_field',
 				'status' => 'disabled',
-				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery'
+				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery',
+				'description' => efb_pro_button()
 			),
 			'autoPlay' => array (
 				'id' => 'fancybox_autoPlay',
