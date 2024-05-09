@@ -174,10 +174,13 @@ class easyFancyBox {
 	public static function disable_core_lightbox_on_frontend() {
 		// These are added for the core lightbox here:
 		// https://github.com/WordPress/gutenberg/blob/8dc36f6d30cc163671bdaa33f0656fdfe91f1447/packages/block-library/src/image/index.php#L64
-		wp_dequeue_script_module( '@wordpress/block-library/image' );
+		if ( function_exists( 'wp_dequeue_script_module' ) ) {
+			wp_dequeue_script_module( '@wordpress/block-library/image' );
+		}
 		remove_filter( 'render_block_core/image', 'block_core_image_render_lightbox', 15 );
 		remove_filter( 'render_block_core/image', 'block_core_image_render_lightbox', 15, 2 );
 	}
+
 
 	/**
 	 * Disables/hides core lightbox for editor > image blocks
@@ -286,11 +289,15 @@ class easyFancyBox {
 
 	public function __construct()
 	{
+		global $wp_version;
 		// VARS
 		self::$plugin_url = plugins_url( '/', EASY_FANCYBOX_BASENAME /* EASY_FANCYBOX_DIR.'/easy-fancybox.php' */ );
 
 		add_action( 'init', array( __CLASS__, 'extend' ), 9 );
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'disable_core_lightbox_on_frontend' ), 99 );
-		add_filter( 'wp_theme_json_data_user', array( __CLASS__, 'hide_core_lightbox_in_editor' ) );
+
+		if ( isset( $wp_version ) && version_compare( $wp_version, '6.5.0' ) >= 0 ) {
+			add_action( 'wp_enqueue_scripts', array( __CLASS__, 'disable_core_lightbox_on_frontend' ), 99 );
+			add_filter( 'wp_theme_json_data_user', array( __CLASS__, 'hide_core_lightbox_in_editor' ) );
+		}
 	}
 }
