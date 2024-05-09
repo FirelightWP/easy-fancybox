@@ -295,7 +295,7 @@ class easyFancyBox {
 
 		add_action( 'init', array( __CLASS__, 'extend' ), 9 );
 
-		if ( version_compare( $wp_version, '6.5.0' ) >= 0 ) {
+		if ( isset( $wp_version ) && version_compare( $wp_version, '6.5.0' ) >= 0 ) {
 			add_action( 'wp_enqueue_scripts', array( __CLASS__, 'disable_core_lightbox_on_frontend' ), 99 );
 			add_filter( 'wp_theme_json_data_user', array( __CLASS__, 'hide_core_lightbox_in_editor' ) );
 		}
