@@ -52,6 +52,7 @@ class easyFancyBox {
 			'legacy' => esc_html__( 'FancyBox Legacy', 'easy-fancybox' ),
 			'classic' => esc_html__( 'FancyBox Classic Reloaded', 'easy-fancybox' ),
 			'fancyBox2' => esc_html__( 'FancyBox V2', 'easy-fancybox' ),
+			'fancybox-pro-promo' => esc_html__( 'Pro Lightbox', 'easy-fancybox' ),
 		);
 		return apply_filters( 'firelight_get_lightboxes', $built_in_free_lightboxes );
 	}

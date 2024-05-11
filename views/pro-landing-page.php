@@ -21,7 +21,7 @@
 </div>
 <div class="pricing-section">
 	<div class="sale-notice">
-		<h1><?php echo __( '40% Launch Sale!', 'easy-fancybox' ) ?></h1>
+		<h1><?php echo __( '40% Off Launch Sale!', 'easy-fancybox' ) ?></h1>
 		<p><?php echo __( 'Celebrate the re-launch of Easy Fancybox Pro!', 'easy-fancybox' ) ?></p>
 		<p><?php echo __( 'Use code LAUNCH at checkout for 40% off.', 'easy-fancybox' ) ?></p>
 	</div>
