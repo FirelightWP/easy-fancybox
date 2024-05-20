@@ -39,6 +39,14 @@ function prepare_inline_scripts() {
 		}
 	}
 
+	// Retina
+	$use_device_pixelRatio = get_option( 'fancybox_pixelRatio' ) === '1';
+	if ( ! $use_device_pixelRatio ) {
+		$fb_opts['pixelRatio'] = '1';
+	} else {
+		unset( $fb_opts['pixelRatio'] );
+	}
+
 	// Transitions.
 	$transition = get_option( 'fancybox_transition' );
 	if ( ! empty( $transition ) ) {
