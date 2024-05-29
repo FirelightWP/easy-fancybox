@@ -135,7 +135,6 @@ class easyFancyBox_Admin {
 		}
 
 		// Do not show if user interacted with reviews within last 90 days
-		delete_option( 'efb_last_review_interaction' );
 		$efb_last_review_interaction = get_option( 'efb_last_review_interaction' );
 		if ( $efb_last_review_interaction ) {
 			$last_review_interaction_date = new DateTimeImmutable( $efb_last_review_interaction );
