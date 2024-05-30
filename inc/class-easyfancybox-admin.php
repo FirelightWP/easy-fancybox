@@ -54,7 +54,7 @@ class easyFancyBox_Admin {
 		$is_efb_settings = self::$screen_id === $screen->id;
 		$should_load_js =
 			'dashboard' === $screen->id ||
-			self::$screen_id === $screen->id ||
+			self::$pro_screen_id === $screen->id ||
 			$is_efb_settings;
 		if ( $is_efb_settings ) {
 			$settings_js = easyFancyBox::$plugin_url . 'inc/admin-settings.js';
