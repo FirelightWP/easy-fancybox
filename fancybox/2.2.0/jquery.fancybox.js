@@ -1536,9 +1536,8 @@
 
 			// Create a close button
 			if (current.closeBtn) {
-				$(current.tpl.close.replace(/\{close\}/g, current.txt.close)).appendTo(F.skin).on('click.fb', function(e) {
+				$(current.tpl.close.replace(/\{close\}/g, current.txt.close)).appendTo(F.skin).on('click.fb touchend', function(e) {
 					e.preventDefault();
-
 					F.close();
 				});
 			}
@@ -1546,11 +1545,11 @@
 			// Create navigation arrows
 			if (current.arrows && F.group.length > 1) {
 				if (current.loop || current.index > 0) {
-					$(current.tpl.prev.replace(/\{prev\}/g, current.txt.prev)).appendTo(F.outer).on('click.fb', F.prev);
+					$(current.tpl.prev.replace(/\{prev\}/g, current.txt.prev)).appendTo(F.outer).on('click.fb touchend', F.prev);
 				}
 
 				if (current.loop || current.index < F.group.length - 1) {
-					$(current.tpl.next.replace(/\{next\}/g, current.txt.next)).appendTo(F.outer).on('click.fb', F.next);
+					$(current.tpl.next.replace(/\{next\}/g, current.txt.next)).appendTo(F.outer).on('click.fb touchend', F.next);
 				}
 			}
 
