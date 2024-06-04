@@ -146,6 +146,7 @@ See the advanced [Easy FancyBox FAQ's](https://firelightwp.com/wordpress-lightbo
 * Added: Pro landing page for re-launch of Pro
 * Updated: Refined some styling / JS for options screen
 * Fixed: JS console error on admin dashboard
+* Fixed: Lightbox buttons not working on mobile
 
 = 2.1.9 =
 * Added: Fancybox V2 option for retina displays
