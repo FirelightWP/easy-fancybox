@@ -3,7 +3,7 @@ Contributors: firelightwp
 Tags: lightbox, gallery, image, photo, modal
 Requires at least: 5.0
 Requires PHP: 7.0
-Tested up to: 6.5.3
+Tested up to: 6.5.4
 Stable tag: 2.2.0
 License: GPLv3
 
