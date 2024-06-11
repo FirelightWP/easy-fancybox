@@ -144,7 +144,8 @@ See the advanced [Easy FancyBox FAQ's](https://firelightwp.com/wordpress-lightbo
 
 = 2.2.0 =
 * Added: Pro landing page for re-launch of Pro
-* Updated: Refined some styling / JS for options screen
+* Added: Optoin to disable core lightbox
+* Updated: Refined styling / JS for options screen
 * Fixed: JS console error on admin dashboard
 * Fixed: Lightbox buttons not working on mobile
 

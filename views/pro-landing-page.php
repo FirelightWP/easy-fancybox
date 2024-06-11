@@ -4,12 +4,15 @@
 <img class="firelight-logo" src="<?php echo easyFancyBox::$plugin_url ?>images/firelight-logo.png">
 <div class="hero-section">
 	<div class="hero-section-copy">
-		<p class="hero-section-copy-tag"><?php echo __( 'Firelight Pro', 'easy-fancybox' )?></p>
+		<div>
+			<p class="hero-section-copy-tag"><?php echo __( 'Easy Fancybox Pro', 'easy-fancybox' )?></p>
+			<p class="hero-section-tag-sale"><?php echo __( '40% Off This Week!', 'easy-fancybox' ) ?></p>
+		</div>
 		<h1 class="hero-section-copy-title"><?php echo __( 'Make your media a highlight of your website.', 'easy-fancybox' )?></h1>
 		<p class="hero-section-copy-text"><?php echo __( 'Add Pro features for free lightboxes - Legacy, Reloaded, V2. Or level up with the brilliant new FancyBox 5 Pro Lightbox. Supports images, pdfs, video, maps, modals with custom content, and more.', 'easy-fancybox' )?></p>
 		<div class="hero-section-actions">
-			<a class="pro-action-button" href="https://firelightwp.com/easy-fancybox-pro/"><?php echo __( 'Learn More', 'easy-fancybox' )?></a>
-			<a class="pro-action-button" href="https://firelightwp.com/easy-fancybox-pro/"><?php echo __( 'See Demos', 'easy-fancybox' )?></a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/"><?php echo __( 'Learn More', 'easy-fancybox' )?></a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox"><?php echo __( 'See Demos', 'easy-fancybox' )?></a>
 		</div>
 		<p class="hero-section-copy-under-button"><?php echo __( 'Or buy directly from the WordPress dashboard below!', 'easy-fancybox' )?></p>
 	</div>
@@ -21,7 +24,7 @@
 </div>
 <div class="pricing-section">
 	<div class="sale-notice">
-		<h1><?php echo __( '40% Off Launch Sale!', 'easy-fancybox' ) ?></h1>
+		<h1 class="sale-notice-green"><?php echo __( '40% off sale! Ends this week.', 'easy-fancybox' ) ?></h1>
 		<p><?php echo __( 'Celebrate the re-launch of Easy Fancybox Pro!', 'easy-fancybox' ) ?></p>
 		<p><?php echo __( 'Use code LAUNCH at checkout for 40% off.', 'easy-fancybox' ) ?></p>
 	</div>
@@ -51,12 +54,8 @@
 			<li class="excluded"><?php echo __( 'Open Iframes', 'easy-fancybox' )?></li>
 			<li class="excluded"><?php echo __( 'Open Maps', 'easy-fancybox' )?></li>
 			<li class="excluded"><?php echo __( 'Performance Optimizations', 'easy-fancybox' )?></li>
-			<li class="strong excluded"><?php echo __( 'CUSTOM DEVELOPMENT', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( '10 Hours', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( 'US-Based Senior Developer', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( 'Customization', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( 'Feature Development', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( 'WordPress Development', 'easy-fancybox' )?></li>
+			<li class="strong excluded"><?php echo __( 'UNLIMITED', 'easy-fancybox' )?></li>
+			<li class="excluded"><?php echo __( 'Unlimited Site License', 'easy-fancybox' )?></li>
 			</ul>
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
@@ -94,12 +93,8 @@
 			<li class="included"><?php echo __( 'Open Iframes', 'easy-fancybox' )?></li>
 			<li class="included"><?php echo __( 'Open Maps', 'easy-fancybox' )?></li>
 			<li class="included"><?php echo __( 'Performance Optimizations', 'easy-fancybox' )?></li>
-			<li class="strong excluded"><?php echo __( 'CUSTOM DEVELOPMENT', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( '10 Hours', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( 'US-Based Senior Developer', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( 'Customization', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( 'Feature Development', 'easy-fancybox' )?></li>
-			<li class="excluded"><?php echo __( 'WordPress Development', 'easy-fancybox' )?></li>
+			<li class="strong excluded"><?php echo __( 'UNLIMITED', 'easy-fancybox' )?></li>
+			<li class="excluded"><?php echo __( 'Unlimited Site License', 'easy-fancybox' )?></li>
 			</ul>
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
@@ -114,9 +109,9 @@
 		</div>
 		<div class="plan">
 			<h3 class="plan-title">Enterprise</h3>
-			<div class="plan-cost"><span class="plan-price">$899</span></div>
+			<div class="plan-cost"><span class="plan-price">$499</span></div>
 			<ul class="plan-features">
-			<li class="strong"><?php echo __( 'All Features + Dev', 'easy-fancybox' )?></li>
+			<li class="strong"><?php echo __( 'Unlimited Sites', 'easy-fancybox' )?></li>
 			<li class="strong included"><?php echo __( 'PRO SUPPORT', 'easy-fancybox' )?></li>
 			<li class="strong included"><?php echo __( 'PLUGIN UPDATES', 'easy-fancybox' )?></li>
 			<li class="strong included"><?php echo __( 'BASIC LIGHTBOXES', 'easy-fancybox' )?></li>
@@ -137,19 +132,13 @@
 			<li class="included"><?php echo __( 'Open Iframes', 'easy-fancybox' )?></li>
 			<li class="included"><?php echo __( 'Open Maps', 'easy-fancybox' )?></li>
 			<li class="included"><?php echo __( 'Performance Optimizations', 'easy-fancybox' )?></li>
-			<li class="strong included"><?php echo __( 'CUSTOM DEVELOPMENT', 'easy-fancybox' )?></li>
-			<li class="included"><?php echo __( '10 Hours', 'easy-fancybox' )?></li>
-			<li class="included"><?php echo __( 'US-Based Senior Developer', 'easy-fancybox' )?></li>
-			<li class="included"><?php echo __( 'Customization', 'easy-fancybox' )?></li>
-			<li class="included"><?php echo __( 'Feature Development', 'easy-fancybox' )?></li>
-			<li class="included"><?php echo __( 'WordPress Development', 'easy-fancybox' )?></li>
+			<li class="strong included"><?php echo __( 'UNLIMITED', 'easy-fancybox' )?></li>
+			<li class="included"><?php echo __( 'Unlimited Site License', 'easy-fancybox' )?></li>
 			</ul>
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="enterprise-licenses">
-				<option value="1"><?php echo __( '1 Site License', 'easy-fancybox' )?> ($899)</option>
-				<option value="5" selected="selected"><?php echo __( '5 Site License', 'easy-fancybox' )?> ($899)</option>
-				<option value="25" selected="selected"><?php echo __( '25 Site License', 'easy-fancybox' )?> ($899)</option>
+				<option value="unlimited"><?php echo __( 'Unlimited Sites', 'easy-fancybox' )?> ($499)</option>
 				</select>
 			</div>
 			<button id="enterprise-purchase" class="pro-action-button"><?php echo __( 'Buy Now', 'easy-fancybox' )?></button>

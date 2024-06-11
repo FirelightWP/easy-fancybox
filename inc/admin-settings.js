@@ -14,7 +14,7 @@ wp.domReady( function () {
 	function showActiveLightboxSettings() {
 		const activeLightbox = lightboxVersionSelect.value.toLowerCase();
 		const activeLightboxTitle = lightboxVersionSelect.options[lightboxVersionSelect.selectedIndex].text;
-		const isProPromo = 'fancybox-pro-promo' === activeLightbox;
+		const isProPromo = 'fancybox5-promo' === activeLightbox;
 		const saveButton = document.querySelector( '#submit' );
 
 		// Hide Promo section of not promo
@@ -112,10 +112,12 @@ wp.domReady( function () {
 		saveButton.style.display = 'none';
 		const promoSection = document.createElement( 'div' );
 		promoSection.classList.add( 'pro-lightbox-promo' );
+		proUrl = settings.proLandingUrl; // via wp_localize_script
 		promoSection.innerHTML = `
 			<p>The Pro Lightbox is a brilliant, modern lighbox built on Fancybox 5. It is a Pro feature.</p>
-			<a class="pro-action-button" href="https://firelightwp.com/pro" target="_blank">Learn More</a>
-			<a class="pro-action-button" href="https://firelightwp.com/pro" target="_blank">See Demos</a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox" target="_blank">Learn More</a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox" target="_blank">See Demos</a>
+			<p>You can buy directly from your WordPress dashboard <a href="${ proUrl }">here</a>.
 		`;
 		document.querySelector( '.active-lightbox-heading' ).after( promoSection );
 	}

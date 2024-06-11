@@ -70,6 +70,13 @@ class easyFancyBox_Admin {
 			wp_register_script( 'firelight-notice-js', $notice_js, array( 'jquery', 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_enqueue_script( 'firelight-notice-js' );
 		}
+		wp_localize_script(
+			'firelight-settings-js',
+			'settings',
+			array(
+				'proLandingUrl' => admin_url( 'admin.php?page=firelight-pro' ),
+			)
+		);
 	}
 
 	/**

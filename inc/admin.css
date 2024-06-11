@@ -171,6 +171,15 @@ body.lightbox_page_firelight-pro {
     padding: 4px 16px;
     display: inline-block;
     margin-bottom: 30px;
+    display: inline-block;
+}
+
+.hero-section-tag-sale {
+    color: #8abc00;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 10px;
 }
 
 .hero-section-copy-title {
