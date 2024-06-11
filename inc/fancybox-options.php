@@ -541,7 +541,16 @@ $efb_options = array (
 						'default' => '.nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
 						'sanitize_callback' => 'sanitize_text_field',
 						'description' => __( 'Comma-separated list of selectors to exclude for lightbox autodetect.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
-					)
+					),
+					'disableCoreLightbox' => array (
+						'id' => 'fancybox_disableCoreLightbox',
+						'title' => __('Disable Core Lightbox','easy-fancybox'),
+						'input' => 'checkbox',
+						'sanitize_callback' => 'wp_validate_boolean',
+						'status' => '',
+						'default' => '1',
+						'description' => __('Disable core lightbox while using Easy Fancybox.','easy-fancybox')
+					),
 				)
 			)
 		)
