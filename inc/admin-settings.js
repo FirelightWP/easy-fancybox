@@ -14,6 +14,15 @@ wp.domReady( function () {
 	function showActiveLightboxSettings() {
 		const activeLightbox = lightboxVersionSelect.value.toLowerCase();
 		const activeLightboxTitle = lightboxVersionSelect.options[lightboxVersionSelect.selectedIndex].text;
+		const isProPromo = 'fancybox5-promo' === activeLightbox;
+		const saveButton = document.querySelector( '#submit' );
+
+		// Hide Promo section of not promo
+		if ( ! isProPromo ) {
+			const promoSection = document.querySelector( '.pro-lightbox-promo' );
+			if ( promoSection ) promoSection.remove();
+			saveButton.style.display = 'block';
+		}
 
 		// Update heading to active lightbox
 		const generalSettingsSection = document.querySelector( '.general-settings-section' );
@@ -28,8 +37,8 @@ wp.domReady( function () {
 		// Show settings only for the active lightbox
 		const activeLightboxSections = document.querySelectorAll( '.sub-settings-section.' + activeLightbox );
 		const inactiveLightboxSections = document.querySelectorAll( '.sub-settings-section:not(.' + activeLightbox + ')' );
-		activeLightboxSections.forEach( el => el.classList.remove( 'hide' ) );
-		inactiveLightboxSections.forEach( el => el.classList.add( 'hide' ) );
+		activeLightboxSections.length && activeLightboxSections.forEach( el => el.classList.remove( 'hide' ) );
+		inactiveLightboxSections.length && inactiveLightboxSections.forEach( el => el.classList.add( 'hide' ) );
 		sessionStorage.removeItem( 'efbActiveSections' );
 
 		// Re-open previously open setting sections
@@ -43,8 +52,12 @@ wp.domReady( function () {
 
 		// If no settings sections are open, open the first one
 		const activeAndOpenLightboxSections = document.querySelectorAll( '.active.sub-settings-section.' + activeLightbox );
-		if ( activeAndOpenLightboxSections.length === 0 ) {
+		if ( ! isProPromo && activeAndOpenLightboxSections.length === 0 ) {
 			activeLightboxSections[0].classList.add( 'active' );
+		}
+
+		if ( isProPromo ) {
+			renderProLightboxPromo();
 		}
 	}
 
@@ -90,4 +103,22 @@ wp.domReady( function () {
 		sectionWithError = event.target.closest( '.sub-settings-section:not(.hide)' );
 		sectionWithError.classList.add( 'active' );
 	}));
+
+	/**
+	 * Render Pro Lightbox Promo
+	 */
+	function renderProLightboxPromo() {
+		const saveButton = document.querySelector( '#submit' );
+		saveButton.style.display = 'none';
+		const promoSection = document.createElement( 'div' );
+		promoSection.classList.add( 'pro-lightbox-promo' );
+		proUrl = settings.proLandingUrl; // via wp_localize_script
+		promoSection.innerHTML = `
+			<p>The Pro Lightbox is a brilliant, modern lighbox built on Fancybox 5. It is a Pro feature.</p>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox" target="_blank">Learn More</a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox" target="_blank">See Demos</a>
+			<p>You can buy directly from your WordPress dashboard <a href="${ proUrl }">here</a>.
+		`;
+		document.querySelector( '.active-lightbox-heading' ).after( promoSection );
+	}
 } );

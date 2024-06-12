@@ -5,9 +5,8 @@
 class easyFancyBox_Admin {
 
 	private static $screen_id = 'toplevel_page_firelight-settings';
-
+	private static $pro_screen_id = 'lightbox_page_firelight-pro';
 	private static $compat_pro_min = '1.8';
-
 	private static $do_compat_warning = false;
 
 	/**
@@ -53,13 +52,16 @@ class easyFancyBox_Admin {
 	public static function enqueue_scripts( $hook ) {
 		$screen = get_current_screen();
 		$is_efb_settings = self::$screen_id === $screen->id;
-		$is_dashboard_or_efb_settings = 'dashboard' === $screen->id || $is_efb_settings;
+		$should_load_js =
+			'dashboard' === $screen->id ||
+			self::$pro_screen_id === $screen->id ||
+			$is_efb_settings;
 		if ( $is_efb_settings ) {
 			$settings_js = easyFancyBox::$plugin_url . 'inc/admin-settings.js';
 			wp_register_script( 'firelight-settings-js', $settings_js, array( 'jquery', 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_enqueue_script( 'firelight-settings-js' );
 		}
-		if ( $is_dashboard_or_efb_settings ) {
+		if ( $should_load_js ) {
 			$css_file = easyFancyBox::$plugin_url . 'inc/admin.css';
 			wp_register_style( 'firelight-css', $css_file, false, EASY_FANCYBOX_VERSION );
 			wp_enqueue_style( 'firelight-css' );
@@ -68,13 +70,20 @@ class easyFancyBox_Admin {
 			wp_register_script( 'firelight-notice-js', $notice_js, array( 'jquery', 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
 			wp_enqueue_script( 'firelight-notice-js' );
 		}
+		wp_localize_script(
+			'firelight-settings-js',
+			'settings',
+			array(
+				'proLandingUrl' => admin_url( 'admin.php?page=firelight-pro' ),
+			)
+		);
 	}
 
 	/**
 	* Add Lightbox Settings page to main menu.
 	*/
 	public static function add_options_page() {
-		$screen_id = add_menu_page(
+		add_menu_page(
 			__( 'Lightbox Settings - Easy Fancybox', 'easy-fancybox' ),
 			'Lightbox',
 			'manage_options',
@@ -83,6 +92,23 @@ class easyFancyBox_Admin {
 			'dashicons-format-image',
 			85
 		);
+		if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
+			add_submenu_page(
+				'firelight-settings',
+				'My Custom Page',
+				'Settings',
+				'manage_options',
+				'firelight-settings'
+			);
+			add_submenu_page(
+				'firelight-settings',
+				'Go Pro',
+				'Go Pro',
+				'manage_options',
+				'firelight-pro',
+				array( __CLASS__, 'pro_landing_page' )
+			);
+		}
 	}
 
 	/**
@@ -171,6 +197,7 @@ class easyFancyBox_Admin {
 
 		<?php
 	}
+
 	/**
 	 * Process Ajax request when user interacts with review requests
 	 */
@@ -190,6 +217,13 @@ class easyFancyBox_Admin {
 		}
 
 		exit;
+	}
+
+	/**
+	 * Render the content of the Lightbox Settings page.
+	 */
+	public static function pro_landing_page() {
+		include EASY_FANCYBOX_DIR . '/views/pro-landing-page.php';
 	}
 
 	/**

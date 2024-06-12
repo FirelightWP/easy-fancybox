@@ -541,7 +541,16 @@ $efb_options = array (
 						'default' => '.nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']',
 						'sanitize_callback' => 'sanitize_text_field',
 						'description' => __( 'Comma-separated list of selectors to exclude for lightbox autodetect.','easy-fancybox') . ' <em>' . __('Default:','easy-fancybox') . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />'
-					)
+					),
+					'disableCoreLightbox' => array (
+						'id' => 'fancybox_disableCoreLightbox',
+						'title' => __('Disable Core Lightbox','easy-fancybox'),
+						'input' => 'checkbox',
+						'sanitize_callback' => 'wp_validate_boolean',
+						'status' => '',
+						'default' => '1',
+						'description' => __('Disable core lightbox while using Easy Fancybox.','easy-fancybox')
+					),
 				)
 			)
 		)
@@ -1402,7 +1411,7 @@ $efb_options = array (
 				'step' => '1',
 				'min' => '420',
 				'max' => '1500',
-				'default' => '640',
+				'default' => '882',
 			),
 			'height' => array (
 				'id' => 'fancybox_YoutubeHeight',
@@ -1413,7 +1422,7 @@ $efb_options = array (
 				'min' => '315',
 				'max' => '900',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '360',
+				'default' => '495',
 			),
 			'padding' => array (
 				'id' => 'fancybox_Youtubepadding',
@@ -1532,7 +1541,7 @@ $efb_options = array (
 				'min' => '400',
 				'max' => '1500',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '500',
+				'default' => '882',
 			),
 			'height' => array (
 				'id' => 'fancybox_VimeoHeight',
@@ -1543,7 +1552,7 @@ $efb_options = array (
 				'min' => '225',
 				'max' => '900',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '281'
+				'default' => '495'
 			),
 			'padding' => array (
 				'id' => 'fancybox_Vimeopadding',

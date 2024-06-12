@@ -44,16 +44,13 @@ class easyFancyBox {
 
 	public static $pro_plugin_url = "https://firelightwp.com/easy-fancybox-pro/";
 
+	public static $free_lightboxes;
+
 	/**
 	 * Retrieves a list of all available lightboxes
 	 */
 	public static function get_lightboxes() {
-		$built_in_free_lightboxes = array(
-			'legacy' => esc_html__( 'FancyBox Legacy', 'easy-fancybox' ),
-			'classic' => esc_html__( 'FancyBox Classic Reloaded', 'easy-fancybox' ),
-			'fancyBox2' => esc_html__( 'FancyBox V2', 'easy-fancybox' ),
-		);
-		return apply_filters( 'firelight_get_lightboxes', $built_in_free_lightboxes );
+		return apply_filters( 'firelight_get_lightboxes', self::$free_lightboxes );
 	}
 
 	public static function enqueue_scripts()
@@ -164,6 +161,30 @@ class easyFancyBox {
 			}
 		}
 
+	}
+
+	/**
+	 * Removes filter and dequeues JS for core lightbox.
+	 * Note: we may want to make this dependent on a setting.
+	 * Note: we may want to add this to free version of plugin.
+	 */
+	public static function should_disable_core_lightbox() {
+		$selected_lightbox = get_option( 'fancybox_scriptVersion', 'classic' );
+		$is_free_lightbox = in_array( $selected_lightbox, array_keys( self::$free_lightboxes ) );
+		$is_pro_lightbox = 'fancybox5' === $selected_lightbox;
+
+		$disable_for_free_lightboxes = get_option( 'fancybox_disableCoreLightbox', true );
+		$disable_for_pro_lightbox = get_option( 'fancybox5_disable_core_lightbox', true );
+
+		if ( $is_free_lightbox && $disable_for_free_lightboxes ) {
+			return true;
+		}
+
+		if ( $is_pro_lightbox && $disable_for_pro_lightbox ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -290,12 +311,24 @@ class easyFancyBox {
 	public function __construct()
 	{
 		global $wp_version;
+
 		// VARS
 		self::$plugin_url = plugins_url( '/', EASY_FANCYBOX_BASENAME /* EASY_FANCYBOX_DIR.'/easy-fancybox.php' */ );
+		self::$free_lightboxes = array(
+			'legacy' => esc_html__( 'FancyBox Legacy', 'easy-fancybox' ),
+			'classic' => esc_html__( 'FancyBox Classic Reloaded', 'easy-fancybox' ),
+			'fancyBox2' => esc_html__( 'FancyBox V2', 'easy-fancybox' ),
+			'fancybox5-promo' => esc_html__( 'Pro Lightbox', 'easy-fancybox' ),
+		);
 
 		add_action( 'init', array( __CLASS__, 'extend' ), 9 );
 
-		if ( isset( $wp_version ) && version_compare( $wp_version, '6.5.0' ) >= 0 ) {
+		// Disable core lightbox
+		if (
+			isset( $wp_version )
+			&& version_compare( $wp_version, '6.5.0' ) >= 0
+			&& self::should_disable_core_lightbox()
+		) {
 			add_action( 'wp_enqueue_scripts', array( __CLASS__, 'disable_core_lightbox_on_frontend' ), 99 );
 			add_filter( 'wp_theme_json_data_user', array( __CLASS__, 'hide_core_lightbox_in_editor' ) );
 		}
