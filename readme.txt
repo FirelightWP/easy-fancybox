@@ -146,6 +146,7 @@ See the advanced [Easy FancyBox FAQ's](https://firelightwp.com/wordpress-lightbo
 * Added: Pro landing page for re-launch of Pro
 * Added: Optoin to disable core lightbox
 * Updated: Refined styling / JS for options screen
+* Updated: Default video width and height values
 * Fixed: JS console error on admin dashboard
 * Fixed: Lightbox buttons not working on mobile
 
