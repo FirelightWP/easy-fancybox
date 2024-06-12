@@ -1411,7 +1411,7 @@ $efb_options = array (
 				'step' => '1',
 				'min' => '420',
 				'max' => '1500',
-				'default' => '640',
+				'default' => '882',
 			),
 			'height' => array (
 				'id' => 'fancybox_YoutubeHeight',
@@ -1422,7 +1422,7 @@ $efb_options = array (
 				'min' => '315',
 				'max' => '900',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '360',
+				'default' => '495',
 			),
 			'padding' => array (
 				'id' => 'fancybox_Youtubepadding',
@@ -1541,7 +1541,7 @@ $efb_options = array (
 				'min' => '400',
 				'max' => '1500',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '500',
+				'default' => '882',
 			),
 			'height' => array (
 				'id' => 'fancybox_VimeoHeight',
@@ -1552,7 +1552,7 @@ $efb_options = array (
 				'min' => '225',
 				'max' => '900',
 				'sanitize_callback' => array( 'easyFancyBox_Admin', 'sanitize_number' ),
-				'default' => '281'
+				'default' => '495'
 			),
 			'padding' => array (
 				'id' => 'fancybox_Vimeopadding',
