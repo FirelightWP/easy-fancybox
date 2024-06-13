@@ -47,29 +47,49 @@ class easyFancyBox_Admin {
  	}
 
 	/**
-	 * Enqueue admin styles and scripts
+	 * Enqueue scripts and styles for the admin area.
+	 *
+	 * Loads necessary scripts and styles depending on current admin screen.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 * @static
+	 *
+	 * @param string $hook_suffix The current admin page.
+	 * @return void
 	 */
-	public static function enqueue_scripts( $hook ) {
-		$screen = get_current_screen();
+	public static function enqueue_scripts() {
+		$screen          = get_current_screen();
 		$is_efb_settings = self::$screen_id === $screen->id;
-		$should_load_js =
-			'dashboard' === $screen->id ||
-			self::$pro_screen_id === $screen->id ||
-			$is_efb_settings;
-		if ( $is_efb_settings ) {
-			$settings_js = easyFancyBox::$plugin_url . 'inc/admin-settings.js';
-			wp_register_script( 'firelight-settings-js', $settings_js, array( 'jquery', 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
+		$is_pro_landing  = self::$pro_screen_id === $screen->id;
+		$is_dashboard    = 'dashboard' === $screen->id;
+		$freemius_js     = 'https://checkout.freemius.com/checkout.min.js';
+		$purchase_js     = easyFancyBox::$plugin_url . 'inc/admin-settings.js';
+		$settings_js     = easyFancyBox::$plugin_url . 'inc/admin-settings.js';
+		$notice_js       = easyFancyBox::$plugin_url . 'inc/admin-notice.js';
+		$css_file        = easyFancyBox::$plugin_url . 'inc/admin.css';
+		$version         = defined( 'WP_DEBUG' ) ? time() : EASY_FANCYBOX_PRO_VERSION;
+
+		if ( $is_pro_landing ) {
+			wp_register_script( 'firelight-freemius-js', $settings_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
+			wp_register_script( 'firelight-purchase-js', $$purchase_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
+			wp_enqueue_script( 'firelight-freemius-js' );
 			wp_enqueue_script( 'firelight-settings-js' );
 		}
-		if ( $should_load_js ) {
-			$css_file = easyFancyBox::$plugin_url . 'inc/admin.css';
-			wp_register_style( 'firelight-css', $css_file, false, EASY_FANCYBOX_VERSION );
+
+		if ( $is_efb_settings ) {
+			wp_register_script( 'firelight-settings-js', $settings_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
+			wp_enqueue_script( 'firelight-settings-js' );
+		}
+
+		if ( $is_efb_settings || $is_pro_landing || $is_dashboard ) {
+			wp_register_style( 'firelight-css', $css_file, false, $version );
 			wp_enqueue_style( 'firelight-css' );
 
-			$notice_js = easyFancyBox::$plugin_url . 'inc/admin-notice.js';
-			wp_register_script( 'firelight-notice-js', $notice_js, array( 'jquery', 'wp-dom-ready' ), EASY_FANCYBOX_VERSION );
+			wp_register_script( 'firelight-notice-js', $notice_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
 			wp_enqueue_script( 'firelight-notice-js' );
 		}
+
 		wp_localize_script(
 			'firelight-settings-js',
 			'settings',
