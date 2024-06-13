@@ -1,9 +1,5 @@
 /* All admin pages */
 
-.toplevel_page_firelight-settings #wpbody {
-	max-width: 90%;
-}
-
 .toplevel_page_firelight-settings #wpbody-content > .notice {
     margin-top: 30px;
 }
@@ -14,10 +10,38 @@
     margin-top: 20px;
 }
 
+.toplevel_page_firelight-settings .sale-banner,
+.lightbox_page_firelight-pro .sale-banner {
+    background: #8bbc00;
+    padding: 8px 16px;
+    margin: 0 -32px 14px -20px;
+}
+
+.toplevel_page_firelight-settings .sale-banner p,
+.lightbox_page_firelight-pro .sale-banner p {
+    margin: 0;
+    color:  white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.toplevel_page_firelight-settings .sale-banner a,
+.lightbox_page_firelight-pro .sale-banner a,
+.toplevel_page_firelight-settings .sale-banner a:hover,
+.lightbox_page_firelight-pro .sale-banner a:hover,
+.toplevel_page_firelight-settings .sale-banner a:focus,
+.lightbox_page_firelight-pro .sale-banner a:focus {
+    color:  white;
+}
+
 /* Settings page */
 
 .toplevel_page_firelight-settings .efb-review-notice {
 	margin-top: 30px;
+}
+
+.toplevel_page_firelight-settings .settings-section {
+	max-width: 90%;
 }
 
 .toplevel_page_firelight-settings .general-settings-section {
@@ -146,7 +170,7 @@ body.lightbox_page_firelight-pro {
 .lightbox_page_firelight-pro #wpbody {
 	max-width: 1300px;
 }
-
+    
 .pricing-section {
     padding: 40px 20px;
 }
@@ -172,14 +196,6 @@ body.lightbox_page_firelight-pro {
     display: inline-block;
     margin-bottom: 30px;
     display: inline-block;
-}
-
-.hero-section-tag-sale {
-    color: #8abc00;
-    display: inline-block;
-    font-size: 18px;
-    font-weight: bold;
-    padding-left: 10px;
 }
 
 .hero-section-copy-title {
@@ -236,19 +252,15 @@ body.lightbox_page_firelight-pro {
 
 /* Pricing Table */
 
-.sale-notice h1,
-.sale-notice p {
-	text-align: center;
-	color: black;
-	font-size: 18px;
-	margin: 2px;
-}
-
 .sale-notice h1 {
 	font-size: 36px;
 	margin: 16px;
     color: #8abc00;
     font-weight: 800;
+}
+
+.sale-notice p.green {
+    color: #8abc00;
 }
 
 .pricing-table {
