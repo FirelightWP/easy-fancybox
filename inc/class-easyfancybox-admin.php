@@ -138,7 +138,7 @@ class easyFancyBox_Admin {
 	 * @return void
 	 */
 	public static function options_page() {
-		if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
+		if ( ! class_exists( 'easyFancyBox_Advanced' ) && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
 			esc_html_e( 'Easy Fancybox Pro is launched! Take 40% off this week - use code LAUNCH at checkout.', 'easy-fancybox' );
 			echo ' <a href="' . esc_url( admin_url( 'admin.php?page=firelight-pro' ) ) . '">' . esc_html( 'LEARN MORE', 'easy-fancybox' ) . '</a>';
@@ -157,75 +157,97 @@ class easyFancyBox_Admin {
 	}
 
 	/**
-	 * Show request for plugin review on options page
+	 * Determine if the review request should be shown.
+	 *
+	 * To summarize, this will only show:
+	 * if is options screen and
+	 * if has not already been rated and
+	 * if user is selected for metered rollout and
+	 * if user has plugin more than 60 days and
+	 * if use has not interacted with reviews within 90 days.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return bool Returns true if the review request should be shown, false otherwise.
 	 */
-	public static function show_review_request() {
-		// Don't show if not on options screen or dashboard, or if already rated
-		$screen = get_current_screen();
+	public static function should_show_review_request() {
+		// Don't show if not on options screen or dashboard, or if already rated.
+		$screen                      = get_current_screen();
 		$is_dashboard_or_efb_options = 'dashboard' === $screen->id || self::$screen_id === $screen->id;
-		$already_rated = get_option( 'efb_plugin_rated' ) && get_option( 'efb_plugin_rated' ) === 'true';
+		$already_rated               = get_option( 'efb_plugin_rated' ) && get_option( 'efb_plugin_rated' ) === 'true';
 		if ( ! $is_dashboard_or_efb_options || $already_rated ) {
-			return;
+			return false;
 		}
 
-		// Limit review notices to 10% of users initially
+		// Limit review notices to 10% of users initially.
 		$user_review_number = get_option( 'efb_user_review_number' );
 		if ( ! $user_review_number ) {
-			$user_review_number = rand(1, 10);
+			$user_review_number = rand( 1, 10 );
 			update_option( 'efb_user_review_number', $user_review_number );
 		}
-		$selected = $user_review_number === '1' || $user_review_number === '2' || $user_review_number === '3' || $user_review_number === '4' || $user_review_number === '5' || $user_review_number === '6';
+		$selected = '1' === $user_review_number || '2' === $user_review_number || '3' === $user_review_number || '4' === $user_review_number || '5' === $user_review_number || '6' === $user_review_number;
 		if ( ! $selected ) {
-			return;
+			return false;
 		}
 
-		// Only show if user has been using plugin for more than 60 days
-		$current_date = new DateTimeImmutable( date( 'Y-m-d' ) );
+		// Only show if user has been using plugin for more than 60 days.
+		$current_date      = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
 		$plugin_time_stamp = get_option( 'easy_fancybox_date' );
-		$activation_date = $plugin_time_stamp
+		$activation_date   = $plugin_time_stamp
 			? new DateTimeImmutable( $plugin_time_stamp )
 			: $current_date;
 		$days_using_plugin = $activation_date->diff( $current_date )->days;
 		if ( $days_using_plugin < 60 ) {
-			return;
+			return false;
 		}
 
-		// Do not show if user interacted with reviews within last 90 days
+		// Do not show if user interacted with reviews within last 90 days.
 		$efb_last_review_interaction = get_option( 'efb_last_review_interaction' );
 		if ( $efb_last_review_interaction ) {
 			$last_review_interaction_date = new DateTimeImmutable( $efb_last_review_interaction );
-			$days_since_last_interaction = $last_review_interaction_date->diff( $current_date )->days;
+			$days_since_last_interaction  = $last_review_interaction_date->diff( $current_date )->days;
 			if ( $days_since_last_interaction < 90 ) {
-				return;
+				return false;
 			}
 		}
 
-		// To summarize, this will only show:
-		// if is options screen
-		// if has not already been rated
-		// if user is selected for metered rollout
-		// if user has plugin more than 60 days
-		// if use has not interacted with reviews within 90 days
-		?>
-			<div class="notice notice-success is-dismissible efb-review-notice">
-				<p><?php _e( 'You\'ve been using Easy Fancybox for a long time! Awesome and thanks!', 'easy-fancybox' ); ?></p>
-				<p>
-					<?php printf(
-						__( 'We work hard to maintain it. Would you do us a BIG favor and give us a 5-star review on WordPress.org? Or share feedback <a %s>here</a>.', 'easy-fancybox' ),
-						'href="https://firelightwp.com/contact/" target="_blank"'
-					); ?>
-				</p>
+		return true;
+	}
 
-				<ul class="efb-review-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_review_action_nonce' ) ) ?>">
-					<li style="display:inline;"><a class="button-primary" data-rate-action="do-rate"
-						href="https://wordpress.org/support/plugin/easy-fancybox/reviews/#new-post" target="_blank"><?php _e( 'Ok, you deserve it!', 'easy-fancybox' ) ?></a>
-					</li>
-					<li style="display:inline;"><a class="button-secondary" data-rate-action="maybe-later" href="#"><?php _e( 'Maybe later', 'easy-fancybox' ) ?></a></li>
-					<li style="display:inline;"><a class="button-secondary" data-rate-action="done" href="#"><?php _e( 'Already did!', 'easy-fancybox' ) ?></a></li>
-				</ul>
-			</div>
+	/**
+	 * Render the review request to the user.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return void
+	 */
+	public static function show_review_request() {
+		if ( self::should_show_review_request() ) {
+			?>
+				<div class="notice notice-success is-dismissible efb-review-notice">
+					<p><?php esc_html_e( 'You\'ve been using Easy Fancybox for a long time! Awesome and thanks!', 'easy-fancybox' ); ?></p>
+					<p>
+						<?php
+						printf(
+							__( 'We work hard to maintain it. Would you do us a BIG favor and give us a 5-star review on WordPress.org? Or share feedback <a %s>here</a>.', 'easy-fancybox' ), // phpcs:ignore
+							'href="https://firelightwp.com/contact/" target="_blank"'
+						);
+						?>
+					</p>
 
-		<?php
+					<ul class="efb-review-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_review_action_nonce' ) ); ?>">
+						<li style="display:inline;"><a class="button-primary" data-rate-action="do-rate"
+							href="https://wordpress.org/support/plugin/easy-fancybox/reviews/#new-post" target="_blank"><?php esc_html_e( 'Ok, you deserve it!', 'easy-fancybox' ); ?></a>
+						</li>
+						<li style="display:inline;"><a class="button-secondary" data-rate-action="maybe-later" href="#"><?php esc_html_e( 'Maybe later', 'easy-fancybox' ); ?></a></li>
+						<li style="display:inline;"><a class="button-secondary" data-rate-action="done" href="#"><?php esc_html_e( 'Already did!', 'easy-fancybox' ); ?></a></li>
+					</ul>
+				</div>
+
+			<?php
+		}
 	}
 
 	/**
