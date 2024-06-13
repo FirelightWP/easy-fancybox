@@ -14,12 +14,14 @@
 
 ?>
 
+<div class="sale-banner">
+	<p><?php esc_html_e( '40% off sale this week! Use code LAUNCH at checkout.', 'easy-fancybox' ); ?></p>
+</div>
 <img class="firelight-logo" src="<?php echo esc_url( easyFancyBox::$plugin_url ); ?>images/firelight-logo.png">
 <div class="hero-section">
 	<div class="hero-section-copy">
 		<div>
 			<p class="hero-section-copy-tag"><?php esc_html_e( 'Easy Fancybox Pro', 'easy-fancybox' ); ?></p>
-			<p class="hero-section-tag-sale"><?php esc_html_e( '40% Off This Week!', 'easy-fancybox' ); ?></p>
 		</div>
 		<h1 class="hero-section-copy-title"><?php esc_html_e( 'Make your media a highlight of your website.', 'easy-fancybox' ); ?></h1>
 		<p class="hero-section-copy-text"><?php esc_html_e( 'Add Pro features for free lightboxes - Legacy, Reloaded, V2. Or level up with the brilliant new FancyBox 5 Pro Lightbox. Supports images, pdfs, video, maps, modals with custom content, and more.', 'easy-fancybox' ); ?></p>
@@ -36,11 +38,6 @@
 	</div>
 </div>
 <div class="pricing-section">
-	<div class="sale-notice">
-		<h1 class="sale-notice-green"><?php esc_html_e( '40% off sale! Ends this week.', 'easy-fancybox' ); ?></h1>
-		<p><?php esc_html_e( 'Celebrate the re-launch of Easy Fancybox Pro!', 'easy-fancybox' ); ?></p>
-		<p><?php esc_html_e( 'Use code LAUNCH at checkout for 40% off.', 'easy-fancybox' ); ?></p>
-	</div>
 	<div class="pricing-table">
 		<div class="plan">
 			<h3 class="plan-title">Basic</h3>

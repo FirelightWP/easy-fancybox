@@ -55,7 +55,6 @@ class easyFancyBox_Admin {
 	 * @access public
 	 * @static
 	 *
-	 * @param string $hook_suffix The current admin page.
 	 * @return void
 	 */
 	public static function enqueue_scripts() {
@@ -64,17 +63,17 @@ class easyFancyBox_Admin {
 		$is_pro_landing  = self::$pro_screen_id === $screen->id;
 		$is_dashboard    = 'dashboard' === $screen->id;
 		$freemius_js     = 'https://checkout.freemius.com/checkout.min.js';
-		$purchase_js     = easyFancyBox::$plugin_url . 'inc/admin-settings.js';
+		$purchase_js     = easyFancyBox::$plugin_url . 'inc/admin-purchase.js';
 		$settings_js     = easyFancyBox::$plugin_url . 'inc/admin-settings.js';
 		$notice_js       = easyFancyBox::$plugin_url . 'inc/admin-notice.js';
 		$css_file        = easyFancyBox::$plugin_url . 'inc/admin.css';
 		$version         = defined( 'WP_DEBUG' ) ? time() : EASY_FANCYBOX_PRO_VERSION;
 
 		if ( $is_pro_landing ) {
-			wp_register_script( 'firelight-freemius-js', $settings_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
-			wp_register_script( 'firelight-purchase-js', $$purchase_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
+			wp_register_script( 'firelight-freemius-js', $freemius_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
+			wp_register_script( 'firelight-purchase-js', $purchase_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
 			wp_enqueue_script( 'firelight-freemius-js' );
-			wp_enqueue_script( 'firelight-settings-js' );
+			wp_enqueue_script( 'firelight-purchase-js' );
 		}
 
 		if ( $is_efb_settings ) {
@@ -85,7 +84,6 @@ class easyFancyBox_Admin {
 		if ( $is_efb_settings || $is_pro_landing || $is_dashboard ) {
 			wp_register_style( 'firelight-css', $css_file, false, $version );
 			wp_enqueue_style( 'firelight-css' );
-
 			wp_register_script( 'firelight-notice-js', $notice_js, array( 'jquery', 'wp-dom-ready' ), $version, true );
 			wp_enqueue_script( 'firelight-notice-js' );
 		}
@@ -132,10 +130,22 @@ class easyFancyBox_Admin {
 	}
 
 	/**
-	 * Render the content of the Lightbox Settings page.
+	 * Renders the settings page using the Settings API.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return void
 	 */
 	public static function options_page() {
-		echo '<img class="firelight-logo" src="' . easyFancyBox::$plugin_url . 'images/firelight-logo.png">';
+		if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
+			echo '<div class="sale-banner"><p>';
+			esc_html_e( 'Easy Fancybox Pro is launched! Take 40% off this week - use code LAUNCH at checkout.', 'easy-fancybox' );
+			echo ' <a href="' . esc_url( admin_url( 'admin.php?page=firelight-pro' ) ) . '">' . esc_html( 'LEARN MORE', 'easy-fancybox' ) . '</a>';
+			echo '</p></div>';
+		}
+
+		echo '<img class="firelight-logo" src="' . esc_url( easyFancyBox::$plugin_url ) . 'images/firelight-logo.png">';
 
 		echo '<form method="post" action="options.php">';
 
