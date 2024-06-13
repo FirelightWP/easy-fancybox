@@ -141,7 +141,7 @@ class easyFancyBox_Admin {
 		if ( ! class_exists( 'easyFancyBox_Advanced' ) && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
 			esc_html_e( 'Easy Fancybox Pro is launched! Take 40% off this week - use code LAUNCH at checkout.', 'easy-fancybox' );
-			echo ' <a href="' . esc_url( admin_url( 'admin.php?page=firelight-pro' ) ) . '">' . esc_html( 'LEARN MORE', 'easy-fancybox' ) . '</a>';
+			echo ' <a href="https://firelightwp.com/pro-lightbox" target="_blank">' . esc_html( 'LEARN MORE', 'easy-fancybox' ) . '</a>';
 			echo '</p></div>';
 		}
 
