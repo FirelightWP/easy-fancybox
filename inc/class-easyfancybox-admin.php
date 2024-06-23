@@ -673,6 +673,8 @@ class easyFancyBox_Admin {
 			? $lightboxes[ $script_version ]
 			: esc_html__( 'Easy Fancybox', 'easy-fancybo' );
 
+		$is_pro_user     = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_pro_license();
+
 		// Enqueue block editor CSS.
 		wp_enqueue_style(
 			'firelight-block-css',
@@ -695,6 +697,7 @@ class easyFancyBox_Admin {
 			array(
 				'activeLightbox' => $active_lightbox,
 				'settingsUrl'    => esc_url( admin_url( 'admin.php?page=firelight-settings' ) ),
+				'isProUser'      => $is_pro_user,
 			)
 		);
 	}
