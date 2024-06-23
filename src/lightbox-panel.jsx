@@ -6,7 +6,7 @@ import { __ } from '@wordpress/i18n';
 import './blocks.scss';
 
 const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
-    return ( props ) => {
+	return ( props ) => {
 		const { name } = props;
 		const isImageOrGalleryBlock = 'core/image' === name || 'core/gallery' === name;
 
@@ -20,11 +20,11 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 			return <BlockEdit { ...props } />
 		}
 
-        return (
-            <>
-                <BlockEdit key="edit" { ...props } />
-                <InspectorControls>
-                    <PanelBody className='fancybox-settings' title={ __( 'Lightbox' ) }>
+		return (
+			<>
+				<BlockEdit key="edit" { ...props } />
+				<InspectorControls>
+					<PanelBody className='fancybox-settings' title={ __( 'Lightbox' ) }>
 						<p>
 							{ __( 'You are using: ' ) }
 							<span className='fancybox-active-lightbox'>{ activeLightbox }</span>
@@ -76,14 +76,14 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 							</Button>
 						</div>		
 					</PanelBody>
-                </InspectorControls>
-            </>
-        );
-    };
+				</InspectorControls>
+			</>
+		);
+	};
 }, 'withMyPluginControls' );
 
 wp.hooks.addFilter(
-    'editor.BlockEdit',
-    'lightpress/lightbox-panel',
-    withLightboxPanelControls
+	'editor.BlockEdit',
+	'lightpress/lightbox-panel',
+	withLightboxPanelControls
 );
