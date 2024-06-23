@@ -81,7 +81,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 			</>
 		);
 	};
-}, 'withMyPluginControls' );
+}, 'withLightboxPanelControls' );
 
 addFilter(
 	'editor.BlockEdit',
