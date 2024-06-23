@@ -1,6 +1,7 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, Button, ToggleControl } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
+import { addFilter } from '@wordpress/hooks';
 import { __ } from '@wordpress/i18n';
 
 import './blocks.scss';
@@ -82,7 +83,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 	};
 }, 'withMyPluginControls' );
 
-wp.hooks.addFilter(
+addFilter(
 	'editor.BlockEdit',
 	'lightpress/lightbox-panel',
 	withLightboxPanelControls
