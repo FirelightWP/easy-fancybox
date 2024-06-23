@@ -1,0 +1,23 @@
+{
+  "name": "easy-fancybox",
+  "version": "1.0.0",
+  "description": "WordPress plugin to easily enable the FancyBox jQuery extension on just about all media links. Multi-Site compatible. Also supports Youtube, Vimeo, Dailymotion, PDF, iFrame and Flash movies.",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "check-engines": "wp-scripts check-engines"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^27.0.0"
+  },
+  "dependencies": {
+    "@wordpress/block-editor": "^13.1.0",
+    "@wordpress/components": "^28.1.0",
+    "@wordpress/compose": "^7.1.0",
+    "@wordpress/hooks": "^4.1.0",
+    "@wordpress/i18n": "^5.1.0"
+  }
+}

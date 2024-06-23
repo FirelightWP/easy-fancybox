@@ -1,0 +1,33 @@
+.fancybox-settings {
+	h2,
+	h2:hover {
+		border-left: 2px solid #ff7011 !important;
+	}
+	.fancybox-active-lightbox {
+		font-weight: bold;
+	}
+	.components-toggle-control {
+		margin-top: 20px;
+		margin-bottom: 4px;
+	}
+	.fancybox-upgrade-notice {
+		font-style: italic;
+		margin-bottom: 8px;
+	}
+	.fancybox-button-container {
+		margin-bottom: 30px;
+	}
+	.fancybox-button {
+		background: #ff7011 !important;
+		font-weight: bold;
+		&:hover,
+		&:active,
+		&:focus {
+			background: #ff8e3c !important;
+		}
+	}
+	.fancybox-settings-link {
+		margin-top: -10px;
+	}
+}
+

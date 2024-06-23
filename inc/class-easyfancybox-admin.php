@@ -36,6 +36,8 @@ class easyFancyBox_Admin {
 		add_action( 'wp_loaded', array(__CLASS__, 'save_date' ) );
 		add_action( 'admin_notices', array(__CLASS__, 'show_review_request' ) );
 		add_action( 'wp_ajax_efb-review-action', array(__CLASS__, 'process_efb_review_action' ) );
+
+		add_action( 'enqueue_block_assets', array( __CLASS__, 'block_editor_scripts' ) );
 	}
 
 	/**
@@ -655,6 +657,49 @@ class easyFancyBox_Admin {
 		endif;
 
 		echo implode( '', $output );
+	}
+
+	/**
+	 * Enqueue block JavaScript and CSS for the editor
+	 */
+	public static function block_editor_scripts() {
+		$block_js  = easyFancyBox::$plugin_url . 'build/index.js';
+		$block_css = easyFancyBox::$plugin_url . 'build/index.css';
+		$version   = defined( 'WP_DEBUG' ) ? time() : EASY_FANCYBOX_PRO_VERSION;
+
+		$lightboxes      = easyFancyBox::get_lightboxes();
+		$script_version  = get_option( 'fancybox_scriptVersion', 'classic' );
+		$active_lightbox = isset( $lightboxes[ $script_version ] )
+			? $lightboxes[ $script_version ]
+			: esc_html__( 'Easy Fancybox', 'easy-fancybo' );
+
+		$is_pro_user     = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_pro_license();
+
+		// Enqueue block editor CSS.
+		wp_enqueue_style(
+			'firelight-block-css',
+			$block_css,
+			array(),
+			$version
+		);
+
+		// Enqueue block editor JS.
+		wp_enqueue_script(
+			'firelight-block-js',
+			$block_js,
+			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor', 'wp-hooks' ),
+			$version,
+			array( 'in_footer' => true ),
+		);
+		wp_localize_script(
+			'firelight-block-js',
+			'firelight',
+			array(
+				'activeLightbox' => $active_lightbox,
+				'settingsUrl'    => esc_url( admin_url( 'admin.php?page=firelight-settings' ) ),
+				'isProUser'      => $is_pro_user,
+			)
+		);
 	}
 
 	/**
