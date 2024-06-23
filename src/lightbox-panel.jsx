@@ -1,7 +1,3 @@
-// const { createHigherOrderComponent } = wp.compose;
-// const { InspectorControls } = wp.blockEditor;
-// const { PanelBody, Button, ToggleControl } = wp.components;
-// const { __ } = wp.i18n;
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, Button, ToggleControl } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
@@ -24,12 +20,6 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 			return <BlockEdit { ...props } />
 		}
 
-		/*
-		 Need exrtra conditional:
-		 if ! isProUser -> show upgrade
-		 if isProUser && notProLightbox -> tell them they can, provide linke
-		 if isProUser and isProLightobx -> just show link to settings
-		*/
         return (
             <>
                 <BlockEdit key="edit" { ...props } />
