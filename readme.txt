@@ -19,9 +19,9 @@ After activation, links to images, galleries, videos, pdfs, maps, modals, etc, w
 
 Demos for images, videos, PDFs, maps, and modals/popups:
 
-**[Free Lightbox Demo](https://firelightwp.com/-pro-lightbox/)**  
-**[Pro Lightbox Demo - Light Theme](https://firelightwp.com/-pro-lightbox/)**  
-**[Pro Lightbox Demo - Dark Theme](https://firelightwp.com/-pro-lightboxdark/)**  
+**[Free Lightbox Demo](https://firelightwp.com/free-lightbox/)**  
+**[Pro Lightbox Demo - Light Theme](https://firelightwp.com/pro-lightbox/)**  
+**[Pro Lightbox Demo - Dark Theme](https://firelightwp.com/pro-lightbox-dark/)**  
 
 **FREE LIGHTBOX FEATURES**
 - Automatic detection of images
@@ -40,7 +40,7 @@ Demos for images, videos, PDFs, maps, and modals/popups:
 - Support for WordPress Multsite (see Installation instructions)
 
 Links:  
--> **[Demos](https://firelightwp.com/wordpress-lightbox-docs)**  
+-> **[Demos](https://firelightwp.com/free-lightbox/)**  
 -> **[Docs](https://firelightwp.com/wordpress-lightbox-docs)**  
 -> **[Free Support](https://wordpress.org/support/plugin/easy-fancybox)**  
 
@@ -79,7 +79,7 @@ Install like any other plugin. Search for 'lightbox' or 'easy fancybox' from you
 
 = Wordpress Multiste =
 
-The plugin is compatible with multisite. You can enable the plugin network wide, or allow individual sites to activate it. 
+The plugin is compatible with multisite. You can enable the plugin network wide, or allow individual sites to activate it.
 
 When activating the plugin per site, each site will have the Images media type activated and Easy FancyBox will immediately try opening image links in the light box.
 
