@@ -33,7 +33,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 *
 	 * @var string
 	 */
-	private static $compat_pro_min = '1.8';
+	private static $compat_pro_min = '2.0.0';
 
 	/**
 	 * Flag to determine whether to display a compatibility warning.
@@ -52,7 +52,10 @@ class easyFancyBox_Admin { // phpcs:ignore
 		// Admin notices.
 		add_action( 'admin_init', array( __CLASS__, 'compat_warning' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'admin_notice' ) );
+
+		// Enqueue JS and CSS.
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
+		add_action( 'enqueue_block_assets', array( __CLASS__, 'block_editor_scripts' ) );
 
 		// Plugin action links.
 		add_filter( 'plugin_action_links_' . EASY_FANCYBOX_BASENAME, array( __CLASS__, 'add_action_link' ) );
@@ -64,11 +67,10 @@ class easyFancyBox_Admin { // phpcs:ignore
 		add_action( 'admin_init', array( __CLASS__, 'add_settings_fields' ) );
 		add_action( 'admin_menu', array( __CLASS__, 'add_options_page' ) );
 
+		// Review requests.
 		add_action( 'wp_loaded', array( __CLASS__, 'save_date' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'show_review_request' ) );
 		add_action( 'wp_ajax_efb-review-action', array( __CLASS__, 'process_efb_review_action' ) );
-
-		add_action( 'enqueue_block_assets', array( __CLASS__, 'block_editor_scripts' ) );
 	}
 
 	/**
