@@ -744,7 +744,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			$block_js,
 			array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components', 'wp-editor', 'wp-hooks' ),
 			$version,
-			array( 'in_footer' => true ),
+			true,
 		);
 		wp_localize_script(
 			'firelight-block-js',
