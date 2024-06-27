@@ -17,7 +17,6 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 		const isProUser = firelight.isProUser;
 		const settingsUrl = firelight.settingsUrl;
 		const lightboxPanelOpen = firelight.lightboxPanelOpen === '1' ? true : false;
-		console.log( 'erick lightboxPanelOpen', lightboxPanelOpen );
 
 		if ( ! isImageOrGalleryBlock ) {
 			return <BlockEdit { ...props } />
