@@ -16,6 +16,8 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 		const isProLightbox = 'Pro Lightbox' === activeLightbox;
 		const isProUser = firelight.isProUser;
 		const settingsUrl = firelight.settingsUrl;
+		const lightboxPanelOpen = firelight.lightboxPanelOpen === '1' ? true : false;
+		console.log( 'erick lightboxPanelOpen', lightboxPanelOpen );
 
 		if ( ! isImageOrGalleryBlock ) {
 			return <BlockEdit { ...props } />
@@ -25,7 +27,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 			<>
 				<BlockEdit key="edit" { ...props } />
 				<InspectorControls>
-					<PanelBody className='fancybox-settings' title={ __( 'Lightbox' ) }>
+					<PanelBody className='fancybox-settings' title={ __( 'Lightbox' ) } initialOpen={ lightboxPanelOpen }>
 						<p>
 							{ __( 'You are using: ' ) }
 							<span className='fancybox-active-lightbox'>{ activeLightbox }</span>
