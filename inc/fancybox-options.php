@@ -8,16 +8,18 @@
  * @package EasyFancyBox
  */
 
-/**
- * Displays a button to upgrade to the Pro version.
- *
- * @param bool $add_options Whether to include a prompt for more options in the button text.
- * @return string HTML for the Pro version upgrade button.
- */
-function efb_pro_button( $add_options = false ) {
-	if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
-		$options_prompt = $add_options ? __( 'Want more options? ' ) : '';
-		return $options_prompt . '<a class="pro-button" href="' . easyFancyBox::$pro_plugin_url . '">' . __( 'Get Pro', 'easy-fancybox' ) . '</a>';
+if ( ! function_exists( 'efb_pro_button' ) ) {
+	/**
+	 * Displays a button to upgrade to the Pro version.
+	 *
+	 * @param bool $add_options Whether to include a prompt for more options in the button text.
+	 * @return string HTML for the Pro version upgrade button.
+	 */
+	function efb_pro_button( $add_options = false ) {
+		if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
+			$options_prompt = $add_options ? __( 'Want more options? ' ) : '';
+			return $options_prompt . '<a class="pro-button" href="' . easyFancyBox::$pro_plugin_url . '">' . __( 'Get Pro', 'easy-fancybox' ) . '</a>';
+		}
 	}
 }
 
