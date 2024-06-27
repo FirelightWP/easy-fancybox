@@ -719,6 +719,13 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * Enqueue block JavaScript and CSS for the editor
 	 */
 	public static function block_editor_scripts() {
+		$enable_block_controls = '1' === get_option( 'fancybox_enableBlockControls', '1' );
+		$lightbox_panel_open   = '1' === get_option( 'fancybox_openBlockControls', '1' );
+
+		if ( ! $enable_block_controls ) {
+			return;
+		}
+
 		$block_js  = easyFancyBox::$plugin_url . 'build/index.js';
 		$block_css = easyFancyBox::$plugin_url . 'build/index.css';
 		$version   = defined( 'WP_DEBUG' ) ? time() : EASY_FANCYBOX_PRO_VERSION;
@@ -750,9 +757,10 @@ class easyFancyBox_Admin { // phpcs:ignore
 			'firelight-block-js',
 			'firelight',
 			array(
-				'activeLightbox' => $active_lightbox,
-				'settingsUrl'    => esc_url( admin_url( 'admin.php?page=firelight-settings' ) ),
-				'isProUser'      => $is_pro_user,
+				'activeLightbox'    => $active_lightbox,
+				'settingsUrl'       => esc_url( admin_url( 'admin.php?page=firelight-settings' ) ),
+				'isProUser'         => $is_pro_user,
+				'lightboxPanelOpen' => $lightbox_panel_open,
 			)
 		);
 	}
