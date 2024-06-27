@@ -94,7 +94,7 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 == Changelog ==
 
 = 2.2.5 =
-* New: Options to hide/close lightbo panel
+* New: Options to hide/close lightbox panel in block editor
 * Update: Apply coding standards to fancybox-options.php
 * Fix: wp_enqueue_script syntax error
 
