@@ -29,7 +29,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-};
+}
 
 /**
  * CONSTANTS
