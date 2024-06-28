@@ -189,7 +189,12 @@ class easyFancyBox_Admin { // phpcs:ignore
 			echo '</p></div>';
 		}
 
-		echo '<img class="firelight-logo" src="' . esc_url( easyFancyBox::$plugin_url ) . 'images/firelight-logo.png">';
+		echo '
+			<div class="firelight-header">
+				<img class="firelight-logo" src="' . esc_url( easyFancyBox::$plugin_url ) . 'images/firelight-logo.png">
+				<a href="#TB_inline?width=600&height=550&inlineId=fancybox-optin-modal" class="thickbox">Get email updates</a>
+			</div>
+		';
 
 		echo '<form method="post" action="options.php">';
 
@@ -198,6 +203,24 @@ class easyFancyBox_Admin { // phpcs:ignore
 		submit_button();
 
 		echo '</form>';
+
+		// Show email optin modal.
+		if ( self::should_show_email_optin() ) {
+			add_thickbox();
+			?>
+				<div id="fancybox-optin-modal" style="display:none;">
+					<div class="fancybox-optin-modal-content">
+						<h2>Welcome to Easy Fancybox!</h2>
+						<h3>Never miss an important update.</h3>
+						<p>Opt in to receive emails about security & feature updates.</p>
+						<div class="hero-section-actions">
+							<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/" target="_blank"><?php esc_html_e( 'Allow and continue', 'easy-fancybox' ); ?></a>
+							<a class="pro-action-button link-only" href="https://firelightwp.com/pro-lightbox" target="_blank"><?php esc_html_e( 'Miss updates', 'easy-fancybox' ); ?></a>
+						</div>
+					</div>
+				</div>
+			<?php
+		}
 	}
 
 	/**
@@ -917,5 +940,106 @@ class easyFancyBox_Admin { // phpcs:ignore
 		$now           = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
 		$now_as_string = $now->format( 'Y-m-d' );
 		update_option( 'easy_fancybox_date', $now_as_string );
+	}
+
+	/**
+	 * Determine if the email opt in should be shown.
+	 *
+	 * To summarize, this will only show:
+	 * if is options screen
+	 * if has not already opted in
+	 * if use has not interacted with optin within 90 days
+	 * if use has not interacted with reviews within 7 days
+	 * if user is selected for metered rollout and
+	 * if user has plugin more than 60 days and
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return bool Returns true if the email optin should be shown.
+	 */
+	public static function should_show_email_optin() {
+		return true;
+		// Only show on settings screen.
+		$screen         = get_current_screen();
+		$is_efb_options = self::$screen_id === $screen->id;
+		if ( ! $is_efb_options ) {
+			return false;
+		}
+
+		// Don't show if already opted in.
+		$already_opted_in = get_option( 'efb_opted_in' ) && get_option( 'efb_opted_in' ) === true;
+		if ( $already_opted_in ) {
+			return false;
+		}
+
+		// Don't show if interacted with email optin in last 90 days.
+		$current_date               = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
+		$efb_last_optin_interaction = get_option( 'efb_last_optin_interaction' );
+		if ( $efb_last_optin_interaction ) {
+			$last_optin_interaction_date = new DateTimeImmutable( $efb_last_optin_interaction );
+			$days_since_last_interaction = $last_optin_interaction_date->diff( $current_date )->days;
+			if ( $days_since_last_interaction < 90 ) {
+				return false;
+			}
+		}
+
+		// Do not show if user interacted with reviews within last 7 days.
+		$efb_last_review_interaction = get_option( 'efb_last_review_interaction' );
+		if ( $efb_last_review_interaction ) {
+			$last_review_interaction_date = new DateTimeImmutable( $efb_last_review_interaction );
+			$days_since_last_interaction  = $last_review_interaction_date->diff( $current_date )->days;
+			if ( $days_since_last_interaction < 7 ) {
+				return false;
+			}
+		}
+
+		// Limit optin request to 20% of users initially.
+		$user_review_number = get_option( 'efb_user_review_number' );
+		if ( ! $user_review_number ) {
+			$user_review_number = rand( 1, 10 ); // phpcs:ignore
+			update_option( 'efb_user_review_number', $user_review_number );
+		}
+		$selected = '9' === $user_review_number || '10' === $user_review_number;
+		if ( ! $selected ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Process Ajax request when user interacts with optin requests
+	 */
+	public static function process_efb_optin_action() {
+		check_admin_referer( 'efb_optin_action_nonce', '_n' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$rate_action            = isset( $_POST['optin_action'] ) ? sanitize_text_field( wp_unslash( $_POST['optin_action'] ) ) : '';
+		$current_date           = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
+		$current_date_as_string = $current_date->format( 'Y-m-d' );
+		update_option( 'efb_last_optin_interaction', $current_date_as_string );
+
+		if ( 'optin' === $rate_action ) {
+			update_option( 'efb_opted_in', 'true' );
+
+			// Send request to mailchimp.
+			require_once '/path/to/MailchimpMarketing/vendor/autoload.php';
+			$client = new MailchimpMarketing\ApiClient();
+			$client->setConfig([
+				'apiKey' => 'YOUR_API_KEY',
+				'server' => 'YOUR_SERVER_PREFIX',
+			]);
+
+			$response = $client->lists->addListMember("list_id", [
+				"email_address" => "Lindsey.White93@hotmail.com",
+				"status" => "pending",
+			]);
+			print_r($response);
+		}
+
+		exit;
 	}
 }
