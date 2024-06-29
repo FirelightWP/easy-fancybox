@@ -174,11 +174,11 @@
 	align-items: center;
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_overlay {
+.toplevel_page_firelight-settings #TB_overlay {
 	opacity: .8
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_window {
+.toplevel_page_firelight-settings #TB_window {
 	top: auto;
     left: auto;
 	margin-top: -80px !important;
@@ -187,11 +187,16 @@
 	height: 260px !important;
 }
 
-.toplevel_page_firelight-settings.modal-open  #TB_title {
+.toplevel_page_firelight-settings #TB_window {
+	transition: all 1s;
+}
+
+
+.toplevel_page_firelight-settings  #TB_title {
 	border-bottom: none;
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent {
+.toplevel_page_firelight-settings #TB_ajaxContent {
     height: 230px !important;
 	width: 100% !important;
     justify-content: center;
@@ -199,33 +204,33 @@
 	padding: 0px 40px 12px;
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent h2 {
+.toplevel_page_firelight-settings #TB_ajaxContent h2 {
     margin-bottom: 0;
 	font-size: 24px;
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent h3 {
+.toplevel_page_firelight-settings #TB_ajaxContent h3 {
     margin-top: 10px;
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent p {
+.toplevel_page_firelight-settings #TB_ajaxContent p {
     font-size: 16px;
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent .hero-section-actions {
+.toplevel_page_firelight-settings #TB_ajaxContent .hero-section-actions {
     margin: 24px 0 2px;
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent .pro-action-button {
+.toplevel_page_firelight-settings #TB_ajaxContent .pro-action-button {
     padding: 10px 24px;
     text-transform: none;
     font-weight: normal;
 }
 
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent .pro-action-button.link-only,
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent .pro-action-button.link-only:hover,
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent .pro-action-button.link-only:focus,
-.toplevel_page_firelight-settings.modal-open #TB_ajaxContent .pro-action-button.link-only:visited {
+.toplevel_page_firelight-settings #TB_ajaxContent .pro-action-button.link-only,
+.toplevel_page_firelight-settings #TB_ajaxContent .pro-action-button.link-only:hover,
+.toplevel_page_firelight-settings #TB_ajaxContent .pro-action-button.link-only:focus,
+.toplevel_page_firelight-settings #TB_ajaxContent .pro-action-button.link-only:visited {
     background: transparent;
     color: #ff5722;
 }

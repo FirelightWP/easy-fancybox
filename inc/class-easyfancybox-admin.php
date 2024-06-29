@@ -71,6 +71,9 @@ class easyFancyBox_Admin { // phpcs:ignore
 		add_action( 'wp_loaded', array( __CLASS__, 'save_date' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'show_review_request' ) );
 		add_action( 'wp_ajax_efb-review-action', array( __CLASS__, 'process_efb_review_action' ) );
+
+		// Email opt in.
+		add_action( 'wp_ajax_efb-optin-action', array( __CLASS__, 'process_efb_optin_action' ) );
 	}
 
 	/**
@@ -137,6 +140,8 @@ class easyFancyBox_Admin { // phpcs:ignore
 			'settings',
 			array(
 				'proLandingUrl' => admin_url( 'admin.php?page=firelight-pro' ),
+				'openModal'     => true,
+				// 'openModal'     => self::should_show_email_optin(),
 			)
 		);
 	}
@@ -182,6 +187,11 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * @return void
 	 */
 	public static function options_page() {
+		$opted_in    = get_option( 'efb_opted_in' );
+		$opt_in_link = $opted_in
+			? ''
+			: '<a id="fancybox-open-modal" href="#TB_inline?width=600&height=550&inlineId=fancybox-optin-modal" class="thickbox">Get email updates</a>';
+
 		if ( ! class_exists( 'easyFancyBox_Advanced' ) && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
 			esc_html_e( 'Easy Fancybox Pro is launched! Take 40% off this week - use code LAUNCH at checkout.', 'easy-fancybox' );
@@ -191,10 +201,9 @@ class easyFancyBox_Admin { // phpcs:ignore
 
 		echo '
 			<div class="firelight-header">
-				<img class="firelight-logo" src="' . esc_url( easyFancyBox::$plugin_url ) . 'images/firelight-logo.png">
-				<a href="#TB_inline?width=600&height=550&inlineId=fancybox-optin-modal" class="thickbox">Get email updates</a>
-			</div>
-		';
+				<img class="firelight-logo" src="' . esc_url( easyFancyBox::$plugin_url ) . 'images/firelight-logo.png">'
+				. $opt_in_link // phpcs:ignore
+			. '</div>';
 
 		echo '<form method="post" action="options.php">';
 
@@ -205,7 +214,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 		echo '</form>';
 
 		// Show email optin modal.
-		if ( self::should_show_email_optin() ) {
+		if ( ! $opted_in ) {
 			add_thickbox();
 			?>
 				<div id="fancybox-optin-modal" style="display:none;">
@@ -213,9 +222,9 @@ class easyFancyBox_Admin { // phpcs:ignore
 						<h2>Welcome to Easy Fancybox!</h2>
 						<h3>Never miss an important update.</h3>
 						<p>Opt in to receive emails about security & feature updates.</p>
-						<div class="hero-section-actions">
-							<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/" target="_blank"><?php esc_html_e( 'Allow and continue', 'easy-fancybox' ); ?></a>
-							<a class="pro-action-button link-only" href="https://firelightwp.com/pro-lightbox" target="_blank"><?php esc_html_e( 'Miss updates', 'easy-fancybox' ); ?></a>
+						<div class="hero-section-actions efb-optin-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_optin_action_nonce' ) ); ?>">
+							<a class="pro-action-button" href="#" data-optin-action="do-optin"><?php esc_html_e( 'Allow and continue', 'easy-fancybox' ); ?></a>
+							<a class="pro-action-button link-only" href="#" data-optin-action="skip-optin"><?php esc_html_e( 'Miss updates', 'easy-fancybox' ); ?></a>
 						</div>
 					</div>
 				</div>
@@ -1017,27 +1026,38 @@ class easyFancyBox_Admin { // phpcs:ignore
 			return;
 		}
 
-		$rate_action            = isset( $_POST['optin_action'] ) ? sanitize_text_field( wp_unslash( $_POST['optin_action'] ) ) : '';
+		$optin_action           = isset( $_POST['optin_action'] )
+			? sanitize_text_field( wp_unslash( $_POST['optin_action'] ) )
+			: '';
 		$current_date           = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
 		$current_date_as_string = $current_date->format( 'Y-m-d' );
+
 		update_option( 'efb_last_optin_interaction', $current_date_as_string );
 
-		if ( 'optin' === $rate_action ) {
+		if ( 'do-optin' === $optin_action ) {
 			update_option( 'efb_opted_in', 'true' );
+			$current_user = wp_get_current_user();
+			$first        = esc_html( $current_user->user_firstname );
+			$last         = esc_html( $current_user->user_lastname );
+			$email        = esc_html( $current_user->user_email );
 
-			// Send request to mailchimp.
-			require_once '/path/to/MailchimpMarketing/vendor/autoload.php';
-			$client = new MailchimpMarketing\ApiClient();
-			$client->setConfig([
-				'apiKey' => 'YOUR_API_KEY',
-				'server' => 'YOUR_SERVER_PREFIX',
-			]);
+			$api_url = add_query_arg(
+				array(
+					'first' => $first,
+					'last'  => $last,
+					'email' => $email,
+				),
+				'https://h2776ox0tf.execute-api.us-east-1.amazonaws.com/EasyFancyboxMailchimpAPI/'
+			);
 
-			$response = $client->lists->addListMember("list_id", [
-				"email_address" => "Lindsey.White93@hotmail.com",
-				"status" => "pending",
-			]);
-			print_r($response);
+			$response = wp_remote_post( $api_url, array( 'method' => 'GET' ) );
+
+			wp_send_json_success(
+				array(
+					'response' => $response['body'],
+					'email' => $email,
+				)
+			);
 		}
 
 		exit;
