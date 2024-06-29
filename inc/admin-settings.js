@@ -95,60 +95,6 @@ wp.domReady( function () {
 	} ) );
 
 	/**
-	 * Handle email optin actions.
-	 */
-	// const optinActionLinks =  document.querySelectorAll( '.efb-optin-actions a' );
-	// optinActionLinks.forEach( link => link.addEventListener( 'click', ( event ) => {
-	// 	const optinLightbox = document.querySelector( '#TB_window' );
-	// 	const closeButton = document.querySelector( '#TB_closeWindowButton' );
-	// 	const optinNonce = document.querySelector( '.efb-optin-actions' ).getAttribute( 'data-nonce' );
-	// 	const optinAction = event.target.getAttribute( 'data-optin-action' );
-	// 	const first = settings.userFirstName; // via wp_localize_script
-	// 	const last = settings.userLasttName; // via wp_localize_script
-	// 	const email = settings.userEmail; // via wp_localize_script
-	// 	console.log( 'erick action click' );
-	// 	console.log( 'erick first', first );
-	// 	console.log( 'erick last', last );
-	// 	console.log( 'erick email', email );
-	// 	console.log( 'erick optinAction', optinAction );
-	// 	console.log( 'erick optinLightbox', optinLightbox );
-
-	// 	if ( 'do-optin' === optinAction ) {
-	// 		const requestUrl = `https://h2776ox0tf.execute-api.us-east-1.amazonaws.com/EasyFancyboxMailchimpAPI/?first=${ first }&last=${ last }&email=${ email }`;
-	// 		fetch( requestUrl, { method: 'GET' } )
-	// 			.then( response => {
-	// 				console.log( 'success' );
-	// 				console.log( response );
-	// 				updateOptinSettings( optinNonce, optinAction, true );
-	// 			})
-	// 			.catch( error => {
-	// 				console.log( 'failed' );
-	// 				console.log( error );
-	// 				updateOptinSettings( optinNonce, optinAction, false );
-	// 			});
-	// 	} else {
-	// 		updateOptinSettings( nonce, optinAction, false );
-	// 	}
-	// 	closeButton.click();
-	// } ) );
-
-	/**
-	 * Update email optin optoin via ajax.
-	 */
-	// function updateOptinSettings( optinNonce, optinAction, optedIn ) {
-	// 	$.post(
-	// 		ajaxurl,
-	// 		{
-	// 			action: 'efb-optin-action',
-	// 			optin_action: optinAction,
-	// 			success: optedIn,
-	// 			_n: optinNonce
-	// 		},
-	// 		function( result ) {}
-	// 	);
-	// }
-
-	/**
 	 * Handle form validation errors
 	 * Ensure user can see error by opening relevant panel.
 	 */

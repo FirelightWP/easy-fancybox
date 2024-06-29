@@ -1039,7 +1039,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			$last         = esc_html( $current_user->user_lastname );
 			$email        = esc_html( $current_user->user_email );
 
-			$api_url = add_query_arg(
+			$url = add_query_arg(
 				array(
 					'first' => $first,
 					'last'  => $last,
@@ -1048,7 +1048,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 				'https://h2776ox0tf.execute-api.us-east-1.amazonaws.com/EasyFancyboxMailchimpAPI/'
 			);
 
-			$response = wp_remote_post( $api_url, array( 'method' => 'GET' ) );
+			$response = wp_remote_post( $url, array( 'method' => 'GET' ) );
 
 			wp_send_json_success(
 				array(
