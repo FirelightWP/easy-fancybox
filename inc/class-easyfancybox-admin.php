@@ -140,8 +140,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			'settings',
 			array(
 				'proLandingUrl' => admin_url( 'admin.php?page=firelight-pro' ),
-				'openModal'     => true,
-				// 'openModal'     => self::should_show_email_optin(),
+				'openModal'     => self::should_show_email_optin(),
 			)
 		);
 	}
@@ -968,7 +967,6 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * @return bool Returns true if the email optin should be shown.
 	 */
 	public static function should_show_email_optin() {
-		return true;
 		// Only show on settings screen.
 		$screen         = get_current_screen();
 		$is_efb_options = self::$screen_id === $screen->id;
@@ -977,7 +975,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 		}
 
 		// Don't show if already opted in.
-		$already_opted_in = get_option( 'efb_opted_in' ) && get_option( 'efb_opted_in' ) === true;
+		$already_opted_in = get_option( 'efb_opted_in' ) && get_option( 'efb_opted_in' ) === '1';
 		if ( $already_opted_in ) {
 			return false;
 		}
