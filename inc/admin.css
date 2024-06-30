@@ -185,6 +185,7 @@
     margin-left: 0 !important;
 	width: 520px !important;
 	height: 260px !important;
+	max-width: 95%;
 }
 
 .toplevel_page_firelight-settings #TB_window {

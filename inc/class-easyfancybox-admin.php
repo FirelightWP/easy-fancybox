@@ -239,7 +239,8 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * if has not already been rated and
 	 * if user is selected for metered rollout and
 	 * if user has plugin more than 60 days and
-	 * if use has not interacted with reviews within 90 days.
+	 * if user has not interacted with reviews within 90 days.
+	 * if user has not interacted with optin within 7 days
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -285,6 +286,21 @@ class easyFancyBox_Admin { // phpcs:ignore
 			if ( $days_since_last_interaction < 90 ) {
 				return false;
 			}
+		}
+
+		// Do not show if user interacted with reviews within last 7 days.
+		$efb_last_optin_interaction = get_option( 'efb_last_optin_interaction' );
+		if ( $efb_last_optin_interaction ) {
+			$last_optin_interaction_date = new DateTimeImmutable( $efb_last_optin_interaction );
+			$days_since_last_optin_interaction  = $last_optin_interaction_date->diff( $current_date )->days;
+			if ( $days_since_last_optin_interaction < 7 ) {
+				return false;
+			}
+		}
+
+		// Do not show if currently showing optin.
+		if ( self::should_show_email_optin() ) {
+			return false;
 		}
 
 		return true;
