@@ -128,7 +128,6 @@ wp.domReady( function () {
 		window.onload = () => {
 			if ( '1' === settings.openModal ) {
 				const button = document.querySelector( '#fancybox-open-modal' );
-				console.log( 'should open' );
 				button.click();
 			}
 		};
@@ -137,7 +136,6 @@ wp.domReady( function () {
 			const optinAction = $( this ).attr( 'data-optin-action' );
 			const nonce = $( '.efb-optin-actions' ).attr( 'data-nonce' );
 			const closeButton = $( '#TB_closeWindowButton' );
-			console.log( 'optinAction', optinAction );
 			$.post(
 				ajaxurl,
 				{
