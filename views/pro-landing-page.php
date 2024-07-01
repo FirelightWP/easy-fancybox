@@ -15,7 +15,7 @@
 ?>
 
 <div class="sale-banner">
-	<p><?php esc_html_e( '40% off sale this week! Use code LAUNCH at checkout.', 'easy-fancybox' ); ?></p>
+	<p><?php esc_html_e( 'Easy Fancybox Pro is launched! Take 30% off this week - use code PRO at checkout.', 'easy-fancybox' ); ?></p>
 </div>
 <img class="firelight-logo" src="<?php echo esc_url( easyFancyBox::$plugin_url ); ?>images/firelight-logo.png">
 <div class="hero-section">
