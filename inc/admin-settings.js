@@ -122,3 +122,33 @@ wp.domReady( function () {
 		document.querySelector( '.active-lightbox-heading' ).after( promoSection );
 	}
 } );
+
+(function($) {
+	$( document ).ready( function() {
+		window.onload = () => {
+			if ( '1' === settings.openModal ) {
+				const button = document.querySelector( '#fancybox-open-modal' );
+				button.click();
+			}
+		};
+		
+		$( '.efb-optin-actions a' ).click( function() {
+			const optinAction = $( this ).attr( 'data-optin-action' );
+			const nonce = $( '.efb-optin-actions' ).attr( 'data-nonce' );
+			const closeButton = $( '#TB_closeWindowButton' );
+			$.post(
+				ajaxurl,
+				{
+					action: 'efb-optin-action',
+					optin_action: optinAction,
+					_n: nonce
+				},
+				function( result ) {
+					console.log( result );
+				}
+			);
+			closeButton.click();
+		});
+
+	});
+})( jQuery );

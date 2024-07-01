@@ -71,6 +71,9 @@ class easyFancyBox_Admin { // phpcs:ignore
 		add_action( 'wp_loaded', array( __CLASS__, 'save_date' ) );
 		add_action( 'admin_notices', array( __CLASS__, 'show_review_request' ) );
 		add_action( 'wp_ajax_efb-review-action', array( __CLASS__, 'process_efb_review_action' ) );
+
+		// Email opt in.
+		add_action( 'wp_ajax_efb-optin-action', array( __CLASS__, 'process_efb_optin_action' ) );
 	}
 
 	/**
@@ -137,6 +140,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			'settings',
 			array(
 				'proLandingUrl' => admin_url( 'admin.php?page=firelight-pro' ),
+				'openModal'     => self::should_show_email_optin(),
 			)
 		);
 	}
@@ -182,6 +186,11 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * @return void
 	 */
 	public static function options_page() {
+		$opted_in    = get_option( 'efb_opted_in' );
+		$opt_in_link = $opted_in
+			? ''
+			: '<a id="fancybox-open-modal" href="#TB_inline?width=600&height=550&inlineId=fancybox-optin-modal" class="thickbox">Get email updates</a>';
+
 		if ( ! class_exists( 'easyFancyBox_Advanced' ) && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
 			esc_html_e( 'Easy Fancybox Pro is launched! Take 40% off this week - use code LAUNCH at checkout.', 'easy-fancybox' );
@@ -189,7 +198,11 @@ class easyFancyBox_Admin { // phpcs:ignore
 			echo '</p></div>';
 		}
 
-		echo '<img class="firelight-logo" src="' . esc_url( easyFancyBox::$plugin_url ) . 'images/firelight-logo.png">';
+		echo '
+			<div class="firelight-header">
+				<img class="firelight-logo" src="' . esc_url( easyFancyBox::$plugin_url ) . 'images/firelight-logo.png">'
+				. $opt_in_link // phpcs:ignore
+			. '</div>';
 
 		echo '<form method="post" action="options.php">';
 
@@ -198,6 +211,24 @@ class easyFancyBox_Admin { // phpcs:ignore
 		submit_button();
 
 		echo '</form>';
+
+		// Show email optin modal.
+		if ( ! $opted_in ) {
+			add_thickbox();
+			?>
+				<div id="fancybox-optin-modal" style="display:none;">
+					<div class="fancybox-optin-modal-content">
+						<h2>Welcome to Easy Fancybox!</h2>
+						<h3>Never miss an important update.</h3>
+						<p>Opt in to receive emails about security & feature updates.</p>
+						<div class="hero-section-actions efb-optin-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_optin_action_nonce' ) ); ?>">
+							<a class="pro-action-button" href="#" data-optin-action="do-optin"><?php esc_html_e( 'Allow and continue', 'easy-fancybox' ); ?><span class="dashicons dashicons-arrow-right-alt"></span></a>
+							<a class="pro-action-button link-only" href="#" data-optin-action="skip-optin"><?php esc_html_e( 'Miss updates', 'easy-fancybox' ); ?></a>
+						</div>
+					</div>
+				</div>
+			<?php
+		}
 	}
 
 	/**
@@ -208,7 +239,8 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * if has not already been rated and
 	 * if user is selected for metered rollout and
 	 * if user has plugin more than 60 days and
-	 * if use has not interacted with reviews within 90 days.
+	 * if user has not interacted with reviews within 90 days.
+	 * if user has not interacted with optin within 7 days
 	 *
 	 * @since 1.0.0
 	 * @access public
@@ -254,6 +286,21 @@ class easyFancyBox_Admin { // phpcs:ignore
 			if ( $days_since_last_interaction < 90 ) {
 				return false;
 			}
+		}
+
+		// Do not show if user interacted with reviews within last 7 days.
+		$efb_last_optin_interaction = get_option( 'efb_last_optin_interaction' );
+		if ( $efb_last_optin_interaction ) {
+			$last_optin_interaction_date = new DateTimeImmutable( $efb_last_optin_interaction );
+			$days_since_last_optin_interaction  = $last_optin_interaction_date->diff( $current_date )->days;
+			if ( $days_since_last_optin_interaction < 7 ) {
+				return false;
+			}
+		}
+
+		// Do not show if currently showing optin.
+		if ( self::should_show_email_optin() ) {
+			return false;
 		}
 
 		return true;
@@ -917,5 +964,116 @@ class easyFancyBox_Admin { // phpcs:ignore
 		$now           = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
 		$now_as_string = $now->format( 'Y-m-d' );
 		update_option( 'easy_fancybox_date', $now_as_string );
+	}
+
+	/**
+	 * Determine if the email opt in should be shown.
+	 *
+	 * To summarize, this will only show:
+	 * if is options screen
+	 * if has not already opted in
+	 * if use has not interacted with optin within 90 days
+	 * if use has not interacted with reviews within 7 days
+	 * if user is selected for metered rollout and
+	 * if user has plugin more than 60 days and
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 * @return bool Returns true if the email optin should be shown.
+	 */
+	public static function should_show_email_optin() {
+		// Only show on settings screen.
+		$screen         = get_current_screen();
+		$is_efb_options = self::$screen_id === $screen->id;
+		if ( ! $is_efb_options ) {
+			return false;
+		}
+
+		// Don't show if already opted in.
+		$already_opted_in = get_option( 'efb_opted_in' ) && get_option( 'efb_opted_in' ) === '1';
+		if ( $already_opted_in ) {
+			return false;
+		}
+
+		// Don't show if interacted with email optin in last 90 days.
+		$current_date               = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
+		$efb_last_optin_interaction = get_option( 'efb_last_optin_interaction' );
+		if ( $efb_last_optin_interaction ) {
+			$last_optin_interaction_date = new DateTimeImmutable( $efb_last_optin_interaction );
+			$days_since_last_interaction = $last_optin_interaction_date->diff( $current_date )->days;
+			if ( $days_since_last_interaction < 90 ) {
+				return false;
+			}
+		}
+
+		// Do not show if user interacted with reviews within last 7 days.
+		$efb_last_review_interaction = get_option( 'efb_last_review_interaction' );
+		if ( $efb_last_review_interaction ) {
+			$last_review_interaction_date = new DateTimeImmutable( $efb_last_review_interaction );
+			$days_since_last_interaction  = $last_review_interaction_date->diff( $current_date )->days;
+			if ( $days_since_last_interaction < 7 ) {
+				return false;
+			}
+		}
+
+		// Limit optin request to 20% of users initially.
+		$user_review_number = get_option( 'efb_user_review_number' );
+		if ( ! $user_review_number ) {
+			$user_review_number = rand( 1, 10 ); // phpcs:ignore
+			update_option( 'efb_user_review_number', $user_review_number );
+		}
+		$selected = '9' === $user_review_number || '10' === $user_review_number;
+		if ( ! $selected ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Process Ajax request when user interacts with optin requests
+	 */
+	public static function process_efb_optin_action() {
+		check_admin_referer( 'efb_optin_action_nonce', '_n' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$optin_action           = isset( $_POST['optin_action'] )
+			? sanitize_text_field( wp_unslash( $_POST['optin_action'] ) )
+			: '';
+		$current_date           = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
+		$current_date_as_string = $current_date->format( 'Y-m-d' );
+
+		update_option( 'efb_last_optin_interaction', $current_date_as_string );
+
+		if ( 'do-optin' === $optin_action ) {
+			update_option( 'efb_opted_in', 'true' );
+			$current_user = wp_get_current_user();
+			$first        = esc_html( $current_user->user_firstname );
+			$last         = esc_html( $current_user->user_lastname );
+			$email        = esc_html( $current_user->user_email );
+
+			$url = add_query_arg(
+				array(
+					'first' => $first,
+					'last'  => $last,
+					'email' => $email,
+				),
+				'https://h2776ox0tf.execute-api.us-east-1.amazonaws.com/EasyFancyboxMailchimpAPI/'
+			);
+
+			$response = wp_remote_post( $url, array( 'method' => 'GET' ) );
+
+			wp_send_json_success(
+				array(
+					'response' => $response['body'],
+					'email' => $email,
+				)
+			);
+		}
+
+		exit;
 	}
 }
