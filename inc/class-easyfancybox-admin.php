@@ -222,7 +222,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 						<h3>Never miss an important update.</h3>
 						<p>Opt in to receive emails about security & feature updates.</p>
 						<div class="hero-section-actions efb-optin-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_optin_action_nonce' ) ); ?>">
-							<a class="pro-action-button" href="#" data-optin-action="do-optin"><?php esc_html_e( 'Allow and continue', 'easy-fancybox' ); ?></a>
+							<a class="pro-action-button" href="#" data-optin-action="do-optin"><?php esc_html_e( 'Allow and continue', 'easy-fancybox' ); ?><span class="dashicons dashicons-arrow-right-alt"></span></a>
 							<a class="pro-action-button link-only" href="#" data-optin-action="skip-optin"><?php esc_html_e( 'Miss updates', 'easy-fancybox' ); ?></a>
 						</div>
 					</div>

@@ -236,6 +236,11 @@
     color: #ff5722;
 }
 
+.toplevel_page_firelight-settings .dashicons-arrow-right-alt {
+	margin-left: 6px;
+    margin-right: -4px;
+}
+
 /* Pro Lightbox Promo */
 
 .toplevel_page_firelight-settings .pro-lightbox-promo p {
