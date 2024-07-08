@@ -149,7 +149,7 @@ fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
-						
+
 						case '2':
 						case 'all':
 							$script .= '.attr(\'rel\',\'gallery\');';
