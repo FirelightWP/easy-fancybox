@@ -113,20 +113,21 @@ var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
-						case 'disabled':
 						case '':
+						case 'disabled':
 							$script .= ';});';
 							break;
 
+						case '1':
 						case 'galleries':
 						case 'custom':
-						case '1':
 						default:
 							$script .= '.attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
 
-						case 'all':
 						case '2':
+						case 'all':
+						
 							$script .= '.attr(\'rel\',\'gallery\');});';
 							break;
 					}
@@ -136,11 +137,12 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
-						case 'disabled':
 						case '':
+						case 'disabled':
 							$script .= ';';
 							break;
 
+						case '1':
 						case 'galleries':
 						case 'custom':
 						default:
@@ -148,7 +150,8 @@ fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
-
+						
+						case '2':
 						case 'all':
 							$script .= '.attr(\'rel\',\'gallery\');';
 							break;
