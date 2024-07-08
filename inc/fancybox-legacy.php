@@ -120,11 +120,13 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 
 						case 'galleries':
 						case 'custom':
+						case '1':
 						default:
 							$script .= '.attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
 
 						case 'all':
+						case '2':
 							$script .= '.attr(\'rel\',\'gallery\');});';
 							break;
 					}

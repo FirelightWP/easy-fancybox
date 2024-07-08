@@ -170,11 +170,13 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 
 						case 'galleries':
 						case 'custom':
+						case '1':
 						default:
 							$fb_handler .= '.attr(\'data-fancybox-group\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
 
 						case 'all':
+						case '2':
 							$fb_handler .= '.attr(\'data-fancybox-group\',\'gallery\');});';
 							break;
 					}
@@ -191,6 +193,7 @@ fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 
 						case 'galleries':
 						case 'custom':
+						case '1':
 						default:
 							$fb_handler .= ';
 var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
@@ -198,6 +201,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 							break;
 
 						case 'all':
+						case '2':
 							$fb_handler .= '.attr(\'data-fancybox-group\',\'gallery\');';
 							break;
 					}
