@@ -192,6 +192,9 @@
 	transition: all 1s;
 }
 
+#TB_closeWindowButton {
+    opacity: 0;
+}
 
 .toplevel_page_firelight-settings  #TB_title {
 	border-bottom: none;
