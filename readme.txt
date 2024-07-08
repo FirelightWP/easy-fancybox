@@ -96,7 +96,7 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 = 2.2.6 =
 * New: Modal for email opt ins
 * Update: Apply code standards to some files
-* Fix: Issue with setting to group galleries
+* Fix: "Automattically group images" setting issue
 
 = 2.2.5 =
 * New: Options to hide/close lightbox panel in block editor
