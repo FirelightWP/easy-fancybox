@@ -3,8 +3,8 @@ Contributors: firelightwp
 Tags: lightbox, gallery, image, photo, modal
 Requires at least: 5.0
 Requires PHP: 7.0
-Tested up to: 6.5.5
-Stable tag: 2.2.5
+Tested up to: 6.6.0
+Stable tag: 2.2.6
 License: GPLv3
 
 The most popular lightbox plugin for WordPress. Adds a simple, fast lightbox for viewing images, videos, and other media.
@@ -92,6 +92,11 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 2. Example of a YouTube movie in overlay.
 
 == Changelog ==
+
+= 2.2.6 =
+* New: Modal for email opt ins
+* Update: Apply code standards to some files
+* Fix: "Automattically group images" setting issue
 
 = 2.2.5 =
 * New: Options to hide/close lightbox panel in block editor
