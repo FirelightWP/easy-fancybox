@@ -127,7 +127,6 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addCl
 
 						case '2':
 						case 'all':
-						
 							$script .= '.attr(\'rel\',\'gallery\');});';
 							break;
 					}
