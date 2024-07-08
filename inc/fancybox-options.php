@@ -155,7 +155,7 @@ $efb_options = array(
 					),
 					'width'              => array(
 						'id'                => 'fancybox_width',
-						'title'             => translate( 'Window width' ),
+						'title'             => __( 'Window width' ),
 						'label_for'         => 'fancybox_width',
 						'input'             => 'text',
 						'sanitize_callback' => 'intval',
@@ -164,7 +164,7 @@ $efb_options = array(
 					),
 					'height'             => array(
 						'id'                => 'fancybox_height',
-						'title'             => translate( 'Window height' ),
+						'title'             => __( 'Window height' ),
 						'label_for'         => 'fancybox_height',
 						'input'             => 'text',
 						'sanitize_callback' => 'intval',
@@ -215,7 +215,7 @@ $efb_options = array(
 					),
 					'padding'            => array(
 						'id'                => 'fancybox_padding',
-						'title'             => translate( 'Border width' ),
+						'title'             => __( 'Border width' ),
 						'label_for'         => 'fancybox_padding',
 						'input'             => 'number',
 						'step'              => '1',
@@ -394,21 +394,21 @@ $efb_options = array(
 				'slug'    => 'miscellaneous-settings-section',
 				'hide'    => true,
 				'options' => array(
-					'autoClick'           => array(
+					'autoClick'                  => array(
 						'id'                => 'fancybox_autoClick',
 						'title'             => __( 'Enable autopopup', 'easy-fancybox' ),
 						'label_for'         => 'fancybox_autoClick',
 						'hide'              => true,
 						'input'             => 'select',
 						'options'           => array(
-							''  => translate( 'None' ),
+							''  => __( 'None' ),
 							'1' => __( 'Link with ID "fancybox-auto"', 'easy-fancybox' ),
 						),
 						'sanitize_callback' => 'wp_validate_boolean',
 						'default'           => '1',
 						'description'       => __( 'Open lightbox automatically on page load' ),
 					),
-					'delayClick'          => array(
+					'delayClick'                 => array(
 						'id'                => 'fancybox_delayClick',
 						'title'             => __( 'Autopopup - delay', 'easy-fancybox' ),
 						'label_for'         => 'fancybox_delayClick',
@@ -421,7 +421,7 @@ $efb_options = array(
 						'default'           => '1000',
 						'description'       => __( 'Delay in milliseconds' ) . ' <em>' . __( 'Default:', 'easy-fancybox' ) . ' 1000</em>',
 					),
-					'jqCookie'            => array(
+					'jqCookie'                   => array(
 						'id'                => '',
 						'title'             => __( 'Autopopup - hide after first', 'easy-fancybox' ),
 						'hide'              => true,
@@ -430,7 +430,7 @@ $efb_options = array(
 						'default'           => '0',
 						'sanitize_callback' => 'intval',
 						'options'           => array(
-							'0'   => translate( 'No' ),
+							'0'   => __( 'No' ),
 							'1'   => __( '1 Day', 'easy-fancybox' ),
 							'7'   => __( '1 Week', 'easy-fancybox' ),
 							'30'  => __( '1 Month', 'easy-fancybox' ),
@@ -438,12 +438,11 @@ $efb_options = array(
 						),
 						'description'       => __( 'Hide auto popup for X time after first visit. ' ) . efb_pro_button(),
 					),
-					'cookiePath'          => array(
-						// 'id' => '',
+					'cookiePath'                 => array(
 						'default' => '',
 						'hide'    => true,
 					),
-					'minViewportWidth'    => array(
+					'minViewportWidth'           => array(
 						'id'                => 'fancybox_minViewportWidth',
 						'title'             => __( 'Minimum viewport width', 'easy-fancybox' ),
 						'label_for'         => 'fancybox_minViewportWidth',
@@ -456,7 +455,7 @@ $efb_options = array(
 						'default'           => '320',
 						'description'       => '<em>' . __( 'Default:', 'easy-fancybox' ) . ' 320</em>',
 					),
-					'minVpHeight'         => array(
+					'minVpHeight'                => array(
 						'id'                => 'fancybox_minViewportHeight',
 						'title'             => __( 'Minimum viewport height', 'easy-fancybox' ),
 						'label_for'         => 'fancybox_minViewportHeight',
@@ -469,7 +468,7 @@ $efb_options = array(
 						'default'           => '320',
 						'description'       => '<em>' . __( 'Default:', 'easy-fancybox' ) . ' 320</em><br />',
 					),
-					'compatIE8'           => array(
+					'compatIE8'                  => array(
 						'id'                => 'fancybox_compatIE8',
 						'title'             => __( 'IE 8 compatibility', 'easy-fancybox' ),
 						'input'             => 'checkbox',
@@ -479,11 +478,11 @@ $efb_options = array(
 						'exclude'           => array( 'classic', 'fancybox2' ),
 						'description'       => __( 'Include IE 8 compatibility style rules', 'easy-fancybox' ),
 					),
-					'p2'                  => array(
+					'p2'                         => array(
 						'hide'        => true,
 						'description' => '<br /><strong>' . __( 'Theme & plugins compatibility', 'easy-fancybox' ) . '</strong><br />' . __( 'Try to deactivate all conflicting light box scripts in your theme or other plugins. If this is not possible, try a higher script priority number which means scripts are added later, wich may allow them to override conflicting scripts. A lower priority number, excluding WordPress standard jQuery, or even moving the plugin scripts to the header may work in cases where there are blocking errors occuring in other script.', 'easy-fancybox' ),
 					),
-					'scriptPriority'      => array(
+					'scriptPriority'             => array(
 						'id'                => 'fancybox_scriptPriority',
 						'title'             => __( 'FancyBox script priority', 'easy-fancybox' ),
 						'label_for'         => 'fancybox_scriptPriority',
@@ -496,7 +495,7 @@ $efb_options = array(
 						'default'           => '10',
 						'description'       => __( 'Default priority is 10.', 'easy-fancybox' ) . ' ' . __( 'Higher is later.', 'easy-fancybox' ),
 					),
-					'noFooter'            => array(
+					'noFooter'                   => array(
 						'id'                => 'fancybox_noFooter',
 						'title'             => __( 'Load scripts in head', 'easy-fancybox' ),
 						'input'             => 'checkbox',
@@ -505,7 +504,7 @@ $efb_options = array(
 						'default'           => '',
 						'description'       => __( 'Move scripts from footer to theme head section (not recommended for site load times!)', 'easy-fancybox' ),
 					),
-					'nojQuery'            => array(
+					'nojQuery'                   => array(
 						'id'                => 'fancybox_nojQuery',
 						'title'             => __( 'Exclude core jQuery', 'easy-fancybox' ),
 						'input'             => 'checkbox',
@@ -514,7 +513,7 @@ $efb_options = array(
 						'default'           => '',
 						'description'       => __( 'Do not include standard WordPress jQuery library (do this only if you are sure jQuery is included from another source!)', 'easy-fancybox' ),
 					),
-					'pre45Compat'         => array(
+					'pre45Compat'                => array(
 						'id'                => 'fancybox_pre45Compat',
 						'title'             => __( 'Exclude inline_script', 'easy-fancybox' ),
 						'input'             => 'checkbox',
@@ -523,11 +522,11 @@ $efb_options = array(
 						'default'           => function_exists( 'wp_add_inline_script' ) ? '' : '1',
 						'description'       => __( 'Do not use wp_add_inline_script/style (may solve issues with old minification plugins)', 'easy-fancybox' ),
 					),
-					'p3'                  => array(
+					'p3'                         => array(
 						'hide'        => true,
 						'description' => '<br /><strong>' . __( 'Advanced', 'easy-fancybox' ) . '</strong><br />',
 					),
-					'metaData'            => array(
+					'metaData'                   => array(
 						'id'                => 'fancybox_metaData',
 						'title'             => __( 'Include metadata script', 'easy-fancybox' ),
 						'hide'              => true,
@@ -537,7 +536,7 @@ $efb_options = array(
 						'default'           => '',
 						'description'       => __( 'Include Metadata jQuery extension to allow passing custom parameters via link class.', 'easy-fancybox' ) . efb_pro_button(),
 					),
-					'vcMasonryCompat'     => array(
+					'vcMasonryCompat'            => array(
 						'id'                => 'fancybox_vcMasonryCompat',
 						'title'             => __( 'WPBakery compatibility', 'easy-fancybox' ),
 						'hide'              => true,
@@ -547,7 +546,7 @@ $efb_options = array(
 						'default'           => '',
 						'description'       => __( 'WPBakery / VC Masonry compatibility, replaces prettyPhoto lightbox. ', 'easy-fancybox' ) . efb_pro_button(),
 					),
-					'autoExclude'         => array(
+					'autoExclude'                => array(
 						'id'                => 'fancybox_autoExclude',
 						'title'             => __( 'Exclude', 'easy-fancybox' ),
 						'label_for'         => 'fancybox_autoExclude',
@@ -558,7 +557,7 @@ $efb_options = array(
 						'sanitize_callback' => 'sanitize_text_field',
 						'description'       => __( 'Comma-separated list of selectors to exclude for lightbox autodetect.', 'easy-fancybox' ) . ' <em>' . __( 'Default:', 'easy-fancybox' ) . ' .nolightbox,a.wp-block-file__button,a.pin-it-button,a[href*=\'pinterest.com/pin/create\'],a[href*=\'facebook.com/share\'],a[href*=\'twitter.com/share\']</em><br />',
 					),
-					'disableCoreLightbox' => array(
+					'disableCoreLightbox'        => array(
 						'id'                => 'fancybox_disableCoreLightbox',
 						'title'             => __( 'Disable Core Lightbox', 'easy-fancybox' ),
 						'input'             => 'checkbox',
@@ -567,7 +566,7 @@ $efb_options = array(
 						'default'           => '1',
 						'description'       => __( 'Disable core lightbox while using Easy Fancybox.', 'easy-fancybox' ),
 					),
-					'enableBlockControls' => array(
+					'enableBlockControls'        => array(
 						'id'                => 'fancybox_enableBlockControls',
 						'title'             => __( 'Enable Block Controls', 'easy-fancybox' ),
 						'input'             => 'checkbox',
@@ -593,7 +592,7 @@ $efb_options = array(
 		'title'               => __( 'Images', 'easy-fancybox' ),
 		'slug'                => 'image-settings-section',
 		'section_description' => function () {
-			echo '<div class="setting-section-description">' . __( 'To make images open in an overlay, add their extension to the Autodetect field or use the class "fancybox" for its link. Clear field to switch off all autodetection.', 'easy-fancybox' ) . '</div>';
+			echo '<div class="setting-section-description">' . esc_html__( 'To make images open in an overlay, add their extension to the Autodetect field or use the class "fancybox" for its link. Clear field to switch off all autodetection.', 'easy-fancybox' ) . '</div>';
 		},
 		'input'               => 'multiple',
 		'options'             => array(
@@ -638,8 +637,8 @@ $efb_options = array(
 				'input'             => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options'           => array(
-					'image' => translate( 'Yes' ),
-					''      => translate( 'No' ),
+					'image' => __( 'Yes' ),
+					''      => __( 'No' ),
 				),
 				'default'           => get_option( 'fancybox_enableInline' ) ? 'image' : '',
 				'description'       => __( 'Force FancyBox to treat all media linked with class="fancybox" as images?', 'easy-fancybox' ),
@@ -652,7 +651,7 @@ $efb_options = array(
 				'sanitize_callback' => 'sanitize_text_field',
 				'exclude'           => array( 'classic', 'legacy' ),
 				'options'           => array(
-					'none'    => translate( 'None' ),
+					'none'    => __( 'None' ),
 					'fade'    => __( 'Fade', 'easy-fancybox' ),
 					'elastic' => __( 'Elastic', 'easy-fancybox' ),
 				),
@@ -666,7 +665,7 @@ $efb_options = array(
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name'    => 'openEffect',
 				'options'           => array(
-					'none'    => translate( 'None' ),
+					'none'    => __( 'None' ),
 					''        => __( 'Fade', 'easy-fancybox' ),
 					'elastic' => __( 'Elastic', 'easy-fancybox' ),
 				),
@@ -694,7 +693,7 @@ $efb_options = array(
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name'    => 'closeEffect',
 				'options'           => array(
-					'none'    => translate( 'None' ),
+					'none'    => __( 'None' ),
 					''        => __( 'Fade', 'easy-fancybox' ),
 					'elastic' => __( 'Elastic', 'easy-fancybox' ),
 				),
@@ -807,10 +806,10 @@ $efb_options = array(
 				'input'             => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options'           => array(
-					'disabled'  => translate( 'Disabled' ),
+					'disabled'  => __( 'Disabled' ),
 					'galleries' => __( 'WordPress galleries only', 'easy-fancybox' ),
-					'all' => __( 'All in one gallery', 'easy-fancybox' ),
-					'custom' => esc_html__('Custom Gallery Sections (below)','easy-fancybox'),
+					'all'       => __( 'All in one gallery', 'easy-fancybox' ),
+					'custom'    => esc_html__( 'Custom Gallery Sections (below)', 'easy-fancybox' ),
 				),
 				'default'           => 'galleries',
 				'description'       => __( 'You can also use rel attribute to manually group images together. ', 'easy-fancybox' ) . efb_pro_button( true ),
@@ -880,15 +879,15 @@ $efb_options = array(
 				'default'           => '300',
 				'description'       => __( 'Duration in milliseconds. Higher is slower.', 'easy-fancybox' ) . ' <em>' . __( 'Default:', 'easy-fancybox' ) . ' 300</em>',
 			),
-			'autoSelector' => array(
-				'id' => 'fancybox_autoSelector',
-				'title' => esc_html__( 'Custom Gallery Sections', 'easy-fancybox' ),
-				'label_for' => 'fancybox_autoSelector',
-				'hide' => true,
-				'status' => 'disabled',
-				'input' => 'text',
-				'class' => 'regular-text',
-				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery',
+			'autoSelector'       => array(
+				'id'          => 'fancybox_autoSelector',
+				'title'       => esc_html__( 'Custom Gallery Sections', 'easy-fancybox' ),
+				'label_for'   => 'fancybox_autoSelector',
+				'hide'        => true,
+				'status'      => 'disabled',
+				'input'       => 'text',
+				'class'       => 'regular-text',
+				'default'     => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery',
 				'description' => efb_pro_button() . '<br>' . __( 'Refines how images are selected or grouped. Relevant only when "Apply To" or "Automatically Group Images" above are set to Sections. Add comma separated CSS selectors. Example: If your theme wraps content in a div with class mypost, add .mppost. To group WordPress galleries, add .wp-block-gallery. For images in a #sidebar div, add #sidebar. ', 'easy-fancybox' ) . '<em>' . esc_html__( 'Default: .gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery', 'easy-fancybox' ) . '</em>',
 			),
 			'autoPlay'           => array(
@@ -966,7 +965,7 @@ $efb_options = array(
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name'    => 'openEffect',
 				'options'           => array(
-					'none'    => translate( 'None' ),
+					'none'    => __( 'None' ),
 					''        => __( 'Fade', 'easy-fancybox' ),
 					'elastic' => __( 'Elastic', 'easy-fancybox' ),
 				),
@@ -994,7 +993,7 @@ $efb_options = array(
 				'sanitize_callback' => 'sanitize_text_field',
 				'fancybox2_name'    => 'closeEffect',
 				'options'           => array(
-					'none'    => translate( 'None' ),
+					'none'    => __( 'None' ),
 					''        => __( 'Fade', 'easy-fancybox' ),
 					'elastic' => __( 'Elastic', 'easy-fancybox' ),
 				),
@@ -1089,7 +1088,7 @@ $efb_options = array(
 			),
 			'width'          => array(
 				'id'                => 'fancybox_PDFwidth',
-				'title'             => translate( 'Width' ),
+				'title'             => __( 'Width' ),
 				'label_for'         => 'fancybox_PDFwidth',
 				'input'             => 'text',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1098,7 +1097,7 @@ $efb_options = array(
 			),
 			'height'         => array(
 				'id'                => 'fancybox_PDFheight',
-				'title'             => translate( 'Height' ),
+				'title'             => __( 'Height' ),
 				'label_for'         => 'fancybox_PDFheight',
 				'input'             => 'text',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1106,7 +1105,7 @@ $efb_options = array(
 			),
 			'padding'        => array(
 				'id'                => 'fancybox_PDFpadding',
-				'title'             => translate( 'Border' ),
+				'title'             => __( 'Border' ),
 				'label_for'         => 'fancybox_PDFpadding',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1203,7 +1202,7 @@ $efb_options = array(
 			),
 			'width'         => array(
 				'id'                => 'fancybox_SWFWidth',
-				'title'             => translate( 'Width' ),
+				'title'             => __( 'Width' ),
 				'label_for'         => 'fancybox_SWFWidth',
 				'input'             => 'text',
 				'sanitize_callback' => 'intval',
@@ -1212,7 +1211,7 @@ $efb_options = array(
 			),
 			'height'        => array(
 				'id'                => 'fancybox_SWFHeight',
-				'title'             => translate( 'Height' ),
+				'title'             => __( 'Height' ),
 				'label_for'         => 'fancybox_SWFHeight',
 				'input'             => 'text',
 				'sanitize_callback' => 'intval',
@@ -1221,7 +1220,7 @@ $efb_options = array(
 			),
 			'padding'       => array(
 				'id'                => 'fancybox_SWFpadding',
-				'title'             => translate( 'Border' ),
+				'title'             => __( 'Border' ),
 				'label_for'         => 'fancybox_SWFpadding',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1295,7 +1294,7 @@ $efb_options = array(
 			),
 			'width'          => array(
 				'id'                => 'fancybox_SVGWidth',
-				'title'             => translate( 'Width' ),
+				'title'             => __( 'Width' ),
 				'label_for'         => 'fancybox_SVGWidth',
 				'input'             => 'text',
 				'sanitize_callback' => 'intval',
@@ -1304,7 +1303,7 @@ $efb_options = array(
 			),
 			'height'         => array(
 				'id'                => 'fancybox_SVGHeight',
-				'title'             => translate( 'Height' ),
+				'title'             => __( 'Height' ),
 				'label_for'         => 'fancybox_SVGHeight',
 				'input'             => 'text',
 				'sanitize_callback' => 'intval',
@@ -1313,7 +1312,7 @@ $efb_options = array(
 			),
 			'padding'        => array(
 				'id'                => 'fancybox_SVGpadding',
-				'title'             => translate( 'Border' ),
+				'title'             => __( 'Border' ),
 				'label_for'         => 'fancybox_SVGpadding',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1430,7 +1429,7 @@ $efb_options = array(
 			),
 			'noCookie'       => array(
 				'id'                => 'fancybox_YoutubenoCookie',
-				'title'             => translate( 'Enable privacy mode' ),
+				'title'             => __( 'Enable privacy mode' ),
 				'input'             => 'checkbox',
 				'sanitize_callback' => 'wp_validate_boolean',
 				'hide'              => true,
@@ -1439,7 +1438,7 @@ $efb_options = array(
 			),
 			'width'          => array(
 				'id'        => 'fancybox_YoutubeWidth',
-				'title'     => translate( 'Width' ),
+				'title'     => __( 'Width' ),
 				'label_for' => 'fancybox_YoutubeWidth',
 				'input'     => 'number',
 				'step'      => '1',
@@ -1449,7 +1448,7 @@ $efb_options = array(
 			),
 			'height'         => array(
 				'id'                => 'fancybox_YoutubeHeight',
-				'title'             => translate( 'Height' ),
+				'title'             => __( 'Height' ),
 				'label_for'         => 'fancybox_YoutubeHeight',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1460,7 +1459,7 @@ $efb_options = array(
 			),
 			'padding'        => array(
 				'id'                => 'fancybox_Youtubepadding',
-				'title'             => translate( 'Border' ),
+				'title'             => __( 'Border' ),
 				'label_for'         => 'fancybox_Youtubepadding',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1568,7 +1567,7 @@ $efb_options = array(
 			),
 			'width'          => array(
 				'id'                => 'fancybox_VimeoWidth',
-				'title'             => translate( 'Width' ),
+				'title'             => __( 'Width' ),
 				'label_for'         => 'fancybox_VimeoWidth',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1579,7 +1578,7 @@ $efb_options = array(
 			),
 			'height'         => array(
 				'id'                => 'fancybox_VimeoHeight',
-				'title'             => translate( 'Height' ),
+				'title'             => __( 'Height' ),
 				'label_for'         => 'fancybox_VimeoHeight',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1590,7 +1589,7 @@ $efb_options = array(
 			),
 			'padding'        => array(
 				'id'                => 'fancybox_Vimeopadding',
-				'title'             => translate( 'Border' ),
+				'title'             => __( 'Border' ),
 				'label_for'         => 'fancybox_Vimeopadding',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1695,7 +1694,7 @@ $efb_options = array(
 			),
 			'width'          => array(
 				'id'                => 'fancybox_DailymotionWidth',
-				'title'             => translate( 'Width' ),
+				'title'             => __( 'Width' ),
 				'label_for'         => 'fancybox_DailymotionWidth',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1706,7 +1705,7 @@ $efb_options = array(
 			),
 			'height'         => array(
 				'id'                => 'fancybox_DailymotionHeight',
-				'title'             => translate( 'Height' ),
+				'title'             => __( 'Height' ),
 				'label_for'         => 'fancybox_DailymotionHeight',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1717,7 +1716,7 @@ $efb_options = array(
 			),
 			'padding'        => array(
 				'id'                => 'fancybox_DailymotionPadding',
-				'title'             => translate( 'Border' ),
+				'title'             => __( 'Border' ),
 				'label_for'         => 'fancybox_DailymotionPadding',
 				'input'             => 'number',
 				'step'              => '1',
@@ -1814,7 +1813,7 @@ $efb_options = array(
 			),
 			'width'           => array(
 				'id'                => 'fancybox_iFramewidth',
-				'title'             => translate( 'Width' ),
+				'title'             => __( 'Width' ),
 				'label_for'         => 'fancybox_iFramewidth',
 				'input'             => 'text',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1822,7 +1821,7 @@ $efb_options = array(
 			),
 			'height'          => array(
 				'id'                => 'fancybox_iFrameheight',
-				'title'             => translate( 'Height' ),
+				'title'             => __( 'Height' ),
 				'label_for'         => 'fancybox_iFrameheight',
 				'input'             => 'text',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -1830,7 +1829,7 @@ $efb_options = array(
 			),
 			'padding'         => array(
 				'id'                => 'fancybox_iFramepadding',
-				'title'             => translate( 'Border' ),
+				'title'             => __( 'Border' ),
 				'label_for'         => 'fancybox_iFramepadding',
 				'input'             => 'number',
 				'step'              => '1',
