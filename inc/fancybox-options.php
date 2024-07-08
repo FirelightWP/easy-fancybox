@@ -810,7 +810,7 @@ $efb_options = array(
 					'disabled'  => translate( 'Disabled' ),
 					'galleries' => __( 'WordPress galleries only', 'easy-fancybox' ),
 					'all' => __( 'All in one gallery', 'easy-fancybox' ),
-					'custom' => esc_html__('Galleries per Section (below)','easy-fancybox'),
+					'custom' => esc_html__('Custom Gallery Sections (below)','easy-fancybox'),
 				),
 				'default'           => 'galleries',
 				'description'       => __( 'You can also use rel attribute to manually group images together. ', 'easy-fancybox' ) . efb_pro_button( true ),

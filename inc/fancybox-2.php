@@ -163,16 +163,18 @@ var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
+						case 'disabled':
 						case '':
-						default :
 							$fb_handler .= ';});';
 							break;
 
-						case '1':
+						case 'galleries':
+						case 'custom':
+						default:
 							$fb_handler .= '.attr(\'data-fancybox-group\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
 
-						case '2':
+						case 'all':
 							$fb_handler .= '.attr(\'data-fancybox-group\',\'gallery\');});';
 							break;
 					}
@@ -188,6 +190,7 @@ fb_'.$key.'_select.addClass(\''.$value['options']['class']['default'].'\')';
 							break;
 
 						case 'galleries':
+						case 'custom':
 						default:
 							$fb_handler .= ';
 var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
