@@ -1,14 +1,21 @@
 <?php
 /**
- * FancyBox v1
+ * Fancybox Version 2 Integration
+ *
+ * This file is part of the Easy FancyBox plugin and provides integration for Fancybox version 2,
+ * including enqueuing scripts and styles, preparing inline scripts for initialization, and handling
+ * specific settings tailored for Fancybox 2 functionality.
+ *
+ * @package EasyFancyBox
  */
 
 namespace easyFancyBox\fancyBox_2;
 
 /**
- * MAIN INLINE SCRIPT & STYLE
+ * Prepares inline scripts for Fancybox 2.
+ *
+ * @return void
  */
-
 function prepare_inline_scripts() {
 	/**
 	 * Global parameters and value extraction.
@@ -350,56 +357,67 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 	);
 }
 
+/**
+ * Prepares inline styles for Fancybox 2.
+ *
+ * @return void
+ */
 function prepare_inline_styles() {
 	$styles = '';
 
-	$backgroundColor = get_option( 'fancybox_backgroundColor' );
-	$textColor = get_option( 'fancybox_textColor' );
-	$borderRadius = get_option( 'fancybox_borderRadius' );
-	$paddingColor = get_option( 'fancybox_paddingColor' );
-	$overlaySpotlight = get_option( 'fancybox_overlaySpotlight' );
-	$titleColor = get_option( 'fancybox_titleColor' );
+	$background_color  = get_option( 'fancybox_backgroundColor' );
+	$text_color        = get_option( 'fancybox_textColor' );
+	$border_radius     = get_option( 'fancybox_borderRadius' );
+	$padding_color     = get_option( 'fancybox_paddingColor' );
+	$overlay_spotlight = get_option( 'fancybox_overlaySpotlight' );
+	$title_color       = get_option( 'fancybox_titleColor' );
 
 		// Content styles.
-		$content_style = '';
-		empty( $backgroundColor ) || $content_style .= 'background:'.$backgroundColor.';';
-		empty( $textColor )       || $content_style .= 'color:'.$textColor.';';
+		$content_style                                = '';
+		empty( $background_color ) || $content_style .= 'background:' . $background_color . ';';
+		empty( $text_color ) || $content_style       .= 'color:' . $text_color . ';';
 
 		// Skin styles.
-		$skin_style = '';
-		empty( $borderRadius ) || $skin_style .= 'border-radius:'.$borderRadius.'px;';
-		empty( $paddingColor ) || $skin_style .= 'background:'.$paddingColor.';';
+		$skin_style                             = '';
+		empty( $border_radius ) || $skin_style .= 'border-radius:' . $border_radius . 'px;';
+		empty( $padding_color ) || $skin_style .= 'background:' . $padding_color . ';';
 
 	// Overlay.
-	empty( $overlaySpotlight ) || $styles .= '.fancybox-overlay{background-image:url("' . \easyFancyBox::$plugin_url . 'images/light-mask.png")!important;background-repeat:no-repeat!important;background-size:100% 100% !important}';
+	empty( $overlay_spotlight ) || $styles .= '.fancybox-overlay{background-image:url("' . \easyFancyBox::$plugin_url . 'images/light-mask.png")!important;background-repeat:no-repeat!important;background-size:100% 100% !important}';
 	// Content.
-	empty( $content_style )    || $styles .= '.fancybox-inner{'.$content_style.'}';
+	empty( $content_style ) || $styles .= '.fancybox-inner{' . $content_style . '}';
 	// Skin.
-	empty( $skin_style )       || $styles .= '.fancybox-skin{'.$skin_style.'}';
+	empty( $skin_style ) || $styles .= '.fancybox-skin{' . $skin_style . '}';
 	// Title.
-	empty( $titleColor )       || $styles .= '.fancybox-title{color:'.$titleColor.'}';
+	empty( $title_color ) || $styles .= '.fancybox-title{color:' . $title_color . '}';
 
 	$styles = \apply_filters( 'easy_fancybox_inline_style', $styles );
 
 	\easyFancyBox::$inline_styles['fancybox'] = \wp_strip_all_tags( $styles, true );
 }
 
+/**
+ * Adds media support for Fancybox 2.
+ */
 function add_media() {
 	static $add;
 
 	if ( null === $add ) {
 		$add = \get_option( 'fancybox_enableYoutube' ) ||
-		       \get_option( 'fancybox_enableVimeo' ) ||
-		       \get_option( 'fancybox_enableDailymotion' ) ||
-		       \get_option( 'fancybox_enableInstagram' ) ||
-		       \get_option( 'fancybox_enableGoogleMaps' );
+				\get_option( 'fancybox_enableVimeo' ) ||
+				\get_option( 'fancybox_enableDailymotion' ) ||
+				\get_option( 'fancybox_enableInstagram' ) ||
+				\get_option( 'fancybox_enableGoogleMaps' );
 
-		 $add = apply_filters( 'easy_fancybox_add_media', $add );
+		$add = apply_filters( 'easy_fancybox_add_media', $add );
 	}
 
 	return $add;
 }
 
+/**
+ * Adds thumbnail navigation support for Fancybox 2.
+ */
 function add_thumbs() {
 	static $add;
 
@@ -410,33 +428,39 @@ function add_thumbs() {
 	return $add;
 }
 
+/**
+ * Adds button support for Fancybox 2.
+ */
 function add_buttons() {
 	static $add;
 
 	if ( null === $add ) {
-		$add = apply_filters( 'easy_fancybox_add_buttons', false );;
+		$add = apply_filters( 'easy_fancybox_add_buttons', false );
 	}
 
 	return $add;
 }
 
+/**
+ * Adds easing support for Fancybox 2.
+ */
 function add_easing() {
 	// Check IMG settings.
 	if ( \get_option( 'fancybox_enableImg', \easyFancyBox::$options['Global']['options']['Enable']['options']['IMG']['default'] ) &&
-		 (
+		(
 			( 'linear' !== \get_option( 'fancybox_easingIn', '' ) && '' !== \get_option( 'fancybox_easingIn', '' ) ) ||
 			( 'linear' !== \get_option( 'fancybox_easingOut', '' ) && '' !== \get_option( 'fancybox_easingOut', '' ) )
-		 )
+		)
 	) {
 		return true;
 	}
 
 	// Check Inline Content settings.
 	if ( \get_option( 'fancybox_enableInline', false ) &&
-		 (
+		(
 			( 'linear' !== \get_option( 'fancybox_easingInInline', '' ) && '' !== \get_option( 'fancybox_easingInInline', '' ) ) ||
 			( 'linear' !== \get_option( 'fancybox_easingOutInline', '' ) && '' !== \get_option( 'fancybox_easingOutInline', '' ) )
-		 )
+		)
 	) {
 		return true;
 	}
@@ -445,102 +469,100 @@ function add_easing() {
 }
 
 /**
- *  ACTIONS & FILTERS
+ * Prepares and enqueues scripts and styles for Fancybox 2.
  */
-
 function prepare_scripts_styles() {
 	// Make sure whe actually need to do anything.
-	if ( ! \easyFancyBox::add_scripts() ){
+	if ( ! \easyFancyBox::add_scripts() ) {
 		return;
 	}
 
-	// INLINE SCRIPT & STYLE
+	// Inline script and style.
 	prepare_inline_scripts();
 	prepare_inline_styles();
 
-	// SCRIPT & STYLE URLS
-
+	// Script and style urls.
 	$dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
-	$ver    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? time()  : false;
-	$min    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? ''      : '.min';
-	$footer = get_option( 'fancybox_noFooter', false ) ? false   : true;
+	$ver    = defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : false;
+	$min    = defined( 'WP_DEBUG' ) && WP_DEBUG ? '' : '.min';
+	$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
 
-	// https://cdnjs.com/libraries/fancybox
+	// https://cdnjs.com/libraries/fancybox.
 
 	// FancyBox.
-	\easyFancyBox::$styles['fancybox'] = array(
-		'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/jquery.fancybox'.$min.'.css',
+	\easyFancyBox::$styles['fancybox']         = array(
+		'src'   => \easyFancyBox::$plugin_url . 'fancybox/' . FANCYBOX_VERSIONS['fancyBox2'] . '/jquery.fancybox' . $min . '.css',
 		'deps'  => array(),
 		'ver'   => $ver,
-		'media' => 'screen'
+		'media' => 'screen',
 	);
 	\easyFancyBox::$scripts['jquery-fancybox'] = array(
-		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/jquery.fancybox'.$min.'.js',
+		'src'    => \easyFancyBox::$plugin_url . 'fancybox/' . FANCYBOX_VERSIONS['fancyBox2'] . '/jquery.fancybox' . $min . '.js',
 		'deps'   => $dep,
 		'ver'    => $ver,
-		'footer' => $footer
+		'footer' => $footer,
 	);
 
 	// Fancybox Media Helpers.
 	if ( add_media() ) {
 		\easyFancyBox::$scripts['jquery-fancybox-media'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-media'.$min.'.js',
-			'deps'   => array('jquery-fancybox'),
+			'src'    => \easyFancyBox::$plugin_url . 'fancybox/' . FANCYBOX_VERSIONS['fancyBox2'] . '/helpers/jquery.fancybox-media' . $min . '.js',
+			'deps'   => array( 'jquery-fancybox' ),
 			'ver'    => $ver,
-			'footer' => $footer
+			'footer' => $footer,
 		);
 	}
 
 	// Fancybox Thumbs Helpers.
 	if ( add_thumbs() ) {
-		\easyFancyBox::$styles['fancybox-thumbs'] = array(
-			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-thumbs'.$min.'.css',
-			'deps'  => array('fancybox'),
+		\easyFancyBox::$styles['fancybox-thumbs']         = array(
+			'src'   => \easyFancyBox::$plugin_url . 'fancybox/' . FANCYBOX_VERSIONS['fancyBox2'] . '/helpers/jquery.fancybox-thumbs' . $min . '.css',
+			'deps'  => array( 'fancybox' ),
 			'ver'   => $ver,
-			'media' => 'screen'
+			'media' => 'screen',
 		);
 		\easyFancyBox::$scripts['jquery-fancybox-thumbs'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-thumbs'.$min.'.js',
-			'deps'   => array('jquery-fancybox'),
+			'src'    => \easyFancyBox::$plugin_url . 'fancybox/' . FANCYBOX_VERSIONS['fancyBox2'] . '/helpers/jquery.fancybox-thumbs' . $min . '.js',
+			'deps'   => array( 'jquery-fancybox' ),
 			'ver'    => $ver,
-			'footer' => $footer
+			'footer' => $footer,
 		);
 	}
 
 	// Fancybox Buttons Helpers.
 	if ( add_thumbs() ) {
-		\easyFancyBox::$styles['fancybox-buttons'] = array(
-			'src'   => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-buttons'.$min.'.css',
-			'deps'  => array('fancybox'),
+		\easyFancyBox::$styles['fancybox-buttons']         = array(
+			'src'   => \easyFancyBox::$plugin_url . 'fancybox/' . FANCYBOX_VERSIONS['fancyBox2'] . '/helpers/jquery.fancybox-buttons' . $min . '.css',
+			'deps'  => array( 'fancybox' ),
 			'ver'   => $ver,
-			'media' => 'screen'
+			'media' => 'screen',
 		);
 		\easyFancyBox::$scripts['jquery-fancybox-buttons'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['fancyBox2'].'/helpers/jquery.fancybox-buttons'.$min.'.js',
-			'deps'   => array('jquery-fancybox'),
+			'src'    => \easyFancyBox::$plugin_url . 'fancybox/' . FANCYBOX_VERSIONS['fancyBox2'] . '/helpers/jquery.fancybox-buttons' . $min . '.js',
+			'deps'   => array( 'jquery-fancybox' ),
 			'ver'    => $ver,
-			'footer' => $footer
+			'footer' => $footer,
 		);
 	}
 
 	// jQuery Easing, which is not needed if Easing is set to swing or linear.
 	if ( add_easing() ) {
-		\easyFancyBox::$easing_script_url = \easyFancyBox::$plugin_url.'vendor/jquery.easing.min.js';
+		\easyFancyBox::$easing_script_url = \easyFancyBox::$plugin_url . 'vendor/jquery.easing.min.js';
 	}
 
 	// jQuery Mousewheel, which is not needed if jQueryUI Mouse is loaded or when using fancyBox 3.
 	if ( \get_option( 'fancybox_mouseWheel', true ) ) {
-		\easyFancyBox::$mousewheel_script_url = \easyFancyBox::$plugin_url.'vendor/jquery.mousewheel.min.js';
+		\easyFancyBox::$mousewheel_script_url = \easyFancyBox::$plugin_url . 'vendor/jquery.mousewheel.min.js';
 	}
 
 	// Metadata in Miscellaneous settings?
 	if ( \get_option( 'fancybox_metaData' ) ) {
 		\easyFancyBox::$scripts['jquery-metadata'] = array(
-			'src'    => \easyFancyBox::$plugin_url.'vendor/jquery.metadata.min.js',
+			'src'    => \easyFancyBox::$plugin_url . 'vendor/jquery.metadata.min.js',
 			'deps'   => $dep,
 			'ver'    => METADATA_VERSION,
-			'footer' => $footer
+			'footer' => $footer,
 		);
 	}
 }
-\add_action( 'init', __NAMESPACE__.'\prepare_scripts_styles', 12 );
+\add_action( 'init', __NAMESPACE__ . '\prepare_scripts_styles', 12 );
