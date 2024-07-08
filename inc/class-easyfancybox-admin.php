@@ -291,8 +291,8 @@ class easyFancyBox_Admin { // phpcs:ignore
 		// Do not show if user interacted with reviews within last 7 days.
 		$efb_last_optin_interaction = get_option( 'efb_last_optin_interaction' );
 		if ( $efb_last_optin_interaction ) {
-			$last_optin_interaction_date = new DateTimeImmutable( $efb_last_optin_interaction );
-			$days_since_last_optin_interaction  = $last_optin_interaction_date->diff( $current_date )->days;
+			$last_optin_interaction_date       = new DateTimeImmutable( $efb_last_optin_interaction );
+			$days_since_last_optin_interaction = $last_optin_interaction_date->diff( $current_date )->days;
 			if ( $days_since_last_optin_interaction < 7 ) {
 				return false;
 			}
@@ -1069,7 +1069,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			wp_send_json_success(
 				array(
 					'response' => $response['body'],
-					'email' => $email,
+					'email'    => $email,
 				)
 			);
 		}
