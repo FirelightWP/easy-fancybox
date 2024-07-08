@@ -113,16 +113,17 @@ var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
 fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
+						case 'disabled':
 						case '':
-						default :
 							$script .= ';});';
 							break;
 
-						case '1':
+						case 'galleries':
+						default:
 							$script .= '.attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
 
-						case '2':
+						case 'all':
 							$script .= '.attr(\'rel\',\'gallery\');});';
 							break;
 					}

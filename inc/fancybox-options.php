@@ -807,9 +807,10 @@ $efb_options = array(
 				'input'             => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options'           => array(
-					''  => translate( 'Disabled' ),
-					'1' => __( 'WordPress galleries only', 'easy-fancybox' ),
-					'2' => __( 'All in one gallery', 'easy-fancybox' ),
+					'disabled'  => translate( 'Disabled' ),
+					'galleries' => __( 'WordPress galleries only', 'easy-fancybox' ),
+					'all' => __( 'All in one gallery', 'easy-fancybox' ),
+					'custom' => esc_html__('Galleries per Section (below)','easy-fancybox'),
 				),
 				'default'           => '1',
 				'description'       => __( 'You can also use rel attribute to manually group images together. ', 'easy-fancybox' ) . efb_pro_button( true ),
@@ -879,17 +880,16 @@ $efb_options = array(
 				'default'           => '300',
 				'description'       => __( 'Duration in milliseconds. Higher is slower.', 'easy-fancybox' ) . ' <em>' . __( 'Default:', 'easy-fancybox' ) . ' 300</em>',
 			),
-			// Prob need this, but as hiiden field, doesn't display right
-			// on options page, and can't remove ID.
-			'autoSelector'       => array(
-				'id'                => 'fancybox_autoSelector',
-				'title'             => __( 'Image css selectors' ),
-				'hide'              => true,
-				'input'             => 'text',
-				'sanitize_callback' => 'sanitize_text_field',
-				'status'            => 'disabled',
-				'default'           => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery',
-				'description'       => efb_pro_button(),
+			'autoSelector' => array(
+				'id' => 'fancybox_autoSelector',
+				'title' => esc_html__( 'Custom Gallery Sections', 'easy-fancybox' ),
+				'label_for' => 'fancybox_autoSelector',
+				'hide' => true,
+				'status' => 'disabled',
+				'input' => 'text',
+				'class' => 'regular-text',
+				'default' => '.gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery',
+				'description' => efb_pro_button() . '<br>' . __( 'Refines how images are selected or grouped. Relevant only when "Apply To" or "Automatically Group Images" above are set to Sections. Add comma separated CSS selectors. Example: If your theme wraps content in a div with class mypost, add .mppost. To group WordPress galleries, add .wp-block-gallery. For images in a #sidebar div, add #sidebar. ', 'easy-fancybox' ) . '<em>' . esc_html__( 'Default: .gallery,.wp-block-gallery,.tiled-gallery,.wp-block-jetpack-tiled-gallery', 'easy-fancybox' ) . '</em>',
 			),
 			'autoPlay'           => array(
 				'id'                => 'fancybox_autoPlay',
