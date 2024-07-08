@@ -812,7 +812,7 @@ $efb_options = array(
 					'all' => __( 'All in one gallery', 'easy-fancybox' ),
 					'custom' => esc_html__('Galleries per Section (below)','easy-fancybox'),
 				),
-				'default'           => '1',
+				'default'           => 'galleries',
 				'description'       => __( 'You can also use rel attribute to manually group images together. ', 'easy-fancybox' ) . efb_pro_button( true ),
 			),
 			'showNavArrows'      => array(
