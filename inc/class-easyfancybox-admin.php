@@ -161,7 +161,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 		if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
 			add_submenu_page(
 				'firelight-settings',
-				'My Custom Page',
+				'Easy Fancybox Settings',
 				'Settings',
 				'manage_options',
 				'firelight-settings'
