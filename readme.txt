@@ -4,7 +4,7 @@ Tags: lightbox, gallery, image, photo, modal
 Requires at least: 5.0
 Requires PHP: 7.0
 Tested up to: 6.6.0
-Stable tag: 2.2.6
+Stable tag: 2.2.7
 License: GPLv3
 
 The most popular lightbox plugin for WordPress. Adds a simple, fast lightbox for viewing images, videos, and other media.
@@ -92,6 +92,12 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 2. Example of a YouTube movie in overlay.
 
 == Changelog ==
+
+= 2.2.7 =
+* Update: Settings screen title
+* Update: Email opt in for all users
+* Fix: Save message on settings screen
+* Fix: Vimeo player links for Fancybox2
 
 = 2.2.6 =
 * New: Modal for email opt ins
