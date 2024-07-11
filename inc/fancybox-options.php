@@ -624,10 +624,10 @@ $efb_options = array(
 				'input'             => 'select',
 				'sanitize_callback' => 'sanitize_text_field',
 				'options'           => array(
-					''  => __( 'All images', 'easy-fancybox' ),
-					'3' => __( 'All image links', 'easy-fancybox' ),
+					'all'   => __( 'All images', 'easy-fancybox' ),
+					'links' => __( 'All image links', 'easy-fancybox' ),
 				),
-				'default'           => '',
+				'default'           => 'all',
 				'description'       => efb_pro_button( true ),
 			),
 			'type'               => array(
