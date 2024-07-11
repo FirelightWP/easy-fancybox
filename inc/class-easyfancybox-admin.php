@@ -204,6 +204,8 @@ class easyFancyBox_Admin { // phpcs:ignore
 				. $opt_in_link // phpcs:ignore
 			. '</div>';
 
+		settings_errors();
+
 		echo '<form method="post" action="options.php">';
 
 		settings_fields( 'firelight-settings-group' );
