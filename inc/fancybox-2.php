@@ -137,7 +137,7 @@ jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.
 			} else {
 				// First wrap unlinked image blocks depending on settings
 				$autoAttributeLimit = \get_option( $value['options']['autoAttributeLimit']['id'], $value['options']['autoAttributeLimit']['default'] );
-				if ( 'IMG' === $key && '' === $autoAttributeLimit ) {
+				if ( 'IMG' === $key && ( 'all' === $autoAttributeLimit || '' === $autoAttributeLimit ) ) {
 					$fb_handler .= '
 						var unlinkedImageBlocks=jQuery(".wp-block-image > img:not(.nofancybox)");
 						unlinkedImageBlocks.wrap(function() {
@@ -163,7 +163,7 @@ var fb_'.$key.'_select=jQuery(\'';
 				$autoselector = class_exists('easyFancyBox_Advanced') ? \get_option($value['options']['autoSelector']['id'],$value['options']['autoSelector']['default']) : $value['options']['autoSelector']['default'];
 
 				// Class and rel depending on settings.
-				if( '1' == $autoAttributeLimit ) {
+				if( '1' === $autoAttributeLimit || 'sections' === $autoAttributeLimit ) {
 					// Add class.
 					$fb_handler .= '
 var fb_'.$key.'_sections=jQuery(\''.$autoselector.'\');
