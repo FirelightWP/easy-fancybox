@@ -1018,15 +1018,16 @@ class easyFancyBox_Admin { // phpcs:ignore
 		}
 
 		// Limit optin request to 20% of users initially.
-		$user_review_number = get_option( 'efb_user_review_number' );
-		if ( ! $user_review_number ) {
-			$user_review_number = rand( 1, 10 ); // phpcs:ignore
-			update_option( 'efb_user_review_number', $user_review_number );
-		}
-		$selected = '9' === $user_review_number || '10' === $user_review_number;
-		if ( ! $selected ) {
-			return false;
-		}
+		// Commenting this out to try rolling out 100%.
+		// $user_review_number = get_option( 'efb_user_review_number' );
+		// if ( ! $user_review_number ) {
+		// 	$user_review_number = rand( 1, 10 ); // phpcs:ignore
+		// 	update_option( 'efb_user_review_number', $user_review_number );
+		// }
+		// $selected = '7' === $user_review_number || '8' === $user_review_number || '9' === $user_review_number || '10' === $user_review_number;
+		// if ( ! $selected ) {
+		// 	return false;
+		// }
 
 		return true;
 	}
