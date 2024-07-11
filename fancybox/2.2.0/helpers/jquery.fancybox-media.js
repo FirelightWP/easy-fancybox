@@ -93,7 +93,7 @@
 				url  : '//www.youtube.com/embed/$3'
 			},
 			vimeo : {
-				matcher : /(?:vimeo(?:pro)?.com)\/(?:[^\d]+)?(\d+)(?:.*)/,
+				matcher : /(?<!\.)(?:vimeo(?:pro)?.com)\/(?:[^\d]+)?(\d+)(?:.*)/,
 				params  : {
 					autoplay   : 1,
 					title      : 1,
