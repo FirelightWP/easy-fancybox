@@ -156,11 +156,11 @@ class easyFancyBox { // phpcs:ignore
 	public static $options = array();
 
 	/**
-	 * Array to store events.
+	 * Store events when easy_fancybox_handler is fired.
 	 *
 	 * @var array
 	 */
-	public static $events = array( 'post-load' );
+	public static $events = array( 'post-load', 'nextgen_page_refreshed' );
 
 	/**
 	 * URL for the pro plugin.
