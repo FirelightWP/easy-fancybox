@@ -164,9 +164,9 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 							$autoselectors_to_group_galleries = '' === $custom_autoselector
 								? $default_autoselector
 								: $custom_autoselector;
-							$fb_handler .= ';
+							$script .= ';
 var fb_'.$key.'_sections=jQuery(\''.$autoselectors_to_group_galleries.'\');
-fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'data-fancybox-group\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
+fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(\'rel\',\'gallery-\'+fb_'.$key.'_sections.index(this));});';
 							break;
 
 						case '2':

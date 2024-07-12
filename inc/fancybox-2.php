@@ -175,7 +175,7 @@ var fb_'.$key.'_select=jQuery(\'';
 					// Add class.
 					$fb_handler .= '
 var fb_'.$key.'_sections=jQuery(\''.$autoselector_for_applying_classes.'\');
-fb_'.$key.'_sections.each(function(a,b,c){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
+fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).addClass(\''.$value['options']['class']['default'].'\')';
 					// Set rel.
 					switch( \get_option($value['options']['autoGallery']['id'],$value['options']['autoGallery']['default']) ) {
 						case '':
