@@ -259,15 +259,16 @@ class easyFancyBox_Admin { // phpcs:ignore
 		}
 
 		// Limit review notices to 10% of users initially.
-		$user_review_number = get_option( 'efb_user_review_number' );
-		if ( ! $user_review_number ) {
-			$user_review_number = rand( 1, 10 ); // phpcs:ignore
-			update_option( 'efb_user_review_number', $user_review_number );
-		}
-		$selected = '1' === $user_review_number || '2' === $user_review_number || '3' === $user_review_number || '4' === $user_review_number || '5' === $user_review_number || '6' === $user_review_number;
-		if ( ! $selected ) {
-			return false;
-		}
+		// Comment out to show to all users.
+		// $user_review_number = get_option( 'efb_user_review_number' );
+		// if ( ! $user_review_number ) {
+		// 	$user_review_number = rand( 1, 10 ); // phpcs:ignore
+		// 	update_option( 'efb_user_review_number', $user_review_number );
+		// }
+		// $selected = '1' === $user_review_number || '2' === $user_review_number || '3' === $user_review_number || '4' === $user_review_number || '5' === $user_review_number || '6' === $user_review_number;
+		// if ( ! $selected ) {
+		// 	return false;
+		// }
 
 		// Only show if user has been using plugin for more than 60 days.
 		$current_date      = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
