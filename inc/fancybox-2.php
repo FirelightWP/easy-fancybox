@@ -162,7 +162,7 @@ var fb_'.$key.'_select=jQuery(\'';
 
 				// Gallery Groups/Sections/Selectors
 				$nextgen_selectors = '.ngg-galleryoverview,.ngg-imagebrowser,.nextgen_pro_blog_gallery,.nextgen_pro_film,.nextgen_pro_horizontal_filmstrip,.ngg-pro-masonry-wrapper,.ngg-pro-mosaic-container,.nextgen_pro_sidescroll,.nextgen_pro_slideshow,.nextgen_pro_thumbnail_grid,.tiled-gallery';
-				$default_autoselector = $value['options']['autoSelector']['default'] . $nextgen_selectors;
+				$default_autoselector = $value['options']['autoSelector']['default'] . ',' . $nextgen_selectors;
 				$custom_autoselector = \get_option( $value['options']['autoSelector']['id'], $value['options']['autoSelector']['default'] );
 
 				// Class and rel depending on settings.
