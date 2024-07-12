@@ -166,7 +166,10 @@ var fb_'.$key.'_select=jQuery(\'';
 				$autoselector = $value['options']['autoSelector']['default'] . ',' . $nextgen_selectors;
 
 				if ( class_exists( 'easyFancyBox_Advanced' ) && 'custom' === $autoAttributeLimit ) {
-					$autoselector = \get_option( $value['options']['autoSelector']['id'], $value['options']['autoSelector']['default'] ) . ',' . $nextgen_selectors;
+					$custom_autoselector = \get_option( $value['options']['autoSelector']['id'], $value['options']['autoSelector']['default'] );
+					if ( '' !== $custom_autoselector ) {
+						$autoselector = $custom_autoselector . ',' . $nextgen_selectors;
+					}
 				}
 
 				// Class and rel depending on settings.

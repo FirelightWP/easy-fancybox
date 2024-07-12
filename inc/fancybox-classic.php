@@ -103,13 +103,16 @@ var fb_'.$key.'_select=jQuery(\'';
 				}
 				$script .= '\');';
 
-				// Gallery Groups/Sections
+				// Gallery Groups/Sections/Selectors
 				$nextgen_selectors = '.ngg-galleryoverview,.ngg-imagebrowser,.nextgen_pro_blog_gallery,.nextgen_pro_film,.nextgen_pro_horizontal_filmstrip,.ngg-pro-masonry-wrapper,.ngg-pro-mosaic-container,.nextgen_pro_sidescroll,.nextgen_pro_slideshow,.nextgen_pro_thumbnail_grid,.tiled-gallery';
 
 				$autoselector = $value['options']['autoSelector']['default'] . ',' . $nextgen_selectors;
 
 				if ( class_exists( 'easyFancyBox_Advanced' ) && 'custom' === $autoAttributeLimit ) {
-					$autoselector = \get_option( $value['options']['autoSelector']['id'], $value['options']['autoSelector']['default'] ) . ',' . $nextgen_selectors;
+					$custom_autoselector = \get_option( $value['options']['autoSelector']['id'], $value['options']['autoSelector']['default'] );
+					if ( '' !== $custom_autoselector ) {
+						$autoselector = $custom_autoselector . ',' . $nextgen_selectors;
+					}
 				}
 
 				// Class and rel depending on settings.
