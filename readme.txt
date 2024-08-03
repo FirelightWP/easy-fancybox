@@ -47,16 +47,25 @@ Links:
 **PRO LIGHTBOX FEATURES**
 
 Easy Fancybox Pro is an extension for this lightbox plugin that offers:
-- Priority support via email directly from devs
-- Pro features for free lightboxes (Fancybox Legacy, Classic, V2)
-- *Powerful Pro Lighbox based on Fancybox 5*
+- Dozens of Pro features for free lightboxes (Fancybox Legacy, Classic, V2)
+- *Priority support via email directly from devs*
+- *New and Powerful Pro Lighbox based on Fancybox 5, including:*
 - Beautiful, modern full-browser and full-screen ligthbox
 - Dozens of customizations options
 - Thumbnails within the lightbox
-- Toolbar with controls for thumbs, zoom, slideshow, and more
-- Support for videos, pdfs, modals/popups, inline content, iframes, maps, and more
-- Flawless mobile interaction
-- Hyper fast performance
+- Social sharing of images
+- Link directly to images in the lightbox
+- Download image button
+- Toolbar with controls for thumbnails, social sharing, zoom, slideshow, etc
+- Open videos
+- Open pdfs
+- Open popups
+- Open inline content and iframes
+- Open Google maps
+- NextGEN Gallery integration
+- Elementor integration
+- Perfect on mobile devices
+- Optimized lightbox speed
 
 -> **[VIEW PRO LIGHTBOX DEMOS](https://firelightwp.com/pro-lightbox)**  
 -> **[GET PRO SUPPORT](https://firelightwp.com/contact)**  
