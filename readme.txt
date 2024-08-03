@@ -48,7 +48,7 @@ Links:
 
 Easy Fancybox Pro is an extension for this lightbox plugin that offers:
 - Dozens of Pro features for free lightboxes (Fancybox Legacy, Classic, V2)
-- *Priority support via email directly from devs*
+- *Priority support direct from developers*
 - *New and Powerful Pro Lighbox based on Fancybox 5, including:*
 - Beautiful, modern full-browser and full-screen ligthbox
 - 100+ customizations options
