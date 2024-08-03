@@ -51,14 +51,14 @@ Easy Fancybox Pro is an extension for this lightbox plugin that offers:
 - *Priority support via email directly from devs*
 - *New and Powerful Pro Lighbox based on Fancybox 5, including:*
 - Beautiful, modern full-browser and full-screen ligthbox
-- Dozens of customizations options
+- 100+ customizations options
 - Thumbnails within the lightbox
-- Social sharing of images
-- Link directly to images in the lightbox
-- Download image button
+- Social sharing for images
+- Link direct to images in the lightbox
+- "Download image" button
 - Toolbar with controls for thumbnails, social sharing, zoom, slideshow, etc
 - Open videos
-- Open pdfs
+- Open PDFs
 - Open popups
 - Open inline content and iframes
 - Open Google maps
