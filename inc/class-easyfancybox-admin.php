@@ -258,18 +258,6 @@ class easyFancyBox_Admin { // phpcs:ignore
 			return false;
 		}
 
-		// Limit review notices to 10% of users initially.
-		// Comment out to show to all users.
-		// $user_review_number = get_option( 'efb_user_review_number' );
-		// if ( ! $user_review_number ) {
-		// 	$user_review_number = rand( 1, 10 ); // phpcs:ignore
-		// 	update_option( 'efb_user_review_number', $user_review_number );
-		// }
-		// $selected = '1' === $user_review_number || '2' === $user_review_number || '3' === $user_review_number || '4' === $user_review_number || '5' === $user_review_number || '6' === $user_review_number;
-		// if ( ! $selected ) {
-		// 	return false;
-		// }
-
 		// Only show if user has been using plugin for more than 60 days.
 		$current_date      = new DateTimeImmutable( gmdate( 'Y-m-d' ) );
 		$plugin_time_stamp = get_option( 'easy_fancybox_date' );
@@ -369,7 +357,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * Render the content of the Lightbox Settings page.
 	 */
 	public static function pro_landing_page() {
-		include EASY_FANCYBOX_DIR . '/views/pro-landing-page.php';
+		include EASY_FANCYBOX_DIR . '/views/pro-landing-page-short.php';
 	}
 
 	/**
@@ -1019,18 +1007,6 @@ class easyFancyBox_Admin { // phpcs:ignore
 				return false;
 			}
 		}
-
-		// Limit optin request to 20% of users initially.
-		// Commenting this out to try rolling out 100%.
-		// $user_review_number = get_option( 'efb_user_review_number' );
-		// if ( ! $user_review_number ) {
-		// 	$user_review_number = rand( 1, 10 ); // phpcs:ignore
-		// 	update_option( 'efb_user_review_number', $user_review_number );
-		// }
-		// $selected = '7' === $user_review_number || '8' === $user_review_number || '9' === $user_review_number || '10' === $user_review_number;
-		// if ( ! $selected ) {
-		// 	return false;
-		// }
 
 		return true;
 	}

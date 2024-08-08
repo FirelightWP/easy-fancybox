@@ -58,7 +58,7 @@
 .toplevel_page_firelight-settings .firelight-header a:visited {
 	font-size: 16px;
 	text-decoration: none;
-	color: #ff7011;
+	color: #ff5722;
 }
 
 .toplevel_page_firelight-settings .settings-section {
@@ -153,7 +153,7 @@
 }
 
 .toplevel_page_firelight-settings .pro-button {
-	background: #ff7011;
+	background: #ff5722;
 	border-radius: 3px;
     color: white;
 	font-weight: 600;
@@ -236,7 +236,7 @@
 .toplevel_page_firelight-settings #TB_ajaxContent .pro-action-button.link-only:focus,
 .toplevel_page_firelight-settings #TB_ajaxContent .pro-action-button.link-only:visited {
     background: transparent;
-    color: #ff7011;
+    color: #ff5722;
 }
 
 .toplevel_page_firelight-settings .dashicons-arrow-right-alt {
@@ -268,6 +268,7 @@ body.lightbox_page_firelight-pro {
 
 .lightbox_page_firelight-pro #wpbody {
 	max-width: 1300px;
+	width: 97.5%;
 }
     
 .pricing-section {
@@ -314,7 +315,7 @@ body.lightbox_page_firelight-pro {
 }
 
 .pro-action-button {
-	background: #ff7011;
+	background: #ff5722;
     padding: 16px 40px;
     text-transform: uppercase;
     font-weight: bold;
@@ -330,7 +331,7 @@ body.lightbox_page_firelight-pro {
 
 .pro-action-button:hover,
 .pro-action-button:focus {
-	background: #ff8e3c;
+	background: #ff5722;
     color: white;
 }
 
@@ -391,7 +392,7 @@ body.lightbox_page_firelight-pro {
     font-weight: 900 !important;
     padding: 24px 10px;
 	display: block;
-	background-color: #ff7011;
+	background-color: #ff5722;
     color: #ffffff !important;
     text-transform: uppercase;
 	letter-spacing: 1px;
@@ -522,6 +523,146 @@ body.lightbox_page_firelight-pro {
 	text-align: center;
 }
 
+/* Pricing Table Short Experiment */
+
+.hero-section.short .hero-section-image img {
+    max-height: 400px;
+}
+
+.hero-section.short .hero-section-copy-text {
+    margin: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section.short .hero-section-copy-text .dashicons {
+    margin-right: 6px;
+	color: green;
+}
+
+.pricing-section.short {
+	padding: 0;
+}
+
+.pricing-section.short img.firelight-arrow {
+    height: 100px;
+    margin: 0 auto;
+	padding: 0 0 30px;
+    display: block;
+}
+
+.pricing-section.short .pricing-headline {
+    font-size: 44px;
+	font-weight: 900;
+    text-align: center;
+	line-height: 1;
+}
+
+.pricing-section.short .pricing-guarantee-1,
+.pricing-section.short .pricing-guarantee-2 {
+	font-size: 18px;
+	text-align: center;
+	font-weight: normal;
+	margin: 0;
+	padding: 10px 4px 0;
+	max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.pricing-section.short .pricing-guarantee-1 {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.pricing-section.short .pricing-headline {
+    width: 98%;
+    max-width: 520px;
+    margin: 20px auto;
+}
+
+.pricing-section.short .plan-select {
+	width: 300px;
+    max-width: 98%;
+    margin: 30px auto 60px;
+}
+
+.pricing-section.short .plan-select {
+	width: 300px;
+    max-width: 98%;
+    margin: 30px auto;
+}
+
+.pricing-section.short .plan-select .plan-select-dropdown,
+.pricing-section.short .plan-select select {
+	width: 100%;
+}
+
+.pricing-section.short .plan-select select {
+	height: 40px;
+}
+
+.pricing-section.short .plan-select button {
+	width: 100%;
+	margin: 8px 0;
+}
+
+.hero-section.short .pro-action-button
+.pricing-section.short .pro-action-button {
+    border-radius: 3px;
+}
+
+.pricing-section.short p.after-plan-sale {
+    text-align: center;
+    font-size: 18px;
+    color: #ff5722;
+    margin: 0;
+	font-weight: bold;
+}
+
+.pricing-section.short .pricing-table {
+    width: 98%;
+    max-width: 520px;
+    margin: 20px auto 100px;
+}
+
+.pricing-section.short .pricing-table .plan {
+	width: 98%;
+    max-width: 500px;
+    margin: 100px auto;
+    margin: 0 auto;
+    float: none;
+	box-shadow: none;
+	background: none;
+}
+
+.pricing-table .plan-title {
+    background: transparent;
+    color: black !important;
+    text-transform: none;
+}
+
+.pricing-section.short .pricing-table .plan-features li {
+	border-top: none;
+    padding: 8px;
+    opacity: 1;
+    background: none !important;
+    font-size: 18px;
+    letter-spacing: 0;
+}
+
+.pricing-section.short .pricing-table .plan-features li.strong {
+    font-size: 20px;
+}
+
+.pricing-section.short .pricing-table .plan-features li:first-of-type {
+    color: black;
+}
+
+.pricing-section.short .pricing-table .plan-features li:first-of-type:before {
+    display: inline;
+}
+
 @media only screen and (max-width: 880px) {
 	.hero-section {
 		flex-direction: column;
@@ -547,3 +688,4 @@ body.lightbox_page_firelight-pro {
         margin-top: 0;
     }
 }
+
