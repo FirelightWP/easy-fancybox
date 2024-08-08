@@ -29,8 +29,8 @@
 		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Rockstar Pro support.', 'easy-fancybox' ); ?></p>
 		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'More engagement with your images and media.', 'easy-fancybox' ); ?></p>
 		<div class="hero-section-actions">
-			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/" target="_blank"><?php esc_html_e( 'Learn More', 'easy-fancybox' ); ?></a>
-			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox" target="_blank"><?php esc_html_e( 'See Demos', 'easy-fancybox' ); ?></a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'Learn More', 'easy-fancybox' ); ?></a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'See Demos', 'easy-fancybox' ); ?></a>
 		</div>
 		<p class="hero-section-copy-under-button"><?php esc_html_e( 'Or buy directly from the WordPress dashboard below!', 'easy-fancybox' ); ?></p>
 	</div>

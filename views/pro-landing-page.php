@@ -26,8 +26,8 @@
 		<h1 class="hero-section-copy-title"><?php esc_html_e( 'Make your media a highlight of your website.', 'easy-fancybox' ); ?></h1>
 		<p class="hero-section-copy-text"><?php esc_html_e( 'Add Pro features for free lightboxes - Legacy, Reloaded, V2. Or level up with the brilliant new FancyBox 5 Pro Lightbox. Supports images, pdfs, video, maps, modals with custom content, and more.', 'easy-fancybox' ); ?></p>
 		<div class="hero-section-actions">
-			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/" target="_blank"><?php esc_html_e( 'Learn More', 'easy-fancybox' ); ?></a>
-			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox" target="_blank"><?php esc_html_e( 'See Demos', 'easy-fancybox' ); ?></a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'Learn More', 'easy-fancybox' ); ?></a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'See Demos', 'easy-fancybox' ); ?></a>
 		</div>
 		<p class="hero-section-copy-under-button"><?php esc_html_e( 'Or buy directly from the WordPress dashboard below!', 'easy-fancybox' ); ?></p>
 	</div>

@@ -45,7 +45,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 										<Button
 											variant="primary"
 											className="fancybox-button"
-											href='https://firelightwp.com/pro-lightbox'
+											href='https://firelightwp.com/pro-lightbox/?utm_source=block-editor&utm_medium=referral&utm_campaign=easy-fancybox'
 											target='_blank'
 										>
 											{ __( 'See Demos' ) }
@@ -54,7 +54,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 										<Button
 											variant="primary"
 											className="fancybox-button"
-											href='https://firelightwp.com/pro-lightbox/pricing'
+											href='https://firelightwp.com/pro-lightbox/pricing/?utm_source=block-editor&utm_medium=referral&utm_campaign=easy-fancybox'
 											target='_blank'
 										>
 											{ __( 'Upgrade' ) }
