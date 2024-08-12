@@ -38,10 +38,15 @@
 	</div>
 </div>
 <div class="pricing-section">
+    <div class="pricing-header">
+		<h2 class="pricing-headline"><?php esc_html_e( 'Pricing', 'easy-fancybox' ); ?></h2>
+		<h4 class="pricing-guarantee-1"><?php esc_html_e( '60-Day No-Questions-Asked Guarantee!', 'easy-fancybox' ); ?></h4>
+		<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Give it a try. If you’re not happy, let us know and get an immediate, full refund.', 'easy-fancybox' ); ?></h4>
+	</div>
 	<div class="pricing-table">
 		<div class="plan">
 			<h3 class="plan-title">Basic</h3>
-			<div class="plan-cost"><span class="plan-price">$59</span></div>
+			<div class="plan-cost"><span class="plan-price">$39</span></div>
 			<ul class="plan-features">
 			<li class="strong"><?php esc_html_e( 'Basic Lightboxes', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PRO SUPPORT', 'easy-fancybox' ); ?></li>
@@ -75,9 +80,9 @@
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="basic-licenses">
-				<option value="1"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($49)'</option>
-				<option value="5" selected="selected"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($59)</option>
-				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($139)</option>
+				<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($39)</option>
+				<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($49)</option>
+				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($99)</option>
 				</select>
 			</div>
 			<button id="basic-purchase" class="pro-action-button"><?php esc_html_e( 'Buy Now', 'easy-fancybox' ); ?></button>
@@ -85,7 +90,7 @@
 		</div>
 		<div class="plan featured">
 			<h3 class="plan-title">Pro<span class="most-popular"><?php esc_html_e( 'Most Popular!', 'easy-fancybox' ); ?></span></h3>
-			<div class="plan-cost"><span class="plan-price">$99</span></div>
+			<div class="plan-cost"><span class="plan-price">$69</span></div>
 			<ul class="plan-features">
 			<li class="strong"><?php esc_html_e( 'All Features', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PRO SUPPORT', 'easy-fancybox' ); ?></li>
@@ -119,9 +124,9 @@
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="pro-licenses">
-				<option value="1"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($79)</option>
-				<option value="5" selected="selected"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($99)</option>
-				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($179)</option>
+				<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($69)</option>
+				<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($79)</option>
+				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($149)</option>
 				</select>
 			</div>
 			<button id="pro-purchase" class="pro-action-button"><?php esc_html_e( 'Buy Now', 'easy-fancybox' ); ?></button>
@@ -129,7 +134,7 @@
 		</div>
 		<div class="plan">
 			<h3 class="plan-title">Enterprise</h3>
-			<div class="plan-cost"><span class="plan-price">$499</span></div>
+			<div class="plan-cost"><span class="plan-price">$399</span></div>
 			<ul class="plan-features">
 			<li class="strong"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PRO SUPPORT', 'easy-fancybox' ); ?></li>
@@ -163,7 +168,7 @@
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="enterprise-licenses">
-				<option value="unlimited"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?> ($499)</option>
+				<option value="unlimited"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?> ($399)</option>
 				</select>
 			</div>
 			<button id="enterprise-purchase" class="pro-action-button"><?php esc_html_e( 'Buy Now', 'easy-fancybox' ); ?></button>
