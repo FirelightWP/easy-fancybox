@@ -357,7 +357,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * Render the content of the Lightbox Settings page.
 	 */
 	public static function pro_landing_page() {
-		include EASY_FANCYBOX_DIR . '/views/pro-landing-page-short.php';
+		include EASY_FANCYBOX_DIR . '/views/pro-landing-page.php';
 	}
 
 	/**
