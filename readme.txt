@@ -4,7 +4,7 @@ Tags: lightbox, gallery, image, photo, modal
 Requires at least: 5.0
 Requires PHP: 7.0
 Tested up to: 6.6.1
-Stable tag: 2.2.9
+Stable tag: 2.2.10
 License: GPLv3
 
 The most popular lightbox plugin for WordPress. Adds a simple, fast lightbox for viewing images, videos, and other media.
@@ -102,7 +102,7 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 
 == Changelog ==
 
-= 2.2.9 =
+= 2.2.10 =
 * Update: Pro landing page
 * Update: Small code cleanup
 
