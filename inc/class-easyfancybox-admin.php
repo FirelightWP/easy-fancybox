@@ -43,9 +43,26 @@ class easyFancyBox_Admin { // phpcs:ignore
 	private static $do_compat_warning = false;
 
 	/**
+	 * Flag to determine whether to display a compatibility warning.
+	 *
+	 * @var bool
+	 */
+	private static $is_paying_user = false;
+
+	/**
+	 * Flag to determine whether to display a compatibility warning.
+	 *
+	 * @var bool
+	 */
+	private static $is_pro_user = false;
+
+	/**
 	 * Constructor for the EasyFancyBox Admin class.
 	 */
 	public function __construct() {
+		self::$is_paying_user = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_license();
+		self::$is_pro_user    = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_pro_license();
+
 		// Text domain.
 		add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
 
@@ -158,7 +175,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			'dashicons-format-image',
 			85
 		);
-		if ( ! class_exists( 'easyFancyBox_Advanced' ) ) {
+		if ( ! self::$is_pro_user ) {
 			add_submenu_page(
 				'firelight-settings',
 				'Easy Fancybox Settings',
@@ -191,10 +208,12 @@ class easyFancyBox_Admin { // phpcs:ignore
 			? ''
 			: '<a id="fancybox-open-modal" href="#TB_inline?width=600&height=550&inlineId=fancybox-optin-modal" class="thickbox">Get email updates</a>';
 
-		if ( ! class_exists( 'easyFancyBox_Advanced' ) && ! self::should_show_review_request() ) {
+		if ( ! self::$is_paying_user && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
-			esc_html_e( 'Easy Fancybox Pro is launched! Take 30% off this week - use code PRO at checkout.', 'easy-fancybox' );
-			echo ' <a href="https://firelightwp.com/pro-lightbox" target="_blank">' . esc_html__( 'LEARN MORE', 'easy-fancybox' ) . '</a>';
+			esc_html_e( 'Try Easy Fancybox Pro free! All plans start with a 14-day trial.', 'easy-fancybox' );
+			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">' . esc_html__( 'See demos', 'easy-fancybox' ) . '</a>';
+			esc_html_e( ' or ', 'easy-fancybox' );
+			echo ' <a href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">' . esc_html__( 'just try it for free!', 'easy-fancybox' ) . '</a>';
 			echo '</p></div>';
 		}
 

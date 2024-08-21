@@ -14,22 +14,22 @@
 
 ?>
 
-<div class="sale-banner">
-	<p><?php esc_html_e( 'Easy Fancybox Pro is launched! Take 30% off this week - use code PRO at checkout.', 'easy-fancybox' ); ?></p>
-</div>
 <img class="firelight-logo" src="<?php echo esc_url( easyFancyBox::$plugin_url ); ?>images/firelight-logo.png">
 <div class="hero-section">
 	<div class="hero-section-copy">
 		<div>
 			<p class="hero-section-copy-tag"><?php esc_html_e( 'Easy Fancybox Pro', 'easy-fancybox' ); ?></p>
 		</div>
-		<h1 class="hero-section-copy-title"><?php esc_html_e( 'Make your media a highlight of your website.', 'easy-fancybox' ); ?></h1>
-		<p class="hero-section-copy-text"><?php esc_html_e( 'Add Pro features for free lightboxes - Legacy, Reloaded, V2. Or level up with the brilliant new FancyBox 5 Pro Lightbox. Supports images, pdfs, video, maps, modals with custom content, and more.', 'easy-fancybox' ); ?></p>
+		<h1 class="hero-section-copy-title"><?php esc_html_e( 'Make your website better.', 'easy-fancybox' ); ?></h1>
+		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Brilliant new Pro Lightbox!', 'easy-fancybox' ); ?></p>
+		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( '50+ pro features for free lightboxes!', 'easy-fancybox' ); ?></p>
+		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Rockstar Pro support - from devs!', 'easy-fancybox' ); ?></p>
+		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Better user experience and more engagement!', 'easy-fancybox' ); ?></p>
 		<div class="hero-section-actions">
-			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'Learn More', 'easy-fancybox' ); ?></a>
 			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'See Demos', 'easy-fancybox' ); ?></a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'Try It Completely Free!', 'easy-fancybox' ); ?></a>
 		</div>
-		<p class="hero-section-copy-under-button"><?php esc_html_e( 'Or buy directly from the WordPress dashboard below!', 'easy-fancybox' ); ?></p>
+		<p class="hero-section-copy-under-button"><?php esc_html_e( 'You can also start your trial directly below!', 'easy-fancybox' ); ?></p>
 	</div>
 	<div class="hero-section-image">
 		<figure>
@@ -39,22 +39,20 @@
 </div>
 <div class="pricing-section">
     <div class="pricing-header">
-		<h2 class="pricing-headline"><?php esc_html_e( 'Pricing', 'easy-fancybox' ); ?></h2>
-		<h4 class="pricing-guarantee-1"><?php esc_html_e( '60-Day No-Questions-Asked Guarantee!', 'easy-fancybox' ); ?></h4>
-		<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Give it a try. If you’re not happy, let us know and get an immediate, full refund.', 'easy-fancybox' ); ?></h4>
+		<h2 class="pricing-headline"><?php esc_html_e( 'Pricing? Try It Free.', 'easy-fancybox' ); ?></h2>		
+		<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Yes, try Easy Fancybox Pro completely free! ALL plans start with a 14-day free trial. We’re that confident that you’ll love it!', 'easy-fancybox' ); ?></h4>
 	</div>
 	<div class="pricing-table">
 		<div class="plan">
 			<h3 class="plan-title">Basic</h3>
 			<div class="plan-cost"><span class="plan-price">$39</span></div>
+			<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
+			<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
 			<ul class="plan-features">
-			<li class="strong"><?php esc_html_e( 'Basic Lightboxes', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PRO SUPPORT', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PLUGIN UPDATES', 'easy-fancybox' ); ?></li>
-			<li class="strong included"><?php esc_html_e( 'BASIC LIGHTBOXES', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'Legacy - Pro Features', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'Reloaded - Pro Features', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'FancyBox2 - Pro Features', 'easy-fancybox' ); ?></li>
+			<li class="strong included"><?php esc_html_e( 'BETTER BASIC LIGHTBOXES', 'easy-fancybox' ); ?></li>
+			<li class="included"><?php esc_html_e( '50+ New Pro Features', 'easy-fancybox' ); ?></li>
 			<li class="strong excluded"><?php esc_html_e( 'PRO LIGHTBOX', 'easy-fancybox' ); ?></li>
 			<li class="excluded"><?php esc_html_e( '100+ Customization Options', 'easy-fancybox' ); ?></li>
 			<li class="excluded"><?php esc_html_e( 'Thumbnails in Lightbox', 'easy-fancybox' ); ?></li>
@@ -85,20 +83,19 @@
 				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($99)</option>
 				</select>
 			</div>
-			<button id="basic-purchase" class="pro-action-button"><?php esc_html_e( 'Buy Now', 'easy-fancybox' ); ?></button>
+			<button id="basic-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free', 'easy-fancybox' ); ?></button>
 			</div>
 		</div>
 		<div class="plan featured">
 			<h3 class="plan-title">Pro<span class="most-popular"><?php esc_html_e( 'Most Popular!', 'easy-fancybox' ); ?></span></h3>
 			<div class="plan-cost"><span class="plan-price">$69</span></div>
+			<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
+			<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
 			<ul class="plan-features">
-			<li class="strong"><?php esc_html_e( 'All Features', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PRO SUPPORT', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PLUGIN UPDATES', 'easy-fancybox' ); ?></li>
-			<li class="strong included"><?php esc_html_e( 'BASIC LIGHTBOXES', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'Legacy - Pro Features', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'Reloaded - Pro Features', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'FancyBox2 - Pro Features', 'easy-fancybox' ); ?></li>
+			<li class="strong included"><?php esc_html_e( 'BETTER BASIC LIGHTBOXES', 'easy-fancybox' ); ?></li>
+			<li class="included"><?php esc_html_e( '50+ New Pro Features', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PRO LIGHTBOX', 'easy-fancybox' ); ?></li>
 			<li class="included"><?php esc_html_e( '100+ Customization Options', 'easy-fancybox' ); ?></li>
 			<li class="included"><?php esc_html_e( 'Thumbnails in Lightbox', 'easy-fancybox' ); ?></li>
@@ -129,20 +126,19 @@
 				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($149)</option>
 				</select>
 			</div>
-			<button id="pro-purchase" class="pro-action-button"><?php esc_html_e( 'Buy Now', 'easy-fancybox' ); ?></button>
+			<button id="pro-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free', 'easy-fancybox' ); ?></button>
 			</div>
 		</div>
 		<div class="plan">
 			<h3 class="plan-title">Enterprise</h3>
 			<div class="plan-cost"><span class="plan-price">$399</span></div>
+			<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
+			<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
 			<ul class="plan-features">
-			<li class="strong"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PRO SUPPORT', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PLUGIN UPDATES', 'easy-fancybox' ); ?></li>
-			<li class="strong included"><?php esc_html_e( 'BASIC LIGHTBOXES', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'Legacy - Pro Features', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'Reloaded - Pro Features', 'easy-fancybox' ); ?></li>
-			<li class="included"><?php esc_html_e( 'FancyBox2 - Pro Features', 'easy-fancybox' ); ?></li>
+			<li class="strong included"><?php esc_html_e( 'BETTER BASIC LIGHTBOXES', 'easy-fancybox' ); ?></li>
+			<li class="included"><?php esc_html_e( '50+ New Pro Features', 'easy-fancybox' ); ?></li>
 			<li class="strong included"><?php esc_html_e( 'PRO LIGHTBOX', 'easy-fancybox' ); ?></li>
 			<li class="included"><?php esc_html_e( '100+ Customization Options', 'easy-fancybox' ); ?></li>
 			<li class="included"><?php esc_html_e( 'Thumbnails in Lightbox', 'easy-fancybox' ); ?></li>
@@ -171,7 +167,7 @@
 				<option value="unlimited"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?> ($399)</option>
 				</select>
 			</div>
-			<button id="enterprise-purchase" class="pro-action-button"><?php esc_html_e( 'Buy Now', 'easy-fancybox' ); ?></button>
+			<button id="enterprise-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free', 'easy-fancybox' ); ?></button>
 			</div>
 		</div>
 	</div>

@@ -115,9 +115,9 @@ wp.domReady( function () {
 		proUrl = settings.proLandingUrl; // via wp_localize_script
 		promoSection.innerHTML = `
 			<p>The Pro Lightbox is a brilliant, modern lighbox built on Fancybox 5. It is a Pro feature.</p>
-			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox" target="_blank">Learn More</a>
 			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox" target="_blank">See Demos</a>
-			<p>You can buy directly from your WordPress dashboard <a href="${ proUrl }">here</a>.
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/pricing" target="_blank">Try It for Free!</a>
+			<p>You can start your trial directly from your WordPress dashboard <a href="${ proUrl }">here</a>.
 		`;
 		document.querySelector( '.active-lightbox-heading' ).after( promoSection );
 	}
