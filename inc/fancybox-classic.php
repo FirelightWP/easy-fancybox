@@ -52,6 +52,7 @@ var easy_fancybox_handler=function(){';
 	$exclude = \get_option( 'fancybox_autoExclude', \easyFancyBox::$options['Global']['options']['Miscellaneous']['options']['autoExclude']['default'] );
 	$exclude_array = $exclude ? explode( ',', $exclude ) : array();
 	$exclude_selectors = ! empty( $exclude_array ) ? \wp_json_encode( $exclude_array ) : false;
+
 	if ( $exclude_selectors ) {
 		$script .= '
 jQuery(' . $exclude_selectors . '.join(\',\')).addClass(\'nofancybox\');';
@@ -82,7 +83,7 @@ jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.
 				$autoAttributeLimit = \get_option( $value['options']['autoAttributeLimit']['id'], $value['options']['autoAttributeLimit']['default'] );
 				if ( 'IMG' === $key && ( 'all' === $autoAttributeLimit || '' === $autoAttributeLimit ) ) {
 					$script .= '
-						var unlinkedImageBlocks=jQuery(".wp-block-image > img:not(.nofancybox)");
+						var unlinkedImageBlocks=jQuery(".wp-block-image > img:not(.nofancybox,figure.nofancybox>img)");
 						unlinkedImageBlocks.wrap(function() {
 							var href = jQuery( this ).attr( "src" );
 							return "<a href=\'" + href + "\'></a>";
@@ -98,7 +99,7 @@ var fb_'.$key.'_select=jQuery(\'';
 						$type = '.'.$type;
 					if ($more>0)
 						$script .= ',';
-					$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox,li.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox)';
+					$script .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox,li.nofancybox>a,figure.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox)';
 					$more++;
 				}
 				$script .= '\');';
@@ -265,6 +266,8 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 			$script = str_replace( $short, $replace, $script );
 		}
 	}
+	// var_dump( $script );
+	// die();
 	\easyFancyBox::$inline_script = \apply_filters( 'easy_fancybox_inline_script', $script );
 
 	/**

@@ -139,7 +139,7 @@ jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.
 				$autoAttributeLimit = \get_option( $value['options']['autoAttributeLimit']['id'], $value['options']['autoAttributeLimit']['default'] );
 				if ( 'IMG' === $key && ( 'all' === $autoAttributeLimit || '' === $autoAttributeLimit ) ) {
 					$fb_handler .= '
-						var unlinkedImageBlocks=jQuery(".wp-block-image > img:not(.nofancybox)");
+						var unlinkedImageBlocks=jQuery(".wp-block-image > img:not(.nofancybox,figure.nofancybox>img)");
 						unlinkedImageBlocks.wrap(function() {
 							var href = jQuery( this ).attr( "src" );
 							return "<a href=\'" + href + "\'></a>";
@@ -155,7 +155,7 @@ var fb_'.$key.'_select=jQuery(\'';
 						$type = '.'.$type;
 					if ($more>0)
 						$fb_handler .= ',';
-					$fb_handler .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox,li.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox)';
+					$fb_handler .= 'a['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox,li.nofancybox>a,figure.nofancybox>a),area['.$value['options']['autoAttribute']['selector'].'"'.$type.'" i]:not(.nofancybox)';
 					$more++;
 				}
 				$fb_handler .= '\');';
