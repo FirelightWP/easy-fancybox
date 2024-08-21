@@ -52,7 +52,6 @@ var easy_fancybox_handler=function(){';
 	$exclude = \get_option( 'fancybox_autoExclude', \easyFancyBox::$options['Global']['options']['Miscellaneous']['options']['autoExclude']['default'] );
 	$exclude_array = $exclude ? explode( ',', $exclude ) : array();
 	$exclude_selectors = ! empty( $exclude_array ) ? \wp_json_encode( $exclude_array ) : false;
-
 	if ( $exclude_selectors ) {
 		$script .= '
 jQuery(' . $exclude_selectors . '.join(\',\')).addClass(\'nofancybox\');';
@@ -266,8 +265,6 @@ jQuery(\'' . $value['options']['tag']['default'] . '\')';
 			$script = str_replace( $short, $replace, $script );
 		}
 	}
-	// var_dump( $script );
-	// die();
 	\easyFancyBox::$inline_script = \apply_filters( 'easy_fancybox_inline_script', $script );
 
 	/**
