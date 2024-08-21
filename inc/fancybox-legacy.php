@@ -81,8 +81,6 @@ jQuery('.$value['options']['autoAttribute']['selector'].').not(\'.nofancybox,li.
 				// First wrap unlinked image blocks depending on settings
 				$autoAttributeLimit = \get_option( $value['options']['autoAttributeLimit']['id'], $value['options']['autoAttributeLimit']['default'] );
 				if ( 'IMG' === $key && ( 'all' === $autoAttributeLimit || '' === $autoAttributeLimit ) ) {
-					// var_dump( 'yes all' );
-					// die();
 					$script .= '
 						var unlinkedImageBlocks=jQuery(".wp-block-image > img:not(.nofancybox,figure.nofancybox>img)");
 						unlinkedImageBlocks.wrap(function() {
