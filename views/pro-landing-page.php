@@ -83,7 +83,7 @@
 				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($99)</option>
 				</select>
 			</div>
-			<button id="basic-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free', 'easy-fancybox' ); ?></button>
+			<button id="basic-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free!', 'easy-fancybox' ); ?></button>
 			</div>
 		</div>
 		<div class="plan featured">
@@ -126,7 +126,7 @@
 				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($149)</option>
 				</select>
 			</div>
-			<button id="pro-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free', 'easy-fancybox' ); ?></button>
+			<button id="pro-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free!', 'easy-fancybox' ); ?></button>
 			</div>
 		</div>
 		<div class="plan">
@@ -167,7 +167,7 @@
 				<option value="unlimited"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?> ($399)</option>
 				</select>
 			</div>
-			<button id="enterprise-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free', 'easy-fancybox' ); ?></button>
+			<button id="enterprise-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free!', 'easy-fancybox' ); ?></button>
 			</div>
 		</div>
 	</div>

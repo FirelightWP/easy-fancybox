@@ -43,14 +43,15 @@ class easyFancyBox_Admin { // phpcs:ignore
 	private static $do_compat_warning = false;
 
 	/**
-	 * Flag to determine whether to display a compatibility warning.
+	 * Stores whether current user is paying or on trial.
 	 *
 	 * @var bool
 	 */
 	private static $is_paying_user = false;
 
 	/**
-	 * Flag to determine whether to display a compatibility warning.
+	 * Stores whether current user is paying or on trial
+	 * for Pro plan specifically.
 	 *
 	 * @var bool
 	 */
