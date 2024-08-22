@@ -1189,11 +1189,11 @@
 			prev    : 'Previous'
 		},
 
-		onStart : function(){},
+		onStart : function(){$("html, body").css("overflow","hidden");},
 		onCancel : function(){},
 		onComplete : function(){},
 		onCleanup : function(){},
-		onClosed : function(){},
+		onClosed : function(){$("html, body").css("overflow","auto");},
 		onError : function(){}
 	};
 
