@@ -309,6 +309,17 @@ body.lightbox_page_firelight-pro {
     font-size: 18px;
 }
 
+.hero-section-copy-text {
+    margin: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section-copy-text .dashicons {
+    margin-right: 6px;
+	color: green;
+}
+
 .hero-section-actions {
 	margin: 50px 0 2px;
 
@@ -360,13 +371,12 @@ body.lightbox_page_firelight-pro {
 
 .pricing-section .pricing-guarantee-1,
 .pricing-section .pricing-guarantee-2 {
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
     font-weight: normal;
-    margin: 0;
-    padding: 10px 4px 0;
-    max-width: 440px;
     margin: 0 auto;
+	padding: 0px 4px 0;
+    max-width: 550px;
     line-height: 1.5;
 }
 
@@ -461,6 +471,13 @@ body.lightbox_page_firelight-pro {
     color: #34495e;
 }
 
+.pricing-table .sale {
+    font-size: 17px;
+    margin: 4px 0 30px;
+    font-weight: bold;
+    color: #ff5722;
+}
+
 .pricing-table .plan-features {
     padding: 0 !important;
     margin: 0 !important;
@@ -484,13 +501,13 @@ body.lightbox_page_firelight-pro {
 	  opacity: 1;
 }
 
-.pricing-table .plan-features li:first-of-type {
+/* .pricing-table .plan-features li:first-of-type {
     font-size: 26px;
 	  padding: 40px 10px;
 	  line-height: 1.3;
 	  color: #444;
 	  letter-spacing: 0px;
-}
+} */
 
 .pricing-table .plan-features li:nth-child(even) {
     background: rgba(0, 0, 0, 0.04);
@@ -516,9 +533,9 @@ body.lightbox_page_firelight-pro {
 	right: 5px
 }
 
-.pricing-table .plan-features li:first-of-type:before {
+/* .pricing-table .plan-features li:first-of-type:before {
     display:none;
-}
+} */
 
 .pricing-table .plan-select {
     border-top: 1px solid #d2d7e2;
