@@ -30,5 +30,5 @@ if ( ! array_key_exists( $selected, $available_lightboxes ) ) {
 	<?php } ?>
 </select>
 <span class="description">
-	<?php echo esc_html__( 'Additional settings for the selected lightbox will appear below.', 'easy-fancybox' ); ?>
+	<?php echo esc_html__( 'This will be the active lightbox on your site. Additional settings will appear below.', 'easy-fancybox' ); ?>
 </span>
