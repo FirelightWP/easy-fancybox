@@ -48,7 +48,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 											href='https://firelightwp.com/pro-lightbox/?utm_source=block-editor&utm_medium=referral&utm_campaign=easy-fancybox'
 											target='_blank'
 										>
-											{ __( 'See Demos' ) }
+											{ __( 'Demos' ) }
 										</Button>
 										{ ' ' }
 										<Button
@@ -57,7 +57,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 											href='https://firelightwp.com/pro-lightbox/pricing/?utm_source=block-editor&utm_medium=referral&utm_campaign=easy-fancybox'
 											target='_blank'
 										>
-											{ __( 'Upgrade' ) }
+											{ __( 'Try It Free' ) }
 										</Button>
 									</div>
 								</>
@@ -65,7 +65,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 						}
 						{
 							isProUser && ! isProLightbox && (
-								<p>{ __( 'Notice: You have an active Easy Fancybox Pro license and can use the Pro Lightbox!') }</p>
+								<p>{ __( 'Notice: You have an active Firelight Pro license and can use the Pro Lightbox!') }</p>
 							)
 						}
 						<div className="fancybox-settings-link">
