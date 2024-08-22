@@ -103,7 +103,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	public static function add_media_settings_section() {
 		add_settings_section(
 			'fancybox_section',
-			'<a name="fancybox"></a>' . __( 'Firelight', 'easy-fancybox' ),
+			'<a name="fancybox"></a>' . __( 'Firelight Lightbox', 'easy-fancybox' ),
 			function () {
 				include EASY_FANCYBOX_DIR . '/views/settings-section-intro.php';
 			},
@@ -211,8 +211,8 @@ class easyFancyBox_Admin { // phpcs:ignore
 
 		if ( ! self::$is_paying_user && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
-			esc_html_e( 'BIG NEWS: Easy Fancybox is now Firelight Lightbox! Plus you can now try Firelight Pro completely free.', 'easy-fancybox' );
-			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'See Demos', 'easy-fancybox' ) . '</a>';
+			esc_html_e( 'BIG NEWS: Easy Fancybox is now Firelight. Plus try Firelight Pro completely free!', 'easy-fancybox' );
+			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Demos', 'easy-fancybox' ) . '</a>';
 			echo ' <a href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Try Pro Free', 'easy-fancybox' ) . '</a>';
 			echo '</p></div>';
 		}
@@ -239,7 +239,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			?>
 				<div id="fancybox-optin-modal" style="display:none;">
 					<div class="fancybox-optin-modal-content">
-						<h2>Welcome to Firelight Lightbox!</h2>
+						<h2>Welcome to Firelight!</h2>
 						<h3>Never miss an important update.</h3>
 						<p>Opt in to receive emails about security & feature updates.</p>
 						<div class="hero-section-actions efb-optin-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_optin_action_nonce' ) ); ?>">
@@ -791,7 +791,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 		$script_version  = get_option( 'fancybox_scriptVersion', 'classic' );
 		$active_lightbox = isset( $lightboxes[ $script_version ] )
 			? $lightboxes[ $script_version ]
-			: esc_html__( 'Fancybox', 'easy-fancybo' );
+			: esc_html__( 'Fancybox', 'easy-fancybox' );
 		$is_pro_user     = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_pro_license();
 
 		// Enqueue block editor CSS.

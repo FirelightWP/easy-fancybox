@@ -44,7 +44,7 @@
 	</div>
 	<div class="pricing-table">
 		<div class="plan">
-			<h3 class="plan-title">Basic</h3>
+			<h3 class="plan-title">Lite</h3>
 			<div class="plan-cost"><span class="plan-price">$39</span></div>
 			<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
 			<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
@@ -87,7 +87,7 @@
 			</div>
 		</div>
 		<div class="plan featured">
-			<h3 class="plan-title">Pro<span class="most-popular"><?php esc_html_e( 'Most Popular!', 'easy-fancybox' ); ?></span></h3>
+			<h3 class="plan-title">Pro +<span class="most-popular"><?php esc_html_e( 'Most Popular!', 'easy-fancybox' ); ?></span></h3>
 			<div class="plan-cost"><span class="plan-price">$69</span></div>
 			<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
 			<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
