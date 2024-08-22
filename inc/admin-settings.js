@@ -114,7 +114,7 @@ wp.domReady( function () {
 		promoSection.classList.add( 'pro-lightbox-promo' );
 		proUrl = settings.proLandingUrl; // via wp_localize_script
 		promoSection.innerHTML = `
-			<p>The Pro Lightbox is a fast, modern, responsive lightbox with rich features. It is available to Pro users.</p>
+			<p>The Firelight Pro Lightbox is a fast, modern, responsive lightbox with rich features.</p>
 			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings-lightbox&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">See Demos</a>
 			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings-lightbox&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">Try It for Free!</a>
 			<p>You can start your trial directly from your WordPress dashboard <a href="${ proUrl }">here</a>.
