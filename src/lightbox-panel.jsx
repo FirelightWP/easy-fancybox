@@ -13,7 +13,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 
 		// firelight object passed via wp_localize_script
 		const activeLightbox = firelight.activeLightbox;
-		const isProLightbox = 'Pro Lightbox' === activeLightbox;
+		const isProLightbox = 'Firelight Pro Lightbox' === activeLightbox;
 		const isProUser = firelight.isProUser;
 		const settingsUrl = firelight.settingsUrl;
 		const lightboxPanelOpen = firelight.lightboxPanelOpen === '1' ? true : false;
@@ -65,7 +65,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 						}
 						{
 							isProUser && ! isProLightbox && (
-								<p>{ __( 'Notice: You have an active Firelight Pro license and can use the Pro Lightbox!') }</p>
+								<p>{ __( 'Notice: You have an active Firelight Pro license and can use the Firelight Pro Lightbox!') }</p>
 							)
 						}
 						<div className="fancybox-settings-link">

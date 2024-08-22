@@ -191,7 +191,7 @@ class easyFancyBox { // phpcs:ignore
 			'legacy'          => esc_html__( 'FancyBox Legacy', 'easy-fancybox' ),
 			'classic'         => esc_html__( 'FancyBox Classic Reloaded', 'easy-fancybox' ),
 			'fancyBox2'       => esc_html__( 'FancyBox V2', 'easy-fancybox' ),
-			'fancybox5-promo' => esc_html__( 'Pro Lightbox', 'easy-fancybox' ),
+			'fancybox5-promo' => esc_html__( 'Firelight Pro Lightbox', 'easy-fancybox' ),
 		);
 
 		// Frontend hooks.
