@@ -16,7 +16,7 @@
 <div class="notice notice-warning">
 	<p>
 		<strong>
-			<?php esc_html_e( 'Notice: The current Easy FancyBox plugin version is not fully compatible with your version of the Pro extension. Some advanced options may not be functional.', 'easy-fancybox' ); ?>
+			<?php esc_html_e( 'Notice: The current Firelight plugin version is not fully compatible with your version of the Pro extension. Some advanced options may not be functional.', 'easy-fancybox' ); ?>
 		</strong>
 		<br />
 		<?php

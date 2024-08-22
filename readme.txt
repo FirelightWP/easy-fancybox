@@ -1,4 +1,4 @@
-=== Easy FancyBox - WordPress Lightbox Plugin ===
+=== Firelight Lightbox ===
 Contributors: firelightwp
 Tags: lightbox, gallery, image, photo, modal
 Requires at least: 5.0
@@ -7,11 +7,13 @@ Tested up to: 6.6.1
 Stable tag: 2.2.10
 License: GPLv3
 
-The most popular lightbox plugin for WordPress. Adds a simple, fast lightbox for viewing images, videos, and other media.
+Formerly Easy Fancybox. The most popular WordPress lightbox plugin. Simple, fast, and responsive. Opens images, videos, PDFs, and custom popups.
 
 == Description ==
 
-Easy FancyBox is the **most popular lighbox plugin for WordPress**, active on over 200,000 WordPress installations. It adds a lightweight and flexible lightbox for viewing images, video, and other media on your website.
+**NEWS: Easy Fancybox is now Firelight Lightbox**. 
+
+Firelight Lightbox is the **most popular lighbox plugin for WordPress**, active on over 200,000 WordPress installations. It adds a lightweight and flexible lightbox for viewing images, video, and other media on your website.
 
 After activation, links to images, galleries, videos, pdfs, maps, modals, etc, will open in a lightbox. Settings will be under 'Lightbox' on your main admin menu.
 
@@ -46,7 +48,7 @@ Links:
 
 **PRO LIGHTBOX FEATURES**
 
-Easy Fancybox Pro is an extension for this lightbox plugin that offers:
+Firelight Lightbox Pro is an extension for this lightbox plugin that offers:
 - Dozens of Pro features for free lightboxes (Fancybox Legacy, Classic, V2)
 - *Priority support direct from developers*
 - *New and Powerful Pro Lighbox based on Fancybox 5, including:*
@@ -80,23 +82,23 @@ If you're happy with this plugin, please consider writing a quick [rating](https
 
 = Known conflicts & issues =
 
-See [Easy FancyBox Troubleshooting](https://firelightwp.com/wordpress-lightbox-docs/troubleshooting-easy-fancybox/).
+See [Firelight Lightbox Troubleshooting](https://firelightwp.com/wordpress-lightbox-docs/troubleshooting-easy-fancybox/).
 
 == Installation ==
 
-Install like any other plugin. Search for 'lightbox' or 'easy fancybox' from your WordPress admin plugin page. Or download the zip from this page, and upload the zip via your admin plugins page.
+Install like any other plugin. Search for 'lightbox' or 'firelight' or 'easy fancybox' from your WordPress admin plugin page. Or download the zip from this page, and upload the zip via your admin plugins page.
 
 = Wordpress Multiste =
 
 The plugin is compatible with multisite. You can enable the plugin network wide, or allow individual sites to activate it.
 
-When activating the plugin per site, each site will have the Images media type activated and Easy FancyBox will immediately try opening image links in the light box.
+When activating the plugin per site, each site will have the Images media type activated and Firelight Lightbox will immediately try opening image links in the light box.
 
 When activated network wide with **Network Activate**, each sub-site will _not_ have any media type activated. The options will be there for individual site admins, ready to either activate or leave deactivated.
 
 == Screenshots ==
 
-1. Example image with **Overlay** caption. This is the default way Easy FancyBox displays images. Other options are **Inside** and the old **Outside**.
+1. Example image with **Overlay** caption. This is the default way Firelight Lightbox displays images. Other options are **Inside** and the old **Outside**.
 
 2. Example of a YouTube movie in overlay.
 

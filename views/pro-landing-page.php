@@ -18,7 +18,7 @@
 <div class="hero-section">
 	<div class="hero-section-copy">
 		<div>
-			<p class="hero-section-copy-tag"><?php esc_html_e( 'Easy Fancybox Pro', 'easy-fancybox' ); ?></p>
+			<p class="hero-section-copy-tag"><?php esc_html_e( 'Firelight Pro', 'easy-fancybox' ); ?></p>
 		</div>
 		<h1 class="hero-section-copy-title"><?php esc_html_e( 'Make your website better.', 'easy-fancybox' ); ?></h1>
 		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Brilliant new Pro Lightbox!', 'easy-fancybox' ); ?></p>
@@ -40,7 +40,7 @@
 <div class="pricing-section">
     <div class="pricing-header">
 		<h2 class="pricing-headline"><?php esc_html_e( 'Pricing? Try It Free.', 'easy-fancybox' ); ?></h2>		
-		<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Yes, try Easy Fancybox Pro completely free! ALL plans start with a 14-day free trial. We’re that confident that you’ll love it!', 'easy-fancybox' ); ?></h4>
+		<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Yes, try Firelight Pro completely free! ALL plans start with a 14-day free trial. We’re that confident that you’ll love it!', 'easy-fancybox' ); ?></h4>
 	</div>
 	<div class="pricing-table">
 		<div class="plan">

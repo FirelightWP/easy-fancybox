@@ -103,7 +103,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	public static function add_media_settings_section() {
 		add_settings_section(
 			'fancybox_section',
-			'<a name="fancybox"></a>' . __( 'Easy FancyBox', 'easy-fancybox' ),
+			'<a name="fancybox"></a>' . __( 'Firelight', 'easy-fancybox' ),
 			function () {
 				include EASY_FANCYBOX_DIR . '/views/settings-section-intro.php';
 			},
@@ -168,7 +168,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 */
 	public static function add_options_page() {
 		add_menu_page(
-			__( 'Lightbox Settings - Easy Fancybox', 'easy-fancybox' ),
+			__( 'Lightbox Settings - Firelight', 'easy-fancybox' ),
 			'Lightbox',
 			'manage_options',
 			'firelight-settings',
@@ -179,7 +179,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 		if ( ! self::$is_pro_user ) {
 			add_submenu_page(
 				'firelight-settings',
-				'Easy Fancybox Settings',
+				'Firelight Settings',
 				'Settings',
 				'manage_options',
 				'firelight-settings'
@@ -211,10 +211,9 @@ class easyFancyBox_Admin { // phpcs:ignore
 
 		if ( ! self::$is_paying_user && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
-			esc_html_e( 'Try Easy Fancybox Pro free! All plans start with a 14-day trial.', 'easy-fancybox' );
-			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">' . esc_html__( 'See demos', 'easy-fancybox' ) . '</a>';
-			esc_html_e( ' or ', 'easy-fancybox' );
-			echo ' <a href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">' . esc_html__( 'just try it for free!', 'easy-fancybox' ) . '</a>';
+			esc_html_e( 'BIG NEWS: Easy Fancybox is now Firelight Lightbox! Plus you can now try Firelight Pro completely free.', 'easy-fancybox' );
+			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'See Demos', 'easy-fancybox' ) . '</a>';
+			echo ' <a href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Try Pro Free', 'easy-fancybox' ) . '</a>';
 			echo '</p></div>';
 		}
 
@@ -240,7 +239,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			?>
 				<div id="fancybox-optin-modal" style="display:none;">
 					<div class="fancybox-optin-modal-content">
-						<h2>Welcome to Easy Fancybox!</h2>
+						<h2>Welcome to Firelight Lightbox!</h2>
 						<h3>Never miss an important update.</h3>
 						<p>Opt in to receive emails about security & feature updates.</p>
 						<div class="hero-section-actions efb-optin-actions" data-nonce="<?php echo esc_attr( wp_create_nonce( 'efb_optin_action_nonce' ) ); ?>">
@@ -329,7 +328,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 		if ( self::should_show_review_request() ) {
 			?>
 				<div class="notice notice-success is-dismissible efb-review-notice">
-					<p><?php esc_html_e( 'You\'ve been using Easy Fancybox for a long time! Awesome and thanks!', 'easy-fancybox' ); ?></p>
+					<p><?php esc_html_e( 'You\'ve been using Firelight (Easy Fancybox) for a long time! Awesome and thanks!', 'easy-fancybox' ); ?></p>
 					<p>
 						<?php
 						printf(
@@ -444,7 +443,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	public static function add_settings_sections() {
 		add_settings_section(
 			'lightbox-general-settings-section', // Section ID.
-			'Easy Fancybox General Settings', // Section title.
+			'General Settings', // Section title.
 			null, // Callback for top-of-section content.
 			'firelight-settings', // Page ID.
 			array(
@@ -485,7 +484,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 		// Add general settings fields.
 		add_settings_field(
 			'fancybox_version',
-			__( 'Choose Lighbox Version', 'easy-fancybox' ),
+			__( 'Choose Your Lighbox', 'easy-fancybox' ),
 			function () {
 				include EASY_FANCYBOX_DIR . '/views/settings-field-version.php';
 			},
@@ -792,7 +791,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 		$script_version  = get_option( 'fancybox_scriptVersion', 'classic' );
 		$active_lightbox = isset( $lightboxes[ $script_version ] )
 			? $lightboxes[ $script_version ]
-			: esc_html__( 'Easy Fancybox', 'easy-fancybo' );
+			: esc_html__( 'Fancybox', 'easy-fancybo' );
 		$is_pro_user     = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_pro_license();
 
 		// Enqueue block editor CSS.

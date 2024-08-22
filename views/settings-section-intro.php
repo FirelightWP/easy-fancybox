@@ -16,6 +16,6 @@
 <p>
 	<?php
 	/* translators: %1$s is replaced with a link, ie <a> tag */
-	printf( esc_html__( 'Easy FancyBox settings have moved! Please go %1$s.', 'easy-fancybox' ), '<strong><a href="' . esc_url( admin_url( '/admin.php?page=firelight-settings' ) ) . '">' . esc_html__( 'here', 'easy-fancybox' ) . '</a></strong>' );
+	printf( esc_html__( 'Firelight Lightbox (Easy FancyBox) settings have moved! Please go %1$s.', 'easy-fancybox' ), '<strong><a href="' . esc_url( admin_url( '/admin.php?page=firelight-settings' ) ) . '">' . esc_html__( 'here', 'easy-fancybox' ) . '</a></strong>' );
 	?>
 </p>
