@@ -88,7 +88,7 @@
 		</div>
 		<div class="plan featured">
 			<h3 class="plan-title">Pro +<span class="most-popular"><?php esc_html_e( 'Most Popular!', 'easy-fancybox' ); ?></span></h3>
-			<div class="plan-cost"><span class="plan-price">$69</span></div>
+			<div class="plan-cost"><span class="plan-price">$59</span></div>
 			<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
 			<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
 			<ul class="plan-features">
@@ -121,7 +121,7 @@
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="pro-licenses">
-				<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($69)</option>
+				<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($59)</option>
 				<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($79)</option>
 				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($149)</option>
 				</select>
@@ -131,7 +131,7 @@
 		</div>
 		<div class="plan">
 			<h3 class="plan-title">Enterprise</h3>
-			<div class="plan-cost"><span class="plan-price">$399</span></div>
+			<div class="plan-cost"><span class="plan-price">$299</span></div>
 			<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
 			<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
 			<ul class="plan-features">
@@ -164,7 +164,7 @@
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="enterprise-licenses">
-				<option value="unlimited"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?> ($399)</option>
+				<option value="unlimited"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?> ($299)</option>
 				</select>
 			</div>
 			<button id="enterprise-purchase" class="pro-action-button"><?php esc_html_e( 'Try It Free!', 'easy-fancybox' ); ?></button>
