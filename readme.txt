@@ -107,6 +107,7 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 = 2.3.0 =
 * New: Change plugin name to Firelight Lightbox
 * New: Added free trials for pro version
+* Updated: Change style & behavior of options page
 * Fix: 'nofancybox' not working fully for image blocks
 * Fix: Background scrolling on mobile IOS devices
 
