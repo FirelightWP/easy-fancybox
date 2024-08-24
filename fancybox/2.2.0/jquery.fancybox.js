@@ -1934,10 +1934,10 @@
 			this.open(opts);
 		},
 
-		afterShow: function (opts) {
-			// Prevent background scrolling.
-			$("html, body").css("overflow","hidden");
-		},
+		// afterShow: function (opts) {
+		// 	// Prevent background scrolling.
+		// 	$("html, body").css("overflow","hidden");
+		// },
 
 		onUpdate : function() {
 			if (!this.fixed) {
@@ -1947,7 +1947,7 @@
 
 		afterClose: function (opts) {
 			// Undo prevent background scrolling.
-			$("html, body").css("overflow","auto");
+			// $("html, body").css("overflow","auto");
 			// Remove overlay if exists and fancyBox is not opening
 			// (e.g., it is not being open using afterClose callback)
 			if (this.overlay && !F.coming) {
