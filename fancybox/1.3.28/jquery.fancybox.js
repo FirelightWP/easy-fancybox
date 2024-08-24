@@ -1336,11 +1336,11 @@
 		enableEscapeButton : true,
 		enableKeyboardNav : true,
 
-		onStart : function(){$("html, body").css("overflow","hidden");},
+		onStart : function(){},
 		onCancel : function(){},
 		onComplete : function(){},
 		onCleanup : function(){},
-		onClosed : function(){$("html, body").css("overflow","auto");},
+		onClosed : function(){},
 		onError : function(){}
 	};
 
