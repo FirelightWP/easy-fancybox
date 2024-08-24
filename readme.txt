@@ -4,7 +4,7 @@ Tags: lightbox, gallery, image, photo, modal
 Requires at least: 5.0
 Requires PHP: 7.0
 Tested up to: 6.6.1
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv3
 
 Formerly Easy Fancybox. The most popular WordPress lightbox plugin. Simple, fast, and responsive. Opens images, videos, PDFs, and custom popups.
@@ -98,11 +98,20 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 
 == Screenshots ==
 
-1. Example image with **Overlay** caption. This is the default way Firelight Lightbox displays images. Other options are **Inside** and the old **Outside**.
+1. Open an image in the default lightbox.
 
-2. Example of a YouTube movie in overlay.
+2. Vimeo video in lightbox.
+
+3. Youtube video in lightbox.
+
+4. Open a modal in lightbox (modal created in block editor).
+
+5. The Firelight Lightbox options panel (with Fancybox Classic selected).
 
 == Changelog ==
+
+= 2.3.1 =
+* Revert: Background scrolling fix on mobile IOS devices
 
 = 2.3.0 =
 * New: Change plugin name to Firelight Lightbox
