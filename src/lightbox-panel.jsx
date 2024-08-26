@@ -14,6 +14,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 		// firelight object passed via wp_localize_script
 		const activeLightbox = firelight.activeLightbox;
 		const isProLightbox = 'Firelight Pro Lightbox' === activeLightbox;
+		const isPayingUser = firelight.isPayingUser;
 		const isProUser = firelight.isProUser;
 		const settingsUrl = firelight.settingsUrl;
 		const lightboxPanelOpen = firelight.lightboxPanelOpen === '1' ? true : false;
@@ -57,7 +58,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 											href='https://firelightwp.com/pro-lightbox/pricing/?utm_source=block-editor&utm_medium=referral&utm_campaign=easy-fancybox'
 											target='_blank'
 										>
-											{ __( 'Try It Free' ) }
+											{ isPayingUser ? __( 'Upgrade' ) : __( 'Try It Free' ) }
 										</Button>
 									</div>
 								</>

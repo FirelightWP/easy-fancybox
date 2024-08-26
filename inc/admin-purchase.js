@@ -5,7 +5,7 @@
 			plan_id:    '25303',
 			public_key: 'pk_a82dd43b11d3bf7b055b47c428513',
 			image:      'https://firelightwp.com/wp-content/uploads/2024/03/icon-300px.png',
-            trial:      true
+            trial:      ! settings.hasLitePlan
 		});
 		basicHandler.open({
 			name     : 'Firelight Pro - Basic',
@@ -29,7 +29,7 @@
 			plan_id:    '25304',
 			public_key: 'pk_a82dd43b11d3bf7b055b47c428513',
 			image:      'https://firelightwp.com/wp-content/uploads/2024/03/icon-300px.png',
-            trial:      true
+            trial:      ! settings.hasLitePlan
 		});
 		proHandler.open({
 			name     : 'Firelight Pro',
@@ -53,7 +53,7 @@
 			plan_id:    '25330',
 			public_key: 'pk_a82dd43b11d3bf7b055b47c428513',
 			image:      'https://firelightwp.com/wp-content/uploads/2024/03/icon-300px.png',
-            trial:      true
+            trial:      ! settings.hasLitePlan
 		});
 		enterpriseHandler.open({
 			name     : 'Firelight Pro - Enterprise',
