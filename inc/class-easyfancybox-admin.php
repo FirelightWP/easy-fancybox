@@ -139,6 +139,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			'firelight-settings-js',
 			'settings',
 			array(
+				'hasLitePlan'   => self::has_valid_license() && ! self::has_valid_pro_license(),
 				'proLandingUrl' => admin_url( 'admin.php?page=firelight-pro' ),
 				'openModal'     => self::should_show_email_optin(),
 			)
