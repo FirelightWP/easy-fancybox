@@ -43,27 +43,9 @@ class easyFancyBox_Admin { // phpcs:ignore
 	private static $do_compat_warning = false;
 
 	/**
-	 * Stores whether current user is paying or on trial.
-	 *
-	 * @var bool
-	 */
-	private static $is_paying_user = false;
-
-	/**
-	 * Stores whether current user is paying or on trial
-	 * for Pro plan specifically.
-	 *
-	 * @var bool
-	 */
-	private static $is_pro_user = false;
-
-	/**
 	 * Constructor for the EasyFancyBox Admin class.
 	 */
 	public function __construct() {
-		self::$is_paying_user = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_license();
-		self::$is_pro_user    = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_pro_license();
-
 		// Text domain.
 		add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
 
@@ -176,7 +158,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			'dashicons-format-image',
 			85
 		);
-		if ( ! self::$is_pro_user ) {
+		if ( ! self::has_valid_pro_license() ) {
 			add_submenu_page(
 				'firelight-settings',
 				'Firelight Settings',
@@ -209,7 +191,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			? ''
 			: '<a id="fancybox-open-modal" href="#TB_inline?width=600&height=550&inlineId=fancybox-optin-modal" class="thickbox">Get email updates</a>';
 
-		if ( ! self::$is_paying_user && ! self::should_show_review_request() ) {
+		if ( ! self::has_valid_license() && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
 			esc_html_e( 'BIG NEWS: Easy Fancybox is now Firelight. Plus try Firelight Pro completely free!', 'easy-fancybox' );
 			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Demos', 'easy-fancybox' ) . '</a>';
@@ -792,7 +774,6 @@ class easyFancyBox_Admin { // phpcs:ignore
 		$active_lightbox = isset( $lightboxes[ $script_version ] )
 			? $lightboxes[ $script_version ]
 			: esc_html__( 'Fancybox', 'easy-fancybox' );
-		$is_pro_user     = class_exists( 'easyFancyBox_Advanced' ) && easyFancyBox_Advanced::has_valid_pro_license();
 
 		// Enqueue block editor CSS.
 		wp_enqueue_style(
@@ -816,7 +797,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			array(
 				'activeLightbox'    => $active_lightbox,
 				'settingsUrl'       => esc_url( admin_url( 'admin.php?page=firelight-settings' ) ),
-				'isProUser'         => $is_pro_user,
+				'isProUser'         => self::has_valid_pro_license(),
 				'lightboxPanelOpen' => $lightbox_panel_open,
 			)
 		);
@@ -1074,5 +1055,46 @@ class easyFancyBox_Admin { // phpcs:ignore
 		}
 
 		exit;
+	}
+
+	/**
+	 * Checks if Freemius license is Pro OR EDD license exists
+	 * Note: we're grandfathering past EDD users into Pro features
+	 */
+	public static function has_valid_pro_license() {
+		$has_fs_pro_licence = function_exists( 'efb_fs' ) && efb_fs()->is_paying() && efb_fs()->is_plan( 'pro' );
+		$has_fs_pro_trial   = function_exists( 'efb_fs' ) && efb_fs()->is_trial() && efb_fs()->is_trial_plan( 'pro' );
+		return $has_fs_pro_trial || $has_fs_pro_licence || self::has_valid_edd_license();
+	}
+
+	/**
+	 * Checks if valid freemius OR EDD license exists
+	 */
+	public static function has_valid_license() {
+		$has_valid_fs_licence = function_exists( 'efb_fs' ) && efb_fs()->is_paying();
+		$is_trial             = function_exists( 'efb_fs' ) && efb_fs()->is_trial();
+		return $is_trial || $has_valid_fs_licence || self::has_valid_edd_license();
+	}
+
+	/**
+	 * Checks if has valid EDD licence
+	 */
+	public static function has_valid_edd_license() {
+		$edd_license = get_option( 'easy_fancybox_license' );
+
+		if ( defined( 'EFB_LOAD_EDD' ) && EFB_LOAD_EDD === true ) {
+			return true;
+		}
+
+		if (
+			$edd_license
+			&& is_array( $edd_license )
+			&& array_key_exists( 'status', $edd_license )
+			&& 'valid' === $edd_license['status']
+		) {
+			return true;
+		}
+
+		return false;
 	}
 }
