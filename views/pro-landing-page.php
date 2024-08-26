@@ -27,7 +27,7 @@
 		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Better user experience and more engagement!', 'easy-fancybox' ); ?></p>
 		<div class="hero-section-actions">
 			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'See Demos', 'easy-fancybox' ); ?></a>
-			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'Try It Completely Free!', 'easy-fancybox' ); ?></a>
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'Try It Free!', 'easy-fancybox' ); ?></a>
 		</div>
 		<p class="hero-section-copy-under-button"><?php esc_html_e( 'You can also start your trial directly below!', 'easy-fancybox' ); ?></p>
 	</div>

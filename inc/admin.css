@@ -14,6 +14,7 @@
 .lightbox_page_firelight-pro .sale-banner {
     background: #8bbc00;
 	background: #ff5722;
+	background: #044356;
     padding: 10px 16px;
     margin: 0 -32px 14px -20px;
 	max-width: 99%;
@@ -21,7 +22,8 @@
 
 .toplevel_page_firelight-settings .sale-banner .banner-button,
 .lightbox_page_firelight-pro .sale-banner {
-    border: 1px solid white;
+    /* border: 1px solid white; */
+	background: #ff5722;
     padding: 6px 10px;
     text-transform: uppercase;
     font-size: 13px;
@@ -63,7 +65,7 @@
     align-items: center;
     justify-content: space-between;
     max-width: 90%;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .toplevel_page_firelight-settings .firelight-header .firelight-logo {
@@ -77,6 +79,12 @@
 	font-size: 16px;
 	text-decoration: none;
 	color: #ff5722;
+	background: #ff5722;
+    color: white;
+    padding: 6px 12px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .toplevel_page_firelight-settings .efb-rebrand {
@@ -369,6 +377,7 @@ body.lightbox_page_firelight-pro {
 .toplevel_page_firelight-settings input.button-primary {
 	background: #ff5722;
     padding: 16px 40px;
+	padding: 10px 30px;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 16px;
@@ -472,16 +481,17 @@ body.lightbox_page_firelight-pro {
 .pricing-table .plan-title {
     position: relative;
     top: 0;
-    font-weight: 900 !important;
+    font-weight: 700 !important;
     padding: 24px 10px;
 	display: block;
 	background-color: #ff5722;
+	background-color: #044356;
     color: #ffffff !important;
     text-transform: uppercase;
 	letter-spacing: 1px;
 	border-bottom: 0px solid #000;
 	text-align: center;
-	font-size: 34px;
+	font-size: 30px;
 	margin: 0 0 30px 0;
 	padding: 34px 10px;
 }
@@ -599,7 +609,8 @@ body.lightbox_page_firelight-pro {
 }
 
 .pricing-table .featured .plan-title {
-	  padding: 42px 10px 20px;
+	  padding: 37px 10px 20px;
+	  border-top: 5px solid #ff5722;
 }
 
 .pricing-notice {
