@@ -143,6 +143,14 @@ class easyFancyBox_Admin { // phpcs:ignore
 				'openModal'     => self::should_show_email_optin(),
 			)
 		);
+
+		wp_localize_script(
+			'firelight-purchase-js',
+			'settings',
+			array(
+				'hasLitePlan' => self::has_valid_license() && ! self::has_valid_pro_license(),
+			)
+		);
 	}
 
 	/**
@@ -358,6 +366,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 * Render the content of the Lightbox Settings page.
 	 */
 	public static function pro_landing_page() {
+		$has_lite_plan = self::has_valid_license() && ! self::has_valid_pro_license();
 		include EASY_FANCYBOX_DIR . '/views/pro-landing-page.php';
 	}
 
@@ -797,6 +806,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 			array(
 				'activeLightbox'    => $active_lightbox,
 				'settingsUrl'       => esc_url( admin_url( 'admin.php?page=firelight-settings' ) ),
+				'isPayingUser'      => self::has_valid_license(),
 				'isProUser'         => self::has_valid_pro_license(),
 				'lightboxPanelOpen' => $lightbox_panel_open,
 			)

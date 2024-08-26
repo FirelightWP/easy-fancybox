@@ -478,6 +478,10 @@ body.lightbox_page_firelight-pro {
 	border-radius: 3px;
 }
 
+.pricing-table .plan.active {
+    opacity: .7;
+}
+
 .pricing-table .plan-title {
     position: relative;
     top: 0;
