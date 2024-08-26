@@ -114,12 +114,11 @@ wp.domReady( function () {
 		const promoSection = document.createElement( 'div' );
 		promoSection.classList.add( 'pro-lightbox-promo' );
 		proUrl = settings.proLandingUrl; // via wp_localize_script
+		const trialCopy = ! settings.hasLitePlan ? `<p>You can start your trial directly from your WordPress dashboard <a href="${ proUrl }">here</a>` : '';
 		promoSection.innerHTML = `
 			<p>The Firelight Pro Lightbox is a fast, modern, responsive lightbox with rich features.</p>
 			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings-lightbox&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">See Demos</a>
-			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings-lightbox&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">Try It for Free!</a>
-			<p>You can start your trial directly from your WordPress dashboard <a href="${ proUrl }">here</a>.
-		`;
+			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings-lightbox&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank">${ settings.hasLitePlan ? 'Upgrade Now' : 'Try It for Free!'}</a>` + trialCopy;
 		document.querySelector( '.active-lightbox-heading' ).after( promoSection );
 	}
 } );
