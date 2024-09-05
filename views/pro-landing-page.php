@@ -27,16 +27,14 @@
 			</p>
 		</div>
 		<h1 class="hero-section-copy-title"><?php esc_html_e( 'Make your website better.', 'easy-fancybox' ); ?></h1>
-		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Brilliant new Pro Lightbox!', 'easy-fancybox' ); ?></p>
-		<?php if ( $has_lite_plan ) : ?>
-			<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Faster lightbox', 'easy-fancybox' ); ?></p>
-			<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Better mobile responsiveness', 'easy-fancybox' ); ?></p>
-		<?php endif; ?>
+		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Get our new mobile-first Pro Lightbox!', 'easy-fancybox' ); ?></p>
+		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( '100+ Pro Lightbox features', 'easy-fancybox' ); ?></p>
+		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Social sharing, video galleries, EXIF display', 'easy-fancybox' ); ?></p>
 		<?php if ( ! $has_lite_plan ) : ?>
-			<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( '50+ pro features for free lightboxes!', 'easy-fancybox' ); ?></p>
-			<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Rockstar Pro support - from devs!', 'easy-fancybox' ); ?></p>
+			<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( '50+ more features for free lightboxes', 'easy-fancybox' ); ?></p>
+			<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Rockstar Pro support direct from devs!', 'easy-fancybox' ); ?></p>
 		<?php endif; ?>
-		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Better user experience and more engagement!', 'easy-fancybox' ); ?></p>
+		<p class="hero-section-copy-text"><span class="dashicons dashicons-arrow-right-alt"></span><?php esc_html_e( 'Better user experience = more engagement!', 'easy-fancybox' ); ?></p>
 		<div class="hero-section-actions">
 			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php esc_html_e( 'See Demos', 'easy-fancybox' ); ?></a>
 			<a class="pro-action-button" href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-landing&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank"><?php $has_lite_plan ? esc_html_e( 'Upgrade', 'easy-fancybox' ) : esc_html_e( 'Try It Free!', 'easy-fancybox' ); ?></a>
@@ -61,7 +59,7 @@
 	<div class="pricing-table">
 		<div class="plan <?php $has_lite_plan ? esc_attr_e( 'active', 'easy-fancybox' ) : ''; ?>">
 			<h3 class="plan-title"><?php $has_lite_plan ? esc_html_e( 'Your Plan', 'easy-fancybox' ) : esc_html_e( 'Lite', 'easy-fancybox' ); ?></h3>
-			<div class="plan-cost"><span class="plan-price">$39</span></div>
+			<div class="plan-cost"><span class="plan-price">$29</span></div>
 			<?php if ( ! $has_lite_plan ) : ?>
 				<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
 				<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
@@ -97,8 +95,8 @@
 			<?php if ( ! $has_lite_plan ) : ?>
 				<div class="plan-select-dropdown">
 					<select id="basic-licenses">
-					<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($39)</option>
-					<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($49)</option>
+					<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($29)</option>
+					<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($39)</option>
 					<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($99)</option>
 					</select>
 				</div>
@@ -108,7 +106,7 @@
 		</div>
 		<div class="plan featured">
 			<h3 class="plan-title">Pro +<span class="most-popular"><?php esc_html_e( 'Most Popular!', 'easy-fancybox' ); ?></span></h3>
-			<div class="plan-cost"><span class="plan-price">$59</span></div>
+			<div class="plan-cost"><span class="plan-price">$39</span></div>
 			<?php if ( ! $has_lite_plan ) : ?>
 				<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
 				<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
@@ -143,9 +141,9 @@
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="pro-licenses">
-				<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($59)</option>
-				<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($79)</option>
-				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($149)</option>
+				<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($39)</option>
+				<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($59)</option>
+				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($129)</option>
 				</select>
 			</div>
 			<button id="pro-purchase" class="pro-action-button"><?php $has_lite_plan ? esc_html_e( 'Upgrade', 'easy-fancybox' ) : esc_html_e( 'Try It Free!', 'easy-fancybox' ); ?></button>
@@ -153,7 +151,7 @@
 		</div>
 		<div class="plan">
 			<h3 class="plan-title">Enterprise</h3>
-			<div class="plan-cost"><span class="plan-price">$299</span></div>
+			<div class="plan-cost"><span class="plan-price">$199</span></div>
 			<?php if ( ! $has_lite_plan ) : ?>
 				<p class="sale"><?php esc_html_e( '14-day trial!', 'easy-fancybox' ); ?><br>
 				<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
@@ -188,7 +186,7 @@
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="enterprise-licenses">
-				<option value="unlimited"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?> ($299)</option>
+				<option value="unlimited"><?php esc_html_e( 'Unlimited Sites', 'easy-fancybox' ); ?> ($199)</option>
 				</select>
 			</div>
 			<button id="enterprise-purchase" class="pro-action-button"><?php $has_lite_plan ? esc_html_e( 'Upgrade', 'easy-fancybox' ) : esc_html_e( 'Try It Free!', 'easy-fancybox' ); ?></button>
