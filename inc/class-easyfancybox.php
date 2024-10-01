@@ -239,9 +239,13 @@ class easyFancyBox { // phpcs:ignore
 		}
 
 		global $wp_styles;
-		$_dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
+		$_dep    = get_option( 'fancybox_nojQuery', false ) ? array( 'fancybox-purify' ) : array( 'fancybox-purify', 'jquery' );
 		$_ver    = defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : false;
 		$_footer = get_option( 'fancybox_noFooter', false ) ? false : true;
+
+		// Register DomPurify Script for use below and elsewhere.
+		$purify_script_url = \easyFancyBox::$plugin_url . 'vendor/purify.min.js';
+		wp_register_script( 'fancybox-purify', $purify_script_url, array(), $_ver, $_footer );
 
 		// Enqueue styles.
 		if ( ! empty( self::$styles ) ) {

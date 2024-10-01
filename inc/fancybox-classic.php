@@ -330,7 +330,7 @@ function prepare_scripts_styles() {
 
 	// SCRIPT & STYLE URLS
 
-	$dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
+	$dep    = get_option( 'fancybox_nojQuery', false ) ? array( 'fancybox-purify' ) : array( 'fancybox-purify', 'jquery' );
 	$ver    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? time()  : false;
 	$min    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? ''      : '.min';
 	$footer = get_option( 'fancybox_noFooter', false ) ? false   : true;
@@ -341,6 +341,12 @@ function prepare_scripts_styles() {
 		'deps'  => array(),
 		'ver'   => $ver,
 		'media' => 'screen'
+	);
+	\easyFancyBox::$scripts['fancybox-purify'] = array(
+		'src'    => \easyFancyBox::$plugin_url . 'vendor/purify.min.js',
+		'deps'   => array(),
+		'ver'    => $ver,
+		'footer' => $footer,
 	);
 	\easyFancyBox::$scripts['jquery-fancybox'] = array(
 		'src'    => \easyFancyBox::$plugin_url.'fancybox/'.FANCYBOX_VERSIONS['classic'].'/jquery.fancybox'.$min.'.js',
