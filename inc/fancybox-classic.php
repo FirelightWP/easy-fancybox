@@ -330,7 +330,7 @@ function prepare_scripts_styles() {
 
 	// SCRIPT & STYLE URLS
 
-	$dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
+	$dep    = get_option( 'fancybox_nojQuery', false ) ? array( 'fancybox-purify' ) : array( 'fancybox-purify', 'jquery' );
 	$ver    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? time()  : false;
 	$min    = defined( 'WP_DEBUG' ) && WP_DEBUG        ? ''      : '.min';
 	$footer = get_option( 'fancybox_noFooter', false ) ? false   : true;

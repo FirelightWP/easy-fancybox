@@ -314,7 +314,7 @@ fb_'.$key.'_sections.each(function(){jQuery(this).find(fb_'.$key.'_select).attr(
 	$fb_handler .= '};';
 
 	// Replace TitleFromAlt shortcode.
-	$fb_handler = str_replace( '"{{titleFromAlt}}"', 'function(){var alt=this.element.find(\'img\').attr(\'alt\');this.inner.find(\'img\').attr(\'alt\',alt);this.title=this.title||alt;}', $fb_handler );
+	$fb_handler = str_replace( '"{{titleFromAlt}}"', 'function(){var alt=DOMPurify.sanitize(this.element.find(\'img\').attr(\'alt\'));this.inner.find(\'img\').attr(\'alt\',alt);this.title=this.title||alt;}', $fb_handler );
 
 	// Replace PDF embed shortcodes.
 	if ( ! empty( get_option('fancybox_enablePDF') ) && ! empty( get_option('fancybox_PDFonStart', '{{object}}') ) ) {
@@ -498,7 +498,7 @@ function prepare_scripts_styles() {
 	prepare_inline_styles();
 
 	// Script and style urls.
-	$dep    = get_option( 'fancybox_nojQuery', false ) ? array() : array( 'jquery' );
+	$dep    = get_option( 'fancybox_nojQuery', false ) ? array( 'fancybox-purify' ) : array( 'fancybox-purify', 'jquery' );
 	$ver    = defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : false;
 	$min    = defined( 'WP_DEBUG' ) && WP_DEBUG ? '' : '.min';
 	$footer = get_option( 'fancybox_noFooter', false ) ? false : true;
