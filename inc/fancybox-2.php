@@ -512,12 +512,6 @@ function prepare_scripts_styles() {
 		'ver'   => $ver,
 		'media' => 'screen',
 	);
-	\easyFancyBox::$scripts['fancybox-purify'] = array(
-		'src'    => \easyFancyBox::$plugin_url . 'vendor/purify.min.js',
-		'deps'   => array(),
-		'ver'    => $ver,
-		'footer' => $footer,
-	);
 	\easyFancyBox::$scripts['jquery-fancybox'] = array(
 		'src'    => \easyFancyBox::$plugin_url . 'fancybox/' . FANCYBOX_VERSIONS['fancyBox2'] . '/jquery.fancybox' . $min . '.js',
 		'deps'   => $dep,
