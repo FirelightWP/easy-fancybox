@@ -112,6 +112,7 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 
 = 2.3.4 =
 * Update: Improve sanitization of alt tags
+* Update: Update minified JS files
 
 = 2.3.3 =
 * Update: Pro trial implementation
