@@ -1414,7 +1414,7 @@ $efb_options = array(
 				'sanitize_callback' => 'wp_validate_boolean',
 				'hide'              => true,
 				'default'           => '1',
-				'selector'          => '\'a[href*="youtu.be/" i],area[href*="youtu.be/" i],a[href*="youtube.com/" i],area[href*="youtube.com/" i]\' ).filter(function(){return this.href.match(/\/(?:youtu\.be|watch\?|embed\/)/);}',
+				'selector'          => '\'a[href*="youtu.be/" i],area[href*="youtu.be/" i],a[href*="youtube.com/" i],area[href*="youtube.com/" i]\' ).filter(function(){return this.href.match(/\/(?:youtu\.be|watch\?|embed\/|clip\/)/)}',
 			),
 			'tag'            => array(
 				'hide'    => true,
