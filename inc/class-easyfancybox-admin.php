@@ -47,7 +47,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 */
 	public function __construct() {
 		// Text domain.
-		add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
+		add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
 
 		// Admin notices.
 		add_action( 'admin_init', array( __CLASS__, 'compat_warning' ) );
