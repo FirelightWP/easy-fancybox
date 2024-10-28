@@ -47,7 +47,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 	 */
 	public function __construct() {
 		// Text domain.
-		add_action( 'plugins_loaded', array( __CLASS__, 'load_textdomain' ) );
+		// add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
 
 		// Admin notices.
 		add_action( 'admin_init', array( __CLASS__, 'compat_warning' ) );
@@ -908,9 +908,9 @@ class easyFancyBox_Admin { // phpcs:ignore
 	/**
 	 * Text domain for translations
 	 */
-	public static function load_textdomain() {
-		load_plugin_textdomain( 'easy-fancybox', false, dirname( EASY_FANCYBOX_BASENAME ) . '/languages' );
-	}
+	// public static function load_textdomain() {
+	// 	load_plugin_textdomain( 'easy-fancybox', false, dirname( EASY_FANCYBOX_BASENAME ) . '/languages' );
+	// }
 
 	/**
 	 * Adds warning if free and pro versions are incompatible.
