@@ -58,7 +58,7 @@
 	<div class="pricing-table">
 		<div class="plan <?php $has_lite_plan ? esc_attr_e( 'active', 'easy-fancybox' ) : ''; ?>">
 			<h3 class="plan-title"><?php $has_lite_plan ? esc_html_e( 'Your Plan', 'easy-fancybox' ) : esc_html_e( 'Lite', 'easy-fancybox' ); ?></h3>
-			<div class="plan-cost"><span class="plan-price">$29</span></div>
+			<div class="plan-cost"><span class="plan-price">$39</span></div>
 			<?php if ( ! $has_lite_plan ) : ?>
 				<p class="sale"><?php esc_html_e( '7-day trial!', 'easy-fancybox' ); ?><br>
 				<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
@@ -94,8 +94,8 @@
 			<?php if ( ! $has_lite_plan ) : ?>
 				<div class="plan-select-dropdown">
 					<select id="basic-licenses">
-					<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($29)</option>
-					<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($39)</option>
+					<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($39)</option>
+					<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($49)</option>
 					<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($99)</option>
 					</select>
 				</div>
@@ -105,7 +105,7 @@
 		</div>
 		<div class="plan featured">
 			<h3 class="plan-title">Pro +<span class="most-popular"><?php esc_html_e( 'Most Popular!', 'easy-fancybox' ); ?></span></h3>
-			<div class="plan-cost"><span class="plan-price">$39</span></div>
+			<div class="plan-cost"><span class="plan-price">$59</span></div>
 			<?php if ( ! $has_lite_plan ) : ?>
 				<p class="sale"><?php esc_html_e( '7-day trial!', 'easy-fancybox' ); ?><br>
 				<?php esc_html_e( 'No charge today.', 'easy-fancybox' ); ?></p>
@@ -140,8 +140,8 @@
 			<div class="plan-select">
 			<div class="plan-select-dropdown">
 				<select id="pro-licenses">
-				<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($39)</option>
-				<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($59)</option>
+				<option value="1" selected="selected"><?php esc_html_e( '1 Site License', 'easy-fancybox' ); ?> ($59)</option>
+				<option value="5"><?php esc_html_e( '5 Site License', 'easy-fancybox' ); ?> ($69)</option>
 				<option value="25"><?php esc_html_e( '25 Site License', 'easy-fancybox' ); ?> ($129)</option>
 				</select>
 			</div>
