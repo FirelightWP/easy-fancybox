@@ -14,6 +14,16 @@
 
 ?>
 
+<div class="sale-banner">
+	<p>
+		<?php
+			esc_html_e( 'DOUBLE PROMOTIONS! Try Firelight Pro free + lock in 20% off with PRO20 coupon!', 'easy-fancybox' );
+			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Demos', 'easy-fancybox' ) . '</a>';
+			echo ' <a href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Try Pro Free', 'easy-fancybox' ) . '</a>';
+		?>
+	</p>
+</div>
+
 <img class="firelight-logo" src="<?php echo esc_url( easyFancyBox::$plugin_url ); ?>images/firelight-logo.png">
 <div class="hero-section">
 	<div class="hero-section-copy">
@@ -52,7 +62,8 @@
 	<div class="pricing-header">
 		<h2 class="pricing-headline"><?php $has_lite_plan ? esc_html_e( 'Upgrade to Pro!', 'easy-fancybox' ) : esc_html_e( 'Pricing? Try It Free.', 'easy-fancybox' ); ?></h2>
 		<?php if ( ! $has_lite_plan ) : ?>
-			<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Yes, try Firelight Pro free! ALL plans start with a 7-day free trial. We’re that confident that you’ll love it!', 'easy-fancybox' ); ?></h4>
+			<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Yes, all plans start with a 7-day free trial!', 'easy-fancybox' ); ?></h4>
+			<h4 class="pricing-guarantee-2"><strong><?php esc_html_e( 'Plus 20% off ths week with coupon PRO20!', 'easy-fancybox' ); ?></strong></h4>
 		<?php endif; ?>
 	</div>
 	<div class="pricing-table">
