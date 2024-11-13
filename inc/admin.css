@@ -21,7 +21,7 @@
 }
 
 .toplevel_page_firelight-settings .sale-banner .banner-button,
-.lightbox_page_firelight-pro .sale-banner {
+.lightbox_page_firelight-pro .sale-banner .banner-button {
     /* border: 1px solid white; */
 	background: #ff5722;
     padding: 6px 10px;
@@ -313,11 +313,6 @@
 body.lightbox_page_firelight-pro {
 	background-color: white;
 }
-
-.lightbox_page_firelight-pro #wpbody {
-	max-width: 1300px;
-	width: 97.5%;
-}
     
 .pricing-section {
     padding: 40px 20px;
@@ -326,6 +321,8 @@ body.lightbox_page_firelight-pro {
 .hero-section {
 	display: flex;
 	align-items: center;
+	max-width: 1400px;
+    margin: 0 auto;
 }
 
 .hero-section-copy {

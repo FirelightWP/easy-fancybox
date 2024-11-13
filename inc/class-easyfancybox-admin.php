@@ -202,7 +202,7 @@ class easyFancyBox_Admin { // phpcs:ignore
 
 		if ( ! self::has_valid_license() && ! self::should_show_review_request() ) {
 			echo '<div class="sale-banner"><p>';
-			esc_html_e( 'BIG NEWS: Easy Fancybox is now Firelight. Plus try Firelight Pro free for 7 days!', 'easy-fancybox' );
+			esc_html_e( 'DOUBLE PROMOTIONS! Try Firelight Pro free + lock in 20% off with PRO20 coupon!', 'easy-fancybox' );
 			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Demos', 'easy-fancybox' ) . '</a>';
 			echo ' <a href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Try Pro Free', 'easy-fancybox' ) . '</a>';
 			echo '</p></div>';
