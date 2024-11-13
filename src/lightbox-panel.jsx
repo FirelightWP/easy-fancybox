@@ -41,7 +41,7 @@ const withLightboxPanelControls = createHigherOrderComponent( ( BlockEdit ) => {
 										checked={ false }
 										disabled
 									/>
-									<p className="fancybox-upgrade-notice">{ __( 'Upgrade to enable Pro Lightbox.') }</p>
+									<p className="fancybox-upgrade-notice">{ __( 'Upgrade to enable Pro Lightbox. Get 20% off with coupon code PRO20.') }</p>
 									<div className="fancybox-button-container">
 										<Button
 											variant="primary"
