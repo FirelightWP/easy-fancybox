@@ -110,7 +110,7 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 
 == Changelog ==
 
-= 2.3.6 =
+= 2.3.7 =
 * New: Github actions for deployment
 * Updated: Pro landing and markup
 
