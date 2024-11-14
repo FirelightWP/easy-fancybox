@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * CONSTANTS
  */
-define( 'EASY_FANCYBOX_VERSION', '2.3.5' );
+define( 'EASY_FANCYBOX_VERSION', '2.3.6' );
 define(
 	'FANCYBOX_VERSIONS',
 	array(
