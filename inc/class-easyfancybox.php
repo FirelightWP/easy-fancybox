@@ -187,11 +187,12 @@ class easyFancyBox { // phpcs:ignore
 	public function __construct() {
 		global $wp_version;
 		self::$plugin_url      = plugins_url( '/', EASY_FANCYBOX_BASENAME /* EASY_FANCYBOX_DIR.'/easy-fancybox.php' */ );
+
 		self::$free_lightboxes = array(
-			'legacy'          => esc_html__( 'FancyBox Legacy', 'easy-fancybox' ),
-			'classic'         => esc_html__( 'FancyBox Classic Reloaded', 'easy-fancybox' ),
-			'fancyBox2'       => esc_html__( 'FancyBox V2', 'easy-fancybox' ),
-			'fancybox5-promo' => esc_html__( 'Firelight Pro Lightbox', 'easy-fancybox' ),
+			'legacy'          => 'FancyBox Legacy',
+			'classic'         => 'FancyBox Classic Reloaded',
+			'fancyBox2'       => 'FancyBox V2',
+			'fancybox5-promo' => 'Firelight Pro Lightbox',
 		);
 
 		// Frontend hooks.
