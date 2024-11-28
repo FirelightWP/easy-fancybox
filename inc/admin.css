@@ -419,14 +419,19 @@ body.lightbox_page_firelight-pro {
 }
 
 .pricing-section .pricing-guarantee-1,
-.pricing-section .pricing-guarantee-2 {
+.pricing-section .pricing-guarantee-2,
+.lifetime-tip {
     font-size: 20px;
     text-align: center;
     font-weight: normal;
     margin: 0 auto;
 	padding: 0px 4px 0;
-    max-width: 550px;
+    max-width: 650px;
     line-height: 1.5;
+}
+
+.lifetime-tip {
+	margin-top: 40px;
 }
 
 .pricing-section .pricing-guarantee-1 {
@@ -436,7 +441,7 @@ body.lightbox_page_firelight-pro {
 
 .pricing-section .pricing-headline {
     width: 98%;
-    max-width: 520px;
+    max-width: 650px;
     margin: 20px auto;
 }
 
