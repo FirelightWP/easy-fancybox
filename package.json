@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@wordpress/scripts": "^27.0.0"
+    "@wordpress/scripts": "^30.0.2"
   },
   "dependencies": {
     "@wordpress/block-editor": "^13.1.0",
