@@ -17,7 +17,7 @@
 <div class="sale-banner">
 	<p>
 		<?php
-			esc_html_e( 'BLACK FRIDAY SALE! 40% OFF Firelight Pro. Use coupon BF2024 at checkout!', 'easy-fancybox' );
+			esc_html_e( 'CYBER MONDAY SALE! 40% OFF Firelight Pro! Use coupon CM2024 at checkout!', 'easy-fancybox' );
 			echo ' <a href="https://firelightwp.com/pro-lightbox?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'Demos', 'easy-fancybox' ) . '</a>';
 			echo ' <a href="https://firelightwp.com/pro-lightbox/pricing?utm_source=pro-settings&utm_medium=referral&utm_campaign=easy-fancybox" target="_blank" class="banner-button">' . esc_html__( 'See Pricing', 'easy-fancybox' ) . '</a>';
 		?>
@@ -60,10 +60,10 @@
 </div>
 <div class="pricing-section">
 	<div class="pricing-header">
-		<h2 class="pricing-headline"><?php $has_lite_plan ? esc_html_e( 'Upgrade to Pro!', 'easy-fancybox' ) : esc_html_e( '40% Off Black Friday Sale!', 'easy-fancybox' ); ?></h2>
+		<h2 class="pricing-headline"><?php $has_lite_plan ? esc_html_e( 'Upgrade to Pro!', 'easy-fancybox' ) : esc_html_e( '40% Off Cyber Monday Sale!', 'easy-fancybox' ); ?></h2>
 		<?php if ( ! $has_lite_plan ) : ?>
-			<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Yes, all plans start with a 7-day free trial!', 'easy-fancybox' ); ?></h4>
-			<h4 class="pricing-guarantee-2"><strong><?php esc_html_e( 'Lock in 40% OFF for Black Friday with coupon BF2024!', 'easy-fancybox' ); ?></strong></h4>
+			<h4 class="pricing-guarantee-2"><strong><?php esc_html_e( 'Lock in 40% OFF for Cyber Moday with coupon CM2024!', 'easy-fancybox' ); ?></strong></h4>
+			<h4 class="pricing-guarantee-2"><?php esc_html_e( 'Plus all plans start with a 7-day free trial!', 'easy-fancybox' ); ?></h4>
 		<?php endif; ?>
 	</div>
 	<div class="pricing-table">
