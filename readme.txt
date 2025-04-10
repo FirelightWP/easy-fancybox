@@ -110,6 +110,9 @@ When activated network wide with **Network Activate**, each sub-site will _not_ 
 
 == Changelog ==
 
+= 2.3.12 =
+* Update: Update dom purify script to 3.2.5
+
 = 2.3.11 =
 * Update: Update Pro landing/pricing
 
