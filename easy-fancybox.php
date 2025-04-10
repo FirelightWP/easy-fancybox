@@ -5,7 +5,7 @@
  * Description: Formerly Easy Fancybox. The most popular WordPress lightbox plugin. Simple, fast, and responsive. Opens images, videos, PDFs, and custom popups.
  * Text Domain: easy-fancybox
  * Domain Path: languages
- * Version: 2.3.11
+ * Version: 2.3.12
  * Author: FirelightWP
  * Author URI: https://firelightwp.com
  *
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * CONSTANTS
  */
-define( 'EASY_FANCYBOX_VERSION', '2.3.11' );
+define( 'EASY_FANCYBOX_VERSION', '2.3.12' );
 define(
 	'FANCYBOX_VERSIONS',
 	array(
